@@ -1,0 +1,1 @@
+{"name":"FrostMaze.Editor","rootNamespace":"FrostMaze.Editor","references":["FrostMaze.Runtime","FrostMaze.Simulation","Unity.RenderPipelines.Universal.Runtime","Unity.RenderPipelines.Core.Runtime"],"includePlatforms":["Editor"]}

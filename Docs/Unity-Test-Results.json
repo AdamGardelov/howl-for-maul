@@ -1,0 +1,167 @@
+{
+  "status": "completed",
+  "duration": 3.92,
+  "summary": {
+    "total": 22,
+    "passed": 22,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "results": [
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Straight path",
+      "Status": "Passed",
+      "Duration": 0.0098916,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Horizontal wall detour",
+      "Status": "Passed",
+      "Duration": 0.0030861,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Vertical wall detour",
+      "Status": "Passed",
+      "Duration": 0.001402,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Valid diagonal clearance",
+      "Status": "Passed",
+      "Duration": 0.0001803,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Invalid diagonal clearance",
+      "Status": "Passed",
+      "Duration": 0.0001574,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Diagonal aperture changes global connectivity",
+      "Status": "Passed",
+      "Duration": 0.0007552,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Tower combat counts negative health as a kill",
+      "Status": "Passed",
+      "Duration": 0.0024234,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Long zig-zag maze",
+      "Status": "Passed",
+      "Duration": 0.0164876,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Complete blockage",
+      "Status": "Passed",
+      "Duration": 0.0009133,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Reopen after selling, invalidate cached field",
+      "Status": "Passed",
+      "Duration": 0.002356,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Reopen after destruction",
+      "Status": "Passed",
+      "Duration": 0.0014857,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Enemy breaches and resumes",
+      "Status": "Passed",
+      "Duration": 0.0124294,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Congestion never triggers siege",
+      "Status": "Passed",
+      "Duration": 0.0253784,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Flight follows checkpoints over wall",
+      "Status": "Passed",
+      "Duration": 0.0007772,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Placement footprint and occupancy",
+      "Status": "Passed",
+      "Duration": 0.0001546,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Reproducible fixed-step simulation",
+      "Status": "Passed",
+      "Duration": 0.0212933,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Shared fields reused",
+      "Status": "Passed",
+      "Duration": 0.0009674,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Enemies traverse zig-zag without collision",
+      "Status": "Passed",
+      "Duration": 0.1056201,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Dynamic blockage and sale during wave",
+      "Status": "Passed",
+      "Duration": 0.0074403,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Ground checkpoints retain downstream routing",
+      "Status": "Passed",
+      "Duration": 0.0022596,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Two hundred enemies complete a shared route",
+      "Status": "Passed",
+      "Duration": 3.3750517,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.No tunnelling at high speed",
+      "Status": "Passed",
+      "Duration": 0.0036356,
+      "Message": null,
+      "StackTrace": null
+    }
+  ]
+}

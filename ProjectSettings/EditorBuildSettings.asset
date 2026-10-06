@@ -1,0 +1,12 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Game/Maps/MazeLab.unity
+    guid: 391787c2c41a55b78e32072caba2283f
+  m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0
