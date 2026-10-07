@@ -28,26 +28,73 @@ namespace FrostMaze.Simulation
         }
         public bool WaveActive => Pending > 0 || Enemies.Count > 0;
         public bool TowersFire = true;
+        public int Gold { get; private set; }
+        public int Lives => Math.Max(0, Config.StartingLives - Leaked);
+        public bool Defeated => Config.Economy && Lives == 0;
+        public bool Won => !Defeated && WaveIndex == Config.Waves.Length - 1 && !WaveActive && rewardedWave == WaveIndex;
+        public bool Finished => Defeated || Won;
+        public V2 BuilderPosition { get; private set; }
+        public V2 BuilderDestination { get; private set; }
+        public bool HasBuildOrder { get; private set; }
+        public V2 BuildOrder { get; private set; }
+        public string BuilderNotice { get; private set; } = "Builder ready.";
+        int rewardedWave = -1;
+        readonly Dictionary<int, int> paidTowers = new Dictionary<int, int>();
+        public void MoveBuilder(V2 destination)
+        {
+            if (Finished) return;
+            HasBuildOrder = false;
+            BuilderDestination = new V2(Geometry.Clamp(destination.X, .5f, Config.Width - .5f), Geometry.Clamp(destination.Y, .5f, Config.Height - .5f));
+            BuilderNotice = "Moving. Previous build order cancelled.";
+        }
+        public bool OrderBuild(int x, int y, out string reason)
+        {
+            if (!Config.BuilderEnabled) return Build(x, y, out reason);
+            if (!CanBuild(x, y, out reason)) return false;
+            BuildOrder = new V2(x, y);
+            HasBuildOrder = true;
+            BuilderDestination = new V2(x + Config.Tower.Width * .5f, y + Config.Tower.Height * .5f);
+            BuilderNotice = reason = "Builder dispatched. Gold is charged on completion.";
+            return true;
+        }
+        void StepBuilder()
+        {
+            if (!Config.BuilderEnabled) return;
+            var delta = BuilderDestination - BuilderPosition;
+            float travel = Config.BuilderSpeed * FixedDelta;
+            BuilderPosition += delta.Length <= travel ? delta : delta.Normalized * travel;
+            if (HasBuildOrder && V2.Distance(BuilderPosition, BuilderDestination) <= Config.BuildRange)
+            {
+                HasBuildOrder = false;
+                Build((int)BuildOrder.X, (int)BuildOrder.Y, out string message);
+                BuilderNotice = message;
+                BuilderDestination = BuilderPosition;
+            }
+        }
         float spawnTimer;
         int nextEnemy = 1;
         public World(Scenario config)
         {
             config.Validate();
             Config = config;
+            Gold = config.StartingGold;
+            BuilderPosition = BuilderDestination = config.Spawn;
             Grid = new MazeGrid(config.Width, config.Height);
             Navigation = new FlowNavigation(Grid, config.NavigationStep, config.BreachCost);
         }
         public bool StartWave()
         {
-            if (WaveActive || WaveIndex + 1 >= Config.Waves.Length)
+            if (Finished || WaveActive || WaveIndex + 1 >= Config.Waves.Length)
                 return false;
             WaveIndex++;
             Pending = Config.Waves[WaveIndex].Count;
             spawnTimer = 0;
             return true;
         }
-        public bool Build(int x, int y, out string reason)
+        public bool CanBuild(int x, int y, out string reason)
         {
+            if (Finished) { reason = "Match finished. Reset to play again."; return false; }
+            if (Config.Economy && Gold < Config.TowerCost) { reason = "Not enough gold."; return false; }
             var spec = Config.Tower;
             var center = new V2(x + spec.Width * 0.5f, y + spec.Height * 0.5f);
             var half = new V2(spec.Width * 0.5f - (1 - spec.Fill) * 0.5f, spec.Height * 0.5f - (1 - spec.Fill) * 0.5f);
@@ -71,18 +118,36 @@ namespace FrostMaze.Simulation
                     reason = "An enemy occupies this footprint.";
                     return false;
                 }
-            if (Grid.Build(x, y, spec) == null)
+            bool occupied = x < 0 || y < 0 || x + spec.Width > Grid.Width || y + spec.Height > Grid.Height;
+            for (int cx = x; cx < x + spec.Width && !occupied; cx++)
+                for (int cy = y; cy < y + spec.Height; cy++) occupied |= Grid.At(cx, cy) != null;
+            if (occupied)
             {
                 reason = "Outside map or occupied footprint.";
                 return false;
             }
-            reason = "Built. Complete route blockage is allowed.";
+            reason = "Placement valid.";
+            return true;
+        }
+        public bool Build(int x, int y, out string reason)
+        {
+            if (!CanBuild(x, y, out reason)) return false;
+            var center = new V2(x + Config.Tower.Width * .5f, y + Config.Tower.Height * .5f);
+            if (Config.BuilderEnabled && V2.Distance(BuilderPosition, center) > Config.BuildRange)
+            { reason = "Builder out of range. Issue a build order."; return false; }
+            var tower = Grid.Build(x, y, Config.Tower);
+            if (tower == null) { reason = "Invalid tower footprint."; return false; }
+            if (Config.Economy) { Gold -= Config.TowerCost; paidTowers[tower.Id] = Config.SaleRefund; }
+            reason = "Tower built. Complete route blockage is allowed.";
             return true;
         }
         public bool Sell(int x, int y)
         {
+            if (Finished) return false;
             var t = Grid.At(x, y);
-            return t != null && Grid.Remove(t.Id);
+            if (t == null || !Grid.Remove(t.Id)) return false;
+            if (paidTowers.TryGetValue(t.Id, out int refund)) { Gold += refund; paidTowers.Remove(t.Id); }
+            return true;
         }
         public Enemy Spawn(WaveSpec spec, V2 position)
         {
@@ -97,7 +162,9 @@ namespace FrostMaze.Simulation
         }
         public void Step()
         {
+            if (Finished) return;
             Tick++;
+            StepBuilder();
             if (Pending > 0)
             {
                 spawnTimer -= FixedDelta;
@@ -209,9 +276,18 @@ namespace FrostMaze.Simulation
                 if (Enemies[i].Health <= 0)
                 {
                     if (!Enemies[i].Exited)
+                    {
                         Killed++;
+                        if (Config.Economy) Gold += Config.KillReward;
+                    }
                     Enemies.RemoveAt(i);
                 }
+            if (!WaveActive && WaveIndex > rewardedWave && !Defeated)
+            {
+                rewardedWave = WaveIndex;
+                if (Config.Economy) Gold += Config.WaveReward;
+            }
+            if (Finished) HasBuildOrder = false;
         }
         void Move(Enemy e, V2 delta)
         {

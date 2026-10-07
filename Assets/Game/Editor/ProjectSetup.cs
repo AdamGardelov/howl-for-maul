@@ -26,6 +26,12 @@ namespace FrostMaze.Editor
                 map = ScriptableObject.CreateInstance<MapDefinition>();
                 AssetDatabase.CreateAsset(map, "Assets/Game/Maps/Resources/TestMap.asset");
             }
+            if (AssetDatabase.LoadAssetAtPath<MapDefinition>("Assets/Game/Maps/Resources/SharedDefense.asset") == null)
+            {
+                var shared = ScriptableObject.CreateInstance<MapDefinition>();
+                shared.Settings = FrostMaze.Simulation.Scenario.SharedDefense();
+                AssetDatabase.CreateAsset(shared, "Assets/Game/Maps/Resources/SharedDefense.asset");
+            }
             if (GraphicsSettings.defaultRenderPipeline == null)
             {
                 var renderer = ScriptableObject.CreateInstance<UniversalRendererData>();
@@ -64,7 +70,7 @@ namespace FrostMaze.Editor
         public static void SelectMap()
         {
             EnsureAssets();
-            Selection.activeObject = AssetDatabase.LoadAssetAtPath<MapDefinition>("Assets/Game/Maps/Resources/TestMap.asset");
+            Selection.activeObject = AssetDatabase.LoadAssetAtPath<MapDefinition>("Assets/Game/Maps/Resources/SharedDefense.asset");
         }
         [MenuItem("FrostMaze/Build Linux")]
         public static void BuildLinux()

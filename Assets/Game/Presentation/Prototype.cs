@@ -6,6 +6,13 @@ namespace FrostMaze
     public sealed class Prototype : MonoBehaviour
     {
         public MapDefinition Map;
+        static string requestedMap = "SharedDefense";
+        public bool MoveMode;
+        public void SwitchMap(bool shared)
+        {
+            requestedMap = shared ? "SharedDefense" : "TestMap";
+            UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+        }
         public World World
         {
             get; private set;
@@ -32,9 +39,19 @@ namespace FrostMaze
         readonly Dictionary<int, GameObject> enemies = new Dictionary<int, GameObject>();
         readonly List<Material> materials = new List<Material>();
         Material towerMaterial, enemyMaterial, airMaterial, blockedMaterial, ghostMaterial;
-        GameObject ghost, worldRoot;
+        GameObject ghost, worldRoot, builder, orderMarker;
         float accumulator;
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        static void InstallBootstrap()
+        {
+            requestedMap = "SharedDefense";
+            UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
+            UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+        static void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
+        {
+            Boot();
+        }
         static void Boot()
         {
             if (FindFirstObjectByType<Prototype>() == null)
@@ -43,8 +60,8 @@ namespace FrostMaze
         void Awake()
         {
             if (Map == null)
-                Map = Resources.Load<MapDefinition>("TestMap");
-            World = new World(Map != null ? JsonUtility.FromJson<Scenario>(JsonUtility.ToJson(Map.Settings)) : new Scenario());
+                Map = Resources.Load<MapDefinition>(requestedMap);
+            World = new World(Map != null ? JsonUtility.FromJson<Scenario>(JsonUtility.ToJson(Map.Settings)) : Scenario.SharedDefense());
             worldRoot = new GameObject("Procedural map");
             worldRoot.transform.SetParent(transform);
             towerMaterial = MakeMaterial(new Color(0.10f, 0.32f, 0.40f));
@@ -52,7 +69,18 @@ namespace FrostMaze
             airMaterial = MakeMaterial(new Color(0.67f, 0.38f, 0.96f));
             blockedMaterial = MakeMaterial(new Color(1f, 0.17f, 0.24f));
             ghostMaterial = MakeMaterial(new Color(0.24f, 0.9f, 0.74f));
-            var floor = Primitive("Snowfield", PrimitiveType.Cube, new Vector3(World.Config.Width / 2f, -0.15f, World.Config.Height / 2f), new Vector3(World.Config.Width, 0.25f, World.Config.Height), MakeMaterial(new Color(0.72f, 0.83f, 0.86f)));
+            var floor = Primitive("Snowfield", PrimitiveType.Cube, new Vector3(World.Config.Width / 2f, -0.15f, World.Config.Height / 2f), new Vector3(World.Config.Width, 0.25f, World.Config.Height), MakeMaterial(new Color(0.72f, 0.83f, 0.86f), true));
+            if (World.Config.BuilderEnabled)
+            {
+                for (int i = 0; i < 3; i++)
+                    Primitive("Defense area " + (i + 1), PrimitiveType.Cube, new Vector3(7 + 14 * i, -.008f, 12), new Vector3(13.9f, .015f, 24), MakeMaterial(i % 2 == 0 ? new Color(.64f,.77f,.80f) : new Color(.72f,.83f,.86f), true));
+                builder = Primitive("Builder drone", PrimitiveType.Capsule, Vector3.zero, new Vector3(.65f,.35f,.65f), MakeMaterial(new Color(.1f,.95f,.8f)));
+                var wing = Primitive("Builder wings", PrimitiveType.Cube, Vector3.zero, new Vector3(1.2f,.12f,.22f), builder.GetComponent<Renderer>().sharedMaterial);
+                wing.transform.SetParent(builder.transform, false);
+                wing.transform.localPosition = Vector3.zero;
+                orderMarker = Primitive("Builder destination", PrimitiveType.Cylinder, Vector3.zero, new Vector3(.6f,.02f,.6f), MakeMaterial(new Color(.1f,.8f,.65f)));
+                Notice = "Build near the route or across the flight corridor. The drone travels to your build orders.";
+            }
             var oldCamera = Camera.main;
             if (oldCamera != null)
                 Destroy(oldCamera.gameObject);
@@ -143,9 +171,11 @@ namespace FrostMaze
             if (UnityEngine.Input.GetKeyDown(KeyCode.F))
                 ShowNavigation = !ShowNavigation;
             if (UnityEngine.Input.GetKeyDown(KeyCode.B))
-                SellMode = false;
+                { SellMode = false; MoveMode = false; }
             if (UnityEngine.Input.GetKeyDown(KeyCode.X))
-                SellMode = true;
+                { SellMode = true; MoveMode = false; }
+            if (UnityEngine.Input.GetKeyDown(KeyCode.M)) { MoveMode = true; SellMode = false; }
+            if (UnityEngine.Input.GetKeyDown(KeyCode.Escape)) { World.MoveBuilder(World.BuilderPosition); MoveMode = false; }
             var mouse = UnityEngine.Input.mousePosition;
             var uiPoint = new Vector2(mouse.x, Screen.height - mouse.y);
             HasHover = false;
@@ -163,7 +193,13 @@ namespace FrostMaze
             HasHover = true;
             ghost.SetActive(true);
             ghost.transform.position = new Vector3(x + World.Config.Tower.Width * 0.5f, 0.04f, y + World.Config.Tower.Height * 0.5f);
-            ghostMaterial.color = SellMode ? new Color(1, 0.3f, 0.3f) : new Color(0.24f, 0.9f, 0.74f);
+            ghostMaterial.color = SellMode || (!MoveMode && !World.CanBuild(x, y, out _)) ? new Color(1, 0.3f, 0.3f) : new Color(0.24f, 0.9f, 0.74f);
+            if (World.Config.BuilderEnabled && (UnityEngine.Input.GetMouseButtonDown(1) || MoveMode && UnityEngine.Input.GetMouseButtonDown(0)))
+            {
+                World.MoveBuilder(new V2(point.x, point.z));
+                Notice = "Builder moving. Select Build [B] to construct.";
+                return;
+            }
             if (UnityEngine.Input.GetMouseButtonDown(1) || UnityEngine.Input.GetMouseButtonDown(0) && SellMode)
             {
                 Notice = World.Sell(x, y) ? "Tower sold. Navigation updated." : "No tower at this cell.";
@@ -186,24 +222,26 @@ namespace FrostMaze
                 }
                 else
                 {
-                    World.Build(x, y, out string reason);
+                    World.OrderBuild(x, y, out string reason);
                     Notice = reason;
                 }
             }
         }
         public void Launch()
         {
-            Notice = World.StartWave() ? "Wave launched. You can edit the maze during combat." : World.WaveActive ? "Finish the current wave first." : "All test waves complete. Reset to test again.";
+            Notice = World.StartWave() ? "Wave launched. You can edit the maze during combat." : World.WaveActive ? "Finish the current wave first." : World.Defeated ? "Defense lost. Reset for a new match." : "All waves complete. Reset to play again.";
         }
         public void ResetSimulation()
         {
             World = new World(World.Config);
             accumulator = 0;
             SelectedId = 0;
+            Paused = false;
             Notice = "Map reset. Build a new experiment.";
         }
         public void DemoMaze()
         {
+            if (World.Config.Economy) { Notice = "Sample mazes are available in Maze Lab. Build your own defense here."; return; }
             if (World.WaveActive)
             {
                 Notice = "Reset or finish the wave before loading the sample maze.";
@@ -223,6 +261,12 @@ namespace FrostMaze
         }
         void SyncViews()
         {
+            if (builder != null)
+            {
+                builder.transform.position = new Vector3(World.BuilderPosition.X, 1.1f, World.BuilderPosition.Y);
+                orderMarker.SetActive(V2.Distance(World.BuilderPosition, World.BuilderDestination) > .1f);
+                orderMarker.transform.position = new Vector3(World.BuilderDestination.X,.03f,World.BuilderDestination.Y);
+            }
             var live = new HashSet<int>();
             foreach (var t in World.Grid.Towers)
             {
@@ -231,11 +275,14 @@ namespace FrostMaze
                 {
                     obj = Primitive("Tower " + t.Id, PrimitiveType.Cube, new Vector3(t.Center.X, 0.6f, t.Center.Y), new Vector3(t.Half.X * 2, 1.2f, t.Half.Y * 2), towerMaterial);
                     towers.Add(t.Id, obj);
-                    var crown = Primitive("Crown", PrimitiveType.Cylinder, new Vector3(t.Center.X, 1.3f, t.Center.Y), new Vector3(0.4f, 0.13f, 0.4f), ghostMaterial);
+                    var crown = Primitive("Crown", PrimitiveType.Cylinder, new Vector3(t.Center.X, 1.3f, t.Center.Y), new Vector3(0.4f, 0.13f, 0.4f), towerMaterial);
                     crown.transform.SetParent(obj.transform, true);
                 }
                 float health = t.Health / t.Spec.Health;
-                obj.transform.localScale = new Vector3(t.Half.X * 2, 0.65f + 0.55f * health, t.Half.Y * 2);
+                // Lower only the presentation during clearance inspection; collision stays unchanged.
+                float height = ShowNavigation ? 0.12f : 0.65f + 0.55f * health;
+                obj.transform.position = new Vector3(t.Center.X, height * 0.5f, t.Center.Y);
+                obj.transform.localScale = new Vector3(t.Half.X * 2, height, t.Half.Y * 2);
             }
             foreach (var id in new List<int>(towers.Keys))
                 if (!live.Contains(id))

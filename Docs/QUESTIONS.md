@@ -1,14 +1,16 @@
-# Questions for later review
+# Design decisions for later
 
-No answer was needed to implement the first slice. These are deferred design decisions, with the assumptions used in the prototype.
+No answers are needed to run this build. Current assumptions are implemented and configurable in SharedDefense.asset.
 
-1. **How permissive should diagonal gaps feel?** Defaults: tower Fill 0.86, enemy radius 0.20, navigation step 0.50. Touching diagonal clearances do not permit passage. Try smaller footprints/radii and a 0.25 step in the map asset.
-2. **What is the final connected-map route?** Assumed one shared rectangular test space with editable ordered ground and air checkpoints. Nothing models player areas as isolated lanes.
-3. **Which towers should blocked enemies prefer?** Assumed a weighted route through obstacles, choosing the first obstruction, without considering price, owner, or remaining health. A health-aware breach policy would change gameplay and field invalidation frequency.
-4. **Can construction overlap units or route markers?** Assumed no overlap with existing ground-unit discs, spawn, or ground checkpoints. Complete route blockage itself is explicitly allowed.
-5. **What should leaks cost?** They increment a debug counter; there is no shared-life or loss condition yet.
-6. **How should a builder and economy work?** Direct unlimited construction is the temporary interaction. No builder movement, resources, or purchase delays yet.
-7. **How should enemy collision feel at large scale?** Current units are solid discs with basic separation and sliding. Throughput at tight bends is intentionally reduced by geometry; further crowd tuning should use playtest feedback.
-8. **How strict must reproducibility become?** Same-runtime fixed-step repeatability is tested. Cross-platform bit-identical lockstep is not promised; an authoritative server remains the intended future direction.
-9. **Should waves repeat or keep escalating?** Five explicit example waves stop at completion. The fifth is flying data; future tenth/fifteenth waves should be authored explicitly.
-10. **What should sell refunds, tower ownership and cooperative permissions be?** Not implemented for this local mechanics slice.
+1. **Builder movement:** a hovering drone ignores towers and enemies. It travels at 9 cells/sec and constructs within 3 cells. This prevents self-trapping during maze construction. Should the eventual builder be a ground unit instead?
+2. **Orders:** one pending build at a time. A new valid build replaces it; move or Escape cancels it. Invalid clicks keep the existing order. Gold is charged only on successful construction, after placement is checked again on arrival. Should shift-click queue multiple orders?
+3. **Economy:** 300 starting gold; tower 20; sale refund 15; kill reward 2; completed wave reward 30. Destroyed towers do not refund. Remote sale is allowed. Prices are initial tuning, not a final balance claim.
+4. **Lives:** 30 shared lives, one per enemy reaching the final exit. Intermediate checkpoints continue the same unit into downstream defenses. Zero lives freezes the match; clearing ten waves with lives left wins.
+5. **Map:** Frostline Crossing is a continuous 42×24 field with three tinted defense areas and four ordered ground checkpoints. Area boundaries are visual, not walls or ownership restrictions. Should routes branch or combine in a later map?
+6. **Cooperation:** the local prototype has one builder and one treasury. Ownership, permissions, multiple players and network synchronization remain future work.
+7. **Waves:** ten explicitly authored entries, with flying waves at 5 and 10. Flying units follow their own central route. Start each wave manually; no time pressure between waves yet.
+8. **Siege choice:** blocked enemies use a weighted route through obstacles and attack its first obstruction. Prices, owner and remaining tower health do not influence that route.
+9. **Clearance:** tower fill 0.86, enemy radius 0.20, flow-field spacing 0.50. These remain configurable; the low-tower F overlay shows the actual collision footprint and radius.
+10. **Difficulty/art:** a verified starter layout can win all ten waves without reinvestment. This is a functional baseline; future work can add tower choices, tougher waves, sound and original art.
+11. **Persistence:** reset, switching maps and restarting Play discard the current match. Saving and loading matches is not implemented.
+12. **Determinism:** same-runtime fixed-step repeatability is tested. Cross-platform bit-identical lockstep is not promised; an authoritative server remains the intended direction.

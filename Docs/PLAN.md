@@ -9,7 +9,8 @@ The requested parent directory contained another unrelated project, but no exist
 1. Pure C# grid, exact swept clearance, cached distance fields; automated path/diagonal/reopening tests.
 2. Fixed-step units, siege, tower combat, explicit wave/route data, local separation; dynamic maze and crowd tests.
 3. Unity procedural scene, RTS camera, construction UI, selection and diagnostic layers.
-4. Unity import/compilation and build validation when editor/license becomes available; record exact limitations and manual acceptance steps.
+4. Unity import/compilation and Linux/Windows build validation completed.
+5. Shared-defense expansion: connected areas, hovering builder, economy, lives and ten-wave match; simulation and real Play-mode integration tests.
 
 ## Boundaries and decisions expensive to reverse
 
@@ -19,10 +20,10 @@ The requested parent directory contained another unrelated project, but no exist
 - Navigation uses a tunable sampled lattice with eight-direction edges and shared destination/radius fields. It can conservatively miss a sub-sample passage; it never authorizes an edge that intersects a tower's clearance boundary.
 - All changes rebuild affected cached fields lazily by global topology revision. There is no independent A* per enemy.
 - World.Step advances a fixed 1/30-second tick. The same input sequence produces repeatable results on the same runtime. IEEE float operations are **not** a promise of bit-identical cross-platform lockstep.
-- World.Build/Sell/StartWave are the local command boundary. Future authoritative networking can validate and order these commands without moving gameplay rules into MonoBehaviours. No networking scaffolding is included.
+- World.OrderBuild/MoveBuilder/Build/Sell/StartWave are the local command boundary. Future authoritative networking can validate and order these commands without moving gameplay rules into MonoBehaviours. No networking scaffolding is included.
 - Maps and waves are authored through a ScriptableObject containing plain serializable simulation data. The presentation copies it when entering Play.
 - Camera intent is abstracted behind ICameraInput for later touch input. Desktop uses Unity's built-in legacy input to avoid an extra package.
 
 ## Deliberate scope
 
-One tower, one ground unit, a flying variant, five data-defined waves, a rectangular shared map, unlimited construction, and direct build interaction. No factions, builder character, economy, armor tables, splash, status effects, auras, lobby, persistence, or multiplayer. These were future requirements, not vertical-slice features.
+One tower, ground and flying enemies, ten waves, a shared map spanning three defense areas, hovering builder, gold, lives and terminal match outcomes. The original five-wave unlimited-construction lab remains available. No factions, armor tables, splash, status effects, auras, lobby, persistence or multiplayer. See SHARED-DEFENSE.md for the implemented rules and QUESTIONS.md for deferred decisions.

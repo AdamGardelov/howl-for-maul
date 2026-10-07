@@ -1,1 +1,1 @@
-{"name":"FrostMaze.Tests","rootNamespace":"FrostMaze.Tests","references":["FrostMaze.Simulation"],"includePlatforms":["Editor"],"optionalUnityReferences":["TestAssemblies"]}
+{"name":"FrostMaze.Tests","rootNamespace":"FrostMaze.Tests","references":["FrostMaze.Simulation","FrostMaze.Runtime"],"includePlatforms":["Editor"],"optionalUnityReferences":["TestAssemblies"]}

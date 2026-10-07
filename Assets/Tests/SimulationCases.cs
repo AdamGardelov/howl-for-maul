@@ -58,6 +58,13 @@ namespace FrostMaze.Tests
             new Case("Ground checkpoints retain downstream routing",()=>{var c=Config();c.GroundRoute=new[]{new V2(5.5f,1.5f),new V2(10.5f,4.5f)};var w=new World(c);var e=w.Spawn(c.Waves[0],c.Spawn);bool passed=false;for(int i=0;i<1200;i++){w.Step();passed|=e.Checkpoint==1;}Check(passed&&w.Leaked==1,"downstream checkpoint skipped or stalled");}),
             new Case("Two hundred enemies complete a shared route",()=>{var w=new World(Config());var wave=new WaveSpec();for(int y=0;y<16;y++)for(int x=0;x<13;x++)w.Spawn(wave,new V2(0.5f+x*0.45f,0.3f+y*0.45f));Check(w.Enemies.Count>=200,"crowd setup too small");int count=w.Enemies.Count;Run(w,1800);Check(w.Leaked==count,"crowd stalled "+w.Leaked+"/"+count);Check(w.Navigation.Rebuilds==1,"crowd rebuilt shared field");}),
             new Case("No tunnelling at high speed",()=>{var w=new World(Config());Wall(w.Grid,5,1);var e=w.Spawn(new WaveSpec{Speed=60},w.Config.Spawn);for(int i=0;i<90&&w.Enemies.Count>0;i++){w.Step();Check(w.Grid.Clear(e.Position,e.Position,e.Spec.Radius),"inside tower");}})
+            ,new Case("Economy transactions reject invalid purchases and refunds", CampaignCases.Transactions)
+            ,new Case("Builder travel cancellation and order replacement", CampaignCases.BuilderOrders)
+            ,new Case("Construction revalidates on arrival", CampaignCases.ArrivalRevalidation)
+            ,new Case("Kill and wave rewards paid once with victory", CampaignCases.Rewards)
+            ,new Case("Defeat freezes match and prevents new actions", CampaignCases.Defeat)
+            ,new Case("Shared map traverses all defense areas", CampaignCases.SharedRoute)
+            ,new Case("Complete ten-wave match using paid builder construction", CampaignCases.FullMatch)
         };
     }
 }

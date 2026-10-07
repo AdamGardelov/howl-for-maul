@@ -1,0 +1,84 @@
+[
+  {
+    "status": "completed",
+    "result": "Succeeded",
+    "platform": "StandaloneLinux64",
+    "totalSizeBytes": 91934355,
+    "buildTimeMs": 13349,
+    "totalErrors": 0,
+    "totalWarnings": 1,
+    "warnings": [
+      {
+        "message": "Pipeline: No RuntimePipelineConfig asset found (Project Settings > Pipeline > Runtime). Pipeline will be disabled in Player builds."
+      }
+    ]
+  },
+  {
+    "status": "completed",
+    "result": "Succeeded",
+    "platform": "StandaloneWindows64",
+    "totalSizeBytes": 95676907,
+    "buildTimeMs": 15367,
+    "totalErrors": 0,
+    "totalWarnings": 19,
+    "warnings": [
+      {
+        "message": "Pipeline: No RuntimePipelineConfig asset found (Project Settings > Pipeline > Runtime). Pipeline will be disabled in Player builds."
+      },
+      {
+        "message": "Shader warning in 'TraceRays': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+      },
+      {
+        "message": "Shader warning in 'RisEstimation': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+      },
+      {
+        "message": "Shader warning in 'TraceRenderingLayerMask': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+      },
+      {
+        "message": "Shader warning in 'UniformEstimation': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+      },
+      {
+        "message": "Shader warning in 'TraceTransparentRays': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+      },
+      {
+        "message": "Shader warning in 'DynamicGISkyOcclusion': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+      },
+      {
+        "message": "Shader warning in 'TraceRaysAndFetchAttributes': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+      },
+      {
+        "message": "Shader warning in 'RestirCandidateTemporal': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+      },
+      {
+        "message": "Shader warning in 'TraceVirtualOffset': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+      },
+      {
+        "message": "Shader warning in 'RestirCandidateTemporal': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+      },
+      {
+        "message": "Shader warning in 'TraceTransparentRays': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+      },
+      {
+        "message": "Shader warning in 'TraceRenderingLayerMask': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+      },
+      {
+        "message": "Shader warning in 'TraceRaysAndFetchAttributes': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+      },
+      {
+        "message": "Shader warning in 'DynamicGISkyOcclusion': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+      },
+      {
+        "message": "Shader warning in 'TraceVirtualOffset': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+      },
+      {
+        "message": "Shader warning in 'TraceRays': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+      },
+      {
+        "message": "Shader warning in 'RisEstimation': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+      },
+      {
+        "message": "Shader warning in 'UniformEstimation': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+      }
+    ]
+  }
+]

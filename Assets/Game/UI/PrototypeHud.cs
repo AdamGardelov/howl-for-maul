@@ -5,7 +5,7 @@ namespace FrostMaze
     public sealed class PrototypeHud : MonoBehaviour
     {
         Prototype game;
-        GUIStyle title, small, label, button, section;
+        GUIStyle title, small, label, button, section, mapLabel;
         Texture2D panel;
         Vector2 scroll;
         public void Initialize(Prototype prototype)
@@ -24,6 +24,8 @@ namespace FrostMaze
             small.normal.textColor = new Color(0.49f, 0.67f, 0.73f);
             section = new GUIStyle(label) { fontStyle = FontStyle.Bold, fontSize = 11 };
             section.normal.textColor = new Color(0.26f, 0.87f, 0.74f);
+            mapLabel = new GUIStyle(small) { fontStyle = FontStyle.Bold };
+            mapLabel.normal.textColor = new Color(.08f,.22f,.27f);
             button = new GUIStyle(GUI.skin.button) { fontSize = 13, fixedHeight = 32 };
             panel = new Texture2D(1, 1);
             panel.SetPixel(0, 0, new Color(0.025f, 0.055f, 0.075f, 0.97f));
@@ -42,13 +44,18 @@ namespace FrostMaze
             GUILayout.BeginArea(new Rect(34, 30, 260, Screen.height / scale - 62));
             scroll = GUILayout.BeginScrollView(scroll);
             GUILayout.Label("FROSTMAZE", title);
-            GUILayout.Label("MAZE LAB   /   VERTICAL SLICE 01", small);
+            GUILayout.Label(w.Config.Name.ToUpperInvariant(), small);
             GUILayout.Space(18);
             GUILayout.Label("SHARED DEFENSE", section);
             GUILayout.Label($"Wave {Mathf.Max(0, w.WaveIndex + 1):00} / {w.Config.Waves.Length:00}     •     {w.Enemies.Count} active", label);
             GUILayout.Label($"{w.Pending} awaiting spawn   ·   {w.Killed} defeated   ·   {w.Leaked} leaked", small);
+            if (w.Config.Economy)
+            {
+                GUILayout.Label($"GOLD {w.Gold}    /    LIVES {w.Lives}", section);
+                GUILayout.Label(w.Finished ? (w.Won ? "VICTORY — all waves cleared" : "DEFEAT — the crossing fell") : w.WaveActive ? w.Config.Waves[w.WaveIndex].Name : $"Next: {w.Config.Waves[Mathf.Min(w.WaveIndex + 1, w.Config.Waves.Length - 1)].Name}", label);
+            }
             GUILayout.Space(10);
-            GUI.enabled = !w.WaveActive && w.WaveIndex + 1 < w.Config.Waves.Length;
+            GUI.enabled = !w.Finished && !w.WaveActive && w.WaveIndex + 1 < w.Config.Waves.Length;
             if (GUILayout.Button("LAUNCH WAVE     [SPACE]", button))
                 game.Launch();
             GUI.enabled = true;
@@ -61,22 +68,29 @@ namespace FrostMaze
             GUILayout.Space(16);
             GUILayout.Label("CONSTRUCTION", section);
             GUILayout.BeginHorizontal();
-            if (GUILayout.Button(game.SellMode ? "Build [B]" : "● Build [B]", button))
-                game.SellMode = false;
+            if (GUILayout.Button((game.SellMode || game.MoveMode) ? "Build [B]" : "● Build [B]", button))
+                { game.SellMode = false; game.MoveMode = false; }
             if (GUILayout.Button(game.SellMode ? "● Sell [X]" : "Sell [X]", button))
-                game.SellMode = true;
+                { game.SellMode = true; game.MoveMode = false; }
             GUILayout.EndHorizontal();
-            GUILayout.Label("Click: place   /   Right click: sell\nShift + click: inspect an enemy", small);
+            if (w.Config.BuilderEnabled)
+            {
+                if (GUILayout.Button(game.MoveMode ? "● Move builder [M]" : "Move builder [M]", button)) { game.MoveMode = true; game.SellMode = false; }
+                GUILayout.Label($"Tower: {w.Config.TowerCost}g  ·  Refund: {w.Config.SaleRefund}g\nKill: +{w.Config.KillReward}g  ·  Wave: +{w.Config.WaveReward}g", small);
+                GUILayout.Label("Click: build order  ·  Right click: move\nOne order at a time  ·  Esc: cancel\nShift + click: inspect an enemy", small);
+                GUILayout.Label(w.BuilderNotice, small);
+            }
+            else GUILayout.Label("Click: place   /   Right click: sell\nShift + click: inspect an enemy", small);
             GUILayout.Space(8);
             GUILayout.Label(game.Notice, label);
             GUILayout.Space(16);
             GUILayout.Label("NAVIGATION OVERLAY", section);
             game.ShowGrid = GUILayout.Toggle(game.ShowGrid, "Placement grid [G]");
-            game.ShowNavigation = GUILayout.Toggle(game.ShowNavigation, "Clearance + flow field [F]");
+            game.ShowNavigation = GUILayout.Toggle(game.ShowNavigation, "Clearance + low towers [F]");
             game.ShowDirections = GUILayout.Toggle(game.ShowDirections, "Enemy intent + siege target");
             game.ShowValues = GUILayout.Toggle(game.ShowValues, "Distance at hovered cell");
             w.TowersFire = GUILayout.Toggle(w.TowersFire, "Tower weapons enabled");
-            GUILayout.Label("Green: route   ·   Red: no clearance\nAmber: unreachable   ·   Purple: flight route\nRed enemies: route blocked, seeking breach", small);
+            GUILayout.Label("Low towers show collision footprints.\nOrange rings show ground-unit radii.\nGreen: route   ·   Red: no clearance\nAmber: unreachable   ·   Purple: flight route\nRed enemies: route blocked, seeking breach", small);
             if (game.HasHover && game.ShowValues)
             {
                 var f = w.Navigation.Get(w.Config.GroundRoute[0], w.Config.Waves[0].Radius);
@@ -92,10 +106,12 @@ namespace FrostMaze
                 GUILayout.Label("Shift + click an enemy to inspect it.", small);
             GUILayout.Space(16);
             GUILayout.Label("EXPERIMENTS", section);
-            if (GUILayout.Button("Load zig-zag maze", button))
+            if (!w.Config.Economy && GUILayout.Button("Load zig-zag maze", button))
                 game.DemoMaze();
             if (GUILayout.Button("Reset map + waves", button))
                 game.ResetSimulation();
+            if (GUILayout.Button(w.Config.Economy ? "Switch to Maze Lab" : "Play Frostline Crossing", button))
+                game.SwitchMap(!w.Config.Economy);
             GUILayout.Space(14);
             GUILayout.Label("WASD / arrows: pan\nWheel: zoom   ·   Middle drag: pan", small);
             GUILayout.Label($"Tick {w.Tick}  ·  Fields built {w.Navigation.Rebuilds}\nNavigation step {w.Config.NavigationStep:0.00}  ·  30 Hz simulation", small);
@@ -103,6 +119,24 @@ namespace FrostMaze
             GUILayout.EndArea();
             GUI.matrix = previousMatrix;
             DrawHealth();
+            DrawMapLabels();
+        }
+        void DrawMapLabels()
+        {
+            if (!game.World.Config.BuilderEnabled) return;
+            string[] names = { "01  WESTWATCH", "02  THE CROSSING", "03  EASTWARD" };
+            for (int i = 0; i < 3; i++)
+            {
+                var p = game.View.WorldToScreenPoint(new Vector3(7 + i * 14, .05f, 23));
+                var rect = new Rect(p.x - 65, Screen.height - p.y, 150, 24);
+                if (p.z > 0 && rect.x > game.Sidebar.xMax && game.View.pixelRect.Contains(new Vector2(p.x,p.y))) GUI.Label(rect, names[i], mapLabel);
+            }
+            var route = game.World.Config.GroundRoute;
+            for (int i = 0; i < route.Length; i++)
+            {
+                var p = game.View.WorldToScreenPoint(new Vector3(route[i].X, .1f, route[i].Y));
+                if (p.z > 0 && p.x > game.Sidebar.xMax + 20) GUI.Label(new Rect(p.x - 8, Screen.height - p.y - 24, 60, 20), i == route.Length - 1 ? "EXIT" : (i + 1).ToString(), mapLabel);
+            }
         }
         void DrawHealth()
         {

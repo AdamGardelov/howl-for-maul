@@ -36,3 +36,24 @@ Unity script recompilation during Play discards the non-serialized simulation. T
 - `Build-Results.json`: concise platform build outcomes and warning messages.
 - `Preview.png`: corrected live Unity Game view.
 - `ACCEPTANCE.md`: remaining interactive controls and native-platform acceptance checklist.
+
+## Follow-up: apparent tower clipping — 7 October 2026
+
+Reproduced the four-tower user layout at cells (3,9), (3,10), (3,11), (3,13). An isolated ground-unit replay crossed x=3.5 through the gap at y=12.18. Independent point-to-rectangle measurements found a minimum surface clearance of 0.009999469 world units and no penetration in that replay. Rendered X/Z tower bounds matched authoritative footprints.
+
+The F navigation view now lowers tower meshes, outlines their collision rectangles, and draws ground-unit radius rings every frame. This makes gaps behind tall tower meshes visible without changing collision or routing. Tower views also refresh position from simulation every frame and stay grounded as their visual height changes. Unity compiled with zero errors/warnings; the updated paused-wave display was visually inspected with no runtime exceptions. The four-tower layout was restored in the editor. Existing standalone builds predate this presentation-only update.
+
+
+## 2026-10-07 — shared-defense expansion
+
+- Default map: Frostline Crossing, 42×24, three connected defense areas, four ground checkpoints and ten waves (5/10 flying).
+- Implemented pure-simulation builder commands/movement, construction costs/refunds, rewards, lives, victory and defeat. Original Maze Lab retained through a runtime map switch.
+- .NET simulation suite: **29/29 passed**. Unity suite: **30/30 passed**, including entering Play mode, building a tower, checking drone/tower visuals and switching both directions between maps. Unity test duration: 8.71 seconds.
+- Unity compilation: zero errors and zero warnings. Live console: zero errors during the gameplay checks.
+- Live Unity reference match: **victory, 255 kills, 0 leaks, 30 lives, 810 gold, 15 purchased towers, 8,344 fixed ticks**. All construction used actual builder orders; no money injection. See Shared-Defense-Live-Result.json and the documented layout.
+- Rendered victory view inspected. Fixed overexposed ground colors and faint map labels. Captured shared-defense preview is stored as Shared-Defense-Preview.png.
+- Automated switching exposed a scene bootstrap bug (RuntimeInitializeOnLoadMethod only initialized the first scene). Fixed by registering a scene-loaded callback and protected with the Play-mode integration regression.
+- Native Linux window smoke testing remains unavailable: the active Xwayland display reports current 0×0 with no active outputs. This does not invalidate the actual Unity editor Play-mode runs, but no successful standalone window run is claimed. Windows is cross-built, not executed on this Linux host.
+- Economy and difficulty are provisional. The reference layout clears all ten waves without additional spending; this establishes a functional baseline rather than final balance.
+- Updated Linux build: **Succeeded**, 91,934,355 bytes, 0 errors, 1 warning (optional editor automation intentionally disabled in the player).
+- Updated Windows build: **Succeeded**, 95,676,907 bytes, 0 errors, 19 warnings (the same automation warning plus unsupported compilation of unused Unity ray-tracing shaders on this Linux host). This prototype uses URP raster rendering.

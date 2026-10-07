@@ -1,21 +1,23 @@
-# FrostMaze — maze mechanics vertical slice
+# FrostMaze — shared-defense prototype
 
-An original cooperative-maul prototype for Unity 6.3 LTS, C#, and URP. This slice is a local maze laboratory with a shared map; networking, economy, final art, and a controllable builder are intentionally outside scope. All geometry is procedural. There are no Warcraft or Mega Man assets.
+An original cooperative-maul prototype for Unity 6.3 LTS, C#, and URP. The default map now includes three connected defense areas, a controllable hovering builder, gold, ten waves, shared lives and victory/defeat. Networking and final art remain future work; the original unlimited-construction Maze Lab is also available. All geometry is procedural. There are no Warcraft or Mega Man assets.
 
 ## Start playing
 
 1. Install Unity **6000.3.25f1** through Unity Hub. Linux uses the included Mono backend; add **Windows Build Support (Mono)** for Windows builds.
 2. In Hub, choose **Projects → Add → Add project from disk** and select this folder.
 3. Let Unity resolve its official URP, Test Framework, and editor-only Pipeline automation packages. First import creates the map asset, URP renderer/pipeline, and shader-backed materials.
-4. Choose **FrostMaze → Open maze lab**, then press **Play**. The scene is intentionally empty in edit mode; it constructs the laboratory on entering Play.
-5. Place towers, then select **Launch Wave**. Use **Load zig-zag maze** for a starting experiment. Disable **Tower weapons enabled** to focus on movement and siege behavior.
+4. Choose **FrostMaze → Open maze lab**, then press **Play**. The scene is intentionally empty in edit mode; it constructs Frostline Crossing on entering Play.
+5. Left click to dispatch the builder to construct towers, then select **Launch Wave**. Right click moves the builder. Use the sidebar to switch to **Maze Lab** for unlimited construction and the sample zig-zag maze. Switching maps resets the match.
 
 ### Controls
 
 | Action | Control |
 |---|---|
-| Place a tower | Left click |
-| Sell tower | Right click, or X then left click |
+| Dispatch builder to construct | Left click in Build mode |
+| Move builder / cancel pending construction | Right click, or M then left click |
+| Cancel pending construction | Escape |
+| Sell tower | X then left click (right click also sells in Maze Lab) |
 | Build mode | B |
 | Inspect enemy | Shift + left click near enemy |
 | Launch next wave | Space |
@@ -23,9 +25,9 @@ An original cooperative-maul prototype for Unity 6.3 LTS, C#, and URP. This slic
 | Pan | WASD / arrows / middle mouse drag |
 | Zoom | Mouse wheel |
 | Toggle grid | G |
-| Toggle clearance and flow | F |
+| Toggle clearance, low tower visuals, footprints and enemy radii | F |
 
-The sidebar exposes speed, reset, navigation diagnostics, weapon toggling, and selected-enemy state. Construction is unlimited for experiments. Full route blockage is allowed. Placement overlapping a ground enemy, an occupied tower footprint, the spawn or a ground checkpoint is rejected; those constraints do not check route availability.
+The sidebar exposes speed, reset, navigation diagnostics, weapon toggling, and selected-enemy state. Frostline Crossing starts with 300 gold and 30 lives. Towers cost 20, refund 15 on sale, and kills/waves reward 2/30. Construction is unlimited only in Maze Lab. The builder holds one order at a time; a new valid build replaces it, moving cancels it, and payment occurs on successful arrival. Full route blockage is allowed. Placement overlapping a ground enemy, an occupied tower footprint, the spawn or a ground checkpoint is rejected; those constraints do not check route availability.
 
 ## Tune the experiment
 
@@ -39,8 +41,10 @@ Choose **FrostMaze → Select map parameters**, edit the asset, then restart Pla
 - `CheckpointRadius`: physical trigger radius. A unit reaches it when its disc touches the trigger, avoiding crowds trying to occupy one exact point.
 - `BreachCost`, `AttackReach`: obstacle-route weighting and melee reach.
 - `GroundRoute`, `FlightRoute`: ordered checkpoints on the **same shared map**. Add downstream defenses by extending the route. Ground units can leak through successive areas; they are not isolated lanes.
-- `Waves`: explicit data. The sample's fifth entry flies; no wave-number modulo rule exists. Extend the list and mark the tenth/fifteenth entries flying as needed.
+- `Waves`: explicit data. The shared map has ten entries, with 5 and 10 marked flying; the simulation reads the flag on each entry rather than inferring movement from the wave number.
 - `Tower`: health, damage, attack interval, range, ground/air targeting.
+
+See [shared-defense rules and reference layout](Docs/SHARED-DEFENSE.md).
 
 ## Verification
 
@@ -50,7 +54,7 @@ Run the rendering-independent tests with the installed .NET 10 SDK:
 dotnet run --project Headless/FrostMaze.Headless.csproj -c Release
 ```
 
-Or use **Window → General → Test Runner → EditMode → Run All** in Unity. Both runners execute the same simulation cases. No external test package is needed for the .NET runner.
+Or use **Window → General → Test Runner → EditMode → Run All** in Unity. Both runners execute the same 29 simulation cases; Unity additionally runs a Play-mode integration test for the builder visuals and switching maps. No external test package is needed for the .NET runner.
 
 Build with **FrostMaze → Build Linux** or **FrostMaze → Build Windows**. Output goes under `Builds/`. Batch entry points are `FrostMaze.Editor.ProjectSetup.BuildLinux` and `FrostMaze.Editor.ProjectSetup.BuildWindows`.
 
