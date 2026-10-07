@@ -69,7 +69,7 @@ With the .NET 10 SDK:
 dotnet run --project Headless/HowlForMaul.Headless.csproj -c Release
 ```
 
-The headless runner executes pure simulation cases. Unity's **Window → General → Test Runner → EditMode → Run All** additionally checks real Play-mode setup, builder/tower visuals, chosen starts, map switching and difficulty. Stop Play before starting Edit-mode tests.
+The headless runner executes pure simulation cases. Its optional `--balance` mode exercises paid defenses across both maps and every faction; see [the 24-run baseline](Docs/Balance/README.md) for commands, results and limitations. Unity's **Window → General → Test Runner → EditMode → Run All** additionally checks real Play-mode setup, builder/tower visuals, chosen starts, map switching and difficulty. Stop Play before starting Edit-mode tests.
 
 Use **Howl for Maul → Build Linux** or **Build Windows**. Windows requires the Windows Mono build module. Output executables:
 
