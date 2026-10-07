@@ -51,6 +51,20 @@ namespace FrostMaze.Tests
     w.SelectPlayer(0);w.Sell(3,23);Check(!w.RequirementsMet(faction*7+6),"sold prerequisite still counted");
    }
   }
+  public static void WavePreviews() {
+   foreach(Difficulty difficulty in new[]{Difficulty.Relaxed,Difficulty.Normal,Difficulty.Hard}) {
+    var c=Scenario.SharedDefense();var w=new World(c,new MatchOptions{Difficulty=difficulty});
+    var preview=w.PreviewWave(0);float health=preview.Health;preview.Health=9999;
+    Check(w.PreviewWave(0).Health==health&&c.Waves[0].Health==35,"preview modified live data");
+    w.StartWave();w.Step();Check(w.Enemies.Count==4&&w.Enemies[0].Spec.Health==health,"preview disagrees with spawn");
+    Check(w.PreviewWave(4).Flying,"air forecast wrong");
+   }
+   var map=Scenario.SharedDefense();RobotFactions.Apply(map);map.BuilderEnabled=false;
+   var world=new World(map,new MatchOptions{PlayerCount=2});world.Players[0].Gold=2000;
+   int missing=0;foreach(int design in world.MissingPrerequisites(6))missing++;Check(missing==6,"missing prerequisites incomplete");
+   world.Build(3,23,out _);missing=0;foreach(int design in world.MissingPrerequisites(6)){Check(design!=0,"owned prerequisite still missing");missing++;}Check(missing==5,"prerequisite not removed");
+   world.SelectPlayer(1);missing=0;foreach(int design in world.MissingPrerequisites(6))missing++;Check(missing==6,"teammate ownership leaked into preview");
+  }
   public static void StatusCombat() {
    var c=Scenario.SharedDefense();Factions.Apply(c);c.BuilderEnabled=false;var w=new World(c);w.SelectedDesign=2;Check(w.Build(16,14,out _),"slow tower");
    var e=w.Spawn(new WaveSpec{Health=1000},new V2(18,15));w.Step();Check(e.SlowRemaining>0&&e.SlowFraction==.3f,"slow missing");w.TowersFire=false;for(int i=0;i<70;i++)w.Step();Check(e.SlowRemaining==0,"slow never expires");

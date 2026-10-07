@@ -63,9 +63,14 @@ namespace FrostMaze
                 }
             }
             GUILayout.Label($"Wave {Mathf.Max(0, w.WaveIndex + 1):00} / {w.Config.Waves.Length:00}     •     {w.Enemies.Count} active", label);
-            if(w.Config.Lanes.Length>0) {
-                var preview=w.Config.Waves[Mathf.Clamp(w.WaveIndex+(w.WaveActive?0:1),0,w.Config.Waves.Length-1)];
+            if(w.Config.Lanes.Length>0 && !w.Finished) {
+                int previewIndex=Mathf.Clamp(w.WaveIndex+(w.WaveActive?0:1),0,w.Config.Waves.Length-1);
+                var preview=w.PreviewWave(previewIndex);
                 GUILayout.Label($"{(preview.Flying?"AIR — ignores mazes":"GROUND")}  ·  {preview.Count}/lane  ·  {preview.Count*w.LaneCount} total",small);
+                GUILayout.Label($"Health {preview.Health:0.#}  ·  Speed {preview.Speed:0.0}\nSiege hit {preview.Damage:0.#}  ·  Spawn every {preview.SpawnInterval:0.0}s",small);
+                for(int upcoming=previewIndex;upcoming<w.Config.Waves.Length;upcoming++)if(w.Config.Waves[upcoming].Flying) {
+                    GUILayout.Label(upcoming==previewIndex?"AIR WAVE — prepare towers that can hit air":$"Next air wave: {upcoming+1}",section);break;
+                }
             }
             GUILayout.Label($"{w.Pending} awaiting spawn   ·   {w.Killed} defeated   ·   {w.Leaked} leaked", small);
             if (w.Config.Economy)
@@ -95,6 +100,9 @@ namespace FrostMaze
                     if(GUILayout.Button($"{(w.SelectedDesign==i?"● ":"")}{shortcut}. {design.Name}  {design.Cost}g{(w.RequirementsMet(i)?"":" [locked]")}",button)){w.SelectedDesign=i;game.SellMode=false;game.MoveMode=false;}
                 }
                 GUILayout.Label(w.Config.Catalog[w.SelectedDesign].Description,small);
+                DrawTowerStats(w.BuildSpec);
+                foreach(int missing in w.MissingPrerequisites(w.SelectedDesign))
+                    GUILayout.Label("Requires your "+w.Config.Catalog[missing].Name,small);
             }
             GUILayout.BeginHorizontal();
             if (GUILayout.Button((game.SellMode || game.MoveMode) ? "Build [B]" : "● Build [B]", button))
@@ -115,7 +123,9 @@ namespace FrostMaze
             var selected=w.Grid.Find(game.SelectedTowerId);
             if(selected!=null) {
                 GUILayout.Label($"{selected.Name}  ·  LEVEL {selected.Level}",section);
-                GUILayout.Label($"HP {selected.Health:0}/{selected.Spec.Health:0}\nDamage {selected.Spec.Damage:0}  ·  Range {selected.Spec.Range:0.0}\nInterval {selected.Spec.Interval:0.00}s",small);
+                GUILayout.Label($"HP {selected.Health:0}/{selected.Spec.Health:0}",small);
+                DrawTowerStats(selected.Spec);
+                if(selected.Level<3)GUILayout.Label($"Next level: damage {selected.Spec.Damage*1.6f:0.#} · range {selected.Spec.Range+.35f:0.0} · max HP {selected.Spec.Health*1.5f:0}",small);
                 if(selected.Level<3&&GUILayout.Button($"Upgrade [U]  {w.UpgradeCost(selected)}g",button)){w.Upgrade(selected.Id,out string message);game.Notice=message;}
                 if(GUILayout.Button("Sell selected tower",button))game.Notice=w.Sell(selected.CellX,selected.CellY)?"Sold.":"Select one of your own towers.";
             }
@@ -160,6 +170,15 @@ namespace FrostMaze
             DrawHealth();
             DrawMapLabels();
             DrawMinimap();
+        }
+        void DrawTowerStats(TowerSpec spec)
+        {
+            if(spec.Damage<=0){GUILayout.Label($"Maze piece · {spec.Health:0} HP · no weapon",small);return;}
+            string targets=spec.TargetsGround?(spec.TargetsAir?"Ground + air":"Ground only"):"Air only";
+            GUILayout.Label($"{targets} · {spec.Health:0} HP\n{spec.Damage:0.#} damage every {spec.Interval:0.00}s\n{spec.Damage/spec.Interval:0.#} direct DPS · range {spec.Range:0.0}",small);
+            if(spec.SplashRadius>0)GUILayout.Label($"Splash radius {spec.SplashRadius:0.0}",small);
+            if(spec.SlowFraction>0)GUILayout.Label($"Slow {spec.SlowFraction*100:0}% for {spec.SlowDuration:0.#}s · strongest slow wins",small);
+            if(spec.ChainTargets>0)GUILayout.Label($"Chains to {spec.ChainTargets} extra targets within 2 units",small);
         }
         void DrawSetup()
         {

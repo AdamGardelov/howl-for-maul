@@ -51,6 +51,8 @@ Full route blockage is allowed: ground enemies find a player-built obstruction t
 
 Rimewatch factions have five exclusive designs. Ironfold instead offers eight robot factions: Pulse Foundry, Blast Circuit, Prism Division, Horizon Guild, Gravity Works, Scrap Frontier, Overdrive Order and Tidal Array. Each has six regular designs and a powerful champion unlocked by owning all six. Every roster includes affordable maze construction and an air specialist. These are original interpretations, not a claimed transcription of any one historical version. See [research and decisions](Docs/MAUL-RESEARCH.md).
 
+Before buying, the sidebar shows damage, firing interval, direct DPS, range, targeting and special effects. Locked champions list the specific towers you still need to own. Wave previews show difficulty-scaled health and siege damage, speed, spawn interval and the next flying wave.
+
 Purchased towers can be upgraded twice. Upgrades improve health and weapon damage/range, costing the original tower price times its current level. Sale refunds include part of the upgrade investment. Players may build anywhere on open terrain, but can sell or upgrade only their own towers. The P1–P4 sidebar buttons switch local control; they are not a network lobby.
 
 ## Maps and tuning

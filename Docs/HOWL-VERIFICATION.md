@@ -1,25 +1,29 @@
-# Howl for Maul verification — maps and factions checkpoint
+# Howl for Maul verification — planning readouts checkpoint
 
-Unity 6000.3.25f1 passed **47/47 tests**, including the real Play-mode integration case. The standalone .NET simulation suite passed **46/46**. Exact results are in Howl-Unity-Tests.json.
+Unity 6000.3.25f1 passed **48/48 tests**, including actual Play-mode integration. The standalone .NET suite passed **47/47**. Exact Unity results are in Howl-Unity-Tests.json.
 
-New checks compare every source layout cell with collision, compare the terrain spatial index with exhaustive collision, traverse every upper lane, enforce faction rosters, expire slowing, limit chain targets, and verify all eight robot champion prerequisite sets and ownership. Integration covers both maps, setup, wallets, paid construction, faction selection and switching/restarting scenes.
+Coverage includes collision-mask fidelity, spatial-index equivalence, every map lane, siege and congestion behavior, difficulty, conserved economy, ownership, paid builder queues, upgrades, combat effects, faction restrictions and champion prerequisites. New regression coverage checks that difficulty-scaled wave previews match actual spawns, cannot mutate source data, forecast air waves, and list only the current player's missing prerequisites.
 
-The older synthetic-map test still completes ten waves using paid construction. This is not a claim that every new map/faction combination has been fully balance-tested. Those playthroughs are the next priority.
+## Player information
 
-Fresh Linux and Windows builds succeeded. See Howl-Builds.json. Linux has one expected warning that editor automation is disabled in player builds. Windows additionally reports unsupported ray-tracing shader compilation warnings from Unity packages; the game uses the standard URP renderer, not ray tracing. Windows execution has not been tested on Windows.
+Before purchase, tower readouts show damage, interval, direct DPS, range, health, target types and special effects. Locked champions list the exact towers their owner still needs. Selected towers show next-upgrade values. Wave previews share their difficulty-scaled data path with actual spawning and announce the next flying wave. Preparation advice is hidden after a match ends.
 
-The actual Linux executable passed its explicit `--howl-smoke-test`, exiting 0 after loading both packaged map assets and simulating ground and flying enemies through every lane. Rimewatch reported 3 lanes, 4 factions, 20 towers; Ironfold reported 4 lanes, 8 factions, 56 towers. The desktop display reported 0×0 and failed before game initialization, so the successful run used an isolated Xvfb display. This proves packaged-resource/runtime execution, not a full human desktop playthrough.
+Live visual checks covered Hard wave health/siege values, slowing tower stats, and an Ironfold champion list after buying one prerequisite. The purchased tower disappeared from the missing list. Native-resolution captures are saved in the chat outputs. No gameplay balance values changed.
 
-Live editor visual checks covered map geometry, faction setup and actual paid technology towers. Lighting and overlay defaults were corrected after inspection. Art is original procedural prototype art and still needs polish. The final UI keeps Start Match below the scrolling setup controls.
+## Campaign evidence
 
-Networking remains intentionally deferred. Local multi-player slots are not online co-op. The current campaign remains ten waves; longer historical progression, research/lumber, enemy armor and hero systems are not implemented.
+The balance driver completed **36 paid-defense campaigns**: all 12 map-specific factions on Normal with one and two players, plus all 12 on Hard solo. Every run cleared ten waves with 30 lives, no stalls, and exact team-gold conservation. It uses real builder orders and no gameplay overrides. See Balance/README.md and Balance/HARD-BASELINE.md for exact placements, wave results, method and limitations.
 
-## Overnight balance and rename checkpoint
+These are reproducible starter-heavy winning strategies, not proof of final balance. The bot does not score utility effects, use upgrades, deliberately maze, or mix factions. The Hard multiplier lengthened combat but did not cause leaks. More demanding progression and wave variety need evaluation.
 
-The new headless balance driver completed 24 Normal campaigns: all 12 map-specific factions with one and two players. Every run retained 30 lives, cleared all ten waves and conserved team gold. It used ordinary paid builder orders and no gameplay overrides. See Balance/README.md for method, limitations and exact placements. Starter-heavy coverage can win; this is evidence of solvability, not final balance.
+## Desktop builds
 
-The existing 46-case simulation suite passed again after the tooling changes. Runtime game code did not change in this checkpoint; the prior 47-test Unity result and desktop builds remain the applicable runtime evidence. The packaged Linux smoke test also passed from the renamed folder.
+Fresh Linux and Windows builds succeeded; Howl-Builds.json records their evidence. The actual updated Linux executable passed its packaged-map smoke test, loading both maps and traversing every ground and flying route before exiting 0. The test used an isolated virtual display because the desktop had no usable screen dimensions.
 
-The project was saved and closed gracefully, renamed to `/home/adam/Documents/Dev/howl-for-maul`, and re-registered in Unity Hub. The obsolete Hub entry was removed without deleting project content.
+Linux reports the expected warning that editor automation is disabled in player builds. Windows additionally reports unsupported ray-tracing shader warnings from Unity packages. The game uses standard URP rendering, not ray tracing. Windows execution has not been tested on Windows. A packaged smoke test is not a full human desktop playthrough.
 
-Unity reopened the renamed project in batch mode, compiled scripts successfully and exited successfully. No editor is intentionally left running in an invisible display. Open the newly registered Howl for Maul project in Hub to play.
+## Project state and remaining work
+
+The project resides at `/home/adam/Documents/Dev/howl-for-maul` and Unity Hub points to it. The rename was done after saving and gracefully closing the editor, and reopening/importing the renamed project succeeded.
+
+Online networking remains deferred; player slots are local controls. Both campaigns remain ten waves. Longer historical progression, research/lumber, armor counterplay and hero systems are not implemented. Art remains original procedural prototype art.

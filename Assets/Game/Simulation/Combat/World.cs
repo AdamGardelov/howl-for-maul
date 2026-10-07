@@ -155,20 +155,32 @@ namespace FrostMaze.Simulation
             if (Finished || WaveActive || WaveIndex + 1 >= Config.Waves.Length)
                 return false;
             WaveIndex++;
-            var source=Config.Waves[WaveIndex];
-            float factor=Difficulty==Difficulty.Relaxed?.7f:Difficulty==Difficulty.Hard?1.4f:1f;
-            currentWave=new WaveSpec {Name=source.Name,Count=source.Count,Health=source.Health*factor,Damage=source.Damage*factor,Speed=source.Speed,Radius=source.Radius,SpawnInterval=source.SpawnInterval,AttackInterval=source.AttackInterval,Flying=source.Flying};
-            Pending=source.Count*LaneCount;
-            for(int lane=0;lane<LaneCount;lane++){lanePending[lane]=source.Count;spawnTimers[lane]=0;}
+            currentWave=PreviewWave(WaveIndex);
+            Pending=currentWave.Count*LaneCount;
+            for(int lane=0;lane<LaneCount;lane++){lanePending[lane]=currentWave.Count;spawnTimers[lane]=0;}
             return true;
+        }
+        // A fresh copy keeps previews, difficulty scaling and actual spawns in agreement.
+        public WaveSpec PreviewWave(int index)
+        {
+            if(index<0||index>=Config.Waves.Length)throw new ArgumentOutOfRangeException(nameof(index));
+            var source=Config.Waves[index];
+            float factor=Difficulty==Difficulty.Relaxed?.7f:Difficulty==Difficulty.Hard?1.4f:1f;
+            return new WaveSpec {Name=source.Name,Count=source.Count,Health=source.Health*factor,Damage=source.Damage*factor,Speed=source.Speed,Radius=source.Radius,SpawnInterval=source.SpawnInterval,AttackInterval=source.AttackInterval,Flying=source.Flying};
+        }
+        public IEnumerable<int> MissingPrerequisites(int design)
+        {
+            if(Config.Catalog.Length==0)yield break;
+            foreach(int required in Config.Catalog[design].Requires??Array.Empty<int>()) {
+                bool found=false;
+                foreach(var tower in Grid.Towers)
+                    if(tower.Design==required&&owners.TryGetValue(tower.Id,out int owner)&&owner==ActivePlayer){found=true;break;}
+                if(!found)yield return required;
+            }
         }
         public bool RequirementsMet(int design)
         {
-            if(Config.Catalog.Length==0)return true;
-            foreach(int required in Config.Catalog[design].Requires??Array.Empty<int>()) {
-                bool found=false;foreach(var tower in Grid.Towers)if(tower.Design==required&&owners.TryGetValue(tower.Id,out int owner)&&owner==ActivePlayer){found=true;break;}
-                if(!found)return false;
-            }
+            foreach(int missing in MissingPrerequisites(design))return false;
             return true;
         }
         public bool CanBuild(int x, int y, out string reason)

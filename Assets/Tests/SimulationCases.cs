@@ -36,6 +36,7 @@ namespace FrostMaze.Tests
                 w.Step();
         }
         public static readonly Case[] All ={
+            new Case("Wave previews match spawns and show owned prerequisites",MapCases.WavePreviews),
             new Case("Robot champion progression and ownership",MapCases.RobotProgression),
             new Case("Reference map masks and spatial index",MapCases.Masks),
             new Case("Reference map lane traversal",MapCases.Routes),

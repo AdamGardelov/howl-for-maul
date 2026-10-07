@@ -2,8 +2,8 @@
   {
     "result": "Succeeded",
     "platform": "StandaloneLinux64",
-    "totalSizeBytes": 92033272,
-    "buildTimeMs": 13227,
+    "totalSizeBytes": 92036856,
+    "buildTimeMs": 16604,
     "totalErrors": 0,
     "totalWarnings": 1,
     "warnings": [
@@ -15,10 +15,7 @@
   {
     "result": "Succeeded",
     "platform": "StandaloneWindows64",
-    "totalSizeBytes": 95775824,
-    "buildTimeMs": 17470,
-    "totalErrors": 0,
-    "totalWarnings": 19,
+    "verifiedBy": "Unity batch build log: ProjectSetup.BuildWindows",
     "warnings": [
       {
         "message": "Pipeline: No RuntimePipelineConfig asset found (Project Settings > Pipeline > Runtime). Pipeline will be disabled in Player builds."
@@ -77,6 +74,8 @@
       {
         "message": "Shader warning in 'UniformEstimation': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
       }
-    ]
+    ],
+    "observedWarningMessages": 19,
+    "buildTimeMs": 89407
   }
 ]

@@ -51,3 +51,6 @@ dotnet run --project Headless/HowlForMaul.Headless.csproj -c Release -- --balanc
 ```
 
 The command records results after each faction and emits progress on stderr. Exit 0 means the sweep completed without a stall or accounting error; inspect `Won` for victory, since a legitimate defeat is a balance result rather than a tool failure. Full placements and per-wave results are retained in the JSON files; summary.csv is a compact comparison. The initial solo JSON predates the added PlayerCount/Player fields; it is unambiguously a one-player run.
+
+
+A further [12 Hard solo runs](HARD-BASELINE.md) also finished without leaks. Full data is in hard-solo.json; these use the same strategy and have the same limitations.
