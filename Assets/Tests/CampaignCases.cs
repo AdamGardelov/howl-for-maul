@@ -73,17 +73,18 @@ namespace FrostMaze.Tests
             Check(next==4 && w.Leaked==1,"connected areas route failed");
             Check(c.Waves[4].Flying && c.Waves[9].Flying && !c.Waves[3].Flying,"flight cadence wrong");
         }
+        public static void Purchase(World w,int x,int y)
+        {
+            Check(w.OrderBuild(x,y,out var reason),reason+" at "+x+","+y);
+            for(int t=0;t<600&&w.HasBuildOrder;t++)w.Step();
+            Check(w.Grid.At(x,y)!=null,"build failed at "+x+","+y);
+        }
         public static void FullMatch()
         {
             var w=new World(Scenario.SharedDefense());
-            int[,] layout={{5,6},{9,6},{13,8},{15,11},{17,14},{19,17},{23,16},{25,13},{27,10},{31,8},{34,8},{36,10},{10,11},{20,11},{30,11}};
-            for(int i=0;i<layout.GetLength(0);i++)
-            {
-                Check(w.OrderBuild(layout[i,0],layout[i,1],out var reason),reason);
-                for(int t=0;t<600&&w.HasBuildOrder;t++)w.Step();
-                Check(w.Grid.At(layout[i,0],layout[i,1])!=null,"build did not finish");
-            }
-            Check(w.Gold==0,"starter budget wrong");
+            for(int lane=0;lane<4;lane++)for(int y=24;y<=36;y+=3)Purchase(w,3+lane*9,y);
+            foreach(int y in new[]{3,6,9,14,19})foreach(int x in new[]{14,16,20,22})Purchase(w,x,y);
+            Check(w.Gold==400,"starter budget wrong");
             for(int wave=0;wave<10;wave++)
             {
                 Check(w.StartWave(),"wave failed to start: "+wave);
@@ -91,7 +92,7 @@ namespace FrostMaze.Tests
                 Check(!w.WaveActive,"wave stalled: "+wave);
                 Check(!w.Defeated,"starter defense lost: "+wave+" leaks="+w.Leaked);
             }
-            Check(w.Won && w.Killed+w.Leaked==255 && w.Lives>0,"complete match outcome wrong");
+            Check(w.Won && w.Killed+w.Leaked==680 && w.Lives>0,"complete match outcome wrong");
         }
     }
 }

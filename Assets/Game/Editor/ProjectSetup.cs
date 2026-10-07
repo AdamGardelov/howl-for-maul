@@ -13,7 +13,7 @@ namespace FrostMaze.Editor
         {
             EditorApplication.delayCall += EnsureAssets;
         }
-        [MenuItem("FrostMaze/Prepare prototype assets")]
+        [MenuItem("Howl for Maul/Prepare prototype assets")]
         public static void EnsureAssets()
         {
             if (EditorApplication.isCompiling || EditorApplication.isPlayingOrWillChangePlaymode)
@@ -26,11 +26,11 @@ namespace FrostMaze.Editor
                 map = ScriptableObject.CreateInstance<MapDefinition>();
                 AssetDatabase.CreateAsset(map, "Assets/Game/Maps/Resources/TestMap.asset");
             }
-            if (AssetDatabase.LoadAssetAtPath<MapDefinition>("Assets/Game/Maps/Resources/SharedDefense.asset") == null)
+            if (AssetDatabase.LoadAssetAtPath<MapDefinition>("Assets/Game/Maps/Resources/Frostfall.asset") == null)
             {
                 var shared = ScriptableObject.CreateInstance<MapDefinition>();
                 shared.Settings = FrostMaze.Simulation.Scenario.SharedDefense();
-                AssetDatabase.CreateAsset(shared, "Assets/Game/Maps/Resources/SharedDefense.asset");
+                AssetDatabase.CreateAsset(shared, "Assets/Game/Maps/Resources/Frostfall.asset");
             }
             if (GraphicsSettings.defaultRenderPipeline == null)
             {
@@ -44,8 +44,8 @@ namespace FrostMaze.Editor
             EnsureMaterial("PrototypeMaterial", "Universal Render Pipeline/Lit");
             EnsureMaterial("DebugMaterial", "Universal Render Pipeline/Unlit");
             EditorBuildSettings.scenes = new[] { new EditorBuildSettingsScene("Assets/Game/Maps/MazeLab.unity", true) };
-            PlayerSettings.companyName = "FrostMaze Lab";
-            PlayerSettings.productName = "FrostMaze";
+            PlayerSettings.companyName = "Howl for Maul";
+            PlayerSettings.productName = "Howl for Maul";
             PlayerSettings.defaultScreenWidth = 1440;
             PlayerSettings.defaultScreenHeight = 900;
             AssetDatabase.SaveAssets();
@@ -61,26 +61,26 @@ namespace FrostMaze.Editor
                 AssetDatabase.CreateAsset(new Material(shader), path);
             }
         }
-        [MenuItem("FrostMaze/Open maze lab")]
+        [MenuItem("Howl for Maul/Open maze lab")]
         public static void OpenScene()
         {
             UnityEditor.SceneManagement.EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
         }
-        [MenuItem("FrostMaze/Select map parameters")]
+        [MenuItem("Howl for Maul/Select map parameters")]
         public static void SelectMap()
         {
             EnsureAssets();
-            Selection.activeObject = AssetDatabase.LoadAssetAtPath<MapDefinition>("Assets/Game/Maps/Resources/SharedDefense.asset");
+            Selection.activeObject = AssetDatabase.LoadAssetAtPath<MapDefinition>("Assets/Game/Maps/Resources/Frostfall.asset");
         }
-        [MenuItem("FrostMaze/Build Linux")]
+        [MenuItem("Howl for Maul/Build Linux")]
         public static void BuildLinux()
         {
-            Build(BuildTarget.StandaloneLinux64, "Builds/Linux/FrostMaze");
+            Build(BuildTarget.StandaloneLinux64, "Builds/Linux/HowlForMaul");
         }
-        [MenuItem("FrostMaze/Build Windows")]
+        [MenuItem("Howl for Maul/Build Windows")]
         public static void BuildWindows()
         {
-            Build(BuildTarget.StandaloneWindows64, "Builds/Windows/FrostMaze.exe");
+            Build(BuildTarget.StandaloneWindows64, "Builds/Windows/HowlForMaul.exe");
         }
         static void Build(BuildTarget target, string path)
         {

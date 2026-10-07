@@ -65,6 +65,18 @@ namespace FrostMaze.Tests
             ,new Case("Defeat freezes match and prevents new actions", CampaignCases.Defeat)
             ,new Case("Shared map traverses all defense areas", CampaignCases.SharedRoute)
             ,new Case("Complete ten-wave match using paid builder construction", CampaignCases.FullMatch)
+            ,new Case("All four lanes active for every player count",LaneCases.AlwaysActive)
+            ,new Case("Independent lane spawn queues",LaneCases.QueueIndependence)
+            ,new Case("Permanent terrain blocks construction and siege navigation",LaneCases.Terrain)
+            ,new Case("All upper lanes reach shared bottom exit",LaneCases.Routes)
+            ,new Case("Fixed team economy and selected starting positions",LaneCases.EconomyAndStarts)
+            ,new Case("Independent builders and owned sale refunds",LaneCases.OwnershipAndBuilders)
+            ,new Case("Difficulty scales enemies without disabling lanes",LaneCases.Difficulty)
+            ,new Case("Build orders retain their tower design",TowerCases.RolesAndOrders)
+            ,new Case("Tower upgrades preserve blueprints and refund investments",TowerCases.Upgrades)
+            ,new Case("Cannon splash damages ground crowds but not air",TowerCases.GroundSplash)
+            ,new Case("Barricades have no weapon",TowerCases.WallNoWeapon)
+            ,new Case("Queued construction retains designs and cancels cleanly",TowerCases.QueuedConstruction)
         };
     }
 }

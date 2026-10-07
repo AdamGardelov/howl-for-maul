@@ -131,16 +131,16 @@ namespace FrostMaze
             }
             if (w.Config.BuilderEnabled)
             {
-                previous = w.Config.Spawn;
-                foreach (var goal in w.Config.GroundRoute)
-                {
-                    var delta = goal - previous;
-                    for (float d = 0; d < delta.Length; d += 1.1f)
-                        layers[9].Line(previous + delta.Normalized * d, previous + delta.Normalized * Mathf.Min(d + .45f,delta.Length), .04f);
-                    previous = goal;
+                for(int lane=0;lane<w.LaneCount;lane++) {
+                    previous=w.LaneSpawn(lane);
+                    foreach(var goal in w.LaneRoute(lane,false)) {
+                        var delta=goal-previous;
+                        for(float d=0;d<delta.Length;d+=1.1f)layers[9].Line(previous+delta.Normalized*d,previous+delta.Normalized*Mathf.Min(d+.45f,delta.Length),.04f);
+                        previous=goal;
+                    }
+                    previous=w.LaneSpawn(lane);
+                    foreach(var goal in w.LaneRoute(lane,true)) {layers[6].Line(previous,goal,.05f);previous=goal;}
                 }
-                previous = w.Config.Spawn;
-                foreach (var goal in w.Config.FlightRoute) { layers[6].Line(previous,goal,.05f); previous=goal; }
             }
             foreach (var layer in layers)
                 layer.Upload();
@@ -166,13 +166,15 @@ namespace FrostMaze
             }
             layers[8].Upload();
             layers[10].Points.Clear();
-            if (game.World.Config.BuilderEnabled && game.HasHover && !game.SellMode && !game.MoveMode)
+            var selectedTower=game.World.Grid.Find(game.SelectedTowerId);
+            if (game.World.Config.BuilderEnabled && (game.HasHover||selectedTower!=null) && !game.SellMode && !game.MoveMode)
             {
-                var center = game.Hover + new V2(game.World.Config.Tower.Width * .5f, game.World.Config.Tower.Height * .5f);
+                var center = selectedTower!=null?selectedTower.Center:game.Hover + new V2(game.World.BuildSpec.Width * .5f, game.World.BuildSpec.Height * .5f);
+                float range=selectedTower!=null?selectedTower.Spec.Range:game.World.BuildSpec.Range;
                 for (int segment=0;segment<48;segment++)
                 {
                     float a=segment*Mathf.PI*2/48, b=(segment+1)*Mathf.PI*2/48;
-                    layers[10].Line(center+new V2(Mathf.Cos(a),Mathf.Sin(a))*game.World.Config.Tower.Range,center+new V2(Mathf.Cos(b),Mathf.Sin(b))*game.World.Config.Tower.Range,.06f);
+                    layers[10].Line(center+new V2(Mathf.Cos(a),Mathf.Sin(a))*range,center+new V2(Mathf.Cos(b),Mathf.Sin(b))*range,.06f);
                 }
             }
             layers[10].Upload();

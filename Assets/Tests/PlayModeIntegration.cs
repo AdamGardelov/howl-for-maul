@@ -17,11 +17,12 @@ namespace FrostMaze.Tests
             var game=Object.FindFirstObjectByType<Prototype>();
             Assert.That(game, Is.Not.Null);
             Assert.That(game.World.Config.Economy, Is.True);
-            game.Paused=true;
-            Assert.That(game.World.OrderBuild(9,6,out _),Is.True);
+            Assert.That(game.SetupOpen,Is.True);
+            game.StartMatch();game.Paused=true;
+            Assert.That(game.World.OrderBuild(16,14,out _),Is.True);
             for(int i=0;i<120;i++)game.World.Step();
             yield return null;
-            Assert.That(game.World.Gold,Is.EqualTo(280));
+            Assert.That(game.World.Gold,Is.EqualTo(1180));
             Assert.That(GameObject.Find("Tower 1"),Is.Not.Null);
             var drone=GameObject.Find("Builder drone");
             Assert.That(drone,Is.Not.Null);
@@ -39,9 +40,17 @@ namespace FrostMaze.Tests
             yield return null; yield return null;
             game=Object.FindFirstObjectByType<Prototype>();
             Assert.That(game.World.Config.Economy,Is.True);
-            Assert.That(game.World.Gold,Is.EqualTo(300));
+            Assert.That(game.World.Gold,Is.EqualTo(1200));
             Assert.That(game.World.Grid.Towers.Count,Is.Zero);
             Assert.That(Object.FindObjectsByType<Prototype>(FindObjectsSortMode.None).Length,Is.EqualTo(1));
+            game.SetupOptions.PlayerCount=2;game.SetupOptions.Difficulty=FrostMaze.Simulation.Difficulty.Hard;game.ChooseStart(0,3);game.StartMatch();game.Paused=true;
+            yield return null;
+            Assert.That(game.World.Players.Length,Is.EqualTo(2));
+            Assert.That(game.World.Gold,Is.EqualTo(600));
+            Assert.That(game.World.BuilderPosition.X,Is.EqualTo(31.5f));
+            Assert.That(game.World.Config.Catalog.Length,Is.EqualTo(3));
+            Assert.That(game.World.Difficulty,Is.EqualTo(FrostMaze.Simulation.Difficulty.Hard));
+            Assert.That(GameObject.Find("Player 2 builder"),Is.Not.Null);
             yield return new ExitPlayMode();
         }
         [UnityTearDown]

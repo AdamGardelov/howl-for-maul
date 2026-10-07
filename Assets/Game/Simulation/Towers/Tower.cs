@@ -6,11 +6,27 @@ namespace FrostMaze.Simulation
     {
         public int Width = 1, Height = 1;
         public float Fill = 0.86f, Health = 100, Damage = 8, Interval = 0.65f, Range = 3.6f;
+        public float SplashRadius;
+        public TowerSpec Copy() => (TowerSpec)MemberwiseClone();
         public bool TargetsGround = true, TargetsAir = true;
+    }
+    [Serializable] public sealed class TowerDesign
+    {
+        public string Name, Description;
+        public int Cost, Refund;
+        public TowerSpec Spec;
+    }
+    public sealed class ShotEvent
+    {
+        public long Serial;
+        public V2 From, To;
+        public float Splash;
+        public bool Flying;
     }
     public sealed class Tower
     {
-        public int Id, CellX, CellY;
+        public int Id, CellX, CellY, Design, Level=1;
+        public string Name="Bolt Spire";
         public TowerSpec Spec;
         public float Health, Cooldown;
         public int LastTarget;

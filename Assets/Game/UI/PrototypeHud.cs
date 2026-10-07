@@ -16,7 +16,7 @@ namespace FrostMaze
         {
             if (title != null)
                 return;
-            title = new GUIStyle(GUI.skin.label) { fontSize = 29, fontStyle = FontStyle.Bold };
+            title = new GUIStyle(GUI.skin.label) { fontSize = 25, fontStyle = FontStyle.Bold };
             title.normal.textColor = new Color(0.85f, 0.96f, 0.97f);
             label = new GUIStyle(GUI.skin.label) { fontSize = 13, wordWrap = true };
             label.normal.textColor = new Color(0.78f, 0.86f, 0.9f);
@@ -43,11 +43,28 @@ namespace FrostMaze
             GUI.DrawTexture(new Rect(18, 18, 292, Screen.height / scale - 36), panel);
             GUILayout.BeginArea(new Rect(34, 30, 260, Screen.height / scale - 62));
             scroll = GUILayout.BeginScrollView(scroll);
-            GUILayout.Label("FROSTMAZE", title);
+            GUILayout.Label("HOWL FOR MAUL", title);
             GUILayout.Label(w.Config.Name.ToUpperInvariant(), small);
+            if(game.SetupOpen) {
+                DrawSetup();
+                GUILayout.EndScrollView();GUILayout.EndArea();GUI.matrix=previousMatrix;DrawMapLabels();return;
+            }
             GUILayout.Space(18);
             GUILayout.Label("SHARED DEFENSE", section);
+            if(w.Config.Lanes.Length>0) {
+                GUILayout.Label($"{w.LaneCount} lanes active  ·  {w.Difficulty}",small);
+                if(w.Players.Length>1) {
+                    GUILayout.Label("Local player controls",small);
+                    GUILayout.BeginHorizontal();
+                    for(int i=0;i<w.Players.Length;i++)if(GUILayout.Button($"P{i+1}: {w.Players[i].Gold}g"))w.SelectPlayer(i);
+                    GUILayout.EndHorizontal();
+                }
+            }
             GUILayout.Label($"Wave {Mathf.Max(0, w.WaveIndex + 1):00} / {w.Config.Waves.Length:00}     •     {w.Enemies.Count} active", label);
+            if(w.Config.Lanes.Length>0) {
+                var preview=w.Config.Waves[Mathf.Clamp(w.WaveIndex+(w.WaveActive?0:1),0,w.Config.Waves.Length-1)];
+                GUILayout.Label($"{(preview.Flying?"AIR — ignores mazes":"GROUND")}  ·  {preview.Count}/lane  ·  {preview.Count*w.LaneCount} total",small);
+            }
             GUILayout.Label($"{w.Pending} awaiting spawn   ·   {w.Killed} defeated   ·   {w.Leaked} leaked", small);
             if (w.Config.Economy)
             {
@@ -67,6 +84,13 @@ namespace FrostMaze
             GUILayout.EndHorizontal();
             GUILayout.Space(16);
             GUILayout.Label("CONSTRUCTION", section);
+            if(w.Config.Catalog.Length>0) {
+                for(int i=0;i<w.Config.Catalog.Length;i++) {
+                    var design=w.Config.Catalog[i];
+                    if(GUILayout.Button($"{(w.SelectedDesign==i?"● ":"")}{i+1}. {design.Name}  {design.Cost}g",button)){w.SelectedDesign=i;game.SellMode=false;game.MoveMode=false;}
+                }
+                GUILayout.Label(w.Config.Catalog[w.SelectedDesign].Description,small);
+            }
             GUILayout.BeginHorizontal();
             if (GUILayout.Button((game.SellMode || game.MoveMode) ? "Build [B]" : "● Build [B]", button))
                 { game.SellMode = false; game.MoveMode = false; }
@@ -76,15 +100,23 @@ namespace FrostMaze
             if (w.Config.BuilderEnabled)
             {
                 if (GUILayout.Button(game.MoveMode ? "● Move builder [M]" : "Move builder [M]", button)) { game.MoveMode = true; game.SellMode = false; }
-                GUILayout.Label($"Tower: {w.Config.TowerCost}g  ·  Refund: {w.Config.SaleRefund}g\nKill: +{w.Config.KillReward}g  ·  Wave: +{w.Config.WaveReward}g", small);
-                GUILayout.Label("Click: build order  ·  Right click: move\nOne order at a time  ·  Esc: cancel\nShift + click: inspect an enemy", small);
-                GUILayout.Label(w.BuilderNotice, small);
+                GUILayout.Label($"Tower: {w.BuildCost}g  ·  Select a tower to upgrade\nKill: +{w.Config.KillReward}g  ·  Wave: +{w.Config.WaveReward}g", small);
+                GUILayout.Label("Click: build order  ·  Right click: move\nShift + click: queue builds  ·  Esc: cancel\nCtrl + click: inspect an enemy", small);
+                GUILayout.Label($"Orders: {w.QueuedBuilds}  ·  {w.BuilderNotice}", small);
             }
-            else GUILayout.Label("Click: place   /   Right click: sell\nShift + click: inspect an enemy", small);
+            else GUILayout.Label("Click: place   /   Right click: sell\nCtrl + click: inspect an enemy", small);
             GUILayout.Space(8);
             GUILayout.Label(game.Notice, label);
+            var selected=w.Grid.Find(game.SelectedTowerId);
+            if(selected!=null) {
+                GUILayout.Label($"{selected.Name}  ·  LEVEL {selected.Level}",section);
+                GUILayout.Label($"HP {selected.Health:0}/{selected.Spec.Health:0}\nDamage {selected.Spec.Damage:0}  ·  Range {selected.Spec.Range:0.0}\nInterval {selected.Spec.Interval:0.00}s",small);
+                if(selected.Level<3&&GUILayout.Button($"Upgrade [U]  {w.UpgradeCost(selected)}g",button)){w.Upgrade(selected.Id,out string message);game.Notice=message;}
+                if(GUILayout.Button("Sell selected tower",button))game.Notice=w.Sell(selected.CellX,selected.CellY)?"Sold.":"Select one of your own towers.";
+            }
             GUILayout.Space(16);
             GUILayout.Label("NAVIGATION OVERLAY", section);
+            game.SoundEnabled=GUILayout.Toggle(game.SoundEnabled,"Combat sound");
             game.ShowGrid = GUILayout.Toggle(game.ShowGrid, "Placement grid [G]");
             game.ShowNavigation = GUILayout.Toggle(game.ShowNavigation, "Clearance + low towers [F]");
             game.ShowDirections = GUILayout.Toggle(game.ShowDirections, "Enemy intent + siege target");
@@ -103,33 +135,87 @@ namespace FrostMaze
             if (e != null)
                 GUILayout.Label($"#{e.Id}  {(e.Spec.Flying ? "AIR" : "GROUND")}   HP {e.Health:0}\nDestination {e.Destination}\n{(e.Blocked ? "BLOCKED" : "ROUTE OPEN")}  /  Tower {(e.BlockerId == 0 ? "—" : e.BlockerId.ToString())}\nRadius {e.Spec.Radius:0.00}  ·  Speed {e.Velocity.Length:0.00}", label);
             else
-                GUILayout.Label("Shift + click an enemy to inspect it.", small);
+                GUILayout.Label("Ctrl + click an enemy to inspect it.", small);
             GUILayout.Space(16);
             GUILayout.Label("EXPERIMENTS", section);
             if (!w.Config.Economy && GUILayout.Button("Load zig-zag maze", button))
                 game.DemoMaze();
+            if(w.Config.Lanes.Length>0 && GUILayout.Button("New match / setup",button))game.SetupOpen=true;
             if (GUILayout.Button("Reset map + waves", button))
                 game.ResetSimulation();
             if (GUILayout.Button(w.Config.Economy ? "Switch to Maze Lab" : "Play Frostline Crossing", button))
                 game.SwitchMap(!w.Config.Economy);
             GUILayout.Space(14);
-            GUILayout.Label("WASD / arrows: pan\nWheel: zoom   ·   Middle drag: pan", small);
+            GUILayout.Label("WASD / arrows: pan\nWheel: zoom   ·   Middle drag: pan\nHome: focus selected builder", small);
             GUILayout.Label($"Tick {w.Tick}  ·  Fields built {w.Navigation.Rebuilds}\nNavigation step {w.Config.NavigationStep:0.00}  ·  30 Hz simulation", small);
             GUILayout.EndScrollView();
             GUILayout.EndArea();
             GUI.matrix = previousMatrix;
             DrawHealth();
             DrawMapLabels();
+            DrawMinimap();
+        }
+        void DrawSetup()
+        {
+            GUILayout.Space(14);
+            GUILayout.Label("MATCH SETUP",section);
+            GUILayout.Label($"{game.World.LaneCount} upper lanes. One bottom exit. Every lane stays active at every player count.",label);
+            if(game.AvailableMaps.Length>1) {
+                GUILayout.Label("MAP",section);
+                foreach(var map in game.AvailableMaps)if(GUILayout.Button(map.Settings.Name,button)&&map!=game.Map)game.ChooseMap(map);
+            }
+            GUILayout.Space(10);
+            GUILayout.Label("PLAYERS",section);
+            game.SetupOptions.PlayerCount=GUILayout.SelectionGrid(game.SetupOptions.PlayerCount-1,new[]{"1","2","3","4"},4)+1;
+            GUILayout.Label("Solo or local control of multiple players. Online play is not available yet.",small);
+            GUILayout.Space(10);
+            GUILayout.Label("DIFFICULTY",section);
+            game.SetupOptions.Difficulty=(Difficulty)GUILayout.SelectionGrid((int)game.SetupOptions.Difficulty,new[]{"Relaxed","Normal","Hard"},1);
+            GUILayout.Label("Enemy health and siege damage: 70% / 100% / 140%. Lane counts stay unchanged.",small);
+            GUILayout.Space(10);
+            int n=game.SetupOptions.PlayerCount,total=game.World.Config.StartingGold;
+            GUILayout.Label($"Team starting gold: {total}\nPer player: {total/n}  ·  Team income split evenly",label);
+            if(n>1) {
+                GUILayout.Label("STARTING POSITIONS",section);
+                for(int i=0;i<n;i++) {
+                    GUILayout.Label("Player "+(i+1),small);
+                    int choice=GUILayout.SelectionGrid(game.SetupOptions.StartingPositions[i],game.World.Config.StartNames,2);
+                    if(choice!=game.SetupOptions.StartingPositions[i])game.ChooseStart(i,choice);
+                }
+                GUILayout.Label("Choosing an occupied start swaps the players. You can build anywhere on open terrain.",small);
+            } else GUILayout.Label("Solo builder starts at the shared junction with the full team budget.",small);
+            GUILayout.Space(14);
+            if(GUILayout.Button("START MATCH",button))game.StartMatch();
+            if(GUILayout.Button("Open Maze Lab",button))game.SwitchMap(false);
+        }
+        void DrawMinimap()
+        {
+            var w=game.World;if(w.Config.Lanes.Length==0)return;
+            var r=game.MinimapRect;
+            GUI.color=new Color(.035f,.075f,.09f,.95f);GUI.DrawTexture(new Rect(r.x-4,r.y-18,r.width+8,r.height+22),Texture2D.whiteTexture);
+            GUI.color=Color.white;GUI.Label(new Rect(r.x,r.y-18,r.width,18),"MAP · click to pan",small);
+            GUI.color=new Color(.4f,.57f,.6f);GUI.DrawTexture(r,Texture2D.whiteTexture);
+            foreach(var b in w.Grid.Terrain){GUI.color=new Color(.08f,.17f,.2f);GUI.DrawTexture(new Rect(r.x+b.X*r.width/w.Config.Width,r.y+(w.Config.Height-b.Y-b.Height)*r.height/w.Config.Height,b.Width*r.width/w.Config.Width,b.Height*r.height/w.Config.Height),Texture2D.whiteTexture);}
+            foreach(var tower in w.Grid.Towers)MiniDot(r,tower.Center,new Color(.1f,.95f,.8f),2);
+            foreach(var enemy in w.Enemies)MiniDot(r,enemy.Position,enemy.Spec.Flying?new Color(.85f,.4f,1):new Color(1,.48f,.2f),2);
+            for(int i=0;i<w.Players.Length;i++)MiniDot(r,w.Players[i].Position,i==w.ActivePlayer?Color.white:Color.cyan,4);
+            var focus=game.View.GetComponent<RtsCamera>().Focus;
+            MiniDot(r,new V2(focus.x,focus.z),Color.yellow,3);
+            GUI.color=Color.white;
+        }
+        void MiniDot(Rect rect,V2 point,Color color,float size)
+        {
+            GUI.color=color;GUI.DrawTexture(new Rect(rect.x+point.X/game.World.Config.Width*rect.width-size*.5f,rect.y+(1-point.Y/game.World.Config.Height)*rect.height-size*.5f,size,size),Texture2D.whiteTexture);
         }
         void DrawMapLabels()
         {
             if (!game.World.Config.BuilderEnabled) return;
-            string[] names = { "01  WESTWATCH", "02  THE CROSSING", "03  EASTWARD" };
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < game.World.LaneCount; i++)
             {
-                var p = game.View.WorldToScreenPoint(new Vector3(7 + i * 14, .05f, 23));
-                var rect = new Rect(p.x - 65, Screen.height - p.y, 150, 24);
-                if (p.z > 0 && rect.x > game.Sidebar.xMax && game.View.pixelRect.Contains(new Vector2(p.x,p.y))) GUI.Label(rect, names[i], mapLabel);
+                var spawn=game.World.LaneSpawn(i);
+                var p = game.View.WorldToScreenPoint(new Vector3(spawn.X, .05f, spawn.Y));
+                var rect = new Rect(p.x - 25, Screen.height - p.y - 22, 80, 24);
+                if (p.z > 0 && rect.x > game.Sidebar.xMax) GUI.Label(rect, "LANE "+(i+1), mapLabel);
             }
             var route = game.World.Config.GroundRoute;
             for (int i = 0; i < route.Length; i++)

@@ -1,75 +1,80 @@
-# FrostMaze — shared-defense prototype
+# Howl for Maul
 
-An original cooperative-maul prototype for Unity 6.3 LTS, C#, and URP. The default map now includes three connected defense areas, a controllable hovering builder, gold, ten waves, shared lives and victory/defeat. Networking and final art remain future work; the original unlimited-construction Maze Lab is also available. All geometry is procedural. There are no Warcraft or Mega Man assets.
+An original maze tower-defense prototype inspired by the cooperative mauls played as Warcraft III custom maps. Build winding defenses, upgrade towers, and catch enemies that survive into downstream areas.
 
-## Start playing
+Built with Unity 6.3 LTS, C# and URP for Windows and Ubuntu Linux. All code, procedural visuals and synthesized sounds are original; no Warcraft III or Mega Man assets are included.
 
-1. Install Unity **6000.3.25f1** through Unity Hub. Linux uses the included Mono backend; add **Windows Build Support (Mono)** for Windows builds.
-2. In Hub, choose **Projects → Add → Add project from disk** and select this folder.
-3. Let Unity resolve its official URP, Test Framework, and editor-only Pipeline automation packages. First import creates the map asset, URP renderer/pipeline, and shader-backed materials.
-4. Choose **FrostMaze → Open maze lab**, then press **Play**. The scene is intentionally empty in edit mode; it constructs Frostline Crossing on entering Play.
-5. Left click to dispatch the builder to construct towers, then select **Launch Wave**. Right click moves the builder. Use the sidebar to switch to **Maze Lab** for unlimited construction and the sample zig-zag maze. Switching maps resets the match.
+**Current status:** playable offline prototype. The setup can simulate 1–4 player slots with independent builders, wallets and tower ownership on one computer. Online multiplayer is not implemented.
 
-### Controls
+## Play
+
+Open this project with **Unity 6000.3.25f1**, choose **Howl for Maul → Open maze lab**, then press Play. The scene generates the selected map at runtime.
+
+The default map, **Frostfall Maul**, has four upper spawn lanes, a shared junction and a bottom exit. All four lanes remain active for every player count. Choose difficulty and player count before starting; with multiple player slots, choose unique starting positions in the upper defenses, junction or last stand.
+
+Solo starts with the full **1,200 gold** team budget. Two players receive 600 each, three receive 400 each, four receive 300 each. Kill income and wave rewards are split without losing integer remainders. Every enemy reaching the final exit removes one of 30 shared lives. Finish ten waves with lives remaining to win. Waves 5 and 10 fly.
+
+## Controls
 
 | Action | Control |
 |---|---|
-| Dispatch builder to construct | Left click in Build mode |
-| Move builder / cancel pending construction | Right click, or M then left click |
-| Cancel pending construction | Escape |
-| Sell tower | X then left click (right click also sells in Maze Lab) |
+| Build selected tower | Left click on an empty cell |
+| Queue another build | Shift + left click |
+| Move builder / cancel its queue | Right click, or M then click |
+| Cancel construction / clear selection | Escape |
+| Select tower | Click an existing tower |
+| Upgrade selected tower | U or its sidebar button |
+| Sell your tower | X then click, or selected-tower button |
+| Select tower design | 1 Bolt Spire, 2 Barricade, 3 Ember Cannon |
 | Build mode | B |
-| Inspect enemy | Shift + left click near enemy |
+| Inspect an enemy | Ctrl + click |
 | Launch next wave | Space |
 | Pause | P |
-| Pan | WASD / arrows / middle mouse drag |
-| Zoom | Mouse wheel |
-| Toggle grid | G |
-| Toggle clearance, low tower visuals, footprints and enemy radii | F |
+| Pan | WASD / arrows / middle drag |
+| Focus active builder | Home |
+| Tactical-map pan | Click or drag on the minimap |
+| Zoom | Wheel |
+| Grid / clearance overlay | G / F |
 
-The sidebar exposes speed, reset, navigation diagnostics, weapon toggling, and selected-enemy state. Frostline Crossing starts with 300 gold and 30 lives. Towers cost 20, refund 15 on sale, and kills/waves reward 2/30. Construction is unlimited only in Maze Lab. The builder holds one order at a time; a new valid build replaces it, moving cancels it, and payment occurs on successful arrival. Full route blockage is allowed. Placement overlapping a ground enemy, an occupied tower footprint, the spawn or a ground checkpoint is rejected; those constraints do not check route availability.
+Build orders are charged when they succeed, not when queued. New unmodified build orders replace the current queue. Each queued order remembers its tower design. Insufficient funds or occupied terrain at arrival rejects that construction without charging. Moving cancels the queue. Orders wait while paused.
 
-## Tune the experiment
+Full route blockage is allowed: ground enemies find a player-built obstruction to attack. Selling or destruction opens the route again. Congestion alone does not trigger siege. Permanent terrain cannot be built on, sold, damaged or crossed by ground units.
 
-Choose **FrostMaze → Select map parameters**, edit the asset, then restart Play. Runtime settings are copied from the asset to avoid mutating authored data.
+## Towers
 
-- `Width`, `Height`: shared rectangular map, one world unit per placement cell.
-- `NavigationStep`: sample spacing, default 0.5. Lower values resolve narrower physical passages at greater cost.
-- `Tower.Width/Height/Fill`: grid footprint and collision shape. Fill 0.86 leaves 0.14 units between adjacent single-cell towers. Wider footprints subtract this margin from the overall rectangle, not every cell.
-- `Waves[].Radius`, `Speed`: enemy clearance and speed. Radius is authoritative for both navigation and swept movement collision.
-- `Separation`, `Acceleration`: local steering. Separation is capped relative to forward speed to avoid force cancellation in crowds.
-- `CheckpointRadius`: physical trigger radius. A unit reaches it when its disc touches the trigger, avoiding crowds trying to occupy one exact point.
-- `BreachCost`, `AttackReach`: obstacle-route weighting and melee reach.
-- `GroundRoute`, `FlightRoute`: ordered checkpoints on the **same shared map**. Add downstream defenses by extending the route. Ground units can leak through successive areas; they are not isolated lanes.
-- `Waves`: explicit data. The shared map has ten entries, with 5 and 10 marked flying; the simulation reads the flag on each entry rather than inferring movement from the wave number.
-- `Tower`: health, damage, attack interval, range, ground/air targeting.
+| Tower | Cost | Role |
+|---|---:|---|
+| Bolt Spire | 20 | Reliable ground and air damage |
+| Barricade | 5 | Tough, inexpensive maze construction; no weapon |
+| Ember Cannon | 60 | Splash damage against ground crowds; cannot attack air |
 
-See [shared-defense rules and reference layout](Docs/SHARED-DEFENSE.md).
+Purchased towers can be upgraded twice. Upgrades improve health and weapon damage/range, costing the original tower price times its current level. Sale refunds include part of the upgrade investment. Players may build anywhere on open terrain, but can sell or upgrade only their own towers. The P1–P4 sidebar buttons switch local control; they are not a network lobby.
 
-## Verification
+## Maps and tuning
 
-Run the rendering-independent tests with the installed .NET 10 SDK:
+Choose **Howl for Maul → Select map parameters** to inspect Frostfall.asset. Runtime data is copied so playing does not modify the asset. The original unrestricted Maze Lab remains accessible through the sidebar.
 
-```bash
-dotnet run --project Headless/FrostMaze.Headless.csproj -c Release
-```
+Map layout, terrain, lane routes, builder starts, tower catalog and waves are data-driven. Additional multi-lane map assets in Resources appear in setup automatically. See [map authoring](Docs/MAP-AUTHORING.md) and [design direction](Docs/DESIGN-NOTES.md).
 
-Or use **Window → General → Test Runner → EditMode → Run All** in Unity. Both runners execute the same 29 simulation cases; Unity additionally runs a Play-mode integration test for the builder visuals and switching maps. No external test package is needed for the .NET runner.
+Difficulty scales enemy health and siege damage to 70%, 100% or 140%; it never disables lanes. These are provisional tuning values, not final balance.
 
-Build with **FrostMaze → Build Linux** or **FrostMaze → Build Windows**. Output goes under `Builds/`. Batch entry points are `FrostMaze.Editor.ProjectSetup.BuildLinux` and `FrostMaze.Editor.ProjectSetup.BuildWindows`.
+## Verify and build
+
+With the .NET 10 SDK:
 
 ```bash
-/path/to/Unity -batchmode -nographics -projectPath /path/to/FrostMaze \
-  -runTests -testPlatform EditMode -testResults /tmp/FrostMaze-tests.xml \
-  -logFile /tmp/FrostMaze-tests.log
-
-/path/to/Unity -batchmode -nographics -quit -projectPath /path/to/FrostMaze \
-  -executeMethod FrostMaze.Editor.ProjectSetup.BuildLinux \
-  -logFile /tmp/FrostMaze-build.log
+dotnet run --project Headless/HowlForMaul.Headless.csproj -c Release
 ```
 
-Do not run a second Unity editor against the same project while it is already open.
+The headless runner executes pure simulation cases. Unity's **Window → General → Test Runner → EditMode → Run All** additionally checks real Play-mode setup, builder/tower visuals, chosen starts, map switching and difficulty. Stop Play before starting Edit-mode tests.
 
-If you edit scripts during Play, stop and restart Play after recompilation; the authoritative simulation is deliberately not serialized across editor domain reloads.
+Use **Howl for Maul → Build Linux** or **Build Windows**. Windows requires the Windows Mono build module. Output executables:
 
-See [navigation decisions](Docs/NAVIGATION.md), [implementation plan](Docs/PLAN.md), [manual acceptance](Docs/ACCEPTANCE.md), [deferred questions](Docs/QUESTIONS.md), and [verification status](Docs/VERIFICATION.md).
+- `Builds/Linux/HowlForMaul`
+- `Builds/Windows/HowlForMaul.exe`
+
+Keep each executable with its accompanying data and runtime files. Do not run a second Unity editor against the same project. Stop and restart Play after changing scripts; simulation state does not survive a domain reload.
+
+The internal C# namespaces/assembly names retain `FrostMaze` for serialized compatibility. The product, repository and build names are **Howl for Maul**.
+
+See [verification](Docs/HOWL-VERIFICATION.md) for actual test/build results and limitations. Historical FrostMaze documents describe earlier prototypes, not the current match rules.

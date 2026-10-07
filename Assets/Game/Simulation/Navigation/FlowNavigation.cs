@@ -93,7 +93,7 @@ namespace FrostMaze.Simulation
                             continue;
                         int n = nx + ny * f.Columns;
                         var b = f.Point(n);
-                        if (!grid.InBounds(b, radius) || !grid.InBounds(a, radius))
+                        if (!grid.TerrainClear(a,b,radius))
                             continue;
                         float cost = V2.Distance(a, b);
                         bool blocked = false;

@@ -1,0 +1,332 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b58ee175d6df5450a669e1937a15d7f8, type: 3}
+  m_Name: Frostfall
+  m_EditorClassIdentifier: FrostMaze.Runtime::FrostMaze.MapDefinition
+  Settings:
+    StartNames:
+    - Upper 1
+    - Upper 2
+    - Upper 3
+    - Upper 4
+    - Junction L
+    - Junction R
+    - Last stand L
+    - Last stand R
+    BuilderStarts:
+    - X: 4.5
+      Y: 30
+    - X: 13.5
+      Y: 30
+    - X: 22.5
+      Y: 30
+    - X: 31.5
+      Y: 30
+    - X: 14
+      Y: 19
+    - X: 22
+      Y: 19
+    - X: 14
+      Y: 7
+    - X: 22
+      Y: 7
+    SoloBuilderStart:
+      X: 18
+      Y: 14
+    Lanes:
+    - Spawn:
+        X: 4.5
+        Y: 38.5
+      GroundRoute:
+      - X: 4.5
+        Y: 22.5
+      - X: 18
+        Y: 19
+      - X: 18
+        Y: 12
+      - X: 18
+        Y: 1.5
+      FlightRoute:
+      - X: 4.5
+        Y: 25
+      - X: 18
+        Y: 18
+      - X: 18
+        Y: 1.5
+    - Spawn:
+        X: 13.5
+        Y: 38.5
+      GroundRoute:
+      - X: 13.5
+        Y: 22.5
+      - X: 18
+        Y: 19
+      - X: 18
+        Y: 12
+      - X: 18
+        Y: 1.5
+      FlightRoute:
+      - X: 13.5
+        Y: 25
+      - X: 18
+        Y: 18
+      - X: 18
+        Y: 1.5
+    - Spawn:
+        X: 22.5
+        Y: 38.5
+      GroundRoute:
+      - X: 22.5
+        Y: 22.5
+      - X: 18
+        Y: 19
+      - X: 18
+        Y: 12
+      - X: 18
+        Y: 1.5
+      FlightRoute:
+      - X: 22.5
+        Y: 25
+      - X: 18
+        Y: 18
+      - X: 18
+        Y: 1.5
+    - Spawn:
+        X: 31.5
+        Y: 38.5
+      GroundRoute:
+      - X: 31.5
+        Y: 22.5
+      - X: 18
+        Y: 19
+      - X: 18
+        Y: 12
+      - X: 18
+        Y: 1.5
+      FlightRoute:
+      - X: 31.5
+        Y: 25
+      - X: 18
+        Y: 18
+      - X: 18
+        Y: 1.5
+    Terrain:
+    - X: 8
+      Y: 21
+      Width: 1
+      Height: 19
+    - X: 17
+      Y: 21
+      Width: 1
+      Height: 19
+    - X: 26
+      Y: 21
+      Width: 1
+      Height: 19
+    - X: 0
+      Y: 16
+      Width: 12
+      Height: 2
+    - X: 24
+      Y: 16
+      Width: 12
+      Height: 2
+    - X: 0
+      Y: 0
+      Width: 12
+      Height: 10
+    - X: 24
+      Y: 0
+      Width: 12
+      Height: 10
+    Name: Frostfall Maul
+    Economy: 1
+    BuilderEnabled: 1
+    StartingGold: 1200
+    TowerCost: 20
+    SaleRefund: 15
+    KillReward: 2
+    WaveReward: 120
+    StartingLives: 30
+    BuilderSpeed: 9
+    BuildRange: 3
+    Width: 36
+    Height: 40
+    NavigationStep: 0.5
+    BreachCost: 12
+    Separation: 1.4
+    Acceleration: 9
+    AttackReach: 0.16
+    CheckpointRadius: 0.2
+    Spawn:
+      X: 4.5
+      Y: 38.5
+    GroundRoute:
+    - X: 18
+      Y: 19
+    - X: 18
+      Y: 12
+    - X: 18
+      Y: 1.5
+    FlightRoute:
+    - X: 18
+      Y: 18
+    - X: 18
+      Y: 1.5
+    Catalog:
+    - Name: Bolt Spire
+      Description: Reliable ground and air damage
+      Cost: 20
+      Refund: 15
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 14
+        Interval: 0.65
+        Range: 4
+        SplashRadius: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Barricade
+      Description: Cheap maze walls. No weapon
+      Cost: 5
+      Refund: 3
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 180
+        Damage: 0
+        Interval: 0.65
+        Range: 3.6
+        SplashRadius: 0
+        TargetsGround: 0
+        TargetsAir: 0
+    - Name: Ember Cannon
+      Description: Ground splash. Cannot hit flying enemies
+      Cost: 60
+      Refund: 45
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 32
+        Interval: 1.3
+        Range: 4.5
+        SplashRadius: 1.25
+        TargetsGround: 1
+        TargetsAir: 0
+    Tower:
+      Width: 1
+      Height: 1
+      Fill: 0.86
+      Health: 100
+      Damage: 14
+      Interval: 0.65
+      Range: 4
+      SplashRadius: 0
+      TargetsGround: 1
+      TargetsAir: 1
+    Waves:
+    - Name: Frostbound patrol
+      Count: 8
+      SpawnInterval: 0.8
+      Health: 35
+      Speed: 1.9
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: Frostbound patrol
+      Count: 10
+      SpawnInterval: 0.8
+      Health: 47
+      Speed: 1.9
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: Frostbound patrol
+      Count: 12
+      SpawnInterval: 0.8
+      Health: 59
+      Speed: 1.9
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: Frostbound patrol
+      Count: 14
+      SpawnInterval: 0.8
+      Health: 71
+      Speed: 1.9
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: Sky drifters
+      Count: 16
+      SpawnInterval: 0.8
+      Health: 83
+      Speed: 2.2
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 1
+    - Name: Frostbound patrol
+      Count: 18
+      SpawnInterval: 0.8
+      Health: 95
+      Speed: 1.9
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: Frostbound patrol
+      Count: 20
+      SpawnInterval: 0.8
+      Health: 107
+      Speed: 1.9
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: Frostbound patrol
+      Count: 22
+      SpawnInterval: 0.8
+      Health: 119
+      Speed: 1.9
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: Frostbound patrol
+      Count: 24
+      SpawnInterval: 0.8
+      Health: 131
+      Speed: 1.9
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: Sky drifters
+      Count: 26
+      SpawnInterval: 0.8
+      Health: 143
+      Speed: 2.2
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 1

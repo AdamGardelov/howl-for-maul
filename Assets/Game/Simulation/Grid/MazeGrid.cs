@@ -10,6 +10,19 @@ namespace FrostMaze.Simulation
         {
             get; private set;
         }
+        public readonly List<TerrainBlock> Terrain = new List<TerrainBlock>();
+        public void AddTerrain(TerrainBlock block) { Terrain.Add(block); Version++; }
+        public bool TerrainClear(V2 a,V2 b,float radius)
+        {
+            if(!InBounds(a,radius)||!InBounds(b,radius))return false;
+            foreach(var t in Terrain)if(Geometry.SweepBox(a,b,t.Center,t.Half,radius))return false;
+            return true;
+        }
+        public bool TerrainOverlaps(int x,int y,int width,int height)
+        {
+            foreach(var t in Terrain)if(x<t.X+t.Width&&x+width>t.X&&y<t.Y+t.Height&&y+height>t.Y)return true;
+            return false;
+        }
         int nextId = 1;
         public MazeGrid(int width, int height)
         {
@@ -22,6 +35,7 @@ namespace FrostMaze.Simulation
                 return null;
             if (x < 0 || y < 0 || x + spec.Width > Width || y + spec.Height > Height)
                 return null;
+            if(TerrainOverlaps(x,y,spec.Width,spec.Height))return null;
             foreach (var t in Towers)
                 if (x < t.CellX + t.Spec.Width && x + spec.Width > t.CellX && y < t.CellY + t.Spec.Height && y + spec.Height > t.CellY)
                     return null;
@@ -53,7 +67,7 @@ namespace FrostMaze.Simulation
         public bool InBounds(V2 p, float radius) => p.X >= radius && p.Y >= radius && p.X <= Width - radius && p.Y <= Height - radius;
         public bool Clear(V2 a, V2 b, float radius)
         {
-            if (!InBounds(a, radius) || !InBounds(b, radius))
+            if (!TerrainClear(a,b,radius))
                 return false;
             foreach (var t in Towers)
                 if (Geometry.SweepBox(a, b, t.Center, t.Half, radius))
