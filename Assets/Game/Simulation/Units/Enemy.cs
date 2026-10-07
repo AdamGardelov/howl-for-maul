@@ -2,6 +2,7 @@ namespace FrostMaze.Simulation
 {
     public sealed class Enemy
     {
+        public float SlowFraction,SlowRemaining;
         public int Id, Checkpoint, BlockerId, Lane;
         public V2 Position, Velocity, IntendedDirection;
         public WaveSpec Spec;

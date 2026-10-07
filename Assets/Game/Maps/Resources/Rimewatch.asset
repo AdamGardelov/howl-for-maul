@@ -1,0 +1,1430 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b58ee175d6df5450a669e1937a15d7f8, type: 3}
+  m_Name: Rimewatch
+  m_EditorClassIdentifier: FrostMaze.Runtime::FrostMaze.MapDefinition
+  Settings:
+    Factions:
+    - Name: Rime Covenant
+      Description: Ice sentinels. Slow the front line and shatter clustered ground
+        enemies.
+      Designs: 0000000001000000020000000300000004000000
+    - Name: Stonebound
+      Description: Earth guardians. Durable maze pieces and heavy ground splash;
+        dedicate towers to air.
+      Designs: 0500000006000000070000000800000009000000
+    - Name: Ember Assembly
+      Description: Fire constructs. Rapid attacks and expensive bombardment reward
+        compact defenses.
+      Designs: 0a0000000b0000000c0000000d0000000e000000
+    - Name: Volt Vanguard
+      Description: Arm-cannon sentries and storm machines. Affordable mazes, precise
+        air defense and chaining bolts.
+      Designs: 0f00000010000000110000001200000013000000
+    SelectableMap: 1
+    Theme: winter
+    WalkableSymbols: .B
+    LayoutCellSize: 1
+    LayoutRows:
+    - D##TT#DDDDDDD##TT##DDD##TT##DDDDDD##TT##DDDDDD##TT##DDDDDDD#TT#D
+    - D##TT#DDDDDDD##TT##DDD##TT##DDDDDD##TT##DDDDDD##TT##DDDDDDD#TT#D
+    - D##TT#DDDDDDD##TT##DDD##TT##DDDDDD##TT##DDDDDD##TT##DDDDDDD#TT#D
+    - D##TT#DDDDDDD##TT##DDD##TT##DDDDDD##TT##DDDDDD##TT##DDDDDDD#TT#D
+    - D##TT#DDDDDDD##TT##DDD##TT##DDDDDD##TT##DDDDDD##TT##DDDDDDD#TT#D
+    - D##TT##########TT##DDD##TT##########TT##DDDDDD##TT##########TT#D
+    - D##TT##......##TT##DDD##TT##......##TT##DDDDDD##TT##......##TT#D
+    - D##TT#.......##TT##DDD##TT##......##TT##DDDDDD##TT##.......#TT#D
+    - D##TT#.......##TT##DDD##TT##......##TT##DDDDDD##TT##.......#TT#D
+    - D##TT#.......##TT##DDD##TT##......##TT##DDDDDD##TT##.......#TT#D
+    - D##TT#.......##TT##DDD##TT##......##TT##DDDDDD##TT##.......#TT#D
+    - D##TT#.......##TT##DDD##TT##......##TT##DDDDDD##TT##.......#TT#D
+    - D##TT#.......##TT##DDD##TT##......##TT##DDDDDD##TT##.......#TT#D
+    - D##TT#.......##TT##DDD##TT##......##TT##DDDDDD##TT##.......#TT#D
+    - D##TT#.......##TT##DDD##TT##......##TT##DDDDDD##TT##.......#TT#D
+    - D##TT#.......##TT##DDD##TT##......##TT##DDDDDD##TT##.......#TT#D
+    - D##TT#.......##TT##DDD##TT##......##TT##DDDDDD##TT##.......#TT#D
+    - D##TT#.......##TT##DDD##TT##......##TT##DDDDDD##TT##.......#TT#D
+    - D##TT#.......##TT##DDD##TT##......##TT##DDDDDD##TT##.......#TT#D
+    - D##TT#.......##TT##DDD##TT##......##TT##DDDDDD##TT##.......#TT#D
+    - D##TT#.......##TT##DDD##TT##......##TT##DDDDDD##TT##.......#TT#D
+    - D##TT#.......##TT##DDD##TT##......##TT##DDDDDD##TT##.......#TT#D
+    - D##TT#.......##TT##DDD##TT##......##TT##DDDDDD##TT##......##TT#D
+    - D##TT#......###TT#######TT##......##TT##########TT##......##TT#D
+    - D##TT##BBBBBW##TTTTTTTTTTT##......##TTTTTTTTTTTTTT##.BBBBB##TT#D
+    - D##TT#WBBBBBW##TTTTTTTTTTT##......##TTTTTTTTTTTTTT##WBBBBB##TT#D
+    - D##TT##......###############......##################......##TT#D
+    - D##TT#......###############........#################......##TT#D
+    - D##TT#.......##W.#.............................#W##........#TT#D
+    - D##TT#.........BB...............................BB.........#TT#D
+    - D##TT#.........BB...............................BB.........#TT#D
+    - D##TT#.........BB...............................BB.........#TT#D
+    - D##TT#.........BB...............................BB.........#TT#D
+    - D##TT#.........BB...............................BB.........#TT#D
+    - D##TT#.........#W...............................WW.........#TT#D
+    - D##TT#.......#######################################.......#TT#D
+    - D##TT#.......#######################################.......#TT#D
+    - D##TT#.......##TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT##.......#TT#D
+    - D##TT#.......##TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT##.......#TT#D
+    - D##TT#.......##TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT##.......#TT#D
+    - D##TT#.......##TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT##.......#TT#D
+    - D##TT#.......##TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT##.......#TT#D
+    - D##TT#.......##TTTTT########TTTTTT#########TTTTTTT##.......#TT#D
+    - D##TT#.......##TTTT###....###TTTT###.....###TTTTTT##.......#TT#D
+    - D##TT#.......##TT####......###OT###.......###TTTTT##.......#TT#D
+    - D##TT#.......#######........######.........#########.......#TT#D
+    - D##TT#.....................................................#TT#D
+    - D##TT#.....................................................#TT#D
+    - D##TT#.....................................................#TT#D
+    - D##TT#.....................................................#TT#D
+    - D##TT#................#####........#####...................#TT#D
+    - D##TT#...............#######......#######..................#TT#D
+    - D##TT#..............###TTT##......##TTT###.................#TT#D
+    - D##TT#########.#..####TTTT##......##TTTT####################TT#D
+    - D##TT################TTTTT##......##TTTTT###################TT#D
+    - D##TTTTTTTTTTTTTTTTTTTTTTT##......##TTTTTTTTTTTTTTTTTTTTTTTTTT#D
+    - D##TTTTTTTTTTTTTTTTTTTTTTT##########TTTTTTTTTTTTTTTTTTTTTTTTTT#D
+    - D#######################TT##########TT#########################D
+    - D#######################TT##########TT########################WW
+    - D#WWWWWWWWWWWWWWWWWWWW###T##########TT##WWWWWWWWWWWWWWWWWWWWWWWW
+    - DWWWWWWWWWWWWWWWWWWWWW###T##########T###WWWWWWWWWWWWWWWWWWWWWWWW
+    - DWWWWWWWWWWWWWWWWWWWWWW######WW#W###T##WWWWWWWWWWWWWWWWWWWWWWWWW
+    - DWWWWWWWWWWWWWWWWWWWWWWW####WWWWWW#####WWWWWWWWWWWWWWWWWWWWWWWWW
+    - DWWWWWWWWWWWWWWWWWWWWWWW####WWWWWW####WWWWWWWWWWWWWWWWWWWWWWWWWW
+    StartNames:
+    - Upper left
+    - Upper centre
+    - Upper right
+    - West crossing
+    - East crossing
+    - Lower west
+    - Lower east
+    - Last stand
+    BuilderStarts:
+    - X: 9.5
+      Y: 48.5
+    - X: 30.5
+      Y: 48.5
+    - X: 55.5
+      Y: 48.5
+    - X: 10.5
+      Y: 32.5
+    - X: 54.5
+      Y: 32.5
+    - X: 20.5
+      Y: 15.5
+    - X: 43.5
+      Y: 15.5
+    - X: 31.5
+      Y: 11.5
+    SoloBuilderStart:
+      X: 31.5
+      Y: 15.5
+    Lanes:
+    - Spawn:
+        X: 9.5
+        Y: 55.5
+      GroundRoute:
+      - X: 9.5
+        Y: 39.5
+      - X: 9.5
+        Y: 23.5
+      - X: 10.5
+        Y: 15.5
+      - X: 31.5
+        Y: 8.5
+      FlightRoute:
+      - X: 9.5
+        Y: 39.5
+      - X: 31.5
+        Y: 8.5
+    - Spawn:
+        X: 30.5
+        Y: 55.5
+      GroundRoute:
+      - X: 31.5
+        Y: 33.5
+      - X: 31.5
+        Y: 15.5
+      - X: 31.5
+        Y: 8.5
+      FlightRoute:
+      - X: 30.5
+        Y: 39.5
+      - X: 31.5
+        Y: 8.5
+    - Spawn:
+        X: 55.5
+        Y: 55.5
+      GroundRoute:
+      - X: 55.5
+        Y: 39.5
+      - X: 55.5
+        Y: 23.5
+      - X: 54.5
+        Y: 15.5
+      - X: 31.5
+        Y: 8.5
+      FlightRoute:
+      - X: 55.5
+        Y: 39.5
+      - X: 31.5
+        Y: 8.5
+    Terrain:
+    - X: 0
+      Y: 0
+      Width: 1
+      Height: 64
+      Kind: D
+    - X: 1
+      Y: 7
+      Width: 2
+      Height: 57
+      Kind: '#'
+    - X: 3
+      Y: 9
+      Width: 2
+      Height: 55
+      Kind: T
+    - X: 5
+      Y: 59
+      Width: 1
+      Height: 5
+      Kind: '#'
+    - X: 6
+      Y: 59
+      Width: 7
+      Height: 5
+      Kind: D
+    - X: 13
+      Y: 59
+      Width: 2
+      Height: 5
+      Kind: '#'
+    - X: 15
+      Y: 40
+      Width: 2
+      Height: 24
+      Kind: T
+    - X: 17
+      Y: 41
+      Width: 2
+      Height: 23
+      Kind: '#'
+    - X: 19
+      Y: 41
+      Width: 3
+      Height: 23
+      Kind: D
+    - X: 22
+      Y: 41
+      Width: 2
+      Height: 23
+      Kind: '#'
+    - X: 24
+      Y: 40
+      Width: 2
+      Height: 24
+      Kind: T
+    - X: 26
+      Y: 59
+      Width: 2
+      Height: 5
+      Kind: '#'
+    - X: 28
+      Y: 59
+      Width: 6
+      Height: 5
+      Kind: D
+    - X: 34
+      Y: 59
+      Width: 2
+      Height: 5
+      Kind: '#'
+    - X: 36
+      Y: 40
+      Width: 2
+      Height: 24
+      Kind: T
+    - X: 38
+      Y: 41
+      Width: 2
+      Height: 23
+      Kind: '#'
+    - X: 40
+      Y: 41
+      Width: 6
+      Height: 23
+      Kind: D
+    - X: 46
+      Y: 41
+      Width: 2
+      Height: 23
+      Kind: '#'
+    - X: 48
+      Y: 40
+      Width: 2
+      Height: 24
+      Kind: T
+    - X: 50
+      Y: 59
+      Width: 2
+      Height: 5
+      Kind: '#'
+    - X: 52
+      Y: 59
+      Width: 7
+      Height: 5
+      Kind: D
+    - X: 59
+      Y: 59
+      Width: 1
+      Height: 5
+      Kind: '#'
+    - X: 60
+      Y: 9
+      Width: 2
+      Height: 55
+      Kind: T
+    - X: 62
+      Y: 7
+      Width: 1
+      Height: 57
+      Kind: '#'
+    - X: 63
+      Y: 6
+      Width: 1
+      Height: 58
+      Kind: D
+    - X: 5
+      Y: 58
+      Width: 10
+      Height: 1
+      Kind: '#'
+    - X: 26
+      Y: 58
+      Width: 10
+      Height: 1
+      Kind: '#'
+    - X: 50
+      Y: 58
+      Width: 10
+      Height: 1
+      Kind: '#'
+    - X: 5
+      Y: 57
+      Width: 2
+      Height: 1
+      Kind: '#'
+    - X: 13
+      Y: 41
+      Width: 2
+      Height: 17
+      Kind: '#'
+    - X: 26
+      Y: 38
+      Width: 2
+      Height: 20
+      Kind: '#'
+    - X: 34
+      Y: 38
+      Width: 2
+      Height: 20
+      Kind: '#'
+    - X: 50
+      Y: 38
+      Width: 2
+      Height: 20
+      Kind: '#'
+    - X: 58
+      Y: 57
+      Width: 2
+      Height: 1
+      Kind: '#'
+    - X: 5
+      Y: 40
+      Width: 1
+      Height: 17
+      Kind: '#'
+    - X: 59
+      Y: 42
+      Width: 1
+      Height: 15
+      Kind: '#'
+    - X: 58
+      Y: 36
+      Width: 2
+      Height: 6
+      Kind: '#'
+    - X: 12
+      Y: 40
+      Width: 3
+      Height: 1
+      Kind: '#'
+    - X: 17
+      Y: 40
+      Width: 7
+      Height: 1
+      Kind: '#'
+    - X: 38
+      Y: 40
+      Width: 10
+      Height: 1
+      Kind: '#'
+    - X: 5
+      Y: 39
+      Width: 2
+      Height: 1
+      Kind: '#'
+    - X: 12
+      Y: 38
+      Width: 1
+      Height: 2
+      Kind: W
+    - X: 13
+      Y: 38
+      Width: 2
+      Height: 2
+      Kind: '#'
+    - X: 15
+      Y: 38
+      Width: 11
+      Height: 2
+      Kind: T
+    - X: 36
+      Y: 38
+      Width: 14
+      Height: 2
+      Kind: T
+    - X: 5
+      Y: 38
+      Width: 1
+      Height: 1
+      Kind: '#'
+    - X: 6
+      Y: 38
+      Width: 1
+      Height: 1
+      Kind: W
+    - X: 52
+      Y: 38
+      Width: 1
+      Height: 1
+      Kind: W
+    - X: 5
+      Y: 37
+      Width: 2
+      Height: 1
+      Kind: '#'
+    - X: 13
+      Y: 37
+      Width: 15
+      Height: 1
+      Kind: '#'
+    - X: 34
+      Y: 37
+      Width: 18
+      Height: 1
+      Kind: '#'
+    - X: 5
+      Y: 11
+      Width: 1
+      Height: 26
+      Kind: '#'
+    - X: 12
+      Y: 36
+      Width: 15
+      Height: 1
+      Kind: '#'
+    - X: 35
+      Y: 36
+      Width: 17
+      Height: 1
+      Kind: '#'
+    - X: 13
+      Y: 35
+      Width: 2
+      Height: 1
+      Kind: '#'
+    - X: 15
+      Y: 35
+      Width: 1
+      Height: 1
+      Kind: W
+    - X: 17
+      Y: 35
+      Width: 1
+      Height: 1
+      Kind: '#'
+    - X: 47
+      Y: 35
+      Width: 1
+      Height: 1
+      Kind: '#'
+    - X: 48
+      Y: 35
+      Width: 1
+      Height: 1
+      Kind: W
+    - X: 49
+      Y: 35
+      Width: 2
+      Height: 1
+      Kind: '#'
+    - X: 59
+      Y: 11
+      Width: 1
+      Height: 25
+      Kind: '#'
+    - X: 15
+      Y: 29
+      Width: 1
+      Height: 1
+      Kind: '#'
+    - X: 16
+      Y: 29
+      Width: 1
+      Height: 1
+      Kind: W
+    - X: 48
+      Y: 29
+      Width: 2
+      Height: 1
+      Kind: W
+    - X: 13
+      Y: 27
+      Width: 39
+      Height: 2
+      Kind: '#'
+    - X: 13
+      Y: 19
+      Width: 2
+      Height: 8
+      Kind: '#'
+    - X: 15
+      Y: 22
+      Width: 35
+      Height: 5
+      Kind: T
+    - X: 50
+      Y: 19
+      Width: 2
+      Height: 8
+      Kind: '#'
+    - X: 15
+      Y: 21
+      Width: 5
+      Height: 1
+      Kind: T
+    - X: 20
+      Y: 21
+      Width: 8
+      Height: 1
+      Kind: '#'
+    - X: 28
+      Y: 21
+      Width: 6
+      Height: 1
+      Kind: T
+    - X: 34
+      Y: 21
+      Width: 9
+      Height: 1
+      Kind: '#'
+    - X: 43
+      Y: 21
+      Width: 7
+      Height: 1
+      Kind: T
+    - X: 15
+      Y: 20
+      Width: 4
+      Height: 1
+      Kind: T
+    - X: 19
+      Y: 20
+      Width: 3
+      Height: 1
+      Kind: '#'
+    - X: 26
+      Y: 20
+      Width: 3
+      Height: 1
+      Kind: '#'
+    - X: 29
+      Y: 20
+      Width: 4
+      Height: 1
+      Kind: T
+    - X: 33
+      Y: 20
+      Width: 3
+      Height: 1
+      Kind: '#'
+    - X: 41
+      Y: 20
+      Width: 3
+      Height: 1
+      Kind: '#'
+    - X: 44
+      Y: 20
+      Width: 6
+      Height: 1
+      Kind: T
+    - X: 15
+      Y: 19
+      Width: 2
+      Height: 1
+      Kind: T
+    - X: 17
+      Y: 19
+      Width: 4
+      Height: 1
+      Kind: '#'
+    - X: 27
+      Y: 19
+      Width: 3
+      Height: 1
+      Kind: '#'
+    - X: 30
+      Y: 19
+      Width: 1
+      Height: 1
+      Kind: O
+    - X: 31
+      Y: 19
+      Width: 1
+      Height: 1
+      Kind: T
+    - X: 32
+      Y: 19
+      Width: 3
+      Height: 1
+      Kind: '#'
+    - X: 42
+      Y: 19
+      Width: 3
+      Height: 1
+      Kind: '#'
+    - X: 45
+      Y: 19
+      Width: 5
+      Height: 1
+      Kind: T
+    - X: 13
+      Y: 18
+      Width: 7
+      Height: 1
+      Kind: '#'
+    - X: 28
+      Y: 18
+      Width: 6
+      Height: 1
+      Kind: '#'
+    - X: 43
+      Y: 18
+      Width: 9
+      Height: 1
+      Kind: '#'
+    - X: 22
+      Y: 13
+      Width: 5
+      Height: 1
+      Kind: '#'
+    - X: 35
+      Y: 13
+      Width: 5
+      Height: 1
+      Kind: '#'
+    - X: 21
+      Y: 12
+      Width: 7
+      Height: 1
+      Kind: '#'
+    - X: 34
+      Y: 12
+      Width: 7
+      Height: 1
+      Kind: '#'
+    - X: 20
+      Y: 11
+      Width: 3
+      Height: 1
+      Kind: '#'
+    - X: 23
+      Y: 11
+      Width: 3
+      Height: 1
+      Kind: T
+    - X: 26
+      Y: 8
+      Width: 2
+      Height: 4
+      Kind: '#'
+    - X: 34
+      Y: 8
+      Width: 2
+      Height: 4
+      Kind: '#'
+    - X: 36
+      Y: 11
+      Width: 3
+      Height: 1
+      Kind: T
+    - X: 39
+      Y: 11
+      Width: 3
+      Height: 1
+      Kind: '#'
+    - X: 5
+      Y: 10
+      Width: 9
+      Height: 1
+      Kind: '#'
+    - X: 15
+      Y: 10
+      Width: 1
+      Height: 1
+      Kind: '#'
+    - X: 18
+      Y: 10
+      Width: 4
+      Height: 1
+      Kind: '#'
+    - X: 22
+      Y: 10
+      Width: 4
+      Height: 1
+      Kind: T
+    - X: 36
+      Y: 10
+      Width: 4
+      Height: 1
+      Kind: T
+    - X: 40
+      Y: 10
+      Width: 20
+      Height: 1
+      Kind: '#'
+    - X: 5
+      Y: 9
+      Width: 16
+      Height: 1
+      Kind: '#'
+    - X: 21
+      Y: 9
+      Width: 5
+      Height: 1
+      Kind: T
+    - X: 36
+      Y: 9
+      Width: 5
+      Height: 1
+      Kind: T
+    - X: 41
+      Y: 9
+      Width: 19
+      Height: 1
+      Kind: '#'
+    - X: 3
+      Y: 7
+      Width: 23
+      Height: 2
+      Kind: T
+    - X: 36
+      Y: 7
+      Width: 26
+      Height: 2
+      Kind: T
+    - X: 26
+      Y: 3
+      Width: 10
+      Height: 5
+      Kind: '#'
+    - X: 1
+      Y: 5
+      Width: 23
+      Height: 2
+      Kind: '#'
+    - X: 24
+      Y: 5
+      Width: 2
+      Height: 2
+      Kind: T
+    - X: 36
+      Y: 4
+      Width: 2
+      Height: 3
+      Kind: T
+    - X: 38
+      Y: 6
+      Width: 25
+      Height: 1
+      Kind: '#'
+    - X: 38
+      Y: 5
+      Width: 24
+      Height: 1
+      Kind: '#'
+    - X: 62
+      Y: 5
+      Width: 2
+      Height: 1
+      Kind: W
+    - X: 1
+      Y: 4
+      Width: 1
+      Height: 1
+      Kind: '#'
+    - X: 2
+      Y: 4
+      Width: 20
+      Height: 1
+      Kind: W
+    - X: 22
+      Y: 3
+      Width: 3
+      Height: 2
+      Kind: '#'
+    - X: 25
+      Y: 3
+      Width: 1
+      Height: 2
+      Kind: T
+    - X: 38
+      Y: 4
+      Width: 2
+      Height: 1
+      Kind: '#'
+    - X: 40
+      Y: 3
+      Width: 24
+      Height: 2
+      Kind: W
+    - X: 1
+      Y: 3
+      Width: 21
+      Height: 1
+      Kind: W
+    - X: 36
+      Y: 2
+      Width: 1
+      Height: 2
+      Kind: T
+    - X: 37
+      Y: 3
+      Width: 3
+      Height: 1
+      Kind: '#'
+    - X: 1
+      Y: 2
+      Width: 22
+      Height: 1
+      Kind: W
+    - X: 23
+      Y: 2
+      Width: 6
+      Height: 1
+      Kind: '#'
+    - X: 29
+      Y: 2
+      Width: 2
+      Height: 1
+      Kind: W
+    - X: 31
+      Y: 2
+      Width: 1
+      Height: 1
+      Kind: '#'
+    - X: 32
+      Y: 2
+      Width: 1
+      Height: 1
+      Kind: W
+    - X: 33
+      Y: 2
+      Width: 3
+      Height: 1
+      Kind: '#'
+    - X: 37
+      Y: 2
+      Width: 2
+      Height: 1
+      Kind: '#'
+    - X: 39
+      Y: 1
+      Width: 25
+      Height: 2
+      Kind: W
+    - X: 1
+      Y: 0
+      Width: 23
+      Height: 2
+      Kind: W
+    - X: 24
+      Y: 0
+      Width: 4
+      Height: 2
+      Kind: '#'
+    - X: 28
+      Y: 0
+      Width: 6
+      Height: 2
+      Kind: W
+    - X: 34
+      Y: 1
+      Width: 5
+      Height: 1
+      Kind: '#'
+    - X: 34
+      Y: 0
+      Width: 4
+      Height: 1
+      Kind: '#'
+    - X: 38
+      Y: 0
+      Width: 26
+      Height: 1
+      Kind: W
+    Name: Rimewatch
+    Economy: 1
+    BuilderEnabled: 1
+    StartingGold: 1200
+    TowerCost: 20
+    SaleRefund: 15
+    KillReward: 2
+    WaveReward: 120
+    StartingLives: 30
+    BuilderSpeed: 9
+    BuildRange: 3
+    Width: 64
+    Height: 64
+    NavigationStep: 0.5
+    BreachCost: 12
+    Separation: 1.4
+    Acceleration: 9
+    AttackReach: 0.16
+    CheckpointRadius: 0.2
+    Spawn:
+      X: 9.5
+      Y: 55.5
+    GroundRoute:
+    - X: 31.5
+      Y: 8.5
+    FlightRoute:
+    - X: 31.5
+      Y: 8.5
+    Catalog:
+    - Name: Shard Sentry
+      Description: "Ground + air \xB7 dependable opening tower"
+      Cost: 20
+      Refund: 15
+      VisualStyle: 0
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 12
+        Interval: 0.65
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Snow Cairn
+      Description: "Maze piece \xB7 no weapon"
+      Cost: 5
+      Refund: 3
+      VisualStyle: 0
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 180
+        Damage: 0
+        Interval: 1
+        Range: 0
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 0
+        TargetsAir: 0
+    - Name: Rime Binder
+      Description: "Ground + air \xB7 30% slow for 2 seconds"
+      Cost: 45
+      Refund: 33
+      VisualStyle: 0
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 8
+        Interval: 0.9
+        Range: 4.3
+        SplashRadius: 0
+        SlowFraction: 0.3
+        SlowDuration: 2
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Hail Bell
+      Description: "Ground splash \xB7 cannot hit air"
+      Cost: 65
+      Refund: 48
+      VisualStyle: 0
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 30
+        Interval: 1.25
+        Range: 4.5
+        SplashRadius: 1.3
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 0
+    - Name: Aurora Needle
+      Description: "Air only \xB7 long-range interceptor"
+      Cost: 55
+      Refund: 41
+      VisualStyle: 0
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 180
+        Damage: 30
+        Interval: 0.65
+        Range: 6
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 0
+        TargetsAir: 1
+    - Name: Pebble Warden
+      Description: "Ground + air \xB7 small impact splash"
+      Cost: 25
+      Refund: 18
+      VisualStyle: 1
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 16
+        Interval: 0.9
+        Range: 4
+        SplashRadius: 0.55
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Basalt Ward
+      Description: "Durable maze piece \xB7 no weapon"
+      Cost: 6
+      Refund: 4
+      VisualStyle: 1
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 300
+        Damage: 0
+        Interval: 1
+        Range: 0
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 0
+        TargetsAir: 0
+    - Name: Quake Idol
+      Description: "Ground splash \xB7 slow, powerful strikes"
+      Cost: 65
+      Refund: 48
+      VisualStyle: 1
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 42
+        Interval: 1.7
+        Range: 4
+        SplashRadius: 1.6
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 0
+    - Name: Crag Hurler
+      Description: "Air only \xB7 heavy sky projectiles"
+      Cost: 55
+      Refund: 41
+      VisualStyle: 1
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 50
+        Interval: 1.1
+        Range: 5.5
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 0
+        TargetsAir: 1
+    - Name: Worldroot
+      Description: "Ground only \xB7 broad slowing impact"
+      Cost: 90
+      Refund: 67
+      VisualStyle: 1
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 180
+        Damage: 35
+        Interval: 1.5
+        Range: 5
+        SplashRadius: 1.8
+        SlowFraction: 0.2
+        SlowDuration: 2
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 0
+    - Name: Cinder Watch
+      Description: "Ground + air \xB7 fast single-target attacks"
+      Cost: 25
+      Refund: 18
+      VisualStyle: 2
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 10
+        Interval: 0.4
+        Range: 3.8
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Coal Bastion
+      Description: "Maze piece \xB7 no weapon"
+      Cost: 5
+      Refund: 3
+      VisualStyle: 2
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 180
+        Damage: 0
+        Interval: 1
+        Range: 0
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 0
+        TargetsAir: 0
+    - Name: Furnace Mouth
+      Description: "Ground splash \xB7 short-range bombardment"
+      Cost: 60
+      Refund: 45
+      VisualStyle: 2
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 34
+        Interval: 1.1
+        Range: 3.5
+        SplashRadius: 1.3
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 0
+    - Name: Flare Lance
+      Description: "Air only \xB7 rapid interception"
+      Cost: 55
+      Refund: 41
+      VisualStyle: 2
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 18
+        Interval: 0.35
+        Range: 5
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 0
+        TargetsAir: 1
+    - Name: Meteor Crucible
+      Description: "Ground splash \xB7 expensive long-range artillery"
+      Cost: 100
+      Refund: 75
+      VisualStyle: 2
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 180
+        Damage: 70
+        Interval: 2
+        Range: 6
+        SplashRadius: 1.8
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 0
+    - Name: Pulse Cadet
+      Description: "Ground + air \xB7 arm-cannon sentry"
+      Cost: 20
+      Refund: 15
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 14
+        Interval: 0.65
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Scrap Bulwark
+      Description: "Cheap maze piece \xB7 no weapon"
+      Cost: 4
+      Refund: 3
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 180
+        Damage: 0
+        Interval: 1
+        Range: 0
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 0
+        TargetsAir: 0
+    - Name: Arc Relay
+      Description: "Ground + air \xB7 chains to two nearby enemies"
+      Cost: 65
+      Refund: 48
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 18
+        Interval: 1
+        Range: 4.3
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 2
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Skyrail
+      Description: "Air only \xB7 precise long-range fire"
+      Cost: 55
+      Refund: 41
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 34
+        Interval: 0.75
+        Range: 6
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 0
+        TargetsAir: 1
+    - Name: Nova Marshal
+      Description: "Ground + air \xB7 heavy arm-cannon champion"
+      Cost: 100
+      Refund: 75
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 180
+        Damage: 55
+        Interval: 0.9
+        Range: 5
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    Tower:
+      Width: 1
+      Height: 1
+      Fill: 0.86
+      Health: 100
+      Damage: 14
+      Interval: 0.65
+      Range: 4
+      SplashRadius: 0
+      SlowFraction: 0
+      SlowDuration: 0
+      ChainTargets: 0
+      TargetsGround: 1
+      TargetsAir: 1
+    Waves:
+    - Name: Frostbound patrol
+      Count: 8
+      SpawnInterval: 0.8
+      Health: 35
+      Speed: 1.9
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: Frostbound patrol
+      Count: 10
+      SpawnInterval: 0.8
+      Health: 47
+      Speed: 1.9
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: Frostbound patrol
+      Count: 12
+      SpawnInterval: 0.8
+      Health: 59
+      Speed: 1.9
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: Frostbound patrol
+      Count: 14
+      SpawnInterval: 0.8
+      Health: 71
+      Speed: 1.9
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: Sky drifters
+      Count: 16
+      SpawnInterval: 0.8
+      Health: 83
+      Speed: 2.2
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 1
+    - Name: Frostbound patrol
+      Count: 18
+      SpawnInterval: 0.8
+      Health: 95
+      Speed: 1.9
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: Frostbound patrol
+      Count: 20
+      SpawnInterval: 0.8
+      Health: 107
+      Speed: 1.9
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: Frostbound patrol
+      Count: 22
+      SpawnInterval: 0.8
+      Health: 119
+      Speed: 1.9
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: Frostbound patrol
+      Count: 24
+      SpawnInterval: 0.8
+      Health: 131
+      Speed: 1.9
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: Sky drifters
+      Count: 26
+      SpawnInterval: 0.8
+      Health: 143
+      Speed: 2.2
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 1

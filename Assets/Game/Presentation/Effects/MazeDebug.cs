@@ -129,7 +129,7 @@ namespace FrostMaze
                     layers[6].Line(previous, goal, 0.1f);
                 previous = goal;
             }
-            if (w.Config.BuilderEnabled)
+            if (w.Config.BuilderEnabled && (game.ShowRoutes || game.ShowNavigation))
             {
                 for(int lane=0;lane<w.LaneCount;lane++) {
                     previous=w.LaneSpawn(lane);

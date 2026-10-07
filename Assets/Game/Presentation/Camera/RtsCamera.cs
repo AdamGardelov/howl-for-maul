@@ -8,13 +8,16 @@ namespace FrostMaze
         public Vector3 Focus;
         ICameraInput source = new DesktopInput();
         Camera view;
+        Prototype game;
         public void Initialize(float width, float height)
         {
             view = GetComponent<Camera>();
+            game=FindFirstObjectByType<Prototype>();
             BoundsMax = new Vector2(width, height);
             Focus = new Vector3(width / 2, 0, height / 2);
             view.orthographic = true;
-            view.orthographicSize = Mathf.Max(height * 0.65f, width * 0.56f / view.aspect);
+            view.orthographicSize = Mathf.Max(height * Mathf.Sin(55*Mathf.Deg2Rad) * .55f, width * .55f / view.aspect);
+            MaxZoom=Mathf.Max(MaxZoom,view.orthographicSize*1.5f);
             Apply();
         }
         public void SetInput(ICameraInput input)
@@ -26,6 +29,9 @@ namespace FrostMaze
             if (view == null)
                 return;
             var intent = source.Read();
+            var mouse=UnityEngine.Input.mousePosition;
+            var uiPoint=new Vector2(mouse.x,Screen.height-mouse.y);
+            if(game!=null&&(game.Sidebar.Contains(uiPoint)||game.MinimapRect.Contains(uiPoint))) {intent.Zoom=0;intent.Drag=Vector2.zero;}
             var pan = Vector2.ClampMagnitude(intent.Pan, 1);
             Focus += new Vector3(pan.x, 0, pan.y) * PanSpeed * Time.unscaledDeltaTime;
             float pixelScale = view.orthographicSize * 2 / Mathf.Max(1, Screen.height);

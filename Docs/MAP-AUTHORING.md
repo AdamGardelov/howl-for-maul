@@ -18,3 +18,12 @@ The legacy Spawn/GroundRoute/FlightRoute fields serve the lab and overview/debug
 Run the simulation suite and the Unity integration tests after changes. For a new map, add a case that sends units through every lane, verifies no terrain intersection, and accounts for every final-exit leak. Add a reference-defense playthrough before calling a map balanced.
 
 The internal C# namespace/assembly names retain FrostMaze to preserve serialized compatibility. Product name, UI, builds and repository are Howl for Maul.
+
+
+## Reference layout maps
+
+`Assets/Game/Maps/LayoutSources/Rimewatch.txt` and `Ironfold.txt` preserve the supplied ASCII masks. `ReferenceMaps` interprets rows from top to bottom and maps them to increasing world Y toward the top. Rimewatch cells are one unit; Ironfold cells are half a unit. Blocked horizontal runs are merged without deleting cells. Terrain blocks use floating point bounds and a spatial index; towers keep integer world-grid footprints.
+
+`ProjectSetup` creates missing Rimewatch/Ironfold assets. It does not overwrite authored assets on every compilation. After deliberately changing a layout or its factory, regenerate the corresponding asset explicitly and re-run mask and route tests. `SelectableMap` controls whether it appears in the match menu. `Theme` controls original procedural scenery independently of collision.
+
+Faction rosters are map data. Match options select one faction per player. The simulation rejects designs outside that roster; UI filtering is not the only enforcement. Ground and air targeting, splash, slow duration and chain limits live on tower specifications.

@@ -47,7 +47,9 @@ namespace FrostMaze
             GUILayout.Label(w.Config.Name.ToUpperInvariant(), small);
             if(game.SetupOpen) {
                 DrawSetup();
-                GUILayout.EndScrollView();GUILayout.EndArea();GUI.matrix=previousMatrix;DrawMapLabels();return;
+                GUILayout.EndScrollView();
+                if(GUILayout.Button("START MATCH",button))game.StartMatch();
+                GUILayout.EndArea();GUI.matrix=previousMatrix;DrawMapLabels();return;
             }
             GUILayout.Space(18);
             GUILayout.Label("SHARED DEFENSE", section);
@@ -85,9 +87,12 @@ namespace FrostMaze
             GUILayout.Space(16);
             GUILayout.Label("CONSTRUCTION", section);
             if(w.Config.Catalog.Length>0) {
+                int shortcut=0;
+                GUILayout.Label(w.FactionName,section);
                 for(int i=0;i<w.Config.Catalog.Length;i++) {
+                    if(!w.DesignAvailable(i))continue;shortcut++;
                     var design=w.Config.Catalog[i];
-                    if(GUILayout.Button($"{(w.SelectedDesign==i?"● ":"")}{i+1}. {design.Name}  {design.Cost}g",button)){w.SelectedDesign=i;game.SellMode=false;game.MoveMode=false;}
+                    if(GUILayout.Button($"{(w.SelectedDesign==i?"● ":"")}{shortcut}. {design.Name}  {design.Cost}g{(w.RequirementsMet(i)?"":" [locked]")}",button)){w.SelectedDesign=i;game.SellMode=false;game.MoveMode=false;}
                 }
                 GUILayout.Label(w.Config.Catalog[w.SelectedDesign].Description,small);
             }
@@ -117,6 +122,7 @@ namespace FrostMaze
             GUILayout.Space(16);
             GUILayout.Label("NAVIGATION OVERLAY", section);
             game.SoundEnabled=GUILayout.Toggle(game.SoundEnabled,"Combat sound");
+            game.ShowRoutes=GUILayout.Toggle(game.ShowRoutes,"Lane and flight route guides");
             game.ShowGrid = GUILayout.Toggle(game.ShowGrid, "Placement grid [G]");
             game.ShowNavigation = GUILayout.Toggle(game.ShowNavigation, "Clearance + low towers [F]");
             game.ShowDirections = GUILayout.Toggle(game.ShowDirections, "Enemy intent + siege target");
@@ -143,7 +149,7 @@ namespace FrostMaze
             if(w.Config.Lanes.Length>0 && GUILayout.Button("New match / setup",button))game.SetupOpen=true;
             if (GUILayout.Button("Reset map + waves", button))
                 game.ResetSimulation();
-            if (GUILayout.Button(w.Config.Economy ? "Switch to Maze Lab" : "Play Frostline Crossing", button))
+            if (GUILayout.Button(w.Config.Economy ? "Switch to Maze Lab" : "Play Howl for Maul", button))
                 game.SwitchMap(!w.Config.Economy);
             GUILayout.Space(14);
             GUILayout.Label("WASD / arrows: pan\nWheel: zoom   ·   Middle drag: pan\nHome: focus selected builder", small);
@@ -184,8 +190,16 @@ namespace FrostMaze
                 }
                 GUILayout.Label("Choosing an occupied start swaps the players. You can build anywhere on open terrain.",small);
             } else GUILayout.Label("Solo builder starts at the shared junction with the full team budget.",small);
+            if(game.World.Config.Factions.Length>0) {
+                GUILayout.Space(12);GUILayout.Label("FACTION / BUILDER",section);
+                var factions=game.World.Config.Factions;var names=new string[factions.Length];for(int j=0;j<names.Length;j++)names[j]=factions[j].Name;
+                for(int player=0;player<n;player++) {
+                    GUILayout.Label("Player "+(player+1),small);
+                    game.SetupOptions.Factions[player]=GUILayout.SelectionGrid(game.SetupOptions.Factions[player],names,2);
+                    GUILayout.Label(factions[game.SetupOptions.Factions[player]].Description,small);
+                }
+            }
             GUILayout.Space(14);
-            if(GUILayout.Button("START MATCH",button))game.StartMatch();
             if(GUILayout.Button("Open Maze Lab",button))game.SwitchMap(false);
         }
         void DrawMinimap()

@@ -11,11 +11,29 @@ namespace FrostMaze.Simulation
             get; private set;
         }
         public readonly List<TerrainBlock> Terrain = new List<TerrainBlock>();
-        public void AddTerrain(TerrainBlock block) { Terrain.Add(block); Version++; }
+        const int TerrainBucketSize=4;
+        readonly Dictionary<int,List<TerrainBlock>> terrainBuckets=new Dictionary<int,List<TerrainBlock>>();
+        int BucketColumns => (Width+TerrainBucketSize-1)/TerrainBucketSize;
+        public void AddTerrain(TerrainBlock block)
+        {
+            Terrain.Add(block);Version++;
+            for(int y=(int)(block.Y/TerrainBucketSize);y<Math.Ceiling((block.Y+block.Height)/TerrainBucketSize);y++)
+                for(int x=(int)(block.X/TerrainBucketSize);x<Math.Ceiling((block.X+block.Width)/TerrainBucketSize);x++) {
+                    int key=x+y*BucketColumns;
+                    if(!terrainBuckets.TryGetValue(key,out var list)){list=new List<TerrainBlock>();terrainBuckets[key]=list;}
+                    list.Add(block);
+                }
+        }
         public bool TerrainClear(V2 a,V2 b,float radius)
         {
             if(!InBounds(a,radius)||!InBounds(b,radius))return false;
-            foreach(var t in Terrain)if(Geometry.SweepBox(a,b,t.Center,t.Half,radius))return false;
+            int minX=Math.Max(0,(int)Math.Floor((Math.Min(a.X,b.X)-radius)/TerrainBucketSize));
+            int maxX=Math.Min(BucketColumns-1,(int)Math.Floor((Math.Max(a.X,b.X)+radius)/TerrainBucketSize));
+            int minY=Math.Max(0,(int)Math.Floor((Math.Min(a.Y,b.Y)-radius)/TerrainBucketSize));
+            int maxY=Math.Min((Height-1)/TerrainBucketSize,(int)Math.Floor((Math.Max(a.Y,b.Y)+radius)/TerrainBucketSize));
+            for(int y=minY;y<=maxY;y++)for(int x=minX;x<=maxX;x++)
+                if(terrainBuckets.TryGetValue(x+y*BucketColumns,out var blocks))foreach(var t in blocks)
+                    if(Geometry.SweepBox(a,b,t.Center,t.Half,radius))return false;
             return true;
         }
         public bool TerrainOverlaps(int x,int y,int width,int height)

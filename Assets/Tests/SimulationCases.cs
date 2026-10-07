@@ -36,6 +36,11 @@ namespace FrostMaze.Tests
                 w.Step();
         }
         public static readonly Case[] All ={
+            new Case("Robot champion progression and ownership",MapCases.RobotProgression),
+            new Case("Reference map masks and spatial index",MapCases.Masks),
+            new Case("Reference map lane traversal",MapCases.Routes),
+            new Case("Faction selection enforces rosters",MapCases.FactionSelection),
+            new Case("Slow expiry and chain target limits",MapCases.StatusCombat),
             new Case("Straight path",()=>{var g=new MazeGrid(12,8);Check(Reach(g,new V2(1.5f,4.5f),new V2(10.5f,4.5f)),"no straight route");}),
             new Case("Horizontal wall detour",()=>{var g=new MazeGrid(12,8);for(int x=0;x<10;x++)g.Build(x,4,Solid());Check(Reach(g,new V2(1.5f,1.5f),new V2(1.5f,6.5f)),"no detour");}),
             new Case("Vertical wall detour",()=>{var g=new MazeGrid(12,8);Wall(g,5,6);Check(Reach(g,new V2(1.5f,4.5f),new V2(10.5f,4.5f)),"no detour");}),

@@ -32,6 +32,15 @@ namespace FrostMaze.Editor
                 shared.Settings = FrostMaze.Simulation.Scenario.SharedDefense();
                 AssetDatabase.CreateAsset(shared, "Assets/Game/Maps/Resources/Frostfall.asset");
             }
+            foreach(string name in new[]{"Rimewatch","Ironfold"}) {
+                string path="Assets/Game/Maps/Resources/"+name+".asset";
+                if(AssetDatabase.LoadAssetAtPath<MapDefinition>(path)==null) {
+                    var asset=ScriptableObject.CreateInstance<MapDefinition>();
+                    string text=File.ReadAllText("Assets/Game/Maps/LayoutSources/"+name+".txt");
+                    asset.Settings=name=="Rimewatch"?Simulation.ReferenceMaps.Rimewatch(text):Simulation.ReferenceMaps.Ironfold(text);
+                    AssetDatabase.CreateAsset(asset,path);
+                }
+            }
             if (GraphicsSettings.defaultRenderPipeline == null)
             {
                 var renderer = ScriptableObject.CreateInstance<UniversalRendererData>();
@@ -70,7 +79,7 @@ namespace FrostMaze.Editor
         public static void SelectMap()
         {
             EnsureAssets();
-            Selection.activeObject = AssetDatabase.LoadAssetAtPath<MapDefinition>("Assets/Game/Maps/Resources/Frostfall.asset");
+            Selection.activeObject = AssetDatabase.LoadAssetAtPath<MapDefinition>("Assets/Game/Maps/Resources/Rimewatch.asset");
         }
         [MenuItem("Howl for Maul/Build Linux")]
         public static void BuildLinux()

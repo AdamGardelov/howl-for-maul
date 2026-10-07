@@ -36,7 +36,9 @@ namespace FrostMaze.Simulation
         public int Gold { get=>Player.Gold; private set=>Player.Gold=value; }
         public readonly List<ShotEvent> Shots=new List<ShotEvent>();
         long nextShot;
-        public int SelectedDesign {get=>Player.SelectedDesign;set {if(value<0||value>=Math.Max(1,Config.Catalog.Length))throw new ArgumentOutOfRangeException();Player.SelectedDesign=value;} }
+        public bool DesignAvailable(int design) => Config.Factions.Length==0 || Array.IndexOf(Config.Factions[Player.Faction].Designs,design)>=0;
+        public string FactionName => Config.Factions.Length==0?"Free build":Config.Factions[Player.Faction].Name;
+        public int SelectedDesign {get=>Player.SelectedDesign;set {if(value<0||value>=Math.Max(1,Config.Catalog.Length)||!DesignAvailable(value))throw new ArgumentOutOfRangeException();Player.SelectedDesign=value;} }
         public TowerSpec BuildSpec => Config.Catalog.Length==0?Config.Tower:Config.Catalog[SelectedDesign].Spec;
         public int BuildCost => Config.Catalog.Length==0?Config.TowerCost:Config.Catalog[SelectedDesign].Cost;
         public string BuildName => Config.Catalog.Length==0?"Bolt Spire":Config.Catalog[SelectedDesign].Name;
@@ -133,12 +135,14 @@ namespace FrostMaze.Simulation
             config.Validate();
             Config = config;
             var selected=matchOptions??new MatchOptions(); selected.Validate(config.BuilderStarts.Length==0?4:config.BuilderStarts.Length);
-            options=new MatchOptions {PlayerCount=selected.PlayerCount,Difficulty=selected.Difficulty,StartingPositions=(int[])selected.StartingPositions.Clone()};
+            options=new MatchOptions {PlayerCount=selected.PlayerCount,Difficulty=selected.Difficulty,StartingPositions=(int[])selected.StartingPositions.Clone(),Factions=(int[])selected.Factions.Clone()};
             Difficulty=options.Difficulty;
             Players=new PlayerState[options.PlayerCount];
             for(int i=0;i<Players.Length;i++) {
                 var pos=config.Lanes.Length==0?config.Spawn:Players.Length==1?config.SoloBuilderStart:config.BuilderStarts[options.StartingPositions[i]];
-                Players[i]=new PlayerState {Position=pos,Destination=pos};
+                int faction=options.Factions[i];
+                if(config.Factions.Length>0&&(faction<0||faction>=config.Factions.Length))throw new ArgumentException("Invalid faction.");
+                Players[i]=new PlayerState {Position=pos,Destination=pos,Faction=faction,SelectedDesign=config.Factions.Length==0?0:config.Factions[faction].Designs[0]};
             }
             Reward(config.StartingGold);
             spawnTimers=new float[LaneCount]; lanePending=new int[LaneCount];
@@ -158,9 +162,19 @@ namespace FrostMaze.Simulation
             for(int lane=0;lane<LaneCount;lane++){lanePending[lane]=source.Count;spawnTimers[lane]=0;}
             return true;
         }
+        public bool RequirementsMet(int design)
+        {
+            if(Config.Catalog.Length==0)return true;
+            foreach(int required in Config.Catalog[design].Requires??Array.Empty<int>()) {
+                bool found=false;foreach(var tower in Grid.Towers)if(tower.Design==required&&owners.TryGetValue(tower.Id,out int owner)&&owner==ActivePlayer){found=true;break;}
+                if(!found)return false;
+            }
+            return true;
+        }
         public bool CanBuild(int x, int y, out string reason)
         {
             if (Finished) { reason = "Match finished. Reset to play again."; return false; }
+            if(!RequirementsMet(SelectedDesign)){reason="Build each regular tower in your faction before its champion.";return false;}
             if (Config.Economy && Gold < BuildCost) { reason = "Not enough gold."; return false; }
             var spec = BuildSpec;
             var center = new V2(x + spec.Width * 0.5f, y + spec.Height * 0.5f);
@@ -254,9 +268,15 @@ namespace FrostMaze.Simulation
                 foreach (var e in Enemies)
                     if (e.Health > 0 && (e.Spec.Flying ? tower.Spec.TargetsAir : tower.Spec.TargetsGround) && V2.Distance(tower.Center, e.Position) <= tower.Spec.Range)
                     {
-                        e.Health -= tower.Spec.Damage;
+                        Hit(e,tower.Spec);
                         if(tower.Spec.SplashRadius>0)foreach(var other in Enemies)
-                            if(other!=e&&other.Health>0&&other.Spec.Flying==e.Spec.Flying&&V2.Distance(other.Position,e.Position)<=tower.Spec.SplashRadius)other.Health-=tower.Spec.Damage;
+                            if(other!=e&&other.Health>0&&other.Spec.Flying==e.Spec.Flying&&V2.Distance(other.Position,e.Position)<=tower.Spec.SplashRadius)Hit(other,tower.Spec);
+                        if(tower.Spec.ChainTargets>0) {
+                            int left=tower.Spec.ChainTargets;
+                            foreach(var other in Enemies)if(other!=e&&other.Health>0&&(other.Spec.Flying?tower.Spec.TargetsAir:tower.Spec.TargetsGround)&&V2.Distance(other.Position,e.Position)<=2) {
+                                Hit(other,tower.Spec);Shots.Add(new ShotEvent{Serial=++nextShot,From=e.Position,To=other.Position,Flying=other.Spec.Flying});if(--left==0)break;
+                            }
+                        }
                         Shots.Add(new ShotEvent {Serial=++nextShot,From=tower.Center,To=e.Position,Splash=tower.Spec.SplashRadius,Flying=e.Spec.Flying});
                         if(Shots.Count>128)Shots.RemoveAt(0);
                         tower.Cooldown = tower.Spec.Interval;
@@ -315,7 +335,9 @@ namespace FrostMaze.Simulation
                 }
                 var toAim = aim - e.Position;
                 e.IntendedDirection = toAim.Normalized;
-                V2 desired = e.IntendedDirection * e.Spec.Speed;
+                e.SlowRemaining=Math.Max(0,e.SlowRemaining-FixedDelta);
+                float speed=e.Spec.Speed*(e.SlowRemaining>0?1-e.SlowFraction:1);
+                V2 desired = e.IntendedDirection * speed;
                 V2 separation = new V2();
                 foreach (var other in Enemies)
                     if (other != e && other.Health > 0 && other.Spec.Flying == e.Spec.Flying)
@@ -329,8 +351,8 @@ namespace FrostMaze.Simulation
                 if (separation.Length > e.Spec.Speed * 0.5f)
                     separation = separation.Normalized * (e.Spec.Speed * 0.5f);
                 desired += separation;
-                if (desired.Length > e.Spec.Speed)
-                    desired = desired.Normalized * e.Spec.Speed;
+                if (desired.Length > speed)
+                    desired = desired.Normalized * speed;
                 var acceleration = desired - e.Velocity;
                 float limit = Config.Acceleration * FixedDelta;
                 if (acceleration.Length > limit)
@@ -359,6 +381,11 @@ namespace FrostMaze.Simulation
                 if (Config.Economy) Reward(Config.WaveReward);
             }
             if (Finished) foreach(var player in Players){player.HasBuildOrder=false;player.Queue.Clear();}
+        }
+        static void Hit(Enemy enemy,TowerSpec spec)
+        {
+            enemy.Health-=spec.Damage;
+            if(spec.SlowFraction>0&&(enemy.SlowRemaining<=0||spec.SlowFraction>=enemy.SlowFraction)) {enemy.SlowFraction=spec.SlowFraction;enemy.SlowRemaining=spec.SlowDuration;}
         }
         void Move(Enemy e, V2 delta)
         {

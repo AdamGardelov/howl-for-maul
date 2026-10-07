@@ -12,6 +12,11 @@ namespace FrostMaze.Simulation
     [Serializable]
     public sealed class Scenario
     {
+        public FactionSpec[] Factions = new FactionSpec[0];
+        public bool SelectableMap;
+        public string Theme="winter", WalkableSymbols="";
+        public float LayoutCellSize=1;
+        public string[] LayoutRows=new string[0];
         public string[] StartNames = new string[0];
         public V2[] BuilderStarts = new V2[0];
         public V2 SoloBuilderStart = new V2(18,14);
@@ -82,7 +87,7 @@ namespace FrostMaze.Simulation
                 clearance = Math.Max(clearance, wave.Radius);
             var bounds = new MazeGrid(Width, Height);
             foreach(var block in Terrain) {
-                if(block.Width<1||block.Height<1||block.X<0||block.Y<0||block.X+block.Width>Width||block.Y+block.Height>Height)throw new ArgumentException("Invalid terrain block.");
+                if(block.Width<=0||block.Height<=0||block.X<0||block.Y<0||block.X+block.Width>Width||block.Y+block.Height>Height)throw new ArgumentException("Invalid terrain block.");
                 bounds.AddTerrain(block);
             }
             if(Lanes.Length>0&&BuilderStarts.Length<4)throw new ArgumentException("Maps require four selectable builder starts.");

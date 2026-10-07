@@ -10,7 +10,7 @@ Built with Unity 6.3 LTS, C# and URP for Windows and Ubuntu Linux. All code, pro
 
 Open this project with **Unity 6000.3.25f1**, choose **Howl for Maul → Open maze lab**, then press Play. The scene generates the selected map at runtime.
 
-The default map, **Frostfall Maul**, has four upper spawn lanes, a shared junction and a bottom exit. All four lanes remain active for every player count. Choose difficulty and player count before starting; with multiple player slots, choose unique starting positions in the upper defenses, junction or last stand.
+Choose **Rimewatch** (three upper lanes) or **Ironfold** (four upper lanes), both reconstructed from the supplied map layouts. Every lane stays active at every player count. Select difficulty, an original builder faction for each player, and—with multiple player slots—starting positions before spawning. The maps retain downstream defense areas and one bottom exit.
 
 Solo starts with the full **1,200 gold** team budget. Two players receive 600 each, three receive 400 each, four receive 300 each. Kill income and wave rewards are split without losing integer remainders. Every enemy reaching the final exit removes one of 30 shared lives. Finish ten waves with lives remaining to win. Waves 5 and 10 fly.
 
@@ -25,7 +25,7 @@ Solo starts with the full **1,200 gold** team budget. Two players receive 600 ea
 | Select tower | Click an existing tower |
 | Upgrade selected tower | U or its sidebar button |
 | Sell your tower | X then click, or selected-tower button |
-| Select tower design | 1 Bolt Spire, 2 Barricade, 3 Ember Cannon |
+| Select tower design | 1–7 within your faction roster |
 | Build mode | B |
 | Inspect an enemy | Ctrl + click |
 | Launch next wave | Space |
@@ -42,19 +42,22 @@ Full route blockage is allowed: ground enemies find a player-built obstruction t
 
 ## Towers
 
-| Tower | Cost | Role |
-|---|---:|---|
-| Bolt Spire | 20 | Reliable ground and air damage |
-| Barricade | 5 | Tough, inexpensive maze construction; no weapon |
-| Ember Cannon | 60 | Splash damage against ground crowds; cannot attack air |
+| Faction | Main roles |
+|---|---|
+| Rime Covenant | Slow, ground splash, dedicated air needles |
+| Stonebound | Durable maze walls, heavy ground splash, sky projectiles |
+| Ember Assembly | Rapid fire, ground artillery, fast anti-air |
+| Volt Vanguard | Arm-cannon sentries, chain attacks, long-range air defense |
+
+Rimewatch factions have five exclusive designs. Ironfold instead offers eight robot factions: Pulse Foundry, Blast Circuit, Prism Division, Horizon Guild, Gravity Works, Scrap Frontier, Overdrive Order and Tidal Array. Each has six regular designs and a powerful champion unlocked by owning all six. Every roster includes affordable maze construction and an air specialist. These are original interpretations, not a claimed transcription of any one historical version. See [research and decisions](Docs/MAUL-RESEARCH.md).
 
 Purchased towers can be upgraded twice. Upgrades improve health and weapon damage/range, costing the original tower price times its current level. Sale refunds include part of the upgrade investment. Players may build anywhere on open terrain, but can sell or upgrade only their own towers. The P1–P4 sidebar buttons switch local control; they are not a network lobby.
 
 ## Maps and tuning
 
-Choose **Howl for Maul → Select map parameters** to inspect Frostfall.asset. Runtime data is copied so playing does not modify the asset. The original unrestricted Maze Lab remains accessible through the sidebar.
+Choose **Howl for Maul → Select map parameters** to inspect Rimewatch.asset. Runtime data is copied so playing does not modify the asset. The original unrestricted Maze Lab remains accessible through the sidebar.
 
-Map layout, terrain, lane routes, builder starts, tower catalog and waves are data-driven. Additional multi-lane map assets in Resources appear in setup automatically. See [map authoring](Docs/MAP-AUTHORING.md) and [design direction](Docs/DESIGN-NOTES.md).
+Map layout, terrain, lane routes, builder starts, tower catalog and waves are data-driven. Map assets with SelectableMap enabled appear in setup automatically. See [map authoring](Docs/MAP-AUTHORING.md) and [design direction](Docs/DESIGN-NOTES.md).
 
 Difficulty scales enemy health and siege damage to 70%, 100% or 140%; it never disables lanes. These are provisional tuning values, not final balance.
 

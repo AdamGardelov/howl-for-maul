@@ -47,10 +47,28 @@ namespace FrostMaze.Tests
             yield return null;
             Assert.That(game.World.Players.Length,Is.EqualTo(2));
             Assert.That(game.World.Gold,Is.EqualTo(600));
-            Assert.That(game.World.BuilderPosition.X,Is.EqualTo(31.5f));
-            Assert.That(game.World.Config.Catalog.Length,Is.EqualTo(3));
+            Assert.That(game.World.BuilderPosition.X,Is.EqualTo(game.World.Config.BuilderStarts[3].X));
+            Assert.That(game.World.Config.Catalog.Length,Is.EqualTo(20));
             Assert.That(game.World.Difficulty,Is.EqualTo(FrostMaze.Simulation.Difficulty.Hard));
             Assert.That(GameObject.Find("Player 2 builder"),Is.Not.Null);
+            game.ChooseMap(Resources.Load<MapDefinition>("Ironfold"));
+            yield return null;yield return null;
+            game=Object.FindFirstObjectByType<Prototype>();
+            Assert.That(game.World.LaneCount,Is.EqualTo(4));
+            game.SetupOptions.Factions[0]=3;game.StartMatch();game.Paused=true;
+            Assert.That(game.World.SelectedDesign,Is.EqualTo(21));
+            int bx=-1,by=-1;
+            for(int y=0;y<64&&bx<0;y++)for(int x=0;x<64&&bx<0;x++)
+                if(FrostMaze.Simulation.V2.Distance(game.World.BuilderPosition,new FrostMaze.Simulation.V2(x+.5f,y+.5f))<2.5f&&game.World.CanBuild(x,y,out _)){bx=x;by=y;}
+            Assert.That(bx,Is.GreaterThanOrEqualTo(0));
+            Assert.That(game.World.Build(bx,by,out _),Is.True);
+            yield return null;
+            Assert.That(GameObject.Find("Visored sentry"),Is.Not.Null);
+            game.SetupOptions.Factions[0]=0;game.StartMatch();game.Paused=true;
+            Assert.That(game.World.Build(bx,by,out _),Is.True);
+            yield return null;yield return null;
+            Assert.That(game.World.Grid.Towers.Count,Is.EqualTo(1));
+            Assert.That(game.World.Grid.Towers[0].Design,Is.EqualTo(0));
             yield return new ExitPlayMode();
         }
         [UnityTearDown]

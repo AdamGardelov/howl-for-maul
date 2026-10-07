@@ -1,0 +1,4614 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b58ee175d6df5450a669e1937a15d7f8, type: 3}
+  m_Name: Ironfold
+  m_EditorClassIdentifier: FrostMaze.Runtime::FrostMaze.MapDefinition
+  Settings:
+    Factions:
+    - Name: Pulse Foundry
+      Description: Fast arm-cannon sentries and a slowing specialist. Build all six
+        regular designs to unlock the champion.
+      Designs: 00000000010000000200000003000000040000000500000006000000
+    - Name: Blast Circuit
+      Description: Explosive attacks with steady firing speed. Build all six regular
+        designs to unlock the champion.
+      Designs: 0700000008000000090000000a0000000b0000000c0000000d000000
+    - Name: Prism Division
+      Description: Balanced precision weapons and chained energy. Build all six regular
+        designs to unlock the champion.
+      Designs: 0e0000000f0000001000000011000000120000001300000014000000
+    - Name: Horizon Guild
+      Description: Long-range specialists cover wide approaches. Build all six regular
+        designs to unlock the champion.
+      Designs: 15000000160000001700000018000000190000001a0000001b000000
+    - Name: Gravity Works
+      Description: Costly specialists mix control and area attacks. Build all six
+        regular designs to unlock the champion.
+      Designs: 1c0000001d0000001e0000001f000000200000002100000022000000
+    - Name: Scrap Frontier
+      Description: The cheapest armed maze pieces and adaptable support. Build all
+        six regular designs to unlock the champion.
+      Designs: 23000000240000002500000026000000270000002800000029000000
+    - Name: Overdrive Order
+      Description: Heavy damage trades away range and firing speed. Build all six
+        regular designs to unlock the champion.
+      Designs: 2a0000002b0000002c0000002d0000002e0000002f00000030000000
+    - Name: Tidal Array
+      Description: A versatile collection of splash, control and precision. Build
+        all six regular designs to unlock the champion.
+      Designs: 31000000320000003300000034000000350000003600000037000000
+    SelectableMap: 1
+    Theme: iron
+    WalkableSymbols: .,G
+    LayoutCellSize: 0.5
+    LayoutRows:
+    - pppppppppppp####,,,,,,,,,,,,,,####pppppp###,,,,,,,,,,,,,,,#SSSSSSSSSSSS#,,,,,,,,,,,,,,,###pppppp####,,,,,,,,,,,,,,####pppppppppp
+    - pppppppppppp####,,,,,,,,,,,,,,####pppppp###,,,,,,,,,,,,,,,#SSSSSSSSSSSS#,,,,,,,,,,,,,,####pppppp####,,,,,,,,,,,,,,####pppppppppp
+    - pppppppppppp####,,,,,,,,,,,,,,####pppppp###,,,,,,,,,,,,,,,#SSSSSSSSSSSS#,,,,,,,,,,,,,,,###pppppp####,,,,,,,,,,,,,,####pppppppppp
+    - pppppppppppp####,,,,,,,,,,,,,,####pppppp###,,,,,,,,,,,,,,,#SSSSSSSSSSSS#,,,,,,,,,,,,,,,###pppppp####,,,,,,,,,,,,,,####pppppppppp
+    - pppppppppppp####,,,,,,,,,,,,,,####pppppp###,,,,,,,,,,,,,,##SSSSSSSSSSSS#,,,,,,,,,,,,,,####pppppp####,,,,,,,,,,,,,,####pppppppppp
+    - pppppppppppp####,,,,,,,,,,,,,,####pppppp###,,,,,,,,,,,,,,##SSSSSSSSSSSS#,,,,,,,,,,,,,,####pppppp####,,,,,,,,,,,,,,####pppppppppp
+    - pppppppppppp####,,,,,,,,,,,,,,####pppppp###,,,,,,,,,,,,,,##SSSSSSSSSSSS#,,,,,,,,,,,,,,####pppppp####,,,,,,,,,,,,,,####pppppppppp
+    - pppppppppppp####,,,,,,,,,,,,,,####pppppp###,,,,,,,,,,,,,,##SSSSSSSSSSSS#,,,,,,,,,,,,,,,###pppppp####,,,,,,,,,,,,,,####pppppppppp
+    - pppppppppppp####,,,,,,,,,,,,,,#####ppppp###,,,,,,,,,,,,,,##SSSSSSSSSSSS#,,,,,,,,,,,,,,#####ppppp####,,,,,,,,,,,,,,####pppppppppp
+    - pppppppppppp####,,,,,,,,,,,,,,#####ppppp####,,,,,,,,,,,,,,#SSSpppppSSSS#,,,,,,,,,,,,,,#####ppppp####,,,,,,,,,,,,,,####pppppppppp
+    - pppppppppppp####,,,,,,,,,,,,,,#####ppppp###,,,,,,,,,,,,,,,####pppppp####,,,,,,,,,,,,,,#####ppppp####,,,,,,,,,,,,,,####pppppppppp
+    - pppppppppppp####,,,,,,,,,,,,,,#####ppppp###,,,,,,,,,,,,,,,####pppppp####,,,,,,,,,,,,,,#####ppppp####,,,,,,,,,,,,,,####pppppppppp
+    - pppppppppppp####,,,,,,,,,,,,,,####pppppp####,,,,,,,,,,,,,,####ppppppp###,,,,,,,,,,,,,,,###pppppp####,,,,,,,,,,,,,,####pppppppppp
+    - pppppppppppp####,,,,,,,,,,,,,,####pppppp####,,,,,,,,,,,,,#####ppppppp###,,,,,,,,,,,,,,,####ppppp####,,,,,,,,,,,,,,####pppppppppp
+    - pppppppppppp####,,,,,,,,,,,,,,####pppppp####,,,,,,,,,,,,,#####ppppppp###,,,,,,,,,,,,,,,###pppppp####,,,,,,,,,,,,,,####pppppppppp
+    - pppppppppppp####,,,,,,,,,,,,,,####pppppp####,,,,,,,,,,,,,#####ppppppp###,,,,,,,,,,,,,,,###pppppp####,,,,,,,,,,,,,,####pppppppppp
+    - pppppppppppp####..............####pppppp####.............####pppppppp###,............,####pppppp####..............####pppppppppp
+    - pppppppppppp####..............####pppppp####.............####pppppppp###..............####pppppp####..............####pppppppppp
+    - pppppppppppp####..............####pppppp####.............####pppppppp###..............#####ppppp####..............####pppppppppp
+    - pppppppppppp####..............####pppppp####.............####pppppppp###..............####pppppp####..............####pppppppppp
+    - pppppppppppp####..............#####ppppp###..............#####ppppppp###..............####pppppp####..............####pppppppppp
+    - pppppppppppp####..............####pppppp###..............#####ppppppp###..............####pppppp####..............####pppppppppp
+    - pppppppppppp####..............####pppppp###..............#####ppppppp###..............####pppppp####..............####pppppppppp
+    - pppppppppppp####..............####pppppp###..............#####ppppppp###..............####pppppp####..............####pppppppppp
+    - pppppppppppp####..............####pppppp###...............###pppppppp###..............####pppppp####..............####pppppppppp
+    - pppppppppppp####..............####pppppp###...............####pppppp####..............####pppppp####..............####pppppppppp
+    - pppppppppppp####..............####pppppp###...............###ppppppp####..............#####ppppp####..............####pppppppppp
+    - pppppppppppp####..............####pppppp###...............###ppppppp####...............###pppppp####..............####pppppppppp
+    - pppppppppppp####..............#####ppppp###...............####pppppp####..............####pppppp####..............####pppppppppp
+    - pppppppppppp####..............#####ppppp###...............####pppppp####..............####pppppp####..............####pppppppppp
+    - pppppppppppp####..............#####ppppp###...............####pppppp####..............####pppppp####..............####pppppppppp
+    - pppppppppppp####..............#####ppppp###...............####pppppp####..............####pppppp####..............####pppppppppp
+    - pppppppppppp####..............####pppppp####.............###############..............#####ppppp####..............####pppppppppp
+    - pppppppppppp####..............####pppppp####..............##############..............####pppppp####..............####pppppppppp
+    - pppppppppppp####..............####pppppp####..............##############..............####pppppp####..............####pppppppppp
+    - pppppppppppp####..............####pppppp####...............###########................#####ppppp####..............####pppppppppp
+    - pppppppppppp####..............#####ppppp####..........................................####pppppp####..............####pppppppppp
+    - pppppppppppp####..............####pppppp####..........................................####pppppp####..............####pppppppppp
+    - pppppppppppp####..............#####ppppp#####........................................#####ppppp#####..............####pppppppppp
+    - pppppppppppp####..............#####ppppp######......................................######ppppp#####..............####pppppppppp
+    - pppppppppppp####..............#######ppp#######....................................#######pppp######..............####pppppppppp
+    - pppppppppppp####..............#######pppp#######..................................#######pppp#######..............####pppppppppp
+    - pppppppppppp####...............#######pppp#######................................#######pppp#######...............####pppppppppp
+    - pppppppppppp####................#######pppp#######..............................#######pppp#######................####pppppppppp
+    - pppppppppppp####.................#######pppp#######............................#######pppp#######................#####pppppppppp
+    - pppppppppppp#####.................#######pppp#######..........................#######pppp#######.................#####pppppppppp
+    - pppppppppppp######.................#######pppp#######........................#######pppp#######.................######pppppppppp
+    - pppppppppppp#######.................#######pppp#######......................#######pp#p#######.................#######pppppppppp
+    - ppppppppppppp#######.................#######pppp#######....................#######pppp######..................#######ppppppppppp
+    - pppppppppppppp#######.................#######pppp#######..................#######pppp#######.................#######pppppppppppp
+    - ppppppppppppppp#######.................#######pppp#######................#######pppp#######.................#######ppppppppppppp
+    - pppppppppppppppp#######.................#######pppp#######..............#######pppp#######.................#######pppppppppppppp
+    - pppppppppppppppp########.................#######pppp#######............#######pppp#######...........#.....#######ppppppppppppppp
+    - pppppppppppppppppp#######.................#######pppp#######..........#######pppp#######.................#######pppppppppppppppp
+    - ppppppppppppppppppp#######.................#######pppp######..........#######ppp#######.................#######ppppppppppppppppp
+    - pppppppppppppppppppp#######.................#######pppp#####..........#####pppp#######.................#######pppppppppppppppppp
+    - ppppppppppppppppppppp#######.................#######pppp####..........#####ppp#######.................#######ppppppppppppppppppp
+    - pppppppppppppppppppppp#######.................#######ppp####..........####ppp#######.................#######pppppppppppppppppppp
+    - ppppppppppppppppppppppp#######.................#######pp####..........####p########.................#######ppppppppppppppppppppp
+    - pppppppppppppppppppppppp#######.................#######p####..........####p#######.................#######pppppppppppppppppppppp
+    - ppppppppppppppppppppppppp#######.................######p####..........###########.................#######ppppppppppppppppppppppp
+    - pppppppppppppppppppppppppp#######.................#####p####..........##########.................#######pppppppppppppppppppppppp
+    - ppppppppppppppppppppppppppp#######.................####p####..........####p####.................########pppppppppppppppppppppppp
+    - ppppppppppppppppppppppppppp########.................###p####..........####p####................########ppppppppppppppppppppppppp
+    - pppppppppppppppppppppppppppp########................###p####..........####p###................########pppppppppppppppppppppppppp
+    - ppppppppppppppppppppppppppppp########...............###p####..........####p####..............########ppppppppppppppppppppppppppp
+    - pppppppppppppppppppppppppppppp########..............###p####..........####p####.............########pppppppppppppppppppppppppppp
+    - ppppppppppppppppppppppppppppppp########.............###p####..........####p####............#########pppppppppppppppppppppppppppp
+    - ppppppppppppppppppppppppp###############............###p####..........########............###############ppppppppppppppppppppppp
+    - '#ppp#####p###ppppppppppp################............###p####..........########...........#################ppppp#p##pppppppppp###'
+    - '##################pppppp################............###p####..........####p###...........#################pppp##################'
+    - '###LLLLLL#LLLLLL###ppppp################............###p####..........####p###...........#################ppp####LL#LLLLLLLLL###'
+    - '###LLLLLLLLLLLLLL##ppppp####pppppp######............########..........####p###............######pppppp####pppp#LLLLLLLLLLLLLLL##'
+    - '##LLLLLLLLLLLLLLL##ppppp####pppppppp#p##............########..........####p###.............####ppppppp####pppp#LLLLLLLLLLLLLLL##'
+    - '##LLLLLLLLLLLLLLL##ppppp####ppppppp#####............########..........####p####...........#####ppppppp####pppp#LLLLLLLLLLLLLLL##'
+    - '##LLLLLLLLLLLLLLL##ppppp####pppppp######............########..........####p####..........#######pppppp####pppp#LLLLLLLLLLLLLLL##'
+    - '##LLLLLLLLLLLLLLL##ppppp####ppppp#######............###p####..........####p###...........########ppppp####ppp###LLLLLLLLLLLLLL##'
+    - '##LLLLLLLLLLLLLLL##ppppp################............###p####..........####p###...........#################pppp#LLLLLLLLLLLLLLL##'
+    - '###LLLLLLLLL#LLL###ppppp################............###p####..........####p###............################pppp##LLLLLLLLLLLLLL##'
+    - '###################ppppp###############.............###p####..........####p###.............###############pppp##################'
+    - '##################ppppppp#############..............########..........####p####.............#############pppppp#################'
+    - ppppppppppppppppppppppppppppp########...............###p####..........####p####..............########ppppppppppppppppppppppppppp
+    - pppppppppppppppppppppppppppp########...............####p####..........####p####...............#######ppppppppppppppppppppppppppp
+    - pppppppppppppppppppppppppppp########...............#########..........####p#####...............#######pppppppppppppppppppppppppp
+    - pppppppppppppppppppppppppp########................##########..........####p#####................#######ppppppppppppppppppppppppp
+    - pppppppppppppppppppppppppp#######................###########..........###########................#######pppppppppppppppppppppppp
+    - pppppppppppppppppppppppp########................############..........############................#######ppppppppppppppppppppppp
+    - pppppppppppppppppppppppp#######................#############..........#############................#######pppppppppppppppppppppp
+    - ppppppppppp###################................##############..........###############...............#######ppppppppppppppppppppp
+    - pppppppppp###################................##############............##############................#######pp##########pppppppp
+    - pppppppppp##################................##############..............##############................###################ppppppp
+    - pppppppppp#####,###########...............###############................###############.............#.##################ppppppp
+    - ppppppppppp####,,,########................##############..................###############...............#################ppppppp
+    - ppppppppppp####,,,,######...............###############....................##############................#########,,,####ppppppp
+    - ppppppppppp####,,,,,,##.................###############.....................##############................########,,,####ppppppp
+    - ppppppppppp####,,,,,,..................###############......................###############................######,,,,####ppppppp
+    - ppppppppppp#######,,..................###############........................###############.................##,,,,,,####ppppppp
+    - pppppppppp#########..................###############..######################..###############...................,,#######ppppppp
+    - ppppppppppp########.................###############..########################..###############..................,########ppppppp
+    - pppppppppppp#######................###############...########################...###############.................#########ppppppp
+    - ppppppppppp#######............###################....########################....####################...........########pppppppp
+    - pppppppppp#######...........####################.....#######p#pp#############.....###################............#######pppppppp
+    - ppppppppp#######............###################......########################......###################............#######ppppppp
+    - pppppppp########............##################.......########################.......##################............########pppppp
+    - ppppppp#######...............####ppp#########........#######################.........##########pp####...............#######ppppp
+    - pppppp#######................###pp##########..........#####################...........##########p####................#######pppp
+    - ppppp#######.................####p#########............................................#########p####.................#######ppp
+    - ppppp#######.................###p#########..............................................########pp###..................######ppp
+    - ppppp#####..................##########......................................................##########..................######pp
+    - ppppp####...................##########......................................................##########...................#####pp
+    - ppppp####...................#########.......................................................#########....................#####pp
+    - ppppp###.....................########........................................................########....................####ppp
+    - ppppp###.....................#######.........................................................#######.....................#####pp
+    - ppppp###.......................................................#.........................................................#####pp
+    - ppppp###.....................................................GGGGGGG#....................................................#####pp
+    - ppppp###....................................................GGGGGGGGG....................................................#####pp
+    - ppppp###....................................................GGGGGGGGG....................................................#####pp
+    - ppppp####..................................................#GGGGGGGGG....................................................#####pp
+    - ppppp#######################################################.GGGGGGGG#########################################################pp
+    - ppppp########################################################GGGGGGGG#########################################################pp
+    - ppppp########################################################GGGGGGGG##.#####################################################ppp
+    - pppppp#######################################################GGGGGGG.#######################################################pppp
+    - pppppppppppppppppppppppppppppppppppppppppppppppppppppp#######GGGGGGG########pppppppppppppppppppppppppppppppppppppppppppppppppppp
+    - pppppppppppppppppppppppppppppppppppppppppppppppppppppp######GGGGGGGG.#######pppppppppppppppppppppppppppppppppppppppppppppppppppp
+    - ppppppppppppppppppppppppppppppppppppppppppppppppppppppp####.GGGGGGGGG######ppppppppppppppppppppppppppppppppppppppppppppppppppppp
+    - ppppppppppppppppppppppppppppppppppppppppppppppppppppppp####.GGGGGGGGG######ppppppppppppppppppppppppppppppppppppppppppppppppppppp
+    - ppppppppppppppppppppppppppppppppppppppppppppppppppppppp####GGGGGGGGGG######ppppppppppppppppppppppppppppppppppppppppppppppppppppp
+    - ppppppppppppppppppppppppppppppppppppppppppppppppppppppp####GGGGGGGGGG.#####ppppppppppppppppppppppppppppppppppppppppppppppppppppp
+    StartNames:
+    - Upper west
+    - Inner west
+    - Inner east
+    - Upper east
+    - West bend
+    - Central spine
+    - East bend
+    - Last stand
+    BuilderStarts:
+    - X: 11.25
+      Y: 56.25
+    - X: 24.75
+      Y: 56.25
+    - X: 39.75
+      Y: 56.25
+    - X: 53.25
+      Y: 56.25
+    - X: 22.75
+      Y: 24.75
+    - X: 32.25
+      Y: 24.75
+    - X: 42.25
+      Y: 24.75
+    - X: 32.25
+      Y: 5.75
+    SoloBuilderStart:
+      X: 31.75
+      Y: 8.75
+    Lanes:
+    - Spawn:
+        X: 11.25
+        Y: 62.75
+      GroundRoute:
+      - X: 11.25
+        Y: 43.75
+      - X: 22.75
+        Y: 24.75
+      - X: 15.25
+        Y: 5.75
+      - X: 31.75
+        Y: 1.25
+      FlightRoute:
+      - X: 11.25
+        Y: 43.75
+      - X: 31.75
+        Y: 1.25
+    - Spawn:
+        X: 24.75
+        Y: 62.75
+      GroundRoute:
+      - X: 28.25
+        Y: 43.75
+      - X: 32.25
+        Y: 24.75
+      - X: 31.75
+        Y: 8.75
+      - X: 31.75
+        Y: 1.25
+      FlightRoute:
+      - X: 28.25
+        Y: 43.75
+      - X: 31.75
+        Y: 1.25
+    - Spawn:
+        X: 39.75
+        Y: 62.75
+      GroundRoute:
+      - X: 37.25
+        Y: 43.75
+      - X: 32.75
+        Y: 24.75
+      - X: 33.25
+        Y: 8.75
+      - X: 31.75
+        Y: 1.25
+      FlightRoute:
+      - X: 37.25
+        Y: 43.75
+      - X: 31.75
+        Y: 1.25
+    - Spawn:
+        X: 53.25
+        Y: 62.75
+      GroundRoute:
+      - X: 53.25
+        Y: 43.75
+      - X: 42.25
+        Y: 24.75
+      - X: 48.25
+        Y: 5.75
+      - X: 31.75
+        Y: 1.25
+      FlightRoute:
+      - X: 53.25
+        Y: 43.75
+      - X: 31.75
+        Y: 1.25
+    Terrain:
+    - X: 0
+      Y: 40
+      Width: 6
+      Height: 24
+      Kind: p
+    - X: 6
+      Y: 41.5
+      Width: 2
+      Height: 22.5
+      Kind: '#'
+    - X: 15
+      Y: 60
+      Width: 2
+      Height: 4
+      Kind: '#'
+    - X: 17
+      Y: 60
+      Width: 3
+      Height: 4
+      Kind: p
+    - X: 20
+      Y: 59.5
+      Width: 1.5
+      Height: 4.5
+      Kind: '#'
+    - X: 29
+      Y: 62
+      Width: 0.5
+      Height: 2
+      Kind: '#'
+    - X: 29.5
+      Y: 59.5
+      Width: 6
+      Height: 4.5
+      Kind: S
+    - X: 35.5
+      Y: 59
+      Width: 0.5
+      Height: 5
+      Kind: '#'
+    - X: 43.5
+      Y: 63.5
+      Width: 1.5
+      Height: 0.5
+      Kind: '#'
+    - X: 45
+      Y: 60
+      Width: 3
+      Height: 4
+      Kind: p
+    - X: 48
+      Y: 45
+      Width: 2
+      Height: 19
+      Kind: '#'
+    - X: 57
+      Y: 42
+      Width: 2
+      Height: 22
+      Kind: '#'
+    - X: 59
+      Y: 40
+      Width: 5
+      Height: 24
+      Kind: p
+    - X: 43
+      Y: 63
+      Width: 2
+      Height: 0.5
+      Kind: '#'
+    - X: 43.5
+      Y: 62
+      Width: 1.5
+      Height: 1
+      Kind: '#'
+    - X: 28.5
+      Y: 59.5
+      Width: 1
+      Height: 2.5
+      Kind: '#'
+    - X: 43
+      Y: 60.5
+      Width: 2
+      Height: 1.5
+      Kind: '#'
+    - X: 43.5
+      Y: 60
+      Width: 1.5
+      Height: 0.5
+      Kind: '#'
+    - X: 15
+      Y: 58
+      Width: 2.5
+      Height: 2
+      Kind: '#'
+    - X: 17.5
+      Y: 58
+      Width: 2.5
+      Height: 2
+      Kind: p
+    - X: 43
+      Y: 58
+      Width: 2.5
+      Height: 2
+      Kind: '#'
+    - X: 45.5
+      Y: 58
+      Width: 2.5
+      Height: 2
+      Kind: p
+    - X: 20
+      Y: 59
+      Width: 2
+      Height: 0.5
+      Kind: '#'
+    - X: 29
+      Y: 59
+      Width: 0.5
+      Height: 0.5
+      Kind: '#'
+    - X: 29.5
+      Y: 59
+      Width: 1.5
+      Height: 0.5
+      Kind: S
+    - X: 31
+      Y: 59
+      Width: 2.5
+      Height: 0.5
+      Kind: p
+    - X: 33.5
+      Y: 59
+      Width: 2
+      Height: 0.5
+      Kind: S
+    - X: 20
+      Y: 58
+      Width: 1.5
+      Height: 1
+      Kind: '#'
+    - X: 29
+      Y: 57.5
+      Width: 2
+      Height: 1.5
+      Kind: '#'
+    - X: 31
+      Y: 58
+      Width: 3
+      Height: 1
+      Kind: p
+    - X: 34
+      Y: 58
+      Width: 2
+      Height: 1
+      Kind: '#'
+    - X: 15
+      Y: 54
+      Width: 2
+      Height: 4
+      Kind: '#'
+    - X: 17
+      Y: 54
+      Width: 3
+      Height: 4
+      Kind: p
+    - X: 20
+      Y: 54
+      Width: 2
+      Height: 4
+      Kind: '#'
+    - X: 31
+      Y: 56
+      Width: 3.5
+      Height: 2
+      Kind: p
+    - X: 34.5
+      Y: 51.5
+      Width: 1.5
+      Height: 6.5
+      Kind: '#'
+    - X: 43.5
+      Y: 57.5
+      Width: 1.5
+      Height: 0.5
+      Kind: '#'
+    - X: 45
+      Y: 57.5
+      Width: 3
+      Height: 0.5
+      Kind: p
+    - X: 28.5
+      Y: 56
+      Width: 2.5
+      Height: 1.5
+      Kind: '#'
+    - X: 43.5
+      Y: 57
+      Width: 2
+      Height: 0.5
+      Kind: '#'
+    - X: 45.5
+      Y: 57
+      Width: 2.5
+      Height: 0.5
+      Kind: p
+    - X: 43.5
+      Y: 56
+      Width: 1.5
+      Height: 1
+      Kind: '#'
+    - X: 45
+      Y: 55
+      Width: 3
+      Height: 2
+      Kind: p
+    - X: 28.5
+      Y: 54
+      Width: 2
+      Height: 2
+      Kind: '#'
+    - X: 30.5
+      Y: 54
+      Width: 4
+      Height: 2
+      Kind: p
+    - X: 43
+      Y: 55
+      Width: 2
+      Height: 1
+      Kind: '#'
+    - X: 43
+      Y: 54.5
+      Width: 2.5
+      Height: 0.5
+      Kind: '#'
+    - X: 45.5
+      Y: 54.5
+      Width: 2.5
+      Height: 0.5
+      Kind: p
+    - X: 43
+      Y: 51
+      Width: 2
+      Height: 3.5
+      Kind: '#'
+    - X: 45
+      Y: 51
+      Width: 3
+      Height: 3.5
+      Kind: p
+    - X: 15
+      Y: 53.5
+      Width: 2.5
+      Height: 0.5
+      Kind: '#'
+    - X: 17.5
+      Y: 53.5
+      Width: 2.5
+      Height: 0.5
+      Kind: p
+    - X: 20
+      Y: 48
+      Width: 1.5
+      Height: 6
+      Kind: '#'
+    - X: 28.5
+      Y: 52
+      Width: 2.5
+      Height: 2
+      Kind: '#'
+    - X: 31
+      Y: 52
+      Width: 3.5
+      Height: 2
+      Kind: p
+    - X: 15
+      Y: 50
+      Width: 2
+      Height: 3.5
+      Kind: '#'
+    - X: 17
+      Y: 50
+      Width: 3
+      Height: 3.5
+      Kind: p
+    - X: 29
+      Y: 51.5
+      Width: 1.5
+      Height: 0.5
+      Kind: '#'
+    - X: 30.5
+      Y: 51.5
+      Width: 4
+      Height: 0.5
+      Kind: p
+    - X: 29
+      Y: 51
+      Width: 2
+      Height: 0.5
+      Kind: '#'
+    - X: 31
+      Y: 51
+      Width: 3
+      Height: 0.5
+      Kind: p
+    - X: 34
+      Y: 48
+      Width: 2
+      Height: 3.5
+      Kind: '#'
+    - X: 29
+      Y: 50
+      Width: 1.5
+      Height: 1
+      Kind: '#'
+    - X: 30.5
+      Y: 50
+      Width: 3.5
+      Height: 1
+      Kind: p
+    - X: 43
+      Y: 50.5
+      Width: 2.5
+      Height: 0.5
+      Kind: '#'
+    - X: 45.5
+      Y: 50.5
+      Width: 2.5
+      Height: 0.5
+      Kind: p
+    - X: 43.5
+      Y: 50
+      Width: 1.5
+      Height: 0.5
+      Kind: '#'
+    - X: 45
+      Y: 48
+      Width: 3
+      Height: 2.5
+      Kind: p
+    - X: 15
+      Y: 48
+      Width: 2.5
+      Height: 2
+      Kind: '#'
+    - X: 17.5
+      Y: 48
+      Width: 2.5
+      Height: 2
+      Kind: p
+    - X: 29
+      Y: 48
+      Width: 2
+      Height: 2
+      Kind: '#'
+    - X: 31
+      Y: 48
+      Width: 3
+      Height: 2
+      Kind: p
+    - X: 43
+      Y: 48
+      Width: 2
+      Height: 2
+      Kind: '#'
+    - X: 15
+      Y: 46
+      Width: 2
+      Height: 2
+      Kind: '#'
+    - X: 17
+      Y: 46
+      Width: 3
+      Height: 2
+      Kind: p
+    - X: 20
+      Y: 45
+      Width: 2
+      Height: 3
+      Kind: '#'
+    - X: 28.5
+      Y: 47.5
+      Width: 7.5
+      Height: 0.5
+      Kind: '#'
+    - X: 43
+      Y: 47.5
+      Width: 2.5
+      Height: 0.5
+      Kind: '#'
+    - X: 45.5
+      Y: 47.5
+      Width: 2.5
+      Height: 0.5
+      Kind: p
+    - X: 29
+      Y: 46.5
+      Width: 7
+      Height: 1
+      Kind: '#'
+    - X: 43
+      Y: 46.5
+      Width: 2
+      Height: 1
+      Kind: '#'
+    - X: 45
+      Y: 46.5
+      Width: 3
+      Height: 1
+      Kind: p
+    - X: 29.5
+      Y: 46
+      Width: 5.5
+      Height: 0.5
+      Kind: '#'
+    - X: 43
+      Y: 46
+      Width: 2.5
+      Height: 0.5
+      Kind: '#'
+    - X: 45.5
+      Y: 46
+      Width: 2.5
+      Height: 0.5
+      Kind: p
+    - X: 15
+      Y: 45.5
+      Width: 2.5
+      Height: 0.5
+      Kind: '#'
+    - X: 17.5
+      Y: 45.5
+      Width: 2.5
+      Height: 0.5
+      Kind: p
+    - X: 43
+      Y: 45
+      Width: 2
+      Height: 1
+      Kind: '#'
+    - X: 45
+      Y: 45
+      Width: 3
+      Height: 1
+      Kind: p
+    - X: 15
+      Y: 45
+      Width: 2
+      Height: 0.5
+      Kind: '#'
+    - X: 17
+      Y: 45
+      Width: 3
+      Height: 0.5
+      Kind: p
+    - X: 15
+      Y: 44
+      Width: 2.5
+      Height: 1
+      Kind: '#'
+    - X: 17.5
+      Y: 44
+      Width: 2.5
+      Height: 1
+      Kind: p
+    - X: 20
+      Y: 44.5
+      Width: 2.5
+      Height: 0.5
+      Kind: '#'
+    - X: 42.5
+      Y: 44.5
+      Width: 2.5
+      Height: 0.5
+      Kind: '#'
+    - X: 45
+      Y: 44
+      Width: 2.5
+      Height: 1
+      Kind: p
+    - X: 47.5
+      Y: 44
+      Width: 2.5
+      Height: 1
+      Kind: '#'
+    - X: 20
+      Y: 44
+      Width: 3
+      Height: 0.5
+      Kind: '#'
+    - X: 42
+      Y: 44
+      Width: 3
+      Height: 0.5
+      Kind: '#'
+    - X: 15
+      Y: 43
+      Width: 3.5
+      Height: 1
+      Kind: '#'
+    - X: 18.5
+      Y: 43.5
+      Width: 1.5
+      Height: 0.5
+      Kind: p
+    - X: 20
+      Y: 43.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 41.5
+      Y: 43.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 45
+      Y: 43.5
+      Width: 2
+      Height: 0.5
+      Kind: p
+    - X: 47
+      Y: 43.5
+      Width: 3
+      Height: 0.5
+      Kind: '#'
+    - X: 18.5
+      Y: 43
+      Width: 2
+      Height: 0.5
+      Kind: p
+    - X: 20.5
+      Y: 43
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 41
+      Y: 43
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 44.5
+      Y: 43
+      Width: 2
+      Height: 0.5
+      Kind: p
+    - X: 46.5
+      Y: 43
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 15.5
+      Y: 42.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 19
+      Y: 42.5
+      Width: 2
+      Height: 0.5
+      Kind: p
+    - X: 21
+      Y: 42.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 40.5
+      Y: 42.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 44
+      Y: 42.5
+      Width: 2
+      Height: 0.5
+      Kind: p
+    - X: 46
+      Y: 42.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 16
+      Y: 42
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 19.5
+      Y: 42
+      Width: 2
+      Height: 0.5
+      Kind: p
+    - X: 21.5
+      Y: 42
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 40
+      Y: 42
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 43.5
+      Y: 42
+      Width: 2
+      Height: 0.5
+      Kind: p
+    - X: 45.5
+      Y: 42
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 16.5
+      Y: 41.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 20
+      Y: 41.5
+      Width: 2
+      Height: 0.5
+      Kind: p
+    - X: 22
+      Y: 41.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 39.5
+      Y: 41.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 43
+      Y: 41.5
+      Width: 2
+      Height: 0.5
+      Kind: p
+    - X: 45
+      Y: 41.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 56.5
+      Y: 41
+      Width: 2.5
+      Height: 1
+      Kind: '#'
+    - X: 6
+      Y: 41
+      Width: 2.5
+      Height: 0.5
+      Kind: '#'
+    - X: 17
+      Y: 41
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 20.5
+      Y: 41
+      Width: 2
+      Height: 0.5
+      Kind: p
+    - X: 22.5
+      Y: 41
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 39
+      Y: 41
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 42.5
+      Y: 41
+      Width: 2
+      Height: 0.5
+      Kind: p
+    - X: 44.5
+      Y: 41
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 6
+      Y: 40.5
+      Width: 3
+      Height: 0.5
+      Kind: '#'
+    - X: 17.5
+      Y: 40.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 21
+      Y: 40.5
+      Width: 2
+      Height: 0.5
+      Kind: p
+    - X: 23
+      Y: 40.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 38.5
+      Y: 40.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 42
+      Y: 40.5
+      Width: 2
+      Height: 0.5
+      Kind: p
+    - X: 44
+      Y: 40.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 56
+      Y: 40.5
+      Width: 3
+      Height: 0.5
+      Kind: '#'
+    - X: 6
+      Y: 40
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 18
+      Y: 40
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 21.5
+      Y: 40
+      Width: 2
+      Height: 0.5
+      Kind: p
+    - X: 23.5
+      Y: 40
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 38
+      Y: 40
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 41.5
+      Y: 40
+      Width: 1
+      Height: 0.5
+      Kind: p
+    - X: 42.5
+      Y: 40
+      Width: 0.5
+      Height: 0.5
+      Kind: '#'
+    - X: 43
+      Y: 40
+      Width: 0.5
+      Height: 0.5
+      Kind: p
+    - X: 43.5
+      Y: 40
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 55.5
+      Y: 40
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 0
+      Y: 39.5
+      Width: 6.5
+      Height: 0.5
+      Kind: p
+    - X: 6.5
+      Y: 39.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 18.5
+      Y: 39.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 22
+      Y: 39.5
+      Width: 2
+      Height: 0.5
+      Kind: p
+    - X: 24
+      Y: 39.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 37.5
+      Y: 39.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 41
+      Y: 39.5
+      Width: 2
+      Height: 0.5
+      Kind: p
+    - X: 43
+      Y: 39.5
+      Width: 3
+      Height: 0.5
+      Kind: '#'
+    - X: 55
+      Y: 39.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 58.5
+      Y: 39.5
+      Width: 5.5
+      Height: 0.5
+      Kind: p
+    - X: 0
+      Y: 39
+      Width: 7
+      Height: 0.5
+      Kind: p
+    - X: 7
+      Y: 39
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 19
+      Y: 39
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 22.5
+      Y: 39
+      Width: 2
+      Height: 0.5
+      Kind: p
+    - X: 24.5
+      Y: 39
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 37
+      Y: 39
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 40.5
+      Y: 39
+      Width: 2
+      Height: 0.5
+      Kind: p
+    - X: 42.5
+      Y: 39
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 54.5
+      Y: 39
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 58
+      Y: 39
+      Width: 6
+      Height: 0.5
+      Kind: p
+    - X: 0
+      Y: 38.5
+      Width: 7.5
+      Height: 0.5
+      Kind: p
+    - X: 7.5
+      Y: 38.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 19.5
+      Y: 38.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 23
+      Y: 38.5
+      Width: 2
+      Height: 0.5
+      Kind: p
+    - X: 25
+      Y: 38.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 36.5
+      Y: 38.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 40
+      Y: 38.5
+      Width: 2
+      Height: 0.5
+      Kind: p
+    - X: 42
+      Y: 38.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 54
+      Y: 38.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 57.5
+      Y: 38.5
+      Width: 6.5
+      Height: 0.5
+      Kind: p
+    - X: 0
+      Y: 37.5
+      Width: 8
+      Height: 1
+      Kind: p
+    - X: 8
+      Y: 38
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 20
+      Y: 38
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 23.5
+      Y: 38
+      Width: 2
+      Height: 0.5
+      Kind: p
+    - X: 25.5
+      Y: 38
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 36
+      Y: 38
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 39.5
+      Y: 38
+      Width: 2
+      Height: 0.5
+      Kind: p
+    - X: 41.5
+      Y: 38
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 53.5
+      Y: 38
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 57
+      Y: 38
+      Width: 7
+      Height: 0.5
+      Kind: p
+    - X: 8
+      Y: 37.5
+      Width: 4
+      Height: 0.5
+      Kind: '#'
+    - X: 20.5
+      Y: 37.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 24
+      Y: 37.5
+      Width: 2
+      Height: 0.5
+      Kind: p
+    - X: 26
+      Y: 37.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 35.5
+      Y: 37.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 39
+      Y: 37.5
+      Width: 2
+      Height: 0.5
+      Kind: p
+    - X: 41
+      Y: 37.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 50
+      Y: 37.5
+      Width: 0.5
+      Height: 0.5
+      Kind: '#'
+    - X: 53
+      Y: 37.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 56.5
+      Y: 37.5
+      Width: 7.5
+      Height: 0.5
+      Kind: p
+    - X: 0
+      Y: 37
+      Width: 9
+      Height: 0.5
+      Kind: p
+    - X: 9
+      Y: 37
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 21
+      Y: 37
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 24.5
+      Y: 37
+      Width: 2
+      Height: 0.5
+      Kind: p
+    - X: 26.5
+      Y: 37
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 35
+      Y: 36.5
+      Width: 3.5
+      Height: 1
+      Kind: '#'
+    - X: 38.5
+      Y: 37
+      Width: 2
+      Height: 0.5
+      Kind: p
+    - X: 40.5
+      Y: 37
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 52.5
+      Y: 37
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 56
+      Y: 37
+      Width: 8
+      Height: 0.5
+      Kind: p
+    - X: 0
+      Y: 36.5
+      Width: 9.5
+      Height: 0.5
+      Kind: p
+    - X: 9.5
+      Y: 36.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 21.5
+      Y: 36.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 25
+      Y: 36.5
+      Width: 2
+      Height: 0.5
+      Kind: p
+    - X: 27
+      Y: 36.5
+      Width: 3
+      Height: 0.5
+      Kind: '#'
+    - X: 38.5
+      Y: 36.5
+      Width: 1.5
+      Height: 0.5
+      Kind: p
+    - X: 40
+      Y: 36.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 52
+      Y: 36.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 55.5
+      Y: 36.5
+      Width: 8.5
+      Height: 0.5
+      Kind: p
+    - X: 0
+      Y: 36
+      Width: 10
+      Height: 0.5
+      Kind: p
+    - X: 10
+      Y: 36
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 22
+      Y: 36
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 25.5
+      Y: 36
+      Width: 2
+      Height: 0.5
+      Kind: p
+    - X: 27.5
+      Y: 36
+      Width: 2.5
+      Height: 0.5
+      Kind: '#'
+    - X: 35
+      Y: 35.5
+      Width: 2.5
+      Height: 1
+      Kind: '#'
+    - X: 37.5
+      Y: 36
+      Width: 2
+      Height: 0.5
+      Kind: p
+    - X: 39.5
+      Y: 36
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 51.5
+      Y: 36
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 55
+      Y: 36
+      Width: 9
+      Height: 0.5
+      Kind: p
+    - X: 0
+      Y: 35.5
+      Width: 10.5
+      Height: 0.5
+      Kind: p
+    - X: 10.5
+      Y: 35.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 22.5
+      Y: 35.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 26
+      Y: 35.5
+      Width: 2
+      Height: 0.5
+      Kind: p
+    - X: 28
+      Y: 28
+      Width: 2
+      Height: 8
+      Kind: '#'
+    - X: 37.5
+      Y: 35.5
+      Width: 1.5
+      Height: 0.5
+      Kind: p
+    - X: 39
+      Y: 35.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 51
+      Y: 35.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 54.5
+      Y: 35.5
+      Width: 9.5
+      Height: 0.5
+      Kind: p
+    - X: 0
+      Y: 35
+      Width: 11
+      Height: 0.5
+      Kind: p
+    - X: 11
+      Y: 35
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 23
+      Y: 35
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 26.5
+      Y: 35
+      Width: 1.5
+      Height: 0.5
+      Kind: p
+    - X: 35
+      Y: 34
+      Width: 2
+      Height: 1.5
+      Kind: '#'
+    - X: 37
+      Y: 35
+      Width: 1.5
+      Height: 0.5
+      Kind: p
+    - X: 38.5
+      Y: 35
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 50.5
+      Y: 35
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 54
+      Y: 35
+      Width: 10
+      Height: 0.5
+      Kind: p
+    - X: 0
+      Y: 34.5
+      Width: 11.5
+      Height: 0.5
+      Kind: p
+    - X: 11.5
+      Y: 34.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 23.5
+      Y: 34.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 27
+      Y: 34.5
+      Width: 1
+      Height: 0.5
+      Kind: p
+    - X: 37
+      Y: 34
+      Width: 0.5
+      Height: 1
+      Kind: p
+    - X: 37.5
+      Y: 34.5
+      Width: 4
+      Height: 0.5
+      Kind: '#'
+    - X: 50
+      Y: 34.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 53.5
+      Y: 34.5
+      Width: 10.5
+      Height: 0.5
+      Kind: p
+    - X: 0
+      Y: 34
+      Width: 12
+      Height: 0.5
+      Kind: p
+    - X: 12
+      Y: 34
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 24
+      Y: 34
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 27.5
+      Y: 28
+      Width: 0.5
+      Height: 6.5
+      Kind: p
+    - X: 37.5
+      Y: 34
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 49.5
+      Y: 34
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 53
+      Y: 34
+      Width: 11
+      Height: 0.5
+      Kind: p
+    - X: 0
+      Y: 33.5
+      Width: 12.5
+      Height: 0.5
+      Kind: p
+    - X: 12.5
+      Y: 33.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 24.5
+      Y: 33.5
+      Width: 3
+      Height: 0.5
+      Kind: '#'
+    - X: 35
+      Y: 33.5
+      Width: 5.5
+      Height: 0.5
+      Kind: '#'
+    - X: 49
+      Y: 33.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 52.5
+      Y: 33.5
+      Width: 11.5
+      Height: 0.5
+      Kind: p
+    - X: 0
+      Y: 33
+      Width: 13
+      Height: 0.5
+      Kind: p
+    - X: 13
+      Y: 33
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 25
+      Y: 33
+      Width: 2.5
+      Height: 0.5
+      Kind: '#'
+    - X: 35
+      Y: 33
+      Width: 5
+      Height: 0.5
+      Kind: '#'
+    - X: 48.5
+      Y: 33
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 52
+      Y: 32.5
+      Width: 12
+      Height: 1
+      Kind: p
+    - X: 0
+      Y: 32
+      Width: 13.5
+      Height: 1
+      Kind: p
+    - X: 13.5
+      Y: 32.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 25.5
+      Y: 32.5
+      Width: 2
+      Height: 0.5
+      Kind: '#'
+    - X: 35
+      Y: 30
+      Width: 2
+      Height: 3
+      Kind: '#'
+    - X: 37
+      Y: 30
+      Width: 0.5
+      Height: 3
+      Kind: p
+    - X: 37.5
+      Y: 32
+      Width: 2
+      Height: 1
+      Kind: '#'
+    - X: 48
+      Y: 32.5
+      Width: 4
+      Height: 0.5
+      Kind: '#'
+    - X: 13.5
+      Y: 32
+      Width: 4
+      Height: 0.5
+      Kind: '#'
+    - X: 26
+      Y: 28
+      Width: 1.5
+      Height: 4.5
+      Kind: '#'
+    - X: 47.5
+      Y: 32
+      Width: 4
+      Height: 0.5
+      Kind: '#'
+    - X: 51.5
+      Y: 32
+      Width: 12.5
+      Height: 0.5
+      Kind: p
+    - X: 0
+      Y: 31.5
+      Width: 14
+      Height: 0.5
+      Kind: p
+    - X: 14
+      Y: 31.5
+      Width: 4
+      Height: 0.5
+      Kind: '#'
+    - X: 37.5
+      Y: 31.5
+      Width: 1.5
+      Height: 0.5
+      Kind: '#'
+    - X: 47
+      Y: 31.5
+      Width: 4
+      Height: 0.5
+      Kind: '#'
+    - X: 51
+      Y: 31.5
+      Width: 13
+      Height: 0.5
+      Kind: p
+    - X: 0
+      Y: 31
+      Width: 14.5
+      Height: 0.5
+      Kind: p
+    - X: 14.5
+      Y: 31
+      Width: 4
+      Height: 0.5
+      Kind: '#'
+    - X: 37.5
+      Y: 30
+      Width: 2
+      Height: 1.5
+      Kind: '#'
+    - X: 46.5
+      Y: 31
+      Width: 4
+      Height: 0.5
+      Kind: '#'
+    - X: 50.5
+      Y: 31
+      Width: 13.5
+      Height: 0.5
+      Kind: p
+    - X: 0
+      Y: 30.5
+      Width: 15
+      Height: 0.5
+      Kind: p
+    - X: 15
+      Y: 30.5
+      Width: 4
+      Height: 0.5
+      Kind: '#'
+    - X: 46
+      Y: 30.5
+      Width: 4
+      Height: 0.5
+      Kind: '#'
+    - X: 50
+      Y: 30
+      Width: 14
+      Height: 1
+      Kind: p
+    - X: 0
+      Y: 30
+      Width: 15.5
+      Height: 0.5
+      Kind: p
+    - X: 15.5
+      Y: 30
+      Width: 4
+      Height: 0.5
+      Kind: '#'
+    - X: 45.5
+      Y: 30
+      Width: 4.5
+      Height: 0.5
+      Kind: '#'
+    - X: 0
+      Y: 29.5
+      Width: 12.5
+      Height: 0.5
+      Kind: p
+    - X: 12.5
+      Y: 29.5
+      Width: 7.5
+      Height: 0.5
+      Kind: '#'
+    - X: 35
+      Y: 29
+      Width: 4
+      Height: 1
+      Kind: '#'
+    - X: 45
+      Y: 29.5
+      Width: 7.5
+      Height: 0.5
+      Kind: '#'
+    - X: 52.5
+      Y: 29.5
+      Width: 11.5
+      Height: 0.5
+      Kind: p
+    - X: 0
+      Y: 29
+      Width: 0.5
+      Height: 0.5
+      Kind: '#'
+    - X: 0.5
+      Y: 29
+      Width: 1.5
+      Height: 0.5
+      Kind: p
+    - X: 2
+      Y: 29
+      Width: 2.5
+      Height: 0.5
+      Kind: '#'
+    - X: 4.5
+      Y: 29
+      Width: 0.5
+      Height: 0.5
+      Kind: p
+    - X: 5
+      Y: 29
+      Width: 1.5
+      Height: 0.5
+      Kind: '#'
+    - X: 6.5
+      Y: 29
+      Width: 5.5
+      Height: 0.5
+      Kind: p
+    - X: 12
+      Y: 28
+      Width: 8
+      Height: 1.5
+      Kind: '#'
+    - X: 44.5
+      Y: 28
+      Width: 8.5
+      Height: 1.5
+      Kind: '#'
+    - X: 53
+      Y: 29
+      Width: 2.5
+      Height: 0.5
+      Kind: p
+    - X: 55.5
+      Y: 29
+      Width: 0.5
+      Height: 0.5
+      Kind: '#'
+    - X: 56
+      Y: 29
+      Width: 0.5
+      Height: 0.5
+      Kind: p
+    - X: 56.5
+      Y: 29
+      Width: 1
+      Height: 0.5
+      Kind: '#'
+    - X: 57.5
+      Y: 29
+      Width: 5
+      Height: 0.5
+      Kind: p
+    - X: 62.5
+      Y: 29
+      Width: 1.5
+      Height: 0.5
+      Kind: '#'
+    - X: 0
+      Y: 28.5
+      Width: 9
+      Height: 0.5
+      Kind: '#'
+    - X: 9
+      Y: 28.5
+      Width: 3
+      Height: 0.5
+      Kind: p
+    - X: 35
+      Y: 21.5
+      Width: 2
+      Height: 7.5
+      Kind: '#'
+    - X: 37
+      Y: 21.5
+      Width: 0.5
+      Height: 7.5
+      Kind: p
+    - X: 37.5
+      Y: 27
+      Width: 1.5
+      Height: 2
+      Kind: '#'
+    - X: 53
+      Y: 28.5
+      Width: 2
+      Height: 0.5
+      Kind: p
+    - X: 55
+      Y: 28.5
+      Width: 9
+      Height: 0.5
+      Kind: '#'
+    - X: 0
+      Y: 27.5
+      Width: 1.5
+      Height: 1
+      Kind: '#'
+    - X: 1.5
+      Y: 28
+      Width: 3
+      Height: 0.5
+      Kind: L
+    - X: 4.5
+      Y: 28
+      Width: 0.5
+      Height: 0.5
+      Kind: '#'
+    - X: 5
+      Y: 28
+      Width: 3
+      Height: 0.5
+      Kind: L
+    - X: 8
+      Y: 28
+      Width: 1.5
+      Height: 0.5
+      Kind: '#'
+    - X: 9.5
+      Y: 24
+      Width: 2.5
+      Height: 4.5
+      Kind: p
+    - X: 53
+      Y: 28
+      Width: 1.5
+      Height: 0.5
+      Kind: p
+    - X: 54.5
+      Y: 28
+      Width: 2
+      Height: 0.5
+      Kind: '#'
+    - X: 56.5
+      Y: 28
+      Width: 1
+      Height: 0.5
+      Kind: L
+    - X: 57.5
+      Y: 28
+      Width: 0.5
+      Height: 0.5
+      Kind: '#'
+    - X: 58
+      Y: 28
+      Width: 4.5
+      Height: 0.5
+      Kind: L
+    - X: 62.5
+      Y: 28
+      Width: 1.5
+      Height: 0.5
+      Kind: '#'
+    - X: 1.5
+      Y: 27.5
+      Width: 7
+      Height: 0.5
+      Kind: L
+    - X: 8.5
+      Y: 25
+      Width: 1
+      Height: 3
+      Kind: '#'
+    - X: 12
+      Y: 25.5
+      Width: 2
+      Height: 2.5
+      Kind: '#'
+    - X: 14
+      Y: 27.5
+      Width: 3
+      Height: 0.5
+      Kind: p
+    - X: 17
+      Y: 27.5
+      Width: 3
+      Height: 0.5
+      Kind: '#'
+    - X: 26
+      Y: 26
+      Width: 4
+      Height: 2
+      Kind: '#'
+    - X: 45
+      Y: 27.5
+      Width: 3
+      Height: 0.5
+      Kind: '#'
+    - X: 48
+      Y: 27.5
+      Width: 3
+      Height: 0.5
+      Kind: p
+    - X: 51
+      Y: 25.5
+      Width: 2
+      Height: 2.5
+      Kind: '#'
+    - X: 53
+      Y: 26
+      Width: 2
+      Height: 2
+      Kind: p
+    - X: 55
+      Y: 26
+      Width: 0.5
+      Height: 2
+      Kind: '#'
+    - X: 55.5
+      Y: 26
+      Width: 7.5
+      Height: 2
+      Kind: L
+    - X: 63
+      Y: 24.5
+      Width: 1
+      Height: 3.5
+      Kind: '#'
+    - X: 0
+      Y: 25
+      Width: 1
+      Height: 2.5
+      Kind: '#'
+    - X: 1
+      Y: 25
+      Width: 7.5
+      Height: 2.5
+      Kind: L
+    - X: 14
+      Y: 27
+      Width: 4
+      Height: 0.5
+      Kind: p
+    - X: 18
+      Y: 27
+      Width: 0.5
+      Height: 0.5
+      Kind: '#'
+    - X: 18.5
+      Y: 27
+      Width: 0.5
+      Height: 0.5
+      Kind: p
+    - X: 19
+      Y: 27
+      Width: 1
+      Height: 0.5
+      Kind: '#'
+    - X: 45.5
+      Y: 27
+      Width: 2
+      Height: 0.5
+      Kind: '#'
+    - X: 47.5
+      Y: 26.5
+      Width: 3.5
+      Height: 1
+      Kind: p
+    - X: 14
+      Y: 26.5
+      Width: 3.5
+      Height: 0.5
+      Kind: p
+    - X: 17.5
+      Y: 26.5
+      Width: 2.5
+      Height: 0.5
+      Kind: '#'
+    - X: 37.5
+      Y: 26
+      Width: 2
+      Height: 1
+      Kind: '#'
+    - X: 45
+      Y: 26.5
+      Width: 2.5
+      Height: 0.5
+      Kind: '#'
+    - X: 14
+      Y: 26
+      Width: 3
+      Height: 0.5
+      Kind: p
+    - X: 17
+      Y: 26
+      Width: 3
+      Height: 0.5
+      Kind: '#'
+    - X: 44.5
+      Y: 26
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 48
+      Y: 26
+      Width: 3
+      Height: 0.5
+      Kind: p
+    - X: 14
+      Y: 25.5
+      Width: 2.5
+      Height: 0.5
+      Kind: p
+    - X: 16.5
+      Y: 25.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 26
+      Y: 24
+      Width: 1.5
+      Height: 2
+      Kind: '#'
+    - X: 27.5
+      Y: 24
+      Width: 0.5
+      Height: 2
+      Kind: p
+    - X: 28
+      Y: 24
+      Width: 2
+      Height: 2
+      Kind: '#'
+    - X: 37.5
+      Y: 24
+      Width: 1.5
+      Height: 2
+      Kind: '#'
+    - X: 44.5
+      Y: 25.5
+      Width: 4
+      Height: 0.5
+      Kind: '#'
+    - X: 48.5
+      Y: 25.5
+      Width: 2.5
+      Height: 0.5
+      Kind: p
+    - X: 53
+      Y: 25.5
+      Width: 1.5
+      Height: 0.5
+      Kind: p
+    - X: 54.5
+      Y: 25.5
+      Width: 1.5
+      Height: 0.5
+      Kind: '#'
+    - X: 56
+      Y: 25.5
+      Width: 7
+      Height: 0.5
+      Kind: L
+    - X: 12
+      Y: 24.5
+      Width: 8
+      Height: 1
+      Kind: '#'
+    - X: 44.5
+      Y: 25
+      Width: 8.5
+      Height: 0.5
+      Kind: '#'
+    - X: 53
+      Y: 24
+      Width: 2
+      Height: 1.5
+      Kind: p
+    - X: 55
+      Y: 25
+      Width: 0.5
+      Height: 0.5
+      Kind: '#'
+    - X: 55.5
+      Y: 25
+      Width: 7.5
+      Height: 0.5
+      Kind: L
+    - X: 0
+      Y: 24.5
+      Width: 1.5
+      Height: 0.5
+      Kind: '#'
+    - X: 1.5
+      Y: 24.5
+      Width: 4.5
+      Height: 0.5
+      Kind: L
+    - X: 6
+      Y: 24.5
+      Width: 0.5
+      Height: 0.5
+      Kind: '#'
+    - X: 6.5
+      Y: 24.5
+      Width: 1.5
+      Height: 0.5
+      Kind: L
+    - X: 8
+      Y: 24.5
+      Width: 1.5
+      Height: 0.5
+      Kind: '#'
+    - X: 45
+      Y: 24.5
+      Width: 8
+      Height: 0.5
+      Kind: '#'
+    - X: 55
+      Y: 24.5
+      Width: 1
+      Height: 0.5
+      Kind: '#'
+    - X: 56
+      Y: 24.5
+      Width: 7
+      Height: 0.5
+      Kind: L
+    - X: 0
+      Y: 24
+      Width: 9.5
+      Height: 0.5
+      Kind: '#'
+    - X: 12
+      Y: 24
+      Width: 7.5
+      Height: 0.5
+      Kind: '#'
+    - X: 45.5
+      Y: 24
+      Width: 7.5
+      Height: 0.5
+      Kind: '#'
+    - X: 55
+      Y: 24
+      Width: 9
+      Height: 0.5
+      Kind: '#'
+    - X: 0
+      Y: 23.5
+      Width: 9
+      Height: 0.5
+      Kind: '#'
+    - X: 9
+      Y: 23.5
+      Width: 3.5
+      Height: 0.5
+      Kind: p
+    - X: 12.5
+      Y: 23.5
+      Width: 6.5
+      Height: 0.5
+      Kind: '#'
+    - X: 26
+      Y: 23.5
+      Width: 4
+      Height: 0.5
+      Kind: '#'
+    - X: 37.5
+      Y: 22.5
+      Width: 2
+      Height: 1.5
+      Kind: '#'
+    - X: 46
+      Y: 23.5
+      Width: 6.5
+      Height: 0.5
+      Kind: '#'
+    - X: 52.5
+      Y: 23.5
+      Width: 3
+      Height: 0.5
+      Kind: p
+    - X: 55.5
+      Y: 23.5
+      Width: 8.5
+      Height: 0.5
+      Kind: '#'
+    - X: 0
+      Y: 23
+      Width: 14.5
+      Height: 0.5
+      Kind: p
+    - X: 14.5
+      Y: 23
+      Width: 4
+      Height: 0.5
+      Kind: '#'
+    - X: 26
+      Y: 23
+      Width: 1.5
+      Height: 0.5
+      Kind: '#'
+    - X: 27.5
+      Y: 22.5
+      Width: 0.5
+      Height: 1
+      Kind: p
+    - X: 28
+      Y: 22.5
+      Width: 2
+      Height: 1
+      Kind: '#'
+    - X: 46.5
+      Y: 23
+      Width: 4
+      Height: 0.5
+      Kind: '#'
+    - X: 50.5
+      Y: 22.5
+      Width: 13.5
+      Height: 1
+      Kind: p
+    - X: 0
+      Y: 22
+      Width: 14
+      Height: 1
+      Kind: p
+    - X: 14
+      Y: 22
+      Width: 4
+      Height: 1
+      Kind: '#'
+    - X: 25.5
+      Y: 22.5
+      Width: 2
+      Height: 0.5
+      Kind: '#'
+    - X: 47
+      Y: 22.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 25.5
+      Y: 22
+      Width: 4.5
+      Height: 0.5
+      Kind: '#'
+    - X: 37.5
+      Y: 21.5
+      Width: 2.5
+      Height: 1
+      Kind: '#'
+    - X: 47.5
+      Y: 22
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 51
+      Y: 22
+      Width: 13
+      Height: 0.5
+      Kind: p
+    - X: 0
+      Y: 21
+      Width: 13
+      Height: 1
+      Kind: p
+    - X: 13
+      Y: 21.5
+      Width: 4
+      Height: 0.5
+      Kind: '#'
+    - X: 25
+      Y: 21.5
+      Width: 5
+      Height: 0.5
+      Kind: '#'
+    - X: 48
+      Y: 21.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 51.5
+      Y: 21.5
+      Width: 12.5
+      Height: 0.5
+      Kind: p
+    - X: 13
+      Y: 21
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 24.5
+      Y: 21
+      Width: 5.5
+      Height: 0.5
+      Kind: '#'
+    - X: 35
+      Y: 21
+      Width: 5.5
+      Height: 0.5
+      Kind: '#'
+    - X: 48.5
+      Y: 21
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 52
+      Y: 21
+      Width: 12
+      Height: 0.5
+      Kind: p
+    - X: 0
+      Y: 20
+      Width: 12
+      Height: 1
+      Kind: p
+    - X: 12
+      Y: 20.5
+      Width: 4
+      Height: 0.5
+      Kind: '#'
+    - X: 24
+      Y: 20.5
+      Width: 6
+      Height: 0.5
+      Kind: '#'
+    - X: 35
+      Y: 20.5
+      Width: 6
+      Height: 0.5
+      Kind: '#'
+    - X: 49
+      Y: 20.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 52.5
+      Y: 20.5
+      Width: 11.5
+      Height: 0.5
+      Kind: p
+    - X: 12
+      Y: 20
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 23.5
+      Y: 20
+      Width: 6.5
+      Height: 0.5
+      Kind: '#'
+    - X: 35
+      Y: 20
+      Width: 6.5
+      Height: 0.5
+      Kind: '#'
+    - X: 49.5
+      Y: 20
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 53
+      Y: 20
+      Width: 11
+      Height: 0.5
+      Kind: p
+    - X: 0
+      Y: 19.5
+      Width: 5.5
+      Height: 0.5
+      Kind: p
+    - X: 5.5
+      Y: 19.5
+      Width: 9.5
+      Height: 0.5
+      Kind: '#'
+    - X: 23
+      Y: 19.5
+      Width: 7
+      Height: 0.5
+      Kind: '#'
+    - X: 35
+      Y: 19.5
+      Width: 7.5
+      Height: 0.5
+      Kind: '#'
+    - X: 50
+      Y: 19.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 53.5
+      Y: 19.5
+      Width: 10.5
+      Height: 0.5
+      Kind: p
+    - X: 0
+      Y: 18
+      Width: 5
+      Height: 1.5
+      Kind: p
+    - X: 5
+      Y: 19
+      Width: 9.5
+      Height: 0.5
+      Kind: '#'
+    - X: 22.5
+      Y: 19
+      Width: 7
+      Height: 0.5
+      Kind: '#'
+    - X: 35.5
+      Y: 19
+      Width: 7
+      Height: 0.5
+      Kind: '#'
+    - X: 50.5
+      Y: 19
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 54
+      Y: 19
+      Width: 1
+      Height: 0.5
+      Kind: p
+    - X: 55
+      Y: 19
+      Width: 5
+      Height: 0.5
+      Kind: '#'
+    - X: 60
+      Y: 19
+      Width: 4
+      Height: 0.5
+      Kind: p
+    - X: 5
+      Y: 18.5
+      Width: 9
+      Height: 0.5
+      Kind: '#'
+    - X: 22
+      Y: 18.5
+      Width: 7
+      Height: 0.5
+      Kind: '#'
+    - X: 36
+      Y: 18.5
+      Width: 7
+      Height: 0.5
+      Kind: '#'
+    - X: 51
+      Y: 18.5
+      Width: 9.5
+      Height: 0.5
+      Kind: '#'
+    - X: 60.5
+      Y: 14
+      Width: 3.5
+      Height: 5
+      Kind: p
+    - X: 5
+      Y: 18
+      Width: 2.5
+      Height: 0.5
+      Kind: '#'
+    - X: 8
+      Y: 18
+      Width: 5.5
+      Height: 0.5
+      Kind: '#'
+    - X: 21
+      Y: 18
+      Width: 7.5
+      Height: 0.5
+      Kind: '#'
+    - X: 36.5
+      Y: 18
+      Width: 7.5
+      Height: 0.5
+      Kind: '#'
+    - X: 50.5
+      Y: 18
+      Width: 0.5
+      Height: 0.5
+      Kind: '#'
+    - X: 51.5
+      Y: 18
+      Width: 9
+      Height: 0.5
+      Kind: '#'
+    - X: 0
+      Y: 15.5
+      Width: 5.5
+      Height: 2.5
+      Kind: p
+    - X: 5.5
+      Y: 16
+      Width: 2
+      Height: 2
+      Kind: '#'
+    - X: 9
+      Y: 17.5
+      Width: 4
+      Height: 0.5
+      Kind: '#'
+    - X: 21
+      Y: 17.5
+      Width: 7
+      Height: 0.5
+      Kind: '#'
+    - X: 37
+      Y: 17.5
+      Width: 7.5
+      Height: 0.5
+      Kind: '#'
+    - X: 52
+      Y: 17.5
+      Width: 8.5
+      Height: 0.5
+      Kind: '#'
+    - X: 9.5
+      Y: 17
+      Width: 3
+      Height: 0.5
+      Kind: '#'
+    - X: 20
+      Y: 16.5
+      Width: 7.5
+      Height: 1
+      Kind: '#'
+    - X: 37.5
+      Y: 17
+      Width: 7
+      Height: 0.5
+      Kind: '#'
+    - X: 52.5
+      Y: 17
+      Width: 4.5
+      Height: 0.5
+      Kind: '#'
+    - X: 58.5
+      Y: 15.5
+      Width: 2
+      Height: 2
+      Kind: '#'
+    - X: 10.5
+      Y: 16.5
+      Width: 1
+      Height: 0.5
+      Kind: '#'
+    - X: 38
+      Y: 16.5
+      Width: 7
+      Height: 0.5
+      Kind: '#'
+    - X: 53
+      Y: 16.5
+      Width: 4
+      Height: 0.5
+      Kind: '#'
+    - X: 19.5
+      Y: 16
+      Width: 7.5
+      Height: 0.5
+      Kind: '#'
+    - X: 38
+      Y: 16
+      Width: 7.5
+      Height: 0.5
+      Kind: '#'
+    - X: 53.5
+      Y: 16
+      Width: 3
+      Height: 0.5
+      Kind: '#'
+    - X: 5.5
+      Y: 15.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 19
+      Y: 15.5
+      Width: 7.5
+      Height: 0.5
+      Kind: '#'
+    - X: 38.5
+      Y: 15.5
+      Width: 7.5
+      Height: 0.5
+      Kind: '#'
+    - X: 54.5
+      Y: 15.5
+      Width: 1
+      Height: 0.5
+      Kind: '#'
+    - X: 0
+      Y: 15
+      Width: 5
+      Height: 0.5
+      Kind: p
+    - X: 5
+      Y: 15
+      Width: 4.5
+      Height: 0.5
+      Kind: '#'
+    - X: 18.5
+      Y: 15
+      Width: 7.5
+      Height: 0.5
+      Kind: '#'
+    - X: 27
+      Y: 15
+      Width: 11
+      Height: 0.5
+      Kind: '#'
+    - X: 39
+      Y: 15
+      Width: 7.5
+      Height: 0.5
+      Kind: '#'
+    - X: 57
+      Y: 15
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 0
+      Y: 14.5
+      Width: 5.5
+      Height: 0.5
+      Kind: p
+    - X: 5.5
+      Y: 14.5
+      Width: 4
+      Height: 0.5
+      Kind: '#'
+    - X: 18
+      Y: 14.5
+      Width: 7.5
+      Height: 0.5
+      Kind: '#'
+    - X: 26.5
+      Y: 13.5
+      Width: 12
+      Height: 1.5
+      Kind: '#'
+    - X: 39.5
+      Y: 14.5
+      Width: 7.5
+      Height: 0.5
+      Kind: '#'
+    - X: 56.5
+      Y: 14.5
+      Width: 4
+      Height: 0.5
+      Kind: '#'
+    - X: 0
+      Y: 14
+      Width: 6
+      Height: 0.5
+      Kind: p
+    - X: 6
+      Y: 14
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 17.5
+      Y: 14
+      Width: 7.5
+      Height: 0.5
+      Kind: '#'
+    - X: 40
+      Y: 14
+      Width: 7.5
+      Height: 0.5
+      Kind: '#'
+    - X: 56
+      Y: 14
+      Width: 4.5
+      Height: 0.5
+      Kind: '#'
+    - X: 0
+      Y: 13.5
+      Width: 5.5
+      Height: 0.5
+      Kind: p
+    - X: 5.5
+      Y: 13.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 15
+      Y: 13.5
+      Width: 9.5
+      Height: 0.5
+      Kind: '#'
+    - X: 40.5
+      Y: 13.5
+      Width: 10
+      Height: 0.5
+      Kind: '#'
+    - X: 56
+      Y: 13.5
+      Width: 4
+      Height: 0.5
+      Kind: '#'
+    - X: 60
+      Y: 13
+      Width: 4
+      Height: 1
+      Kind: p
+    - X: 0
+      Y: 13
+      Width: 5
+      Height: 0.5
+      Kind: p
+    - X: 5
+      Y: 13
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 14
+      Y: 13
+      Width: 10
+      Height: 0.5
+      Kind: '#'
+    - X: 26.5
+      Y: 13
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 30
+      Y: 13
+      Width: 0.5
+      Height: 0.5
+      Kind: p
+    - X: 30.5
+      Y: 13
+      Width: 0.5
+      Height: 0.5
+      Kind: '#'
+    - X: 31
+      Y: 13
+      Width: 1
+      Height: 0.5
+      Kind: p
+    - X: 32
+      Y: 13
+      Width: 6.5
+      Height: 0.5
+      Kind: '#'
+    - X: 41
+      Y: 13
+      Width: 9.5
+      Height: 0.5
+      Kind: '#'
+    - X: 56.5
+      Y: 13
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 0
+      Y: 12.5
+      Width: 4.5
+      Height: 0.5
+      Kind: p
+    - X: 4.5
+      Y: 12.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 14
+      Y: 12.5
+      Width: 9.5
+      Height: 0.5
+      Kind: '#'
+    - X: 26.5
+      Y: 12
+      Width: 12
+      Height: 1
+      Kind: '#'
+    - X: 41.5
+      Y: 12.5
+      Width: 9.5
+      Height: 0.5
+      Kind: '#'
+    - X: 57
+      Y: 12.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 60.5
+      Y: 12.5
+      Width: 3.5
+      Height: 0.5
+      Kind: p
+    - X: 0
+      Y: 12
+      Width: 4
+      Height: 0.5
+      Kind: p
+    - X: 4
+      Y: 12
+      Width: 4
+      Height: 0.5
+      Kind: '#'
+    - X: 14
+      Y: 12
+      Width: 9
+      Height: 0.5
+      Kind: '#'
+    - X: 42
+      Y: 12
+      Width: 9
+      Height: 0.5
+      Kind: '#'
+    - X: 57
+      Y: 12
+      Width: 4
+      Height: 0.5
+      Kind: '#'
+    - X: 61
+      Y: 12
+      Width: 3
+      Height: 0.5
+      Kind: p
+    - X: 0
+      Y: 11.5
+      Width: 3.5
+      Height: 0.5
+      Kind: p
+    - X: 3.5
+      Y: 11.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 14.5
+      Y: 11.5
+      Width: 2
+      Height: 0.5
+      Kind: '#'
+    - X: 16.5
+      Y: 11.5
+      Width: 1.5
+      Height: 0.5
+      Kind: p
+    - X: 18
+      Y: 11.5
+      Width: 4.5
+      Height: 0.5
+      Kind: '#'
+    - X: 26.5
+      Y: 11.5
+      Width: 11.5
+      Height: 0.5
+      Kind: '#'
+    - X: 42.5
+      Y: 11.5
+      Width: 5
+      Height: 0.5
+      Kind: '#'
+    - X: 47.5
+      Y: 11.5
+      Width: 1
+      Height: 0.5
+      Kind: p
+    - X: 48.5
+      Y: 10.5
+      Width: 2
+      Height: 1.5
+      Kind: '#'
+    - X: 58
+      Y: 11.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 61.5
+      Y: 11.5
+      Width: 2.5
+      Height: 0.5
+      Kind: p
+    - X: 0
+      Y: 11
+      Width: 3
+      Height: 0.5
+      Kind: p
+    - X: 3
+      Y: 11
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 14.5
+      Y: 11
+      Width: 1.5
+      Height: 0.5
+      Kind: '#'
+    - X: 16
+      Y: 11
+      Width: 1
+      Height: 0.5
+      Kind: p
+    - X: 17
+      Y: 11
+      Width: 5
+      Height: 0.5
+      Kind: '#'
+    - X: 27
+      Y: 11
+      Width: 10.5
+      Height: 0.5
+      Kind: '#'
+    - X: 43
+      Y: 11
+      Width: 5
+      Height: 0.5
+      Kind: '#'
+    - X: 48
+      Y: 10.5
+      Width: 0.5
+      Height: 1
+      Kind: p
+    - X: 58.5
+      Y: 11
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 62
+      Y: 11
+      Width: 2
+      Height: 0.5
+      Kind: p
+    - X: 0
+      Y: 3.5
+      Width: 2.5
+      Height: 7.5
+      Kind: p
+    - X: 2.5
+      Y: 10
+      Width: 3.5
+      Height: 1
+      Kind: '#'
+    - X: 14.5
+      Y: 10.5
+      Width: 2
+      Height: 0.5
+      Kind: '#'
+    - X: 16.5
+      Y: 10.5
+      Width: 0.5
+      Height: 0.5
+      Kind: p
+    - X: 17
+      Y: 10.5
+      Width: 4.5
+      Height: 0.5
+      Kind: '#'
+    - X: 43.5
+      Y: 10.5
+      Width: 4.5
+      Height: 0.5
+      Kind: '#'
+    - X: 59
+      Y: 10.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 62.5
+      Y: 10
+      Width: 1.5
+      Height: 1
+      Kind: p
+    - X: 14.5
+      Y: 10
+      Width: 1.5
+      Height: 0.5
+      Kind: '#'
+    - X: 16
+      Y: 10
+      Width: 0.5
+      Height: 0.5
+      Kind: p
+    - X: 16.5
+      Y: 10
+      Width: 4.5
+      Height: 0.5
+      Kind: '#'
+    - X: 44
+      Y: 10
+      Width: 4
+      Height: 0.5
+      Kind: '#'
+    - X: 48
+      Y: 10
+      Width: 1
+      Height: 0.5
+      Kind: p
+    - X: 49
+      Y: 10
+      Width: 1.5
+      Height: 0.5
+      Kind: '#'
+    - X: 59.5
+      Y: 10
+      Width: 3
+      Height: 0.5
+      Kind: '#'
+    - X: 2.5
+      Y: 9.5
+      Width: 2.5
+      Height: 0.5
+      Kind: '#'
+    - X: 14
+      Y: 9
+      Width: 5
+      Height: 1
+      Kind: '#'
+    - X: 46
+      Y: 9
+      Width: 5
+      Height: 1
+      Kind: '#'
+    - X: 60
+      Y: 9.5
+      Width: 3
+      Height: 0.5
+      Kind: '#'
+    - X: 63
+      Y: 8.5
+      Width: 1
+      Height: 1.5
+      Kind: p
+    - X: 2.5
+      Y: 8.5
+      Width: 2
+      Height: 1
+      Kind: '#'
+    - X: 60.5
+      Y: 8.5
+      Width: 2.5
+      Height: 1
+      Kind: '#'
+    - X: 14
+      Y: 8.5
+      Width: 4.5
+      Height: 0.5
+      Kind: '#'
+    - X: 46
+      Y: 8.5
+      Width: 4.5
+      Height: 0.5
+      Kind: '#'
+    - X: 2.5
+      Y: 5.5
+      Width: 1.5
+      Height: 3
+      Kind: '#'
+    - X: 14.5
+      Y: 8
+      Width: 4
+      Height: 0.5
+      Kind: '#'
+    - X: 46.5
+      Y: 8
+      Width: 4
+      Height: 0.5
+      Kind: '#'
+    - X: 60.5
+      Y: 8
+      Width: 2
+      Height: 0.5
+      Kind: '#'
+    - X: 62.5
+      Y: 8
+      Width: 1.5
+      Height: 0.5
+      Kind: p
+    - X: 14.5
+      Y: 7.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 46.5
+      Y: 7.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 60.5
+      Y: 5
+      Width: 2.5
+      Height: 3
+      Kind: '#'
+    - X: 63
+      Y: 4
+      Width: 1
+      Height: 4
+      Kind: p
+    - X: 31.5
+      Y: 7
+      Width: 0.5
+      Height: 0.5
+      Kind: '#'
+    - X: 34
+      Y: 6.5
+      Width: 0.5
+      Height: 0.5
+      Kind: '#'
+    - X: 2.5
+      Y: 5
+      Width: 2
+      Height: 0.5
+      Kind: '#'
+    - X: 29.5
+      Y: 5
+      Width: 0.5
+      Height: 0.5
+      Kind: '#'
+    - X: 2.5
+      Y: 4.5
+      Width: 27.5
+      Height: 0.5
+      Kind: '#'
+    - X: 34.5
+      Y: 4
+      Width: 28.5
+      Height: 1
+      Kind: '#'
+    - X: 2.5
+      Y: 3.5
+      Width: 28
+      Height: 1
+      Kind: '#'
+    - X: 34.5
+      Y: 3.5
+      Width: 1
+      Height: 0.5
+      Kind: '#'
+    - X: 36
+      Y: 3.5
+      Width: 26.5
+      Height: 0.5
+      Kind: '#'
+    - X: 62.5
+      Y: 3.5
+      Width: 1.5
+      Height: 0.5
+      Kind: p
+    - X: 0
+      Y: 3
+      Width: 3
+      Height: 0.5
+      Kind: p
+    - X: 3
+      Y: 3
+      Width: 27.5
+      Height: 0.5
+      Kind: '#'
+    - X: 34.5
+      Y: 3
+      Width: 27.5
+      Height: 0.5
+      Kind: '#'
+    - X: 62
+      Y: 3
+      Width: 2
+      Height: 0.5
+      Kind: p
+    - X: 0
+      Y: 2
+      Width: 27
+      Height: 1
+      Kind: p
+    - X: 27
+      Y: 2.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 34
+      Y: 2.5
+      Width: 4
+      Height: 0.5
+      Kind: '#'
+    - X: 38
+      Y: 2
+      Width: 26
+      Height: 1
+      Kind: p
+    - X: 27
+      Y: 2
+      Width: 3
+      Height: 0.5
+      Kind: '#'
+    - X: 34.5
+      Y: 2
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 0
+      Y: 0
+      Width: 27.5
+      Height: 2
+      Kind: p
+    - X: 27.5
+      Y: 0
+      Width: 2
+      Height: 2
+      Kind: '#'
+    - X: 34.5
+      Y: 0.5
+      Width: 3
+      Height: 1.5
+      Kind: '#'
+    - X: 37.5
+      Y: 0
+      Width: 26.5
+      Height: 2
+      Kind: p
+    - X: 35
+      Y: 0
+      Width: 2.5
+      Height: 0.5
+      Kind: '#'
+    Name: Ironfold
+    Economy: 1
+    BuilderEnabled: 1
+    StartingGold: 1200
+    TowerCost: 20
+    SaleRefund: 15
+    KillReward: 2
+    WaveReward: 120
+    StartingLives: 30
+    BuilderSpeed: 9
+    BuildRange: 3
+    Width: 64
+    Height: 64
+    NavigationStep: 0.5
+    BreachCost: 12
+    Separation: 1.4
+    Acceleration: 9
+    AttackReach: 0.16
+    CheckpointRadius: 0.2
+    Spawn:
+      X: 11.25
+      Y: 62.75
+    GroundRoute:
+    - X: 31.75
+      Y: 1.25
+    FlightRoute:
+    - X: 31.75
+      Y: 1.25
+    Catalog:
+    - Name: Fuse Cadet
+      Description: Ground + air
+      Cost: 10
+      Refund: 7
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 4.8
+        Interval: 0.55
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Ironhand
+      Description: Ground + air
+      Cost: 30
+      Refund: 22
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 12.8
+        Interval: 0.55
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Shear Sentinel
+      Description: "Ground only \xB7 splash"
+      Cost: 55
+      Refund: 41
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 20.800001
+        Interval: 0.55
+        Range: 4
+        SplashRadius: 1.2
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 0
+    - Name: Arc Ranger
+      Description: Ground + air
+      Cost: 80
+      Refund: 60
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 30.4
+        Interval: 0.55
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Flare Keeper
+      Description: "Air only \xB7 interceptor"
+      Cost: 110
+      Refund: 82
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 41.600002
+        Interval: 0.55
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 0
+        TargetsAir: 1
+    - Name: Rime Runner
+      Description: "Ground + air \xB7 25% slow"
+      Cost: 150
+      Refund: 112
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 60
+        Interval: 0.55
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0.25
+        SlowDuration: 2
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Echo Champion
+      Description: "Ground + air \xB7 requires all six regular designs standing"
+      Cost: 260
+      Refund: 195
+      VisualStyle: 3
+      Requires: 000000000100000002000000030000000400000005000000
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 240
+        Damage: 112
+        Interval: 0.55
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Alloy Cadet
+      Description: Ground + air
+      Cost: 10
+      Refund: 7
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 6.6000004
+        Interval: 1
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Crashbreaker
+      Description: Ground + air
+      Cost: 30
+      Refund: 22
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 17.6
+        Interval: 1
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Gale Pilot
+      Description: "Ground only \xB7 splash"
+      Cost: 55
+      Refund: 41
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 28.6
+        Interval: 1
+        Range: 4
+        SplashRadius: 1.2
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 0
+    - Name: Heatkeeper
+      Description: Ground + air
+      Cost: 80
+      Refund: 60
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 41.8
+        Interval: 1
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Quicksilver
+      Description: "Air only \xB7 interceptor"
+      Cost: 110
+      Refund: 82
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 57.2
+        Interval: 1
+        Range: 4
+        SplashRadius: 1.2
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 0
+        TargetsAir: 0
+    - Name: Rootguard
+      Description: Ground + air
+      Cost: 150
+      Refund: 112
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 82.5
+        Interval: 1
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Citadel Champion
+      Description: "Ground + air \xB7 requires all six regular designs standing"
+      Cost: 260
+      Refund: 195
+      VisualStyle: 3
+      Requires: 0700000008000000090000000a0000000b0000000c000000
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 240
+        Damage: 154
+        Interval: 1
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Shade Cadet
+      Description: Ground + air
+      Cost: 10
+      Refund: 7
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 6
+        Interval: 0.8
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Spark Herald
+      Description: "Ground + air \xB7 chains to two enemies"
+      Cost: 30
+      Refund: 22
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 16
+        Interval: 0.8
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 2
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Lodestone
+      Description: Ground + air
+      Cost: 55
+      Refund: 41
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 26
+        Interval: 0.8
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Coil Serpent
+      Description: Ground + air
+      Cost: 80
+      Refund: 60
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 38
+        Interval: 0.8
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Prism Twin
+      Description: "Air only \xB7 interceptor"
+      Cost: 110
+      Refund: 82
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 52
+        Interval: 0.8
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 0
+        TargetsAir: 1
+    - Name: Needle Guard
+      Description: Ground + air
+      Cost: 150
+      Refund: 112
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 75
+        Interval: 0.8
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Shell Champion
+      Description: "Ground + air \xB7 requires all six regular designs standing"
+      Cost: 260
+      Refund: 195
+      VisualStyle: 3
+      Requires: 0e0000000f00000010000000110000001200000013000000
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 240
+        Damage: 140
+        Interval: 0.8
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Glimmer Cadet
+      Description: Ground + air
+      Cost: 10
+      Refund: 7
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 6
+        Interval: 0.8
+        Range: 5.5
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Sun Regent
+      Description: Ground + air
+      Cost: 30
+      Refund: 22
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 16
+        Interval: 0.8
+        Range: 5.5
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Dustkeeper
+      Description: Ground + air
+      Cost: 55
+      Refund: 41
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 26
+        Interval: 0.8
+        Range: 5.5
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Boneplate
+      Description: Ground + air
+      Cost: 80
+      Refund: 60
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 38
+        Interval: 0.8
+        Range: 5.5
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Deepdiver
+      Description: "Air only \xB7 interceptor"
+      Cost: 110
+      Refund: 82
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 52
+        Interval: 0.8
+        Range: 5.5
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 0
+        TargetsAir: 1
+    - Name: Drillwarden
+      Description: Ground + air
+      Cost: 150
+      Refund: 112
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 75
+        Interval: 0.8
+        Range: 5.5
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Crawler Champion
+      Description: "Ground + air \xB7 requires all six regular designs standing"
+      Cost: 260
+      Refund: 195
+      VisualStyle: 3
+      Requires: 15000000160000001700000018000000190000001a000000
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 240
+        Damage: 140
+        Interval: 0.8
+        Range: 5.5
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Gyro Cadet
+      Description: Ground + air
+      Cost: 14
+      Refund: 10
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 7.2000003
+        Interval: 1
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Gravity Anchor
+      Description: "Ground + air \xB7 25% slow"
+      Cost: 42
+      Refund: 31
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 19.2
+        Interval: 1
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0.25
+        SlowDuration: 2
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Starcaller
+      Description: "Ground only \xB7 splash"
+      Cost: 77
+      Refund: 57
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 31.2
+        Interval: 1
+        Range: 4
+        SplashRadius: 1.2
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 0
+    - Name: Wavekeeper
+      Description: Ground + air
+      Cost: 112
+      Refund: 84
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 45.600002
+        Interval: 1
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Chargeguard
+      Description: "Air only \xB7 interceptor"
+      Cost: 154
+      Refund: 115
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 62.4
+        Interval: 1
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 0
+        TargetsAir: 1
+    - Name: Granite Sentinel
+      Description: Ground + air
+      Cost: 210
+      Refund: 157
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 90
+        Interval: 1
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Eclipse Champion
+      Description: "Ground + air \xB7 requires all six regular designs standing"
+      Cost: 364
+      Refund: 273
+      VisualStyle: 3
+      Requires: 1c0000001d0000001e0000001f0000002000000021000000
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 240
+        Damage: 168
+        Interval: 1
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Strider Cadet
+      Description: Ground + air
+      Cost: 7
+      Refund: 5
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 6
+        Interval: 0.8
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Lance Knight
+      Description: Ground + air
+      Cost: 30
+      Refund: 22
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 16
+        Interval: 0.8
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Windkeeper
+      Description: Ground + air
+      Cost: 55
+      Refund: 41
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 26
+        Interval: 0.8
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Bloomguard
+      Description: Ground + air
+      Cost: 80
+      Refund: 60
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 38
+        Interval: 0.8
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Whiteout
+      Description: "Air only \xB7 interceptor"
+      Cost: 110
+      Refund: 82
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 52
+        Interval: 0.8
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 0
+        TargetsAir: 1
+    - Name: Hatchet Herald
+      Description: "Ground + air \xB7 25% slow"
+      Cost: 150
+      Refund: 112
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 75
+        Interval: 0.8
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0.25
+        SlowDuration: 2
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Fossil Champion
+      Description: "Ground + air \xB7 requires all six regular designs standing"
+      Cost: 260
+      Refund: 195
+      VisualStyle: 3
+      Requires: 230000002400000025000000260000002700000028000000
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 240
+        Damage: 140
+        Interval: 0.8
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Junk Cadet
+      Description: Ground + air
+      Cost: 10
+      Refund: 7
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 9.9
+        Interval: 1.2
+        Range: 3.5
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Freeze Warden
+      Description: "Ground + air \xB7 25% slow"
+      Cost: 30
+      Refund: 22
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 26.4
+        Interval: 1.2
+        Range: 3.5
+        SplashRadius: 0
+        SlowFraction: 0.25
+        SlowDuration: 2
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Splashguard
+      Description: "Ground only \xB7 splash"
+      Cost: 55
+      Refund: 41
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 42.899998
+        Interval: 1.2
+        Range: 3.5
+        SplashRadius: 1.2
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 0
+    - Name: Spring Striker
+      Description: Ground + air
+      Cost: 80
+      Refund: 60
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 62.7
+        Interval: 1.2
+        Range: 3.5
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Duskkeeper
+      Description: "Air only \xB7 interceptor"
+      Cost: 110
+      Refund: 82
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 85.799995
+        Interval: 1.2
+        Range: 3.5
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 0
+        TargetsAir: 1
+    - Name: Turbo Sentinel
+      Description: Ground + air
+      Cost: 150
+      Refund: 112
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 123.75
+        Interval: 1.2
+        Range: 3.5
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Mask Champion
+      Description: "Ground + air \xB7 requires all six regular designs standing"
+      Cost: 260
+      Refund: 195
+      VisualStyle: 3
+      Requires: 2a0000002b0000002c0000002d0000002e0000002f000000
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 240
+        Damage: 231
+        Interval: 1.2
+        Range: 3.5
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Grenade Cadet
+      Description: Ground + air
+      Cost: 10
+      Refund: 7
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 6
+        Interval: 0.8
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Kite Ranger
+      Description: "Ground + air \xB7 chains to two enemies"
+      Cost: 30
+      Refund: 22
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 16
+        Interval: 0.8
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 2
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Jester Coil
+      Description: "Ground only \xB7 splash"
+      Cost: 55
+      Refund: 41
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 26
+        Interval: 0.8
+        Range: 4
+        SplashRadius: 1.2
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 0
+    - Name: Aquaguard
+      Description: "Ground + air \xB7 25% slow"
+      Cost: 80
+      Refund: 60
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 38
+        Interval: 0.8
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0.25
+        SlowDuration: 2
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Blade Keeper
+      Description: "Air only \xB7 interceptor"
+      Cost: 110
+      Refund: 82
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 52
+        Interval: 0.8
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 0
+        TargetsAir: 1
+    - Name: Orbit Herald
+      Description: Ground + air
+      Cost: 150
+      Refund: 112
+      VisualStyle: 3
+      Requires: 
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 100
+        Damage: 75
+        Interval: 0.8
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    - Name: Verdant Champion
+      Description: "Ground + air \xB7 requires all six regular designs standing"
+      Cost: 260
+      Refund: 195
+      VisualStyle: 3
+      Requires: 310000003200000033000000340000003500000036000000
+      Spec:
+        Width: 1
+        Height: 1
+        Fill: 0.86
+        Health: 240
+        Damage: 140
+        Interval: 0.8
+        Range: 4
+        SplashRadius: 0
+        SlowFraction: 0
+        SlowDuration: 0
+        ChainTargets: 0
+        TargetsGround: 1
+        TargetsAir: 1
+    Tower:
+      Width: 1
+      Height: 1
+      Fill: 0.86
+      Health: 100
+      Damage: 14
+      Interval: 0.65
+      Range: 4
+      SplashRadius: 0
+      SlowFraction: 0
+      SlowDuration: 0
+      ChainTargets: 0
+      TargetsGround: 1
+      TargetsAir: 1
+    Waves:
+    - Name: Frostbound patrol
+      Count: 8
+      SpawnInterval: 0.8
+      Health: 35
+      Speed: 1.9
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: Frostbound patrol
+      Count: 10
+      SpawnInterval: 0.8
+      Health: 47
+      Speed: 1.9
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: Frostbound patrol
+      Count: 12
+      SpawnInterval: 0.8
+      Health: 59
+      Speed: 1.9
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: Frostbound patrol
+      Count: 14
+      SpawnInterval: 0.8
+      Health: 71
+      Speed: 1.9
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: Sky drifters
+      Count: 16
+      SpawnInterval: 0.8
+      Health: 83
+      Speed: 2.2
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 1
+    - Name: Frostbound patrol
+      Count: 18
+      SpawnInterval: 0.8
+      Health: 95
+      Speed: 1.9
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: Frostbound patrol
+      Count: 20
+      SpawnInterval: 0.8
+      Health: 107
+      Speed: 1.9
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: Frostbound patrol
+      Count: 22
+      SpawnInterval: 0.8
+      Health: 119
+      Speed: 1.9
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: Frostbound patrol
+      Count: 24
+      SpawnInterval: 0.8
+      Health: 131
+      Speed: 1.9
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: Sky drifters
+      Count: 26
+      SpawnInterval: 0.8
+      Health: 143
+      Speed: 2.2
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 1
