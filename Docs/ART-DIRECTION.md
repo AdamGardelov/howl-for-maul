@@ -10,9 +10,13 @@ User direction: League of Legends-like readability and atmosphere, with simpler 
 - Towers use original faceted crown/base meshes, matte materials and restrained faction colors. Winter towers have warmer stone bases and buttresses; their sentries have crenellated crowns. Robots retain their technological silhouette.
 - Warm directional lighting and cool ambient fill separate top surfaces from side faces. Existing shot aiming, recoil, tier markers and combat feedback remain.
 
+## First faction model slice
+
+Rime Covenant now has five distinct stone-and-ice tower models. Builders are wardens or compact drones; enemies have faceted shells, swept wings and moving feet. Meshes are original and shared within each map. See RIME-MODEL-SLICE.md for scope and verification.
+
 ## What this pass does not establish
 
-This is an in-engine art-direction prototype, not the final asset quality target. The HUD has a first flat-theme/readability pass (HUD-UPDATE.md); enemy models and many building details still need their own art pass. We have not replaced the procedural assets with a finished character/model library or added a new animation rig. Static visual inspection does not establish crowded-battle performance on target hardware.
+This is an in-engine art-direction prototype, not the final asset quality target. The HUD has a first flat-theme/readability pass (HUD-UPDATE.md); the enemy family has an initial silhouette/animation pass, but most faction-specific tower sets and richer model detail are still pending. We have not replaced the procedural assets with a finished character/model library or added a new animation rig. Static visual inspection does not establish crowded-battle performance on target hardware.
 
 Next visual priorities: distinct faction-specific tower sets, a coordinated enemy silhouette pass, and further HUD polish after checking smaller viewports. Judge each at normal gameplay zoom before adding more surface detail. Keep silhouettes and ownership colors readable through full waves.
 

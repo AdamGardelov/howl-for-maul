@@ -51,6 +51,7 @@ namespace FrostMaze.Tests
             Assert.That(game.View.orthographicSize,Is.EqualTo(11));
             Assert.That(game.View.GetComponent<RtsCamera>().Focus.z,Is.EqualTo(game.World.BuilderPosition.Y));
             string[] roles={"Sentry","Wall","Control","Artillery","Interceptor"};
+            string[] signatures={"Sentry weapon/Shard launcher","Cairn stone","Control weapon/Rime heart","Artillery weapon/Dark basin","Interceptor weapon/Aurora spire"};
             for(int i=0;i<5;i++) {
                 game.World.SelectedDesign=i;
                 Assert.That(game.World.OrderBuild(16+i,14,out _),Is.True);
@@ -61,9 +62,15 @@ namespace FrostMaze.Tests
                 var tower=game.World.Grid.At(16+i,14);Assert.That(tower,Is.Not.Null);
                 var view=GameObject.Find("Tower "+tower.Id).GetComponent<TowerView>();
                 Assert.That(view.Role,Is.EqualTo(roles[i]));
+                Assert.That(view.transform.Find(signatures[i]),Is.Not.Null,"Missing distinct Rime model");
+                Assert.That(view.transform.Find("Foundation").GetComponent<MeshFilter>().sharedMesh,Is.SameAs(game.Models.Column),"Tower meshes must be shared, not allocated per tower");
                 Assert.That(view.GetComponentsInChildren<Collider>().Length,Is.Zero);
                 Assert.That(view.transform.Find("Upgrade tier 2").gameObject.activeSelf,Is.False);
             }
+            var warden=GameObject.Find("Builder drone");
+            Assert.That(warden.transform.Find("Faction mantle"),Is.Not.Null);
+            Assert.That(warden.GetComponentsInChildren<Collider>().Length,Is.Zero);
+            Assert.That(warden.transform.Find("Hood").GetComponent<Renderer>().sharedMaterial,Is.Not.SameAs(warden.transform.Find("Faction mantle").GetComponent<Renderer>().sharedMaterial),"Faction tint must preserve the dark hood");
             var sentry=game.World.Grid.At(16,14);
             Assert.That(game.World.Upgrade(sentry.Id,out _),Is.True);
             yield return null;
@@ -121,9 +128,12 @@ namespace FrostMaze.Tests
             Assert.That(game.World.Config.Catalog.Length,Is.EqualTo(20));
             Assert.That(game.World.Difficulty,Is.EqualTo(FrostMaze.Simulation.Difficulty.Hard));
             Assert.That(GameObject.Find("Player 2 builder"),Is.Not.Null);
+            var oldModel=game.Models.Column;
             game.ChooseMap(Resources.Load<MapDefinition>("Ironfold"));
             yield return null;yield return null;
             game=Object.FindFirstObjectByType<Prototype>();
+            Assert.That(oldModel==null,Is.True,"Map switch leaked owned model meshes");
+            Assert.That(GameObject.Find("Builder drone").transform.Find("Chassis"),Is.Not.Null);
             Assert.That(game.World.LaneCount,Is.EqualTo(4));
             Assert.That(game.World.Config.Waves.Length,Is.EqualTo(20));
             Assert.That(game.World.Config.Catalog[29].Spec.SlowFraction,Is.EqualTo(.4f));
@@ -175,15 +185,19 @@ namespace FrostMaze.Tests
             Assert.That(groundView.transform.Find("Frost status").gameObject.activeSelf, Is.True);
             Assert.That(groundView.GetComponentsInChildren<Collider>().Length, Is.Zero, "Cosmetics must not add physics blockers");
             Assert.That(airView.GetComponentsInChildren<Collider>().Length, Is.Zero);
+            Assert.That(wings.Find("Wing vane").GetComponent<MeshFilter>().sharedMesh,Is.SameAs(game.Models.Wing(-1)));
+            var foot=groundView.transform.Find("Armored crawler/Crawler foot");var pausedFoot=foot.localRotation;
             var pausedWing = wings.localRotation;
             var pausedBody = wings.parent.localPosition;
             yield return null; yield return null;
             Assert.That(wings.localRotation, Is.EqualTo(pausedWing), "Paused animation must use simulation time");
             Assert.That(wings.parent.localPosition, Is.EqualTo(pausedBody));
+            Assert.That(foot.localRotation,Is.EqualTo(pausedFoot),"Paused walking animation moved");
             ground.SlowRemaining = 0;
             for (int step = 0; step < 6; step++) game.World.Step();
             yield return null;
             Assert.That(wings.localRotation, Is.Not.EqualTo(pausedWing));
+            Assert.That(foot.localRotation,Is.Not.EqualTo(pausedFoot),"Walking animation did not follow simulation ticks");
             Assert.That(groundView.transform.Find("Frost status").gameObject.activeSelf, Is.False);
             Assert.That(airView.transform.position.y, Is.EqualTo(1.7f));
             Assert.That(groundView.transform.position.x, Is.EqualTo(ground.Position.X));

@@ -77,13 +77,14 @@ namespace FrostMaze
         readonly Dictionary<int, GameObject> towers = new Dictionary<int, GameObject>();
         readonly Dictionary<int, EnemyView> enemies = new Dictionary<int, EnemyView>();
         readonly List<Material> materials = new List<Material>();
+        public readonly ModelMeshes Models=new ModelMeshes();
         readonly Dictionary<int,Material[]> towerPalettes=new Dictionary<int,Material[]>();
         public Material[] TowerPalette(int faction)
         {
             if(towerPalettes.TryGetValue(faction,out var palette))return palette;
             Color[] winter={new Color(.3f,.82f,1),new Color(.58f,.72f,.36f),new Color(1,.4f,.12f),new Color(.62f,.47f,1)};
             Color color=World.Config.Theme=="iron"?Color.HSVToRGB((.54f+faction*.113f)%1,.68f,.95f):winter[faction%4];
-            palette=new[]{MakeMaterial(World.Config.Theme=="iron"?new Color(.23f,.29f,.33f):new Color(.49f,.47f,.37f)),MakeMaterial(Color.Lerp(color,new Color(.4f,.44f,.42f),.23f)),MakeMaterial(Color.Lerp(color,Color.white,.4f),true)};
+            palette=new[]{MakeMaterial(World.Config.Theme=="iron"?new Color(.23f,.29f,.33f):new Color(.49f,.47f,.37f)),MakeMaterial(Color.Lerp(color,new Color(.4f,.44f,.42f),.23f)),MakeMaterial(Color.Lerp(color,Color.white,.4f),true),MakeMaterial(new Color(.68f,.7f,.64f)),MakeMaterial(new Color(.13f,.22f,.25f))};
             towerPalettes.Add(faction,palette);return palette;
         }
         Material barricadeMaterial,cannonMaterial;
@@ -134,10 +135,7 @@ namespace FrostMaze
                 if(World.Config.LayoutRows.Length>0)worldRoot.AddComponent<MapScenery>().Build(this);
                 else foreach(var block in World.Config.Terrain)
                     Primitive("Frozen ridge",PrimitiveType.Cube,new Vector3(block.Center.X,.25f,block.Center.Y),new Vector3(block.Width,.6f,block.Height),MakeMaterial(new Color(.10f,.22f,.27f)));
-                builder = Primitive("Builder drone", PrimitiveType.Capsule, Vector3.zero, new Vector3(.65f,.35f,.65f), MakeMaterial(new Color(.1f,.95f,.8f)));
-                var wing = Primitive("Builder wings", PrimitiveType.Cube, Vector3.zero, new Vector3(1.2f,.12f,.22f), builder.GetComponent<Renderer>().sharedMaterial);
-                wing.transform.SetParent(builder.transform, false);
-                wing.transform.localPosition = Vector3.zero;
+                builder = CreateBuilder("Builder drone");
                 orderMarker = Primitive("Builder destination", PrimitiveType.Cylinder, Vector3.zero, new Vector3(.6f,.02f,.6f), MakeMaterial(new Color(.1f,.8f,.65f)));
                 Notice = "Build near the route or across the flight corridor. The drone travels to your build orders.";
             }
@@ -359,7 +357,7 @@ namespace FrostMaze
         {
             if (builder != null)
             {
-                if(World.Config.Factions.Length>0)foreach(var renderer in builder.GetComponentsInChildren<Renderer>())renderer.sharedMaterial=factionMaterials[World.Config.Theme=="iron"?3:World.Players[World.ActivePlayer].Faction];
+                TintBuilder(builder,World.Players[World.ActivePlayer].Faction);
                 builder.transform.position = new Vector3(World.BuilderPosition.X, 1.1f, World.BuilderPosition.Y);
                 orderMarker.SetActive(V2.Distance(World.BuilderPosition, World.BuilderDestination) > .1f);
                 orderMarker.transform.position = new Vector3(World.BuilderDestination.X,.03f,World.BuilderDestination.Y);
@@ -367,11 +365,11 @@ namespace FrostMaze
             for(int i=0;i<World.Players.Length;i++) {
                 if(i==World.ActivePlayer)continue;
                 if(!extraBuilders.TryGetValue(i,out var drone)) {
-                    drone=Primitive("Player "+(i+1)+" builder",PrimitiveType.Capsule,Vector3.zero,new Vector3(.65f,.35f,.65f),MakeMaterial(Color.HSVToRGB(i*.23f,.7f,.85f)));
+                    drone=CreateBuilder("Player "+(i+1)+" builder");
                     extraBuilders.Add(i,drone);
                 }
                 drone.SetActive(World.Config.BuilderEnabled);
-                if(World.Config.Factions.Length>0)drone.GetComponent<Renderer>().sharedMaterial=factionMaterials[World.Config.Theme=="iron"?3:World.Players[i].Faction];
+                TintBuilder(drone,World.Players[i].Faction);
                 var pos=World.Players[i].Position;drone.transform.position=new Vector3(pos.X,1.1f,pos.Y);
             }
             foreach(var pair in extraBuilders)if(pair.Key>=World.Players.Length||pair.Key==World.ActivePlayer)pair.Value.SetActive(false);
@@ -407,7 +405,7 @@ namespace FrostMaze
                     var root = new GameObject("Enemy " + e.Id);
                     root.transform.SetParent(worldRoot.transform, false);
                     obj = root.AddComponent<EnemyView>();
-                    obj.Initialize(e, e.Spec.Flying ? airMaterial : enemyMaterial, blockedMaterial, enemyShellMaterial, slowMaterial);
+                    obj.Initialize(e, e.Spec.Flying ? airMaterial : enemyMaterial, blockedMaterial, enemyShellMaterial, slowMaterial,Models);
                     enemies.Add(e.Id, obj);
                 }
                 obj.Sync(e, World.Tick);
@@ -419,8 +417,28 @@ namespace FrostMaze
                     enemies.Remove(id);
                 }
         }
+        GameObject CreateBuilder(string name)
+        {
+            var root=new GameObject(name);root.transform.SetParent(worldRoot.transform,false);
+            var stone=TowerPalette(0)[4];var tint=TowerPalette(0)[1];var glow=TowerPalette(0)[2];
+            void Part(string part,Mesh mesh,Vector3 position,Vector3 size,Material material){var o=new GameObject(part);o.transform.SetParent(root.transform,false);o.transform.localPosition=position;o.transform.localScale=size;o.AddComponent<MeshFilter>().sharedMesh=mesh;o.AddComponent<MeshRenderer>().sharedMaterial=material;}
+            if(World.Config.Theme=="iron") {
+                Part("Chassis",Models.Shell,Vector3.zero,new Vector3(.55f,.3f,.65f),stone);
+                Part("Faction canopy",Models.Crystal,new Vector3(0,.17f,0),new Vector3(.32f,.3f,.4f),tint);
+                for(int side=-1;side<=1;side+=2)Part("Faction stabilizer",Models.Wing(side),new Vector3(side*.15f,0,0),new Vector3(.35f,.6f,.45f),tint);
+            } else {
+                Part("Faction mantle",Models.Robe,new Vector3(0,-.14f,0),new Vector3(.5f,.62f,.5f),tint);
+                Part("Hood",Models.Shell,new Vector3(0,.25f,0),new Vector3(.33f,.34f,.34f),stone);
+                Part("Visor rune",Models.Crystal,new Vector3(0,.25f,.17f),new Vector3(.12f,.12f,.05f),glow);
+                Part("Staff",Models.Column,new Vector3(.34f,.02f,0),new Vector3(.045f,.43f,.045f),stone);
+                Part("Faction staff crystal",Models.Crystal,new Vector3(.34f,.52f,0),new Vector3(.18f,.3f,.18f),tint);
+            }
+            return root;
+        }
+        void TintBuilder(GameObject root,int faction){var palette=TowerPalette(faction);foreach(var renderer in root.GetComponentsInChildren<Renderer>())if(renderer.name.StartsWith("Faction"))renderer.sharedMaterial=palette[1];}
         void OnDestroy()
         {
+            Models.Dispose();
             foreach (var material in materials)
                 if (material != null)
                     Destroy(material);

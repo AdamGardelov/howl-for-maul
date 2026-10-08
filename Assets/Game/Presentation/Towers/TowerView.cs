@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections.Generic;
 using FrostMaze.Simulation;
 namespace FrostMaze
 {
@@ -14,29 +13,40 @@ namespace FrostMaze
 
         GameObject[] tiers=new GameObject[2];
         Material shell,accent,light;
-        readonly Dictionary<PrimitiveType,Mesh> silhouettes=new Dictionary<PrimitiveType,Mesh>();
-        Mesh Faceted(PrimitiveType kind) {
-            if(silhouettes.TryGetValue(kind,out var found))return found;
-            var vertices=new List<Vector3>();var triangles=new List<int>();
-            float[] heights=kind==PrimitiveType.Cylinder?new[]{-1f,-.78f,.78f,1f}:new[]{-.5f,-.32f,.2f,.44f,.5f};
-            float[] radii=kind==PrimitiveType.Cylinder?new[]{.4f,.5f,.5f,.4f}:new[]{0f,.36f,.47f,.27f,0f};
-            for(int ring=0;ring<heights.Length-1;ring++)for(int side=0;side<8;side++) {
-                float a=side*Mathf.PI/4,b=(side+1)*Mathf.PI/4;
-                int n=vertices.Count;
-                vertices.Add(new Vector3(Mathf.Cos(a)*radii[ring],heights[ring],Mathf.Sin(a)*radii[ring]));
-                vertices.Add(new Vector3(Mathf.Cos(a)*radii[ring+1],heights[ring+1],Mathf.Sin(a)*radii[ring+1]));
-                vertices.Add(new Vector3(Mathf.Cos(b)*radii[ring+1],heights[ring+1],Mathf.Sin(b)*radii[ring+1]));
-                vertices.Add(new Vector3(Mathf.Cos(b)*radii[ring],heights[ring],Mathf.Sin(b)*radii[ring]));
-                triangles.AddRange(new[]{n,n+1,n+2,n,n+2,n+3});
-            }
-            if(kind==PrimitiveType.Cylinder)for(int end=0;end<2;end++)for(int side=0;side<8;side++) {
-                float a=side*Mathf.PI/4,b=(side+1)*Mathf.PI/4,y=end==0?-1:1;int n=vertices.Count;
-                vertices.Add(new Vector3(0,y,0));vertices.Add(new Vector3(Mathf.Cos(a)*.4f,y,Mathf.Sin(a)*.4f));vertices.Add(new Vector3(Mathf.Cos(b)*.4f,y,Mathf.Sin(b)*.4f));
-                triangles.AddRange(end==0?new[]{n,n+1,n+2}:new[]{n,n+2,n+1});
-            }
-            var mesh=new Mesh{name="Original faceted tower "+kind};mesh.SetVertices(vertices);mesh.SetTriangles(triangles,0);mesh.RecalculateNormals();mesh.RecalculateBounds();silhouettes.Add(kind,mesh);return mesh;
+        Mesh Faceted(PrimitiveType kind) => kind==PrimitiveType.Cylinder?game.Models.Column:game.Models.Shell;
+        GameObject Crystal(string name,Vector3 position,Vector3 scale,Material material,Transform parent=null) {
+            var part=Part(name,PrimitiveType.Sphere,position,scale,material,parent);part.GetComponent<MeshFilter>().sharedMesh=game.Models.Crystal;return part;
         }
-        void OnDestroy(){foreach(var mesh in silhouettes.Values)Destroy(mesh);}
+        void RimeTower(Material trim,Material dark)
+        {
+            Part("Snow lip",PrimitiveType.Cylinder,new Vector3(0,.28f,0),new Vector3(.84f,.035f,.84f),trim);
+            if(Role=="Wall") {
+                for(int i=0;i<3;i++){var rock=Part("Cairn stone",PrimitiveType.Sphere,new Vector3(i==1?.05f:-.03f,.38f+i*.17f,0),new Vector3(.84f-i*.16f,.35f,.72f-i*.12f),i==2?trim:shell);rock.transform.localRotation=Quaternion.Euler(0,i*31,0);}
+                Crystal("Cairn rune",new Vector3(0,.57f,.32f),new Vector3(.14f,.22f,.08f),light);return;
+            }
+            var pivot=new GameObject(Role+" weapon");pivot.transform.SetParent(transform,false);weapon=pivot.transform;
+            if(Role=="Artillery") {
+                Part("Basin plinth",PrimitiveType.Cylinder,new Vector3(0,.43f,0),new Vector3(.7f,.16f,.7f),shell,weapon);
+                Part("Dark basin",PrimitiveType.Cylinder,new Vector3(0,.65f,0),new Vector3(.59f,.045f,.59f),dark,weapon);
+                for(int i=0;i<6;i++){float a=i*Mathf.PI/3;var rim=Part("Basin rim",PrimitiveType.Cube,new Vector3(Mathf.Sin(a)*.3f,.7f,Mathf.Cos(a)*.3f),new Vector3(.3f,.2f,.12f),trim,weapon);rim.transform.localRotation=Quaternion.Euler(0,i*60,0);}
+                Crystal("Hail charge",new Vector3(0,.88f,0),new Vector3(.3f,.43f,.3f),accent,weapon);
+            } else if(Role=="Control") {
+                Part("Obelisk foot",PrimitiveType.Cylinder,new Vector3(0,.43f,0),new Vector3(.64f,.12f,.64f),shell,weapon);
+                Crystal("Rime heart",new Vector3(0,1.08f,0),new Vector3(.44f,1.22f,.44f),accent,weapon);
+                for(int side=-1;side<=1;side+=2){var claw=Part("Stone claw",PrimitiveType.Cylinder,new Vector3(side*.29f,.71f,0),new Vector3(.17f,.34f,.17f),trim,weapon);claw.transform.localRotation=Quaternion.Euler(0,0,side*-13);}
+                Crystal("Heart glint",new Vector3(0,1.15f,.2f),new Vector3(.09f,.27f,.035f),light,weapon);
+            } else if(Role=="Interceptor") {
+                Part("Sky pedestal",PrimitiveType.Cylinder,new Vector3(0,.49f,0),new Vector3(.56f,.22f,.56f),shell,weapon);
+                for(int side=-1;side<=1;side+=2){Part("Needle socket",PrimitiveType.Cylinder,new Vector3(side*.22f,.82f,0),new Vector3(.26f,.19f,.26f),trim,weapon);Crystal("Aurora spire",new Vector3(side*.22f,1.23f,0),new Vector3(.22f,.88f,.22f),accent,weapon);}
+                Part("Sky sight",PrimitiveType.Sphere,new Vector3(0,.95f,.12f),new Vector3(.17f,.17f,.17f),light,weapon);
+            } else {
+                Part("Watchtower stone",PrimitiveType.Cylinder,new Vector3(0,.61f,0),new Vector3(.6f,.29f,.6f),shell,weapon);
+                Part("Watchtower cornice",PrimitiveType.Cylinder,new Vector3(0,.91f,0),new Vector3(.74f,.065f,.74f),trim,weapon);
+                for(int side=-1;side<=1;side+=2)Part("Crown stone",PrimitiveType.Cube,new Vector3(side*.26f,1.09f,-.03f),new Vector3(.17f,.3f,.42f),shell,weapon);
+                var shard=Crystal("Shard launcher",new Vector3(0,1.08f,.12f),new Vector3(.29f,.67f,.29f),accent,weapon);shard.transform.localRotation=Quaternion.Euler(64,0,0);
+                Crystal("Watchtower sigil",new Vector3(0,.64f,.3f),new Vector3(.12f,.26f,.06f),light,weapon);
+            }
+        }
         GameObject Part(string name,PrimitiveType kind,Vector3 p,Vector3 scale,Material material,Transform parent=null)
         {
             var o=GameObject.CreatePrimitive(kind);o.name=name;o.transform.SetParent(parent==null?transform:parent,false);
@@ -54,6 +64,8 @@ namespace FrostMaze
             Role=spec.Damage<=0?"Wall":design!=null&&design.Requires.Length>0?"Champion":!spec.TargetsGround?"Interceptor":spec.SlowFraction>0?"Control":spec.ChainTargets>0?"Relay":spec.SplashRadius>0?"Artillery":"Sentry";
             Part("Foundation",PrimitiveType.Cylinder,new Vector3(0,.1f,0),new Vector3(.94f,.13f,.94f),shell);
             Part("Faction band",PrimitiveType.Cylinder,new Vector3(0,.23f,0),new Vector3(.78f,.035f,.78f),accent);
+            if(!robot&&faction==0)RimeTower(palette[3],palette[4]);
+            else {
             if(!robot&&Role!="Wall")for(int side=-1;side<=1;side+=2) {
                 Part("Stone buttress",PrimitiveType.Cube,new Vector3(side*.31f,.38f,-.05f),new Vector3(.16f,.43f,.48f),shell);
             }
@@ -81,6 +93,7 @@ namespace FrostMaze
                     var arm=Part("Arm cannon",PrimitiveType.Cylinder,new Vector3(.28f,.78f,.2f),new Vector3(.22f,.31f,.22f),accent,weapon);arm.transform.localRotation=Quaternion.Euler(90,0,0);
                     if(Role=="Champion")for(int side=-1;side<=1;side+=2){Part("Champion shoulder",PrimitiveType.Cube,new Vector3(side*.3f,1.06f,0),Vector3.one*.3f,accent,weapon);Part("Champion crown",PrimitiveType.Cube,new Vector3(side*.16f,1.38f,0),new Vector3(.1f,.3f,.12f),light,weapon);}
                 }
+            }
             }
             for(int i=0;i<2;i++)tiers[i]=Part("Upgrade tier "+(i+2),PrimitiveType.Cube,new Vector3((i==0?-1:1)*.31f,.34f,-.35f),new Vector3(.13f,.15f,.1f),light);
             Sync(tower,false);

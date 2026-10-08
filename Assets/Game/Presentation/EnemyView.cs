@@ -12,9 +12,12 @@ namespace FrostMaze
         Material normalMaterial, siegeMaterial;
         bool flying;
         float radius;
+        ModelMeshes meshes;
+        readonly System.Collections.Generic.List<Transform> feet=new System.Collections.Generic.List<Transform>();
 
-        public void Initialize(Enemy enemy, Material normal, Material siege, Material shell, Material frost)
+        public void Initialize(Enemy enemy, Material normal, Material siege, Material shell, Material frost, ModelMeshes models)
         {
+            meshes=models;
             flying = enemy.Spec.Flying;
             radius = enemy.Spec.Radius;
             normalMaterial = normal; siegeMaterial = siege;
@@ -22,7 +25,7 @@ namespace FrostMaze
             body.SetParent(transform, false);
             body.localScale = Vector3.one * radius * 2;
             Part("Carapace", PrimitiveType.Sphere, body, new Vector3(0, .12f, 0), new Vector3(.82f, .56f, .98f), shell);
-            core = Part("Signal crest", PrimitiveType.Cube, body, new Vector3(0, .38f, .08f), new Vector3(.48f, .18f, .62f), normal).GetComponent<Renderer>();
+            core = Part("Signal crest", PrimitiveType.Sphere, body, new Vector3(0, .32f, .02f), new Vector3(.7f, .44f, .76f), normal).GetComponent<Renderer>();
             Part("Face visor", PrimitiveType.Cube, body, new Vector3(0, .17f, .48f), new Vector3(.56f, .12f, .1f), normal);
             if (flying)
             {
@@ -34,7 +37,7 @@ namespace FrostMaze
             {
                 for (int side = -1; side <= 1; side += 2)
                     for (int leg = -1; leg <= 1; leg += 2)
-                        Part("Crawler foot", PrimitiveType.Cube, body, new Vector3(side * .36f, -.17f, leg * .3f), new Vector3(.23f, .24f, .35f), normal);
+                        feet.Add(Part("Crawler foot", PrimitiveType.Sphere, body, new Vector3(side * .36f, -.17f, leg * .3f), new Vector3(.23f, .25f, .42f), shell).transform);
             }
             if(!flying&&(enemy.Spec.Damage>=30||enemy.Spec.Speed<=1.6f)) {
                 Part("Siege shield",PrimitiveType.Cube,body,new Vector3(0,.32f,.46f),new Vector3(.9f,.65f,.17f),shell);
@@ -51,12 +54,13 @@ namespace FrostMaze
             var pivot = new GameObject(side < 0 ? "Left wing" : "Right wing").transform;
             pivot.SetParent(body, false);
             pivot.localPosition = new Vector3(side * .3f, .12f, 0);
-            var vane = Part("Wing vane", PrimitiveType.Cube, pivot, new Vector3(side * .4f, 0, -.06f), new Vector3(.85f, .10f, .55f), material);
+            var vane = Part("Wing vane", PrimitiveType.Cube, pivot, Vector3.zero, new Vector3(.9f,1,.85f), material);
+            vane.GetComponent<MeshFilter>().sharedMesh=meshes.Wing(side);
             vane.transform.localRotation = Quaternion.Euler(0, side * 20, 0);
             return pivot;
         }
 
-        static GameObject Part(string name, PrimitiveType type, Transform parent, Vector3 position, Vector3 scale, Material material)
+        GameObject Part(string name, PrimitiveType type, Transform parent, Vector3 position, Vector3 scale, Material material)
         {
             var part = GameObject.CreatePrimitive(type);
             part.name = name;
@@ -67,6 +71,8 @@ namespace FrostMaze
             collider.enabled = false;
             Destroy(collider);
             part.GetComponent<Renderer>().sharedMaterial = material;
+            if(type==PrimitiveType.Sphere)part.GetComponent<MeshFilter>().sharedMesh=meshes.Shell;
+            if(type==PrimitiveType.Cylinder)part.GetComponent<MeshFilter>().sharedMesh=meshes.Column;
             return part;
         }
 
@@ -84,6 +90,7 @@ namespace FrostMaze
                 leftWing.localRotation = Quaternion.Euler(0, 0, flap);
                 rightWing.localRotation = Quaternion.Euler(0, 0, -flap);
             }
+            for(int i=0;i<feet.Count;i++)feet[i].localRotation=Quaternion.Euler(Mathf.Sin(phase*1.7f+i*Mathf.PI)*Mathf.Min(1,enemy.Velocity.Length)*24,0,i<2?-22:22);
             core.sharedMaterial = enemy.Blocked ? siegeMaterial : normalMaterial;
             slowHalo.SetActive(enemy.SlowRemaining > 0);
             // Status marker follows flight height so it cannot be mistaken for a ground unit.
