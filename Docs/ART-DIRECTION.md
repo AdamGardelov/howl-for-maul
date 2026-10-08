@@ -16,9 +16,9 @@ Rime Covenant now has five distinct stone-and-ice tower models. Builders are war
 
 ## What this pass does not establish
 
-This is an in-engine art-direction prototype, not the final asset quality target. The HUD has a first flat-theme/readability pass (HUD-UPDATE.md); the enemy family has an initial silhouette/animation pass, but most faction-specific tower sets and richer model detail are still pending. We have not replaced the procedural assets with a finished character/model library or added a new animation rig. Static visual inspection does not establish crowded-battle performance on target hardware.
+This is an in-engine art-direction prototype, not the final asset quality target. The HUD has a first flat-theme/readability pass (HUD-UPDATE.md); the enemy family has an initial silhouette/animation pass, and every faction now has its first distinct tower set. Richer materials and model detail remain future work. We have not replaced the procedural assets with a finished character/model library or added a new animation rig. Static visual inspection does not establish crowded-battle performance on target hardware.
 
-Next visual priorities: distinct faction-specific tower sets, a coordinated enemy silhouette pass, and further HUD polish after checking smaller viewports. Judge each at normal gameplay zoom before adding more surface detail. Keep silhouettes and ownership colors readable through full waves.
+Next visual priorities: clearer combat outcomes, a coordinated enemy silhouette refinement, and further HUD polish after checking smaller viewports. Judge each at normal gameplay zoom before adding more surface detail. Keep silhouettes and ownership colors readable through full waves.
 
 No map, economy, faction roster, combat balance or pathfinding changes belong to this visual pass. No copyrighted game assets were imported.
 
