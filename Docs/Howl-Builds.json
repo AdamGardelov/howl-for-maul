@@ -1,14 +1,14 @@
 {
   "builds": [
     {
-      "buildId": "build_46aeac20e1f8",
+      "buildId": "build_1d04dab5cda6",
       "result": "Succeeded",
       "platform": "StandaloneLinux64",
       "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Linux/HowlForMaul",
-      "totalSizeBytes": 92220360,
-      "buildTimeMs": 57610,
-      "buildStartedAt": "2026-10-08T12:45:58.9050400Z",
-      "buildEndedAt": "2026-10-08T12:46:56.5156440Z",
+      "totalSizeBytes": 92223432,
+      "buildTimeMs": 21114,
+      "buildStartedAt": "2026-10-08T13:26:52.3475960Z",
+      "buildEndedAt": "2026-10-08T13:27:13.4624480Z",
       "totalWarnings": 1,
       "totalErrors": 0,
       "warnings": [
@@ -18,14 +18,14 @@
       ]
     },
     {
-      "buildId": "build_ddc65d7cfd92",
+      "buildId": "build_363541e89e0d",
       "result": "Succeeded",
       "platform": "StandaloneWindows64",
       "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Windows/HowlForMaul.exe",
-      "totalSizeBytes": 95864016,
-      "buildTimeMs": 15238,
-      "buildStartedAt": "2026-10-08T12:47:25.1266270Z",
-      "buildEndedAt": "2026-10-08T12:47:40.3654950Z",
+      "totalSizeBytes": 95867088,
+      "buildTimeMs": 19639,
+      "buildStartedAt": "2026-10-08T13:30:31.0821440Z",
+      "buildEndedAt": "2026-10-08T13:30:50.7219840Z",
       "totalWarnings": 19,
       "totalErrors": 0,
       "warnings": [
@@ -126,9 +126,9 @@
     "sourceCheckpoint": "465974e",
     "exitCode": 0
   },
-  "sourceCheckpoint": "75ab3ae",
+  "sourceCheckpoint": "9368630",
   "linuxHeadlessSmoke": {
-    "sourceCheckpoint": "75ab3ae",
+    "sourceCheckpoint": "9368630",
     "command": "Tools/smoke-linux.sh",
     "display": "DISPLAY and WAYLAND_DISPLAY unset for child process",
     "graphicsDevice": "Null Device",
@@ -137,11 +137,11 @@
       "Rimewatch",
       "Ironfold"
     ],
-    "note": "Three consecutive clean exits; each run asserts presentation/audio were not initialized and checks both maps plus completion. Explicit data-only smoke is not a graphics/audio test.",
-    "consecutivePasses": 3
+    "note": "Fresh 9368630 package passed explicit data-only isolation, both map route checks and clean exit. Earlier 75ab3ae smoke isolation was separately checked in three consecutive runs.",
+    "consecutivePasses": 1
   },
   "linuxPackagedSmoke": {
-    "sourceCheckpoint": "75ab3ae",
+    "sourceCheckpoint": "9368630",
     "backend": "headless -batchmode -nographics",
     "exitCode": 0,
     "markers": [
@@ -191,5 +191,22 @@
     "fixedSourceCheckpoint": "75ab3ae",
     "consecutiveCleanSmokeRuns": 3,
     "note": "Failure occurred during native audio shutdown. The exact underlying native race is not established; this removes unnecessary presentation/audio initialization from the data-only test path."
+  },
+  "linuxCameraInput": {
+    "sourceCheckpoint": "9368630",
+    "display": ":98",
+    "renderer": "Mesa llvmpipe",
+    "resolution": [
+      1440,
+      900
+    ],
+    "checks": [
+      "Space + left-drag moves map with gold 1200, wave 0 and builder orders 0",
+      "Top-edge scrolling moves camera",
+      "Enter launches wave 1 with all three lanes active",
+      "Normal window close exits zero"
+    ],
+    "exitCode": 0,
+    "note": "Keyboard focus was explicitly assigned to the owned isolated test window; Xvfb has no window manager. Native desktop and Windows runtime not verified."
   }
 }

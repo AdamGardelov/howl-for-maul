@@ -4,7 +4,9 @@ All twelve factions now have original design-specific models: twenty winter towe
 
 ## Automated tests
 
-Fresh Unity 6000.3.25f1 suite: **72/72 passed**, including ten Play-mode integration cases. Compilation had zero errors/warnings. Complete per-case result: Howl-Unity-Tests-Complete.json, extracted from Unity’s NUnit XML. The CLI summary in Howl-Unity-Tests.json is also 72/72, but its detailed array retains only 63 entries after domain reloads. The XML confirms all ten Play-mode cases individually.
+Latest complete Unity 6000.3.25f1 suite: **74/74 passed**, including twelve Play-mode integration cases, at the siege/audio checkpoint 44b2290. Complete per-case result: Howl-Unity-Tests-Complete.json, extracted from Unity’s NUnit XML. The CLI summary in Howl-Unity-Tests.json agrees, but its detail array retains only 63 entries after domain reloads. All 74 cases are confirmed in XML.
+
+The subsequent camera controls compiled cleanly and passed all four Camera-filtered tests (gesture sampling, UI/setup/bounds, existing tower/camera behavior and camera-local audio). See Howl-Camera-Tests.json and CAMERA-CONTROLS.md. There are now 76 cases available; a complete 76-case run is not claimed. Actual packaged Space-drag, edge scrolling and Enter input passed on isolated :98 with a normal exit.
 
 Paid presentation coverage buys all eight Ironfold rosters, checks each champion's six prerequisites, air targeting, cosmetic collider absence and champion upgrades. It preserves higher Gravity costs and Scrap's cheap opener. Winter models/upgrades, shared mesh cleanup, animation pause/resume, shot facing/recoil, setup flow and map switching remain covered. Simulation cases cover exact masks, all lanes, fixed team economy, ownership, half-cell paid construction, wall seams, siege/reopening, combat targeting and the captured 61-unit corner jam. The minimap case independently checks all 20,480 source cells, cache reuse and texture cleanup.
 
@@ -18,7 +20,7 @@ Off-camera leak alerts: the new focused integration case passes (1/1), bringing 
 
 Enemy silhouettes: narrower runners and heavier bevelled siege units retain existing collision/navigation. The enemy-presentation case passed (1/1); final cosmetic bevels compiled and were visually inspected afterward, then the combined 72/72 suite passed. See ENEMY-READABILITY.md.
 
-Audio follow-up: the new focused integration case passes (1/1), covering burst limits, camera gating, mute/pause/setup, global breach priority and reset. The last complete suite remains 72/72; 73 cases are now available. Actual synthesized clips exported and checked for finite, bounded samples. See COMBAT-AUDIO.md.
+Audio follow-up: the new focused integration case passes (1/1), covering burst limits, camera gating, mute/pause/setup, global breach priority and reset. The subsequent complete suite passed 74/74. Actual synthesized clips exported and checked for finite, bounded samples. See COMBAT-AUDIO.md.
 
 ## Paid campaigns
 
@@ -44,7 +46,7 @@ Tower-query follow-up: spatial indexing reduced the matched crowded fixture from
 
 ## Packages and platform limits
 
-Fresh Linux and Windows packages include source 75ab3ae: all 76 models, tower collision indexing, repaint-only world overlays map props kept off walkable cells wave income recaps bounded combat cues off-camera leak alerts refined enemy silhouettes and paced combat audio. Both builds succeeded with zero errors; Linux reported one Pipeline-disabled warning, Windows 19 including unsupported package ray-tracing shaders. Windows runtime remains untested.
+Fresh Linux and Windows packages include source 9368630: all 76 models, tower collision indexing, repaint-only world overlays map props kept off walkable cells wave income recaps bounded combat cues off-camera leak alerts refined enemy silhouettes, paced combat audio, siege feedback and faster camera controls. Both builds succeeded with zero errors; Linux reported one Pipeline-disabled warning, Windows 19 including unsupported package ray-tracing shaders. Windows runtime remains untested.
 
 Fresh Linux packaged route/data smoke passed both maps without a display server, exit zero. The repeatable Tools/smoke-linux.sh checks data-only initialization, both map markers and clean process exit. An initial audio-shutdown crash (133) was caught; the explicit smoke path now skips presentation and passed three consecutive runs. See Platform/headless-audio-shutdown.json. The preceding 465974e package passed mouse-driven Start Match/build beside wall/select/upgrade/sell on isolated :98, with 1200 → 1180 → 1160 → 1190 gold and normal close exiting zero. These are separate checks, not a full mouse-played campaign or a GPU benchmark.
 
@@ -58,4 +60,4 @@ Map-tag follow-up: lane numbers and the exit now use compact dark-backed labels 
 
 Rendering experiment: GPU instancing reduced draw calls but did not show a clear frame-time win against repeated SRP baselines. Both screenshot pairs were pixel-identical. Temporary changes restored; saved rendering configuration unchanged. See Performance/Instancing/README.md.
 
-Latest combined regression: 74/74 passed after combat audio and siege feedback, with every individual case confirmed from Unity XML. See SIEGE-FEEDBACK.md. Camera traversal changes requested by the user are next.
+Latest combined regression: 74/74 passed after combat audio and siege feedback, with every individual case confirmed from Unity XML. See SIEGE-FEEDBACK.md. Camera traversal subsequently passed its four focused checks and packaged input sequence.
