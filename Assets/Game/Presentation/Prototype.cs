@@ -411,6 +411,7 @@ namespace FrostMaze
             foreach (var id in new List<int>(towers.Keys))
                 if (!live.Contains(id))
                 {
+                    feedback.TowerStruck(towers[id].GetComponent<TowerView>().Subject,true);
                     Destroy(towers[id]);
                     towers.Remove(id);
                 }

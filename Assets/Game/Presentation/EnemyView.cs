@@ -90,10 +90,13 @@ namespace FrostMaze
         {
             float phase = tick * World.FixedDelta * 7f + enemy.Id * .73f;
             transform.position = new Vector3(enemy.Position.X, flying ? 1.7f : radius * .65f, enemy.Position.Y);
-            var direction = enemy.Velocity.Length > .03f ? enemy.Velocity : enemy.IntendedDirection;
+            float strike=!flying?Mathf.Clamp01(1-(tick-enemy.LastAttackTick)/6f):0;
+            var direction = strike>0 ? enemy.AttackDirection : enemy.Velocity.Length > .03f ? enemy.Velocity : enemy.IntendedDirection;
             if (direction.Length > .03f)
                 transform.rotation = Quaternion.LookRotation(new Vector3(direction.X, 0, direction.Y));
             body.localPosition = new Vector3(0, flying ? Mathf.Sin(phase) * .08f : 0, 0);
+            // Tilt within the collision disc instead of lunging through the wall.
+            body.localRotation=Quaternion.Euler(strike*18,0,0);
             if (flying)
             {
                 float flap = Mathf.Sin(phase) * 22f;

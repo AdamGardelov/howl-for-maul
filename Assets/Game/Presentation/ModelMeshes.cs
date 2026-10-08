@@ -60,6 +60,18 @@ namespace FrostMaze
                 return Combine(key,pieces);
             }
         }
+        public Mesh Rubble {
+            get {
+                const string key="Tower rubble";
+                if(meshes.TryGetValue("Combined "+key,out var cached))return cached;
+                var pieces=new List<CombineInstance>();
+                for(int i=0;i<4;i++) {
+                    float angle=i*90*Mathf.Deg2Rad;
+                    pieces.Add(new CombineInstance{mesh=Armor,transform=Matrix4x4.TRS(new Vector3(Mathf.Cos(angle)*.3f,.05f,Mathf.Sin(angle)*.3f),Quaternion.Euler(15,i*90,25),new Vector3(.35f,.3f,.4f))});
+                }
+                return Combine(key,pieces);
+            }
+        }
         Mesh Save(string name,List<Vector3> vertices,List<int> triangles){var mesh=new Mesh{name="Original "+name};mesh.SetVertices(vertices);mesh.SetTriangles(triangles,0);mesh.RecalculateNormals();mesh.RecalculateBounds();meshes.Add(name,mesh);return mesh;}
         public Mesh Combine(string key,List<CombineInstance> pieces)
         {

@@ -12,7 +12,7 @@ namespace FrostMaze
         float alertTime, leakAlertUntil;
         // UI alerts use real play time, independent of simulation speed and camera visibility.
         public int RecentLeaks => alertTime<leakAlertUntil ? recentLeaks : 0;
-        Material bolt,ember,defeat,airDefeat,leak; AudioSource sound; AudioClip boltClip,emberClip,leakClip;
+        Material bolt,ember,defeat,airDefeat,leak,rubble; AudioSource sound; AudioClip boltClip,emberClip,leakClip;
         float nextShotSound,nextLeakSound;
         public int SoundDispatches {get;private set;}
         public string LastSound {get;private set;}
@@ -23,6 +23,7 @@ namespace FrostMaze
             effectsRoot=new GameObject("Combat cues").transform;effectsRoot.SetParent(transform,false);
             game=prototype;bolt=game.MakeMaterial(new Color(.2f,1,.85f),true);ember=game.MakeMaterial(new Color(1,.5f,.12f),true);
             defeat=game.MakeMaterial(new Color(1,.73f,.28f),true);airDefeat=game.MakeMaterial(new Color(.8f,.6f,1),true);leak=game.MakeMaterial(new Color(1,.16f,.22f),true);
+            rubble=game.MakeMaterial(new Color(.65f,.7f,.75f));
             sound=gameObject.AddComponent<AudioSource>();sound.spatialBlend=0;sound.volume=.12f;sound.playOnAwake=false;
             boltClip=Tone("Original bolt",900,.055f);emberClip=Tone("Original cannon",130,.14f);leakClip=Tone("Original breach",660,.22f,1000);
         }
@@ -64,6 +65,29 @@ namespace FrostMaze
             }
             obj.transform.localScale=Vector3.one*scale;
             flashes.Add(new Flash{Object=obj,Origin=origin,Start=effectTime,Until=effectTime+duration,Duration=duration,Scale=scale,Pulse=true});
+        }
+        public void TowerStruck(Tower tower,bool removed)
+        {
+            if(tower==null||(removed&&tower.Health>0))return; // A sale is not destruction.
+            ObserveWorld();
+            if(flashes.Count>=64) {
+                if(!removed)return;
+                Destroy(flashes[0].Object);flashes.RemoveAt(0);
+            }
+            var obj=new GameObject(removed?"Tower destroyed":"Tower struck");obj.transform.SetParent(effectsRoot,false);
+            var origin=new Vector3(tower.Center.X,.15f,tower.Center.Y);obj.transform.position=origin;
+            float duration=removed?.55f:.2f;
+            if(removed) {
+                obj.AddComponent<MeshFilter>().sharedMesh=game.Models.Rubble;
+                var renderer=obj.AddComponent<MeshRenderer>();renderer.sharedMaterial=rubble;
+                renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;renderer.receiveShadows=false;
+            } else {
+                var ring=obj.AddComponent<LineRenderer>();ring.sharedMaterial=leak;ring.useWorldSpace=false;ring.positionCount=5;ring.startWidth=ring.endWidth=.08f;
+                float x=tower.Spec.Width*.48f,z=tower.Spec.Height*.48f;
+                ring.SetPositions(new[]{new Vector3(-x,0,-z),new Vector3(-x,0,z),new Vector3(x,0,z),new Vector3(x,0,-z),new Vector3(-x,0,-z)});
+                ring.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;
+            }
+            flashes.Add(new Flash{Object=obj,Origin=origin,Start=effectTime,Until=effectTime+duration,Duration=duration,Scale=1,Pulse=true});
         }
         bool InView(V2 point,float height)
         {

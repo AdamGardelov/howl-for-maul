@@ -13,6 +13,57 @@ namespace FrostMaze.Tests
             return feedback.transform.Find("Combat cues").GetComponentsInChildren<Renderer>().Length;
         }
         [UnityTest]
+        public IEnumerator PaidWallSiegeShowsStrikesDestructionAndRouteOpening()
+        {
+            EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
+            yield return new EnterPlayMode();yield return null;
+            var game=Object.FindFirstObjectByType<Prototype>();
+            if(game.Map.name!="Rimewatch"){game.ChooseMap(Resources.Load<MapDefinition>("Rimewatch"));yield return null;yield return null;game=Object.FindFirstObjectByType<Prototype>();}
+            game.SetupOptions=new FrostMaze.Simulation.MatchOptions();game.StartMatch();game.Paused=true;game.SoundEnabled=false;
+            var w=game.World;w.SelectedDesign=1;
+            for(int x=28;x<=33;x++) {
+                Assert.That(w.OrderBuild(x,11,out var reason),Is.True,reason);
+                for(int i=0;i<180&&w.Grid.At(x,11)==null;i++)w.Step();
+                Assert.That(w.Grid.At(x,11),Is.Not.Null);
+            }
+            Assert.That(w.Gold,Is.EqualTo(1170),"The seal must be paid for");
+            var enemy=w.Spawn(new FrostMaze.Simulation.WaveSpec{Health=1000,Speed=1.55f,Damage=60,AttackInterval=.6f},new FrostMaze.Simulation.V2(31.5f,12.4f));
+            Assert.That(enemy,Is.Not.Null);enemy.Checkpoint=w.LaneRoute(0,false).Length-1;
+            yield return null;yield return null;
+            for(int i=0;i<100&&enemy.LastAttackTick<0;i++)w.Step();
+            Assert.That(enemy.Blocked,Is.True);Assert.That(enemy.LastAttackTick,Is.GreaterThan(0));
+            var attacked=w.Grid.Find(enemy.BlockerId);
+            Assert.That(attacked,Is.Not.Null);Assert.That(attacked.Health,Is.LessThan(attacked.Spec.Health));
+            yield return null;yield return null;
+            var cue=GameObject.Find("Tower struck");Assert.That(cue,Is.Not.Null);
+            var body=GameObject.Find("Enemy "+enemy.Id).transform.Find("Armored crawler");var pose=body.localRotation;
+            Assert.That(Quaternion.Angle(pose,Quaternion.identity),Is.GreaterThan(5));
+            Assert.That(cue.GetComponentsInChildren<Collider>().Length,Is.Zero);
+            yield return new WaitForSecondsRealtime(.1f);Assert.That(body.localRotation,Is.EqualTo(pose));
+            game.OpenSetup();yield return new WaitForSecondsRealtime(.1f);Assert.That(body.localRotation,Is.EqualTo(pose));game.ReturnToMatch();
+            for(int i=0;i<120&&attacked.Health>0;i++)w.Step();
+            Assert.That(attacked.Health,Is.LessThanOrEqualTo(0));yield return null;yield return null;
+            var rubble=GameObject.Find("Tower destroyed");Assert.That(rubble,Is.Not.Null);
+            Assert.That(rubble.GetComponent<MeshFilter>().sharedMesh,Is.SameAs(game.Models.Rubble));
+            Assert.That(rubble.GetComponentsInChildren<Collider>().Length,Is.Zero);
+            for(int i=0;i<7;i++)w.Step();yield return null;
+            Assert.That(enemy.Blocked,Is.False,"Destroying the seal should reopen the route");
+            Assert.That(w.Grid.Clear(enemy.Position,enemy.Position,enemy.Spec.Radius),Is.True,"Enemy penetrated a remaining wall");
+            Assert.That(Quaternion.Angle(body.localRotation,Quaternion.identity),Is.LessThan(.01f));
+            int destroyed=0;foreach(var t in game.GetComponent<CombatFeedback>().transform.Find("Combat cues").GetComponentsInChildren<Transform>())if(t.name=="Tower destroyed")destroyed++;
+            var sold=w.Grid.At(28,11)??w.Grid.At(33,11);Assert.That(sold,Is.Not.Null);Assert.That(w.Sell(sold.CellX,sold.CellY),Is.True);
+            yield return null;yield return null;
+            int afterSale=0;foreach(var t in game.GetComponent<CombatFeedback>().transform.Find("Combat cues").GetComponentsInChildren<Transform>())if(t.name=="Tower destroyed")afterSale++;
+            Assert.That(afterSale,Is.EqualTo(destroyed),"Selling a healthy tower must not show a destruction cue");
+            game.Paused=false;yield return new WaitForSecondsRealtime(.7f);Assert.That(rubble==null,Is.True);
+            game.Paused=true;var feedback=game.GetComponent<CombatFeedback>();
+            for(int i=0;i<100;i++)feedback.TowerStruck(attacked,true);
+            yield return null;Assert.That(EffectRendererCount(feedback),Is.LessThanOrEqualTo(64));
+            game.StartMatch();game.Paused=true;yield return null;yield return null;
+            Assert.That(EffectRendererCount(feedback),Is.Zero,"Restart left stale siege effects");
+            yield return new ExitPlayMode();
+        }
+        [UnityTest]
         public IEnumerator HitDefeatAndLeakCuesRespectPauseResetAndBudget()
         {
             EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");

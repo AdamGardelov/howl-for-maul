@@ -169,9 +169,12 @@ namespace FrostMaze
             if(kind==PrimitiveType.Cylinder||kind==PrimitiveType.Sphere)o.GetComponent<MeshFilter>().sharedMesh=Faceted(kind);
             var collider=o.GetComponent<Collider>();collider.enabled=false;Destroy(collider);return o;
         }
+        public Tower Subject {get;private set;}
+        float observedHealth;
+        CombatFeedback feedback;
         public void Initialize(Prototype game,Tower tower,TowerDesign design,int faction)
         {
-            this.game=game;
+            this.game=game;Subject=tower;observedHealth=tower.Health;feedback=game.GetComponent<CombatFeedback>();
             var shots=game.World.Shots;
             observedShot=shots.Count>0?shots[shots.Count-1].Serial:0;
             var spec=tower.Spec;bool robot=game.World.Config.Theme=="iron";
@@ -229,6 +232,8 @@ namespace FrostMaze
         }
         public void Sync(Tower tower,bool clearance)
         {
+            if(tower.Health<observedHealth)feedback.TowerStruck(tower,false);
+            observedHealth=tower.Health;
             transform.position=new Vector3(tower.Center.X,0,tower.Center.Y);
             transform.localScale=new Vector3(tower.Spec.Width,clearance?.08f:1,tower.Spec.Height);
             VisibleLevel=tower.Level;for(int i=0;i<2;i++)tiers[i].SetActive(tower.Level>=i+2);

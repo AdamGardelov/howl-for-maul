@@ -353,6 +353,8 @@ namespace FrostMaze.Simulation
                                 e.AttackCooldown -= FixedDelta;
                                 if (e.AttackCooldown <= 0)
                                 {
+                                    e.LastAttackTick=Tick;
+                                    e.AttackDirection=(blocker.Center-e.Position).Normalized;
                                     Grid.Damage(blocker.Id, e.Spec.Damage);
                                     e.AttackCooldown = e.Spec.AttackInterval;
                                 }

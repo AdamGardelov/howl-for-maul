@@ -1,3 +1,5 @@
+Latest checkpoint: siege strike/destruction cues verified visually and by the full 74-case Unity suite. Next priority: user-requested edge scrolling and Space + left-drag camera control. Packages remain 75ab3ae.
+
 # Next verified work
 
 Latest source milestone: all twelve factions now have original design-specific tower models (20 winter + 56 Ironfold). Fresh combined Unity suite 72/72 passed. All 72 individual cases confirmed in Unity XML; the CLI detail list omits nine cases after domain reload. See Howl-Unity-Tests-Complete.json. Native close/normal captures inspected for all new sets. Read HOWL-VERIFICATION.md, IRON-MODELS.md and Performance/LIVE-COMBAT.md.
