@@ -1,0 +1,382 @@
+{
+  "source": "Unity TestResults.xml",
+  "run": {
+    "id": "2",
+    "testcasecount": "72",
+    "result": "Passed",
+    "total": "72",
+    "passed": "72",
+    "failed": "0",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-10-08 14:28:27Z",
+    "end-time": "2026-10-08 14:28:46Z",
+    "duration": "18.9328062"
+  },
+  "results": [
+    {
+      "FullName": "FrostMaze.Tests.PlayModeIntegration.BuilderViewsAndMapSwitching",
+      "Status": "Passed",
+      "Duration": 41.539698
+    },
+    {
+      "FullName": "FrostMaze.Tests.PlayModeIntegration.CombatEffectsRespectFlightPauseAndBudget",
+      "Status": "Passed",
+      "Duration": 42.093571
+    },
+    {
+      "FullName": "FrostMaze.Tests.PlayModeIntegration.EnemyPresentationTracksSimulationAndResets",
+      "Status": "Passed",
+      "Duration": 40.902917
+    },
+    {
+      "FullName": "FrostMaze.Tests.PlayModeIntegration.HitDefeatAndLeakCuesRespectPauseResetAndBudget",
+      "Status": "Passed",
+      "Duration": 41.733468
+    },
+    {
+      "FullName": "FrostMaze.Tests.PlayModeIntegration.MapLandmarksNeverCoverWalkableCells",
+      "Status": "Passed",
+      "Duration": 41.961447
+    },
+    {
+      "FullName": "FrostMaze.Tests.PlayModeIntegration.OffscreenLeakAlertAggregatesPausesExpiresAndFocusesExit",
+      "Status": "Passed",
+      "Duration": 56.47019
+    },
+    {
+      "FullName": "FrostMaze.Tests.PlayModeIntegration.PulseModelsFollowPaidChampionProgression",
+      "Status": "Passed",
+      "Duration": 42.028556
+    },
+    {
+      "FullName": "FrostMaze.Tests.PlayModeIntegration.SetupCanReturnAndNewMatchesClearInteraction",
+      "Status": "Passed",
+      "Duration": 42.550458
+    },
+    {
+      "FullName": "FrostMaze.Tests.PlayModeIntegration.TowerFireFeedbackTracksShotsAndPauses",
+      "Status": "Passed",
+      "Duration": 43.255931
+    },
+    {
+      "FullName": "FrostMaze.Tests.PlayModeIntegration.TowerRolesUpgradesAndCamera",
+      "Status": "Passed",
+      "Duration": 43.292252
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.MinimapTerrainMatchesBothSourceGridsAndCachesOnlyPermanentCells",
+      "Status": "Passed",
+      "Duration": 0.149944
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Tower spatial queries match full scans through removal and rebuild",
+      "Status": "Passed",
+      "Duration": 0.719512
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Reference wall seams accept flush towers and exclude enemies",
+      "Status": "Passed",
+      "Duration": 0.326487
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Half-cell paid queues preserve position ownership and selection",
+      "Status": "Passed",
+      "Duration": 0.005771
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Half-cell wall seal triggers siege and reopens after sale",
+      "Status": "Passed",
+      "Duration": 0.010977
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Paid reference mazes detour ground, preserve flight and reopen",
+      "Status": "Passed",
+      "Duration": 2.73895
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Mixed-flight chain feedback preserves source and target",
+      "Status": "Passed",
+      "Duration": 0.002534
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Every armed roster design has valid targeting and air splash",
+      "Status": "Passed",
+      "Duration": 0.013603
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Chain volleys retain bounded ordered shot history",
+      "Status": "Passed",
+      "Duration": 0.007304
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Wave previews match spawns and show owned prerequisites",
+      "Status": "Passed",
+      "Duration": 0.102545
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Robot champion progression and ownership",
+      "Status": "Passed",
+      "Duration": 0.000924
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Reference map masks and spatial index",
+      "Status": "Passed",
+      "Duration": 0.031608
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Reference map lane traversal",
+      "Status": "Passed",
+      "Duration": 0.659863
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Faction selection enforces rosters",
+      "Status": "Passed",
+      "Duration": 0.001988
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Slow expiry and chain target limits",
+      "Status": "Passed",
+      "Duration": 0.023262
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Straight path",
+      "Status": "Passed",
+      "Duration": 0.000795
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Horizontal wall detour",
+      "Status": "Passed",
+      "Duration": 0.001908
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Vertical wall detour",
+      "Status": "Passed",
+      "Duration": 0.001649
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Valid diagonal clearance",
+      "Status": "Passed",
+      "Duration": 0.00019
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Invalid diagonal clearance",
+      "Status": "Passed",
+      "Duration": 0.000224
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Diagonal aperture changes global connectivity",
+      "Status": "Passed",
+      "Duration": 0.000834
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Tower combat counts negative health as a kill",
+      "Status": "Passed",
+      "Duration": 0.000378
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Long zig-zag maze",
+      "Status": "Passed",
+      "Duration": 0.01714
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Complete blockage",
+      "Status": "Passed",
+      "Duration": 0.001018
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Reopen after selling, invalidate cached field",
+      "Status": "Passed",
+      "Duration": 0.002462
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Reopen after destruction",
+      "Status": "Passed",
+      "Duration": 0.001502
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Enemy breaches and resumes",
+      "Status": "Passed",
+      "Duration": 0.010949
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Congestion never triggers siege",
+      "Status": "Passed",
+      "Duration": 0.031241
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Flight follows checkpoints over wall",
+      "Status": "Passed",
+      "Duration": 0.00055
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Placement footprint and occupancy",
+      "Status": "Passed",
+      "Duration": 0.000139
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Reproducible fixed-step simulation",
+      "Status": "Passed",
+      "Duration": 0.026573
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Shared fields reused",
+      "Status": "Passed",
+      "Duration": 0.001005
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Enemies traverse zig-zag without collision",
+      "Status": "Passed",
+      "Duration": 0.0849
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Dynamic blockage and sale during wave",
+      "Status": "Passed",
+      "Duration": 0.007646
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Ground checkpoints retain downstream routing",
+      "Status": "Passed",
+      "Duration": 0.002859
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Two hundred enemies complete a shared route",
+      "Status": "Passed",
+      "Duration": 3.993128
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.No tunnelling at high speed",
+      "Status": "Passed",
+      "Duration": 0.004019
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Economy transactions reject invalid purchases and refunds",
+      "Status": "Passed",
+      "Duration": 0.000573
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Builder travel cancellation and order replacement",
+      "Status": "Passed",
+      "Duration": 0.000834
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Construction revalidates on arrival",
+      "Status": "Passed",
+      "Duration": 0.000229
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Kill and wave rewards paid once with victory",
+      "Status": "Passed",
+      "Duration": 0.000229
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Defeat freezes match and prevents new actions",
+      "Status": "Passed",
+      "Duration": 0.002058
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Shared map traverses all defense areas",
+      "Status": "Passed",
+      "Duration": 0.043203
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Complete ten-wave match using paid builder construction",
+      "Status": "Passed",
+      "Duration": 4.480835
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.All four lanes active for every player count",
+      "Status": "Passed",
+      "Duration": 0.133742
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Independent lane spawn queues",
+      "Status": "Passed",
+      "Duration": 0.034153
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Permanent terrain blocks construction and siege navigation",
+      "Status": "Passed",
+      "Duration": 0.000633
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.All upper lanes reach shared bottom exit",
+      "Status": "Passed",
+      "Duration": 0.093013
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Fixed team economy and selected starting positions",
+      "Status": "Passed",
+      "Duration": 0.000678
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Independent builders and owned sale refunds",
+      "Status": "Passed",
+      "Duration": 0.00036
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Difficulty scales enemies without disabling lanes",
+      "Status": "Passed",
+      "Duration": 0.100357
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Build orders retain their tower design",
+      "Status": "Passed",
+      "Duration": 0.000408
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Tower upgrades preserve blueprints and refund investments",
+      "Status": "Passed",
+      "Duration": 0.000341
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Cannon splash damages ground crowds but not air",
+      "Status": "Passed",
+      "Duration": 0.010609
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Barricades have no weapon",
+      "Status": "Passed",
+      "Duration": 0.010296
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Queued construction retains designs and cancels cleanly",
+      "Status": "Passed",
+      "Duration": 0.000595
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Twenty-wave escalation preserves opening and forecasts",
+      "Status": "Passed",
+      "Duration": 0.011814
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Robot faction strengths and paid reclamation",
+      "Status": "Passed",
+      "Duration": 0.002909
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Wave income excludes spending and preserves independent snapshots",
+      "Status": "Passed",
+      "Duration": 0.004043
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Wave results distinguish survived leaks from defeat",
+      "Status": "Passed",
+      "Duration": 0.016061
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Free-build wave results do not invent income",
+      "Status": "Passed",
+      "Duration": 0.000204
+    },
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Captured dense Ironfold corner crowd clears without siege",
+      "Status": "Passed",
+      "Duration": 2.09577
+    }
+  ],
+  "note": "Pipeline CLI summary also reports 72/72 but its detailed list contains only 63 records after domain reloads; this complete list comes from the NUnit XML report."
+}

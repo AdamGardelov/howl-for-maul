@@ -4,7 +4,7 @@ All twelve factions now have original design-specific models: twenty winter towe
 
 ## Automated tests
 
-Fresh Unity 6000.3.25f1 suite: **72/72 passed**, including ten Play-mode integration cases. Compilation had zero errors/warnings. Exact result: Howl-Unity-Tests.json.
+Fresh Unity 6000.3.25f1 suite: **72/72 passed**, including ten Play-mode integration cases. Compilation had zero errors/warnings. Complete per-case result: Howl-Unity-Tests-Complete.json, extracted from Unity’s NUnit XML. The CLI summary in Howl-Unity-Tests.json is also 72/72, but its detailed array retains only 63 entries after domain reloads. The XML confirms all ten Play-mode cases individually.
 
 Paid presentation coverage buys all eight Ironfold rosters, checks each champion's six prerequisites, air targeting, cosmetic collider absence and champion upgrades. It preserves higher Gravity costs and Scrap's cheap opener. Winter models/upgrades, shared mesh cleanup, animation pause/resume, shot facing/recoil, setup flow and map switching remain covered. Simulation cases cover exact masks, all lanes, fixed team economy, ownership, half-cell paid construction, wall seams, siege/reopening, combat targeting and the captured 61-unit corner jam. The minimap case independently checks all 20,480 source cells, cache reuse and texture cleanup.
 
