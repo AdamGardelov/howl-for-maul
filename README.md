@@ -67,7 +67,7 @@ Rimewatch factions have five exclusive designs. Ironfold instead offers eight ro
 
 After each wave, the sidebar reports defeated enemies, leaks and earned bounty/bonus income. In local multi-player matches it shows your share and the team total, independently of what you spent during combat.
 
-Before buying, the sidebar shows damage, firing interval, direct DPS, range, targeting and special effects. Locked champions list the specific towers you still need to own. Wave previews show difficulty-scaled health and siege damage, speed, spawn interval and the next flying wave.
+Before buying, the sidebar shows damage, firing interval, direct DPS, range, targeting and special effects. Locked champions list the specific towers you still need to own. Losing a prerequisite relocks new champions but keeps existing ones. A queued champion is skipped without charging if a prerequisite is missing on arrival; later orders continue. Replacing the missing design restores the unlock, and you can issue a new champion order. Wave previews show difficulty-scaled health and siege damage, speed, spawn interval and the next flying wave.
 
 Purchased towers can be upgraded twice. Upgrades improve health and weapon damage/range, costing the original tower price times its current level. Sale refunds include part of the upgrade investment; the selected-tower inspector shows the exact amount and owner, and disables actions unavailable to the current player. Players may build anywhere on open terrain, but can sell or upgrade only their own towers. The P1–P4 sidebar buttons switch local control; they are not a network lobby.
 
@@ -107,3 +107,5 @@ The tower picker is a compact bottom-right portrait grid. Click a tower image or
 The minimap stays on the left and renders the actual scenery from above. The middle stays clear except for contextual upgrade/removal controls on a selected tower. The command grid includes Remove [X]; hover a tower in removal mode to see its refund.
 
 Zoom in for a lower perspective view of the 3D models; zoom out for a steep overview. Rimewatch has frost-worn paving and layered icy stonework; Ironfold has weathered foundry slate and copper trim. See Docs/DEPTH-AND-TERRAIN.md.
+
+The [three-player compact campaigns](Docs/Balance/COMPACT-THREE-PLAYER.md) cover all twelve factions with separate 400-gold starting wallets. The [champion queue recovery regression](Docs/CHAMPION-QUEUE-RECOVERY.md) verifies paid rebuilding after a sold or destroyed prerequisite.

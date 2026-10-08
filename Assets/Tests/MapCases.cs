@@ -277,6 +277,53 @@ namespace FrostMaze.Tests
     w.SelectPlayer(0);w.Sell(3,23);Check(!w.RequirementsMet(faction*7+6),"sold prerequisite still counted");
    }
   }
+  public static void PaidChampionQueueRecovery() {
+   // Real Ironfold terrain and the unmodified solo wallet; no grants or free builds.
+   foreach(bool destroyed in new[]{false,true})for(int faction=0;faction<8;faction++) {
+    var c=Load(true);var w=new World(c,new MatchOptions{Factions=new[]{faction,0,0,0}});
+    var cells=MazeCells(true);int spent=0,refund=0;string context=c.Factions[faction].Name+(destroyed?" destroyed":" sold");
+    void Purchase(int design,int cell) {
+     w.SelectedDesign=design;int before=w.Gold,cost=w.BuildCost;
+     Check(w.OrderBuild(cells[cell,0],cells[cell,1],out string reason),context+": "+reason);
+     for(int tick=0;tick<1000&&w.HasBuildOrder;tick++)w.Step();
+     var built=w.Grid.At(cells[cell,0],cells[cell,1]);
+     Check(!w.HasBuildOrder&&built!=null&&built.Design==design,context+": paid order failed");
+     Check(w.Gold==before-cost,context+": incorrect purchase debit");spent+=cost;
+    }
+    int first=faction*7,champion=first+6;
+    for(int design=0;design<6;design++)Purchase(first+design,design);
+    Purchase(champion,6);var standing=w.Grid.At(cells[6,0],cells[6,1]);
+    int beforeQueue=w.Gold;
+    Check(w.OrderBuild(cells[12,0],cells[12,1],out _),context+": second champion order rejected");
+    w.SelectedDesign=first;
+    Check(w.OrderBuild(cells[13,0],cells[13,1],out _,true),context+": recovery order rejected");
+    Check(w.Gold==beforeQueue&&w.QueuedBuilds==2,context+": queue reserved money");
+    var prerequisite=w.Grid.At(cells[0,0],cells[0,1]);
+    if(destroyed) {
+     // Inject damage only to trigger the same removal path as siege; no claim of a played siege battle.
+     w.Grid.Damage(prerequisite.Id,prerequisite.Health);
+     Check(!w.Sell(cells[0,0],cells[0,1])&&w.Gold==beforeQueue,context+": destroyed prerequisite refunded");
+    } else {
+     refund=w.SaleRefund(prerequisite.Id);
+     Check(w.Sell(cells[0,0],cells[0,1])&&w.Gold==beforeQueue+refund,context+": wrong sale refund");
+    }
+    Check(!w.RequirementsMet(champion)&&w.Grid.Find(standing.Id)==standing,context+": existing champion removed or unlock stale");
+    bool skipped=false;
+    for(int tick=0;tick<1000&&w.QueuedBuilds>0;tick++) {
+     w.Step();skipped|=w.BuilderNotice.StartsWith("Skipped order:");
+     Check(w.Grid.At(cells[12,0],cells[12,1])==null,context+": queued champion bypassed lost prerequisite");
+    }
+    spent+=c.Catalog[first].Cost;
+    Check(skipped&&w.QueuedBuilds==0&&w.Gold==c.StartingGold-spent+refund,context+": skipped order charged or recovery stalled");
+    Check(w.Grid.At(cells[13,0],cells[13,1])?.Design==first&&w.SelectedDesign==first,context+": later design/toolbar changed");
+    Check(w.RequirementsMet(champion),context+": replacement did not restore unlock");
+    for(int tick=0;tick<30;tick++)w.Step();
+    Check(w.Grid.At(cells[12,0],cells[12,1])==null,context+": skipped champion retried automatically");
+    Purchase(champion,12);
+    Check(w.Grid.Find(standing.Id)==standing&&w.Grid.Towers.Count==8,context+": champion retention/rebuild count");
+    Check(w.Gold==c.StartingGold-spent+refund&&w.Gold>=0,context+": final paid ledger mismatch");
+   }
+  }
   public static void WavePreviews() {
    foreach(Difficulty difficulty in new[]{Difficulty.Relaxed,Difficulty.Normal,Difficulty.Hard}) {
     var c=Scenario.SharedDefense();var w=new World(c,new MatchOptions{Difficulty=difficulty});

@@ -1,0 +1,37 @@
+{
+  "status": "completed",
+  "duration": 1.5,
+  "summary": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "results": [
+    {
+      "FullName": "FrostMaze.Tests.UnityTests.Paid champion queues recover from sold or destroyed prerequisites",
+      "Status": "Passed",
+      "Duration": 0.064718,
+      "Message": null,
+      "StackTrace": null
+    }
+  ],
+  "xmlCases": [
+    {
+      "id": "1033",
+      "name": "Paid champion queues recover from sold or destroyed prerequisites",
+      "fullname": "FrostMaze.Tests.UnityTests.Paid champion queues recover from sold or destroyed prerequisites",
+      "methodname": "Simulation",
+      "classname": "FrostMaze.Tests.UnityTests",
+      "runstate": "Runnable",
+      "seed": "1612510168",
+      "result": "Passed",
+      "start-time": "2026-10-08 20:41:49Z",
+      "end-time": "2026-10-08 20:41:49Z",
+      "duration": "0.064718",
+      "asserts": "0"
+    }
+  ],
+  "scope": "One focused Unity case with sixteen paid prerequisite-loss scenarios; not a full Unity suite."
+}

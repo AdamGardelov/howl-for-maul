@@ -2,6 +2,8 @@
 
 ## Latest state
 
+- Three-player compact follow-up: five Normal twenty-wave wins spanning all twelve factions, 48 towers per team, 436 total upgrades and 300 wave-end wallet checks. Rime/Stonebound/Ember finishes with nine lives after final-wave leaks; the other four teams keep 30. Read Balance/COMPACT-THREE-PLAYER.md. New paid champion queue recovery covers sold/destroyed prerequisites across all eight robot factions; all 65 pure cases pass. Read CHAMPION-QUEUE-RECOVERY.md for verification. Tests/docs only; player packages remain 110633b.
+
 - Readability/stonework follow-through: overlapping health bars are suppressed, selection stays clear, Alt reveals all bars, and perspective Ctrl-click inspection follows ground/flying models. Existing-tower hover no longer looks like a rejected placement. Corrected terrain texture thresholds restore paving joints, snow edges and wall courses. 64 pure cases and five focused Unity cases pass across the recorded runs. Read READABILITY-AND-STONEWORK.md. Current packages contain 110633b. Both builds, both-map Linux smoke and three isolated Linux input/visual sessions passed: paid purchases/removal, Alt reveal, both-map stonework and live-wave ground Ctrl-click inspection. All normal closes exit zero; Windows is build-tested only.
 - Paid investment diagnostic: first compact Rime solo win, 48 towers, 87 upgrades, 14 lives. New strategy wins 11/12 solo factions and both tested mixed pairs; all twelve have a compact win across saved strategies. No game stats changed. Read Balance/COMPACT-INVESTMENT.md.
 

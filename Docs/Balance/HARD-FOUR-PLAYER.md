@@ -19,7 +19,7 @@ dotnet run --project Headless/HowlForMaul.Headless.csproj -c Release -- --balanc
 dotnet run --project Headless/HowlForMaul.Headless.csproj -c Release -- --balance /tmp/howl-last-four.json Hard 4 adaptive mixed Ironfold 4
 ```
 
-The adaptive bot knows enemy routes, buys between waves and uses hundreds of towers. This is paid simulation coverage, not a human playthrough, online multiplayer test or proof of final difficulty balance. Compact solo Rime remains unresolved under the separate artificial 48-tower diagnostic limit.
+The adaptive bot knows enemy routes, buys between waves and uses hundreds of towers. This is paid simulation coverage, not a human playthrough, online multiplayer test or proof of final difficulty balance. At this historical checkpoint, compact solo Rime was unresolved under the artificial 48-tower diagnostic limit. The subsequent COMPACT-INVESTMENT.md records its winning strategy.
 
 ## Concurrent build queues
 
