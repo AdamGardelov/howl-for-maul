@@ -8,6 +8,9 @@ namespace FrostMaze
         public string Role { get; private set; }
         public int VisibleLevel { get; private set; }
         Transform weapon;
+        Prototype game;
+        long observedShot,shotTick=-100;
+
         GameObject[] tiers=new GameObject[2];
         Material shell,accent,light;
         GameObject Part(string name,PrimitiveType kind,Vector3 p,Vector3 scale,Material material,Transform parent=null)
@@ -18,6 +21,9 @@ namespace FrostMaze
         }
         public void Initialize(Prototype game,Tower tower,TowerDesign design,int faction)
         {
+            this.game=game;
+            var shots=game.World.Shots;
+            observedShot=shots.Count>0?shots[shots.Count-1].Serial:0;
             var spec=tower.Spec;bool robot=game.World.Config.Theme=="iron";
             var palette=game.TowerPalette(faction);shell=palette[0];accent=palette[1];light=palette[2];
             Role=spec.Damage<=0?"Wall":design!=null&&design.Requires.Length>0?"Champion":!spec.TargetsGround?"Interceptor":spec.SlowFraction>0?"Control":spec.ChainTargets>0?"Relay":spec.SplashRadius>0?"Artillery":"Sentry";
@@ -55,7 +61,22 @@ namespace FrostMaze
             transform.position=new Vector3(tower.Center.X,0,tower.Center.Y);
             transform.localScale=new Vector3(tower.Spec.Width,clearance?.08f:1,tower.Spec.Height);
             VisibleLevel=tower.Level;for(int i=0;i<2;i++)tiers[i].SetActive(tower.Level>=i+2);
-            if(weapon!=null)weapon.localScale=Vector3.one*(1+.08f*(tower.Level-1));
+            if(weapon!=null) {
+                weapon.localScale=Vector3.one*(1+.08f*(tower.Level-1));
+                var shots=game.World.Shots;
+                // Only direct shots from this footprint drive its weapon. Chain origins are enemies.
+                for(int i=shots.Count-1;i>=0&&shots[i].Serial>observedShot;i--) {
+                    var shot=shots[i];
+                    if(shot.Chained||V2.Distance(shot.From,tower.Center)>.001f)continue;
+                    var direction=shot.To-shot.From;
+                    if(direction.Length>.001f)weapon.localRotation=Quaternion.Euler(0,Mathf.Atan2(direction.X,direction.Y)*Mathf.Rad2Deg,0);
+                    shotTick=game.World.Tick;break;
+                }
+                if(shots.Count>0)observedShot=shots[shots.Count-1].Serial;
+                // Simulation ticks freeze in pause/setup and naturally follow the speed controls.
+                float recoil=Mathf.Clamp01(1-(game.World.Tick-shotTick)/6f)*(Role=="Artillery"?.14f:.09f);
+                weapon.localPosition=-(weapon.localRotation*Vector3.forward)*recoil;
+            }
         }
     }
 }

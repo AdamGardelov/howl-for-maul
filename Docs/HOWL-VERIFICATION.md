@@ -1,17 +1,19 @@
-# Howl for Maul verification — battlefield and twenty-wave checkpoint
+# Howl for Maul verification — tower firing feedback checkpoint
 
 The user-requested four-part pass is implemented: clearer tower/enemy presentation and camera, stronger faction tradeoffs, twenty-wave campaigns, and a normal menu flow without the empty test arena. See BATTLEFIELD-UPDATE.md for implementation details.
 
 ## Automated tests
 
-- Unity 6000.3.25f1: **59/59 passed**, including five actual Play-mode integration tests. Exact results: Howl-Unity-Tests.json.
-- Standalone .NET suite: **54/54 passed**. This includes the captured 61-unit Ironfold corner jam, which failed before the movement fix and now verifies that all enemies finish without overlap, terrain/tower penetration or false siege.
+- Unity 6000.3.25f1: **60/60 passed**, including six actual Play-mode integration tests. Exact results: Howl-Unity-Tests.json.
+- Previous checkpoint standalone .NET suite: **54/54 passed**. It was not rerun for this presentation-only patch. This includes the captured 61-unit Ironfold corner jam, which failed before the movement fix and now verifies that all enemies finish without overlap, terrain/tower penetration or false siege.
 - New coverage checks paid tower role silhouettes, upgrade markers, cosmetic collider isolation, builder camera/overview, packaged twenty-wave data, robot strengths and paid Scrap refunds, difficulty-scaled late previews, and heavy/runner silhouettes including Relaxed siege damage.
 - Existing mask fidelity, all-active lanes, fixed team economy, ownership, upgrades, paid queues, freeform maze/reopening, siege, combat effects, pause and return-to-match regressions remain passing.
 
+The new Play-mode regression uses a paid tower and real combat hit to verify shot-facing, recoil, pause/setup freezing, recovery after simulation resumes, and ignoring chain-bounce origins. No simulation or balance files changed.
+
 ## Paid full campaigns
 
-**36 final campaigns completed: 27 wins, 9 defeats, no stalls and no individual/team wallet errors.** These are Normal-difficulty simulations with real travel, purchases and unchanged income:
+Previous checkpoint evidence (not rerun for this presentation-only patch): **36 final campaigns completed: 27 wins, 9 defeats, no stalls and no individual/team wallet errors.** These are Normal-difficulty simulations with real travel, purchases and unchanged income:
 
 | Policy | Campaigns | Wins | Defeats |
 |---|---:|---:|---:|
@@ -31,7 +33,7 @@ Inspected actual Game-view captures of Rimewatch's five tower roles and upgrade 
 
 Updated Linux and Windows builds succeeded with zero build errors. Howl-Builds.json records the final build summaries. Linux has the expected editor-automation-disabled warning; Windows additionally reports unsupported package ray-tracing shader warnings. Standard URP rendering is used.
 
-The actual final Linux executable passed the packaged smoke test on an isolated virtual display, exiting 0 and confirming both twenty-wave maps, faction data and every ground/flying lane route. Both headless and ordinary windowed attempts on this machine's native :0 desktop failed during X video-mode initialization before game code. **Use Unity Play mode on this machine for now.** Native standalone desktop launch is not claimed to work. The temporary :98 display was stopped after verification.
+The actual final Linux executable passed the packaged smoke test on an isolated virtual display, exiting 0 and confirming both twenty-wave maps, faction data and every ground/flying lane route. At the previous checkpoint, both headless and ordinary windowed attempts on this machine's native :0 desktop failed during X video-mode initialization before game code. **Use Unity Play mode on this machine for now.** Native standalone desktop launch is not claimed to work. The temporary :98 display was stopped after verification.
 
 Windows has been built, but has not been executed on Windows. Neither smoke tests nor automated campaigns constitute a full human desktop playthrough.
 

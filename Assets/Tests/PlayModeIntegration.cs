@@ -9,6 +9,40 @@ namespace FrostMaze.Tests
     public sealed class PlayModeIntegration
     {
         [UnityTest]
+        public IEnumerator TowerFireFeedbackTracksShotsAndPauses()
+        {
+            EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
+            yield return new EnterPlayMode();yield return null;
+            var game=Object.FindFirstObjectByType<Prototype>();game.StartMatch();game.Paused=true;
+            Assert.That(game.World.OrderBuild(16,14,out _),Is.True);
+            for(int i=0;i<150;i++)game.World.Step();
+            yield return null;yield return null;
+            var tower=game.World.Grid.At(16,14);
+            var weapon=GameObject.Find("Tower "+tower.Id).transform.Find("Sentry weapon");
+            Assert.That(weapon.localPosition,Is.EqualTo(Vector3.zero),"Idle tower must not replay old shots");
+            Assert.That(game.World.StartWave(),Is.True);
+            var enemy=game.World.Spawn(new FrostMaze.Simulation.WaveSpec{Health=500},tower.Center+new FrostMaze.Simulation.V2(1.8f,0));
+            Assert.That(enemy,Is.Not.Null);game.World.Step();yield return null;
+            Assert.That(enemy.Health,Is.LessThan(500),"Fixture must use a real combat hit");
+            Assert.That(weapon.forward.x,Is.GreaterThan(.99f),"Weapon did not face its actual shot");
+            Assert.That(weapon.localPosition.x,Is.LessThan(-.08f),"Missing firing recoil");
+            var recoil=weapon.localPosition;var facing=weapon.localRotation;
+            yield return null;yield return null;
+            Assert.That(weapon.localPosition,Is.EqualTo(recoil));Assert.That(weapon.localRotation,Is.EqualTo(facing));
+            game.Paused=false;game.OpenSetup();long tick=game.World.Tick;
+            yield return null;yield return null;
+            Assert.That(game.World.Tick,Is.EqualTo(tick));Assert.That(weapon.localPosition,Is.EqualTo(recoil));
+            game.Paused=true;game.ReturnToMatch();game.World.TowersFire=false;
+            for(int i=0;i<8;i++)game.World.Step();yield return null;
+            Assert.That(weapon.localPosition,Is.EqualTo(Vector3.zero),"Recoil did not recover after simulation resumed");
+            var shots=game.World.Shots;
+            shots.Add(new FrostMaze.Simulation.ShotEvent{Serial=shots[shots.Count-1].Serial+1,From=tower.Center,To=tower.Center+new FrostMaze.Simulation.V2(0,3),Chained=true});
+            yield return null;
+            Assert.That(weapon.localRotation,Is.EqualTo(facing),"A chain bounce must not turn the firing tower");
+            Assert.That(weapon.localPosition,Is.EqualTo(Vector3.zero));
+            yield return new ExitPlayMode();
+        }
+        [UnityTest]
         public IEnumerator TowerRolesUpgradesAndCamera()
         {
             EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
