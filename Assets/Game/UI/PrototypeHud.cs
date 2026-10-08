@@ -54,7 +54,9 @@ namespace FrostMaze
             string role=spec.ChainTargets>0?"CHAIN":spec.SlowFraction>0?"CONTROL":spec.SplashRadius>0?"SPLASH":"DIRECT";
             return role+" / "+(spec.TargetsGround?(spec.TargetsAir?"GROUND + AIR":"GROUND"):"AIR");
         }
-        void OnGUI()
+        static readonly Unity.Profiling.ProfilerMarker PhaseProfile=new Unity.Profiling.ProfilerMarker("Howl.HUD");
+        void OnGUI() { using(PhaseProfile.Auto()) DrawHud(); }
+        void DrawHud()
         {
             if(game==null||game.World==null)return;
             Styles();

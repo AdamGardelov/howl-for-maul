@@ -22,7 +22,9 @@ namespace FrostMaze
             for(int i=0;i<data.Length;i++){float t=(float)i/rate,envelope=1-(float)i/data.Length;data[i]=Mathf.Sin(2*Mathf.PI*(frequency*t-120*t*t))*envelope*envelope*.5f;}
             var clip=AudioClip.Create(name,data.Length,1,rate,false);clip.SetData(data,0);return clip;
         }
-        void Update()
+        static readonly Unity.Profiling.ProfilerMarker PhaseProfile=new Unity.Profiling.ProfilerMarker("Howl.Effects");
+        void Update() { using(PhaseProfile.Auto()) UpdateEffects(); }
+        void UpdateEffects()
         {
             if(game==null||game.World==null)return;
             if(observed!=game.World){observed=game.World;serial=0;effectTime=0;foreach(var f in flashes)Destroy(f.Object);flashes.Clear();}

@@ -5,6 +5,9 @@ namespace FrostMaze
 {
     public sealed class Prototype : MonoBehaviour
     {
+        static readonly Unity.Profiling.ProfilerMarker InputProfile=new Unity.Profiling.ProfilerMarker("Howl.Input");
+        static readonly Unity.Profiling.ProfilerMarker SimulationProfile=new Unity.Profiling.ProfilerMarker("Howl.Simulation");
+        static readonly Unity.Profiling.ProfilerMarker ViewsProfile=new Unity.Profiling.ProfilerMarker("Howl.Views");
         public MapDefinition Map;
         static string requestedMap = "Rimewatch";
         public bool MoveMode;
@@ -224,7 +227,7 @@ namespace FrostMaze
                 int steps = 0;
                 while (accumulator >= FrostMaze.Simulation.World.FixedDelta && steps++ < 12)
                 {
-                    World.Step();
+                    using(SimulationProfile.Auto()) World.Step();
                     accumulator -= FrostMaze.Simulation.World.FixedDelta;
                 }
             }
@@ -232,7 +235,8 @@ namespace FrostMaze
                 accumulator = 0;
             SyncViews();
         }
-        void ReadBuildInput()
+        void ReadBuildInput() { using(InputProfile.Auto()) ReadBuildInputProfiled(); }
+        void ReadBuildInputProfiled()
         {
             int shortcut=0;for(int i=0;i<World.Config.Catalog.Length;i++)if(World.DesignAvailable(i)){if(UnityEngine.Input.GetKeyDown(KeyCode.Alpha1+shortcut)){World.SelectedDesign=i;SellMode=false;MoveMode=false;}shortcut++;}
             if(UnityEngine.Input.GetKeyDown(KeyCode.U)&&SelectedTowerId>0){World.Upgrade(SelectedTowerId,out string message);Notice=message;}
@@ -353,7 +357,8 @@ namespace FrostMaze
                 }
             Notice = "Zig-zag loaded. Close an opening to test siege behavior.";
         }
-        void SyncViews()
+        void SyncViews() { using(ViewsProfile.Auto()) SyncViewsProfiled(); }
+        void SyncViewsProfiled()
         {
             if (builder != null)
             {

@@ -36,6 +36,7 @@ namespace FrostMaze.Tests
                 w.Step();
         }
         public static readonly Case[] All ={
+            new Case("Tower spatial queries match full scans through removal and rebuild",SpatialCases.TowerQueriesMatchFullScan),
             new Case("Reference wall seams accept flush towers and exclude enemies",MapCases.WallSeams),
             new Case("Half-cell paid queues preserve position ownership and selection",MapCases.FractionalPaidOrders),
             new Case("Half-cell wall seal triggers siege and reopens after sale",MapCases.FractionalWallSiege),

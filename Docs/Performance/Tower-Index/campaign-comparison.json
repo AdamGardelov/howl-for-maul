@@ -1,0 +1,20 @@
+[
+  {
+    "campaign": "prism-hard",
+    "baseline": "Docs/Balance/PRISM-HARD.json",
+    "allRecordedFieldsIdentical": true,
+    "waves": 20,
+    "lives": 30,
+    "won": true,
+    "spent": 6740
+  },
+  {
+    "campaign": "gravity-scrap-hard",
+    "baseline": "Docs/Balance/GRAVITY-SCRAP-HARD.json",
+    "allRecordedFieldsIdentical": true,
+    "waves": 20,
+    "lives": 30,
+    "won": true,
+    "spent": 6744
+  }
+]

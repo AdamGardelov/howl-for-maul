@@ -4,7 +4,7 @@ All twelve factions now have original design-specific models: twenty winter towe
 
 ## Automated tests
 
-Fresh Unity 6000.3.25f1 suite: **65/65 passed**, including seven Play-mode integration cases. Tool-reported duration 25.30 seconds; wall time includes editor reloads. Compilation had zero errors/warnings. Exact result: Howl-Unity-Tests.json.
+Fresh Unity 6000.3.25f1 suite: **66/66 passed**, including seven Play-mode integration cases. Tool-reported duration 17.94 seconds; wall time includes editor reloads. Compilation had zero errors/warnings. Exact result: Howl-Unity-Tests.json.
 
 Paid presentation coverage buys all eight Ironfold rosters, checks each champion's six prerequisites, air targeting, cosmetic collider absence and champion upgrades. It preserves higher Gravity costs and Scrap's cheap opener. Winter models/upgrades, shared mesh cleanup, animation pause/resume, shot facing/recoil, setup flow and map switching remain covered. Simulation cases cover exact masks, all lanes, fixed team economy, ownership, half-cell paid construction, wall seams, siege/reopening, combat targeting and the captured 61-unit corner jam. The minimap case independently checks all 20,480 source cells, cache reuse and texture cleanup.
 
@@ -25,6 +25,8 @@ An earlier quality package passed actual mouse-driven Start Match, build, select
 Rigid tower batching and permanent minimap caching reduced the matched paused 324-tower editor overview from 6206 to 4405 draw calls and median reported render time from 11.99 to 8.29 ms. With 2× MSAA and medium soft shadows the paused median was 8.33 ms, with slower tails. See Performance/TOWER-BATCHING.md, MINIMAP-CACHE.md and QUALITY-PASS.md.
 
 The separate moving-combat diagnostic reported about 24.87 ms median render time with 324 towers and 74 enemies. That is not comparable to the paused fixture or a standalone FPS benchmark; crowded combat still merits profiling. All measurements are short local editor samples, not promises for other hardware.
+
+Tower-query follow-up: spatial indexing reduced the matched crowded fixture from 14.548 to 2.914 ms per simulation step and median editor frame time from 27.927 to 14.253 ms. Exact geometry is unchanged; 20,670 differential queries and the full 66-case Unity suite passed. See Performance/Tower-Index/README.md for raw samples and limits.
 
 ## Packages and platform limits
 

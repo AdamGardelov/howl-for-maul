@@ -41,6 +41,32 @@ namespace FrostMaze.Simulation
             foreach(var t in Terrain)if(x<t.X+t.Width&&x+width>t.X&&y<t.Y+t.Height&&y+height>t.Y)return true;
             return false;
         }
+        // Broad phase only: exact rounded-disc geometry still decides collision.
+        // Tower footprints stay fixed for their lifetime; upgrades change combat stats only.
+        const int TowerBucketSize=2;
+        readonly Dictionary<int,List<Tower>> towerBuckets=new Dictionary<int,List<Tower>>();
+        int TowerBucketColumns => (Width+TowerBucketSize-1)/TowerBucketSize;
+        void TowerBounds(V2 a,V2 b,float radius,out int minX,out int maxX,out int minY,out int maxY)
+        {
+            minX=Math.Max(0,(int)Math.Floor((Math.Min(a.X,b.X)-radius)/TowerBucketSize));
+            maxX=Math.Min(TowerBucketColumns-1,(int)Math.Floor((Math.Max(a.X,b.X)+radius)/TowerBucketSize));
+            minY=Math.Max(0,(int)Math.Floor((Math.Min(a.Y,b.Y)-radius)/TowerBucketSize));
+            maxY=Math.Min((Height-1)/TowerBucketSize,(int)Math.Floor((Math.Max(a.Y,b.Y)+radius)/TowerBucketSize));
+        }
+        void IndexTower(Tower tower,bool add)
+        {
+            TowerBounds(tower.Center-tower.Half,tower.Center+tower.Half,0,out int minX,out int maxX,out int minY,out int maxY);
+            for(int y=minY;y<=maxY;y++)for(int x=minX;x<=maxX;x++) {
+                int key=x+y*TowerBucketColumns;
+                if(add) {
+                    if(!towerBuckets.TryGetValue(key,out var bucket)){bucket=new List<Tower>();towerBuckets.Add(key,bucket);}
+                    bucket.Add(tower);
+                } else if(towerBuckets.TryGetValue(key,out var bucket)) {
+                    bucket.Remove(tower);
+                    if(bucket.Count==0)towerBuckets.Remove(key);
+                }
+            }
+        }
         int nextId = 1;
         public MazeGrid(int width, int height)
         {
@@ -59,6 +85,7 @@ namespace FrostMaze.Simulation
                     return null;
             var tower = new Tower { Id = nextId++, CellX = x, CellY = y, Spec = spec, Health = spec.Health };
             Towers.Add(tower);
+            IndexTower(tower,true);
             Version++;
             return tower;
         }
@@ -67,6 +94,7 @@ namespace FrostMaze.Simulation
             int i = Towers.FindIndex(t => t.Id == id);
             if (i < 0)
                 return false;
+            IndexTower(Towers[i],false);
             Towers.RemoveAt(i);
             Version++;
             return true;
@@ -85,27 +113,25 @@ namespace FrostMaze.Simulation
         public bool InBounds(V2 p, float radius) => p.X >= radius && p.Y >= radius && p.X <= Width - radius && p.Y <= Height - radius;
         public bool Clear(V2 a, V2 b, float radius)
         {
-            if (!TerrainClear(a,b,radius))
-                return false;
-            foreach (var t in Towers)
-                if (Geometry.SweepBox(a, b, t.Center, t.Half, radius))
-                    return false;
+            if (!TerrainClear(a,b,radius)) return false;
+            TowerBounds(a,b,radius,out int minX,out int maxX,out int minY,out int maxY);
+            for(int y=minY;y<=maxY;y++)for(int x=minX;x<=maxX;x++)
+                if(towerBuckets.TryGetValue(x+y*TowerBucketColumns,out var bucket))
+                    foreach(var t in bucket)
+                        if(Geometry.SweepBox(a,b,t.Center,t.Half,radius))return false;
             return true;
         }
         public Tower FirstHit(V2 a, V2 b, float radius)
         {
-            Tower best = null;
-            float distance = float.PositiveInfinity;
-            foreach (var t in Towers)
-                if (Geometry.SweepBox(a, b, t.Center, t.Half, radius))
-                {
-                    float d = Geometry.PointBox(a, t.Center, t.Half);
-                    if (d < distance || (d == distance && t.Id < best.Id))
-                    {
-                        distance = d;
-                        best = t;
-                    }
-                }
+            Tower best=null;float distance=float.PositiveInfinity;
+            TowerBounds(a,b,radius,out int minX,out int maxX,out int minY,out int maxY);
+            for(int y=minY;y<=maxY;y++)for(int x=minX;x<=maxX;x++)
+                if(towerBuckets.TryGetValue(x+y*TowerBucketColumns,out var bucket))
+                    foreach(var t in bucket)
+                        if(Geometry.SweepBox(a,b,t.Center,t.Half,radius)) {
+                            float d=Geometry.PointBox(a,t.Center,t.Half);
+                            if(d<distance||(d==distance&&(best==null||t.Id<best.Id))){distance=d;best=t;}
+                        }
             return best;
         }
     }
