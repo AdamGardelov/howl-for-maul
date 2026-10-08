@@ -182,6 +182,7 @@ namespace FrostMaze
             if(robot&&faction==0)PulseTower(palette[3],palette[4],tower.Design);
             else if(robot&&faction==1)BlastTower(palette[3],palette[4],tower.Design-7);
             else if(robot&&faction==2)PrismTower(palette[3],palette[4],tower.Design-14);
+            else if(robot&&faction==3)HorizonTower(palette[3],palette[4],tower.Design-21);
             else if(!robot&&faction==0)RimeTower(palette[3],palette[4]);
             else if(!robot&&faction==1)StoneTower(palette[3],palette[4],spec.TargetsAir);
             else if(!robot&&faction==2)EmberTower(palette[3],palette[4],design!=null&&design.Name=="Meteor Crucible");

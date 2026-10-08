@@ -1,6 +1,6 @@
-# Howl for Maul verification — Prism model checkpoint
+# Howl for Maul verification — Horizon model checkpoint
 
-Latest source: original bespoke models for all four winter factions and Pulse Foundry/Blast Circuit/Prism Division. Remaining Ironfold factions retain generic role models. This is early procedural art, not finished League-quality presentation. Read PULSE-MODELS.md and WINTER-MODELS.md.
+Latest source: original bespoke models for all four winter factions and Pulse Foundry/Blast Circuit/Prism Division/Horizon Guild. Remaining Ironfold factions retain generic role models. This is early procedural art, not finished League-quality presentation. Read PULSE-MODELS.md and WINTER-MODELS.md.
 
 ## Automated tests
 
@@ -58,3 +58,5 @@ Exact supplied map masks and terrain collision remain unchanged. Every lane stay
 Both map captures inspected with the new quality settings. Matched editor measurements and limitations are in Performance/QUALITY-PASS.md. Median render time changed from 8.29 to 8.33 ms for the paused 324-tower fixture; slower tail samples prevent a no-cost claim.
 
 Prism follow-up: seven paid models plus champion upgrade passed the extended integration test. Lineups inspected at zoom 7 and 11. See PRISM-MODELS.md. The packaged builds predate Prism.
+
+Horizon follow-up: clean compile and targeted paid-model integration case passed 1/1; last full suite remains 65/65 at Prism. Close/normal native captures inspected. See HORIZON-MODELS.md. Hard solo Prism adaptive campaign won all 20 waves with 30 lives, no stalls or wallet errors; see Balance/PRISM-HARD.md. Packages predate Prism and Horizon.

@@ -1,0 +1,4637 @@
+[
+  {
+    "FinalWallets": [
+      364
+    ],
+    "PlayerSpending": [
+      6740
+    ],
+    "Strategy": "adaptive",
+    "Factions": [
+      "Prism Division"
+    ],
+    "Upgrades": [
+      {
+        "Player": 1,
+        "TowerId": 1,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 1
+      },
+      {
+        "Player": 1,
+        "TowerId": 2,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 1
+      },
+      {
+        "Player": 1,
+        "TowerId": 1,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 1
+      },
+      {
+        "Player": 1,
+        "TowerId": 4,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 1
+      },
+      {
+        "Player": 1,
+        "TowerId": 32,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 1
+      },
+      {
+        "Player": 1,
+        "TowerId": 2,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 1
+      },
+      {
+        "Player": 1,
+        "TowerId": 4,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 1
+      },
+      {
+        "Player": 1,
+        "TowerId": 12,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 1
+      },
+      {
+        "Player": 1,
+        "TowerId": 6,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 1
+      },
+      {
+        "Player": 1,
+        "TowerId": 6,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 1
+      },
+      {
+        "Player": 1,
+        "TowerId": 32,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 1
+      },
+      {
+        "Player": 1,
+        "TowerId": 18,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 1
+      },
+      {
+        "Player": 1,
+        "TowerId": 55,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 1
+      },
+      {
+        "Player": 1,
+        "TowerId": 18,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 1
+      },
+      {
+        "Player": 1,
+        "TowerId": 12,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 55,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 70,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 70,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 3,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 33,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 57,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 5,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 22,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 41,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 48,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 60,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 84,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 11,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 29,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 49,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 81,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 11,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 60,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 5,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 22,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 48,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 51,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 57,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 15
+      },
+      {
+        "Player": 1,
+        "TowerId": 238,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 15
+      },
+      {
+        "Player": 1,
+        "TowerId": 238,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 15
+      },
+      {
+        "Player": 1,
+        "TowerId": 33,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 15
+      },
+      {
+        "Player": 1,
+        "TowerId": 49,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 15
+      },
+      {
+        "Player": 1,
+        "TowerId": 81,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 15
+      },
+      {
+        "Player": 1,
+        "TowerId": 84,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 15
+      },
+      {
+        "Player": 1,
+        "TowerId": 34,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 15
+      },
+      {
+        "Player": 1,
+        "TowerId": 34,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 15
+      },
+      {
+        "Player": 1,
+        "TowerId": 63,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 15
+      },
+      {
+        "Player": 1,
+        "TowerId": 96,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 15
+      },
+      {
+        "Player": 1,
+        "TowerId": 114,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 15
+      },
+      {
+        "Player": 1,
+        "TowerId": 114,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 15
+      },
+      {
+        "Player": 1,
+        "TowerId": 3,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 15
+      },
+      {
+        "Player": 1,
+        "TowerId": 63,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 15
+      },
+      {
+        "Player": 1,
+        "TowerId": 96,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 1,
+        "TowerId": 29,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 1,
+        "TowerId": 41,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 1,
+        "TowerId": 51,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 1,
+        "TowerId": 119,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 1,
+        "TowerId": 7,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 1,
+        "TowerId": 23,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 1,
+        "TowerId": 39,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 1,
+        "TowerId": 74,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 1,
+        "TowerId": 90,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 1,
+        "TowerId": 39,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 1,
+        "TowerId": 74,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 1,
+        "TowerId": 45,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 1,
+        "TowerId": 134,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 1,
+        "TowerId": 7,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 1,
+        "TowerId": 90,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 1,
+        "TowerId": 94,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 1,
+        "TowerId": 8,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 1,
+        "TowerId": 9,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 1,
+        "TowerId": 10,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 1,
+        "TowerId": 14,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 1,
+        "TowerId": 17,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 1,
+        "TowerId": 19,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 1,
+        "TowerId": 20,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 1,
+        "TowerId": 21,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 1,
+        "TowerId": 27,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 1,
+        "TowerId": 28,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 31,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 35,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 43,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 46,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 47,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 54,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 56,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 61,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 62,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 66,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 67,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 72,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 73,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 75,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 77,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 85,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 87,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 93,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 95,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 110,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 113,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 127,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 129,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 131,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 132,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 133,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 139,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 140,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 141,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 142,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 143,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 143,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 146,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 151,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 153,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 18
+      },
+      {
+        "Player": 1,
+        "TowerId": 160,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 18
+      },
+      {
+        "Player": 1,
+        "TowerId": 162,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 18
+      },
+      {
+        "Player": 1,
+        "TowerId": 165,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 18
+      },
+      {
+        "Player": 1,
+        "TowerId": 166,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 18
+      },
+      {
+        "Player": 1,
+        "TowerId": 171,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 18
+      },
+      {
+        "Player": 1,
+        "TowerId": 174,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 18
+      },
+      {
+        "Player": 1,
+        "TowerId": 177,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 18
+      },
+      {
+        "Player": 1,
+        "TowerId": 178,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 18
+      },
+      {
+        "Player": 1,
+        "TowerId": 189,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 18
+      },
+      {
+        "Player": 1,
+        "TowerId": 192,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 18
+      },
+      {
+        "Player": 1,
+        "TowerId": 220,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 18
+      },
+      {
+        "Player": 1,
+        "TowerId": 221,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 18
+      },
+      {
+        "Player": 1,
+        "TowerId": 226,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 18
+      },
+      {
+        "Player": 1,
+        "TowerId": 227,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 18
+      },
+      {
+        "Player": 1,
+        "TowerId": 93,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 18
+      },
+      {
+        "Player": 1,
+        "TowerId": 119,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 18
+      },
+      {
+        "Player": 1,
+        "TowerId": 23,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 18
+      },
+      {
+        "Player": 1,
+        "TowerId": 45,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 18
+      },
+      {
+        "Player": 1,
+        "TowerId": 94,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 18
+      },
+      {
+        "Player": 1,
+        "TowerId": 134,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 18
+      },
+      {
+        "Player": 1,
+        "TowerId": 162,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 175,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 210,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 223,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 13,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 40,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 58,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 71,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 86,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 106,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 109,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 136,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 145,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 164,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 173,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 180,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 197,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 198,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 210,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 15,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 16,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 24,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 30,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 36,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 52,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 59,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 64,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 65,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 83,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 97,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 120,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 137,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 159,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 14,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 65,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 77,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 120,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 193,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 222,
+        "Tower": "Shade Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 193,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 175,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 223,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 8,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 9,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 10,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 13,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 17,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 19,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 20,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 21,
+        "Tower": "Shade Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 20
+      }
+    ],
+    "PlayerCount": 1,
+    "Map": "Ironfold",
+    "Faction": "Prism Division",
+    "Difficulty": "Hard",
+    "Won": true,
+    "Stalled": false,
+    "Lives": 30,
+    "Gold": 364,
+    "Spent": 6740,
+    "Placements": [
+      {
+        "TowerId": 1,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 31,
+        "Y": 5,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 2,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 33,
+        "Y": 5,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 3,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 31,
+        "Y": 19,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 4,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 33,
+        "Y": 7,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 5,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 33,
+        "Y": 27,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 6,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 29,
+        "Y": 7,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 7,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 31,
+        "Y": 35,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 8,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 15,
+        "Y": 37,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 9,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 11,
+        "Y": 49,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 10,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 53,
+        "Y": 49,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 11,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 31,
+        "Y": 21,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 12,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 33,
+        "Y": 3,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 13,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 21,
+        "Y": 21,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 14,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 43,
+        "Y": 25,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 15,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 39,
+        "Y": 13,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 16,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 45,
+        "Y": 33,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 17,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 37,
+        "Y": 55,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 18,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 29,
+        "Y": 9,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 19,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 11,
+        "Y": 55,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 20,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 53,
+        "Y": 55,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 21,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 49,
+        "Y": 39,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 22,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 31,
+        "Y": 29,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 23,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 33,
+        "Y": 37,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 24,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 19,
+        "Y": 31,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 25,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 29,
+        "Y": 43,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 26,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 35,
+        "Y": 45,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 27,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 27,
+        "Y": 51,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 28,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 25,
+        "Y": 57,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 29,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 33,
+        "Y": 19,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 30,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 25,
+        "Y": 13,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 31,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 37,
+        "Y": 59,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 32,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 31,
+        "Y": 3,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 33,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 33,
+        "Y": 23,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 34,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 35,
+        "Y": 9,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 35,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 21,
+        "Y": 23,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 36,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 13,
+        "Y": 41,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 37,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 9,
+        "Y": 59,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 38,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 51,
+        "Y": 59,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 39,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 33,
+        "Y": 33,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 40,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 43,
+        "Y": 21,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 41,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 31,
+        "Y": 17,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 42,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 51,
+        "Y": 41,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 43,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 37,
+        "Y": 47,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 44,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 23,
+        "Y": 59,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 45,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 31,
+        "Y": 37,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 46,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 11,
+        "Y": 51,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 47,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 53,
+        "Y": 51,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 48,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 31,
+        "Y": 27,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 49,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 27,
+        "Y": 9,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 50,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 35,
+        "Y": 39,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 51,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 33,
+        "Y": 17,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 52,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 45,
+        "Y": 31,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 53,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 27,
+        "Y": 45,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 54,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 27,
+        "Y": 53,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 55,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 35,
+        "Y": 5,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 56,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 37,
+        "Y": 53,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 57,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 31,
+        "Y": 23,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 58,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 15,
+        "Y": 35,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 59,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 13,
+        "Y": 43,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 60,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 27,
+        "Y": 7,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 61,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 39,
+        "Y": 59,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 62,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 21,
+        "Y": 25,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 63,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 33,
+        "Y": 31,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 64,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 39,
+        "Y": 11,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 65,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 51,
+        "Y": 43,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 66,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 11,
+        "Y": 59,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 67,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 53,
+        "Y": 59,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 68,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 41,
+        "Y": 21,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 69,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 47,
+        "Y": 35,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 70,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 35,
+        "Y": 7,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 71,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 21,
+        "Y": 19,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 72,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 11,
+        "Y": 53,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 73,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 53,
+        "Y": 53,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 74,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 31,
+        "Y": 33,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 75,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 25,
+        "Y": 59,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 76,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 27,
+        "Y": 41,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 77,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 43,
+        "Y": 27,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 78,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 17,
+        "Y": 33,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 79,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 17,
+        "Y": 5,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 80,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 49,
+        "Y": 15,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 81,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 33,
+        "Y": 21,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 82,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 35,
+        "Y": 43,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 83,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 25,
+        "Y": 11,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 84,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 33,
+        "Y": 1,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 85,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 11,
+        "Y": 45,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 86,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 27,
+        "Y": 49,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 87,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 37,
+        "Y": 51,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 88,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 51,
+        "Y": 47,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 89,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 21,
+        "Y": 29,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 90,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 33,
+        "Y": 35,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 91,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 47,
+        "Y": 37,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 92,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 41,
+        "Y": 59,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 93,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 29,
+        "Y": 17,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 94,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 37,
+        "Y": 7,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 95,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 27,
+        "Y": 55,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 96,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 31,
+        "Y": 31,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 97,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 45,
+        "Y": 23,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 98,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 13,
+        "Y": 39,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 99,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 13,
+        "Y": 59,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 100,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 55,
+        "Y": 59,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 101,
+        "BeforeWave": 2,
+        "Player": 1,
+        "X": 45,
+        "Y": 5,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 102,
+        "BeforeWave": 2,
+        "Player": 1,
+        "X": 13,
+        "Y": 11,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 103,
+        "BeforeWave": 2,
+        "Player": 1,
+        "X": 29,
+        "Y": 39,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 104,
+        "BeforeWave": 2,
+        "Player": 1,
+        "X": 35,
+        "Y": 41,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 105,
+        "BeforeWave": 2,
+        "Player": 1,
+        "X": 19,
+        "Y": 21,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 106,
+        "BeforeWave": 2,
+        "Player": 1,
+        "X": 47,
+        "Y": 33,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 107,
+        "BeforeWave": 2,
+        "Player": 1,
+        "X": 51,
+        "Y": 39,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 108,
+        "BeforeWave": 2,
+        "Player": 1,
+        "X": 9,
+        "Y": 47,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 109,
+        "BeforeWave": 2,
+        "Player": 1,
+        "X": 27,
+        "Y": 47,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 110,
+        "BeforeWave": 2,
+        "Player": 1,
+        "X": 37,
+        "Y": 49,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 111,
+        "BeforeWave": 2,
+        "Player": 1,
+        "X": 17,
+        "Y": 35,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 112,
+        "BeforeWave": 2,
+        "Player": 1,
+        "X": 51,
+        "Y": 7,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 113,
+        "BeforeWave": 2,
+        "Player": 1,
+        "X": 39,
+        "Y": 55,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 114,
+        "BeforeWave": 2,
+        "Player": 1,
+        "X": 33,
+        "Y": 29,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 115,
+        "BeforeWave": 2,
+        "Player": 1,
+        "X": 51,
+        "Y": 45,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 116,
+        "BeforeWave": 2,
+        "Player": 1,
+        "X": 19,
+        "Y": 5,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 117,
+        "BeforeWave": 2,
+        "Player": 1,
+        "X": 43,
+        "Y": 29,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 118,
+        "BeforeWave": 2,
+        "Player": 1,
+        "X": 27,
+        "Y": 61,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 119,
+        "BeforeWave": 3,
+        "Player": 1,
+        "X": 35,
+        "Y": 17,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 120,
+        "BeforeWave": 3,
+        "Player": 1,
+        "X": 21,
+        "Y": 27,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 121,
+        "BeforeWave": 3,
+        "Player": 1,
+        "X": 9,
+        "Y": 57,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 122,
+        "BeforeWave": 3,
+        "Player": 1,
+        "X": 51,
+        "Y": 57,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 123,
+        "BeforeWave": 3,
+        "Player": 1,
+        "X": 13,
+        "Y": 15,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 124,
+        "BeforeWave": 3,
+        "Player": 1,
+        "X": 43,
+        "Y": 19,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 125,
+        "BeforeWave": 3,
+        "Player": 1,
+        "X": 29,
+        "Y": 41,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 126,
+        "BeforeWave": 3,
+        "Player": 1,
+        "X": 37,
+        "Y": 41,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 127,
+        "BeforeWave": 3,
+        "Player": 1,
+        "X": 39,
+        "Y": 57,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 128,
+        "BeforeWave": 3,
+        "Player": 1,
+        "X": 19,
+        "Y": 33,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 129,
+        "BeforeWave": 3,
+        "Player": 1,
+        "X": 25,
+        "Y": 53,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 130,
+        "BeforeWave": 3,
+        "Player": 1,
+        "X": 13,
+        "Y": 45,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 131,
+        "BeforeWave": 3,
+        "Player": 1,
+        "X": 53,
+        "Y": 47,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 132,
+        "BeforeWave": 3,
+        "Player": 1,
+        "X": 49,
+        "Y": 37,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 133,
+        "BeforeWave": 3,
+        "Player": 1,
+        "X": 43,
+        "Y": 23,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 134,
+        "BeforeWave": 3,
+        "Player": 1,
+        "X": 31,
+        "Y": 39,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 135,
+        "BeforeWave": 3,
+        "Player": 1,
+        "X": 29,
+        "Y": 45,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 136,
+        "BeforeWave": 3,
+        "Player": 1,
+        "X": 37,
+        "Y": 45,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 137,
+        "BeforeWave": 3,
+        "Player": 1,
+        "X": 19,
+        "Y": 23,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 138,
+        "BeforeWave": 3,
+        "Player": 1,
+        "X": 13,
+        "Y": 37,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 139,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 39,
+        "Y": 51,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 140,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 11,
+        "Y": 57,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 141,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 53,
+        "Y": 57,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 142,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 11,
+        "Y": 47,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 143,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 37,
+        "Y": 9,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 144,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 43,
+        "Y": 31,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 145,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 25,
+        "Y": 51,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 146,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 53,
+        "Y": 45,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 147,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 23,
+        "Y": 21,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 148,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 43,
+        "Y": 5,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 149,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 51,
+        "Y": 9,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 150,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 47,
+        "Y": 15,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 151,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 27,
+        "Y": 59,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 152,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 45,
+        "Y": 35,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 153,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 37,
+        "Y": 57,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 154,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 11,
+        "Y": 39,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 155,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 41,
+        "Y": 23,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 156,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 11,
+        "Y": 9,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 157,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 23,
+        "Y": 11,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 158,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 21,
+        "Y": 5,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 159,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 19,
+        "Y": 19,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 160,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 25,
+        "Y": 55,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 161,
+        "BeforeWave": 5,
+        "Player": 1,
+        "X": 51,
+        "Y": 37,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 162,
+        "BeforeWave": 5,
+        "Player": 1,
+        "X": 33,
+        "Y": 39,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 163,
+        "BeforeWave": 5,
+        "Player": 1,
+        "X": 37,
+        "Y": 61,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 164,
+        "BeforeWave": 5,
+        "Player": 1,
+        "X": 39,
+        "Y": 47,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 165,
+        "BeforeWave": 5,
+        "Player": 1,
+        "X": 9,
+        "Y": 53,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 166,
+        "BeforeWave": 5,
+        "Player": 1,
+        "X": 51,
+        "Y": 53,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 167,
+        "BeforeWave": 5,
+        "Player": 1,
+        "X": 23,
+        "Y": 61,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 168,
+        "BeforeWave": 5,
+        "Player": 1,
+        "X": 23,
+        "Y": 23,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 169,
+        "BeforeWave": 5,
+        "Player": 1,
+        "X": 9,
+        "Y": 61,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 170,
+        "BeforeWave": 5,
+        "Player": 1,
+        "X": 51,
+        "Y": 61,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 171,
+        "BeforeWave": 5,
+        "Player": 1,
+        "X": 39,
+        "Y": 53,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 172,
+        "BeforeWave": 5,
+        "Player": 1,
+        "X": 17,
+        "Y": 37,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 173,
+        "BeforeWave": 5,
+        "Player": 1,
+        "X": 53,
+        "Y": 41,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 174,
+        "BeforeWave": 5,
+        "Player": 1,
+        "X": 11,
+        "Y": 41,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 175,
+        "BeforeWave": 5,
+        "Player": 1,
+        "X": 25,
+        "Y": 9,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 176,
+        "BeforeWave": 5,
+        "Player": 1,
+        "X": 25,
+        "Y": 47,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 177,
+        "BeforeWave": 5,
+        "Player": 1,
+        "X": 9,
+        "Y": 51,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 178,
+        "BeforeWave": 5,
+        "Player": 1,
+        "X": 51,
+        "Y": 51,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 179,
+        "BeforeWave": 5,
+        "Player": 1,
+        "X": 13,
+        "Y": 13,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 180,
+        "BeforeWave": 5,
+        "Player": 1,
+        "X": 49,
+        "Y": 35,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 181,
+        "BeforeWave": 5,
+        "Player": 1,
+        "X": 45,
+        "Y": 21,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 182,
+        "BeforeWave": 5,
+        "Player": 1,
+        "X": 49,
+        "Y": 5,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 183,
+        "BeforeWave": 5,
+        "Player": 1,
+        "X": 51,
+        "Y": 13,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 184,
+        "BeforeWave": 6,
+        "Player": 1,
+        "X": 39,
+        "Y": 61,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 185,
+        "BeforeWave": 6,
+        "Player": 1,
+        "X": 25,
+        "Y": 61,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 186,
+        "BeforeWave": 6,
+        "Player": 1,
+        "X": 11,
+        "Y": 61,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 187,
+        "BeforeWave": 6,
+        "Player": 1,
+        "X": 53,
+        "Y": 61,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 188,
+        "BeforeWave": 6,
+        "Player": 1,
+        "X": 41,
+        "Y": 5,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 189,
+        "BeforeWave": 6,
+        "Player": 1,
+        "X": 27,
+        "Y": 57,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 190,
+        "BeforeWave": 6,
+        "Player": 1,
+        "X": 13,
+        "Y": 7,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 191,
+        "BeforeWave": 6,
+        "Player": 1,
+        "X": 41,
+        "Y": 27,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 192,
+        "BeforeWave": 6,
+        "Player": 1,
+        "X": 15,
+        "Y": 39,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 193,
+        "BeforeWave": 6,
+        "Player": 1,
+        "X": 33,
+        "Y": 41,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 194,
+        "BeforeWave": 6,
+        "Player": 1,
+        "X": 25,
+        "Y": 43,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 195,
+        "BeforeWave": 6,
+        "Player": 1,
+        "X": 13,
+        "Y": 47,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 196,
+        "BeforeWave": 6,
+        "Player": 1,
+        "X": 55,
+        "Y": 47,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 197,
+        "BeforeWave": 6,
+        "Player": 1,
+        "X": 25,
+        "Y": 49,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 198,
+        "BeforeWave": 6,
+        "Player": 1,
+        "X": 39,
+        "Y": 49,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 199,
+        "BeforeWave": 6,
+        "Player": 1,
+        "X": 13,
+        "Y": 53,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 200,
+        "BeforeWave": 6,
+        "Player": 1,
+        "X": 55,
+        "Y": 53,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 201,
+        "BeforeWave": 6,
+        "Player": 1,
+        "X": 49,
+        "Y": 41,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 202,
+        "BeforeWave": 6,
+        "Player": 1,
+        "X": 21,
+        "Y": 31,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 203,
+        "BeforeWave": 6,
+        "Player": 1,
+        "X": 17,
+        "Y": 15,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 204,
+        "BeforeWave": 6,
+        "Player": 1,
+        "X": 41,
+        "Y": 61,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 205,
+        "BeforeWave": 6,
+        "Player": 1,
+        "X": 39,
+        "Y": 45,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 206,
+        "BeforeWave": 6,
+        "Player": 1,
+        "X": 13,
+        "Y": 61,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 207,
+        "BeforeWave": 6,
+        "Player": 1,
+        "X": 55,
+        "Y": 61,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 208,
+        "BeforeWave": 6,
+        "Player": 1,
+        "X": 15,
+        "Y": 41,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 209,
+        "BeforeWave": 7,
+        "Player": 1,
+        "X": 51,
+        "Y": 15,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 210,
+        "BeforeWave": 7,
+        "Player": 1,
+        "X": 25,
+        "Y": 7,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 211,
+        "BeforeWave": 7,
+        "Player": 1,
+        "X": 37,
+        "Y": 5,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 212,
+        "BeforeWave": 7,
+        "Player": 1,
+        "X": 9,
+        "Y": 45,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 213,
+        "BeforeWave": 7,
+        "Player": 1,
+        "X": 25,
+        "Y": 45,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 214,
+        "BeforeWave": 7,
+        "Player": 1,
+        "X": 55,
+        "Y": 45,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 215,
+        "BeforeWave": 7,
+        "Player": 1,
+        "X": 13,
+        "Y": 51,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 216,
+        "BeforeWave": 7,
+        "Player": 1,
+        "X": 55,
+        "Y": 51,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 217,
+        "BeforeWave": 7,
+        "Player": 1,
+        "X": 39,
+        "Y": 43,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 218,
+        "BeforeWave": 7,
+        "Player": 1,
+        "X": 23,
+        "Y": 57,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 219,
+        "BeforeWave": 7,
+        "Player": 1,
+        "X": 45,
+        "Y": 7,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 220,
+        "BeforeWave": 7,
+        "Player": 1,
+        "X": 9,
+        "Y": 55,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 221,
+        "BeforeWave": 7,
+        "Player": 1,
+        "X": 51,
+        "Y": 55,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 222,
+        "BeforeWave": 7,
+        "Player": 1,
+        "X": 39,
+        "Y": 9,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 223,
+        "BeforeWave": 7,
+        "Player": 1,
+        "X": 31,
+        "Y": 41,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 224,
+        "BeforeWave": 7,
+        "Player": 1,
+        "X": 9,
+        "Y": 43,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 225,
+        "BeforeWave": 7,
+        "Player": 1,
+        "X": 55,
+        "Y": 43,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 226,
+        "BeforeWave": 7,
+        "Player": 1,
+        "X": 9,
+        "Y": 49,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 227,
+        "BeforeWave": 7,
+        "Player": 1,
+        "X": 51,
+        "Y": 49,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 228,
+        "BeforeWave": 7,
+        "Player": 1,
+        "X": 15,
+        "Y": 15,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 229,
+        "BeforeWave": 7,
+        "Player": 1,
+        "X": 47,
+        "Y": 17,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 230,
+        "BeforeWave": 7,
+        "Player": 1,
+        "X": 51,
+        "Y": 11,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 231,
+        "BeforeWave": 7,
+        "Player": 1,
+        "X": 41,
+        "Y": 55,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 232,
+        "BeforeWave": 7,
+        "Player": 1,
+        "X": 13,
+        "Y": 57,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 233,
+        "BeforeWave": 7,
+        "Player": 1,
+        "X": 55,
+        "Y": 57,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 234,
+        "BeforeWave": 7,
+        "Player": 1,
+        "X": 13,
+        "Y": 9,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 235,
+        "BeforeWave": 8,
+        "Player": 1,
+        "X": 23,
+        "Y": 27,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 236,
+        "BeforeWave": 8,
+        "Player": 1,
+        "X": 47,
+        "Y": 39,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 237,
+        "BeforeWave": 8,
+        "Player": 1,
+        "X": 19,
+        "Y": 35,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 238,
+        "BeforeWave": 8,
+        "Player": 1,
+        "X": 27,
+        "Y": 5,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 239,
+        "BeforeWave": 8,
+        "Player": 1,
+        "X": 25,
+        "Y": 23,
+        "Tower": "Prism Twin",
+        "Cost": 110
+      },
+      {
+        "TowerId": 240,
+        "BeforeWave": 8,
+        "Player": 1,
+        "X": 13,
+        "Y": 49,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 241,
+        "BeforeWave": 8,
+        "Player": 1,
+        "X": 55,
+        "Y": 49,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 242,
+        "BeforeWave": 8,
+        "Player": 1,
+        "X": 13,
+        "Y": 55,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 243,
+        "BeforeWave": 8,
+        "Player": 1,
+        "X": 55,
+        "Y": 55,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 244,
+        "BeforeWave": 8,
+        "Player": 1,
+        "X": 39,
+        "Y": 7,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 245,
+        "BeforeWave": 8,
+        "Player": 1,
+        "X": 23,
+        "Y": 55,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 246,
+        "BeforeWave": 8,
+        "Player": 1,
+        "X": 43,
+        "Y": 33,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 247,
+        "BeforeWave": 8,
+        "Player": 1,
+        "X": 17,
+        "Y": 39,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 248,
+        "BeforeWave": 8,
+        "Player": 1,
+        "X": 15,
+        "Y": 17,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 249,
+        "BeforeWave": 8,
+        "Player": 1,
+        "X": 43,
+        "Y": 7,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 250,
+        "BeforeWave": 8,
+        "Player": 1,
+        "X": 53,
+        "Y": 11,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 251,
+        "BeforeWave": 8,
+        "Player": 1,
+        "X": 49,
+        "Y": 19,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 252,
+        "BeforeWave": 8,
+        "Player": 1,
+        "X": 41,
+        "Y": 51,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 253,
+        "BeforeWave": 9,
+        "Player": 1,
+        "X": 19,
+        "Y": 7,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 254,
+        "BeforeWave": 9,
+        "Player": 1,
+        "X": 25,
+        "Y": 31,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 255,
+        "BeforeWave": 9,
+        "Player": 1,
+        "X": 25,
+        "Y": 5,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 256,
+        "BeforeWave": 9,
+        "Player": 1,
+        "X": 41,
+        "Y": 57,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 257,
+        "BeforeWave": 9,
+        "Player": 1,
+        "X": 31,
+        "Y": 45,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 258,
+        "BeforeWave": 9,
+        "Player": 1,
+        "X": 53,
+        "Y": 39,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 259,
+        "BeforeWave": 9,
+        "Player": 1,
+        "X": 33,
+        "Y": 43,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 260,
+        "BeforeWave": 9,
+        "Player": 1,
+        "X": 9,
+        "Y": 41,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 261,
+        "BeforeWave": 9,
+        "Player": 1,
+        "X": 23,
+        "Y": 53,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 262,
+        "BeforeWave": 9,
+        "Player": 1,
+        "X": 17,
+        "Y": 17,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 263,
+        "BeforeWave": 9,
+        "Player": 1,
+        "X": 31,
+        "Y": 43,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 264,
+        "BeforeWave": 9,
+        "Player": 1,
+        "X": 25,
+        "Y": 29,
+        "Tower": "Prism Twin",
+        "Cost": 110
+      },
+      {
+        "TowerId": 265,
+        "BeforeWave": 9,
+        "Player": 1,
+        "X": 41,
+        "Y": 53,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 266,
+        "BeforeWave": 9,
+        "Player": 1,
+        "X": 13,
+        "Y": 5,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 267,
+        "BeforeWave": 9,
+        "Player": 1,
+        "X": 45,
+        "Y": 19,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 268,
+        "BeforeWave": 9,
+        "Player": 1,
+        "X": 45,
+        "Y": 37,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 269,
+        "BeforeWave": 9,
+        "Player": 1,
+        "X": 41,
+        "Y": 7,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 270,
+        "BeforeWave": 9,
+        "Player": 1,
+        "X": 51,
+        "Y": 5,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 271,
+        "BeforeWave": 9,
+        "Player": 1,
+        "X": 21,
+        "Y": 7,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 272,
+        "BeforeWave": 9,
+        "Player": 1,
+        "X": 49,
+        "Y": 17,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 273,
+        "BeforeWave": 10,
+        "Player": 1,
+        "X": 39,
+        "Y": 25,
+        "Tower": "Prism Twin",
+        "Cost": 110
+      },
+      {
+        "TowerId": 274,
+        "BeforeWave": 10,
+        "Player": 1,
+        "X": 15,
+        "Y": 19,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 275,
+        "BeforeWave": 10,
+        "Player": 1,
+        "X": 23,
+        "Y": 29,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 276,
+        "BeforeWave": 10,
+        "Player": 1,
+        "X": 41,
+        "Y": 29,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 277,
+        "BeforeWave": 10,
+        "Player": 1,
+        "X": 23,
+        "Y": 51,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 278,
+        "BeforeWave": 10,
+        "Player": 1,
+        "X": 23,
+        "Y": 5,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 279,
+        "BeforeWave": 10,
+        "Player": 1,
+        "X": 21,
+        "Y": 33,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 280,
+        "BeforeWave": 10,
+        "Player": 1,
+        "X": 47,
+        "Y": 19,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 281,
+        "BeforeWave": 10,
+        "Player": 1,
+        "X": 53,
+        "Y": 7,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 282,
+        "BeforeWave": 10,
+        "Player": 1,
+        "X": 55,
+        "Y": 41,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 283,
+        "BeforeWave": 10,
+        "Player": 1,
+        "X": 41,
+        "Y": 11,
+        "Tower": "Prism Twin",
+        "Cost": 110
+      },
+      {
+        "TowerId": 284,
+        "BeforeWave": 11,
+        "Player": 1,
+        "X": 11,
+        "Y": 7,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 285,
+        "BeforeWave": 11,
+        "Player": 1,
+        "X": 17,
+        "Y": 19,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 286,
+        "BeforeWave": 11,
+        "Player": 1,
+        "X": 39,
+        "Y": 5,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 287,
+        "BeforeWave": 11,
+        "Player": 1,
+        "X": 39,
+        "Y": 29,
+        "Tower": "Prism Twin",
+        "Cost": 110
+      },
+      {
+        "TowerId": 288,
+        "BeforeWave": 11,
+        "Player": 1,
+        "X": 23,
+        "Y": 7,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 289,
+        "BeforeWave": 11,
+        "Player": 1,
+        "X": 41,
+        "Y": 49,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 290,
+        "BeforeWave": 11,
+        "Player": 1,
+        "X": 19,
+        "Y": 37,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 291,
+        "BeforeWave": 11,
+        "Player": 1,
+        "X": 11,
+        "Y": 11,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 292,
+        "BeforeWave": 11,
+        "Player": 1,
+        "X": 43,
+        "Y": 35,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 293,
+        "BeforeWave": 11,
+        "Player": 1,
+        "X": 53,
+        "Y": 9,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 294,
+        "BeforeWave": 11,
+        "Player": 1,
+        "X": 11,
+        "Y": 13,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 295,
+        "BeforeWave": 11,
+        "Player": 1,
+        "X": 33,
+        "Y": 45,
+        "Tower": "Prism Twin",
+        "Cost": 110
+      },
+      {
+        "TowerId": 296,
+        "BeforeWave": 11,
+        "Player": 1,
+        "X": 53,
+        "Y": 13,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 297,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 23,
+        "Y": 9,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 298,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 11,
+        "Y": 15,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 299,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 41,
+        "Y": 31,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 300,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 53,
+        "Y": 15,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 301,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 23,
+        "Y": 31,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 302,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 13,
+        "Y": 17,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 303,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 45,
+        "Y": 17,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 304,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 19,
+        "Y": 17,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 305,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 23,
+        "Y": 49,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 306,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 51,
+        "Y": 17,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 307,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 47,
+        "Y": 21,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 308,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 21,
+        "Y": 35,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 309,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 45,
+        "Y": 9,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 310,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 17,
+        "Y": 21,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 311,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 25,
+        "Y": 25,
+        "Tower": "Prism Twin",
+        "Cost": 110
+      },
+      {
+        "TowerId": 312,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 53,
+        "Y": 5,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 313,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 39,
+        "Y": 27,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 314,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 25,
+        "Y": 27,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 315,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 23,
+        "Y": 33,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 316,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 41,
+        "Y": 33,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 317,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 19,
+        "Y": 9,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 318,
+        "BeforeWave": 13,
+        "Player": 1,
+        "X": 23,
+        "Y": 47,
+        "Tower": "Prism Twin",
+        "Cost": 110
+      },
+      {
+        "TowerId": 319,
+        "BeforeWave": 13,
+        "Player": 1,
+        "X": 41,
+        "Y": 47,
+        "Tower": "Prism Twin",
+        "Cost": 110
+      },
+      {
+        "TowerId": 320,
+        "BeforeWave": 13,
+        "Player": 1,
+        "X": 23,
+        "Y": 45,
+        "Tower": "Prism Twin",
+        "Cost": 110
+      },
+      {
+        "TowerId": 321,
+        "BeforeWave": 13,
+        "Player": 1,
+        "X": 41,
+        "Y": 9,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 322,
+        "BeforeWave": 13,
+        "Player": 1,
+        "X": 11,
+        "Y": 5,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 323,
+        "BeforeWave": 13,
+        "Player": 1,
+        "X": 21,
+        "Y": 9,
+        "Tower": "Shade Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 324,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 41,
+        "Y": 45,
+        "Tower": "Prism Twin",
+        "Cost": 110
+      }
+    ],
+    "Waves": [
+      {
+        "PlayerGold": [
+          184
+        ],
+        "Wave": 1,
+        "Flying": false,
+        "Killed": 32,
+        "Leaked": 0,
+        "Ticks": 380,
+        "Gold": 184
+      },
+      {
+        "PlayerGold": [
+          204
+        ],
+        "Wave": 2,
+        "Flying": false,
+        "Killed": 40,
+        "Leaked": 0,
+        "Ticks": 479,
+        "Gold": 204
+      },
+      {
+        "PlayerGold": [
+          220
+        ],
+        "Wave": 3,
+        "Flying": false,
+        "Killed": 48,
+        "Leaked": 0,
+        "Ticks": 567,
+        "Gold": 220
+      },
+      {
+        "PlayerGold": [
+          232
+        ],
+        "Wave": 4,
+        "Flying": false,
+        "Killed": 56,
+        "Leaked": 0,
+        "Ticks": 630,
+        "Gold": 232
+      },
+      {
+        "PlayerGold": [
+          250
+        ],
+        "Wave": 5,
+        "Flying": true,
+        "Killed": 64,
+        "Leaked": 0,
+        "Ticks": 628,
+        "Gold": 250
+      },
+      {
+        "PlayerGold": [
+          264
+        ],
+        "Wave": 6,
+        "Flying": false,
+        "Killed": 72,
+        "Leaked": 0,
+        "Ticks": 698,
+        "Gold": 264
+      },
+      {
+        "PlayerGold": [
+          284
+        ],
+        "Wave": 7,
+        "Flying": false,
+        "Killed": 80,
+        "Leaked": 0,
+        "Ticks": 748,
+        "Gold": 284
+      },
+      {
+        "PlayerGold": [
+          300
+        ],
+        "Wave": 8,
+        "Flying": false,
+        "Killed": 88,
+        "Leaked": 0,
+        "Ticks": 831,
+        "Gold": 300
+      },
+      {
+        "PlayerGold": [
+          312
+        ],
+        "Wave": 9,
+        "Flying": false,
+        "Killed": 96,
+        "Leaked": 0,
+        "Ticks": 882,
+        "Gold": 312
+      },
+      {
+        "PlayerGold": [
+          330
+        ],
+        "Wave": 10,
+        "Flying": true,
+        "Killed": 104,
+        "Leaked": 0,
+        "Ticks": 920,
+        "Gold": 330
+      },
+      {
+        "PlayerGold": [
+          312
+        ],
+        "Wave": 11,
+        "Flying": false,
+        "Killed": 96,
+        "Leaked": 0,
+        "Ticks": 831,
+        "Gold": 312
+      },
+      {
+        "PlayerGold": [
+          362
+        ],
+        "Wave": 12,
+        "Flying": false,
+        "Killed": 120,
+        "Leaked": 0,
+        "Ticks": 821,
+        "Gold": 362
+      },
+      {
+        "PlayerGold": [
+          426
+        ],
+        "Wave": 13,
+        "Flying": false,
+        "Killed": 152,
+        "Leaked": 0,
+        "Ticks": 1245,
+        "Gold": 426
+      },
+      {
+        "PlayerGold": [
+          254
+        ],
+        "Wave": 14,
+        "Flying": false,
+        "Killed": 64,
+        "Leaked": 0,
+        "Ticks": 1053,
+        "Gold": 254
+      },
+      {
+        "PlayerGold": [
+          348
+        ],
+        "Wave": 15,
+        "Flying": true,
+        "Killed": 112,
+        "Leaked": 0,
+        "Ticks": 855,
+        "Gold": 348
+      },
+      {
+        "PlayerGold": [
+          368
+        ],
+        "Wave": 16,
+        "Flying": false,
+        "Killed": 120,
+        "Leaked": 0,
+        "Ticks": 1196,
+        "Gold": 368
+      },
+      {
+        "PlayerGold": [
+          272
+        ],
+        "Wave": 17,
+        "Flying": false,
+        "Killed": 72,
+        "Leaked": 0,
+        "Ticks": 1416,
+        "Gold": 272
+      },
+      {
+        "PlayerGold": [
+          458
+        ],
+        "Wave": 18,
+        "Flying": false,
+        "Killed": 168,
+        "Leaked": 0,
+        "Ticks": 1305,
+        "Gold": 458
+      },
+      {
+        "PlayerGold": [
+          224
+        ],
+        "Wave": 19,
+        "Flying": false,
+        "Killed": 48,
+        "Leaked": 0,
+        "Ticks": 1764,
+        "Gold": 224
+      },
+      {
+        "PlayerGold": [
+          364
+        ],
+        "Wave": 20,
+        "Flying": true,
+        "Killed": 120,
+        "Leaked": 0,
+        "Ticks": 1127,
+        "Gold": 364
+      }
+    ]
+  }
+]

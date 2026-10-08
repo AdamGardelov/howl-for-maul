@@ -310,6 +310,31 @@ namespace FrostMaze.Tests
             yield return null;
             Assert.That(GameObject.Find("Tower "+prismChampion.Id).GetComponent<TowerView>().VisibleLevel,Is.EqualTo(2));
             Assert.That(game.World.Gold,Is.EqualTo(245));
+            game.SetupOptions.Factions[0]=3;game.StartMatch();game.Paused=true;
+            string[] horizonPaths={"Sentry weapon/Glimmer scope","Sentry weapon/Solar crown","Sentry weapon/Dust intake","Sentry weapon/Boneplate rib","Interceptor weapon/Sky harpoon","Sentry weapon/Warden drill","Champion weapon/Crawler hull"};
+            for(int d=0;d<7;d++) {
+                game.World.SelectedDesign=21+d;bool built=false;
+                for(int y=6;y<20&&!built;y++)for(int x=26+d;x<45&&!built;x++)if(game.World.CanBuild(x,y,out _)) {
+                    Assert.That(game.World.OrderBuild(x,y,out _),Is.True);
+                    for(int tick=0;tick<300;tick++)game.World.Step();
+                    Assert.That(game.World.Grid.At(x,y),Is.Not.Null);built=true;
+                }
+                Assert.That(built,Is.True);
+            }
+            yield return null;yield return null;
+            for(int i=0;i<7;i++) {
+                var tower=game.World.Grid.Towers[i];var view=GameObject.Find("Tower "+tower.Id).GetComponent<TowerView>();
+                Assert.That(view.transform.Find(horizonPaths[i]),Is.Not.Null,"Missing Horizon model");
+                Assert.That(view.GetComponentsInChildren<Collider>().Length,Is.Zero);
+            }
+            Assert.That(game.World.Gold,Is.EqualTo(505));
+            Assert.That(game.World.Grid.Towers[0].Spec.Range,Is.EqualTo(5.5f));
+            Assert.That(game.World.Grid.Towers[4].Spec.TargetsGround,Is.False);
+            var horizonChampion=game.World.Grid.Towers[6];
+            Assert.That(game.World.Upgrade(horizonChampion.Id,out _),Is.True);
+            yield return null;
+            Assert.That(GameObject.Find("Tower "+horizonChampion.Id).GetComponent<TowerView>().VisibleLevel,Is.EqualTo(2));
+            Assert.That(game.World.Gold,Is.EqualTo(245));
             yield return new ExitPlayMode();
         }
         [UnityTest]
