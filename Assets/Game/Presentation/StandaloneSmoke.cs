@@ -6,11 +6,15 @@ namespace FrostMaze
     // Explicit CI switch. Normal launches never enter this path.
     public static class StandaloneSmoke
     {
+        public static bool Requested => Array.IndexOf(Environment.GetCommandLineArgs(),"--howl-smoke-test")>=0;
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void Run()
         {
-            if(Array.IndexOf(Environment.GetCommandLineArgs(),"--howl-smoke-test")<0)return;
+            if(!Requested)return;
             try {
+                if(UnityEngine.Object.FindFirstObjectByType<Prototype>()!=null||UnityEngine.Object.FindFirstObjectByType<AudioSource>()!=null)
+                    throw new Exception("Route/data smoke unexpectedly initialized presentation or audio");
+                Debug.Log("HOWL_SMOKE_DATA_ONLY");
                 foreach(string name in new[]{"Rimewatch","Ironfold"}) {
                     var asset=Resources.Load<MapDefinition>(name);
                     if(asset==null)throw new Exception("Missing packaged map "+name);

@@ -14,7 +14,7 @@ log_file="$log_dir/$(basename -- "$log_file")"
 : >"$log_file"
 # Unset display addresses only for the test process, not the user's desktop session.
 if timeout 120s env -u DISPLAY -u WAYLAND_DISPLAY "$player" -batchmode -nographics --howl-smoke-test -logFile "$log_file" >"$log_file.stdout" 2>&1; then
-    for expected in 'HOWL_SMOKE_PASS Rimewatch' 'HOWL_SMOKE_PASS Ironfold' 'HOWL_SMOKE_COMPLETE'; do
+    for expected in 'HOWL_SMOKE_DATA_ONLY' 'HOWL_SMOKE_PASS Rimewatch' 'HOWL_SMOKE_PASS Ironfold' 'HOWL_SMOKE_COMPLETE'; do
         if ! grep -Fq "$expected" "$log_file"; then
             printf '%s\n' "Missing smoke result: $expected (see $log_file)" >&2
             exit 1

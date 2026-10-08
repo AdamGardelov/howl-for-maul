@@ -107,7 +107,8 @@ namespace FrostMaze
         {
             requestedMap = "Rimewatch";
             UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
-            UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
+            // Data-only smoke exits immediately; it must not initialize transient graphics/audio.
+            if(!StandaloneSmoke.Requested)UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
         }
         static void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
         {
