@@ -83,6 +83,46 @@ namespace FrostMaze
                 Part("Quake seal",PrimitiveType.Cylinder,new Vector3(0,.45f,.29f),new Vector3(.4f,.12f,.25f),accent,weapon);
             }
         }
+        void EmberTower(Material trim,Material dark,bool meteor)
+        {
+            if(Role=="Wall") {
+                Part("Coal bunker",PrimitiveType.Cube,new Vector3(0,.44f,0),new Vector3(.76f,.38f,.68f),dark);
+                for(int side=-1;side<=1;side+=2)Part("Bunker brace",PrimitiveType.Cube,new Vector3(side*.29f,.51f,0),new Vector3(.11f,.51f,.73f),shell);
+                for(int i=-1;i<=1;i++)Part("Banked coal",PrimitiveType.Sphere,new Vector3(i*.2f,.65f,0),new Vector3(.25f,.19f,.37f),accent);
+                return;
+            }
+            var pivot=new GameObject(Role+" weapon");pivot.transform.SetParent(transform,false);weapon=pivot.transform;
+            if(Role=="Interceptor") {
+                Part("Lance mount",PrimitiveType.Cylinder,new Vector3(0,.58f,0),new Vector3(.48f,.3f,.48f),dark,weapon);
+                for(int side=-1;side<=1;side+=2) {
+                    var fin=Part("Lance fin",PrimitiveType.Cube,new Vector3(side*.22f,1.03f,0),new Vector3(.13f,.8f,.22f),shell,weapon);fin.transform.localRotation=Quaternion.Euler(0,0,side*12);
+                }
+                Crystal("Flare spear",new Vector3(0,1.28f,0),new Vector3(.23f,.97f,.23f),accent,weapon);
+                Crystal("White hot tip",new Vector3(0,1.64f,0),new Vector3(.1f,.27f,.1f),light,weapon);
+            } else if(Role=="Artillery"&&meteor) {
+                Part("Crucible foot",PrimitiveType.Cylinder,new Vector3(0,.42f,0),new Vector3(.54f,.15f,.54f),dark,weapon);
+                Part("Crucible bowl",PrimitiveType.Sphere,new Vector3(0,.74f,0),new Vector3(.74f,.64f,.74f),shell,weapon);
+                Part("Molten pool",PrimitiveType.Cylinder,new Vector3(0,.98f,0),new Vector3(.55f,.045f,.55f),accent,weapon);
+                for(int side=-1;side<=1;side+=2)Part("Crucible handle",PrimitiveType.Cube,new Vector3(side*.34f,.85f,0),new Vector3(.1f,.36f,.24f),trim,weapon);
+                Crystal("Meteor core",new Vector3(0,1.25f,0),new Vector3(.31f,.43f,.31f),light,weapon);
+            } else if(Role=="Artillery") {
+                Part("Furnace housing",PrimitiveType.Cube,new Vector3(0,.64f,0),new Vector3(.66f,.68f,.56f),shell,weapon);
+                for(int side=-1;side<=1;side+=2) {
+                    Part("Furnace chimney",PrimitiveType.Cylinder,new Vector3(side*.22f,1.11f,-.12f),new Vector3(.16f,.3f,.18f),dark,weapon);
+                    Part("Chimney ember",PrimitiveType.Cylinder,new Vector3(side*.22f,1.41f,-.12f),new Vector3(.13f,.025f,.14f),accent,weapon);
+                }
+                Part("Furnace mouth",PrimitiveType.Cube,new Vector3(0,.61f,.29f),new Vector3(.48f,.34f,.05f),dark,weapon);
+                for(int i=-1;i<=1;i++)Part("Furnace grate",PrimitiveType.Cube,new Vector3(i*.13f,.62f,.32f),new Vector3(.045f,.26f,.025f),accent,weapon);
+            } else {
+                Part("Cinder drum",PrimitiveType.Cylinder,new Vector3(0,.69f,0),new Vector3(.49f,.37f,.49f),shell,weapon);
+                Part("Cinder crown",PrimitiveType.Cylinder,new Vector3(0,1.08f,0),new Vector3(.6f,.08f,.6f),dark,weapon);
+                for(int side=-1;side<=1;side+=2) {
+                    var nozzle=Part("Cinder nozzle",PrimitiveType.Cylinder,new Vector3(side*.15f,.9f,.2f),new Vector3(.16f,.21f,.16f),accent,weapon);nozzle.transform.localRotation=Quaternion.Euler(75,0,0);
+                    Part("Drum vent",PrimitiveType.Cube,new Vector3(side*.245f,.66f,0),new Vector3(.025f,.31f,.12f),light,weapon);
+                }
+                Crystal("Pilot flame",new Vector3(0,1.27f,0),new Vector3(.23f,.35f,.23f),accent,weapon);
+            }
+        }
         GameObject Part(string name,PrimitiveType kind,Vector3 p,Vector3 scale,Material material,Transform parent=null)
         {
             var o=GameObject.CreatePrimitive(kind);o.name=name;o.transform.SetParent(parent==null?transform:parent,false);
@@ -102,6 +142,7 @@ namespace FrostMaze
             Part("Faction band",PrimitiveType.Cylinder,new Vector3(0,.23f,0),new Vector3(.78f,.035f,.78f),accent);
             if(!robot&&faction==0)RimeTower(palette[3],palette[4]);
             else if(!robot&&faction==1)StoneTower(palette[3],palette[4],spec.TargetsAir);
+            else if(!robot&&faction==2)EmberTower(palette[3],palette[4],design!=null&&design.Name=="Meteor Crucible");
             else {
             if(!robot&&Role!="Wall")for(int side=-1;side<=1;side+=2) {
                 Part("Stone buttress",PrimitiveType.Cube,new Vector3(side*.31f,.38f,-.05f),new Vector3(.16f,.43f,.48f),shell);

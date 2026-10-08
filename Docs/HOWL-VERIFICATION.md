@@ -1,10 +1,12 @@
-# Howl for Maul verification — Stonebound model checkpoint
+# Howl for Maul verification — Ember model checkpoint
 
 The user-requested four-part pass is implemented: clearer tower/enemy presentation and camera, stronger faction tradeoffs, twenty-wave campaigns, and a normal menu flow without the empty test arena. See BATTLEFIELD-UPDATE.md for implementation details. The new art-direction pass adds continuous softly varied ground, beveled mask edges, layered pines, original faceted tower meshes, winter stonework and warm/cool matte lighting; see ART-DIRECTION.md.
 
 The latest model slice gives Rime Covenant five distinct stone-and-ice designs, replaces builder capsules with wardens/drones, and adds faceted enemy shells, swept wings and tick-driven walking feet. See RIME-MODEL-SLICE.md.
 
 The latest Stonebound pass adds five distinct models. Its paid builder integration and full suite passed 63/63; see STONEBOUND-MODELS.md. A fresh 1920×884 paid lineup capture was inspected at zoom 7. Builds and campaign results below belong to preceding checkpoints, not this Stonebound source update.
+
+The Ember source checkpoint adds five distinct models and verifies paid upgrades retain their identity. Fresh Unity results: 63/63 passed, 24.21 seconds. A 1920×884 paid lineup was inspected at zoom 7. See EMBER-MODELS.md. Packaged builds remain the Rime checkpoint.
 
 ## Automated tests
 

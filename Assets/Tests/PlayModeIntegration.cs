@@ -98,6 +98,29 @@ namespace FrostMaze.Tests
                 Assert.That(view.GetComponentsInChildren<Collider>().Length,Is.Zero,"Scenery must not add physical blockers");
             }
             Assert.That(game.World.Gold,Is.EqualTo(959),"Models must retain actual paid Stonebound costs");
+            game.SetupOptions.Factions[0]=2;game.StartMatch();game.Paused=true;game.ShowNavigation=false;
+            string[] emberSignatures={"Sentry weapon/Cinder drum","Coal bunker","Artillery weapon/Furnace chimney","Interceptor weapon/Flare spear","Artillery weapon/Crucible bowl"};
+            for(int i=0;i<5;i++) {
+                game.World.SelectedDesign=10+i;
+                Assert.That(game.World.OrderBuild(16+i,14,out _),Is.True);
+                for(int tick=0;tick<180;tick++)game.World.Step();
+            }
+            yield return null;yield return null;
+            for(int i=0;i<5;i++) {
+                var tower=game.World.Grid.At(16+i,14);Assert.That(tower,Is.Not.Null);
+                var view=GameObject.Find("Tower "+tower.Id).GetComponent<TowerView>();
+                Assert.That(view.transform.Find(emberSignatures[i]),Is.Not.Null,"Missing Ember silhouette");
+                Assert.That(view.GetComponentsInChildren<Collider>().Length,Is.Zero);
+                Assert.That(game.World.Upgrade(tower.Id,out _),Is.True);
+            }
+            yield return null;
+            for(int i=0;i<5;i++) {
+                var tower=game.World.Grid.At(16+i,14);
+                var view=GameObject.Find("Tower "+tower.Id).GetComponent<TowerView>();
+                Assert.That(view.VisibleLevel,Is.EqualTo(2));
+                Assert.That(view.transform.Find(emberSignatures[i]),Is.Not.Null,"Upgrade changed the model identity");
+            }
+            Assert.That(game.World.Gold,Is.EqualTo(710),"Five paid builds and upgrades must cost 490");
             yield return new ExitPlayMode();
         }
         [UnityTest]
