@@ -1,14 +1,14 @@
 {
   "builds": [
     {
-      "buildId": "build_8e7648327e39",
+      "buildId": "build_58d52b0aa8d1",
       "result": "Succeeded",
       "platform": "StandaloneLinux64",
       "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Linux/HowlForMaul",
-      "totalSizeBytes": 92213016,
-      "buildTimeMs": 12511,
-      "buildStartedAt": "2026-10-08T10:37:59.5968480Z",
-      "buildEndedAt": "2026-10-08T10:38:12.1083130Z",
+      "totalSizeBytes": 92215576,
+      "buildTimeMs": 14041,
+      "buildStartedAt": "2026-10-08T11:09:43.2043100Z",
+      "buildEndedAt": "2026-10-08T11:09:57.2453850Z",
       "totalWarnings": 1,
       "totalErrors": 0,
       "warnings": [
@@ -18,14 +18,14 @@
       ]
     },
     {
-      "buildId": "build_fd5dd1f9ef1f",
+      "buildId": "build_ecbb8eb67eba",
       "result": "Succeeded",
       "platform": "StandaloneWindows64",
       "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Windows/HowlForMaul.exe",
-      "totalSizeBytes": 95856672,
-      "buildTimeMs": 18969,
-      "buildStartedAt": "2026-10-08T10:38:52.7572100Z",
-      "buildEndedAt": "2026-10-08T10:39:11.7262300Z",
+      "totalSizeBytes": 95859408,
+      "buildTimeMs": 21864,
+      "buildStartedAt": "2026-10-08T11:12:54.9555560Z",
+      "buildEndedAt": "2026-10-08T11:13:16.8200220Z",
       "totalWarnings": 19,
       "totalErrors": 0,
       "warnings": [
@@ -126,9 +126,9 @@
     "sourceCheckpoint": "465974e",
     "exitCode": 0
   },
-  "sourceCheckpoint": "465974e",
+  "sourceCheckpoint": "a56b875",
   "linuxHeadlessSmoke": {
-    "sourceCheckpoint": "465974e",
+    "sourceCheckpoint": "a56b875",
     "command": "Tools/smoke-linux.sh",
     "display": "DISPLAY and WAYLAND_DISPLAY unset for child process",
     "graphicsDevice": "Null Device",
@@ -140,7 +140,7 @@
     "note": "Both route/data markers and HOWL_SMOKE_COMPLETE checked; script also requires exit zero. No graphical claim."
   },
   "linuxPackagedSmoke": {
-    "sourceCheckpoint": "465974e",
+    "sourceCheckpoint": "a56b875",
     "backend": "headless -batchmode -nographics",
     "exitCode": 0,
     "markers": [

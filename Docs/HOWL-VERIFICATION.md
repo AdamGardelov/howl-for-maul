@@ -34,9 +34,9 @@ Tower-query follow-up: spatial indexing reduced the matched crowded fixture from
 
 ## Packages and platform limits
 
-Fresh Linux and Windows packages include source 465974e: all 76 models, tower collision indexing, repaint-only world overlays and map props kept off walkable cells. Both builds succeeded with zero errors; Linux reported one Pipeline-disabled warning, Windows 19 including unsupported package ray-tracing shaders. Windows runtime remains untested.
+Fresh Linux and Windows packages include source a56b875: all 76 models, tower collision indexing, repaint-only world overlays map props kept off walkable cells and wave income recaps. Both builds succeeded with zero errors; Linux reported one Pipeline-disabled warning, Windows 19 including unsupported package ray-tracing shaders. Windows runtime remains untested.
 
-Fresh Linux packaged route/data smoke passed both maps without a display server, exit zero. The repeatable Tools/smoke-linux.sh checks both map markers and clean process exit. Fresh mouse-driven Start Match/build beside wall/select/upgrade/sell also passed on isolated :98, with 1200 → 1180 → 1160 → 1190 gold and normal close exiting zero. These are separate checks, not a full mouse-played campaign or a GPU benchmark.
+Fresh Linux packaged route/data smoke passed both maps without a display server, exit zero. The repeatable Tools/smoke-linux.sh checks both map markers and clean process exit. The preceding 465974e package passed mouse-driven Start Match/build beside wall/select/upgrade/sell on isolated :98, with 1200 → 1180 → 1160 → 1190 gold and normal close exiting zero. These are separate checks, not a full mouse-played campaign or a GPU benchmark.
 
 Native default X11 startup remains unresolved. A native Wayland/OpenGL probe reached the smoke markers but crashed on shutdown (139); not a pass. Read Platform/README.md and Howl-Builds.json for evidence. Editor restored to StandaloneLinux64.
 

@@ -8,4 +8,4 @@ Verification: 61/61 pure simulation cases and 70/70 Unity cases passed. New case
 
 A live-editor Rimewatch first wave used six normal paid towers, three per player across Rime Covenant and Stonebound. All 24 enemies were defeated, no leaks, 168 team income split 84 each; wallets 624 and 609 after different tower costs. Native 1920×884 recap inspected. Separate one-life defeat and one-wave victory fixtures exercise the terminal presentation; those captures are not claims of full graphical twenty-wave playthroughs. The two small terminal-label/preview corrections followed the full suite and were compiled and visually rechecked.
 
-Current packaged builds still correspond to scenery checkpoint 465974e and predate this recap until the next package refresh. No game economy, wave tuning or routing rules changed.
+Fresh Linux/Windows packages include recap checkpoint a56b875, both with zero build errors. The display-free Linux package smoke passes both maps and exits zero. The last full mouse sequence belongs to previous checkpoint 465974e; no fresh complete GUI sequence or Windows runtime claim. No game economy, wave tuning or routing rules changed.

@@ -9,3 +9,5 @@ The same package passed actual mouse Start Match/build/select/upgrade/sell on is
 Native desktop limits remain: older default X11 launches failed in XF86VidModeGetModeLine before game initialization. A source 9e656e8 native Wayland/OpenGL probe on the GTX 1080 reached both smoke markers but crashed during shutdown (exit 139, attached Wayland proxies warning). It is explicitly a failed process despite the success messages. No saved graphics defaults were changed. Unity documents Wayland support as experimental; see the [Unity 6.3 player command-line reference](https://docs.unity3d.com/6000.3/Documentation/Manual/PlayerCommandLineArguments.html).
 
 A subsequent source 465974e Wayland/Vulkan smoke reached both map checks and exited zero, but logged a DRM Syncobj surface protocol error. This verifies the route/data path only, not a working native graphical window or input. Saved graphics defaults remain unchanged.
+
+Package refresh a56b875 adds the wave recap and terminal-state corrections. Both builds have zero errors (same 1/19 warning counts), and display-free Linux route/data smoke passes with exit zero. The graphical mouse evidence above remains tied to 465974e.
