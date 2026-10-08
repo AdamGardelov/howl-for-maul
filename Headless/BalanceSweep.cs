@@ -7,7 +7,7 @@ using FrostMaze.Simulation;
 using FrostMaze.Tests;
 
 // Reproducible baseline, not a skilled-player substitute. Uses normal builder orders and wallets.
-static class BalanceSweep
+static partial class BalanceSweep
 {
     sealed class Sample { public V2 Position; public bool Air; public float Coverage,Slow; }
     sealed class Placement { public int TowerId{get;set;} public int BeforeWave{get;set;} public int Player{get;set;} public int X{get;set;} public int Y{get;set;} public string Tower{get;set;} public int Cost{get;set;} }
@@ -160,7 +160,7 @@ static class BalanceSweep
     static int TeamGold(World w) { int total=0;foreach(var p in w.Players)total+=p.Gold;return total; }
     public static int Run(string path,Difficulty difficulty,int players,string strategy="coverage",bool mixed=false,string mapFilter="",int factionFilter=-1)
     {
-        if(strategy!="coverage"&&strategy!="roster"&&strategy!="maze"&&strategy!="adaptive"&&strategy!="compact"&&strategy!="compact-value"&&strategy!="compact-roles"&&strategy!="compact-support")throw new ArgumentException("Strategy must be coverage, roster, maze, adaptive, compact, compact-value, compact-roles or compact-support.");
+        if(strategy!="coverage"&&strategy!="roster"&&strategy!="maze"&&strategy!="adaptive"&&strategy!="compact"&&strategy!="compact-value"&&strategy!="compact-roles"&&strategy!="compact-support"&&strategy!="compact-invest")throw new ArgumentException("Strategy must be coverage, roster, maze, adaptive, compact, compact-value, compact-roles, compact-support or compact-invest.");
         if(players<1||players>4)throw new ArgumentException("Player count must be 1–4.");
         var results=new List<Result>();
         foreach(bool iron in new[]{false,true}) {
@@ -176,7 +176,7 @@ static class BalanceSweep
                         if(!Purchase(w,cells[cell,0],cells[cell,1],design,r))throw new Exception("Paid maze fixture could not be built");
                 }
                 for(int wave=0;wave<c.Waves.Length&&!w.Finished;wave++) {
-                    for(int player=0;player<players;player++){w.SelectPlayer(player);if(strategy=="roster")SpendRoster(w,samples,r);else if(strategy=="adaptive"||strategy.StartsWith("compact"))SpendAdaptive(w,samples,r,strategy.StartsWith("compact")?48/players:int.MaxValue,strategy=="compact-value"||strategy=="compact-roles"||strategy=="compact-support",strategy=="compact-roles"||strategy=="compact-support",strategy=="compact-support");else Spend(w,samples,r);}int killed=w.Killed,leaked=w.Leaked;
+                    for(int player=0;player<players;player++){w.SelectPlayer(player);if(strategy=="roster")SpendRoster(w,samples,r);else if(strategy=="compact-invest")SpendInvest(w,samples,r,48/players);else if(strategy=="adaptive"||strategy.StartsWith("compact"))SpendAdaptive(w,samples,r,strategy.StartsWith("compact")?48/players:int.MaxValue,strategy=="compact-value"||strategy=="compact-roles"||strategy=="compact-support",strategy=="compact-roles"||strategy=="compact-support",strategy=="compact-support");else Spend(w,samples,r);}int killed=w.Killed,leaked=w.Leaked;
                     if(!w.StartWave())throw new Exception("Wave failed to start");int ticks=0;
                     while(w.WaveActive&&!w.Finished&&ticks<18000){w.Step();ticks++;}
                     if(strategy.StartsWith("compact")&&w.Grid.Towers.Count>48)throw new Exception("Compact diagnostic exceeded its 48-tower team limit");

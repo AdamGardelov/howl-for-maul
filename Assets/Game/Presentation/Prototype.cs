@@ -300,6 +300,16 @@ namespace FrostMaze
             }
             if (World.Finished||PointerOverHud(uiPoint))
                 return;
+            // Inspect the projected model before ground picking: a flying body can be over
+            // a tower or have its ground-ray intersection outside the map at close perspective.
+            if(!SellMode&&!MoveMode&&!UnityEngine.Input.GetMouseButton(1)&&
+                (UnityEngine.Input.GetKey(KeyCode.LeftControl)||UnityEngine.Input.GetKey(KeyCode.RightControl))) {
+                if(UnityEngine.Input.GetMouseButtonDown(0)) {
+                    SelectedTowerId=0;SelectedId=EnemyAtScreenPoint(mouse);
+                    Notice=SelectedId==0?"No enemy at pointer.":"Enemy selected.";
+                }
+                return;
+            }
             var plane = new Plane(Vector3.up, Vector3.zero);
             if (!plane.Raycast(View.ScreenPointToRay(mouse), out float distance))
                 return;
@@ -323,6 +333,7 @@ namespace FrostMaze
                 // Existing towers are selectable; do not label their occupied cell as a failed purchase.
                 var existing=World.Grid.At(x,y);
                 HoverHint=existing!=null?"Click to inspect "+existing.Name:HoverBuildValid?World.BuildName+(World.Config.Economy?" · "+World.BuildCost+" gold":" · free build"):reason;
+                if(existing!=null)ghost.SetActive(false);
             }
             ghostMaterial.color = SellMode || (!MoveMode && !HoverBuildValid) ? new Color(1, 0.3f, 0.3f) : new Color(0.24f, 0.9f, 0.74f);
             if (World.Config.BuilderEnabled && (UnityEngine.Input.GetMouseButtonDown(1) || MoveMode && UnityEngine.Input.GetMouseButtonDown(0)))
@@ -340,26 +351,24 @@ namespace FrostMaze
                 var tower=World.Grid.At(x,y);
                 if(tower!=null){SelectedTowerId=tower.Id;SelectedId=0;Notice=tower.Name+" selected. U upgrades.";return;}
                 SelectedTowerId=0;
-                if (UnityEngine.Input.GetKey(KeyCode.LeftControl) || UnityEngine.Input.GetKey(KeyCode.RightControl))
-                {
-                    SelectedId = 0;
-                    float best = 1;
-                    foreach (var e in World.Enemies)
-                    {
-                        float d = V2.Distance(e.Position, new V2(point.x, point.z));
-                        if (d < best)
-                        {
-                            SelectedId = e.Id;
-                            best = d;
-                        }
-                    }
-                }
-                else
-                {
-                    World.OrderBuild(x, y, out string reason,UnityEngine.Input.GetKey(KeyCode.LeftShift)||UnityEngine.Input.GetKey(KeyCode.RightShift));
-                    Notice = reason;
-                }
+                World.OrderBuild(x,y,out string reason,UnityEngine.Input.GetKey(KeyCode.LeftShift)||UnityEngine.Input.GetKey(KeyCode.RightShift));
+                Notice=reason;
             }
+        }
+        public int EnemyAtScreenPoint(Vector2 point)
+        {
+            if(point.x<0||point.y<0||point.x>=Screen.width||point.y>=Screen.height)return 0;
+            int selected=0;float nearest=float.PositiveInfinity;
+            foreach(var enemy in World.Enemies) {
+                var position=new Vector3(enemy.Position.X,enemy.Spec.Flying?1.7f:enemy.Spec.Radius*.65f,enemy.Position.Y);
+                var centre=View.WorldToScreenPoint(position);
+                if(centre.z<=0||centre.x<0||centre.y<0||centre.x>=Screen.width||centre.y>=Screen.height)continue;
+                var edge=View.WorldToScreenPoint(position+View.transform.right*Mathf.Max(.25f,enemy.Spec.Radius*1.8f));
+                float radius=Mathf.Clamp(Mathf.Abs(edge.x-centre.x),10,40);
+                float distance=((Vector2)centre-point).sqrMagnitude;
+                if(distance<=radius*radius&&distance<nearest){nearest=distance;selected=enemy.Id;}
+            }
+            return selected;
         }
         public void Launch()
         {

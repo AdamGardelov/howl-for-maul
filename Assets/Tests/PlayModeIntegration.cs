@@ -17,7 +17,7 @@ namespace FrostMaze.Tests
             public CameraIntent Intent;
             public CameraIntent Read()=>Intent;
         }
-        [UnityTest, Category("DepthPresentation")]
+        [UnityTest, Category("DepthPresentation"), Category("FollowThrough")]
         public IEnumerator TowerPortraitsCacheActualModelsWithoutChangingMatch()
         {
             EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
@@ -49,7 +49,7 @@ namespace FrostMaze.Tests
             Object.FindFirstObjectByType<Prototype>().ChooseMap(Resources.Load<MapDefinition>("Rimewatch"));yield return null;
             yield return new ExitPlayMode();
         }
-        [UnityTest, Category("DepthPresentation")]
+        [UnityTest, Category("DepthPresentation"), Category("FollowThrough")]
         public IEnumerator CameraDragRejectsUiOriginsAndFreezesInSetup()
         {
             EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
@@ -326,7 +326,7 @@ namespace FrostMaze.Tests
             Assert.That(feedback.SoundDispatches,Is.Zero);Assert.That(feedback.LastSound,Is.Null);Assert.That(source.mute,Is.True);
             yield return new ExitPlayMode();
         }
-        [UnityTest, Category("DepthPresentation")]
+        [UnityTest, Category("DepthPresentation"), Category("FollowThrough")]
         public IEnumerator MapLandmarksNeverCoverWalkableCells()
         {
             EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
@@ -926,6 +926,80 @@ namespace FrostMaze.Tests
             var builder=typeof(Prototype).GetField("builder",System.Reflection.BindingFlags.NonPublic|System.Reflection.BindingFlags.Instance).GetValue(game) as GameObject;
             foreach(var renderer in builder.GetComponentsInChildren<Renderer>())if(renderer.name.StartsWith("Faction"))
                 Assert.That(renderer.sharedMaterial,Is.SameAs(game.TowerPalette(1)[1]),"Cached builder tint ignored a new faction");
+            yield return new ExitPlayMode();
+        }
+        [UnityTest, Category("FollowThrough")]
+        public IEnumerator HealthBarsPrioritizeSelectionDeclutterAndRevealOnDemand()
+        {
+            EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");yield return new EnterPlayMode();yield return null;
+            var game=Object.FindFirstObjectByType<Prototype>();
+            if(game.Map.name!="Rimewatch"){game.ChooseMap(Resources.Load<MapDefinition>("Rimewatch"));yield return null;yield return null;game=Object.FindFirstObjectByType<Prototype>();}
+            game.StartMatch();game.Paused=true;game.SoundEnabled=false;var w=game.World;w.TowersFire=false;
+            Assert.That(w.OrderBuild(16,14,out _),Is.True);for(int i=0;i<150;i++)w.Step();
+            var tower=w.Grid.At(16,14);Assert.That(tower,Is.Not.Null);
+            var camera=game.View.GetComponent<RtsCamera>();camera.FocusPoint(tower.Center);camera.SetZoom(Mathf.Max(11,Screen.height/60f),true);camera.enabled=false;
+            var hud=game.GetComponent<PrototypeHud>();game.SelectedTowerId=tower.Id;yield return null;
+            hud.PrepareHealthBars(false);Assert.That(hud.HealthBars.Count,Is.EqualTo(1),"Selected healthy tower needs a bar");
+            Assert.That(hud.HealthBars[0].Selected,Is.True);Assert.That(hud.HealthBars[0].TowerId,Is.EqualTo(tower.Id));
+            game.SelectedTowerId=0;tower.Health*=.5f;
+            FrostMaze.Simulation.Enemy selected=null;
+            for(int i=0;i<8;i++) {
+                var e=w.Spawn(new FrostMaze.Simulation.WaveSpec{Flying=true,Health=100},tower.Center+new FrostMaze.Simulation.V2(-2+i*.55f,1.5f));
+                Assert.That(e,Is.Not.Null);e.Health=50;if(i==0)selected=e;
+            }
+            var healthy=w.Spawn(new FrostMaze.Simulation.WaveSpec{Flying=true,Health=100},tower.Center+new FrostMaze.Simulation.V2(3,0));Assert.That(healthy,Is.Not.Null);
+            game.SelectedId=selected.Id;yield return null;hud.PrepareHealthBars(false);
+            Assert.That(hud.HealthBars[0].EnemyId,Is.EqualTo(selected.Id));Assert.That(hud.HealthBars[0].Selected,Is.True);
+            Assert.That(hud.SuppressedHealthBars,Is.GreaterThanOrEqualTo(1),"Crowd bars overlap instead of being decluttered");
+            foreach(var bar in hud.HealthBars)Assert.That(bar.EnemyId,Is.Not.EqualTo(healthy.Id),"Healthy unselected unit should stay quiet");
+            for(int i=0;i<hud.HealthBars.Count;i++)for(int j=i+1;j<hud.HealthBars.Count;j++)Assert.That(hud.HealthBars[i].Rect.Overlaps(hud.HealthBars[j].Rect),Is.False);
+            hud.PrepareHealthBars(true);Assert.That(hud.HealthBars.Count,Is.EqualTo(10),"Reveal must include healthy and overlapping units");
+            Assert.That(hud.HealthBars[0].EnemyId,Is.EqualTo(selected.Id),"Reveal lost selected unit priority");
+            foreach(var bar in hud.HealthBars) {
+                Assert.That(bar.Rect.Overlaps(game.TopHud)||bar.Rect.Overlaps(game.MinimapRect)||bar.Rect.Overlaps(game.BuildHud),Is.False);
+                Assert.That(bar.Fraction,Is.InRange(0,1));
+            }
+            for(int i=0;i<20;i++)hud.PrepareHealthBars(false);
+            long before=System.GC.GetAllocatedBytesForCurrentThread();for(int i=0;i<100;i++)hud.PrepareHealthBars(false);
+            Assert.That(System.GC.GetAllocatedBytesForCurrentThread()-before,Is.Zero,"Stable health layout allocated per frame");
+            camera.FocusPoint(new FrostMaze.Simulation.V2(50,50));hud.PrepareHealthBars(true);
+            Assert.That(hud.HealthBars.Count,Is.Zero,"Offscreen health bars leaked over the HUD");
+            Assert.That(w.Grid.Towers.Count,Is.EqualTo(1));Assert.That(w.Enemies.Count,Is.EqualTo(9));
+            yield return new ExitPlayMode();
+        }
+        [UnityTest, Category("InspectionPicking")]
+        public IEnumerator PerspectiveInspectionPicksAirAndGroundModelsWithoutBuilding()
+        {
+            EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");yield return new EnterPlayMode();yield return null;
+            var game=Object.FindFirstObjectByType<Prototype>();
+            if(game.Map.name!="Rimewatch"){game.ChooseMap(Resources.Load<MapDefinition>("Rimewatch"));yield return null;yield return null;game=Object.FindFirstObjectByType<Prototype>();}
+            game.StartMatch();game.Paused=true;game.SoundEnabled=false;var world=game.World;world.TowersFire=false;
+            Assert.That(world.OrderBuild(16,14,out _),Is.True);for(int i=0;i<150;i++)world.Step();
+            var tower=world.Grid.At(16,14);Assert.That(tower,Is.Not.Null);
+            var air=world.Spawn(new FrostMaze.Simulation.WaveSpec{Flying=true},tower.Center);Assert.That(air,Is.Not.Null);
+            var ground=world.Spawn(new FrostMaze.Simulation.WaveSpec(),tower.Center+new FrostMaze.Simulation.V2(2,0));Assert.That(ground,Is.Not.Null);
+            var camera=game.View.GetComponent<RtsCamera>();var input=new CameraInputFixture();camera.SetInput(input);camera.FocusPoint(tower.Center);
+            var scenery=Object.FindFirstObjectByType<MapScenery>();var position=scenery.transform.position;var rotation=scenery.transform.rotation;
+            int gold=world.Gold;long tick=world.Tick;
+            for(int angle=0;angle<2;angle++) {
+                foreach(float zoom in new[]{5f,11f,24f}) {
+                    camera.SetZoom(zoom,true);
+                    var airScreen=game.View.WorldToScreenPoint(new Vector3(air.Position.X,1.7f,air.Position.Y));
+                    var groundScreen=game.View.WorldToScreenPoint(new Vector3(ground.Position.X,ground.Spec.Radius*.65f,ground.Position.Y));
+                    Assert.That(game.EnemyAtScreenPoint(airScreen),Is.EqualTo(air.Id),"Flying model over a tower missed at zoom "+zoom);
+                    Assert.That(game.EnemyAtScreenPoint(groundScreen),Is.EqualTo(ground.Id),"Ground model missed at zoom "+zoom);
+                    Assert.That(game.EnemyAtScreenPoint(new Vector2(-1,-1)),Is.Zero);
+                    if(angle==0&&zoom==5) {
+                        Assert.That(camera.GroundPoint(airScreen,out var floor),Is.True);
+                        Assert.That(Vector2.Distance(new Vector2(floor.x,floor.z),new Vector2(air.Position.X,air.Position.Y)),Is.GreaterThan(1),"Fixture must expose the former ground-plane miss");
+                    }
+                }
+                input.Intent=new CameraIntent{Pointer=new Vector2(Screen.width*.5f,Screen.height*.5f),Rotate=1};
+                for(int i=0;i<12;i++)yield return null;
+                input.Intent=default;
+            }
+            Assert.That(camera.Yaw,Is.GreaterThan(0));Assert.That(scenery.transform.position,Is.EqualTo(position));Assert.That(scenery.transform.rotation,Is.EqualTo(rotation));
+            Assert.That(world.Gold,Is.EqualTo(gold));Assert.That(world.Tick,Is.EqualTo(tick));Assert.That(world.Grid.Towers.Count,Is.EqualTo(1));Assert.That(world.QueuedBuilds,Is.Zero);
             yield return new ExitPlayMode();
         }
         [UnityTearDown]

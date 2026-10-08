@@ -4,7 +4,13 @@ namespace FrostMaze
 {
     public sealed partial class PrototypeHud
     {
-        bool CoversCompactHud(Rect r) => !game.SetupOpen&&!game.DetailsOpen&&(r.Overlaps(game.TopHud)||(r.Overlaps(game.BuildHud)||r.Overlaps(game.MinimapPanel)||(game.World.Grid.Find(game.SelectedTowerId)!=null&&r.Overlaps(game.SelectionHud)))||r.Overlaps(game.AlertHud));
+        bool CoversCompactHud(Rect r) => !game.SetupOpen&&!game.DetailsOpen&&(r.Overlaps(game.TopHud)||(r.Overlaps(game.BuildHud)||r.Overlaps(game.MinimapPanel)||(r.Overlaps(game.SelectionHud)&&HasSelectedTower()))||r.Overlaps(game.AlertHud));
+        bool HasSelectedTower()
+        {
+            if(game.SelectedTowerId==0)return false;
+            foreach(var tower in game.World.Grid.Towers)if(tower.Id==game.SelectedTowerId)return true;
+            return false;
+        }
         Rect Logical(Rect r) => new Rect(r.x/game.UiScale,r.y/game.UiScale,r.width/game.UiScale,r.height/game.UiScale);
         void DrawCompact()
         {
@@ -60,7 +66,7 @@ namespace FrostMaze
             game.ShowGrid=GUILayout.Toggle(game.ShowGrid,"Placement grid",button);
             if(GUILayout.Button(game.Speed==1?"Game speed: 1×":"Game speed: 2×",button))game.Speed=game.Speed==1?2:1;
             if(!Application.isEditor)Screen.fullScreen=GUILayout.Toggle(Screen.fullScreen,"Fullscreen window",button);
-            GUILayout.Space(8);GUILayout.Label("Details [Tab]: wave advice, tower stats and inspection tools.\nEdges / WASD: pan · Space + drag: pan · wheel: zoom\nQ / E: rotate · Home: default view at builder",small);
+            GUILayout.Space(8);GUILayout.Label("Details [Tab]: wave advice, tower stats and inspection tools.\nEdges / WASD: pan · Space + drag: pan · wheel: zoom\nQ / E: rotate · Home: default view at builder\nHold Alt: reveal all health bars",small);
             GUILayout.EndArea();GUI.matrix=matrix;
         }
     }

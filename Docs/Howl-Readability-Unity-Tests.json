@@ -1,0 +1,121 @@
+{
+  "finalCoverage": [
+    {
+      "FullName": "FrostMaze.Tests.PlayModeIntegration.CameraDragRejectsUiOriginsAndFreezesInSetup",
+      "Status": "Passed",
+      "Duration": 86.833921,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "FrostMaze.Tests.PlayModeIntegration.MapLandmarksNeverCoverWalkableCells",
+      "Status": "Passed",
+      "Duration": 89.923127,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "FrostMaze.Tests.PlayModeIntegration.TowerPortraitsCacheActualModelsWithoutChangingMatch",
+      "Status": "Passed",
+      "Duration": 91.220035,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "FrostMaze.Tests.PlayModeIntegration.HealthBarsPrioritizeSelectionDeclutterAndRevealOnDemand",
+      "Status": "Passed",
+      "Duration": 89.4811051,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "FrostMaze.Tests.PlayModeIntegration.PerspectiveInspectionPicksAirAndGroundModelsWithoutBuilding",
+      "Status": "Passed",
+      "Duration": 89.221103,
+      "Message": null,
+      "StackTrace": null
+    }
+  ],
+  "initialRun": {
+    "status": "completed",
+    "duration": 8.15,
+    "summary": {
+      "total": 4,
+      "passed": 3,
+      "failed": 1,
+      "skipped": 0,
+      "inconclusive": 0
+    },
+    "results": [
+      {
+        "FullName": "FrostMaze.Tests.PlayModeIntegration.CameraDragRejectsUiOriginsAndFreezesInSetup",
+        "Status": "Passed",
+        "Duration": 86.833921,
+        "Message": null,
+        "StackTrace": null
+      },
+      {
+        "FullName": "FrostMaze.Tests.PlayModeIntegration.HealthBarsPrioritizeSelectionDeclutterAndRevealOnDemand",
+        "Status": "Failed",
+        "Duration": 85.852361,
+        "Message": "  Expected: not null\n  But was:  null\n",
+        "StackTrace": "at FrostMaze.Tests.PlayModeIntegration+<HealthBarsPrioritizeSelectionDeclutterAndRevealOnDemand>d__18.MoveNext () [0x0031b] in /home/adam/Documents/Dev/howl-for-maul/Assets/Tests/PlayModeIntegration.cs:948\nat UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@0bd5c5194236/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:44\n"
+      },
+      {
+        "FullName": "FrostMaze.Tests.PlayModeIntegration.MapLandmarksNeverCoverWalkableCells",
+        "Status": "Passed",
+        "Duration": 89.923127,
+        "Message": null,
+        "StackTrace": null
+      },
+      {
+        "FullName": "FrostMaze.Tests.PlayModeIntegration.TowerPortraitsCacheActualModelsWithoutChangingMatch",
+        "Status": "Passed",
+        "Duration": 91.220035,
+        "Message": null,
+        "StackTrace": null
+      }
+    ]
+  },
+  "healthFixtureRerun": {
+    "status": "completed",
+    "duration": 5.55,
+    "summary": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0
+    },
+    "results": [
+      {
+        "FullName": "FrostMaze.Tests.PlayModeIntegration.HealthBarsPrioritizeSelectionDeclutterAndRevealOnDemand",
+        "Status": "Passed",
+        "Duration": 89.4811051,
+        "Message": null,
+        "StackTrace": null
+      }
+    ]
+  },
+  "inspectionPicking": {
+    "status": "completed",
+    "duration": 4.95,
+    "summary": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0
+    },
+    "results": [
+      {
+        "FullName": "FrostMaze.Tests.PlayModeIntegration.PerspectiveInspectionPicksAirAndGroundModelsWithoutBuilding",
+        "Status": "Passed",
+        "Duration": 89.221103,
+        "Message": null,
+        "StackTrace": null
+      }
+    ]
+  },
+  "note": "Five focused cases passed across these runs. Initial crowd fixture illegally overlapped spawn positions and was corrected to valid physical spacing with overlapping screen projections. Aggregate CLI duration excludes domain reloads."
+}

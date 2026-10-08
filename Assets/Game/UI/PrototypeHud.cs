@@ -170,7 +170,7 @@ namespace FrostMaze
 
             Rule();GUILayout.Label("OPTIONS & CONTROLS",section);
             game.SoundEnabled=GUILayout.Toggle(game.SoundEnabled,"Combat sound",button);game.ShowGrid=GUILayout.Toggle(game.ShowGrid,"Placement grid [G]",button);
-            GUILayout.Label("Click to build · right click to move\nShift + click queues · Cancel button clears orders · Esc: menu\nSelect a tower to upgrade · U upgrades\nEdges / WASD: pan · Shift: faster\nSpace + left drag / middle drag: pan · wheel: zoom\nHome: builder · End: overview",small);
+            GUILayout.Label("Click to build · right click to move\nShift + click queues · Cancel button clears orders · Esc: menu\nSelect a tower to upgrade · U upgrades\nEdges / WASD: pan · Shift: faster\nSpace + left drag / middle drag: pan · wheel: zoom\nHome: builder · End: overview\nHold Alt: all health bars",small);
             showTools=GUILayout.Toggle(showTools,"Advanced inspection",button);
             if(showTools) {
                 game.ShowRoutes=GUILayout.Toggle(game.ShowRoutes,"Lane and flight route guides",button);
@@ -303,37 +303,6 @@ namespace FrostMaze
             GUI.color=exit?new Color(.97f,.83f,.39f):new Color(.78f,.91f,.88f);
             GUI.Label(rect,text,mapLabel);
             GUI.color=Color.white;
-        }
-        void DrawHealth()
-        {
-            // Absolute-position overlays have no controls or layout to process.
-            if(Event.current.type!=EventType.Repaint)return;
-            foreach (var tower in game.World.Grid.Towers)
-                if (tower.Health < tower.Spec.Health)
-                    HealthBar(new Vector3(tower.Center.X, 1.7f, tower.Center.Y), tower.Health / tower.Spec.Health, new Color(.28f, .9f, .73f), 36);
-            foreach (var enemy in game.World.Enemies)
-                if (enemy.Health < enemy.Spec.Health || enemy.Id == game.SelectedId)
-                    HealthBar(new Vector3(enemy.Position.X, enemy.Spec.Flying ? 2.5f : enemy.Spec.Radius * 2 + .25f, enemy.Position.Y), enemy.Health / enemy.Spec.Health,
-                        enemy.Blocked ? new Color(1f, .23f, .27f) : enemy.Spec.Flying ? new Color(.8f, .55f, 1f) : new Color(1f, .65f, .25f), 28, enemy.Id == game.SelectedId);
-            GUI.color = Color.white;
-        }
-        void HealthBar(Vector3 position, float fraction, Color color, float width, bool selected = false)
-        {
-            var p = game.View.WorldToScreenPoint(position);
-            // Match world scale in the overview; keep the inspected unit easy to read.
-            if (!selected) {
-                var edge=game.View.WorldToScreenPoint(position+game.View.transform.right*.75f);
-                width=Mathf.Clamp(Mathf.Abs(edge.x-p.x),10,width);
-            }
-            float height = width < 18 ? 2 : 4;
-            var rect = new Rect(p.x - width * .5f, Screen.height - p.y, width, height);
-            // World overlays must not cover the sidebar or minimap.
-            if (p.z <= 0 || rect.xMin <= game.Sidebar.xMax || rect.xMax >= Screen.width || rect.yMin < 0 || rect.yMax >= Screen.height || rect.Overlaps(game.MinimapRect)||CoversCompactHud(rect)) return;
-            GUI.color = new Color(.07f, .1f, .14f);
-            GUI.DrawTexture(new Rect(rect.x - 1, rect.y - 1, rect.width + 2, rect.height + 2), Texture2D.whiteTexture);
-            rect.width *= Mathf.Clamp01(fraction);
-            GUI.color = color;
-            GUI.DrawTexture(rect, Texture2D.whiteTexture);
         }
         void DrawPlacementHint()
         {

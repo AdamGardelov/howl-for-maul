@@ -53,3 +53,7 @@ The final harness retains the older adaptive strategy exactly: the Hard two-play
 ## Paid maze comparison
 
 The existing `maze` strategy was also run for Normal solo Rime Covenant after the siege-feedback work. It completed all twenty waves with 30 lives, no stalls and a valid wallet ledger: 5,925 gold spent, 303 left, 266 purchases (223 Shard Sentries, 25 Aurora Needles and 18 Snow Cairns), with no upgrades. Raw record: RIME-PAID-MAZE.json. This is a large scripted maze/coverage defense using whole-map knowledge, not a compact win or a beginner balance claim. No tower, enemy or economy values were changed.
+
+## Investment follow-up
+
+The `compact-invest` strategy closes the earlier Rime gap without changing game stats: Normal solo Rime wins with 48 towers and 14 lives. All twelve factions now have at least one compact solo win across the saved strategies. Its own matrix wins 11/12, and both mixed two-player checks pass. Read COMPACT-INVESTMENT.md for the intermediate losses, exact ledgers and limits. The earlier results above remain historical comparisons.

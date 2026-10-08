@@ -1,0 +1,3842 @@
+[
+  {
+    "airSampleWeight": 1.5,
+    "result": {
+      "FinalWallets": [
+        139
+      ],
+      "PlayerSpending": [
+        5325
+      ],
+      "Strategy": "compact-invest",
+      "Factions": [
+        "Rime Covenant"
+      ],
+      "Upgrades": [
+        {
+          "Player": 1,
+          "TowerId": 36,
+          "Tower": "Aurora Needle",
+          "Level": 2,
+          "Cost": 55,
+          "BeforeWave": 5
+        },
+        {
+          "Player": 1,
+          "TowerId": 2,
+          "Tower": "Aurora Needle",
+          "Level": 2,
+          "Cost": 55,
+          "BeforeWave": 6
+        },
+        {
+          "Player": 1,
+          "TowerId": 15,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 6
+        },
+        {
+          "Player": 1,
+          "TowerId": 15,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 6
+        },
+        {
+          "Player": 1,
+          "TowerId": 23,
+          "Tower": "Aurora Needle",
+          "Level": 2,
+          "Cost": 55,
+          "BeforeWave": 6
+        },
+        {
+          "Player": 1,
+          "TowerId": 18,
+          "Tower": "Aurora Needle",
+          "Level": 2,
+          "Cost": 55,
+          "BeforeWave": 6
+        },
+        {
+          "Player": 1,
+          "TowerId": 18,
+          "Tower": "Aurora Needle",
+          "Level": 3,
+          "Cost": 110,
+          "BeforeWave": 7
+        },
+        {
+          "Player": 1,
+          "TowerId": 45,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 7
+        },
+        {
+          "Player": 1,
+          "TowerId": 8,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 7
+        },
+        {
+          "Player": 1,
+          "TowerId": 8,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 7
+        },
+        {
+          "Player": 1,
+          "TowerId": 45,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 7
+        },
+        {
+          "Player": 1,
+          "TowerId": 11,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 8
+        },
+        {
+          "Player": 1,
+          "TowerId": 5,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 8
+        },
+        {
+          "Player": 1,
+          "TowerId": 20,
+          "Tower": "Hail Bell",
+          "Level": 2,
+          "Cost": 65,
+          "BeforeWave": 8
+        },
+        {
+          "Player": 1,
+          "TowerId": 9,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 8
+        },
+        {
+          "Player": 1,
+          "TowerId": 10,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 8
+        },
+        {
+          "Player": 1,
+          "TowerId": 26,
+          "Tower": "Hail Bell",
+          "Level": 2,
+          "Cost": 65,
+          "BeforeWave": 8
+        },
+        {
+          "Player": 1,
+          "TowerId": 4,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 8
+        },
+        {
+          "Player": 1,
+          "TowerId": 26,
+          "Tower": "Hail Bell",
+          "Level": 3,
+          "Cost": 130,
+          "BeforeWave": 9
+        },
+        {
+          "Player": 1,
+          "TowerId": 7,
+          "Tower": "Hail Bell",
+          "Level": 2,
+          "Cost": 65,
+          "BeforeWave": 9
+        },
+        {
+          "Player": 1,
+          "TowerId": 5,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 9
+        },
+        {
+          "Player": 1,
+          "TowerId": 13,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 9
+        },
+        {
+          "Player": 1,
+          "TowerId": 7,
+          "Tower": "Hail Bell",
+          "Level": 3,
+          "Cost": 130,
+          "BeforeWave": 10
+        },
+        {
+          "Player": 1,
+          "TowerId": 14,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 10
+        },
+        {
+          "Player": 1,
+          "TowerId": 11,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 10
+        },
+        {
+          "Player": 1,
+          "TowerId": 12,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 10
+        },
+        {
+          "Player": 1,
+          "TowerId": 12,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 10
+        },
+        {
+          "Player": 1,
+          "TowerId": 19,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 10
+        },
+        {
+          "Player": 1,
+          "TowerId": 16,
+          "Tower": "Hail Bell",
+          "Level": 2,
+          "Cost": 65,
+          "BeforeWave": 11
+        },
+        {
+          "Player": 1,
+          "TowerId": 16,
+          "Tower": "Hail Bell",
+          "Level": 3,
+          "Cost": 130,
+          "BeforeWave": 11
+        },
+        {
+          "Player": 1,
+          "TowerId": 9,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 11
+        },
+        {
+          "Player": 1,
+          "TowerId": 4,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 11
+        },
+        {
+          "Player": 1,
+          "TowerId": 22,
+          "Tower": "Aurora Needle",
+          "Level": 2,
+          "Cost": 55,
+          "BeforeWave": 12
+        },
+        {
+          "Player": 1,
+          "TowerId": 22,
+          "Tower": "Aurora Needle",
+          "Level": 3,
+          "Cost": 110,
+          "BeforeWave": 12
+        },
+        {
+          "Player": 1,
+          "TowerId": 17,
+          "Tower": "Aurora Needle",
+          "Level": 2,
+          "Cost": 55,
+          "BeforeWave": 12
+        },
+        {
+          "Player": 1,
+          "TowerId": 10,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 12
+        },
+        {
+          "Player": 1,
+          "TowerId": 20,
+          "Tower": "Hail Bell",
+          "Level": 3,
+          "Cost": 130,
+          "BeforeWave": 13
+        },
+        {
+          "Player": 1,
+          "TowerId": 13,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 13
+        },
+        {
+          "Player": 1,
+          "TowerId": 14,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 13
+        },
+        {
+          "Player": 1,
+          "TowerId": 25,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 13
+        },
+        {
+          "Player": 1,
+          "TowerId": 29,
+          "Tower": "Aurora Needle",
+          "Level": 2,
+          "Cost": 55,
+          "BeforeWave": 13
+        },
+        {
+          "Player": 1,
+          "TowerId": 37,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 13
+        },
+        {
+          "Player": 1,
+          "TowerId": 37,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 14
+        },
+        {
+          "Player": 1,
+          "TowerId": 28,
+          "Tower": "Aurora Needle",
+          "Level": 2,
+          "Cost": 55,
+          "BeforeWave": 14
+        },
+        {
+          "Player": 1,
+          "TowerId": 28,
+          "Tower": "Aurora Needle",
+          "Level": 3,
+          "Cost": 110,
+          "BeforeWave": 14
+        },
+        {
+          "Player": 1,
+          "TowerId": 27,
+          "Tower": "Hail Bell",
+          "Level": 2,
+          "Cost": 65,
+          "BeforeWave": 14
+        },
+        {
+          "Player": 1,
+          "TowerId": 25,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 14
+        },
+        {
+          "Player": 1,
+          "TowerId": 40,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 14
+        },
+        {
+          "Player": 1,
+          "TowerId": 21,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 14
+        },
+        {
+          "Player": 1,
+          "TowerId": 40,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 15
+        },
+        {
+          "Player": 1,
+          "TowerId": 17,
+          "Tower": "Aurora Needle",
+          "Level": 3,
+          "Cost": 110,
+          "BeforeWave": 15
+        },
+        {
+          "Player": 1,
+          "TowerId": 31,
+          "Tower": "Aurora Needle",
+          "Level": 2,
+          "Cost": 55,
+          "BeforeWave": 15
+        },
+        {
+          "Player": 1,
+          "TowerId": 30,
+          "Tower": "Aurora Needle",
+          "Level": 2,
+          "Cost": 55,
+          "BeforeWave": 16
+        },
+        {
+          "Player": 1,
+          "TowerId": 36,
+          "Tower": "Aurora Needle",
+          "Level": 3,
+          "Cost": 110,
+          "BeforeWave": 16
+        },
+        {
+          "Player": 1,
+          "TowerId": 23,
+          "Tower": "Aurora Needle",
+          "Level": 3,
+          "Cost": 110,
+          "BeforeWave": 16
+        },
+        {
+          "Player": 1,
+          "TowerId": 32,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 16
+        },
+        {
+          "Player": 1,
+          "TowerId": 2,
+          "Tower": "Aurora Needle",
+          "Level": 3,
+          "Cost": 110,
+          "BeforeWave": 17
+        },
+        {
+          "Player": 1,
+          "TowerId": 32,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 17
+        },
+        {
+          "Player": 1,
+          "TowerId": 44,
+          "Tower": "Hail Bell",
+          "Level": 2,
+          "Cost": 65,
+          "BeforeWave": 17
+        },
+        {
+          "Player": 1,
+          "TowerId": 34,
+          "Tower": "Hail Bell",
+          "Level": 2,
+          "Cost": 65,
+          "BeforeWave": 17
+        },
+        {
+          "Player": 1,
+          "TowerId": 30,
+          "Tower": "Aurora Needle",
+          "Level": 3,
+          "Cost": 110,
+          "BeforeWave": 18
+        },
+        {
+          "Player": 1,
+          "TowerId": 31,
+          "Tower": "Aurora Needle",
+          "Level": 3,
+          "Cost": 110,
+          "BeforeWave": 18
+        }
+      ],
+      "PlayerCount": 1,
+      "Map": "Rimewatch",
+      "Faction": "Rime Covenant",
+      "Difficulty": "Normal",
+      "Won": false,
+      "Stalled": false,
+      "Lives": 0,
+      "Gold": 139,
+      "Spent": 5325,
+      "Placements": [
+        {
+          "TowerId": 1,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 31,
+          "Y": 11,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 2,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 31,
+          "Y": 17,
+          "Tower": "Aurora Needle",
+          "Cost": 55
+        },
+        {
+          "TowerId": 3,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 23,
+          "Y": 15,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 4,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 11,
+          "Y": 37,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 5,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 53,
+          "Y": 37,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 6,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 29,
+          "Y": 33,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 7,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 13,
+          "Y": 17,
+          "Tower": "Hail Bell",
+          "Cost": 65
+        },
+        {
+          "TowerId": 8,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 17,
+          "Y": 29,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 9,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 29,
+          "Y": 41,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 10,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 7,
+          "Y": 45,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 11,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 53,
+          "Y": 45,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 12,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 29,
+          "Y": 49,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 13,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 9,
+          "Y": 53,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 14,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 55,
+          "Y": 53,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 15,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 29,
+          "Y": 11,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 16,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 11,
+          "Y": 25,
+          "Tower": "Hail Bell",
+          "Cost": 65
+        },
+        {
+          "TowerId": 17,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 43,
+          "Y": 29,
+          "Tower": "Aurora Needle",
+          "Cost": 55
+        },
+        {
+          "TowerId": 18,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 25,
+          "Y": 19,
+          "Tower": "Aurora Needle",
+          "Cost": 55
+        },
+        {
+          "TowerId": 19,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 39,
+          "Y": 17,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 20,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 31,
+          "Y": 13,
+          "Tower": "Hail Bell",
+          "Cost": 65
+        },
+        {
+          "TowerId": 21,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 29,
+          "Y": 53,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 22,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 29,
+          "Y": 13,
+          "Tower": "Aurora Needle",
+          "Cost": 55
+        },
+        {
+          "TowerId": 23,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 29,
+          "Y": 29,
+          "Tower": "Aurora Needle",
+          "Cost": 55
+        },
+        {
+          "TowerId": 24,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 11,
+          "Y": 33,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 25,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 53,
+          "Y": 33,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 26,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 21,
+          "Y": 13,
+          "Tower": "Hail Bell",
+          "Cost": 65
+        },
+        {
+          "TowerId": 27,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 51,
+          "Y": 15,
+          "Tower": "Hail Bell",
+          "Cost": 65
+        },
+        {
+          "TowerId": 28,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 19,
+          "Y": 29,
+          "Tower": "Aurora Needle",
+          "Cost": 55
+        },
+        {
+          "TowerId": 29,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 39,
+          "Y": 19,
+          "Tower": "Aurora Needle",
+          "Cost": 55
+        },
+        {
+          "TowerId": 30,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 11,
+          "Y": 41,
+          "Tower": "Aurora Needle",
+          "Cost": 55
+        },
+        {
+          "TowerId": 31,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 53,
+          "Y": 41,
+          "Tower": "Aurora Needle",
+          "Cost": 55
+        },
+        {
+          "TowerId": 32,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 29,
+          "Y": 39,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 33,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 7,
+          "Y": 51,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 34,
+          "BeforeWave": 2,
+          "Player": 1,
+          "X": 53,
+          "Y": 23,
+          "Tower": "Hail Bell",
+          "Cost": 65
+        },
+        {
+          "TowerId": 35,
+          "BeforeWave": 2,
+          "Player": 1,
+          "X": 53,
+          "Y": 51,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 36,
+          "BeforeWave": 2,
+          "Player": 1,
+          "X": 31,
+          "Y": 49,
+          "Tower": "Aurora Needle",
+          "Cost": 55
+        },
+        {
+          "TowerId": 37,
+          "BeforeWave": 2,
+          "Player": 1,
+          "X": 27,
+          "Y": 31,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 38,
+          "BeforeWave": 3,
+          "Player": 1,
+          "X": 27,
+          "Y": 13,
+          "Tower": "Aurora Needle",
+          "Cost": 55
+        },
+        {
+          "TowerId": 39,
+          "BeforeWave": 3,
+          "Player": 1,
+          "X": 33,
+          "Y": 11,
+          "Tower": "Rime Binder",
+          "Cost": 45
+        },
+        {
+          "TowerId": 40,
+          "BeforeWave": 3,
+          "Player": 1,
+          "X": 41,
+          "Y": 15,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 41,
+          "BeforeWave": 3,
+          "Player": 1,
+          "X": 49,
+          "Y": 33,
+          "Tower": "Aurora Needle",
+          "Cost": 55
+        },
+        {
+          "TowerId": 42,
+          "BeforeWave": 4,
+          "Player": 1,
+          "X": 9,
+          "Y": 51,
+          "Tower": "Aurora Needle",
+          "Cost": 55
+        },
+        {
+          "TowerId": 43,
+          "BeforeWave": 4,
+          "Player": 1,
+          "X": 55,
+          "Y": 51,
+          "Tower": "Aurora Needle",
+          "Cost": 55
+        },
+        {
+          "TowerId": 44,
+          "BeforeWave": 4,
+          "Player": 1,
+          "X": 13,
+          "Y": 31,
+          "Tower": "Hail Bell",
+          "Cost": 65
+        },
+        {
+          "TowerId": 45,
+          "BeforeWave": 4,
+          "Player": 1,
+          "X": 29,
+          "Y": 35,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 46,
+          "BeforeWave": 5,
+          "Player": 1,
+          "X": 11,
+          "Y": 19,
+          "Tower": "Hail Bell",
+          "Cost": 65
+        },
+        {
+          "TowerId": 47,
+          "BeforeWave": 5,
+          "Player": 1,
+          "X": 33,
+          "Y": 13,
+          "Tower": "Aurora Needle",
+          "Cost": 55
+        },
+        {
+          "TowerId": 48,
+          "BeforeWave": 5,
+          "Player": 1,
+          "X": 11,
+          "Y": 39,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        }
+      ],
+      "Waves": [
+        {
+          "PlayerGold": [
+            168
+          ],
+          "Wave": 1,
+          "Flying": false,
+          "Killed": 24,
+          "Leaked": 0,
+          "Ticks": 338,
+          "Gold": 168
+        },
+        {
+          "PlayerGold": [
+            188
+          ],
+          "Wave": 2,
+          "Flying": false,
+          "Killed": 30,
+          "Leaked": 0,
+          "Ticks": 415,
+          "Gold": 188
+        },
+        {
+          "PlayerGold": [
+            205
+          ],
+          "Wave": 3,
+          "Flying": false,
+          "Killed": 36,
+          "Leaked": 0,
+          "Ticks": 529,
+          "Gold": 205
+        },
+        {
+          "PlayerGold": [
+            214
+          ],
+          "Wave": 4,
+          "Flying": false,
+          "Killed": 42,
+          "Leaked": 0,
+          "Ticks": 617,
+          "Gold": 214
+        },
+        {
+          "PlayerGold": [
+            235
+          ],
+          "Wave": 5,
+          "Flying": true,
+          "Killed": 48,
+          "Leaked": 0,
+          "Ticks": 478,
+          "Gold": 235
+        },
+        {
+          "PlayerGold": [
+            238
+          ],
+          "Wave": 6,
+          "Flying": false,
+          "Killed": 54,
+          "Leaked": 0,
+          "Ticks": 1042,
+          "Gold": 238
+        },
+        {
+          "PlayerGold": [
+            248
+          ],
+          "Wave": 7,
+          "Flying": false,
+          "Killed": 60,
+          "Leaked": 0,
+          "Ticks": 1255,
+          "Gold": 248
+        },
+        {
+          "PlayerGold": [
+            270
+          ],
+          "Wave": 8,
+          "Flying": false,
+          "Killed": 66,
+          "Leaked": 0,
+          "Ticks": 1156,
+          "Gold": 270
+        },
+        {
+          "PlayerGold": [
+            279
+          ],
+          "Wave": 9,
+          "Flying": false,
+          "Killed": 72,
+          "Leaked": 0,
+          "Ticks": 1260,
+          "Gold": 279
+        },
+        {
+          "PlayerGold": [
+            285
+          ],
+          "Wave": 10,
+          "Flying": true,
+          "Killed": 78,
+          "Leaked": 0,
+          "Ticks": 814,
+          "Gold": 285
+        },
+        {
+          "PlayerGold": [
+            274
+          ],
+          "Wave": 11,
+          "Flying": false,
+          "Killed": 72,
+          "Leaked": 0,
+          "Ticks": 1387,
+          "Gold": 274
+        },
+        {
+          "PlayerGold": [
+            314
+          ],
+          "Wave": 12,
+          "Flying": false,
+          "Killed": 90,
+          "Leaked": 0,
+          "Ticks": 1035,
+          "Gold": 314
+        },
+        {
+          "PlayerGold": [
+            357
+          ],
+          "Wave": 13,
+          "Flying": false,
+          "Killed": 114,
+          "Leaked": 0,
+          "Ticks": 1258,
+          "Gold": 357
+        },
+        {
+          "PlayerGold": [
+            223
+          ],
+          "Wave": 14,
+          "Flying": false,
+          "Killed": 48,
+          "Leaked": 0,
+          "Ticks": 1508,
+          "Gold": 223
+        },
+        {
+          "PlayerGold": [
+            306
+          ],
+          "Wave": 15,
+          "Flying": true,
+          "Killed": 84,
+          "Leaked": 0,
+          "Ticks": 829,
+          "Gold": 306
+        },
+        {
+          "PlayerGold": [
+            295
+          ],
+          "Wave": 16,
+          "Flying": false,
+          "Killed": 82,
+          "Leaked": 8,
+          "Ticks": 1527,
+          "Gold": 295
+        },
+        {
+          "PlayerGold": [
+            221
+          ],
+          "Wave": 17,
+          "Flying": false,
+          "Killed": 43,
+          "Leaked": 11,
+          "Ticks": 1776,
+          "Gold": 221
+        },
+        {
+          "PlayerGold": [
+            139
+          ],
+          "Wave": 18,
+          "Flying": false,
+          "Killed": 69,
+          "Leaked": 11,
+          "Ticks": 1006,
+          "Gold": 139
+        }
+      ]
+    }
+  },
+  {
+    "airSampleWeight": 0.65,
+    "result": {
+      "FinalWallets": [
+        97
+      ],
+      "PlayerSpending": [
+        5925
+      ],
+      "Strategy": "compact-invest",
+      "Factions": [
+        "Rime Covenant"
+      ],
+      "Upgrades": [
+        {
+          "Player": 1,
+          "TowerId": 42,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 5
+        },
+        {
+          "Player": 1,
+          "TowerId": 25,
+          "Tower": "Hail Bell",
+          "Level": 2,
+          "Cost": 65,
+          "BeforeWave": 5
+        },
+        {
+          "Player": 1,
+          "TowerId": 9,
+          "Tower": "Aurora Needle",
+          "Level": 2,
+          "Cost": 55,
+          "BeforeWave": 5
+        },
+        {
+          "Player": 1,
+          "TowerId": 31,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 6
+        },
+        {
+          "Player": 1,
+          "TowerId": 31,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 6
+        },
+        {
+          "Player": 1,
+          "TowerId": 33,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 6
+        },
+        {
+          "Player": 1,
+          "TowerId": 25,
+          "Tower": "Hail Bell",
+          "Level": 3,
+          "Cost": 130,
+          "BeforeWave": 6
+        },
+        {
+          "Player": 1,
+          "TowerId": 45,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 6
+        },
+        {
+          "Player": 1,
+          "TowerId": 3,
+          "Tower": "Hail Bell",
+          "Level": 2,
+          "Cost": 65,
+          "BeforeWave": 7
+        },
+        {
+          "Player": 1,
+          "TowerId": 3,
+          "Tower": "Hail Bell",
+          "Level": 3,
+          "Cost": 130,
+          "BeforeWave": 7
+        },
+        {
+          "Player": 1,
+          "TowerId": 46,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 7
+        },
+        {
+          "Player": 1,
+          "TowerId": 42,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 8
+        },
+        {
+          "Player": 1,
+          "TowerId": 34,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 8
+        },
+        {
+          "Player": 1,
+          "TowerId": 34,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 8
+        },
+        {
+          "Player": 1,
+          "TowerId": 44,
+          "Tower": "Hail Bell",
+          "Level": 2,
+          "Cost": 65,
+          "BeforeWave": 8
+        },
+        {
+          "Player": 1,
+          "TowerId": 18,
+          "Tower": "Hail Bell",
+          "Level": 2,
+          "Cost": 65,
+          "BeforeWave": 8
+        },
+        {
+          "Player": 1,
+          "TowerId": 11,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 8
+        },
+        {
+          "Player": 1,
+          "TowerId": 33,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 9
+        },
+        {
+          "Player": 1,
+          "TowerId": 1,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 9
+        },
+        {
+          "Player": 1,
+          "TowerId": 1,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 9
+        },
+        {
+          "Player": 1,
+          "TowerId": 7,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 9
+        },
+        {
+          "Player": 1,
+          "TowerId": 11,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 9
+        },
+        {
+          "Player": 1,
+          "TowerId": 28,
+          "Tower": "Hail Bell",
+          "Level": 2,
+          "Cost": 65,
+          "BeforeWave": 9
+        },
+        {
+          "Player": 1,
+          "TowerId": 12,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 9
+        },
+        {
+          "Player": 1,
+          "TowerId": 20,
+          "Tower": "Hail Bell",
+          "Level": 2,
+          "Cost": 65,
+          "BeforeWave": 10
+        },
+        {
+          "Player": 1,
+          "TowerId": 30,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 10
+        },
+        {
+          "Player": 1,
+          "TowerId": 7,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 10
+        },
+        {
+          "Player": 1,
+          "TowerId": 45,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 10
+        },
+        {
+          "Player": 1,
+          "TowerId": 46,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 10
+        },
+        {
+          "Player": 1,
+          "TowerId": 5,
+          "Tower": "Hail Bell",
+          "Level": 2,
+          "Cost": 65,
+          "BeforeWave": 10
+        },
+        {
+          "Player": 1,
+          "TowerId": 9,
+          "Tower": "Aurora Needle",
+          "Level": 3,
+          "Cost": 110,
+          "BeforeWave": 11
+        },
+        {
+          "Player": 1,
+          "TowerId": 12,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 11
+        },
+        {
+          "Player": 1,
+          "TowerId": 5,
+          "Tower": "Hail Bell",
+          "Level": 3,
+          "Cost": 130,
+          "BeforeWave": 11
+        },
+        {
+          "Player": 1,
+          "TowerId": 24,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 12
+        },
+        {
+          "Player": 1,
+          "TowerId": 18,
+          "Tower": "Hail Bell",
+          "Level": 3,
+          "Cost": 130,
+          "BeforeWave": 12
+        },
+        {
+          "Player": 1,
+          "TowerId": 17,
+          "Tower": "Hail Bell",
+          "Level": 2,
+          "Cost": 65,
+          "BeforeWave": 12
+        },
+        {
+          "Player": 1,
+          "TowerId": 24,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 12
+        },
+        {
+          "Player": 1,
+          "TowerId": 17,
+          "Tower": "Hail Bell",
+          "Level": 3,
+          "Cost": 130,
+          "BeforeWave": 13
+        },
+        {
+          "Player": 1,
+          "TowerId": 27,
+          "Tower": "Aurora Needle",
+          "Level": 2,
+          "Cost": 55,
+          "BeforeWave": 13
+        },
+        {
+          "Player": 1,
+          "TowerId": 29,
+          "Tower": "Hail Bell",
+          "Level": 2,
+          "Cost": 65,
+          "BeforeWave": 13
+        },
+        {
+          "Player": 1,
+          "TowerId": 16,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 13
+        },
+        {
+          "Player": 1,
+          "TowerId": 10,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 13
+        },
+        {
+          "Player": 1,
+          "TowerId": 16,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 14
+        },
+        {
+          "Player": 1,
+          "TowerId": 29,
+          "Tower": "Hail Bell",
+          "Level": 3,
+          "Cost": 130,
+          "BeforeWave": 14
+        },
+        {
+          "Player": 1,
+          "TowerId": 38,
+          "Tower": "Aurora Needle",
+          "Level": 2,
+          "Cost": 55,
+          "BeforeWave": 14
+        },
+        {
+          "Player": 1,
+          "TowerId": 38,
+          "Tower": "Aurora Needle",
+          "Level": 3,
+          "Cost": 110,
+          "BeforeWave": 14
+        },
+        {
+          "Player": 1,
+          "TowerId": 22,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 14
+        },
+        {
+          "Player": 1,
+          "TowerId": 22,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 15
+        },
+        {
+          "Player": 1,
+          "TowerId": 44,
+          "Tower": "Hail Bell",
+          "Level": 3,
+          "Cost": 130,
+          "BeforeWave": 15
+        },
+        {
+          "Player": 1,
+          "TowerId": 30,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 15
+        },
+        {
+          "Player": 1,
+          "TowerId": 10,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 16
+        },
+        {
+          "Player": 1,
+          "TowerId": 8,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 16
+        },
+        {
+          "Player": 1,
+          "TowerId": 20,
+          "Tower": "Hail Bell",
+          "Level": 3,
+          "Cost": 130,
+          "BeforeWave": 16
+        },
+        {
+          "Player": 1,
+          "TowerId": 8,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 16
+        },
+        {
+          "Player": 1,
+          "TowerId": 14,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 16
+        },
+        {
+          "Player": 1,
+          "TowerId": 15,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 16
+        },
+        {
+          "Player": 1,
+          "TowerId": 21,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 16
+        },
+        {
+          "Player": 1,
+          "TowerId": 47,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 17
+        },
+        {
+          "Player": 1,
+          "TowerId": 47,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 17
+        },
+        {
+          "Player": 1,
+          "TowerId": 14,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 17
+        },
+        {
+          "Player": 1,
+          "TowerId": 15,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 17
+        },
+        {
+          "Player": 1,
+          "TowerId": 21,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 17
+        },
+        {
+          "Player": 1,
+          "TowerId": 26,
+          "Tower": "Aurora Needle",
+          "Level": 2,
+          "Cost": 55,
+          "BeforeWave": 17
+        },
+        {
+          "Player": 1,
+          "TowerId": 6,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 17
+        },
+        {
+          "Player": 1,
+          "TowerId": 6,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 17
+        },
+        {
+          "Player": 1,
+          "TowerId": 35,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 17
+        },
+        {
+          "Player": 1,
+          "TowerId": 35,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 18
+        },
+        {
+          "Player": 1,
+          "TowerId": 26,
+          "Tower": "Aurora Needle",
+          "Level": 3,
+          "Cost": 110,
+          "BeforeWave": 18
+        },
+        {
+          "Player": 1,
+          "TowerId": 48,
+          "Tower": "Hail Bell",
+          "Level": 2,
+          "Cost": 65,
+          "BeforeWave": 18
+        },
+        {
+          "Player": 1,
+          "TowerId": 36,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 19
+        },
+        {
+          "Player": 1,
+          "TowerId": 36,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 19
+        },
+        {
+          "Player": 1,
+          "TowerId": 28,
+          "Tower": "Hail Bell",
+          "Level": 3,
+          "Cost": 130,
+          "BeforeWave": 19
+        },
+        {
+          "Player": 1,
+          "TowerId": 39,
+          "Tower": "Hail Bell",
+          "Level": 2,
+          "Cost": 65,
+          "BeforeWave": 19
+        },
+        {
+          "Player": 1,
+          "TowerId": 39,
+          "Tower": "Hail Bell",
+          "Level": 3,
+          "Cost": 130,
+          "BeforeWave": 19
+        },
+        {
+          "Player": 1,
+          "TowerId": 27,
+          "Tower": "Aurora Needle",
+          "Level": 3,
+          "Cost": 110,
+          "BeforeWave": 20
+        },
+        {
+          "Player": 1,
+          "TowerId": 13,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 20
+        },
+        {
+          "Player": 1,
+          "TowerId": 13,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 20
+        },
+        {
+          "Player": 1,
+          "TowerId": 32,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 20
+        }
+      ],
+      "PlayerCount": 1,
+      "Map": "Rimewatch",
+      "Faction": "Rime Covenant",
+      "Difficulty": "Normal",
+      "Won": false,
+      "Stalled": false,
+      "Lives": 0,
+      "Gold": 97,
+      "Spent": 5925,
+      "Placements": [
+        {
+          "TowerId": 1,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 31,
+          "Y": 11,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 2,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 23,
+          "Y": 15,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 3,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 13,
+          "Y": 17,
+          "Tower": "Hail Bell",
+          "Cost": 65
+        },
+        {
+          "TowerId": 4,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 11,
+          "Y": 25,
+          "Tower": "Hail Bell",
+          "Cost": 65
+        },
+        {
+          "TowerId": 5,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 31,
+          "Y": 13,
+          "Tower": "Hail Bell",
+          "Cost": 65
+        },
+        {
+          "TowerId": 6,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 29,
+          "Y": 33,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 7,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 11,
+          "Y": 37,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 8,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 53,
+          "Y": 37,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 9,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 31,
+          "Y": 17,
+          "Tower": "Aurora Needle",
+          "Cost": 55
+        },
+        {
+          "TowerId": 10,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 29,
+          "Y": 41,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 11,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 7,
+          "Y": 45,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 12,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 53,
+          "Y": 45,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 13,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 29,
+          "Y": 49,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 14,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 9,
+          "Y": 53,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 15,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 55,
+          "Y": 53,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 16,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 17,
+          "Y": 29,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 17,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 21,
+          "Y": 13,
+          "Tower": "Hail Bell",
+          "Cost": 65
+        },
+        {
+          "TowerId": 18,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 51,
+          "Y": 15,
+          "Tower": "Hail Bell",
+          "Cost": 65
+        },
+        {
+          "TowerId": 19,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 41,
+          "Y": 15,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 20,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 53,
+          "Y": 23,
+          "Tower": "Hail Bell",
+          "Cost": 65
+        },
+        {
+          "TowerId": 21,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 29,
+          "Y": 53,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 22,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 27,
+          "Y": 31,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 23,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 11,
+          "Y": 33,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 24,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 53,
+          "Y": 33,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 25,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 29,
+          "Y": 13,
+          "Tower": "Hail Bell",
+          "Cost": 65
+        },
+        {
+          "TowerId": 26,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 27,
+          "Y": 13,
+          "Tower": "Aurora Needle",
+          "Cost": 55
+        },
+        {
+          "TowerId": 27,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 43,
+          "Y": 29,
+          "Tower": "Aurora Needle",
+          "Cost": 55
+        },
+        {
+          "TowerId": 28,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 13,
+          "Y": 31,
+          "Tower": "Hail Bell",
+          "Cost": 65
+        },
+        {
+          "TowerId": 29,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 11,
+          "Y": 19,
+          "Tower": "Hail Bell",
+          "Cost": 65
+        },
+        {
+          "TowerId": 30,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 39,
+          "Y": 17,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 31,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 29,
+          "Y": 35,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 32,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 7,
+          "Y": 41,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 33,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 53,
+          "Y": 41,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 34,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 29,
+          "Y": 43,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 35,
+          "BeforeWave": 2,
+          "Player": 1,
+          "X": 7,
+          "Y": 49,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 36,
+          "BeforeWave": 2,
+          "Player": 1,
+          "X": 53,
+          "Y": 49,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 37,
+          "BeforeWave": 2,
+          "Player": 1,
+          "X": 23,
+          "Y": 29,
+          "Tower": "Hail Bell",
+          "Cost": 65
+        },
+        {
+          "TowerId": 38,
+          "BeforeWave": 2,
+          "Player": 1,
+          "X": 25,
+          "Y": 19,
+          "Tower": "Aurora Needle",
+          "Cost": 55
+        },
+        {
+          "TowerId": 39,
+          "BeforeWave": 3,
+          "Player": 1,
+          "X": 55,
+          "Y": 33,
+          "Tower": "Hail Bell",
+          "Cost": 65
+        },
+        {
+          "TowerId": 40,
+          "BeforeWave": 3,
+          "Player": 1,
+          "X": 29,
+          "Y": 11,
+          "Tower": "Rime Binder",
+          "Cost": 45
+        },
+        {
+          "TowerId": 41,
+          "BeforeWave": 3,
+          "Player": 1,
+          "X": 19,
+          "Y": 13,
+          "Tower": "Hail Bell",
+          "Cost": 65
+        },
+        {
+          "TowerId": 42,
+          "BeforeWave": 3,
+          "Player": 1,
+          "X": 29,
+          "Y": 51,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 43,
+          "BeforeWave": 4,
+          "Player": 1,
+          "X": 19,
+          "Y": 29,
+          "Tower": "Aurora Needle",
+          "Cost": 55
+        },
+        {
+          "TowerId": 44,
+          "BeforeWave": 4,
+          "Player": 1,
+          "X": 11,
+          "Y": 27,
+          "Tower": "Hail Bell",
+          "Cost": 65
+        },
+        {
+          "TowerId": 45,
+          "BeforeWave": 4,
+          "Player": 1,
+          "X": 7,
+          "Y": 53,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 46,
+          "BeforeWave": 4,
+          "Player": 1,
+          "X": 53,
+          "Y": 53,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 47,
+          "BeforeWave": 4,
+          "Player": 1,
+          "X": 11,
+          "Y": 39,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 48,
+          "BeforeWave": 5,
+          "Player": 1,
+          "X": 41,
+          "Y": 13,
+          "Tower": "Hail Bell",
+          "Cost": 65
+        }
+      ],
+      "Waves": [
+        {
+          "PlayerGold": [
+            178
+          ],
+          "Wave": 1,
+          "Flying": false,
+          "Killed": 24,
+          "Leaked": 0,
+          "Ticks": 338,
+          "Gold": 178
+        },
+        {
+          "PlayerGold": [
+            198
+          ],
+          "Wave": 2,
+          "Flying": false,
+          "Killed": 30,
+          "Leaked": 0,
+          "Ticks": 380,
+          "Gold": 198
+        },
+        {
+          "PlayerGold": [
+            195
+          ],
+          "Wave": 3,
+          "Flying": false,
+          "Killed": 36,
+          "Leaked": 0,
+          "Ticks": 458,
+          "Gold": 195
+        },
+        {
+          "PlayerGold": [
+            219
+          ],
+          "Wave": 4,
+          "Flying": false,
+          "Killed": 42,
+          "Leaked": 0,
+          "Ticks": 500,
+          "Gold": 219
+        },
+        {
+          "PlayerGold": [
+            230
+          ],
+          "Wave": 5,
+          "Flying": true,
+          "Killed": 48,
+          "Leaked": 0,
+          "Ticks": 576,
+          "Gold": 230
+        },
+        {
+          "PlayerGold": [
+            228
+          ],
+          "Wave": 6,
+          "Flying": false,
+          "Killed": 54,
+          "Leaked": 0,
+          "Ticks": 691,
+          "Gold": 228
+        },
+        {
+          "PlayerGold": [
+            253
+          ],
+          "Wave": 7,
+          "Flying": false,
+          "Killed": 60,
+          "Leaked": 0,
+          "Ticks": 747,
+          "Gold": 253
+        },
+        {
+          "PlayerGold": [
+            255
+          ],
+          "Wave": 8,
+          "Flying": false,
+          "Killed": 66,
+          "Leaked": 0,
+          "Ticks": 801,
+          "Gold": 255
+        },
+        {
+          "PlayerGold": [
+            274
+          ],
+          "Wave": 9,
+          "Flying": false,
+          "Killed": 72,
+          "Leaked": 0,
+          "Ticks": 834,
+          "Gold": 274
+        },
+        {
+          "PlayerGold": [
+            280
+          ],
+          "Wave": 10,
+          "Flying": true,
+          "Killed": 78,
+          "Leaked": 0,
+          "Ticks": 883,
+          "Gold": 280
+        },
+        {
+          "PlayerGold": [
+            264
+          ],
+          "Wave": 11,
+          "Flying": false,
+          "Killed": 72,
+          "Leaked": 0,
+          "Ticks": 949,
+          "Gold": 264
+        },
+        {
+          "PlayerGold": [
+            309
+          ],
+          "Wave": 12,
+          "Flying": false,
+          "Killed": 90,
+          "Leaked": 0,
+          "Ticks": 808,
+          "Gold": 309
+        },
+        {
+          "PlayerGold": [
+            367
+          ],
+          "Wave": 13,
+          "Flying": false,
+          "Killed": 114,
+          "Leaked": 0,
+          "Ticks": 1097,
+          "Gold": 367
+        },
+        {
+          "PlayerGold": [
+            228
+          ],
+          "Wave": 14,
+          "Flying": false,
+          "Killed": 48,
+          "Leaked": 0,
+          "Ticks": 1187,
+          "Gold": 228
+        },
+        {
+          "PlayerGold": [
+            306
+          ],
+          "Wave": 15,
+          "Flying": true,
+          "Killed": 84,
+          "Leaked": 0,
+          "Ticks": 1008,
+          "Gold": 306
+        },
+        {
+          "PlayerGold": [
+            316
+          ],
+          "Wave": 16,
+          "Flying": false,
+          "Killed": 90,
+          "Leaked": 0,
+          "Ticks": 1363,
+          "Gold": 316
+        },
+        {
+          "PlayerGold": [
+            229
+          ],
+          "Wave": 17,
+          "Flying": false,
+          "Killed": 54,
+          "Leaked": 0,
+          "Ticks": 1602,
+          "Gold": 229
+        },
+        {
+          "PlayerGold": [
+            386
+          ],
+          "Wave": 18,
+          "Flying": false,
+          "Killed": 126,
+          "Leaked": 0,
+          "Ticks": 1070,
+          "Gold": 386
+        },
+        {
+          "PlayerGold": [
+            193
+          ],
+          "Wave": 19,
+          "Flying": false,
+          "Killed": 36,
+          "Leaked": 0,
+          "Ticks": 1813,
+          "Gold": 193
+        },
+        {
+          "PlayerGold": [
+            97
+          ],
+          "Wave": 20,
+          "Flying": true,
+          "Killed": 47,
+          "Leaked": 30,
+          "Ticks": 1125,
+          "Gold": 97
+        }
+      ]
+    }
+  },
+  {
+    "airSampleWeight": 0.9,
+    "result": {
+      "FinalWallets": [
+        276
+      ],
+      "PlayerSpending": [
+        5920
+      ],
+      "Strategy": "compact-invest",
+      "Factions": [
+        "Rime Covenant"
+      ],
+      "Upgrades": [
+        {
+          "Player": 1,
+          "TowerId": 40,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 4
+        },
+        {
+          "Player": 1,
+          "TowerId": 39,
+          "Tower": "Hail Bell",
+          "Level": 2,
+          "Cost": 65,
+          "BeforeWave": 4
+        },
+        {
+          "Player": 1,
+          "TowerId": 11,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 4
+        },
+        {
+          "Player": 1,
+          "TowerId": 11,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 5
+        },
+        {
+          "Player": 1,
+          "TowerId": 34,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 5
+        },
+        {
+          "Player": 1,
+          "TowerId": 29,
+          "Tower": "Hail Bell",
+          "Level": 2,
+          "Cost": 65,
+          "BeforeWave": 5
+        },
+        {
+          "Player": 1,
+          "TowerId": 32,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 5
+        },
+        {
+          "Player": 1,
+          "TowerId": 9,
+          "Tower": "Aurora Needle",
+          "Level": 2,
+          "Cost": 55,
+          "BeforeWave": 5
+        },
+        {
+          "Player": 1,
+          "TowerId": 32,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 6
+        },
+        {
+          "Player": 1,
+          "TowerId": 3,
+          "Tower": "Hail Bell",
+          "Level": 2,
+          "Cost": 65,
+          "BeforeWave": 6
+        },
+        {
+          "Player": 1,
+          "TowerId": 45,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 6
+        },
+        {
+          "Player": 1,
+          "TowerId": 47,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 6
+        },
+        {
+          "Player": 1,
+          "TowerId": 40,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 6
+        },
+        {
+          "Player": 1,
+          "TowerId": 35,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 6
+        },
+        {
+          "Player": 1,
+          "TowerId": 3,
+          "Tower": "Hail Bell",
+          "Level": 3,
+          "Cost": 130,
+          "BeforeWave": 7
+        },
+        {
+          "Player": 1,
+          "TowerId": 35,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 7
+        },
+        {
+          "Player": 1,
+          "TowerId": 34,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 7
+        },
+        {
+          "Player": 1,
+          "TowerId": 13,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 7
+        },
+        {
+          "Player": 1,
+          "TowerId": 29,
+          "Tower": "Hail Bell",
+          "Level": 3,
+          "Cost": 130,
+          "BeforeWave": 8
+        },
+        {
+          "Player": 1,
+          "TowerId": 7,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 8
+        },
+        {
+          "Player": 1,
+          "TowerId": 25,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 8
+        },
+        {
+          "Player": 1,
+          "TowerId": 30,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 8
+        },
+        {
+          "Player": 1,
+          "TowerId": 30,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 8
+        },
+        {
+          "Player": 1,
+          "TowerId": 14,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 8
+        },
+        {
+          "Player": 1,
+          "TowerId": 28,
+          "Tower": "Aurora Needle",
+          "Level": 2,
+          "Cost": 55,
+          "BeforeWave": 9
+        },
+        {
+          "Player": 1,
+          "TowerId": 28,
+          "Tower": "Aurora Needle",
+          "Level": 3,
+          "Cost": 110,
+          "BeforeWave": 9
+        },
+        {
+          "Player": 1,
+          "TowerId": 18,
+          "Tower": "Hail Bell",
+          "Level": 2,
+          "Cost": 65,
+          "BeforeWave": 9
+        },
+        {
+          "Player": 1,
+          "TowerId": 22,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 9
+        },
+        {
+          "Player": 1,
+          "TowerId": 13,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 10
+        },
+        {
+          "Player": 1,
+          "TowerId": 7,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 10
+        },
+        {
+          "Player": 1,
+          "TowerId": 22,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 10
+        },
+        {
+          "Player": 1,
+          "TowerId": 26,
+          "Tower": "Hail Bell",
+          "Level": 2,
+          "Cost": 65,
+          "BeforeWave": 10
+        },
+        {
+          "Player": 1,
+          "TowerId": 25,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 10
+        },
+        {
+          "Player": 1,
+          "TowerId": 45,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 10
+        },
+        {
+          "Player": 1,
+          "TowerId": 26,
+          "Tower": "Hail Bell",
+          "Level": 3,
+          "Cost": 130,
+          "BeforeWave": 11
+        },
+        {
+          "Player": 1,
+          "TowerId": 47,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 11
+        },
+        {
+          "Player": 1,
+          "TowerId": 46,
+          "Tower": "Aurora Needle",
+          "Level": 2,
+          "Cost": 55,
+          "BeforeWave": 11
+        },
+        {
+          "Player": 1,
+          "TowerId": 31,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 11
+        },
+        {
+          "Player": 1,
+          "TowerId": 37,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 11
+        },
+        {
+          "Player": 1,
+          "TowerId": 46,
+          "Tower": "Aurora Needle",
+          "Level": 3,
+          "Cost": 110,
+          "BeforeWave": 12
+        },
+        {
+          "Player": 1,
+          "TowerId": 37,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 12
+        },
+        {
+          "Player": 1,
+          "TowerId": 31,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 12
+        },
+        {
+          "Player": 1,
+          "TowerId": 21,
+          "Tower": "Aurora Needle",
+          "Level": 2,
+          "Cost": 55,
+          "BeforeWave": 12
+        },
+        {
+          "Player": 1,
+          "TowerId": 8,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 12
+        },
+        {
+          "Player": 1,
+          "TowerId": 39,
+          "Tower": "Hail Bell",
+          "Level": 3,
+          "Cost": 130,
+          "BeforeWave": 13
+        },
+        {
+          "Player": 1,
+          "TowerId": 10,
+          "Tower": "Hail Bell",
+          "Level": 2,
+          "Cost": 65,
+          "BeforeWave": 13
+        },
+        {
+          "Player": 1,
+          "TowerId": 27,
+          "Tower": "Hail Bell",
+          "Level": 2,
+          "Cost": 65,
+          "BeforeWave": 13
+        },
+        {
+          "Player": 1,
+          "TowerId": 12,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 13
+        },
+        {
+          "Player": 1,
+          "TowerId": 48,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 13
+        },
+        {
+          "Player": 1,
+          "TowerId": 10,
+          "Tower": "Hail Bell",
+          "Level": 3,
+          "Cost": 130,
+          "BeforeWave": 14
+        },
+        {
+          "Player": 1,
+          "TowerId": 38,
+          "Tower": "Hail Bell",
+          "Level": 2,
+          "Cost": 65,
+          "BeforeWave": 14
+        },
+        {
+          "Player": 1,
+          "TowerId": 38,
+          "Tower": "Hail Bell",
+          "Level": 3,
+          "Cost": 130,
+          "BeforeWave": 14
+        },
+        {
+          "Player": 1,
+          "TowerId": 16,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 14
+        },
+        {
+          "Player": 1,
+          "TowerId": 8,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 15
+        },
+        {
+          "Player": 1,
+          "TowerId": 18,
+          "Tower": "Hail Bell",
+          "Level": 3,
+          "Cost": 130,
+          "BeforeWave": 15
+        },
+        {
+          "Player": 1,
+          "TowerId": 12,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 15
+        },
+        {
+          "Player": 1,
+          "TowerId": 20,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 15
+        },
+        {
+          "Player": 1,
+          "TowerId": 14,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 16
+        },
+        {
+          "Player": 1,
+          "TowerId": 42,
+          "Tower": "Aurora Needle",
+          "Level": 2,
+          "Cost": 55,
+          "BeforeWave": 16
+        },
+        {
+          "Player": 1,
+          "TowerId": 48,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 16
+        },
+        {
+          "Player": 1,
+          "TowerId": 21,
+          "Tower": "Aurora Needle",
+          "Level": 3,
+          "Cost": 110,
+          "BeforeWave": 16
+        },
+        {
+          "Player": 1,
+          "TowerId": 16,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 16
+        },
+        {
+          "Player": 1,
+          "TowerId": 20,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 17
+        },
+        {
+          "Player": 1,
+          "TowerId": 41,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 17
+        },
+        {
+          "Player": 1,
+          "TowerId": 41,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 17
+        },
+        {
+          "Player": 1,
+          "TowerId": 36,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 17
+        },
+        {
+          "Player": 1,
+          "TowerId": 36,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 17
+        },
+        {
+          "Player": 1,
+          "TowerId": 27,
+          "Tower": "Hail Bell",
+          "Level": 3,
+          "Cost": 130,
+          "BeforeWave": 17
+        },
+        {
+          "Player": 1,
+          "TowerId": 9,
+          "Tower": "Aurora Needle",
+          "Level": 3,
+          "Cost": 110,
+          "BeforeWave": 18
+        },
+        {
+          "Player": 1,
+          "TowerId": 6,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 18
+        },
+        {
+          "Player": 1,
+          "TowerId": 6,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 18
+        },
+        {
+          "Player": 1,
+          "TowerId": 15,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 18
+        },
+        {
+          "Player": 1,
+          "TowerId": 15,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 18
+        },
+        {
+          "Player": 1,
+          "TowerId": 17,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 19
+        },
+        {
+          "Player": 1,
+          "TowerId": 1,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 19
+        },
+        {
+          "Player": 1,
+          "TowerId": 1,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 19
+        },
+        {
+          "Player": 1,
+          "TowerId": 4,
+          "Tower": "Hail Bell",
+          "Level": 2,
+          "Cost": 65,
+          "BeforeWave": 19
+        },
+        {
+          "Player": 1,
+          "TowerId": 4,
+          "Tower": "Hail Bell",
+          "Level": 3,
+          "Cost": 130,
+          "BeforeWave": 19
+        },
+        {
+          "Player": 1,
+          "TowerId": 17,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 19
+        },
+        {
+          "Player": 1,
+          "TowerId": 19,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 19
+        },
+        {
+          "Player": 1,
+          "TowerId": 33,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 19
+        },
+        {
+          "Player": 1,
+          "TowerId": 24,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 19
+        },
+        {
+          "Player": 1,
+          "TowerId": 24,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 20
+        },
+        {
+          "Player": 1,
+          "TowerId": 33,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 20
+        },
+        {
+          "Player": 1,
+          "TowerId": 19,
+          "Tower": "Shard Sentry",
+          "Level": 3,
+          "Cost": 40,
+          "BeforeWave": 20
+        },
+        {
+          "Player": 1,
+          "TowerId": 23,
+          "Tower": "Aurora Needle",
+          "Level": 2,
+          "Cost": 55,
+          "BeforeWave": 20
+        },
+        {
+          "Player": 1,
+          "TowerId": 2,
+          "Tower": "Shard Sentry",
+          "Level": 2,
+          "Cost": 20,
+          "BeforeWave": 20
+        }
+      ],
+      "PlayerCount": 1,
+      "Map": "Rimewatch",
+      "Faction": "Rime Covenant",
+      "Difficulty": "Normal",
+      "Won": true,
+      "Stalled": false,
+      "Lives": 14,
+      "Gold": 276,
+      "Spent": 5920,
+      "Placements": [
+        {
+          "TowerId": 1,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 31,
+          "Y": 11,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 2,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 27,
+          "Y": 15,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 3,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 13,
+          "Y": 17,
+          "Tower": "Hail Bell",
+          "Cost": 65
+        },
+        {
+          "TowerId": 4,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 11,
+          "Y": 25,
+          "Tower": "Hail Bell",
+          "Cost": 65
+        },
+        {
+          "TowerId": 5,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 21,
+          "Y": 15,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 6,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 29,
+          "Y": 33,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 7,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 11,
+          "Y": 37,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 8,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 53,
+          "Y": 37,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 9,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 31,
+          "Y": 17,
+          "Tower": "Aurora Needle",
+          "Cost": 55
+        },
+        {
+          "TowerId": 10,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 31,
+          "Y": 13,
+          "Tower": "Hail Bell",
+          "Cost": 65
+        },
+        {
+          "TowerId": 11,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 17,
+          "Y": 29,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 12,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 29,
+          "Y": 41,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 13,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 7,
+          "Y": 45,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 14,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 53,
+          "Y": 45,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 15,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 29,
+          "Y": 49,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 16,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 9,
+          "Y": 53,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 17,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 55,
+          "Y": 53,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 18,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 51,
+          "Y": 15,
+          "Tower": "Hail Bell",
+          "Cost": 65
+        },
+        {
+          "TowerId": 19,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 39,
+          "Y": 17,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 20,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 29,
+          "Y": 53,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 21,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 43,
+          "Y": 29,
+          "Tower": "Aurora Needle",
+          "Cost": 55
+        },
+        {
+          "TowerId": 22,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 27,
+          "Y": 31,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 23,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 27,
+          "Y": 13,
+          "Tower": "Aurora Needle",
+          "Cost": 55
+        },
+        {
+          "TowerId": 24,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 11,
+          "Y": 33,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 25,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 53,
+          "Y": 33,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 26,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 21,
+          "Y": 13,
+          "Tower": "Hail Bell",
+          "Cost": 65
+        },
+        {
+          "TowerId": 27,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 53,
+          "Y": 23,
+          "Tower": "Hail Bell",
+          "Cost": 65
+        },
+        {
+          "TowerId": 28,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 25,
+          "Y": 19,
+          "Tower": "Aurora Needle",
+          "Cost": 55
+        },
+        {
+          "TowerId": 29,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 29,
+          "Y": 13,
+          "Tower": "Hail Bell",
+          "Cost": 65
+        },
+        {
+          "TowerId": 30,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 41,
+          "Y": 15,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 31,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 19,
+          "Y": 29,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 32,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 29,
+          "Y": 35,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 33,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 7,
+          "Y": 41,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 34,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 53,
+          "Y": 41,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 35,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 29,
+          "Y": 43,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 36,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 7,
+          "Y": 49,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 37,
+          "BeforeWave": 1,
+          "Player": 1,
+          "X": 53,
+          "Y": 49,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 38,
+          "BeforeWave": 2,
+          "Player": 1,
+          "X": 11,
+          "Y": 19,
+          "Tower": "Hail Bell",
+          "Cost": 65
+        },
+        {
+          "TowerId": 39,
+          "BeforeWave": 2,
+          "Player": 1,
+          "X": 11,
+          "Y": 29,
+          "Tower": "Hail Bell",
+          "Cost": 65
+        },
+        {
+          "TowerId": 40,
+          "BeforeWave": 2,
+          "Player": 1,
+          "X": 29,
+          "Y": 51,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 41,
+          "BeforeWave": 2,
+          "Player": 1,
+          "X": 53,
+          "Y": 31,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 42,
+          "BeforeWave": 3,
+          "Player": 1,
+          "X": 29,
+          "Y": 29,
+          "Tower": "Aurora Needle",
+          "Cost": 55
+        },
+        {
+          "TowerId": 43,
+          "BeforeWave": 3,
+          "Player": 1,
+          "X": 29,
+          "Y": 11,
+          "Tower": "Rime Binder",
+          "Cost": 45
+        },
+        {
+          "TowerId": 44,
+          "BeforeWave": 3,
+          "Player": 1,
+          "X": 39,
+          "Y": 19,
+          "Tower": "Aurora Needle",
+          "Cost": 55
+        },
+        {
+          "TowerId": 45,
+          "BeforeWave": 3,
+          "Player": 1,
+          "X": 7,
+          "Y": 53,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 46,
+          "BeforeWave": 4,
+          "Player": 1,
+          "X": 33,
+          "Y": 13,
+          "Tower": "Aurora Needle",
+          "Cost": 55
+        },
+        {
+          "TowerId": 47,
+          "BeforeWave": 4,
+          "Player": 1,
+          "X": 53,
+          "Y": 53,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        },
+        {
+          "TowerId": 48,
+          "BeforeWave": 4,
+          "Player": 1,
+          "X": 11,
+          "Y": 39,
+          "Tower": "Shard Sentry",
+          "Cost": 20
+        }
+      ],
+      "Waves": [
+        {
+          "PlayerGold": [
+            173
+          ],
+          "Wave": 1,
+          "Flying": false,
+          "Killed": 24,
+          "Leaked": 0,
+          "Ticks": 261,
+          "Gold": 173
+        },
+        {
+          "PlayerGold": [
+            183
+          ],
+          "Wave": 2,
+          "Flying": false,
+          "Killed": 30,
+          "Leaked": 0,
+          "Ticks": 354,
+          "Gold": 183
+        },
+        {
+          "PlayerGold": [
+            200
+          ],
+          "Wave": 3,
+          "Flying": false,
+          "Killed": 36,
+          "Leaked": 0,
+          "Ticks": 458,
+          "Gold": 200
+        },
+        {
+          "PlayerGold": [
+            204
+          ],
+          "Wave": 4,
+          "Flying": false,
+          "Killed": 42,
+          "Leaked": 0,
+          "Ticks": 486,
+          "Gold": 204
+        },
+        {
+          "PlayerGold": [
+            220
+          ],
+          "Wave": 5,
+          "Flying": true,
+          "Killed": 48,
+          "Leaked": 0,
+          "Ticks": 575,
+          "Gold": 220
+        },
+        {
+          "PlayerGold": [
+            243
+          ],
+          "Wave": 6,
+          "Flying": false,
+          "Killed": 54,
+          "Leaked": 0,
+          "Ticks": 645,
+          "Gold": 243
+        },
+        {
+          "PlayerGold": [
+            253
+          ],
+          "Wave": 7,
+          "Flying": false,
+          "Killed": 60,
+          "Leaked": 0,
+          "Ticks": 711,
+          "Gold": 253
+        },
+        {
+          "PlayerGold": [
+            255
+          ],
+          "Wave": 8,
+          "Flying": false,
+          "Killed": 66,
+          "Leaked": 0,
+          "Ticks": 774,
+          "Gold": 255
+        },
+        {
+          "PlayerGold": [
+            269
+          ],
+          "Wave": 9,
+          "Flying": false,
+          "Killed": 72,
+          "Leaked": 0,
+          "Ticks": 872,
+          "Gold": 269
+        },
+        {
+          "PlayerGold": [
+            280
+          ],
+          "Wave": 10,
+          "Flying": true,
+          "Killed": 78,
+          "Leaked": 0,
+          "Ticks": 847,
+          "Gold": 280
+        },
+        {
+          "PlayerGold": [
+            279
+          ],
+          "Wave": 11,
+          "Flying": false,
+          "Killed": 72,
+          "Leaked": 0,
+          "Ticks": 933,
+          "Gold": 279
+        },
+        {
+          "PlayerGold": [
+            314
+          ],
+          "Wave": 12,
+          "Flying": false,
+          "Killed": 90,
+          "Leaked": 0,
+          "Ticks": 880,
+          "Gold": 314
+        },
+        {
+          "PlayerGold": [
+            362
+          ],
+          "Wave": 13,
+          "Flying": false,
+          "Killed": 114,
+          "Leaked": 0,
+          "Ticks": 1076,
+          "Gold": 362
+        },
+        {
+          "PlayerGold": [
+            233
+          ],
+          "Wave": 14,
+          "Flying": false,
+          "Killed": 48,
+          "Leaked": 0,
+          "Ticks": 1157,
+          "Gold": 233
+        },
+        {
+          "PlayerGold": [
+            291
+          ],
+          "Wave": 15,
+          "Flying": true,
+          "Killed": 84,
+          "Leaked": 0,
+          "Ticks": 966,
+          "Gold": 291
+        },
+        {
+          "PlayerGold": [
+            306
+          ],
+          "Wave": 16,
+          "Flying": false,
+          "Killed": 90,
+          "Leaked": 0,
+          "Ticks": 1374,
+          "Gold": 306
+        },
+        {
+          "PlayerGold": [
+            244
+          ],
+          "Wave": 17,
+          "Flying": false,
+          "Killed": 54,
+          "Leaked": 0,
+          "Ticks": 1625,
+          "Gold": 244
+        },
+        {
+          "PlayerGold": [
+            380
+          ],
+          "Wave": 18,
+          "Flying": false,
+          "Killed": 123,
+          "Leaked": 3,
+          "Ticks": 1169,
+          "Gold": 380
+        },
+        {
+          "PlayerGold": [
+            197
+          ],
+          "Wave": 19,
+          "Flying": false,
+          "Killed": 36,
+          "Leaked": 0,
+          "Ticks": 1846,
+          "Gold": 197
+        },
+        {
+          "PlayerGold": [
+            276
+          ],
+          "Wave": 20,
+          "Flying": true,
+          "Killed": 77,
+          "Leaked": 13,
+          "Ticks": 1156,
+          "Gold": 276
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,2830 @@
+[
+  {
+    "FinalWallets": [
+      141,
+      166
+    ],
+    "PlayerSpending": [
+      2955,
+      2930
+    ],
+    "Strategy": "compact-invest",
+    "Factions": [
+      "Rime Covenant",
+      "Stonebound"
+    ],
+    "Upgrades": [
+      {
+        "Player": 2,
+        "TowerId": 22,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 25,
+        "BeforeWave": 1
+      },
+      {
+        "Player": 1,
+        "TowerId": 1,
+        "Tower": "Shard Sentry",
+        "Level": 2,
+        "Cost": 20,
+        "BeforeWave": 4
+      },
+      {
+        "Player": 2,
+        "TowerId": 25,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 25,
+        "BeforeWave": 4
+      },
+      {
+        "Player": 2,
+        "TowerId": 30,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 25,
+        "BeforeWave": 4
+      },
+      {
+        "Player": 1,
+        "TowerId": 9,
+        "Tower": "Aurora Needle",
+        "Level": 2,
+        "Cost": 55,
+        "BeforeWave": 5
+      },
+      {
+        "Player": 1,
+        "TowerId": 1,
+        "Tower": "Shard Sentry",
+        "Level": 3,
+        "Cost": 40,
+        "BeforeWave": 5
+      },
+      {
+        "Player": 1,
+        "TowerId": 39,
+        "Tower": "Shard Sentry",
+        "Level": 2,
+        "Cost": 20,
+        "BeforeWave": 5
+      },
+      {
+        "Player": 2,
+        "TowerId": 25,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 50,
+        "BeforeWave": 5
+      },
+      {
+        "Player": 2,
+        "TowerId": 33,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 25,
+        "BeforeWave": 5
+      },
+      {
+        "Player": 2,
+        "TowerId": 41,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 25,
+        "BeforeWave": 5
+      },
+      {
+        "Player": 1,
+        "TowerId": 10,
+        "Tower": "Hail Bell",
+        "Level": 2,
+        "Cost": 65,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 1,
+        "TowerId": 5,
+        "Tower": "Shard Sentry",
+        "Level": 2,
+        "Cost": 20,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 1,
+        "TowerId": 12,
+        "Tower": "Shard Sentry",
+        "Level": 2,
+        "Cost": 20,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 2,
+        "TowerId": 30,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 50,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 2,
+        "TowerId": 42,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 25,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 2,
+        "TowerId": 24,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 25,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 1,
+        "TowerId": 5,
+        "Tower": "Shard Sentry",
+        "Level": 3,
+        "Cost": 40,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 6,
+        "Tower": "Shard Sentry",
+        "Level": 2,
+        "Cost": 20,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 6,
+        "Tower": "Shard Sentry",
+        "Level": 3,
+        "Cost": 40,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 2,
+        "TowerId": 28,
+        "Tower": "Worldroot",
+        "Level": 2,
+        "Cost": 90,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 2,
+        "TowerId": 34,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 25,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 9,
+        "Tower": "Aurora Needle",
+        "Level": 3,
+        "Cost": 110,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 13,
+        "Tower": "Shard Sentry",
+        "Level": 2,
+        "Cost": 20,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 2,
+        "TowerId": 34,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 50,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 2,
+        "TowerId": 33,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 50,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 2,
+        "TowerId": 40,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 25,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 18,
+        "Tower": "Hail Bell",
+        "Level": 2,
+        "Cost": 65,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 13,
+        "Tower": "Shard Sentry",
+        "Level": 3,
+        "Cost": 40,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 14,
+        "Tower": "Shard Sentry",
+        "Level": 2,
+        "Cost": 20,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 2,
+        "TowerId": 40,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 50,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 2,
+        "TowerId": 22,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 50,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 2,
+        "TowerId": 29,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 25,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 10,
+        "Tower": "Hail Bell",
+        "Level": 3,
+        "Cost": 130,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 2,
+        "TowerId": 29,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 50,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 2,
+        "TowerId": 24,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 50,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 2,
+        "TowerId": 20,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 25,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 46,
+        "Tower": "Hail Bell",
+        "Level": 2,
+        "Cost": 65,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 44,
+        "Tower": "Aurora Needle",
+        "Level": 2,
+        "Cost": 55,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 16,
+        "Tower": "Shard Sentry",
+        "Level": 2,
+        "Cost": 20,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 2,
+        "TowerId": 42,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 50,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 2,
+        "TowerId": 31,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 25,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 2,
+        "TowerId": 31,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 50,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 2,
+        "TowerId": 48,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 25,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 46,
+        "Tower": "Hail Bell",
+        "Level": 3,
+        "Cost": 130,
+        "BeforeWave": 12
+      },
+      {
+        "Player": 2,
+        "TowerId": 26,
+        "Tower": "Crag Hurler",
+        "Level": 2,
+        "Cost": 55,
+        "BeforeWave": 12
+      },
+      {
+        "Player": 2,
+        "TowerId": 20,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 50,
+        "BeforeWave": 12
+      },
+      {
+        "Player": 2,
+        "TowerId": 36,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 25,
+        "BeforeWave": 12
+      },
+      {
+        "Player": 1,
+        "TowerId": 39,
+        "Tower": "Shard Sentry",
+        "Level": 3,
+        "Cost": 40,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 38,
+        "Tower": "Aurora Needle",
+        "Level": 2,
+        "Cost": 55,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 14,
+        "Tower": "Shard Sentry",
+        "Level": 3,
+        "Cost": 40,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 11,
+        "Tower": "Shard Sentry",
+        "Level": 2,
+        "Cost": 20,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 2,
+        "TowerId": 36,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 50,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 2,
+        "TowerId": 41,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 50,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 2,
+        "TowerId": 48,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 50,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 11,
+        "Tower": "Shard Sentry",
+        "Level": 3,
+        "Cost": 40,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 18,
+        "Tower": "Hail Bell",
+        "Level": 3,
+        "Cost": 130,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 2,
+        "TowerId": 26,
+        "Tower": "Crag Hurler",
+        "Level": 3,
+        "Cost": 110,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 2,
+        "TowerId": 35,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 25,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 2,
+        "TowerId": 21,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 25,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 4,
+        "Tower": "Hail Bell",
+        "Level": 2,
+        "Cost": 65,
+        "BeforeWave": 15
+      },
+      {
+        "Player": 1,
+        "TowerId": 2,
+        "Tower": "Shard Sentry",
+        "Level": 2,
+        "Cost": 20,
+        "BeforeWave": 15
+      },
+      {
+        "Player": 1,
+        "TowerId": 8,
+        "Tower": "Shard Sentry",
+        "Level": 2,
+        "Cost": 20,
+        "BeforeWave": 15
+      },
+      {
+        "Player": 2,
+        "TowerId": 35,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 50,
+        "BeforeWave": 15
+      },
+      {
+        "Player": 2,
+        "TowerId": 21,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 50,
+        "BeforeWave": 15
+      },
+      {
+        "Player": 2,
+        "TowerId": 32,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 25,
+        "BeforeWave": 15
+      },
+      {
+        "Player": 1,
+        "TowerId": 2,
+        "Tower": "Shard Sentry",
+        "Level": 3,
+        "Cost": 40,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 1,
+        "TowerId": 8,
+        "Tower": "Shard Sentry",
+        "Level": 3,
+        "Cost": 40,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 1,
+        "TowerId": 12,
+        "Tower": "Shard Sentry",
+        "Level": 3,
+        "Cost": 40,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 1,
+        "TowerId": 15,
+        "Tower": "Shard Sentry",
+        "Level": 2,
+        "Cost": 20,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 2,
+        "TowerId": 45,
+        "Tower": "Worldroot",
+        "Level": 2,
+        "Cost": 90,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 2,
+        "TowerId": 27,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 25,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 2,
+        "TowerId": 47,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 25,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 1,
+        "TowerId": 15,
+        "Tower": "Shard Sentry",
+        "Level": 3,
+        "Cost": 40,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 38,
+        "Tower": "Aurora Needle",
+        "Level": 3,
+        "Cost": 110,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 2,
+        "TowerId": 37,
+        "Tower": "Crag Hurler",
+        "Level": 2,
+        "Cost": 55,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 2,
+        "TowerId": 32,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 50,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 2,
+        "TowerId": 27,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 50,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 4,
+        "Tower": "Hail Bell",
+        "Level": 3,
+        "Cost": 130,
+        "BeforeWave": 18
+      },
+      {
+        "Player": 2,
+        "TowerId": 37,
+        "Tower": "Crag Hurler",
+        "Level": 3,
+        "Cost": 110,
+        "BeforeWave": 18
+      },
+      {
+        "Player": 1,
+        "TowerId": 3,
+        "Tower": "Hail Bell",
+        "Level": 2,
+        "Cost": 65,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 44,
+        "Tower": "Aurora Needle",
+        "Level": 3,
+        "Cost": 110,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 2,
+        "TowerId": 45,
+        "Tower": "Worldroot",
+        "Level": 3,
+        "Cost": 180,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 16,
+        "Tower": "Shard Sentry",
+        "Level": 3,
+        "Cost": 40,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 19,
+        "Tower": "Shard Sentry",
+        "Level": 2,
+        "Cost": 20,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 17,
+        "Tower": "Shard Sentry",
+        "Level": 2,
+        "Cost": 20,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 7,
+        "Tower": "Shard Sentry",
+        "Level": 2,
+        "Cost": 20,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 2,
+        "TowerId": 47,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 50,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 2,
+        "TowerId": 23,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 25,
+        "BeforeWave": 20
+      }
+    ],
+    "PlayerCount": 2,
+    "Map": "Rimewatch",
+    "Faction": "Rime Covenant",
+    "Difficulty": "Normal",
+    "Won": true,
+    "Stalled": false,
+    "Lives": 12,
+    "Gold": 307,
+    "Spent": 5885,
+    "Placements": [
+      {
+        "TowerId": 1,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 31,
+        "Y": 11,
+        "Tower": "Shard Sentry",
+        "Cost": 20
+      },
+      {
+        "TowerId": 2,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 27,
+        "Y": 15,
+        "Tower": "Shard Sentry",
+        "Cost": 20
+      },
+      {
+        "TowerId": 3,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 13,
+        "Y": 17,
+        "Tower": "Hail Bell",
+        "Cost": 65
+      },
+      {
+        "TowerId": 4,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 11,
+        "Y": 25,
+        "Tower": "Hail Bell",
+        "Cost": 65
+      },
+      {
+        "TowerId": 5,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 21,
+        "Y": 15,
+        "Tower": "Shard Sentry",
+        "Cost": 20
+      },
+      {
+        "TowerId": 6,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 29,
+        "Y": 33,
+        "Tower": "Shard Sentry",
+        "Cost": 20
+      },
+      {
+        "TowerId": 7,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 11,
+        "Y": 37,
+        "Tower": "Shard Sentry",
+        "Cost": 20
+      },
+      {
+        "TowerId": 8,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 53,
+        "Y": 37,
+        "Tower": "Shard Sentry",
+        "Cost": 20
+      },
+      {
+        "TowerId": 9,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 31,
+        "Y": 17,
+        "Tower": "Aurora Needle",
+        "Cost": 55
+      },
+      {
+        "TowerId": 10,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 31,
+        "Y": 13,
+        "Tower": "Hail Bell",
+        "Cost": 65
+      },
+      {
+        "TowerId": 11,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 17,
+        "Y": 29,
+        "Tower": "Shard Sentry",
+        "Cost": 20
+      },
+      {
+        "TowerId": 12,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 29,
+        "Y": 41,
+        "Tower": "Shard Sentry",
+        "Cost": 20
+      },
+      {
+        "TowerId": 13,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 7,
+        "Y": 45,
+        "Tower": "Shard Sentry",
+        "Cost": 20
+      },
+      {
+        "TowerId": 14,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 53,
+        "Y": 45,
+        "Tower": "Shard Sentry",
+        "Cost": 20
+      },
+      {
+        "TowerId": 15,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 29,
+        "Y": 49,
+        "Tower": "Shard Sentry",
+        "Cost": 20
+      },
+      {
+        "TowerId": 16,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 9,
+        "Y": 53,
+        "Tower": "Shard Sentry",
+        "Cost": 20
+      },
+      {
+        "TowerId": 17,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 55,
+        "Y": 53,
+        "Tower": "Shard Sentry",
+        "Cost": 20
+      },
+      {
+        "TowerId": 18,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 51,
+        "Y": 15,
+        "Tower": "Hail Bell",
+        "Cost": 65
+      },
+      {
+        "TowerId": 19,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 39,
+        "Y": 17,
+        "Tower": "Shard Sentry",
+        "Cost": 20
+      },
+      {
+        "TowerId": 20,
+        "BeforeWave": 1,
+        "Player": 2,
+        "X": 29,
+        "Y": 53,
+        "Tower": "Pebble Warden",
+        "Cost": 25
+      },
+      {
+        "TowerId": 21,
+        "BeforeWave": 1,
+        "Player": 2,
+        "X": 27,
+        "Y": 31,
+        "Tower": "Pebble Warden",
+        "Cost": 25
+      },
+      {
+        "TowerId": 22,
+        "BeforeWave": 1,
+        "Player": 2,
+        "X": 23,
+        "Y": 17,
+        "Tower": "Pebble Warden",
+        "Cost": 25
+      },
+      {
+        "TowerId": 23,
+        "BeforeWave": 1,
+        "Player": 2,
+        "X": 11,
+        "Y": 33,
+        "Tower": "Pebble Warden",
+        "Cost": 25
+      },
+      {
+        "TowerId": 24,
+        "BeforeWave": 1,
+        "Player": 2,
+        "X": 53,
+        "Y": 33,
+        "Tower": "Pebble Warden",
+        "Cost": 25
+      },
+      {
+        "TowerId": 25,
+        "BeforeWave": 1,
+        "Player": 2,
+        "X": 29,
+        "Y": 11,
+        "Tower": "Pebble Warden",
+        "Cost": 25
+      },
+      {
+        "TowerId": 26,
+        "BeforeWave": 1,
+        "Player": 2,
+        "X": 47,
+        "Y": 29,
+        "Tower": "Crag Hurler",
+        "Cost": 55
+      },
+      {
+        "TowerId": 27,
+        "BeforeWave": 1,
+        "Player": 2,
+        "X": 55,
+        "Y": 21,
+        "Tower": "Pebble Warden",
+        "Cost": 25
+      },
+      {
+        "TowerId": 28,
+        "BeforeWave": 1,
+        "Player": 2,
+        "X": 15,
+        "Y": 15,
+        "Tower": "Worldroot",
+        "Cost": 90
+      },
+      {
+        "TowerId": 29,
+        "BeforeWave": 1,
+        "Player": 2,
+        "X": 41,
+        "Y": 15,
+        "Tower": "Pebble Warden",
+        "Cost": 25
+      },
+      {
+        "TowerId": 30,
+        "BeforeWave": 1,
+        "Player": 2,
+        "X": 19,
+        "Y": 29,
+        "Tower": "Pebble Warden",
+        "Cost": 25
+      },
+      {
+        "TowerId": 31,
+        "BeforeWave": 1,
+        "Player": 2,
+        "X": 29,
+        "Y": 37,
+        "Tower": "Pebble Warden",
+        "Cost": 25
+      },
+      {
+        "TowerId": 32,
+        "BeforeWave": 1,
+        "Player": 2,
+        "X": 7,
+        "Y": 41,
+        "Tower": "Pebble Warden",
+        "Cost": 25
+      },
+      {
+        "TowerId": 33,
+        "BeforeWave": 1,
+        "Player": 2,
+        "X": 53,
+        "Y": 41,
+        "Tower": "Pebble Warden",
+        "Cost": 25
+      },
+      {
+        "TowerId": 34,
+        "BeforeWave": 1,
+        "Player": 2,
+        "X": 29,
+        "Y": 45,
+        "Tower": "Pebble Warden",
+        "Cost": 25
+      },
+      {
+        "TowerId": 35,
+        "BeforeWave": 1,
+        "Player": 2,
+        "X": 7,
+        "Y": 49,
+        "Tower": "Pebble Warden",
+        "Cost": 25
+      },
+      {
+        "TowerId": 36,
+        "BeforeWave": 1,
+        "Player": 2,
+        "X": 53,
+        "Y": 49,
+        "Tower": "Pebble Warden",
+        "Cost": 25
+      },
+      {
+        "TowerId": 37,
+        "BeforeWave": 1,
+        "Player": 2,
+        "X": 29,
+        "Y": 13,
+        "Tower": "Crag Hurler",
+        "Cost": 55
+      },
+      {
+        "TowerId": 38,
+        "BeforeWave": 2,
+        "Player": 1,
+        "X": 39,
+        "Y": 19,
+        "Tower": "Aurora Needle",
+        "Cost": 55
+      },
+      {
+        "TowerId": 39,
+        "BeforeWave": 2,
+        "Player": 1,
+        "X": 55,
+        "Y": 25,
+        "Tower": "Shard Sentry",
+        "Cost": 20
+      },
+      {
+        "TowerId": 40,
+        "BeforeWave": 2,
+        "Player": 2,
+        "X": 11,
+        "Y": 31,
+        "Tower": "Pebble Warden",
+        "Cost": 25
+      },
+      {
+        "TowerId": 41,
+        "BeforeWave": 2,
+        "Player": 2,
+        "X": 7,
+        "Y": 53,
+        "Tower": "Pebble Warden",
+        "Cost": 25
+      },
+      {
+        "TowerId": 42,
+        "BeforeWave": 2,
+        "Player": 2,
+        "X": 53,
+        "Y": 53,
+        "Tower": "Pebble Warden",
+        "Cost": 25
+      },
+      {
+        "TowerId": 43,
+        "BeforeWave": 3,
+        "Player": 1,
+        "X": 27,
+        "Y": 13,
+        "Tower": "Rime Binder",
+        "Cost": 45
+      },
+      {
+        "TowerId": 44,
+        "BeforeWave": 3,
+        "Player": 1,
+        "X": 29,
+        "Y": 29,
+        "Tower": "Aurora Needle",
+        "Cost": 55
+      },
+      {
+        "TowerId": 45,
+        "BeforeWave": 3,
+        "Player": 2,
+        "X": 11,
+        "Y": 29,
+        "Tower": "Worldroot",
+        "Cost": 90
+      },
+      {
+        "TowerId": 46,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 11,
+        "Y": 19,
+        "Tower": "Hail Bell",
+        "Cost": 65
+      },
+      {
+        "TowerId": 47,
+        "BeforeWave": 4,
+        "Player": 2,
+        "X": 31,
+        "Y": 53,
+        "Tower": "Pebble Warden",
+        "Cost": 25
+      },
+      {
+        "TowerId": 48,
+        "BeforeWave": 4,
+        "Player": 2,
+        "X": 11,
+        "Y": 39,
+        "Tower": "Pebble Warden",
+        "Cost": 25
+      }
+    ],
+    "Waves": [
+      {
+        "PlayerGold": [
+          89,
+          84
+        ],
+        "Wave": 1,
+        "Flying": false,
+        "Killed": 24,
+        "Leaked": 0,
+        "Ticks": 274,
+        "Gold": 173
+      },
+      {
+        "PlayerGold": [
+          104,
+          99
+        ],
+        "Wave": 2,
+        "Flying": false,
+        "Killed": 30,
+        "Leaked": 0,
+        "Ticks": 384,
+        "Gold": 203
+      },
+      {
+        "PlayerGold": [
+          100,
+          105
+        ],
+        "Wave": 3,
+        "Flying": false,
+        "Killed": 36,
+        "Leaked": 0,
+        "Ticks": 495,
+        "Gold": 205
+      },
+      {
+        "PlayerGold": [
+          117,
+          107
+        ],
+        "Wave": 4,
+        "Flying": false,
+        "Killed": 42,
+        "Leaked": 0,
+        "Ticks": 512,
+        "Gold": 224
+      },
+      {
+        "PlayerGold": [
+          110,
+          115
+        ],
+        "Wave": 5,
+        "Flying": true,
+        "Killed": 48,
+        "Leaked": 0,
+        "Ticks": 590,
+        "Gold": 225
+      },
+      {
+        "PlayerGold": [
+          119,
+          129
+        ],
+        "Wave": 6,
+        "Flying": false,
+        "Killed": 54,
+        "Leaked": 0,
+        "Ticks": 678,
+        "Gold": 248
+      },
+      {
+        "PlayerGold": [
+          139,
+          134
+        ],
+        "Wave": 7,
+        "Flying": false,
+        "Killed": 60,
+        "Leaked": 0,
+        "Ticks": 750,
+        "Gold": 273
+      },
+      {
+        "PlayerGold": [
+          135,
+          135
+        ],
+        "Wave": 8,
+        "Flying": false,
+        "Killed": 66,
+        "Leaked": 0,
+        "Ticks": 797,
+        "Gold": 270
+      },
+      {
+        "PlayerGold": [
+          142,
+          142
+        ],
+        "Wave": 9,
+        "Flying": false,
+        "Killed": 72,
+        "Leaked": 0,
+        "Ticks": 871,
+        "Gold": 284
+      },
+      {
+        "PlayerGold": [
+          150,
+          155
+        ],
+        "Wave": 10,
+        "Flying": true,
+        "Killed": 78,
+        "Leaked": 0,
+        "Ticks": 875,
+        "Gold": 305
+      },
+      {
+        "PlayerGold": [
+          142,
+          137
+        ],
+        "Wave": 11,
+        "Flying": false,
+        "Killed": 72,
+        "Leaked": 0,
+        "Ticks": 973,
+        "Gold": 279
+      },
+      {
+        "PlayerGold": [
+          162,
+          157
+        ],
+        "Wave": 12,
+        "Flying": false,
+        "Killed": 90,
+        "Leaked": 0,
+        "Ticks": 973,
+        "Gold": 319
+      },
+      {
+        "PlayerGold": [
+          181,
+          181
+        ],
+        "Wave": 13,
+        "Flying": false,
+        "Killed": 114,
+        "Leaked": 0,
+        "Ticks": 1185,
+        "Gold": 362
+      },
+      {
+        "PlayerGold": [
+          119,
+          129
+        ],
+        "Wave": 14,
+        "Flying": false,
+        "Killed": 48,
+        "Leaked": 0,
+        "Ticks": 1063,
+        "Gold": 248
+      },
+      {
+        "PlayerGold": [
+          158,
+          148
+        ],
+        "Wave": 15,
+        "Flying": true,
+        "Killed": 84,
+        "Leaked": 0,
+        "Ticks": 1028,
+        "Gold": 306
+      },
+      {
+        "PlayerGold": [
+          168,
+          158
+        ],
+        "Wave": 16,
+        "Flying": false,
+        "Killed": 90,
+        "Leaked": 0,
+        "Ticks": 1360,
+        "Gold": 326
+      },
+      {
+        "PlayerGold": [
+          132,
+          117
+        ],
+        "Wave": 17,
+        "Flying": false,
+        "Killed": 54,
+        "Leaked": 0,
+        "Ticks": 1628,
+        "Gold": 249
+      },
+      {
+        "PlayerGold": [
+          184,
+          189
+        ],
+        "Wave": 18,
+        "Flying": false,
+        "Killed": 122,
+        "Leaked": 4,
+        "Ticks": 1210,
+        "Gold": 373
+      },
+      {
+        "PlayerGold": [
+          105,
+          105
+        ],
+        "Wave": 19,
+        "Flying": false,
+        "Killed": 36,
+        "Leaked": 0,
+        "Ticks": 1882,
+        "Gold": 210
+      },
+      {
+        "PlayerGold": [
+          141,
+          166
+        ],
+        "Wave": 20,
+        "Flying": true,
+        "Killed": 76,
+        "Leaked": 14,
+        "Ticks": 1181,
+        "Gold": 307
+      }
+    ]
+  },
+  {
+    "FinalWallets": [
+      288,
+      420
+    ],
+    "PlayerSpending": [
+      3264,
+      3132
+    ],
+    "Strategy": "compact-invest",
+    "Factions": [
+      "Gravity Works",
+      "Scrap Frontier"
+    ],
+    "Upgrades": [
+      {
+        "Player": 1,
+        "TowerId": 4,
+        "Tower": "Gravity Anchor",
+        "Level": 2,
+        "Cost": 36,
+        "BeforeWave": 2
+      },
+      {
+        "Player": 2,
+        "TowerId": 23,
+        "Tower": "Strider Cadet",
+        "Level": 2,
+        "Cost": 7,
+        "BeforeWave": 5
+      },
+      {
+        "Player": 1,
+        "TowerId": 9,
+        "Tower": "Gravity Anchor",
+        "Level": 2,
+        "Cost": 36,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 1,
+        "TowerId": 9,
+        "Tower": "Gravity Anchor",
+        "Level": 3,
+        "Cost": 72,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 1,
+        "TowerId": 14,
+        "Tower": "Gyro Cadet",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 1,
+        "TowerId": 13,
+        "Tower": "Gyro Cadet",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 2,
+        "TowerId": 42,
+        "Tower": "Bloomguard",
+        "Level": 2,
+        "Cost": 80,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 2,
+        "TowerId": 26,
+        "Tower": "Strider Cadet",
+        "Level": 2,
+        "Cost": 7,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 2,
+        "TowerId": 36,
+        "Tower": "Strider Cadet",
+        "Level": 2,
+        "Cost": 7,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 2,
+        "TowerId": 36,
+        "Tower": "Strider Cadet",
+        "Level": 3,
+        "Cost": 14,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 2,
+        "TowerId": 26,
+        "Tower": "Strider Cadet",
+        "Level": 3,
+        "Cost": 14,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 1,
+        "TowerId": 40,
+        "Tower": "Gravity Anchor",
+        "Level": 2,
+        "Cost": 36,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 29,
+        "Tower": "Gravity Anchor",
+        "Level": 2,
+        "Cost": 36,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 11,
+        "Tower": "Gravity Anchor",
+        "Level": 2,
+        "Cost": 36,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 14,
+        "Tower": "Gyro Cadet",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 2,
+        "TowerId": 37,
+        "Tower": "Strider Cadet",
+        "Level": 2,
+        "Cost": 7,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 2,
+        "TowerId": 43,
+        "Tower": "Lance Knight",
+        "Level": 2,
+        "Cost": 30,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 2,
+        "TowerId": 38,
+        "Tower": "Strider Cadet",
+        "Level": 2,
+        "Cost": 7,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 2,
+        "TowerId": 37,
+        "Tower": "Strider Cadet",
+        "Level": 3,
+        "Cost": 14,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 2,
+        "TowerId": 32,
+        "Tower": "Strider Cadet",
+        "Level": 2,
+        "Cost": 7,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 2,
+        "TowerId": 16,
+        "Tower": "Strider Cadet",
+        "Level": 2,
+        "Cost": 7,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 2,
+        "TowerId": 32,
+        "Tower": "Strider Cadet",
+        "Level": 3,
+        "Cost": 14,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 2,
+        "TowerId": 20,
+        "Tower": "Strider Cadet",
+        "Level": 2,
+        "Cost": 7,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 2,
+        "TowerId": 20,
+        "Tower": "Strider Cadet",
+        "Level": 3,
+        "Cost": 14,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 2,
+        "TowerId": 38,
+        "Tower": "Strider Cadet",
+        "Level": 3,
+        "Cost": 14,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 2,
+        "TowerId": 27,
+        "Tower": "Strider Cadet",
+        "Level": 2,
+        "Cost": 7,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 2,
+        "TowerId": 21,
+        "Tower": "Strider Cadet",
+        "Level": 2,
+        "Cost": 7,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 3,
+        "Tower": "Gravity Anchor",
+        "Level": 2,
+        "Cost": 36,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 5,
+        "Tower": "Gravity Anchor",
+        "Level": 2,
+        "Cost": 36,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 41,
+        "Tower": "Gravity Anchor",
+        "Level": 2,
+        "Cost": 36,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 46,
+        "Tower": "Gyro Cadet",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 30,
+        "Tower": "Gyro Cadet",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 2,
+        "TowerId": 48,
+        "Tower": "Lance Knight",
+        "Level": 2,
+        "Cost": 30,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 2,
+        "TowerId": 47,
+        "Tower": "Bloomguard",
+        "Level": 2,
+        "Cost": 80,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 2,
+        "TowerId": 16,
+        "Tower": "Strider Cadet",
+        "Level": 3,
+        "Cost": 14,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 2,
+        "TowerId": 19,
+        "Tower": "Strider Cadet",
+        "Level": 2,
+        "Cost": 7,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 2,
+        "TowerId": 24,
+        "Tower": "Strider Cadet",
+        "Level": 2,
+        "Cost": 7,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 4,
+        "Tower": "Gravity Anchor",
+        "Level": 3,
+        "Cost": 72,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 30,
+        "Tower": "Gyro Cadet",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 10,
+        "Tower": "Gravity Anchor",
+        "Level": 2,
+        "Cost": 36,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 46,
+        "Tower": "Gyro Cadet",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 2,
+        "TowerId": 17,
+        "Tower": "Hatchet Herald",
+        "Level": 2,
+        "Cost": 150,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 12,
+        "Tower": "Gravity Anchor",
+        "Level": 2,
+        "Cost": 36,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 1,
+        "Tower": "Gravity Anchor",
+        "Level": 2,
+        "Cost": 36,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 1,
+        "Tower": "Gravity Anchor",
+        "Level": 3,
+        "Cost": 72,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 2,
+        "TowerId": 18,
+        "Tower": "Hatchet Herald",
+        "Level": 2,
+        "Cost": 150,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 6,
+        "Tower": "Gravity Anchor",
+        "Level": 2,
+        "Cost": 36,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 10,
+        "Tower": "Gravity Anchor",
+        "Level": 3,
+        "Cost": 72,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 34,
+        "Tower": "Gravity Anchor",
+        "Level": 2,
+        "Cost": 36,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 13,
+        "Tower": "Gyro Cadet",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 2,
+        "TowerId": 15,
+        "Tower": "Hatchet Herald",
+        "Level": 2,
+        "Cost": 150,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 2,
+        "TowerId": 19,
+        "Tower": "Strider Cadet",
+        "Level": 3,
+        "Cost": 14,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 34,
+        "Tower": "Gravity Anchor",
+        "Level": 3,
+        "Cost": 72,
+        "BeforeWave": 12
+      },
+      {
+        "Player": 1,
+        "TowerId": 11,
+        "Tower": "Gravity Anchor",
+        "Level": 3,
+        "Cost": 72,
+        "BeforeWave": 12
+      },
+      {
+        "Player": 2,
+        "TowerId": 42,
+        "Tower": "Bloomguard",
+        "Level": 3,
+        "Cost": 160,
+        "BeforeWave": 12
+      },
+      {
+        "Player": 1,
+        "TowerId": 2,
+        "Tower": "Granite Sentinel",
+        "Level": 2,
+        "Cost": 180,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 2,
+        "TowerId": 31,
+        "Tower": "Bloomguard",
+        "Level": 2,
+        "Cost": 80,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 2,
+        "TowerId": 23,
+        "Tower": "Strider Cadet",
+        "Level": 3,
+        "Cost": 14,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 2,
+        "TowerId": 48,
+        "Tower": "Lance Knight",
+        "Level": 3,
+        "Cost": 60,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 2,
+        "TowerId": 27,
+        "Tower": "Strider Cadet",
+        "Level": 3,
+        "Cost": 14,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 2,
+        "TowerId": 24,
+        "Tower": "Strider Cadet",
+        "Level": 3,
+        "Cost": 14,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 12,
+        "Tower": "Gravity Anchor",
+        "Level": 3,
+        "Cost": 72,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 6,
+        "Tower": "Gravity Anchor",
+        "Level": 3,
+        "Cost": 72,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 29,
+        "Tower": "Gravity Anchor",
+        "Level": 3,
+        "Cost": 72,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 2,
+        "TowerId": 31,
+        "Tower": "Bloomguard",
+        "Level": 3,
+        "Cost": 160,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 2,
+        "TowerId": 21,
+        "Tower": "Strider Cadet",
+        "Level": 3,
+        "Cost": 14,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 2,
+        "TowerId": 25,
+        "Tower": "Strider Cadet",
+        "Level": 2,
+        "Cost": 7,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 2,
+        "TowerId": 25,
+        "Tower": "Strider Cadet",
+        "Level": 3,
+        "Cost": 14,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 2,
+        "TowerId": 22,
+        "Tower": "Strider Cadet",
+        "Level": 2,
+        "Cost": 7,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 39,
+        "Tower": "Gravity Anchor",
+        "Level": 2,
+        "Cost": 36,
+        "BeforeWave": 15
+      },
+      {
+        "Player": 1,
+        "TowerId": 39,
+        "Tower": "Gravity Anchor",
+        "Level": 3,
+        "Cost": 72,
+        "BeforeWave": 15
+      },
+      {
+        "Player": 2,
+        "TowerId": 28,
+        "Tower": "Bloomguard",
+        "Level": 2,
+        "Cost": 80,
+        "BeforeWave": 15
+      },
+      {
+        "Player": 2,
+        "TowerId": 22,
+        "Tower": "Strider Cadet",
+        "Level": 3,
+        "Cost": 14,
+        "BeforeWave": 15
+      },
+      {
+        "Player": 1,
+        "TowerId": 40,
+        "Tower": "Gravity Anchor",
+        "Level": 3,
+        "Cost": 72,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 1,
+        "TowerId": 5,
+        "Tower": "Gravity Anchor",
+        "Level": 3,
+        "Cost": 72,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 1,
+        "TowerId": 8,
+        "Tower": "Gravity Anchor",
+        "Level": 2,
+        "Cost": 36,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 2,
+        "TowerId": 28,
+        "Tower": "Bloomguard",
+        "Level": 3,
+        "Cost": 160,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 1,
+        "TowerId": 3,
+        "Tower": "Gravity Anchor",
+        "Level": 3,
+        "Cost": 72,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 7,
+        "Tower": "Gravity Anchor",
+        "Level": 2,
+        "Cost": 36,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 33,
+        "Tower": "Starcaller",
+        "Level": 2,
+        "Cost": 66,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 2,
+        "TowerId": 35,
+        "Tower": "Bloomguard",
+        "Level": 2,
+        "Cost": 80,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 2,
+        "TowerId": 43,
+        "Tower": "Lance Knight",
+        "Level": 3,
+        "Cost": 60,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 41,
+        "Tower": "Gravity Anchor",
+        "Level": 3,
+        "Cost": 72,
+        "BeforeWave": 18
+      },
+      {
+        "Player": 1,
+        "TowerId": 8,
+        "Tower": "Gravity Anchor",
+        "Level": 3,
+        "Cost": 72,
+        "BeforeWave": 18
+      },
+      {
+        "Player": 2,
+        "TowerId": 35,
+        "Tower": "Bloomguard",
+        "Level": 3,
+        "Cost": 160,
+        "BeforeWave": 18
+      },
+      {
+        "Player": 1,
+        "TowerId": 7,
+        "Tower": "Gravity Anchor",
+        "Level": 3,
+        "Cost": 72,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 45,
+        "Tower": "Gravity Anchor",
+        "Level": 2,
+        "Cost": 36,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 45,
+        "Tower": "Gravity Anchor",
+        "Level": 3,
+        "Cost": 72,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 44,
+        "Tower": "Starcaller",
+        "Level": 2,
+        "Cost": 66,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 2,
+        "TowerId": 47,
+        "Tower": "Bloomguard",
+        "Level": 3,
+        "Cost": 160,
+        "BeforeWave": 19
+      }
+    ],
+    "PlayerCount": 2,
+    "Map": "Ironfold",
+    "Faction": "Gravity Works",
+    "Difficulty": "Normal",
+    "Won": true,
+    "Stalled": false,
+    "Lives": 30,
+    "Gold": 708,
+    "Spent": 6396,
+    "Placements": [
+      {
+        "TowerId": 1,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 31,
+        "Y": 5,
+        "Tower": "Gravity Anchor",
+        "Cost": 36
+      },
+      {
+        "TowerId": 2,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 33,
+        "Y": 5,
+        "Tower": "Granite Sentinel",
+        "Cost": 180
+      },
+      {
+        "TowerId": 3,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 31,
+        "Y": 19,
+        "Tower": "Gravity Anchor",
+        "Cost": 36
+      },
+      {
+        "TowerId": 4,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 33,
+        "Y": 27,
+        "Tower": "Gravity Anchor",
+        "Cost": 36
+      },
+      {
+        "TowerId": 5,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 31,
+        "Y": 35,
+        "Tower": "Gravity Anchor",
+        "Cost": 36
+      },
+      {
+        "TowerId": 6,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 15,
+        "Y": 37,
+        "Tower": "Gravity Anchor",
+        "Cost": 36
+      },
+      {
+        "TowerId": 7,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 11,
+        "Y": 49,
+        "Tower": "Gravity Anchor",
+        "Cost": 36
+      },
+      {
+        "TowerId": 8,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 53,
+        "Y": 49,
+        "Tower": "Gravity Anchor",
+        "Cost": 36
+      },
+      {
+        "TowerId": 9,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 27,
+        "Y": 9,
+        "Tower": "Gravity Anchor",
+        "Cost": 36
+      },
+      {
+        "TowerId": 10,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 39,
+        "Y": 13,
+        "Tower": "Gravity Anchor",
+        "Cost": 36
+      },
+      {
+        "TowerId": 11,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 21,
+        "Y": 25,
+        "Tower": "Gravity Anchor",
+        "Cost": 36
+      },
+      {
+        "TowerId": 12,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 45,
+        "Y": 33,
+        "Tower": "Gravity Anchor",
+        "Cost": 36
+      },
+      {
+        "TowerId": 13,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 37,
+        "Y": 55,
+        "Tower": "Gyro Cadet",
+        "Cost": 12
+      },
+      {
+        "TowerId": 14,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 43,
+        "Y": 25,
+        "Tower": "Gyro Cadet",
+        "Cost": 12
+      },
+      {
+        "TowerId": 15,
+        "BeforeWave": 1,
+        "Player": 2,
+        "X": 33,
+        "Y": 19,
+        "Tower": "Hatchet Herald",
+        "Cost": 150
+      },
+      {
+        "TowerId": 16,
+        "BeforeWave": 1,
+        "Player": 2,
+        "X": 49,
+        "Y": 39,
+        "Tower": "Strider Cadet",
+        "Cost": 7
+      },
+      {
+        "TowerId": 17,
+        "BeforeWave": 1,
+        "Player": 2,
+        "X": 33,
+        "Y": 7,
+        "Tower": "Hatchet Herald",
+        "Cost": 150
+      },
+      {
+        "TowerId": 18,
+        "BeforeWave": 1,
+        "Player": 2,
+        "X": 33,
+        "Y": 35,
+        "Tower": "Hatchet Herald",
+        "Cost": 150
+      },
+      {
+        "TowerId": 19,
+        "BeforeWave": 1,
+        "Player": 2,
+        "X": 29,
+        "Y": 43,
+        "Tower": "Strider Cadet",
+        "Cost": 7
+      },
+      {
+        "TowerId": 20,
+        "BeforeWave": 1,
+        "Player": 2,
+        "X": 35,
+        "Y": 43,
+        "Tower": "Strider Cadet",
+        "Cost": 7
+      },
+      {
+        "TowerId": 21,
+        "BeforeWave": 1,
+        "Player": 2,
+        "X": 27,
+        "Y": 51,
+        "Tower": "Strider Cadet",
+        "Cost": 7
+      },
+      {
+        "TowerId": 22,
+        "BeforeWave": 1,
+        "Player": 2,
+        "X": 9,
+        "Y": 57,
+        "Tower": "Strider Cadet",
+        "Cost": 7
+      },
+      {
+        "TowerId": 23,
+        "BeforeWave": 1,
+        "Player": 2,
+        "X": 25,
+        "Y": 57,
+        "Tower": "Strider Cadet",
+        "Cost": 7
+      },
+      {
+        "TowerId": 24,
+        "BeforeWave": 1,
+        "Player": 2,
+        "X": 51,
+        "Y": 57,
+        "Tower": "Strider Cadet",
+        "Cost": 7
+      },
+      {
+        "TowerId": 25,
+        "BeforeWave": 1,
+        "Player": 2,
+        "X": 37,
+        "Y": 59,
+        "Tower": "Strider Cadet",
+        "Cost": 7
+      },
+      {
+        "TowerId": 26,
+        "BeforeWave": 1,
+        "Player": 2,
+        "X": 19,
+        "Y": 31,
+        "Tower": "Strider Cadet",
+        "Cost": 7
+      },
+      {
+        "TowerId": 27,
+        "BeforeWave": 1,
+        "Player": 2,
+        "X": 37,
+        "Y": 51,
+        "Tower": "Strider Cadet",
+        "Cost": 7
+      },
+      {
+        "TowerId": 28,
+        "BeforeWave": 1,
+        "Player": 2,
+        "X": 25,
+        "Y": 13,
+        "Tower": "Bloomguard",
+        "Cost": 80
+      },
+      {
+        "TowerId": 29,
+        "BeforeWave": 2,
+        "Player": 1,
+        "X": 43,
+        "Y": 21,
+        "Tower": "Gravity Anchor",
+        "Cost": 36
+      },
+      {
+        "TowerId": 30,
+        "BeforeWave": 2,
+        "Player": 1,
+        "X": 51,
+        "Y": 41,
+        "Tower": "Gyro Cadet",
+        "Cost": 12
+      },
+      {
+        "TowerId": 31,
+        "BeforeWave": 2,
+        "Player": 2,
+        "X": 9,
+        "Y": 59,
+        "Tower": "Bloomguard",
+        "Cost": 80
+      },
+      {
+        "TowerId": 32,
+        "BeforeWave": 2,
+        "Player": 2,
+        "X": 23,
+        "Y": 59,
+        "Tower": "Strider Cadet",
+        "Cost": 7
+      },
+      {
+        "TowerId": 33,
+        "BeforeWave": 3,
+        "Player": 1,
+        "X": 17,
+        "Y": 5,
+        "Tower": "Starcaller",
+        "Cost": 66
+      },
+      {
+        "TowerId": 34,
+        "BeforeWave": 3,
+        "Player": 1,
+        "X": 51,
+        "Y": 59,
+        "Tower": "Gravity Anchor",
+        "Cost": 36
+      },
+      {
+        "TowerId": 35,
+        "BeforeWave": 3,
+        "Player": 2,
+        "X": 27,
+        "Y": 45,
+        "Tower": "Bloomguard",
+        "Cost": 80
+      },
+      {
+        "TowerId": 36,
+        "BeforeWave": 3,
+        "Player": 2,
+        "X": 13,
+        "Y": 41,
+        "Tower": "Strider Cadet",
+        "Cost": 7
+      },
+      {
+        "TowerId": 37,
+        "BeforeWave": 3,
+        "Player": 2,
+        "X": 21,
+        "Y": 19,
+        "Tower": "Strider Cadet",
+        "Cost": 7
+      },
+      {
+        "TowerId": 38,
+        "BeforeWave": 3,
+        "Player": 2,
+        "X": 49,
+        "Y": 15,
+        "Tower": "Strider Cadet",
+        "Cost": 7
+      },
+      {
+        "TowerId": 39,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 35,
+        "Y": 45,
+        "Tower": "Gravity Anchor",
+        "Cost": 36
+      },
+      {
+        "TowerId": 40,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 27,
+        "Y": 53,
+        "Tower": "Gravity Anchor",
+        "Cost": 36
+      },
+      {
+        "TowerId": 41,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 39,
+        "Y": 59,
+        "Tower": "Gravity Anchor",
+        "Cost": 36
+      },
+      {
+        "TowerId": 42,
+        "BeforeWave": 4,
+        "Player": 2,
+        "X": 31,
+        "Y": 29,
+        "Tower": "Bloomguard",
+        "Cost": 80
+      },
+      {
+        "TowerId": 43,
+        "BeforeWave": 4,
+        "Player": 2,
+        "X": 37,
+        "Y": 53,
+        "Tower": "Lance Knight",
+        "Cost": 30
+      },
+      {
+        "TowerId": 44,
+        "BeforeWave": 5,
+        "Player": 1,
+        "X": 41,
+        "Y": 5,
+        "Tower": "Starcaller",
+        "Cost": 66
+      },
+      {
+        "TowerId": 45,
+        "BeforeWave": 5,
+        "Player": 1,
+        "X": 51,
+        "Y": 39,
+        "Tower": "Gravity Anchor",
+        "Cost": 36
+      },
+      {
+        "TowerId": 46,
+        "BeforeWave": 5,
+        "Player": 1,
+        "X": 49,
+        "Y": 5,
+        "Tower": "Gyro Cadet",
+        "Cost": 12
+      },
+      {
+        "TowerId": 47,
+        "BeforeWave": 5,
+        "Player": 2,
+        "X": 11,
+        "Y": 51,
+        "Tower": "Bloomguard",
+        "Cost": 80
+      },
+      {
+        "TowerId": 48,
+        "BeforeWave": 5,
+        "Player": 2,
+        "X": 53,
+        "Y": 51,
+        "Tower": "Lance Knight",
+        "Cost": 30
+      }
+    ],
+    "Waves": [
+      {
+        "PlayerGold": [
+          92,
+          92
+        ],
+        "Wave": 1,
+        "Flying": false,
+        "Killed": 32,
+        "Leaked": 0,
+        "Ticks": 610,
+        "Gold": 184
+      },
+      {
+        "PlayerGold": [
+          108,
+          105
+        ],
+        "Wave": 2,
+        "Flying": false,
+        "Killed": 40,
+        "Leaked": 0,
+        "Ticks": 759,
+        "Gold": 213
+      },
+      {
+        "PlayerGold": [
+          114,
+          112
+        ],
+        "Wave": 3,
+        "Flying": false,
+        "Killed": 48,
+        "Leaked": 0,
+        "Ticks": 771,
+        "Gold": 226
+      },
+      {
+        "PlayerGold": [
+          122,
+          118
+        ],
+        "Wave": 4,
+        "Flying": false,
+        "Killed": 56,
+        "Leaked": 0,
+        "Ticks": 1001,
+        "Gold": 240
+      },
+      {
+        "PlayerGold": [
+          132,
+          125
+        ],
+        "Wave": 5,
+        "Flying": true,
+        "Killed": 64,
+        "Leaked": 0,
+        "Ticks": 838,
+        "Gold": 257
+      },
+      {
+        "PlayerGold": [
+          132,
+          135
+        ],
+        "Wave": 6,
+        "Flying": false,
+        "Killed": 72,
+        "Leaked": 0,
+        "Ticks": 1005,
+        "Gold": 267
+      },
+      {
+        "PlayerGold": [
+          140,
+          140
+        ],
+        "Wave": 7,
+        "Flying": false,
+        "Killed": 80,
+        "Leaked": 0,
+        "Ticks": 1187,
+        "Gold": 280
+      },
+      {
+        "PlayerGold": [
+          156,
+          150
+        ],
+        "Wave": 8,
+        "Flying": false,
+        "Killed": 88,
+        "Leaked": 0,
+        "Ticks": 1106,
+        "Gold": 306
+      },
+      {
+        "PlayerGold": [
+          156,
+          156
+        ],
+        "Wave": 9,
+        "Flying": false,
+        "Killed": 96,
+        "Leaked": 0,
+        "Ticks": 1217,
+        "Gold": 312
+      },
+      {
+        "PlayerGold": [
+          176,
+          170
+        ],
+        "Wave": 10,
+        "Flying": true,
+        "Killed": 104,
+        "Leaked": 0,
+        "Ticks": 1123,
+        "Gold": 346
+      },
+      {
+        "PlayerGold": [
+          164,
+          162
+        ],
+        "Wave": 11,
+        "Flying": false,
+        "Killed": 96,
+        "Leaked": 0,
+        "Ticks": 1011,
+        "Gold": 326
+      },
+      {
+        "PlayerGold": [
+          200,
+          182
+        ],
+        "Wave": 12,
+        "Flying": false,
+        "Killed": 120,
+        "Leaked": 0,
+        "Ticks": 930,
+        "Gold": 382
+      },
+      {
+        "PlayerGold": [
+          232,
+          212
+        ],
+        "Wave": 13,
+        "Flying": false,
+        "Killed": 152,
+        "Leaked": 0,
+        "Ticks": 1360,
+        "Gold": 444
+      },
+      {
+        "PlayerGold": [
+          140,
+          134
+        ],
+        "Wave": 14,
+        "Flying": false,
+        "Killed": 64,
+        "Leaked": 0,
+        "Ticks": 1058,
+        "Gold": 274
+      },
+      {
+        "PlayerGold": [
+          204,
+          212
+        ],
+        "Wave": 15,
+        "Flying": true,
+        "Killed": 112,
+        "Leaked": 0,
+        "Ticks": 957,
+        "Gold": 416
+      },
+      {
+        "PlayerGold": [
+          204,
+          232
+        ],
+        "Wave": 16,
+        "Flying": false,
+        "Killed": 120,
+        "Leaked": 0,
+        "Ticks": 1303,
+        "Gold": 436
+      },
+      {
+        "PlayerGold": [
+          162,
+          224
+        ],
+        "Wave": 17,
+        "Flying": false,
+        "Killed": 72,
+        "Leaked": 0,
+        "Ticks": 1770,
+        "Gold": 386
+      },
+      {
+        "PlayerGold": [
+          246,
+          292
+        ],
+        "Wave": 18,
+        "Flying": false,
+        "Killed": 168,
+        "Leaked": 0,
+        "Ticks": 1376,
+        "Gold": 538
+      },
+      {
+        "PlayerGold": [
+          108,
+          240
+        ],
+        "Wave": 19,
+        "Flying": false,
+        "Killed": 48,
+        "Leaked": 0,
+        "Ticks": 2133,
+        "Gold": 348
+      },
+      {
+        "PlayerGold": [
+          288,
+          420
+        ],
+        "Wave": 20,
+        "Flying": true,
+        "Killed": 120,
+        "Leaked": 0,
+        "Ticks": 1310,
+        "Gold": 708
+      }
+    ]
+  }
+]

@@ -95,3 +95,9 @@ Final depth/terrain packages use source 4763c56. Both platform builds passed wit
 Compilation, 64/64 pure cases and 6/6 focused Unity cases passed. The new regressions verify offscreen-volley budget protection, crossing beams/edge splashes, no replay when panning, pause/reset/cap behavior, zero managed bytes in 100 warmed stable view updates, exact sale/death cleanup and faction recolouring after restart. Existing combat audio, leak priority, recoil and paid siege checks pass. See CROWDED-COMBAT.md and Howl-Crowded-Unity-Tests.json. No frame-rate improvement or new full-suite claim is inferred.
 
 Crowded-combat packages use source 3522f2c. Both builds passed with zero errors. Both-map Linux data smoke and actual isolated Linux purchase/selection/removal passed, 1200 → 1195 → 1198, with the sold model and inspector disappearing and normal exit zero. No packaged combat-wave or native-desktop/Windows runtime claim; see Howl-Builds.json.
+
+## Health readability, perspective inspection and stonework
+
+64 pure cases and five focused Unity cases pass across the saved runs. Legal projected crowds verify overlap suppression, Alt reveal, selection priority, HUD clipping and zero allocations in 100 warmed layout calls. Ground/flying inspection passes three zoom levels and camera rotation without changing the match. Camera safety, both-map prop clearance, all 76 portraits and rendered minimaps also pass. Initial health test fixture was corrected after illegal overlapping spawns were rejected. Read READABILITY-AND-STONEWORK.md and Howl-Readability-Unity-Tests.json.
+
+Paid investment diagnostics close the compact Rime gap (48 towers, 87 upgrades, twenty waves, 14 lives) with no stat changes. The new strategy wins 11/12 solo runs and both mixed pairs; Stonebound retains its earlier winning strategy. Across saved strategies all twelve factions have a compact Normal solo win. Full ledgers and intermediate failures: Balance/COMPACT-INVESTMENT.md.
