@@ -2,6 +2,8 @@
 
 ## Latest state
 
+- Current exit/terrain/progression checkpoint: Rimewatch exit centered at (31, 8.5), original terrain washes, faction-aware wave advice and team targeting counts. 62 pure checks and all 77 Unity cases passed; final material-only falloff correction separately compiled and visually inspected on both maps. Paid compact matrix: 10/12 wins; alternative Blast strategy wins, Rime solo maze wins with 30 lives, both mixed pairs win. No balance stats changed. Read EXIT-TERRAIN-PROGRESSION.md.
+
 - Source afe6680 adds owner/refund inspector guidance and disabled foreign/unaffordable actions. Compilation and all 61 pure simulation cases passed. Native two-player inspector fixtures passed. Actual Linux input verified build/select/U-upgrade/sell, with gold 1200 → 1180 → 1160 → 1190 and refund quotes 15 → 30. Normal close exited zero. Read TOWER-OWNERSHIP-UI.md.
 - Linux and Windows packages include afe6680, including placement hints from e4cf5e6. Both builds have zero errors; Windows runtime remains untested. Both Linux map/data smoke checks pass. Live inspect/checkpoint hints were checked in the package. Read Howl-Builds.json for per-check source provenance.
 - Source 9368630 introduced requested edge scrolling and Space + left-drag. Enter launches waves; Shift speeds keyboard/edge pan. Four focused Unity checks and actual Linux camera input passed. Read CAMERA-CONTROLS.md.

@@ -46,6 +46,7 @@ namespace FrostMaze.Tests
             new Case("Chain volleys retain bounded ordered shot history",TowerCases.ShotHistoryBounded),
             new Case("Wave previews match spawns and show owned prerequisites",MapCases.WavePreviews),
             new Case("Robot champion progression and ownership",MapCases.RobotProgression),
+            new Case("Wave planning respects targeting, factions and team ownership",TowerCases.WavePlanning),
             new Case("Reference map masks and spatial index",MapCases.Masks),
             new Case("Reference map lane traversal",MapCases.Routes),
             new Case("Faction selection enforces rosters",MapCases.FactionSelection),

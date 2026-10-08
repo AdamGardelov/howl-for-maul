@@ -5,6 +5,29 @@ namespace FrostMaze.Tests
     public static class TowerCases
     {
         static void Check(bool ok,string message){if(!ok)throw new Exception(message);}
+        public static void WavePlanning()
+        {
+            var map=MapCases.Load(false);map.BuilderEnabled=false;
+            var w=new World(map,new MatchOptions{PlayerCount=2});
+            var air=w.PreviewWave(4);var rush=w.PreviewWave(17);var swarm=w.PreviewWave(12);
+            Check(w.DefensesFor(air)==0,"empty air coverage");
+            Check(w.WaveAdvice(air).Contains("Aurora Needle")&&w.WaveAdvice(rush).Contains("Rime Binder")&&w.WaveAdvice(swarm).Contains("Hail Bell"),"Rime advice ignored wave roles");
+            w.SelectedDesign=3;Check(w.Build(28,11,out _),"ground artillery fixture");
+            Check(w.DefensesFor(air)==0&&w.DefensesFor(swarm)==1,"ground-only artillery advertised as anti-air");
+            w.SelectPlayer(1);w.SelectedDesign=4;Check(w.Build(30,11,out _),"second-owner anti-air fixture");
+            Check(w.DefensesFor(air)==1&&w.DefensesFor(swarm)==1,"team readiness ignored another owner or air-only targeting");
+            w.SelectedDesign=1;Check(w.Build(32,11,out _),"wall fixture");Check(w.DefensesFor(air)==1,"unarmed wall counted as anti-air");
+            Check(w.WaveAdvice(w.PreviewWave(13)).Contains("sealed paths"),"siege advice missing");
+            Check(w.Players[0].Gold==535&&w.Players[1].Gold==540,"read-only advice changed wallets");
+            foreach(bool iron in new[]{false,true}) {
+                var c=MapCases.Load(iron);for(int f=0;f<c.Factions.Length;f++) {
+                    var team=new World(c,new MatchOptions{Factions=new[]{f,0,0,0}});
+                    string hint=team.WaveAdvice(team.PreviewWave(4));bool match=false;
+                    foreach(int d in c.Factions[f].Designs)if(c.Catalog[d].Spec.TargetsAir&&hint.Contains(c.Catalog[d].Name))match=true;
+                    Check(match,"air advice did not name a tower from the selected faction");
+                }
+            }
+        }
         public static void EveryArmedDesignHasTargets()
         {
             foreach (bool iron in new[] {false, true})

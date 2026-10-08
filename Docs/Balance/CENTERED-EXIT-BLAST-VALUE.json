@@ -1,0 +1,1009 @@
+[
+  {
+    "FinalWallets": [
+      360
+    ],
+    "PlayerSpending": [
+      6700
+    ],
+    "Strategy": "compact-value",
+    "Factions": [
+      "Blast Circuit"
+    ],
+    "Upgrades": [
+      {
+        "Player": 1,
+        "TowerId": 1,
+        "Tower": "Crashbreaker",
+        "Level": 2,
+        "Cost": 30,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 2,
+        "Tower": "Rootguard",
+        "Level": 2,
+        "Cost": 150,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 1,
+        "Tower": "Crashbreaker",
+        "Level": 3,
+        "Cost": 60,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 3,
+        "Tower": "Crashbreaker",
+        "Level": 2,
+        "Cost": 30,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 4,
+        "Tower": "Crashbreaker",
+        "Level": 2,
+        "Cost": 30,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 32,
+        "Tower": "Alloy Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 25,
+        "Tower": "Rootguard",
+        "Level": 2,
+        "Cost": 150,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 47,
+        "Tower": "Rootguard",
+        "Level": 2,
+        "Cost": 150,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 38,
+        "Tower": "Crashbreaker",
+        "Level": 2,
+        "Cost": 30,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 2,
+        "Tower": "Rootguard",
+        "Level": 3,
+        "Cost": 300,
+        "BeforeWave": 12
+      },
+      {
+        "Player": 1,
+        "TowerId": 22,
+        "Tower": "Alloy Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 12
+      },
+      {
+        "Player": 1,
+        "TowerId": 25,
+        "Tower": "Rootguard",
+        "Level": 3,
+        "Cost": 300,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 38,
+        "Tower": "Crashbreaker",
+        "Level": 3,
+        "Cost": 60,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 47,
+        "Tower": "Rootguard",
+        "Level": 3,
+        "Cost": 300,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 5,
+        "Tower": "Quicksilver",
+        "Level": 2,
+        "Cost": 110,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 28,
+        "Tower": "Alloy Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 23,
+        "Tower": "Rootguard",
+        "Level": 2,
+        "Cost": 150,
+        "BeforeWave": 15
+      },
+      {
+        "Player": 1,
+        "TowerId": 4,
+        "Tower": "Crashbreaker",
+        "Level": 3,
+        "Cost": 60,
+        "BeforeWave": 15
+      },
+      {
+        "Player": 1,
+        "TowerId": 32,
+        "Tower": "Alloy Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 15
+      },
+      {
+        "Player": 1,
+        "TowerId": 27,
+        "Tower": "Alloy Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 15
+      },
+      {
+        "Player": 1,
+        "TowerId": 46,
+        "Tower": "Alloy Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 15
+      },
+      {
+        "Player": 1,
+        "TowerId": 5,
+        "Tower": "Quicksilver",
+        "Level": 3,
+        "Cost": 220,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 1,
+        "TowerId": 3,
+        "Tower": "Crashbreaker",
+        "Level": 3,
+        "Cost": 60,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 1,
+        "TowerId": 6,
+        "Tower": "Crashbreaker",
+        "Level": 2,
+        "Cost": 30,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 1,
+        "TowerId": 7,
+        "Tower": "Crashbreaker",
+        "Level": 2,
+        "Cost": 30,
+        "BeforeWave": 16
+      },
+      {
+        "Player": 1,
+        "TowerId": 10,
+        "Tower": "Rootguard",
+        "Level": 2,
+        "Cost": 150,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 35,
+        "Tower": "Quicksilver",
+        "Level": 2,
+        "Cost": 110,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 6,
+        "Tower": "Crashbreaker",
+        "Level": 3,
+        "Cost": 60,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 8,
+        "Tower": "Crashbreaker",
+        "Level": 2,
+        "Cost": 30,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 45,
+        "Tower": "Alloy Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 29,
+        "Tower": "Rootguard",
+        "Level": 2,
+        "Cost": 150,
+        "BeforeWave": 18
+      },
+      {
+        "Player": 1,
+        "TowerId": 9,
+        "Tower": "Crashbreaker",
+        "Level": 2,
+        "Cost": 30,
+        "BeforeWave": 18
+      },
+      {
+        "Player": 1,
+        "TowerId": 12,
+        "Tower": "Crashbreaker",
+        "Level": 2,
+        "Cost": 30,
+        "BeforeWave": 18
+      },
+      {
+        "Player": 1,
+        "TowerId": 15,
+        "Tower": "Crashbreaker",
+        "Level": 2,
+        "Cost": 30,
+        "BeforeWave": 18
+      },
+      {
+        "Player": 1,
+        "TowerId": 16,
+        "Tower": "Crashbreaker",
+        "Level": 2,
+        "Cost": 30,
+        "BeforeWave": 18
+      },
+      {
+        "Player": 1,
+        "TowerId": 10,
+        "Tower": "Rootguard",
+        "Level": 3,
+        "Cost": 300,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 21,
+        "Tower": "Crashbreaker",
+        "Level": 2,
+        "Cost": 30,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 26,
+        "Tower": "Crashbreaker",
+        "Level": 2,
+        "Cost": 30,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 37,
+        "Tower": "Crashbreaker",
+        "Level": 2,
+        "Cost": 30,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 22,
+        "Tower": "Alloy Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 35,
+        "Tower": "Quicksilver",
+        "Level": 3,
+        "Cost": 220,
+        "BeforeWave": 20
+      }
+    ],
+    "PlayerCount": 1,
+    "Map": "Ironfold",
+    "Faction": "Blast Circuit",
+    "Difficulty": "Normal",
+    "Won": true,
+    "Stalled": false,
+    "Lives": 8,
+    "Gold": 360,
+    "Spent": 6700,
+    "Placements": [
+      {
+        "TowerId": 1,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 31,
+        "Y": 5,
+        "Tower": "Crashbreaker",
+        "Cost": 30
+      },
+      {
+        "TowerId": 2,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 33,
+        "Y": 5,
+        "Tower": "Rootguard",
+        "Cost": 150
+      },
+      {
+        "TowerId": 3,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 31,
+        "Y": 19,
+        "Tower": "Crashbreaker",
+        "Cost": 30
+      },
+      {
+        "TowerId": 4,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 33,
+        "Y": 27,
+        "Tower": "Crashbreaker",
+        "Cost": 30
+      },
+      {
+        "TowerId": 5,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 29,
+        "Y": 9,
+        "Tower": "Quicksilver",
+        "Cost": 110
+      },
+      {
+        "TowerId": 6,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 31,
+        "Y": 35,
+        "Tower": "Crashbreaker",
+        "Cost": 30
+      },
+      {
+        "TowerId": 7,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 15,
+        "Y": 37,
+        "Tower": "Crashbreaker",
+        "Cost": 30
+      },
+      {
+        "TowerId": 8,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 11,
+        "Y": 49,
+        "Tower": "Crashbreaker",
+        "Cost": 30
+      },
+      {
+        "TowerId": 9,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 53,
+        "Y": 49,
+        "Tower": "Crashbreaker",
+        "Cost": 30
+      },
+      {
+        "TowerId": 10,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 31,
+        "Y": 21,
+        "Tower": "Rootguard",
+        "Cost": 150
+      },
+      {
+        "TowerId": 11,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 21,
+        "Y": 21,
+        "Tower": "Crashbreaker",
+        "Cost": 30
+      },
+      {
+        "TowerId": 12,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 43,
+        "Y": 25,
+        "Tower": "Crashbreaker",
+        "Cost": 30
+      },
+      {
+        "TowerId": 13,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 39,
+        "Y": 13,
+        "Tower": "Crashbreaker",
+        "Cost": 30
+      },
+      {
+        "TowerId": 14,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 45,
+        "Y": 33,
+        "Tower": "Crashbreaker",
+        "Cost": 30
+      },
+      {
+        "TowerId": 15,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 37,
+        "Y": 55,
+        "Tower": "Crashbreaker",
+        "Cost": 30
+      },
+      {
+        "TowerId": 16,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 49,
+        "Y": 39,
+        "Tower": "Crashbreaker",
+        "Cost": 30
+      },
+      {
+        "TowerId": 17,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 11,
+        "Y": 55,
+        "Tower": "Rootguard",
+        "Cost": 150
+      },
+      {
+        "TowerId": 18,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 53,
+        "Y": 55,
+        "Tower": "Rootguard",
+        "Cost": 150
+      },
+      {
+        "TowerId": 19,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 35,
+        "Y": 41,
+        "Tower": "Crashbreaker",
+        "Cost": 30
+      },
+      {
+        "TowerId": 20,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 29,
+        "Y": 43,
+        "Tower": "Crashbreaker",
+        "Cost": 30
+      },
+      {
+        "TowerId": 21,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 27,
+        "Y": 51,
+        "Tower": "Crashbreaker",
+        "Cost": 30
+      },
+      {
+        "TowerId": 22,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 25,
+        "Y": 57,
+        "Tower": "Alloy Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 23,
+        "BeforeWave": 2,
+        "Player": 1,
+        "X": 31,
+        "Y": 29,
+        "Tower": "Rootguard",
+        "Cost": 150
+      },
+      {
+        "TowerId": 24,
+        "BeforeWave": 2,
+        "Player": 1,
+        "X": 19,
+        "Y": 31,
+        "Tower": "Crashbreaker",
+        "Cost": 30
+      },
+      {
+        "TowerId": 25,
+        "BeforeWave": 3,
+        "Player": 1,
+        "X": 33,
+        "Y": 7,
+        "Tower": "Rootguard",
+        "Cost": 150
+      },
+      {
+        "TowerId": 26,
+        "BeforeWave": 3,
+        "Player": 1,
+        "X": 37,
+        "Y": 47,
+        "Tower": "Crashbreaker",
+        "Cost": 30
+      },
+      {
+        "TowerId": 27,
+        "BeforeWave": 3,
+        "Player": 1,
+        "X": 25,
+        "Y": 13,
+        "Tower": "Alloy Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 28,
+        "BeforeWave": 3,
+        "Player": 1,
+        "X": 37,
+        "Y": 59,
+        "Tower": "Alloy Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 29,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 33,
+        "Y": 35,
+        "Tower": "Rootguard",
+        "Cost": 150
+      },
+      {
+        "TowerId": 30,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 23,
+        "Y": 59,
+        "Tower": "Crashbreaker",
+        "Cost": 30
+      },
+      {
+        "TowerId": 31,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 13,
+        "Y": 43,
+        "Tower": "Crashbreaker",
+        "Cost": 30
+      },
+      {
+        "TowerId": 32,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 33,
+        "Y": 17,
+        "Tower": "Alloy Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 33,
+        "BeforeWave": 5,
+        "Player": 1,
+        "X": 21,
+        "Y": 23,
+        "Tower": "Rootguard",
+        "Cost": 150
+      },
+      {
+        "TowerId": 34,
+        "BeforeWave": 5,
+        "Player": 1,
+        "X": 43,
+        "Y": 21,
+        "Tower": "Heatkeeper",
+        "Cost": 80
+      },
+      {
+        "TowerId": 35,
+        "BeforeWave": 6,
+        "Player": 1,
+        "X": 35,
+        "Y": 17,
+        "Tower": "Quicksilver",
+        "Cost": 110
+      },
+      {
+        "TowerId": 36,
+        "BeforeWave": 6,
+        "Player": 1,
+        "X": 51,
+        "Y": 43,
+        "Tower": "Heatkeeper",
+        "Cost": 80
+      },
+      {
+        "TowerId": 37,
+        "BeforeWave": 6,
+        "Player": 1,
+        "X": 39,
+        "Y": 59,
+        "Tower": "Crashbreaker",
+        "Cost": 30
+      },
+      {
+        "TowerId": 38,
+        "BeforeWave": 6,
+        "Player": 1,
+        "X": 27,
+        "Y": 7,
+        "Tower": "Crashbreaker",
+        "Cost": 30
+      },
+      {
+        "TowerId": 39,
+        "BeforeWave": 7,
+        "Player": 1,
+        "X": 27,
+        "Y": 41,
+        "Tower": "Rootguard",
+        "Cost": 150
+      },
+      {
+        "TowerId": 40,
+        "BeforeWave": 7,
+        "Player": 1,
+        "X": 9,
+        "Y": 59,
+        "Tower": "Heatkeeper",
+        "Cost": 80
+      },
+      {
+        "TowerId": 41,
+        "BeforeWave": 7,
+        "Player": 1,
+        "X": 51,
+        "Y": 59,
+        "Tower": "Crashbreaker",
+        "Cost": 30
+      },
+      {
+        "TowerId": 42,
+        "BeforeWave": 8,
+        "Player": 1,
+        "X": 27,
+        "Y": 53,
+        "Tower": "Rootguard",
+        "Cost": 150
+      },
+      {
+        "TowerId": 43,
+        "BeforeWave": 8,
+        "Player": 1,
+        "X": 45,
+        "Y": 31,
+        "Tower": "Heatkeeper",
+        "Cost": 80
+      },
+      {
+        "TowerId": 44,
+        "BeforeWave": 8,
+        "Player": 1,
+        "X": 17,
+        "Y": 5,
+        "Tower": "Crashbreaker",
+        "Cost": 30
+      },
+      {
+        "TowerId": 45,
+        "BeforeWave": 8,
+        "Player": 1,
+        "X": 49,
+        "Y": 15,
+        "Tower": "Alloy Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 46,
+        "BeforeWave": 8,
+        "Player": 1,
+        "X": 25,
+        "Y": 11,
+        "Tower": "Alloy Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 47,
+        "BeforeWave": 9,
+        "Player": 1,
+        "X": 31,
+        "Y": 3,
+        "Tower": "Rootguard",
+        "Cost": 150
+      },
+      {
+        "TowerId": 48,
+        "BeforeWave": 9,
+        "Player": 1,
+        "X": 37,
+        "Y": 49,
+        "Tower": "Rootguard",
+        "Cost": 150
+      }
+    ],
+    "Waves": [
+      {
+        "PlayerGold": [
+          184
+        ],
+        "Wave": 1,
+        "Flying": false,
+        "Killed": 32,
+        "Leaked": 0,
+        "Ticks": 509,
+        "Gold": 184
+      },
+      {
+        "PlayerGold": [
+          204
+        ],
+        "Wave": 2,
+        "Flying": false,
+        "Killed": 40,
+        "Leaked": 0,
+        "Ticks": 734,
+        "Gold": 204
+      },
+      {
+        "PlayerGold": [
+          220
+        ],
+        "Wave": 3,
+        "Flying": false,
+        "Killed": 48,
+        "Leaked": 0,
+        "Ticks": 776,
+        "Gold": 220
+      },
+      {
+        "PlayerGold": [
+          232
+        ],
+        "Wave": 4,
+        "Flying": false,
+        "Killed": 56,
+        "Leaked": 0,
+        "Ticks": 809,
+        "Gold": 232
+      },
+      {
+        "PlayerGold": [
+          250
+        ],
+        "Wave": 5,
+        "Flying": true,
+        "Killed": 64,
+        "Leaked": 0,
+        "Ticks": 839,
+        "Gold": 250
+      },
+      {
+        "PlayerGold": [
+          264
+        ],
+        "Wave": 6,
+        "Flying": false,
+        "Killed": 72,
+        "Leaked": 0,
+        "Ticks": 961,
+        "Gold": 264
+      },
+      {
+        "PlayerGold": [
+          284
+        ],
+        "Wave": 7,
+        "Flying": false,
+        "Killed": 80,
+        "Leaked": 0,
+        "Ticks": 936,
+        "Gold": 284
+      },
+      {
+        "PlayerGold": [
+          300
+        ],
+        "Wave": 8,
+        "Flying": false,
+        "Killed": 88,
+        "Leaked": 0,
+        "Ticks": 997,
+        "Gold": 300
+      },
+      {
+        "PlayerGold": [
+          312
+        ],
+        "Wave": 9,
+        "Flying": false,
+        "Killed": 96,
+        "Leaked": 0,
+        "Ticks": 956,
+        "Gold": 312
+      },
+      {
+        "PlayerGold": [
+          330
+        ],
+        "Wave": 10,
+        "Flying": true,
+        "Killed": 104,
+        "Leaked": 0,
+        "Ticks": 1082,
+        "Gold": 330
+      },
+      {
+        "PlayerGold": [
+          312
+        ],
+        "Wave": 11,
+        "Flying": false,
+        "Killed": 96,
+        "Leaked": 0,
+        "Ticks": 859,
+        "Gold": 312
+      },
+      {
+        "PlayerGold": [
+          362
+        ],
+        "Wave": 12,
+        "Flying": false,
+        "Killed": 120,
+        "Leaked": 0,
+        "Ticks": 875,
+        "Gold": 362
+      },
+      {
+        "PlayerGold": [
+          426
+        ],
+        "Wave": 13,
+        "Flying": false,
+        "Killed": 152,
+        "Leaked": 0,
+        "Ticks": 1443,
+        "Gold": 426
+      },
+      {
+        "PlayerGold": [
+          254
+        ],
+        "Wave": 14,
+        "Flying": false,
+        "Killed": 64,
+        "Leaked": 0,
+        "Ticks": 1203,
+        "Gold": 254
+      },
+      {
+        "PlayerGold": [
+          348
+        ],
+        "Wave": 15,
+        "Flying": true,
+        "Killed": 112,
+        "Leaked": 0,
+        "Ticks": 957,
+        "Gold": 348
+      },
+      {
+        "PlayerGold": [
+          368
+        ],
+        "Wave": 16,
+        "Flying": false,
+        "Killed": 120,
+        "Leaked": 0,
+        "Ticks": 1616,
+        "Gold": 368
+      },
+      {
+        "PlayerGold": [
+          272
+        ],
+        "Wave": 17,
+        "Flying": false,
+        "Killed": 72,
+        "Leaked": 0,
+        "Ticks": 1920,
+        "Gold": 272
+      },
+      {
+        "PlayerGold": [
+          414
+        ],
+        "Wave": 18,
+        "Flying": false,
+        "Killed": 146,
+        "Leaked": 22,
+        "Ticks": 1404,
+        "Gold": 414
+      },
+      {
+        "PlayerGold": [
+          220
+        ],
+        "Wave": 19,
+        "Flying": false,
+        "Killed": 48,
+        "Leaked": 0,
+        "Ticks": 2102,
+        "Gold": 220
+      },
+      {
+        "PlayerGold": [
+          360
+        ],
+        "Wave": 20,
+        "Flying": true,
+        "Killed": 120,
+        "Leaked": 0,
+        "Ticks": 1255,
+        "Gold": 360
+      }
+    ]
+  }
+]

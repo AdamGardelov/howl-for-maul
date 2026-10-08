@@ -139,12 +139,12 @@ MonoBehaviour:
         Y: 23.5
       - X: 10.5
         Y: 15.5
-      - X: 31.5
+      - X: 31
         Y: 8.5
       FlightRoute:
       - X: 9.5
         Y: 39.5
-      - X: 31.5
+      - X: 31
         Y: 8.5
     - Spawn:
         X: 30.5
@@ -154,12 +154,12 @@ MonoBehaviour:
         Y: 33.5
       - X: 31.5
         Y: 15.5
-      - X: 31.5
+      - X: 31
         Y: 8.5
       FlightRoute:
       - X: 30.5
         Y: 39.5
-      - X: 31.5
+      - X: 31
         Y: 8.5
     - Spawn:
         X: 55.5
@@ -171,12 +171,12 @@ MonoBehaviour:
         Y: 23.5
       - X: 54.5
         Y: 15.5
-      - X: 31.5
+      - X: 31
         Y: 8.5
       FlightRoute:
       - X: 55.5
         Y: 39.5
-      - X: 31.5
+      - X: 31
         Y: 8.5
     Terrain:
     - X: 0
@@ -917,10 +917,10 @@ MonoBehaviour:
       X: 9.5
       Y: 55.5
     GroundRoute:
-    - X: 31.5
+    - X: 31
       Y: 8.5
     FlightRoute:
-    - X: 31.5
+    - X: 31
       Y: 8.5
     Catalog:
     - Name: Shard Sentry

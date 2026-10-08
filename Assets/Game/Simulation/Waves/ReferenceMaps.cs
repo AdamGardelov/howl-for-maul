@@ -10,7 +10,8 @@ namespace FrostMaze.Simulation
         {
             var c=Parse("Rimewatch",text,1,".B","winter");
             V2 P(int r,int col)=>Point(r,col,64,1);
-            var exit=P(55,31);
+            // Six-cell corridor spans world X 28..34; its center is 31, between cells.
+            var exit=new V2(31,8.5f);
             c.Lanes=new[]{
                 new LaneSpec{Spawn=P(8,9),GroundRoute=new[]{P(24,9),P(40,9),P(48,10),exit},FlightRoute=new[]{P(24,9),exit}},
                 new LaneSpec{Spawn=P(8,30),GroundRoute=new[]{P(30,31),P(48,31),exit},FlightRoute=new[]{P(24,30),exit}},

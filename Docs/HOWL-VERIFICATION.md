@@ -67,3 +67,5 @@ Placement-hint follow-up: compilation and native staged valid/invalid tooltip in
 Tower ownership inspector: compilation, all 61 pure cases, and native owner/non-owner captures passed. Actual paid fixture: P1 600 → 560 after tower + upgrade, P2 stays 600, refund 30, next upgrade 40. No mutation of ownership/refund rules. See TOWER-OWNERSHIP-UI.md.
 
 Packaged inspector follow-up (afe6680): actual Linux build/select/U-upgrade/sell sequence passed on isolated :98. Gold 1200 → 1180 → 1160 → 1190 agrees with the quoted 15/30 gold refunds. Normal close exited zero; both map/data smoke checks passed.
+
+Exit/terrain/progression follow-up: 62/62 pure cases and 77/77 Unity cases passed (all individual XML results preserved). Final material falloff correction separately compiled and inspected in both native map views. No scenic colliders or geometry changes. Paid campaign evidence and limits: EXIT-TERRAIN-PROGRESSION.md.

@@ -43,6 +43,24 @@ namespace FrostMaze.Simulation
         public int BuildCost => Config.Catalog.Length==0?Config.TowerCost:Config.Catalog[SelectedDesign].Cost;
         public string BuildName => Config.Catalog.Length==0?"Bolt Spire":Config.Catalog[SelectedDesign].Name;
         int BuildRefund => Config.Catalog.Length==0?Config.SaleRefund:Config.Catalog[SelectedDesign].Refund;
+        public int DefensesFor(WaveSpec wave)
+        {
+            int count=0;foreach(var tower in Grid.Towers)
+                if(tower.Spec.Damage>0&&(wave.Flying?tower.Spec.TargetsAir:tower.Spec.TargetsGround))count++;
+            return count;
+        }
+        public string WaveAdvice(WaveSpec wave)
+        {
+            string advice=wave.Flying?"Flying enemies ignore your maze.":wave.Speed>=2.6f?"Fast rush: lengthen the route and keep repeated firing coverage.":wave.SpawnInterval<=.45f&&wave.Count>=30?"Dense swarm: splash and chain attacks benefit from clustered enemies.":wave.Damage>=30?"Heavy siege: leave a route through your maze; sealed paths invite tower attacks.":"Keep an open winding route through overlapping tower ranges.";
+            int choice=-1;float best=0;
+            for(int i=0;i<Config.Catalog.Length;i++) {
+                var d=Config.Catalog[i];var spec=d.Spec;
+                if(!DesignAvailable(i)||spec.Damage<=0||!RequirementsMet(i)||!(wave.Flying?spec.TargetsAir:spec.TargetsGround))continue;
+                float score=wave.Flying?(!spec.TargetsGround?100:0)+spec.Range:wave.Speed>=2.6f?spec.SlowFraction:wave.SpawnInterval<=.45f&&wave.Count>=30?spec.SplashRadius+spec.ChainTargets*.5f:0;
+                if(score>best){choice=i;best=score;}
+            }
+            return choice<0?advice:advice+" Faction option: "+Config.Catalog[choice].Name+" ("+Config.Catalog[choice].Cost+"g).";
+        }
         public int UpgradeCost(Tower tower) => (Config.Catalog.Length==0?Config.TowerCost:Config.Catalog[tower.Design].Cost)*tower.Level;
         // Read-only inspector queries ignore records retained after siege destruction.
         public int TowerOwner(int id) => Grid.Find(id)!=null&&owners.TryGetValue(id,out int owner)?owner:-1;

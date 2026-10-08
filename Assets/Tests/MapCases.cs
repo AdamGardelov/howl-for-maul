@@ -247,6 +247,13 @@ namespace FrostMaze.Tests
    }
   }
   public static void Routes() {
+   var rime=Load(false);var exit=rime.GroundRoute[rime.GroundRoute.Length-1];
+   int row=rime.LayoutRows.Length-1-(int)exit.Y,first=(int)exit.X,last=first;
+   while(first>0&&rime.WalkableSymbols.IndexOf(rime.LayoutRows[row][first-1])>=0)first--;
+   while(last+1<rime.LayoutRows[row].Length&&rime.WalkableSymbols.IndexOf(rime.LayoutRows[row][last+1])>=0)last++;
+   Check(exit.X==(first+last+1)*.5f,"exit target is not centered within its actual corridor");
+   foreach(var lane in rime.Lanes)foreach(var route in new[]{lane.GroundRoute,lane.FlightRoute})Check(V2.Distance(route[route.Length-1],exit)<.001f,"lane exit disagrees with centered marker");
+
    foreach(bool iron in new[]{false,true}) {var w=new World(Load(iron));w.TowersFire=false;
     for(int lane=0;lane<w.LaneCount;lane++)Check(w.Spawn(new WaveSpec(),w.LaneSpawn(lane),lane)!=null,"spawn blocked");
     for(int i=0;i<9000&&w.Enemies.Count>0;i++) {w.Step();foreach(var e in w.Enemies)Check(!e.Blocked&&w.Grid.TerrainClear(e.Position,e.Position,e.Spec.Radius),$"{w.Config.Name} lane {e.Lane} blocked at {e.Position}");}

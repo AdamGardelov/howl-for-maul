@@ -1,0 +1,31 @@
+{
+  "success": true,
+  "command": "command eval",
+  "data": {
+    "command": "eval",
+    "parameters": {
+      "code": "var g=UnityEngine.Object.FindFirstObjectByType<FrostMaze.Prototype>();var s=UnityEngine.Object.FindFirstObjectByType<FrostMaze.MapScenery>();if(s.GetComponentsInChildren<UnityEngine.Collider>().Length!=0)throw new System.Exception(\"Scenery adds colliders\");foreach(int i in new[]{1,6}){var o=s.transform.Find(\"Scenery \"+i);var m=o.GetComponent<UnityEngine.MeshFilter>().sharedMesh;if(m.uv.Length!=m.vertexCount||o.GetComponent<UnityEngine.MeshRenderer>().sharedMaterial.mainTexture==null)throw new System.Exception(\"Missing terrain material or UVs\");}var e=g.World.Config.GroundRoute[g.World.Config.GroundRoute.Length-1];if(g.World.Config.Name==\"Rimewatch\"&&System.Math.Abs(e.X-31)>.001)throw new System.Exception(\"Exit mismatch\");return new{map=g.World.Config.Name,exitX=e.X,exitY=e.Y,colliders=0,textures=2};\n",
+      "timeout": "30000"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "map": "Rimewatch",
+        "exitX": 31,
+        "exitY": 8.5,
+        "colliders": 0,
+        "textures": 2
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "/home/adam/Documents/Dev/howl-for-maul"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}
+
