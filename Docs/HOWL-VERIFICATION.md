@@ -14,7 +14,7 @@ Wave-result follow-up: 61 pure cases and the 70-case Unity suite passed. Recaps 
 
 Combat cues: real-hit/kill feedback, flight-height leaks, pause/setup/reset and the shared 64-effect budget pass the new integration case. Native staged visual capture inspected. See COMBAT-CUES.md.
 
-Off-camera leak alerts: the new focused integration case passes (1/1), bringing the available suite to 72. The last full-suite run remains the 71/71 combat-cue checkpoint; no fresh 72/72 result is claimed. Native sidebar/focus fixtures inspected. See LEAK-ALERT.md.
+Off-camera leak alerts: the new focused integration case passes (1/1), bringing the available suite to 72. The last full-suite run remains the 71/71 combat-cue checkpoint; no fresh 72/72 result is claimed. Native sidebar/focus fixtures inspected. A fresh packaged :98 mouse sequence also verified the grouped warning and View exit during natural wave progression, then closed with exit zero. See LEAK-ALERT.md.
 
 ## Paid campaigns
 
@@ -38,7 +38,7 @@ Tower-query follow-up: spatial indexing reduced the matched crowded fixture from
 
 ## Packages and platform limits
 
-Fresh Linux and Windows packages include source 05cad27: all 76 models, tower collision indexing, repaint-only world overlays map props kept off walkable cells wave income recaps and bounded combat cues. Both builds succeeded with zero errors; Linux reported one Pipeline-disabled warning, Windows 19 including unsupported package ray-tracing shaders. Windows runtime remains untested.
+Fresh Linux and Windows packages include source 303f2a0: all 76 models, tower collision indexing, repaint-only world overlays map props kept off walkable cells wave income recaps bounded combat cues and off-camera leak alerts. Both builds succeeded with zero errors; Linux reported one Pipeline-disabled warning, Windows 19 including unsupported package ray-tracing shaders. Windows runtime remains untested.
 
 Fresh Linux packaged route/data smoke passed both maps without a display server, exit zero. The repeatable Tools/smoke-linux.sh checks both map markers and clean process exit. The preceding 465974e package passed mouse-driven Start Match/build beside wall/select/upgrade/sell on isolated :98, with 1200 → 1180 → 1160 → 1190 gold and normal close exiting zero. These are separate checks, not a full mouse-played campaign or a GPU benchmark.
 

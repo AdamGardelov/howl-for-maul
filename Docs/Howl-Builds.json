@@ -1,14 +1,14 @@
 {
   "builds": [
     {
-      "buildId": "build_0be8b42f0d58",
+      "buildId": "build_bbd89dfa1e5a",
       "result": "Succeeded",
       "platform": "StandaloneLinux64",
       "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Linux/HowlForMaul",
-      "totalSizeBytes": 92217624,
-      "buildTimeMs": 14471,
-      "buildStartedAt": "2026-10-08T11:40:00.1377920Z",
-      "buildEndedAt": "2026-10-08T11:40:14.6094040Z",
+      "totalSizeBytes": 92218136,
+      "buildTimeMs": 13084,
+      "buildStartedAt": "2026-10-08T11:50:05.8970900Z",
+      "buildEndedAt": "2026-10-08T11:50:18.9811970Z",
       "totalWarnings": 1,
       "totalErrors": 0,
       "warnings": [
@@ -18,14 +18,14 @@
       ]
     },
     {
-      "buildId": "build_014b74fa9c65",
+      "buildId": "build_b3db388139f9",
       "result": "Succeeded",
       "platform": "StandaloneWindows64",
       "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Windows/HowlForMaul.exe",
-      "totalSizeBytes": 95861456,
-      "buildTimeMs": 18922,
-      "buildStartedAt": "2026-10-08T11:41:00.1625400Z",
-      "buildEndedAt": "2026-10-08T11:41:19.0854480Z",
+      "totalSizeBytes": 95861968,
+      "buildTimeMs": 20827,
+      "buildStartedAt": "2026-10-08T11:50:42.6222200Z",
+      "buildEndedAt": "2026-10-08T11:51:03.4493250Z",
       "totalWarnings": 19,
       "totalErrors": 0,
       "warnings": [
@@ -126,9 +126,9 @@
     "sourceCheckpoint": "465974e",
     "exitCode": 0
   },
-  "sourceCheckpoint": "05cad27",
+  "sourceCheckpoint": "303f2a0",
   "linuxHeadlessSmoke": {
-    "sourceCheckpoint": "05cad27",
+    "sourceCheckpoint": "303f2a0",
     "command": "Tools/smoke-linux.sh",
     "display": "DISPLAY and WAYLAND_DISPLAY unset for child process",
     "graphicsDevice": "Null Device",
@@ -140,7 +140,7 @@
     "note": "Both route/data markers and HOWL_SMOKE_COMPLETE checked; script also requires exit zero. No graphical claim."
   },
   "linuxPackagedSmoke": {
-    "sourceCheckpoint": "05cad27",
+    "sourceCheckpoint": "303f2a0",
     "backend": "headless -batchmode -nographics",
     "exitCode": 0,
     "markers": [
@@ -157,5 +157,24 @@
     "renderer": "NVIDIA GeForce GTX 1080",
     "warning": "DRM Syncobj surface object already created for surface 39",
     "note": "Both route/data markers and clean exit; graphics/input not verified. Keep experimental backend out of saved defaults."
+  },
+  "linuxLeakAlertInput": {
+    "sourceCheckpoint": "303f2a0",
+    "display": ":98",
+    "resolution": "1440x900",
+    "renderer": "llvmpipe OpenGL",
+    "exitCode": 0,
+    "verified": [
+      "Actual mouse Start Match, Launch Wave, speed 2x and minimap pan",
+      "Undefended first wave: 24 leaked, 6 lives, 1320 gold, finished recap",
+      "Second wave: paused on grouped warning with 4 recent leaks, 2 lives and 26 enemies",
+      "Mouse View exit button moved from upper lanes to bottom goal while preserving pause, gold and lives",
+      "Normal WM_DELETE_WINDOW close exited zero"
+    ],
+    "limits": [
+      "No paid defense in this particular check",
+      "No native :0 display or Windows runtime claim"
+    ],
+    "note": "First launched process exited zero before warning inspection while editor build-target work was still being finalized; cause not established. Separate retry after those transitions completed produced the verified sequence."
   }
 }

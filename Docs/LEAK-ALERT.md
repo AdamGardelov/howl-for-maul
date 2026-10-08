@@ -11,3 +11,7 @@ Clean Unity compilation. The new OffscreenLeakAlertAggregatesPausesExpiresAndFoc
 The prior full suite remains 71/71 at combat-cue checkpoint 05cad27. The new case increases the suite to 72 cases, but only the focused addition was rerun for this UI follow-up; do not report a fresh 72/72 full-suite result.
 
 Native 1920×884 sidebar capture inspected while focused on upper lanes away from the exit. A separate camera-focus capture inspected the bottom goal. These use a staged three-enemy leak in a launched first wave; they are not a natural campaign or a mouse click verification. Packages and platform coverage are tracked separately in Howl-Builds.json.
+
+## Packaged mouse verification
+
+Fresh source 303f2a0 Linux package on isolated :98 at 1440×900 also passed actual mouse input. Started the match, launched an undefended first wave, selected speed 2× and panned to upper lanes using the minimap. Wave one finished with 24 leaks, six lives and 1,320 gold (120 completion bonus). On wave two the warning grouped four recent leaks; pausing held it with two lives and 26 enemies remaining. Clicking View exit moved the camera to the goal while retaining those values and pause. Normal window close exited zero. This deliberately undefended alert check is separate from paid campaign verification. Native desktop and Windows runtime limitations remain unchanged.
