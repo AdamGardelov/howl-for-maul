@@ -1,0 +1,110 @@
+{
+  "empty": {
+    "samples": 180,
+    "frameTime": {
+      "median": 0.007593738,
+      "p95": 0.008142229
+    },
+    "renderTime": {
+      "median": 0.0056714505,
+      "p95": 0.006085685
+    },
+    "drawCalls": {
+      "median": 731.0,
+      "p95": 731.0
+    },
+    "batches": {
+      "median": 731.0,
+      "p95": 731.0
+    },
+    "setPassCalls": {
+      "median": 699.0,
+      "p95": 699.0
+    },
+    "triangles": {
+      "median": 139127.0,
+      "p95": 139127.0
+    }
+  },
+  "crowd": {
+    "samples": 180,
+    "frameTime": {
+      "median": 0.01401461,
+      "p95": 0.01548416
+    },
+    "renderTime": {
+      "median": 0.011993295000000001,
+      "p95": 0.01325194
+    },
+    "drawCalls": {
+      "median": 6206.0,
+      "p95": 6206.0
+    },
+    "batches": {
+      "median": 6206.0,
+      "p95": 6206.0
+    },
+    "setPassCalls": {
+      "median": 1028.0,
+      "p95": 1028.0
+    },
+    "triangles": {
+      "median": 364099.0,
+      "p95": 364099.0
+    }
+  },
+  "after-empty": {
+    "samples": 180,
+    "frameTime": {
+      "median": 0.00766757,
+      "p95": 0.008240183
+    },
+    "renderTime": {
+      "median": 0.005722314500000001,
+      "p95": 0.006122895
+    },
+    "drawCalls": {
+      "median": 731.0,
+      "p95": 731.0
+    },
+    "batches": {
+      "median": 731.0,
+      "p95": 731.0
+    },
+    "setPassCalls": {
+      "median": 699.0,
+      "p95": 699.0
+    },
+    "triangles": {
+      "median": 139127.0,
+      "p95": 139127.0
+    }
+  },
+  "after-crowd": {
+    "samples": 180,
+    "frameTime": {
+      "median": 0.012939045,
+      "p95": 0.01365497
+    },
+    "renderTime": {
+      "median": 0.010915975000000001,
+      "p95": 0.01152373
+    },
+    "drawCalls": {
+      "median": 5021.0,
+      "p95": 5021.0
+    },
+    "batches": {
+      "median": 5021.0,
+      "p95": 5021.0
+    },
+    "setPassCalls": {
+      "median": 1028.0,
+      "p95": 1028.0
+    },
+    "triangles": {
+      "median": 364867.0,
+      "p95": 364867.0
+    }
+  }
+}

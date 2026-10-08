@@ -215,6 +215,9 @@ namespace FrostMaze
                 }
             }
             }
+            string modelKey=game.World.Config.Theme+"/"+faction+"/"+tower.Design;
+            CombineRigidParts(transform,modelKey+"/base");
+            if(weapon!=null)CombineRigidParts(weapon,modelKey+"/weapon");
             for(int i=0;i<2;i++)tiers[i]=Part("Upgrade tier "+(i+2),PrimitiveType.Cube,new Vector3((i==0?-1:1)*.31f,.34f,-.35f),new Vector3(.13f,.15f,.1f),light);
             Sync(tower,false);
         }

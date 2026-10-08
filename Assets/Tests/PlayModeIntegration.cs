@@ -64,9 +64,26 @@ namespace FrostMaze.Tests
                 Assert.That(view.Role,Is.EqualTo(roles[i]));
                 Assert.That(view.transform.Find(signatures[i]),Is.Not.Null,"Missing distinct Rime model");
                 Assert.That(view.transform.Find("Foundation").GetComponent<MeshFilter>().sharedMesh,Is.SameAs(game.Models.Column),"Tower meshes must be shared, not allocated per tower");
+                Assert.That(view.transform.Find("Foundation").GetComponent<Renderer>().enabled,Is.False,"Rigid source pieces must not double-render");
+                Assert.That(view.transform.Find("Combined geometry 0").GetComponent<Renderer>().enabled,Is.True);
+                int renderedTriangles=0,sourceTriangles=0;
+                foreach(var filter in view.GetComponentsInChildren<MeshFilter>()) {
+                    if(filter.name.StartsWith("Upgrade tier"))continue;
+                    if(filter.name.StartsWith("Combined geometry"))renderedTriangles+=filter.sharedMesh.triangles.Length;
+                    else sourceTriangles+=filter.sharedMesh.triangles.Length;
+                }
+                Assert.That(renderedTriangles,Is.EqualTo(sourceTriangles),"Batching must preserve every rigid triangle exactly once");
                 Assert.That(view.GetComponentsInChildren<Collider>().Length,Is.Zero);
                 Assert.That(view.transform.Find("Upgrade tier 2").gameObject.activeSelf,Is.False);
             }
+            game.World.SelectedDesign=0;
+            Assert.That(game.World.OrderBuild(21,14,out _),Is.True);
+            for(int tick=0;tick<180;tick++)game.World.Step();
+            yield return null;yield return null;
+            var firstView=GameObject.Find("Tower "+game.World.Grid.At(16,14).Id).transform;
+            var secondView=GameObject.Find("Tower "+game.World.Grid.At(21,14).Id).transform;
+            var firstCombined=firstView.Find("Sentry weapon/Combined geometry 0").GetComponent<MeshFilter>().sharedMesh;
+            Assert.That(secondView.Find("Sentry weapon/Combined geometry 0").GetComponent<MeshFilter>().sharedMesh,Is.SameAs(firstCombined),"Do not allocate combined geometry per instance");
             var warden=GameObject.Find("Builder drone");
             Assert.That(warden.transform.Find("Faction mantle"),Is.Not.Null);
             Assert.That(warden.GetComponentsInChildren<Collider>().Length,Is.Zero);
@@ -136,6 +153,10 @@ namespace FrostMaze.Tests
                 Assert.That(view.GetComponentsInChildren<Collider>().Length,Is.Zero);
             }
             Assert.That(game.World.Gold,Is.EqualTo(956),"Volt paid roster must cost 244");
+            Assert.That(firstCombined==null,Is.False,"Restarting the same map should reuse its model cache");
+            game.ChooseMap(Resources.Load<MapDefinition>("Ironfold"));
+            yield return null;yield return null;
+            Assert.That(firstCombined==null,Is.True,"Unloading the map must dispose combined meshes");
             yield return new ExitPlayMode();
         }
         [UnityTest]

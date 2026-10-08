@@ -4,10 +4,10 @@
       "result": "Succeeded",
       "platform": "StandaloneLinux64",
       "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Linux/HowlForMaul",
-      "totalSizeBytes": 92070168,
-      "buildTimeMs": 10176,
-      "buildStartedAt": "2026-10-08T07:54:25.6476940Z",
-      "buildEndedAt": "2026-10-08T07:54:35.8240950Z",
+      "totalSizeBytes": 92076824,
+      "buildTimeMs": 10760,
+      "buildStartedAt": "2026-10-08T08:21:24.1146960Z",
+      "buildEndedAt": "2026-10-08T08:21:34.8749120Z",
       "totalWarnings": 1,
       "totalErrors": 0,
       "warnings": [
@@ -20,10 +20,10 @@
       "result": "Succeeded",
       "platform": "StandaloneWindows64",
       "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Windows/HowlForMaul.exe",
-      "totalSizeBytes": 95812896,
-      "buildTimeMs": 15004,
-      "buildStartedAt": "2026-10-08T07:54:45.0575750Z",
-      "buildEndedAt": "2026-10-08T07:55:00.0622580Z",
+      "totalSizeBytes": 95819552,
+      "buildTimeMs": 16177,
+      "buildStartedAt": "2026-10-08T08:22:13.7038200Z",
+      "buildEndedAt": "2026-10-08T08:22:29.8814620Z",
       "totalWarnings": 19,
       "totalErrors": 0,
       "warnings": [
@@ -90,7 +90,7 @@
   "linuxSmoke": {
     "exitCode": 0,
     "display": ":98",
-    "note": "All four winter model sets included; both packaged-map route/data checks passed. Native desktop issue remains prior evidence, not retested."
+    "note": "Winter, Pulse, Blast and tower batching package passed both map route/data checks. Native desktop limitation not retested."
   },
   "windowsRuntime": "Not tested on Windows",
   "linuxNativeDesktopSmoke": {

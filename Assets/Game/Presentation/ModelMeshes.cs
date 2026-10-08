@@ -48,6 +48,12 @@ namespace FrostMaze
             return Save(name,v,t);
         }
         Mesh Save(string name,List<Vector3> vertices,List<int> triangles){var mesh=new Mesh{name="Original "+name};mesh.SetVertices(vertices);mesh.SetTriangles(triangles,0);mesh.RecalculateNormals();mesh.RecalculateBounds();meshes.Add(name,mesh);return mesh;}
+        public Mesh Combine(string key,List<CombineInstance> pieces)
+        {
+            key="Combined "+key;
+            if(meshes.TryGetValue(key,out var cached))return cached;
+            var mesh=new Mesh{name=key};mesh.CombineMeshes(pieces.ToArray(),true,true);mesh.RecalculateBounds();meshes.Add(key,mesh);return mesh;
+        }
         public void Dispose(){foreach(var mesh in meshes.Values)Object.Destroy(mesh);meshes.Clear();}
     }
 }
