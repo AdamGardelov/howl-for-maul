@@ -1,9 +1,9 @@
 # Next verified work
 
-Latest checkpoint: shot-driven tower aiming and recoil on top of the user-requested battlefield, faction, campaign and menu pass. Read Docs/BATTLEFIELD-UPDATE.md and Docs/Balance/TWENTY-WAVE-BASELINE.md first; earlier ten-wave balance datasets are historical.
+Latest checkpoint: first simplified League-inspired visual pass. Read ART-DIRECTION.md for the accepted direction, scope and remaining art work. Read Docs/BATTLEFIELD-UPDATE.md and Docs/Balance/TWENTY-WAVE-BASELINE.md first; earlier ten-wave balance datasets are historical.
 
 - Both maps now have twenty waves, with the opening ten preserved and air every fifth wave. Ironfold's late health budget is calibrated separately. Continue adaptive, multi-position and difficulty testing before extending toward the historical longer campaign or adding late currency/armor systems.
-- Towers have distinct role silhouettes, faction palettes and visible upgrade tiers, shot-facing weapons and recoil. Setup offers a map overview; match start/Home focus the builder and End restores the overview. Terrain surface detail is cosmetic and source masks remain unchanged. Further art polish is still needed.
+- Towers have distinct role silhouettes, faction palettes and visible upgrade tiers, shot-facing weapons and recoil. Setup offers a map overview; match start/Home focus the builder and End restores the overview. Terrain surface detail is cosmetic and source masks remain unchanged. Continuous softly varied terrain, beveled source-cell borders, layered pines, matte faceted towers and warmer winter stonework are implemented. The HUD and enemies still need matching art passes.
 - Robot faction tradeoffs and dedicated anti-air reach are strengthened. Existing winter roles remain distinct. Roster-first strategies still lose in Ironfold, so do not call final balance settled or tune from one bot alone.
 - A captured 61-unit Ironfold corner jam is fixed with deterministic collision-checked yielding. The regression checks completion, no unit overlap, no wall penetration and no false siege. Do not remove physical collision to solve future crowd issues.
 - Normal setup no longer links to the empty test arena. The editor menu is Howl for Maul > Open game. Advanced inspection is collapsed. The simulation lab remains available to tests through SwitchMap(false).

@@ -1,6 +1,6 @@
-# Howl for Maul verification — tower firing feedback checkpoint
+# Howl for Maul verification — first stylized visual pass
 
-The user-requested four-part pass is implemented: clearer tower/enemy presentation and camera, stronger faction tradeoffs, twenty-wave campaigns, and a normal menu flow without the empty test arena. See BATTLEFIELD-UPDATE.md for implementation details.
+The user-requested four-part pass is implemented: clearer tower/enemy presentation and camera, stronger faction tradeoffs, twenty-wave campaigns, and a normal menu flow without the empty test arena. See BATTLEFIELD-UPDATE.md for implementation details. The new art-direction pass adds continuous softly varied ground, beveled mask edges, layered pines, original faceted tower meshes, winter stonework and warm/cool matte lighting; see ART-DIRECTION.md.
 
 ## Automated tests
 
@@ -27,7 +27,7 @@ These policies do not exhaust human maze designs, difficulty choices or multipla
 
 ## Native visual inspection
 
-Inspected actual Game-view captures of Rimewatch's five tower roles and upgrade tiers, and Ironfold's seven-design paid robot lineup. Original snow/metal surface panels, faction colors and minimap viewport outlines render correctly. The pictures are controlled paid showcases, not full human playthroughs. Art remains procedural prototype art.
+Inspected fresh 1920×884 Game-view captures on both maps. Rimewatch shows five paid tower roles, an upgraded sentry, and staged ground/flying enemies at normal zoom 11 and closer zoom 7. Ironfold shows seven paid robot designs at zoom 9. The first capture exposed overly blocky ground variation and uniform tree placement; both were revised and recaptured. The final views show continuous ground color, clean ledge surfaces, varied layered pines and visible faceted tower bases. These are controlled visual fixtures, not human playthroughs or performance benchmarks. Art remains an early procedural interpretation of the requested simpler League-like direction; HUD and enemy models have not had their matching art pass yet.
 
 ## Builds and platform limits
 

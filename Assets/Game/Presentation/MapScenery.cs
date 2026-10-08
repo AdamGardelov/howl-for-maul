@@ -6,9 +6,10 @@ namespace FrostMaze
     public sealed class MapScenery : MonoBehaviour
     {
         readonly List<Mesh> meshes=new List<Mesh>();
+        Texture2D groundTexture;
         sealed class Batch {
             public readonly List<Vector3> V=new List<Vector3>();public readonly List<int> T=new List<int>();
-            void Quad(Vector3 a,Vector3 b,Vector3 c,Vector3 d){int n=V.Count;V.AddRange(new[]{a,b,c,d});T.AddRange(new[]{n,n+1,n+2,n,n+2,n+3});}
+            public void Quad(Vector3 a,Vector3 b,Vector3 c,Vector3 d){int n=V.Count;V.AddRange(new[]{a,b,c,d});T.AddRange(new[]{n,n+1,n+2,n,n+2,n+3});}
             public void Box(float x,float z,float w,float d,float bottom,float top){
                 var a=new Vector3(x,bottom,z);var b=new Vector3(x+w,bottom,z);var c=new Vector3(x+w,bottom,z+d);var e=new Vector3(x,bottom,z+d);var u=Vector3.up*(top-bottom);
                 Quad(a+u,e+u,c+u,b+u);Quad(a,b,b+u,a+u);Quad(b,c,c+u,b+u);Quad(c,e,e+u,c+u);Quad(e,a,a+u,e+u);
@@ -18,27 +19,52 @@ namespace FrostMaze
             }
         }
         public void Build(Prototype game) {
-            var c=game.World.Config;bool ice=c.Theme!="iron";var batches=new Batch[8];for(int i=0;i<batches.Length;i++)batches[i]=new Batch();
-            foreach(var t in c.Terrain) {
-                bool voidArea=t.Kind=="D"||t.Kind=="W"||t.Kind=="p";
-                float h=voidArea?.04f:t.Kind=="#"?.5f:1.05f;
-                batches[voidArea?2:0].Box(t.X,t.Y,t.Width,t.Height,-.04f,h);
-                if(!voidArea)batches[1].Box(t.X+.035f,t.Y+.035f,Mathf.Max(.05f,t.Width-.07f),Mathf.Max(.05f,t.Height-.07f),h,h+.09f);
+            var c=game.World.Config;bool ice=c.Theme!="iron";var batches=new Batch[12];for(int i=0;i<batches.Length;i++)batches[i]=new Batch();
+            // Draw the source cells as one continuous surface: only exposed edges receive bevels.
+            bool Solid(int row,int col) {
+                if(row<0||row>=c.LayoutRows.Length||col<0||col>=c.LayoutRows[row].Length)return false;
+                char k=c.LayoutRows[row][col];return c.WalkableSymbols.IndexOf(k)<0&&k!='D'&&k!='W'&&k!='p';
             }
-            // Shallow walkable surface panels add scale without changing navigation or colliders.
             for(int row=0;row<c.LayoutRows.Length;row++)for(int col=0;col<c.LayoutRows[row].Length;col++) {
-                if(c.WalkableSymbols.IndexOf(c.LayoutRows[row][col])<0)continue;
-                float cell=c.LayoutCellSize,x=col*cell,z=(c.LayoutRows.Length-row-1)*cell;
-                int variant=((row*17+col*31)%11)==0?7:6;
-                float seam=ice?.008f:.025f;
-                batches[variant].Box(x+seam,z+seam,cell-2*seam,cell-2*seam,-.018f,-.006f);
+                char k=c.LayoutRows[row][col];float cell=c.LayoutCellSize,x=col*cell,z=(c.LayoutRows.Length-row-1)*cell;
+                if(c.WalkableSymbols.IndexOf(k)>=0) {
+                    // Broad, quiet color patches replace the tiny checkerboard. No surface colliders.
+                    int tone=0;
+                    batches[6+tone].Quad(new Vector3(x,-.006f,z),new Vector3(x,-.006f,z+cell),new Vector3(x+cell,-.006f,z+cell),new Vector3(x+cell,-.006f,z));
+                    continue;
+                }
+                if(!Solid(row,col)){batches[2].Box(x,z,cell,cell,-.04f,.025f);continue;}
+                float h=ice?.72f:.6f,bevel=cell*.18f;
+                float l=Solid(row,col-1)?0:bevel,rr=Solid(row,col+1)?0:bevel;
+                float down=Solid(row+1,col)?0:bevel,up=Solid(row-1,col)?0:bevel;
+                var a0=new Vector3(x+l,h,z+down);var b0=new Vector3(x+l,h,z+cell-up);
+                var c0=new Vector3(x+cell-rr,h,z+cell-up);var d0=new Vector3(x+cell-rr,h,z+down);
+                batches[1].Quad(a0,b0,c0,d0);
+                if(l>0){batches[0].Quad(new Vector3(x,0,z),new Vector3(x,0,z+cell),b0,a0);}
+                if(rr>0){batches[0].Quad(new Vector3(x+cell,0,z+cell),new Vector3(x+cell,0,z),d0,c0);}
+                if(down>0){batches[0].Quad(new Vector3(x+cell,0,z),new Vector3(x,0,z),a0,d0);}
+                if(up>0){batches[0].Quad(new Vector3(x,0,z+cell),new Vector3(x+cell,0,z+cell),c0,b0);}
+                // Modest faceted rocks stay within blocked cells, away from buildable ground.
+                if(ice&&k=='#'&&col%5==0&&row%5==0&&l+rr+down+up==0) {
+                    batches[11].Peak(x+cell*.5f,z+cell*.5f,cell*.4f,h,.5f);
+                    batches[1].Peak(x+cell*.5f,z+cell*.5f,cell*.27f,h+.2f,.32f);
+                }
             }
             // Sparse landmarks occupy only the interiors of blocked source cells.
             for(int row=2;row<c.LayoutRows.Length-2;row+=ice?4:7)for(int col=2;col<c.LayoutRows[row].Length-2;col+=ice?4:7) {
                 char k=c.LayoutRows[row][col];if(k!=(ice?'T':'#'))continue;
                 bool interior=true;for(int y=-1;y<=1;y++)for(int x=-1;x<=1;x++)if(c.LayoutRows[row+y][col+x]!=k)interior=false;if(!interior)continue;
                 float x0=(col+.5f)*c.LayoutCellSize,z=(c.LayoutRows.Length-row-.5f)*c.LayoutCellSize;
-                if(ice){batches[3].Box(x0-.09f,z-.09f,.18f,.18f,1,1.8f);batches[4].Peak(x0,z,.6f,1.3f,1.5f);batches[1].Peak(x0,z,.43f,1.85f,1.05f);}
+                if(ice){
+                    int seed=(row*31+col*17)%13;if(seed<3)continue;
+                    float size=.8f+seed*.035f;x0+=(seed%3-1)*.14f;z+=(seed%4-1)*.1f;
+                    batches[3].Box(x0-.08f,z-.08f,.16f,.16f,.7f,1.35f);
+                    for(int tier=0;tier<3;tier++) {
+                        float baseY=.95f+tier*.43f*size,radius=(.68f-tier*.15f)*size,height=(.92f-tier*.12f)*size;
+                        batches[4].Peak(x0,z,radius,baseY,height);
+                        batches[1].Peak(x0,z,radius*.78f,baseY+height*.28f,height*.76f);
+                    }
+                }
                 else {batches[3].Box(x0-.25f,z-.25f,.5f,.5f,.5f,2);batches[5].Box(x0-.28f,z-.28f,.56f,.56f,1.6f,1.72f);}
             }
             foreach(var lane in c.Lanes) {
@@ -48,15 +74,26 @@ namespace FrostMaze
             var exit=c.GroundRoute[c.GroundRoute.Length-1];
             for(int side=-1;side<=1;side+=2){batches[3].Box(exit.X+side*1.25f-.25f,exit.Y-.25f,.5f,.5f,0,2.8f);batches[5].Box(exit.X+side*1.25f-.12f,exit.Y-.27f,.24f,.54f,1,2.5f);}
             batches[3].Box(exit.X-1.5f,exit.Y-.25f,3,.5f,2.6f,2.9f);
-            Color[] colors=ice?new[]{new Color(.12f,.3f,.38f),new Color(.82f,.92f,.94f),new Color(.035f,.12f,.2f),new Color(.22f,.32f,.35f),new Color(.06f,.24f,.22f),new Color(.2f,.95f,.85f)}:new[]{new Color(.19f,.17f,.23f),new Color(.4f,.32f,.28f),new Color(.065f,.05f,.09f),new Color(.33f,.24f,.16f),new Color(.2f,.22f,.25f),new Color(1,.52f,.12f)};
+            Color[] colors=ice?new[]{new Color(.22f,.34f,.36f),new Color(.69f,.77f,.75f),new Color(.045f,.13f,.17f),new Color(.27f,.29f,.25f),new Color(.11f,.25f,.22f),new Color(.34f,.72f,.63f)}:new[]{new Color(.19f,.22f,.27f),new Color(.36f,.4f,.43f),new Color(.045f,.065f,.09f),new Color(.27f,.25f,.22f),new Color(.2f,.26f,.29f),new Color(.83f,.55f,.25f)};
             var palette=new List<Color>(colors);
-            palette.Add(ice?new Color(.48f,.65f,.72f):new Color(.24f,.28f,.31f));
-            palette.Add(ice?new Color(.54f,.7f,.76f):new Color(.28f,.32f,.35f));
+            for(int i=0;i<5;i++)palette.Add(Color.Lerp(ice?new Color(.35f,.46f,.46f):new Color(.19f,.25f,.29f),ice?new Color(.43f,.54f,.52f):new Color(.24f,.3f,.34f),i/4f));
+            palette.Add(new Color(.31f,.39f,.39f));
+            groundTexture=new Texture2D(256,256,TextureFormat.RGB24,false){name="Original broad terrain wash",wrapMode=TextureWrapMode.Clamp,filterMode=FilterMode.Bilinear};
+            var pixels=new Color[256*256];
+            for(int y=0;y<256;y++)for(int x=0;x<256;x++) {
+                float wx=x*c.Width/255f,wz=y*c.Height/255f;
+                float broad=Mathf.PerlinNoise(wx*.11f+17,wz*.11f+31),grain=Mathf.PerlinNoise(wx*1.4f+9,wz*1.4f+3);
+                float t=Mathf.Clamp01(broad*.85f+grain*.15f);
+                pixels[y*256+x]=Color.Lerp(ice?new Color(.29f,.4f,.4f):new Color(.17f,.22f,.26f),ice?new Color(.46f,.57f,.54f):new Color(.28f,.34f,.37f),t);
+            }
+            groundTexture.SetPixels(pixels);groundTexture.Apply(false,true);
             for(int i=0;i<batches.Length;i++) {
                 var b=batches[i];if(b.V.Count==0)continue;var mesh=new Mesh{name="Original terrain batch "+i,indexFormat=UnityEngine.Rendering.IndexFormat.UInt32};mesh.SetVertices(b.V);mesh.SetTriangles(b.T,0);mesh.RecalculateNormals();mesh.RecalculateBounds();meshes.Add(mesh);
-                var obj=new GameObject("Scenery "+i);obj.transform.SetParent(transform,false);obj.AddComponent<MeshFilter>().sharedMesh=mesh;obj.AddComponent<MeshRenderer>().sharedMaterial=game.MakeMaterial(palette[i],i==5);
+                if(i==6){var uv=new List<Vector2>();foreach(var vertex in b.V)uv.Add(new Vector2(vertex.x/c.Width,vertex.z/c.Height));mesh.SetUVs(0,uv);}
+                var obj=new GameObject("Scenery "+i);obj.transform.SetParent(transform,false);obj.AddComponent<MeshFilter>().sharedMesh=mesh;var renderer=obj.AddComponent<MeshRenderer>();renderer.sharedMaterial=game.MakeMaterial(i==6?Color.white:palette[i],i==5);
+                if(i==6){renderer.sharedMaterial.mainTexture=groundTexture;renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;}
             }
         }
-        void OnDestroy(){foreach(var mesh in meshes)Destroy(mesh);}
+        void OnDestroy(){foreach(var mesh in meshes)Destroy(mesh);if(groundTexture!=null)Destroy(groundTexture);}
     }
 }

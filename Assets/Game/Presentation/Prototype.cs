@@ -83,7 +83,7 @@ namespace FrostMaze
             if(towerPalettes.TryGetValue(faction,out var palette))return palette;
             Color[] winter={new Color(.3f,.82f,1),new Color(.58f,.72f,.36f),new Color(1,.4f,.12f),new Color(.62f,.47f,1)};
             Color color=World.Config.Theme=="iron"?Color.HSVToRGB((.54f+faction*.113f)%1,.68f,.95f):winter[faction%4];
-            palette=new[]{MakeMaterial(new Color(.16f,.21f,.25f)),MakeMaterial(color),MakeMaterial(Color.Lerp(color,Color.white,.4f),true)};
+            palette=new[]{MakeMaterial(World.Config.Theme=="iron"?new Color(.23f,.29f,.33f):new Color(.49f,.47f,.37f)),MakeMaterial(Color.Lerp(color,new Color(.4f,.44f,.42f),.23f)),MakeMaterial(Color.Lerp(color,Color.white,.4f),true)};
             towerPalettes.Add(faction,palette);return palette;
         }
         Material barricadeMaterial,cannonMaterial;
@@ -157,11 +157,16 @@ namespace FrostMaze
             var lightObject = new GameObject("Winter sun");
             var sun = lightObject.AddComponent<Light>();
             sun.type = LightType.Directional;
-            sun.intensity = .75f;
+            sun.intensity = 1.05f;
+            sun.color=new Color(1,.91f,.76f);
+            sun.shadowStrength=.65f;
+            sun.shadowBias=.035f;
             sun.shadows = LightShadows.Soft;
-            lightObject.transform.rotation = Quaternion.Euler(50, -30, 0);
-            RenderSettings.ambientMode=UnityEngine.Rendering.AmbientMode.Flat;
-            RenderSettings.ambientLight = new Color(.35f,.42f,.5f);
+            lightObject.transform.rotation = Quaternion.Euler(48, -35, 0);
+            RenderSettings.ambientMode=UnityEngine.Rendering.AmbientMode.Trilight;
+            RenderSettings.ambientSkyColor = new Color(.53f,.65f,.73f);
+            RenderSettings.ambientEquatorColor = new Color(.34f,.4f,.43f);
+            RenderSettings.ambientGroundColor = new Color(.2f,.23f,.24f);
             for(int lane=0;lane<World.LaneCount;lane++) {
                 Marker(World.LaneSpawn(lane),new Color(.1f,.85f,.68f),"Spawn lane "+(lane+1));
                 if(World.Config.Lanes.Length>0)Marker(World.LaneRoute(lane,false)[0],new Color(.95f,.74f,.25f),"Lane merge");
@@ -185,6 +190,8 @@ namespace FrostMaze
             var shader = Shader.Find(unlit ? "Universal Render Pipeline/Unlit" : "Universal Render Pipeline/Lit");
             var material = template != null ? new Material(template) : new Material(shader);
             material.color = color;
+            if(material.HasProperty("_Smoothness"))material.SetFloat("_Smoothness",.12f);
+            if(material.HasProperty("_Metallic"))material.SetFloat("_Metallic",0);
             materials.Add(material);
             return material;
         }
