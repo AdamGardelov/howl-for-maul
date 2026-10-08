@@ -93,7 +93,8 @@ namespace FrostMaze
         }
         Material barricadeMaterial,cannonMaterial;
         Material[] factionMaterials;
-        Material towerMaterial, enemyMaterial, airMaterial, blockedMaterial, ghostMaterial, enemyShellMaterial, slowMaterial;
+        Material towerMaterial, enemyMaterial, airMaterial, blockedMaterial, ghostMaterial, enemyShellMaterial, slowMaterial, hitMaterial;
+        CombatFeedback feedback;
         GameObject ghost, worldRoot, builder, orderMarker;
         float accumulator;
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
@@ -130,6 +131,7 @@ namespace FrostMaze
             enemyMaterial = MakeMaterial(new Color(1f, 0.48f, 0.23f));
             airMaterial = MakeMaterial(new Color(0.67f, 0.38f, 0.96f));
             blockedMaterial = MakeMaterial(new Color(1f, 0.17f, 0.24f));
+            hitMaterial = MakeMaterial(new Color(1f,.92f,.65f),true);
             enemyShellMaterial = MakeMaterial(new Color(.12f, .18f, .25f));
             slowMaterial = MakeMaterial(new Color(.25f, .94f, 1f), true);
             ghostMaterial = MakeMaterial(new Color(0.24f, 0.9f, 0.74f));
@@ -180,7 +182,7 @@ namespace FrostMaze
             ghost = Primitive("Placement preview", PrimitiveType.Cube, Vector3.zero, new Vector3(World.Config.Tower.Width - 0.1f, 0.08f, World.Config.Tower.Height - 0.1f), ghostMaterial);
             gameObject.AddComponent<MazeDebug>().Initialize(this);
             gameObject.AddComponent<PrototypeHud>().Initialize(this);
-            gameObject.AddComponent<CombatFeedback>().Initialize(this);
+            feedback=gameObject.AddComponent<CombatFeedback>();feedback.Initialize(this);
         }
         void Marker(V2 p, Color color, string name, float radius = 0.55f)
         {
@@ -415,7 +417,7 @@ namespace FrostMaze
                     var root = new GameObject("Enemy " + e.Id);
                     root.transform.SetParent(worldRoot.transform, false);
                     obj = root.AddComponent<EnemyView>();
-                    obj.Initialize(e, e.Spec.Flying ? airMaterial : enemyMaterial, blockedMaterial, enemyShellMaterial, slowMaterial,Models);
+                    obj.Initialize(e, e.Spec.Flying ? airMaterial : enemyMaterial, blockedMaterial, enemyShellMaterial, slowMaterial,hitMaterial,Models);
                     enemies.Add(e.Id, obj);
                 }
                 obj.Sync(e, World.Tick);
@@ -423,6 +425,7 @@ namespace FrostMaze
             foreach (var id in new List<int>(enemies.Keys))
                 if (!live.Contains(id))
                 {
+                    feedback.EnemyRemoved(enemies[id].Subject);
                     Destroy(enemies[id].gameObject);
                     enemies.Remove(id);
                 }

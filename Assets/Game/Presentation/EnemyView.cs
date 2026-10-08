@@ -9,15 +9,17 @@ namespace FrostMaze
         Transform body, leftWing, rightWing;
         GameObject slowHalo;
         Renderer core;
-        Material normalMaterial, siegeMaterial;
+        Material normalMaterial, siegeMaterial, hitMaterial;
+        public Enemy Subject { get; private set; }
+        float observedHealth;long hitUntil=-1;
         bool flying;
         float radius;
         ModelMeshes meshes;
         readonly System.Collections.Generic.List<Transform> feet=new System.Collections.Generic.List<Transform>();
 
-        public void Initialize(Enemy enemy, Material normal, Material siege, Material shell, Material frost, ModelMeshes models)
+        public void Initialize(Enemy enemy, Material normal, Material siege, Material shell, Material frost, Material hit, ModelMeshes models)
         {
-            meshes=models;
+            meshes=models;Subject=enemy;observedHealth=enemy.Spec.Health;hitMaterial=hit;
             flying = enemy.Spec.Flying;
             radius = enemy.Spec.Radius;
             normalMaterial = normal; siegeMaterial = siege;
@@ -91,7 +93,9 @@ namespace FrostMaze
                 rightWing.localRotation = Quaternion.Euler(0, 0, -flap);
             }
             for(int i=0;i<feet.Count;i++)feet[i].localRotation=Quaternion.Euler(Mathf.Sin(phase*1.7f+i*Mathf.PI)*Mathf.Min(1,enemy.Velocity.Length)*24,0,i<2?-22:22);
-            core.sharedMaterial = enemy.Blocked ? siegeMaterial : normalMaterial;
+            if(enemy.Health<observedHealth)hitUntil=tick+3;
+            observedHealth=enemy.Health;
+            core.sharedMaterial = tick<hitUntil ? hitMaterial : enemy.Blocked ? siegeMaterial : normalMaterial;
             slowHalo.SetActive(enemy.SlowRemaining > 0);
             // Status marker follows flight height so it cannot be mistaken for a ground unit.
             slowHalo.transform.localPosition = new Vector3(0, flying ? -.3f : -radius * .65f + .025f, 0);

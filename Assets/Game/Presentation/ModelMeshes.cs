@@ -47,6 +47,18 @@ namespace FrostMaze
             }
             return Save(name,v,t);
         }
+        public Mesh DefeatBurst {
+            get {
+                const string key="Enemy defeat shards";
+                if(meshes.TryGetValue("Combined "+key,out var cached))return cached;
+                var pieces=new List<CombineInstance>();
+                for(int i=0;i<3;i++) {
+                    float angle=i*120*Mathf.Deg2Rad;
+                    pieces.Add(new CombineInstance {mesh=Crystal,transform=Matrix4x4.TRS(new Vector3(Mathf.Cos(angle)*.3f,0,Mathf.Sin(angle)*.3f),Quaternion.Euler(25,i*120,25),new Vector3(.4f,.7f,.4f))});
+                }
+                return Combine(key,pieces);
+            }
+        }
         Mesh Save(string name,List<Vector3> vertices,List<int> triangles){var mesh=new Mesh{name="Original "+name};mesh.SetVertices(vertices);mesh.SetTriangles(triangles,0);mesh.RecalculateNormals();mesh.RecalculateBounds();meshes.Add(name,mesh);return mesh;}
         public Mesh Combine(string key,List<CombineInstance> pieces)
         {

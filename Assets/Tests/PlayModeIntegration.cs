@@ -8,6 +8,61 @@ namespace FrostMaze.Tests
 {
     public sealed class PlayModeIntegration
     {
+        static int EffectRendererCount(CombatFeedback feedback)
+        {
+            return feedback.transform.Find("Combat cues").GetComponentsInChildren<Renderer>().Length;
+        }
+        [UnityTest]
+        public IEnumerator HitDefeatAndLeakCuesRespectPauseResetAndBudget()
+        {
+            EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
+            yield return new EnterPlayMode();yield return null;
+            var game=Object.FindFirstObjectByType<Prototype>();game.StartMatch();game.Paused=true;game.SoundEnabled=false;
+            var w=game.World;Assert.That(w.OrderBuild(16,14,out _),Is.True);
+            for(int tick=0;tick<150;tick++)w.Step();
+            var tower=w.Grid.At(16,14);Assert.That(tower,Is.Not.Null);
+            var enemy=w.Spawn(new FrostMaze.Simulation.WaveSpec{Health=20,Speed=.05f},tower.Center+new FrostMaze.Simulation.V2(1.8f,0));
+            Assert.That(enemy,Is.Not.Null);yield return null;yield return null;
+            var crest=GameObject.Find("Enemy "+enemy.Id).transform.Find("Armored crawler/Signal crest").GetComponent<Renderer>();
+            var normal=crest.sharedMaterial;w.Step();yield return null;
+            Assert.That(enemy.Health,Is.LessThan(20));Assert.That(enemy.Health,Is.GreaterThan(0));
+            var hit=crest.sharedMaterial;Assert.That(hit,Is.Not.SameAs(normal),"Actual damage needs visible feedback");
+            yield return null;yield return null;Assert.That(crest.sharedMaterial,Is.SameAs(hit),"Paused hit flash changed");
+            w.TowersFire=false;for(int tick=0;tick<4;tick++)w.Step();yield return null;
+            Assert.That(crest.sharedMaterial,Is.SameAs(normal),"Hit flash did not recover on simulation time");
+            w.TowersFire=true;for(int tick=0;tick<40&&w.Killed==0;tick++)w.Step();yield return null;yield return null;
+            Assert.That(w.Killed,Is.EqualTo(1));var burst=GameObject.Find("Enemy defeated");Assert.That(burst,Is.Not.Null);
+            Assert.That(burst.GetComponent<MeshFilter>().sharedMesh,Is.SameAs(game.Models.DefeatBurst));
+            Assert.That(burst.GetComponentsInChildren<Collider>().Length,Is.Zero);
+            var route=w.LaneRoute(0,true);var exit=w.Spawn(new FrostMaze.Simulation.WaveSpec{Flying=true},route[route.Length-1]);
+            Assert.That(exit,Is.Not.Null);exit.Checkpoint=route.Length-1;yield return null;yield return null;
+            w.Step();yield return null;yield return null;
+            Assert.That(w.Leaked,Is.EqualTo(1));var leak=GameObject.Find("Enemy leaked");Assert.That(leak,Is.Not.Null);
+            Assert.That(leak.GetComponent<LineRenderer>(),Is.Not.Null);Assert.That(leak.transform.position.y,Is.EqualTo(1.7f));
+            var scale=burst.transform.localScale;var position=burst.transform.position;
+            yield return new WaitForSecondsRealtime(.1f);
+            Assert.That(burst.transform.localScale,Is.EqualTo(scale));Assert.That(burst.transform.position,Is.EqualTo(position));
+            game.Paused=false;game.OpenSetup();yield return new WaitForSecondsRealtime(.1f);
+            Assert.That(burst.transform.localScale,Is.EqualTo(scale),"Setup must pause cosmetic pulses");
+            game.ReturnToMatch();yield return new WaitForSecondsRealtime(.5f);
+            Assert.That(burst==null&&leak==null,Is.True,"Transient cues did not expire");
+            game.Paused=true;w.TowersFire=false;
+            var crowd=new System.Collections.Generic.List<FrostMaze.Simulation.Enemy>();
+            for(int i=0;i<100;i++) {
+                var e=w.Spawn(new FrostMaze.Simulation.WaveSpec{Flying=true,Health=1},new FrostMaze.Simulation.V2(4+i%10*.5f,4+i/10*.5f));
+                Assert.That(e,Is.Not.Null);crowd.Add(e);
+            }
+            yield return null;yield return null;
+            foreach(var e in crowd)e.Health=0;w.Step();yield return null;yield return null;
+            var feedback=game.GetComponent<CombatFeedback>();Assert.That(EffectRendererCount(feedback),Is.EqualTo(64),"Defeats exceeded shared effect budget");
+            exit=w.Spawn(new FrostMaze.Simulation.WaveSpec{Flying=true},route[route.Length-1]);exit.Checkpoint=route.Length-1;
+            yield return null;yield return null;w.Step();yield return null;yield return null;
+            Assert.That(GameObject.Find("Enemy leaked"),Is.Not.Null,"A full volley must not hide a leak");
+            Assert.That(EffectRendererCount(feedback),Is.EqualTo(64),"Leak priority exceeded shared effect budget");
+            game.StartMatch();game.Paused=true;yield return null;yield return null;
+            Assert.That(EffectRendererCount(feedback),Is.Zero,"New match retained old defeat/leak cues");
+            yield return new ExitPlayMode();
+        }
         [UnityTest]
         public IEnumerator MapLandmarksNeverCoverWalkableCells()
         {
