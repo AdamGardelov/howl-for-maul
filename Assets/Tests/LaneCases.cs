@@ -61,6 +61,7 @@ namespace FrostMaze.Tests
             for(int i=0;i<60;i++)w.Step();
             Check(w.Grid.Towers.Count==2&&w.Players[0].Gold==580&&w.Players[1].Gold==580,"inactive builder did not execute");
             Check(!w.Sell(3,30),"sold another player's tower");
+            Check(w.TowerOwner(w.Grid.At(3,30).Id)==0&&w.SaleRefund(w.Grid.At(3,30).Id)==15,"foreign inspector changed owner or refund");
             w.SelectPlayer(0);Check(w.Sell(3,30)&&w.Gold==595,"owner refund failed");
         }
         public static void Difficulty()

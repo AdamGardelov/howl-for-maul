@@ -63,3 +63,5 @@ Rendering experiment: GPU instancing reduced draw calls but did not show a clear
 Latest combined regression: 74/74 passed after combat audio and siege feedback, with every individual case confirmed from Unity XML. See SIEGE-FEEDBACK.md. Camera traversal subsequently passed its four focused checks and packaged input sequence.
 
 Placement-hint follow-up: compilation and native staged valid/invalid tooltip inspection passed. It reuses existing placement validation and changes no simulation rules. No new full-suite or packaged-input pass is claimed for this text-only addition. Packages remain 9368630. See PLACEMENT-HINTS.md.
+
+Tower ownership inspector: compilation, all 61 pure cases, and native owner/non-owner captures passed. Actual paid fixture: P1 600 → 560 after tower + upgrade, P2 stays 600, refund 30, next upgrade 40. No mutation of ownership/refund rules. See TOWER-OWNERSHIP-UI.md.

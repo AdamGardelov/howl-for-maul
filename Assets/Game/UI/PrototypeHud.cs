@@ -116,12 +116,21 @@ namespace FrostMaze
             var selected=w.Grid.Find(game.SelectedTowerId);
             if(selected!=null) {
                 Rule();GUILayout.Label("SELECTED TOWER",section);GUILayout.Label(selected.Name+"  /  LEVEL "+selected.Level,label);
+                int owner=w.TowerOwner(selected.Id);bool own=owner==w.ActivePlayer;
+                GUILayout.Label(owner<0?"Unclaimed tower":own?$"YOUR TOWER · P{owner+1}":$"PLAYER {owner+1} · switch to P{owner+1} to manage",section);
                 DrawTowerStats(selected.Spec);GUILayout.Label($"Current health {selected.Health:0}/{selected.Spec.Health:0}",small);
                 if(selected.Level<3) {
                     GUILayout.Label($"Next: {selected.Spec.Damage*1.6f:0.#} damage · {selected.Spec.Range+.35f:0.0} range · {selected.Spec.Health*1.5f:0} HP",small);
-                    if(GUILayout.Button($"UPGRADE [U]   /   {w.UpgradeCost(selected)} GOLD",primary)){w.Upgrade(selected.Id,out string message);game.Notice=message;}
+                    int price=w.UpgradeCost(selected);
+                    bool affordable=!w.Config.Economy||w.Gold>=price;
+                    GUI.enabled=own&&affordable&&!w.Finished;
+                    if(GUILayout.Button($"UPGRADE [U]   /   {price} GOLD",primary)){w.Upgrade(selected.Id,out string message);game.Notice=message;}
+                    GUI.enabled=true;
+                    if(own&&!affordable)GUILayout.Label($"Need {price-w.Gold} more gold to upgrade.",small);
                 } else GUILayout.Label("MAXIMUM LEVEL",section);
-                GUILayout.BeginHorizontal();if(GUILayout.Button("Sell selected",button))game.Notice=w.Sell(selected.CellX,selected.CellY)?"Sold.":"Select one of your own towers.";
+                GUILayout.BeginHorizontal();GUI.enabled=!w.Finished&&(own||owner<0);
+                if(GUILayout.Button(w.Config.Economy?$"Sell / {w.SaleRefund(selected.Id)} gold":"Remove tower",button))game.Notice=w.Sell(selected.CellX,selected.CellY)?"Sold.":"Select one of your own towers.";
+                GUI.enabled=true;
                 if(GUILayout.Button("Deselect",button))game.SelectedTowerId=0;GUILayout.EndHorizontal();
             }
             Rule();GUILayout.Label("BUILD  /  "+w.FactionName.ToUpperInvariant(),section);

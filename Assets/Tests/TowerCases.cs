@@ -61,7 +61,12 @@ namespace FrostMaze.Tests
             Check(w.Upgrade(t.Id,out _)&&w.Upgrade(t.Id,out _),"upgrade failed");
             Check(t.Level==3&&t.Spec.Damage>35&&c.Catalog[0].Spec.Damage==14,"upgrade mutated blueprint");
             Check(!w.Upgrade(t.Id,out _)&&w.Gold==1120,"max-level upgrade charged");
+            Check(w.TowerOwner(t.Id)==0&&w.SaleRefund(t.Id)==60,"inspector must report exact invested refund and owner");
             Check(w.Sell(16,14)&&w.Gold==1180,"upgrade refund incorrect");
+            Check(w.TowerOwner(t.Id)==-1&&w.SaleRefund(t.Id)==0,"sold tower inspector retained stale information");
+            Check(w.Build(16,14,out _),"second purchase failed");var destroyed=w.Grid.At(16,14);
+            w.Grid.Damage(destroyed.Id,destroyed.Health);
+            Check(w.TowerOwner(destroyed.Id)==-1&&w.SaleRefund(destroyed.Id)==0,"destroyed tower must not advertise a reclaimable refund");
         }
         public static void GroundSplash()
         {

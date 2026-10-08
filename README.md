@@ -63,7 +63,7 @@ After each wave, the sidebar reports defeated enemies, leaks and earned bounty/b
 
 Before buying, the sidebar shows damage, firing interval, direct DPS, range, targeting and special effects. Locked champions list the specific towers you still need to own. Wave previews show difficulty-scaled health and siege damage, speed, spawn interval and the next flying wave.
 
-Purchased towers can be upgraded twice. Upgrades improve health and weapon damage/range, costing the original tower price times its current level. Sale refunds include part of the upgrade investment. Players may build anywhere on open terrain, but can sell or upgrade only their own towers. The P1–P4 sidebar buttons switch local control; they are not a network lobby.
+Purchased towers can be upgraded twice. Upgrades improve health and weapon damage/range, costing the original tower price times its current level. Sale refunds include part of the upgrade investment; the selected-tower inspector shows the exact amount and owner, and disables actions unavailable to the current player. Players may build anywhere on open terrain, but can sell or upgrade only their own towers. The P1–P4 sidebar buttons switch local control; they are not a network lobby.
 
 ## Maps and tuning
 

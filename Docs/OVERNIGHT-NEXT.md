@@ -2,6 +2,8 @@
 
 ## Latest state
 
+Tower inspector follow-up: exact owner and paid sale refund, disabled foreign/unaffordable actions. Compilation, 61 pure cases and owner/non-owner visual fixtures passed. See TOWER-OWNERSHIP-UI.md. Refresh packages to include this and the placement hint.
+
 A subsequent source-only follow-up adds placement cost/blocked-reason hints, compiled and visually inspected at 1920×884. Read PLACEMENT-HINTS.md. Packages remain at camera checkpoint 9368630; include the hint on the next package refresh. Linux target restored and verified.
 
 - Source 9368630 adds the requested edge scrolling and Space + left-drag camera. Enter launches waves; Shift speeds up keyboard/edge panning. Four focused Unity checks and actual Linux mouse/keyboard input passed. Read CAMERA-CONTROLS.md.

@@ -44,6 +44,9 @@ namespace FrostMaze.Simulation
         public string BuildName => Config.Catalog.Length==0?"Bolt Spire":Config.Catalog[SelectedDesign].Name;
         int BuildRefund => Config.Catalog.Length==0?Config.SaleRefund:Config.Catalog[SelectedDesign].Refund;
         public int UpgradeCost(Tower tower) => (Config.Catalog.Length==0?Config.TowerCost:Config.Catalog[tower.Design].Cost)*tower.Level;
+        // Read-only inspector queries ignore records retained after siege destruction.
+        public int TowerOwner(int id) => Grid.Find(id)!=null&&owners.TryGetValue(id,out int owner)?owner:-1;
+        public int SaleRefund(int id) => Grid.Find(id)!=null&&paidTowers.TryGetValue(id,out int refund)?refund:0;
         public bool Upgrade(int id,out string reason)
         {
             var tower=Grid.Find(id);
