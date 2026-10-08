@@ -123,6 +123,45 @@ namespace FrostMaze
                 Crystal("Pilot flame",new Vector3(0,1.27f,0),new Vector3(.23f,.35f,.23f),accent,weapon);
             }
         }
+        void VoltTower(Material trim,Material dark,bool marshal)
+        {
+            if(Role=="Wall") {
+                Part("Scrap barricade",PrimitiveType.Cube,new Vector3(0,.5f,0),new Vector3(.72f,.5f,.6f),dark);
+                for(int i=-1;i<=1;i++) {
+                    var plate=Part("Scrap plate",PrimitiveType.Cube,new Vector3(i*.22f,.57f,0),new Vector3(.18f,.63f,.67f),shell);plate.transform.localRotation=Quaternion.Euler(0,0,i*8);
+                    Part("Power rivet",PrimitiveType.Sphere,new Vector3(i*.22f,.62f,-.34f),Vector3.one*.09f,accent);
+                }
+                return;
+            }
+            var pivot=new GameObject(Role+" weapon");pivot.transform.SetParent(transform,false);weapon=pivot.transform;
+            if(Role=="Relay") {
+                Part("Relay generator",PrimitiveType.Cylinder,new Vector3(0,.51f,0),new Vector3(.59f,.23f,.59f),dark,weapon);
+                for(int side=-1;side<=1;side+=2) {
+                    Part("Relay electrode",PrimitiveType.Cylinder,new Vector3(side*.23f,.98f,0),new Vector3(.13f,.46f,.13f),shell,weapon);
+                    for(int i=0;i<3;i++)Part("Induction ring",PrimitiveType.Cylinder,new Vector3(side*.23f,.78f+i*.17f,0),new Vector3(.27f,.035f,.27f),accent,weapon);
+                    Part("Arc terminal",PrimitiveType.Sphere,new Vector3(side*.23f,1.47f,0),Vector3.one*.22f,light,weapon);
+                }
+            } else if(Role=="Interceptor") {
+                Part("Rail turntable",PrimitiveType.Cylinder,new Vector3(0,.55f,0),new Vector3(.64f,.25f,.64f),dark,weapon);
+                for(int side=-1;side<=1;side+=2) {
+                    var rail=Part("Skyrail conductor",PrimitiveType.Cube,new Vector3(side*.18f,1.11f,.08f),new Vector3(.13f,.96f,.17f),shell,weapon);rail.transform.localRotation=Quaternion.Euler(24,0,0);
+                    var strip=Part("Rail charge strip",PrimitiveType.Cube,new Vector3(side*.18f,1.11f,.18f),new Vector3(.065f,.78f,.035f),accent,weapon);strip.transform.localRotation=Quaternion.Euler(24,0,0);
+                }
+                Part("Rail capacitor",PrimitiveType.Sphere,new Vector3(0,.83f,0),Vector3.one*.28f,light,weapon);
+            } else {
+                for(int side=-1;side<=1;side+=2)Part("Armored boot",PrimitiveType.Cube,new Vector3(side*.15f,.43f,.03f),new Vector3(.22f,.31f,.35f),dark,weapon);
+                Part(marshal?"Marshal chest":"Cadet chest",PrimitiveType.Sphere,new Vector3(0,.84f,0),new Vector3(marshal?.65f:.48f,.57f,.43f),shell,weapon);
+                Part("Helmet shell",PrimitiveType.Sphere,new Vector3(0,1.27f,0),new Vector3(.44f,.39f,.4f),accent,weapon);
+                Part("Dark visor",PrimitiveType.Cube,new Vector3(0,1.3f,.19f),new Vector3(.31f,.11f,.035f),dark,weapon);
+                var cannon=Part("Pulse cannon",PrimitiveType.Cylinder,new Vector3(.29f,.87f,.17f),new Vector3(marshal?.26f:.2f,.25f,marshal?.26f:.2f),accent,weapon);cannon.transform.localRotation=Quaternion.Euler(90,0,0);
+                Part("Cannon aperture",PrimitiveType.Sphere,new Vector3(.29f,.87f,.43f),new Vector3(.12f,.12f,.04f),light,weapon);
+                if(marshal) {
+                    for(int side=-1;side<=1;side+=2)Part("Marshal pauldron",PrimitiveType.Sphere,new Vector3(side*.29f,1.1f,0),new Vector3(.24f,.31f,.44f),trim,weapon);
+                    Crystal("Marshal crest",new Vector3(0,1.58f,0),new Vector3(.16f,.39f,.16f),light,weapon);
+                    Part("Back capacitor",PrimitiveType.Cylinder,new Vector3(0,.96f,-.26f),new Vector3(.32f,.28f,.19f),accent,weapon);
+                }
+            }
+        }
         GameObject Part(string name,PrimitiveType kind,Vector3 p,Vector3 scale,Material material,Transform parent=null)
         {
             var o=GameObject.CreatePrimitive(kind);o.name=name;o.transform.SetParent(parent==null?transform:parent,false);
@@ -143,6 +182,7 @@ namespace FrostMaze
             if(!robot&&faction==0)RimeTower(palette[3],palette[4]);
             else if(!robot&&faction==1)StoneTower(palette[3],palette[4],spec.TargetsAir);
             else if(!robot&&faction==2)EmberTower(palette[3],palette[4],design!=null&&design.Name=="Meteor Crucible");
+            else if(!robot&&faction==3)VoltTower(palette[3],palette[4],design!=null&&design.Name=="Nova Marshal");
             else {
             if(!robot&&Role!="Wall")for(int side=-1;side<=1;side+=2) {
                 Part("Stone buttress",PrimitiveType.Cube,new Vector3(side*.31f,.38f,-.05f),new Vector3(.16f,.43f,.48f),shell);

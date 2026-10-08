@@ -4,12 +4,12 @@
       "result": "Succeeded",
       "platform": "StandaloneLinux64",
       "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Linux/HowlForMaul",
-      "totalSizeBytes": 92063000,
-      "buildTimeMs": 9581,
-      "buildStartedAt": "2026-10-08T06:47:45.9308150Z",
-      "buildEndedAt": "2026-10-08T06:47:55.5125130Z",
-      "totalErrors": 0,
+      "totalSizeBytes": 92070168,
+      "buildTimeMs": 10176,
+      "buildStartedAt": "2026-10-08T07:54:25.6476940Z",
+      "buildEndedAt": "2026-10-08T07:54:35.8240950Z",
       "totalWarnings": 1,
+      "totalErrors": 0,
       "warnings": [
         {
           "message": "Pipeline: No RuntimePipelineConfig asset found (Project Settings > Pipeline > Runtime). Pipeline will be disabled in Player builds."
@@ -20,12 +20,12 @@
       "result": "Succeeded",
       "platform": "StandaloneWindows64",
       "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Windows/HowlForMaul.exe",
-      "totalSizeBytes": 95805728,
-      "buildTimeMs": 15427,
-      "buildStartedAt": "2026-10-08T06:48:21.1892350Z",
-      "buildEndedAt": "2026-10-08T06:48:36.6169220Z",
-      "totalErrors": 0,
+      "totalSizeBytes": 95812896,
+      "buildTimeMs": 15004,
+      "buildStartedAt": "2026-10-08T07:54:45.0575750Z",
+      "buildEndedAt": "2026-10-08T07:55:00.0622580Z",
       "totalWarnings": 19,
+      "totalErrors": 0,
       "warnings": [
         {
           "message": "Pipeline: No RuntimePipelineConfig asset found (Project Settings > Pipeline > Runtime). Pipeline will be disabled in Player builds."
@@ -90,7 +90,7 @@
   "linuxSmoke": {
     "exitCode": 0,
     "display": ":98",
-    "note": "Rime model-slice package passed both map route/data checks. Native desktop issue remains prior-checkpoint evidence, not retested here."
+    "note": "All four winter model sets included; both packaged-map route/data checks passed. Native desktop issue remains prior evidence, not retested."
   },
   "windowsRuntime": "Not tested on Windows",
   "linuxNativeDesktopSmoke": {

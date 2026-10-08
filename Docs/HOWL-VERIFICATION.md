@@ -1,4 +1,4 @@
-# Howl for Maul verification — Ember model checkpoint
+# Howl for Maul verification — complete winter model checkpoint
 
 The user-requested four-part pass is implemented: clearer tower/enemy presentation and camera, stronger faction tradeoffs, twenty-wave campaigns, and a normal menu flow without the empty test arena. See BATTLEFIELD-UPDATE.md for implementation details. The new art-direction pass adds continuous softly varied ground, beveled mask edges, layered pines, original faceted tower meshes, winter stonework and warm/cool matte lighting; see ART-DIRECTION.md.
 
@@ -7,6 +7,8 @@ The latest model slice gives Rime Covenant five distinct stone-and-ice designs, 
 The latest Stonebound pass adds five distinct models. Its paid builder integration and full suite passed 63/63; see STONEBOUND-MODELS.md. A fresh 1920×884 paid lineup capture was inspected at zoom 7. Builds and campaign results below belong to preceding checkpoints, not this Stonebound source update.
 
 The Ember source checkpoint adds five distinct models and verifies paid upgrades retain their identity. Fresh Unity results: 63/63 passed, 24.21 seconds. A 1920×884 paid lineup was inspected at zoom 7. See EMBER-MODELS.md. Packaged builds remain the Rime checkpoint.
+
+Latest checkpoint: all four winter factions have distinct models. Fresh 63/63 Unity tests passed (24.22 seconds); native Volt lineup inspected. Both packages were rebuilt to include Stonebound, Ember and Volt; Linux passed both map smoke checks on :98. See WINTER-MODELS.md. Earlier source-checkpoint build limitations below are historical.
 
 ## Automated tests
 
@@ -47,7 +49,7 @@ Inspected fresh 1920×884 Game-view captures on both maps. Rimewatch shows five 
 
 ## Builds and platform limits
 
-At the preceding Rime checkpoint, Linux and Windows builds succeeded with zero build errors. Howl-Builds.json records the final build summaries. Linux has the expected editor-automation-disabled warning; Windows additionally reports unsupported package ray-tracing shader warnings. Standard URP rendering is used.
+At the complete winter model checkpoint, Linux and Windows builds succeeded with zero build errors. Howl-Builds.json records the final build summaries. Linux has the expected editor-automation-disabled warning; Windows additionally reports unsupported package ray-tracing shader warnings. Standard URP rendering is used.
 
 The actual final Linux executable passed the packaged smoke test on an isolated virtual display, exiting 0 and confirming both twenty-wave maps, faction data and every ground/flying lane route. At the previous checkpoint, both headless and ordinary windowed attempts on this machine's native :0 desktop failed during X video-mode initialization before game code. **Use Unity Play mode on this machine for now.** Native standalone desktop launch is not claimed to work. The temporary :98 display was stopped after verification.
 
