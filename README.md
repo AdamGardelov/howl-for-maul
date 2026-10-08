@@ -116,3 +116,5 @@ The [three-player compact campaigns](Docs/Balance/COMPACT-THREE-PLAYER.md) cover
 The landscape now continues beyond the playable boundary. Read [world atmosphere](Docs/WORLD-ATMOSPHERE.md) for scenery, tower sound identities and soundtrack attribution.
 
 The [selected-start paid campaigns](Docs/Balance/SELECTED-STARTS.md) cover every starting position on both maps, all twelve factions and nondefault mixed-team starts. The balance harness accepts a final comma-separated start-index argument and records builder travel and wallet audits.
+
+The [final-air rebuild comparison](Docs/Balance/FINALE-REBUILD.md) tests paid sales and replacement air defenses with exact owner-only refunds. It improves Stonebound’s and Ember’s finale survival without changing game stats; earlier-wave defeats are retained in the results.

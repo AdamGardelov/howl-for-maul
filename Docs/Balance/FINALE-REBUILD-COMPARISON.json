@@ -1,0 +1,300 @@
+[
+  {
+    "map": "Rimewatch",
+    "factions": [
+      "Rime Covenant"
+    ],
+    "players": 1,
+    "baselineWon": false,
+    "rebuildWon": false,
+    "baselineLives": 0,
+    "rebuildLives": 0,
+    "baselineLastWave": 18,
+    "rebuildLastWave": 18,
+    "baselineFinalLeaks": null,
+    "rebuildFinalLeaks": null,
+    "sales": 0,
+    "refund": 0,
+    "refunds": [
+      0
+    ],
+    "first19Identical": true
+  },
+  {
+    "map": "Rimewatch",
+    "factions": [
+      "Stonebound"
+    ],
+    "players": 1,
+    "baselineWon": true,
+    "rebuildWon": true,
+    "baselineLives": 2,
+    "rebuildLives": 16,
+    "baselineLastWave": 20,
+    "rebuildLastWave": 20,
+    "baselineFinalLeaks": 14,
+    "rebuildFinalLeaks": 0,
+    "sales": 5,
+    "refund": 873,
+    "refunds": [
+      873
+    ],
+    "first19Identical": true
+  },
+  {
+    "map": "Rimewatch",
+    "factions": [
+      "Ember Assembly"
+    ],
+    "players": 1,
+    "baselineWon": true,
+    "rebuildWon": true,
+    "baselineLives": 5,
+    "rebuildLives": 15,
+    "baselineLastWave": 20,
+    "rebuildLastWave": 20,
+    "baselineFinalLeaks": 10,
+    "rebuildFinalLeaks": 0,
+    "sales": 10,
+    "refund": 2100,
+    "refunds": [
+      2100
+    ],
+    "first19Identical": true
+  },
+  {
+    "map": "Rimewatch",
+    "factions": [
+      "Volt Vanguard"
+    ],
+    "players": 1,
+    "baselineWon": true,
+    "rebuildWon": true,
+    "baselineLives": 30,
+    "rebuildLives": 30,
+    "baselineLastWave": 20,
+    "rebuildLastWave": 20,
+    "baselineFinalLeaks": 0,
+    "rebuildFinalLeaks": 0,
+    "sales": 0,
+    "refund": 0,
+    "refunds": [
+      0
+    ],
+    "first19Identical": true
+  },
+  {
+    "map": "Ironfold",
+    "factions": [
+      "Pulse Foundry"
+    ],
+    "players": 1,
+    "baselineWon": true,
+    "rebuildWon": true,
+    "baselineLives": 30,
+    "rebuildLives": 30,
+    "baselineLastWave": 20,
+    "rebuildLastWave": 20,
+    "baselineFinalLeaks": 0,
+    "rebuildFinalLeaks": 0,
+    "sales": 4,
+    "refund": 287,
+    "refunds": [
+      287
+    ],
+    "first19Identical": true
+  },
+  {
+    "map": "Ironfold",
+    "factions": [
+      "Blast Circuit"
+    ],
+    "players": 1,
+    "baselineWon": false,
+    "rebuildWon": false,
+    "baselineLives": 0,
+    "rebuildLives": 0,
+    "baselineLastWave": 18,
+    "rebuildLastWave": 18,
+    "baselineFinalLeaks": null,
+    "rebuildFinalLeaks": null,
+    "sales": 0,
+    "refund": 0,
+    "refunds": [
+      0
+    ],
+    "first19Identical": true
+  },
+  {
+    "map": "Ironfold",
+    "factions": [
+      "Prism Division"
+    ],
+    "players": 1,
+    "baselineWon": true,
+    "rebuildWon": true,
+    "baselineLives": 30,
+    "rebuildLives": 30,
+    "baselineLastWave": 20,
+    "rebuildLastWave": 20,
+    "baselineFinalLeaks": 0,
+    "rebuildFinalLeaks": 0,
+    "sales": 0,
+    "refund": 0,
+    "refunds": [
+      0
+    ],
+    "first19Identical": true
+  },
+  {
+    "map": "Ironfold",
+    "factions": [
+      "Horizon Guild"
+    ],
+    "players": 1,
+    "baselineWon": true,
+    "rebuildWon": true,
+    "baselineLives": 30,
+    "rebuildLives": 30,
+    "baselineLastWave": 20,
+    "rebuildLastWave": 20,
+    "baselineFinalLeaks": 0,
+    "rebuildFinalLeaks": 0,
+    "sales": 0,
+    "refund": 0,
+    "refunds": [
+      0
+    ],
+    "first19Identical": true
+  },
+  {
+    "map": "Ironfold",
+    "factions": [
+      "Gravity Works"
+    ],
+    "players": 1,
+    "baselineWon": true,
+    "rebuildWon": true,
+    "baselineLives": 17,
+    "rebuildLives": 17,
+    "baselineLastWave": 20,
+    "rebuildLastWave": 20,
+    "baselineFinalLeaks": 0,
+    "rebuildFinalLeaks": 0,
+    "sales": 4,
+    "refund": 344,
+    "refunds": [
+      344
+    ],
+    "first19Identical": true
+  },
+  {
+    "map": "Ironfold",
+    "factions": [
+      "Scrap Frontier"
+    ],
+    "players": 1,
+    "baselineWon": true,
+    "rebuildWon": true,
+    "baselineLives": 26,
+    "rebuildLives": 26,
+    "baselineLastWave": 20,
+    "rebuildLastWave": 20,
+    "baselineFinalLeaks": 0,
+    "rebuildFinalLeaks": 0,
+    "sales": 0,
+    "refund": 0,
+    "refunds": [
+      0
+    ],
+    "first19Identical": true
+  },
+  {
+    "map": "Ironfold",
+    "factions": [
+      "Overdrive Order"
+    ],
+    "players": 1,
+    "baselineWon": true,
+    "rebuildWon": true,
+    "baselineLives": 30,
+    "rebuildLives": 30,
+    "baselineLastWave": 20,
+    "rebuildLastWave": 20,
+    "baselineFinalLeaks": 0,
+    "rebuildFinalLeaks": 0,
+    "sales": 6,
+    "refund": 369,
+    "refunds": [
+      369
+    ],
+    "first19Identical": true
+  },
+  {
+    "map": "Ironfold",
+    "factions": [
+      "Tidal Array"
+    ],
+    "players": 1,
+    "baselineWon": true,
+    "rebuildWon": true,
+    "baselineLives": 30,
+    "rebuildLives": 30,
+    "baselineLastWave": 20,
+    "rebuildLastWave": 20,
+    "baselineFinalLeaks": 0,
+    "rebuildFinalLeaks": 0,
+    "sales": 0,
+    "refund": 0,
+    "refunds": [
+      0
+    ],
+    "first19Identical": true
+  },
+  {
+    "map": "Rimewatch",
+    "factions": [
+      "Rime Covenant",
+      "Stonebound"
+    ],
+    "players": 2,
+    "baselineWon": true,
+    "rebuildWon": true,
+    "baselineLives": 10,
+    "rebuildLives": 10,
+    "baselineLastWave": 20,
+    "rebuildLastWave": 20,
+    "baselineFinalLeaks": 0,
+    "rebuildFinalLeaks": 0,
+    "sales": 6,
+    "refund": 914,
+    "refunds": [
+      579,
+      335
+    ],
+    "first19Identical": true
+  },
+  {
+    "map": "Ironfold",
+    "factions": [
+      "Gravity Works",
+      "Scrap Frontier"
+    ],
+    "players": 2,
+    "baselineWon": true,
+    "rebuildWon": true,
+    "baselineLives": 28,
+    "rebuildLives": 28,
+    "baselineLastWave": 20,
+    "rebuildLastWave": 20,
+    "baselineFinalLeaks": 0,
+    "rebuildFinalLeaks": 0,
+    "sales": 3,
+    "refund": 295,
+    "refunds": [
+      295,
+      0
+    ],
+    "first19Identical": true
+  }
+]

@@ -11,9 +11,10 @@ static partial class BalanceSweep
 {
     sealed class Sample { public V2 Position; public bool Air; public float Coverage,Slow; }
     sealed class Placement { public int TowerId{get;set;} public int TravelTicks{get;set;} public int BeforeWave{get;set;} public int Player{get;set;} public int X{get;set;} public int Y{get;set;} public string Tower{get;set;} public int Cost{get;set;} }
+    sealed class SaleResult { public int Player{get;set;} public int TowerId{get;set;} public string Tower{get;set;} public int Level{get;set;} public int Refund{get;set;} public int BeforeWave{get;set;} }
     sealed class UpgradeResult { public int Player{get;set;} public int TowerId{get;set;} public string Tower{get;set;} public int Level{get;set;} public int Cost{get;set;} public int BeforeWave{get;set;} }
     sealed class WaveResult { public int[] PlayerGold{get;set;} public int Wave{get;set;} public bool Flying{get;set;} public int Killed{get;set;} public int Leaked{get;set;} public int Ticks{get;set;} public int Gold{get;set;} }
-    sealed class Result { public int[] StartingPositions{get;set;} public float[][] InitialBuilderPositions{get;set;} public int ActiveLanes{get;set;} public int[] StartingWallets{get;set;} public int PreparationTicks{get;set;} public int[] FinalWallets{get;set;} public int[] PlayerSpending{get;set;} public string Strategy{get;set;} public string[] Factions{get;set;} public List<UpgradeResult> Upgrades{get;set;}=new List<UpgradeResult>(); public int PlayerCount{get;set;} public string Map{get;set;} public string Faction{get;set;} public string Difficulty{get;set;} public bool Won{get;set;} public bool Stalled{get;set;} public int Lives{get;set;} public int Gold{get;set;} public int Spent{get;set;} public List<Placement> Placements{get;set;}=new List<Placement>(); public List<WaveResult> Waves{get;set;}=new List<WaveResult>(); }
+    sealed class Result { public List<SaleResult> Sales{get;set;}=new List<SaleResult>(); public int Refunded{get;set;} public int[] PlayerRefunds{get;set;} public int[] StartingPositions{get;set;} public float[][] InitialBuilderPositions{get;set;} public int ActiveLanes{get;set;} public int[] StartingWallets{get;set;} public int PreparationTicks{get;set;} public int[] FinalWallets{get;set;} public int[] PlayerSpending{get;set;} public string Strategy{get;set;} public string[] Factions{get;set;} public List<UpgradeResult> Upgrades{get;set;}=new List<UpgradeResult>(); public int PlayerCount{get;set;} public string Map{get;set;} public string Faction{get;set;} public string Difficulty{get;set;} public bool Won{get;set;} public bool Stalled{get;set;} public int Lives{get;set;} public int Gold{get;set;} public int Spent{get;set;} public List<Placement> Placements{get;set;}=new List<Placement>(); public List<WaveResult> Waves{get;set;}=new List<WaveResult>(); }
     sealed class Candidate { public int X,Y; public int[] Samples; }
     static readonly Dictionary<TowerSpec,List<Candidate>> influence=new Dictionary<TowerSpec,List<Candidate>>();
     static List<Candidate> Candidates(World w,TowerSpec spec,List<Sample> samples)
@@ -148,21 +149,22 @@ static partial class BalanceSweep
     static int[] AuditWallets(World w,Result result,int completedWaves)
     {
         // Rewards rotate across wallets continuously, including the initial team grant.
-        // This driver never sells, so all debits are recorded paid placements/upgrades.
+        // Sales return money only to their owner; they do not advance the shared reward cursor.
         int grants=w.Config.StartingGold+w.Killed*w.Config.KillReward+completedWaves*w.Config.WaveReward;
-        var wallets=new int[w.Players.Length];var spending=new int[wallets.Length];
+        var wallets=new int[w.Players.Length];var spending=new int[wallets.Length];var refunds=new int[wallets.Length];
         for(int player=0;player<wallets.Length;player++) {
             spending[player]=result.Placements.Where(p=>p.Player==player+1).Sum(p=>p.Cost)+result.Upgrades.Where(u=>u.Player==player+1).Sum(u=>u.Cost);
-            int expected=grants/wallets.Length+(player<grants%wallets.Length?1:0)-spending[player];
+            refunds[player]=result.Sales.Where(s=>s.Player==player+1).Sum(s=>s.Refund);
+            int expected=grants/wallets.Length+(player<grants%wallets.Length?1:0)-spending[player]+refunds[player];
             wallets[player]=w.Players[player].Gold;
             if(wallets[player]<0||wallets[player]!=expected)throw new Exception("Player "+(player+1)+" wallet ledger mismatch");
         }
-        result.PlayerSpending=spending;return wallets;
+        result.PlayerSpending=spending;result.PlayerRefunds=refunds;return wallets;
     }
     static int TeamGold(World w) { int total=0;foreach(var p in w.Players)total+=p.Gold;return total; }
     public static int Run(string path,Difficulty difficulty,int players,string strategy="coverage",bool mixed=false,string mapFilter="",int factionFilter=-1,int[] startingPositions=null)
     {
-        if(strategy!="coverage"&&strategy!="roster"&&strategy!="maze"&&strategy!="adaptive"&&strategy!="compact"&&strategy!="compact-value"&&strategy!="compact-roles"&&strategy!="compact-support"&&strategy!="compact-invest")throw new ArgumentException("Strategy must be coverage, roster, maze, adaptive, compact, compact-value, compact-roles, compact-support or compact-invest.");
+        if(strategy!="coverage"&&strategy!="roster"&&strategy!="maze"&&strategy!="adaptive"&&strategy!="compact"&&strategy!="compact-value"&&strategy!="compact-roles"&&strategy!="compact-support"&&strategy!="compact-invest"&&strategy!="compact-transition")throw new ArgumentException("Strategy must be coverage, roster, maze, adaptive, compact, compact-value, compact-roles, compact-support, compact-invest or compact-transition.");
         if(players<1||players>4)throw new ArgumentException("Player count must be 1–4.");
         if(!Enum.IsDefined(typeof(Difficulty),difficulty))throw new ArgumentException("Unknown difficulty.");
         if(mapFilter!=""&&mapFilter!="Rimewatch"&&mapFilter!="Ironfold")throw new ArgumentException("Unknown map filter.");
@@ -181,6 +183,7 @@ static partial class BalanceSweep
             var c=MapCases.Load(iron);if(mapFilter.Length>0&&c.Name!=mapFilter)continue;var samples=Samples(c);
             for(int faction=0;faction<c.Factions.Length;faction++) {
                 if(factionFilter>=0&&faction!=factionFilter)continue;
+                influence.Clear(); // A previous faction may have sampled only the terminal flying route.
                 var factions=new int[4];for(int player=0;player<4;player++)factions[player]=mixed?(faction+player)%c.Factions.Length:faction;
                 var options=new MatchOptions{PlayerCount=players,Difficulty=difficulty,Factions=factions};
                 if(startingPositions!=null){options.StartingPositions=(int[])startingPositions.Clone();options.UseSelectedSoloStart=true;}
@@ -200,7 +203,14 @@ static partial class BalanceSweep
                         if(!Purchase(w,cells[cell,0],cells[cell,1],design,r))throw new Exception("Paid maze fixture could not be built");
                 }
                 for(int wave=0;wave<c.Waves.Length&&!w.Finished;wave++) {
-                    for(int player=0;player<players;player++){w.SelectPlayer(player);if(strategy=="roster")SpendRoster(w,samples,r);else if(strategy=="compact-invest")SpendInvest(w,samples,r,48/players);else if(strategy=="adaptive"||strategy.StartsWith("compact"))SpendAdaptive(w,samples,r,strategy.StartsWith("compact")?48/players:int.MaxValue,strategy=="compact-value"||strategy=="compact-roles"||strategy=="compact-support",strategy=="compact-roles"||strategy=="compact-support",strategy=="compact-support");else Spend(w,samples,r);}
+                    bool terminalFlight=strategy=="compact-transition"&&c.Waves.Skip(wave).All(next=>next.Flying);
+                    var waveSamples=samples;
+                    if(terminalFlight){waveSamples=samples.Where(sample=>sample.Air).ToList();influence.Clear();}
+                    for(int player=0;player<players;player++){w.SelectPlayer(player);
+                        if(strategy=="compact-transition") {
+                            if(terminalFlight)SellGroundOnly(w,r);
+                            SpendAdaptive(w,waveSamples,r,48/players,true,true);
+                        }else if(strategy=="roster")SpendRoster(w,samples,r);else if(strategy=="compact-invest")SpendInvest(w,samples,r,48/players);else if(strategy=="adaptive"||strategy.StartsWith("compact"))SpendAdaptive(w,samples,r,strategy.StartsWith("compact")?48/players:int.MaxValue,strategy=="compact-value"||strategy=="compact-roles"||strategy=="compact-support",strategy=="compact-roles"||strategy=="compact-support",strategy=="compact-support");else Spend(w,samples,r);}
                     AuditWallets(w,r,wave);int killed=w.Killed,leaked=w.Leaked;
                     if(!w.StartWave())throw new Exception("Wave failed to start");int ticks=0;
                     while(w.WaveActive&&!w.Finished&&ticks<18000){w.Step();ticks++;}
@@ -217,7 +227,7 @@ static partial class BalanceSweep
                 r.Won=w.Won;r.Lives=w.Lives;r.Gold=TeamGold(w);
                 int completed=r.Waves.Count-(w.Defeated||r.Stalled?1:0);
                 r.FinalWallets=AuditWallets(w,r,completed);
-                if(r.Spent+r.Gold!=c.StartingGold+w.Killed*c.KillReward+completed*c.WaveReward)throw new Exception("Team budget was not conserved");
+                if(r.Spent+r.Gold-r.Refunded!=c.StartingGold+w.Killed*c.KillReward+completed*c.WaveReward)throw new Exception("Team budget was not conserved");
                 results.Add(r);
                 Console.Error.WriteLine($"{r.Map} / {r.Faction}: {(r.Won?"WIN":r.Stalled?"STALL":"LOSS")} lives={r.Lives} waves={r.Waves.Count} spent={r.Spent} upgrades={r.Upgrades.Count}");
                 File.WriteAllText(path,JsonSerializer.Serialize(results,new JsonSerializerOptions{WriteIndented=true}));

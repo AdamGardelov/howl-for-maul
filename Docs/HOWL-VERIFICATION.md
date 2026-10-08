@@ -131,3 +131,7 @@ Final graphical source 0ca580c check also exercised actual Host/Ready/Begin UI, 
 ## Selectable-start paid campaigns
 
 Twenty Normal campaigns passed twenty waves from all eight starts on each map, covering all twelve factions plus nondefault mixed two/three/four-player starts. All lanes accounted for; 960 purchases, 1,403 upgrades and 1,080 before/after-wave wallet checks. Stonebound's two-life finish remains a narrow bot win, not a balance guarantee. The headless harness records chosen starts and paid travel, and checks spawn/restart coordinates; twelve malformed requests are rejected without changing saved results. All 67 pure cases pass. See Balance/SELECTED-STARTS.md. No runtime or package changes and no new Unity/network/platform claims.
+
+## Paid final-air adaptation
+
+Fourteen matched control/intervention pairs (28 campaigns) verify paid final-wave selling/rebuilding, exact owner-only refunds and unchanged first-nineteen-wave histories. Stonebound finishes with 16 rather than two lives, Ember with 15 rather than five. Both groups win 12/14; Rime and Blast lose on wave 18 under this particular planner. Across the runs, 38 sales refund 5,182 gold with exact independent-wallet and team conservation. All 67 pure cases pass. See Balance/FINALE-REBUILD.md. Headless harness/docs only; player packages remain runtime 0ca580c.

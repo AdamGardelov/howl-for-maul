@@ -5,6 +5,22 @@ using FrostMaze.Simulation;
 
 static partial class BalanceSweep
 {
+    // A separate diagnostic: once every remaining wave flies, liquidate only this
+    // player's ground-only weapons, then buy/upgrade against actual flight samples.
+    static void SellGroundOnly(World w,Result result)
+    {
+        foreach(var tower in Owned(w,result).Where(t=>!t.Spec.TargetsAir).ToArray()) {
+            int owner=w.TowerOwner(tower.Id),refund=w.SaleRefund(tower.Id);
+            var before=w.Players.Select(p=>p.Gold).ToArray();
+            if(owner!=w.ActivePlayer||!w.Sell(tower.CellX,tower.CellY)||w.Grid.Find(tower.Id)!=null)
+                throw new Exception("Final-flight sale failed ownership/removal validation.");
+            for(int player=0;player<w.Players.Length;player++)
+                if(w.Players[player].Gold!=before[player]+(player==owner?refund:0))
+                    throw new Exception("Final-flight sale credited the wrong wallet.");
+            result.Refunded+=refund;
+            result.Sales.Add(new SaleResult{Player=owner+1,TowerId=tower.Id,Tower=tower.Name,Level=tower.Level,Refund=refund,BeforeWave=w.WaveIndex+2});
+        }
+    }
     // A diagnostic alternative: a paid upgrade competes with a new footprint on every decision.
     // No gameplay limit or stats are changed, and all transactions use the normal wallet ledger.
     static void SpendInvest(World w,List<Sample> samples,Result result,int limit)
