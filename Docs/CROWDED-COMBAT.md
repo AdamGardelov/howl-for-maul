@@ -15,3 +15,8 @@ Unity compilation, all 64 pure simulation cases and all six `CrowdedPresentation
 The fixtures exercise presentation and use synthetic volleys for the budget stress case; they are not new paid campaign wins. Gameplay and balance evidence remains in Balance/HARD-FOUR-PLAYER.md. Packages are recorded separately in Howl-Builds.json.
 
 A live before/after frame-time profile was attempted first, but repeated main-thread eval timeouts during Play made it unsuitable for a matched comparison. No frame-time result is inferred from those attempts. The focused allocation regression measures only direct, warmed stable view synchronization; it does not imply the entire game or editor is allocation-free.
+
+
+## Packaged verification
+
+Packages contain source 3522f2c. Linux and Windows builds both succeeded with zero errors (one and nineteen warnings respectively; unsupported Windows ray-tracing shaders remain among the warnings). Linux both-map data-only smoke passed and exited zero. Actual mouse/keyboard input on isolated :98 bought, selected and removed a Snow Cairn at close perspective: 1,200 → 1,195 → 1,198 gold, with the displayed 3-gold refund matching the sale. Captures confirmed the model and contextual inspector disappear after removal. The graphical process closed normally with exit zero. This input sequence did not launch a wave; combat effects were verified in the Unity tests. Windows runtime, native desktop compatibility and frame rate remain unverified. Exact build IDs and historical check provenance are in Howl-Builds.json.
