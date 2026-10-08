@@ -5,7 +5,7 @@
 - Full-map HUD: permanent sidebar removed from play, compact top/bottom controls, contextual tower inspector, Tab details and Esc paused game menu. Overview reserves space for HUD strips. Four focused checks passed, then the final boundary/overview test passed again. Read FULL-MAP-HUD.md.
 
 - Source 9f228e1 adds original themed dressing: Rimewatch has 58 frost-plant clusters and 9 blue lanterns; Ironfold has 8 copper scrub clusters and 5 warm braziers. Deterministic placement, five batched material groups, no colliders or dynamic lights. Flame brightness freezes on pause. Read THEMED-SCENERY.md.
-- Current Linux and Windows packages contain 9f228e1. Both builds succeeded with zero errors. Linux both-map data smoke and actual paid wall-adjacent construction passed, gold 1,200 → 1,180, normal close exit zero. Windows runtime remains untested. Read Howl-Builds.json for exact per-check provenance.
+- Current Linux and Windows packages contain 485bb5e. Both builds succeeded with zero errors. Linux both-map data smoke and actual compact-HUD build/upgrade/menu/New Game return/Tab/overview input passed, gold 1,200 → 1,180 → 1,160, normal close exit zero. Windows runtime remains untested. Read Howl-Builds.json for exact per-check provenance.
 - Final scenery compilation, expanded both-map prop-clearance test, native overview/close-up inspection and live pause/flicker fixtures passed. Last full Unity suite was 77/77 at the preceding exit/terrain/progression checkpoint; no new full-suite claim for this scenery-only pass.
 - Rimewatch exit is centered at (31, 8.5). Wave details give faction-aware suggestions and team targeting counts. Read EXIT-TERRAIN-PROGRESSION.md. All 62 pure cases passed at that checkpoint.
 - Latest paid compact role-scoring matrix wins 10/12 factions. Alternative Blast strategy wins; compact solo Rime remains unresolved. Rime's larger paid maze clears twenty waves with 30 lives. Compact mixed pairs win on both maps. No balance stats changed to force a bot strategy to pass.
@@ -13,7 +13,7 @@
 
 ## Next priorities
 
-1. Preserve user Play sessions and unsaved scenes. Current packages are verified through 9f228e1.
+1. Preserve user Play sessions and unsaved scenes. Current packages are verified through 485bb5e.
 2. Continue faction/maze progression and meaningful paid-defense testing; compact Rime is a diagnostic, not a game tower limit.
 3. Continue the original minimalistic art direction while keeping silhouettes readable and every scenic footprint on blocked mask cells. No final-art or performance promise is implied by the procedural pass.
 

@@ -4,7 +4,7 @@ All twelve factions now have original design-specific models: twenty winter towe
 
 ## Automated tests
 
-Latest complete Unity 6000.3.25f1 suite: **74/74 passed**, including twelve Play-mode integration cases, at the siege/audio checkpoint 44b2290. Complete per-case result: Howl-Unity-Tests-Complete.json, extracted from Unity’s NUnit XML. The CLI summary in Howl-Unity-Tests.json agrees, but its detail array retains only 63 entries after domain reloads. All 74 cases are confirmed in XML.
+Historical complete Unity 6000.3.25f1 suite: **74/74 passed**, including twelve Play-mode integration cases, at the siege/audio checkpoint 44b2290. Complete per-case result: Howl-Unity-Tests-Complete.json, extracted from Unity’s NUnit XML. The CLI summary in Howl-Unity-Tests.json agrees, but its detail array retains only 63 entries after domain reloads. All 74 cases are confirmed in XML.
 
 The subsequent camera controls compiled cleanly and passed all four Camera-filtered tests (gesture sampling, UI/setup/bounds, existing tower/camera behavior and camera-local audio). See Howl-Camera-Tests.json and CAMERA-CONTROLS.md. There are now 76 cases available; a complete 76-case run is not claimed. Actual packaged Space-drag, edge scrolling and Enter input passed on isolated :98 with a normal exit.
 
@@ -46,7 +46,7 @@ Tower-query follow-up: spatial indexing reduced the matched crowded fixture from
 
 ## Packages and platform limits
 
-Fresh Linux and Windows packages include source 9f228e1: all 76 models, tower collision indexing, repaint-only world overlays map props kept off walkable cells wave income recaps bounded combat cues off-camera leak alerts refined enemy silhouettes, paced combat audio, siege feedback faster camera controls, placement hints, owner/refund inspector, centered Rimewatch exit, terrain material washes, wave-planning advice and themed plants/braziers. Both builds succeeded with zero errors; Linux reported one Pipeline-disabled warning, Windows 19 including unsupported package ray-tracing shaders. Windows runtime remains untested.
+Fresh Linux and Windows packages include source 485bb5e: all 76 models, tower collision indexing, repaint-only world overlays map props kept off walkable cells wave income recaps bounded combat cues off-camera leak alerts refined enemy silhouettes, paced combat audio, siege feedback faster camera controls, placement hints, owner/refund inspector, centered Rimewatch exit, terrain material washes, wave-planning advice, themed plants/braziers and full-map compact HUD with paused Esc menu. Both builds succeeded with zero errors; Linux reported one Pipeline-disabled warning, Windows 19 including unsupported package ray-tracing shaders. Windows runtime remains untested.
 
 Fresh Linux packaged route/data smoke passed both maps without a display server, exit zero. The repeatable Tools/smoke-linux.sh checks data-only initialization, both map markers and clean process exit. An initial audio-shutdown crash (133) was caught; the explicit smoke path now skips presentation and passed three consecutive runs. See Platform/headless-audio-shutdown.json. The preceding 465974e package passed mouse-driven Start Match/build beside wall/select/upgrade/sell on isolated :98, with 1200 → 1180 → 1160 → 1190 gold and normal close exiting zero. These are separate checks, not a full mouse-played campaign or a GPU benchmark.
 
@@ -73,3 +73,5 @@ Exit/terrain/progression follow-up: 62/62 pure cases and 77/77 Unity cases passe
 Themed scenery: final compilation, expanded prop-clearance regression on both maps, native overview/close-up inspection and live pause/flicker fixtures passed. No gameplay changes; the prior full 77-case suite is historical. Read THEMED-SCENERY.md.
 
 Full-map HUD follow-up: clean compilation, four focused camera/audio/tower checks and final updated camera/menu/overview assertions passed. Native menu, rosters and paid inspector captures inspected. Read FULL-MAP-HUD.md; previous 77-case suite remains historical.
+
+Packaged compact-HUD verification (485bb5e): both-map data smoke passed; actual isolated Linux build/upgrade, Esc menu, New Game setup/Return preserving the match, Tab details and final overview were captured and inspected. Gold 1200 → 1180 → 1160; normal close exited zero. Fullscreen mode switching and Windows runtime are unverified. See FULL-MAP-HUD.md and Howl-Builds.json.
