@@ -130,7 +130,10 @@ namespace FrostMaze.Tests
             Assert.That(arc.GetPosition(1).y,Is.EqualTo(.3f));
             yield return new WaitForSecondsRealtime(.3f);
             Assert.That(ring!=null&&arc!=null,Is.True,"Paused effects expired in real time");
-            game.Paused=false;
+            game.Paused=false;game.OpenSetup();
+            yield return new WaitForSecondsRealtime(.3f);
+            Assert.That(ring!=null&&arc!=null,Is.True,"Setup did not freeze combat effects");
+            game.ReturnToMatch();
             yield return new WaitForSecondsRealtime(.35f);yield return null;
             Assert.That(ring==null&&arc==null,Is.True,"Effects failed to expire after resuming");
             game.StartMatch();game.Paused=true;
@@ -140,6 +143,41 @@ namespace FrostMaze.Tests
             Assert.That(game.GetComponent<CombatFeedback>().GetComponentsInChildren<LineRenderer>().Length,Is.EqualTo(64));
             game.StartMatch();game.Paused=true;yield return null;yield return null;
             Assert.That(game.GetComponent<CombatFeedback>().GetComponentsInChildren<LineRenderer>().Length,Is.Zero,"New match retained old effects");
+            yield return new ExitPlayMode();
+        }
+        [UnityTest]
+        public IEnumerator SetupCanReturnAndNewMatchesClearInteraction()
+        {
+            EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
+            yield return new EnterPlayMode();yield return null;
+            var game=Object.FindFirstObjectByType<Prototype>();
+            Assert.That(game.CanReturnToMatch,Is.False);game.ReturnToMatch();Assert.That(game.SetupOpen,Is.True);
+            game.StartMatch();game.Paused=true;
+            Assert.That(game.World.OrderBuild(16,14,out _),Is.True);
+            for(int i=0;i<150;i++)game.World.Step();
+            Assert.That(game.World.Gold,Is.EqualTo(1180));
+            Assert.That(game.World.StartWave(),Is.True);game.World.Step();
+            var world=game.World;long tick=world.Tick;
+            game.Paused=false;game.OpenSetup();game.SetupOptions.Factions[0]=1;
+            yield return new WaitForSecondsRealtime(.2f);
+            Assert.That(world.Tick,Is.EqualTo(tick),"Setup allowed hidden combat to continue");
+            game.ReturnToMatch();game.Paused=true;yield return null;
+            Assert.That(game.SetupOpen,Is.False);Assert.That(game.World,Is.SameAs(world));
+            Assert.That(world.Gold,Is.EqualTo(1180));Assert.That(world.Grid.Towers.Count,Is.EqualTo(1));
+            Assert.That(world.Players[0].Faction,Is.Zero,"Unconfirmed setup edits changed current faction");
+            game.MoveMode=true;game.SellMode=true;game.SelectedId=42;game.SelectedTowerId=1;game.HasHover=true;
+            game.StartMatch();game.Paused=true;
+            Assert.That(game.World.Players[0].Faction,Is.EqualTo(1));
+            Assert.That(game.SellMode||game.MoveMode||game.HasHover,Is.False);
+            Assert.That(game.SelectedId+game.SelectedTowerId,Is.Zero);
+            game.SellMode=true;game.MoveMode=true;game.SelectedId=42;
+            game.ResetSimulation();game.Paused=true;
+            Assert.That(game.SellMode||game.MoveMode,Is.False);Assert.That(game.SelectedId,Is.Zero);
+            Assert.That(game.World.OrderBuild(16,14,out _),Is.True);
+            game.SellMode=true;game.MoveMode=true;game.SelectedId=42;game.SelectedTowerId=1;
+            game.CancelInteraction();
+            Assert.That(game.World.QueuedBuilds,Is.Zero);Assert.That(game.SellMode||game.MoveMode,Is.False);
+            Assert.That(game.SelectedId+game.SelectedTowerId,Is.Zero);
             yield return new ExitPlayMode();
         }
         [UnityTearDown]

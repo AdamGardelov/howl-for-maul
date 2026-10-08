@@ -1,375 +1,375 @@
 {
   "status": "completed",
-  "duration": 21.35,
+  "duration": 20.76,
   "summary": {
-    "total": 54,
-    "passed": 54,
+    "total": 55,
+    "passed": 55,
     "failed": 0,
     "skipped": 0,
     "inconclusive": 0
   },
   "results": [
     {
-      "FullName": "FrostMaze.Tests.PlayModeIntegration.EnemyPresentationTracksSimulationAndResets",
+      "FullName": "FrostMaze.Tests.PlayModeIntegration.SetupCanReturnAndNewMatchesClearInteraction",
       "Status": "Passed",
-      "Duration": 6.0884763,
+      "Duration": 5.7690903,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Paid reference mazes detour ground, preserve flight and reopen",
       "Status": "Passed",
-      "Duration": 3.049989,
+      "Duration": 2.9323804,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Mixed-flight chain feedback preserves source and target",
       "Status": "Passed",
-      "Duration": 0.0025655,
+      "Duration": 0.0025282,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Every armed roster design has valid targeting and air splash",
       "Status": "Passed",
-      "Duration": 0.0134555,
+      "Duration": 0.0133746,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Chain volleys retain bounded ordered shot history",
       "Status": "Passed",
-      "Duration": 0.0078784,
+      "Duration": 0.0076846,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Wave previews match spawns and show owned prerequisites",
       "Status": "Passed",
-      "Duration": 0.1007031,
+      "Duration": 0.1011903,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Robot champion progression and ownership",
       "Status": "Passed",
-      "Duration": 0.0009545,
+      "Duration": 0.0008954,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Reference map masks and spatial index",
       "Status": "Passed",
-      "Duration": 0.0297636,
+      "Duration": 0.0294092,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Reference map lane traversal",
       "Status": "Passed",
-      "Duration": 0.6553986,
+      "Duration": 0.6470901,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Faction selection enforces rosters",
       "Status": "Passed",
-      "Duration": 0.0019775,
+      "Duration": 0.0018796,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Slow expiry and chain target limits",
       "Status": "Passed",
-      "Duration": 0.0228057,
+      "Duration": 0.0225246,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Straight path",
       "Status": "Passed",
-      "Duration": 0.0008425,
+      "Duration": 0.0008291,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Horizontal wall detour",
       "Status": "Passed",
-      "Duration": 0.0019252,
+      "Duration": 0.0018726,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Vertical wall detour",
       "Status": "Passed",
-      "Duration": 0.0015797,
+      "Duration": 0.0015284,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Valid diagonal clearance",
       "Status": "Passed",
-      "Duration": 0.0001896,
+      "Duration": 0.0002047,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Invalid diagonal clearance",
       "Status": "Passed",
-      "Duration": 0.0001857,
+      "Duration": 0.0001849,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Diagonal aperture changes global connectivity",
       "Status": "Passed",
-      "Duration": 0.0008768,
+      "Duration": 0.0008769,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Tower combat counts negative health as a kill",
       "Status": "Passed",
-      "Duration": 0.0003484,
+      "Duration": 0.0003373,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Long zig-zag maze",
       "Status": "Passed",
-      "Duration": 0.0169122,
+      "Duration": 0.0171306,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Complete blockage",
       "Status": "Passed",
-      "Duration": 0.0010071,
+      "Duration": 0.0010047,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Reopen after selling, invalidate cached field",
       "Status": "Passed",
-      "Duration": 0.0024566,
+      "Duration": 0.0024002,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Reopen after destruction",
       "Status": "Passed",
-      "Duration": 0.001612,
+      "Duration": 0.0015308,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Enemy breaches and resumes",
       "Status": "Passed",
-      "Duration": 0.0119554,
+      "Duration": 0.011636,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Congestion never triggers siege",
       "Status": "Passed",
-      "Duration": 0.0302645,
+      "Duration": 0.0299548,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Flight follows checkpoints over wall",
       "Status": "Passed",
-      "Duration": 0.0006059,
+      "Duration": 0.0005428,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Placement footprint and occupancy",
       "Status": "Passed",
-      "Duration": 0.0002054,
+      "Duration": 0.0001771,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Reproducible fixed-step simulation",
       "Status": "Passed",
-      "Duration": 0.0257991,
+      "Duration": 0.0253107,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Shared fields reused",
       "Status": "Passed",
-      "Duration": 0.0011107,
+      "Duration": 0.0010286,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Enemies traverse zig-zag without collision",
       "Status": "Passed",
-      "Duration": 0.1057429,
+      "Duration": 0.104665,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Dynamic blockage and sale during wave",
       "Status": "Passed",
-      "Duration": 0.008137,
+      "Duration": 0.008198,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Ground checkpoints retain downstream routing",
       "Status": "Passed",
-      "Duration": 0.0028997,
+      "Duration": 0.0028338,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Two hundred enemies complete a shared route",
       "Status": "Passed",
-      "Duration": 3.55926,
+      "Duration": 3.5112898,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.No tunnelling at high speed",
       "Status": "Passed",
-      "Duration": 0.0042406,
+      "Duration": 0.0038652,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Economy transactions reject invalid purchases and refunds",
       "Status": "Passed",
-      "Duration": 0.000605,
+      "Duration": 0.0005523,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Builder travel cancellation and order replacement",
       "Status": "Passed",
-      "Duration": 0.0008763,
+      "Duration": 0.0005506,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Construction revalidates on arrival",
       "Status": "Passed",
-      "Duration": 0.000267,
+      "Duration": 0.0002476,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Kill and wave rewards paid once with victory",
       "Status": "Passed",
-      "Duration": 0.0002671,
+      "Duration": 0.0002372,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Defeat freezes match and prevents new actions",
       "Status": "Passed",
-      "Duration": 0.0020723,
+      "Duration": 0.0020707,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Shared map traverses all defense areas",
       "Status": "Passed",
-      "Duration": 0.0441945,
+      "Duration": 0.043139,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Complete ten-wave match using paid builder construction",
       "Status": "Passed",
-      "Duration": 12.0815388,
+      "Duration": 11.7544181,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.All four lanes active for every player count",
       "Status": "Passed",
-      "Duration": 0.1366761,
+      "Duration": 0.137299,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Independent lane spawn queues",
       "Status": "Passed",
-      "Duration": 0.0343665,
+      "Duration": 0.0348877,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Permanent terrain blocks construction and siege navigation",
       "Status": "Passed",
-      "Duration": 0.0007014,
+      "Duration": 0.0007499,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.All upper lanes reach shared bottom exit",
       "Status": "Passed",
-      "Duration": 0.0935819,
+      "Duration": 0.0928156,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Fixed team economy and selected starting positions",
       "Status": "Passed",
-      "Duration": 0.0008081,
+      "Duration": 0.0007742,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Independent builders and owned sale refunds",
       "Status": "Passed",
-      "Duration": 0.0004026,
+      "Duration": 0.0003727,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Difficulty scales enemies without disabling lanes",
       "Status": "Passed",
-      "Duration": 0.1019344,
+      "Duration": 0.1006815,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Build orders retain their tower design",
       "Status": "Passed",
-      "Duration": 0.0004575,
+      "Duration": 0.0004419,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Tower upgrades preserve blueprints and refund investments",
       "Status": "Passed",
-      "Duration": 0.0007634,
+      "Duration": 0.0007338,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Cannon splash damages ground crowds but not air",
       "Status": "Passed",
-      "Duration": 0.0110869,
+      "Duration": 0.0104662,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Barricades have no weapon",
       "Status": "Passed",
-      "Duration": 0.0104791,
+      "Duration": 0.0101792,
       "Message": null,
       "StackTrace": null
     },
     {
       "FullName": "FrostMaze.Tests.UnityTests.Queued construction retains designs and cancels cleanly",
       "Status": "Passed",
-      "Duration": 0.0008603,
+      "Duration": 0.0008359,
       "Message": null,
       "StackTrace": null
     }

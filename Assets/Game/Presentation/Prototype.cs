@@ -9,6 +9,20 @@ namespace FrostMaze
         static string requestedMap = "Rimewatch";
         public bool MoveMode;
         public bool SetupOpen;
+        bool matchStarted;
+        public bool CanReturnToMatch => matchStarted;
+        public void OpenSetup() { SetupOpen=true; }
+        public void ReturnToMatch() { if(CanReturnToMatch)SetupOpen=false; }
+        void ClearInteraction()
+        {
+            MoveMode=false;SellMode=false;SelectedId=0;SelectedTowerId=0;HasHover=false;
+            if(ghost!=null)ghost.SetActive(false);
+        }
+        public void CancelInteraction()
+        {
+            World.MoveBuilder(World.BuilderPosition);
+            ClearInteraction();
+        }
         public MapDefinition[] AvailableMaps;
         public void ChooseMap(MapDefinition map)
         {
@@ -20,7 +34,7 @@ namespace FrostMaze
         {
             ClearUnitViews();
             World=new World(JsonUtility.FromJson<Scenario>(JsonUtility.ToJson(Map.Settings)),SetupOptions);
-            SetupOpen=false; Paused=false; accumulator=0; SelectedId=0;SelectedTowerId=0;
+            SetupOpen=false; matchStarted=true; Paused=false; accumulator=0; ClearInteraction();
             Notice="All lanes active. Build your maze, then launch the first wave.";
         }
         public void ChooseStart(int player,int position)
@@ -221,7 +235,7 @@ namespace FrostMaze
             if (UnityEngine.Input.GetKeyDown(KeyCode.X))
                 { SellMode = true; MoveMode = false; }
             if (UnityEngine.Input.GetKeyDown(KeyCode.M)) { MoveMode = true; SellMode = false; }
-            if (UnityEngine.Input.GetKeyDown(KeyCode.Escape)) { World.MoveBuilder(World.BuilderPosition); MoveMode = false; SelectedTowerId=0; }
+            if (UnityEngine.Input.GetKeyDown(KeyCode.Escape)) CancelInteraction();
             var mouse = UnityEngine.Input.mousePosition;
             var uiPoint = new Vector2(mouse.x, Screen.height - mouse.y);
             HasHover = false;
@@ -298,7 +312,7 @@ namespace FrostMaze
             ClearUnitViews();
             World = World.Restart();
             accumulator = 0;
-            SelectedId = 0;SelectedTowerId=0;
+            ClearInteraction();SetupOpen=false;matchStarted=true;
             Paused = false;
             Notice = "Map reset. Build a new experiment.";
         }

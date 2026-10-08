@@ -7,7 +7,7 @@ namespace FrostMaze
         Prototype game;
         GUIStyle title, small, label, button, section, mapLabel;
         Texture2D panel;
-        Vector2 scroll;
+        Vector2 scroll; bool wasSetup;
         public void Initialize(Prototype prototype)
         {
             game = prototype;
@@ -36,6 +36,7 @@ namespace FrostMaze
             if (game == null || game.World == null)
                 return;
             Styles();
+            if(wasSetup!=game.SetupOpen){scroll=Vector2.zero;wasSetup=game.SetupOpen;}
             var w = game.World;
             var previousMatrix = GUI.matrix;
             float scale = game.UiScale;
@@ -48,7 +49,8 @@ namespace FrostMaze
             if(game.SetupOpen) {
                 DrawSetup();
                 GUILayout.EndScrollView();
-                if(GUILayout.Button("START MATCH",button))game.StartMatch();
+                if(game.CanReturnToMatch && GUILayout.Button("RETURN TO MATCH",button))game.ReturnToMatch();
+                if(GUILayout.Button(game.CanReturnToMatch?"START NEW MATCH":"START MATCH",button))game.StartMatch();
                 GUILayout.EndArea();GUI.matrix=previousMatrix;DrawMapLabels();return;
             }
             GUILayout.Space(18);
@@ -156,7 +158,7 @@ namespace FrostMaze
             GUILayout.Label("EXPERIMENTS", section);
             if (!w.Config.Economy && GUILayout.Button("Load zig-zag maze", button))
                 game.DemoMaze();
-            if(w.Config.Lanes.Length>0 && GUILayout.Button("New match / setup",button))game.SetupOpen=true;
+            if(w.Config.Lanes.Length>0 && GUILayout.Button("New match / setup",button))game.OpenSetup();
             if (GUILayout.Button("Reset map + waves", button))
                 game.ResetSimulation();
             if (GUILayout.Button(w.Config.Economy ? "Switch to Maze Lab" : "Play Howl for Maul", button))
@@ -188,6 +190,7 @@ namespace FrostMaze
             if(game.AvailableMaps.Length>1) {
                 GUILayout.Label("MAP",section);
                 foreach(var map in game.AvailableMaps)if(GUILayout.Button(map.Settings.Name,button)&&map!=game.Map)game.ChooseMap(map);
+                if(game.CanReturnToMatch)GUILayout.Label("Changing maps closes the current match. Other choices apply when you start a new match.",small);
             }
             GUILayout.Space(10);
             GUILayout.Label("PLAYERS",section);

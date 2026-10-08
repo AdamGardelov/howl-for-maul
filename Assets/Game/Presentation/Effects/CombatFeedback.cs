@@ -27,7 +27,7 @@ namespace FrostMaze
             if(game==null||game.World==null)return;
             if(observed!=game.World){observed=game.World;serial=0;effectTime=0;foreach(var f in flashes)Destroy(f.Object);flashes.Clear();}
             // Cosmetic clock follows pause and speed, but may finish fading after victory.
-            if(!game.Paused)effectTime+=Time.unscaledDeltaTime*game.Speed;
+            if(!game.Paused&&!game.SetupOpen)effectTime+=Time.unscaledDeltaTime*game.Speed;
             for(int i=flashes.Count-1;i>=0;i--)if(effectTime>=flashes[i].Until){Destroy(flashes[i].Object);flashes.RemoveAt(i);}
             int sounds=0;
             foreach(var shot in observed.Shots)if(shot.Serial>serial) {
