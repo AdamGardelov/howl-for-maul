@@ -25,3 +25,7 @@ No map, economy, faction roster, combat balance or pathfinding changes belong to
 ## Graphics quality follow-up
 
 See Performance/QUALITY-PASS.md for 2× MSAA, medium soft shadows, matched measurements and the packaged 1440×900 Linux mouse check. Start/build/select/upgrade are verified on a virtual display; native desktop and Windows runtime limits remain explicit.
+
+## Complete first roster pass
+
+All 76 tower designs now have faction-specific procedural models. Their paid progression, collider absence and silhouettes are verified. This is a foundation for further materials, animation and composition work, not a claim of finished League-quality visuals. See IRON-MODELS.md.

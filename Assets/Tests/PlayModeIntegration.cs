@@ -335,6 +335,41 @@ namespace FrostMaze.Tests
             yield return null;
             Assert.That(GameObject.Find("Tower "+horizonChampion.Id).GetComponent<TowerView>().VisibleLevel,Is.EqualTo(2));
             Assert.That(game.World.Gold,Is.EqualTo(245));
+            string[][] remainingPaths={
+                new[]{"Sentry weapon/Gyro blade","Control weapon/Anchor hook","Artillery weapon/Starcaller orb","Sentry weapon/Wave resonator","Interceptor weapon/Sky electrode","Sentry weapon/Granite shoulder","Champion weapon/Eclipse rim"},
+                new[]{"Sentry weapon/Strider backpack","Sentry weapon/Knight lance","Sentry weapon/Windkeeper vane","Sentry weapon/Bloom petal","Interceptor weapon/Whiteout missile","Control weapon/Hatchet blade","Champion weapon/Fossil skull"},
+                new[]{"Sentry weapon/Junk crusher","Control weapon/Freeze prong","Artillery weapon/Splash pressure tank","Sentry weapon/Spring winding","Interceptor weapon/Dusk sky dart","Sentry weapon/Turbo rotor","Champion weapon/Champion mask"},
+                new[]{"Sentry weapon/Grenade drum","Relay weapon/Kite sail","Artillery weapon/Jester cap","Control weapon/Aqua reservoir","Interceptor weapon/Keeper sky blade","Sentry weapon/Orbit satellite","Champion weapon/Verdant crown"}
+            };
+            for(int faction=4;faction<8;faction++) {
+                game.SetupOptions.Factions[0]=faction;game.StartMatch();game.Paused=true;
+                int spent=0;
+                game.World.SelectedDesign=faction*7+6;
+                Assert.That(game.World.OrderBuild(26,6,out _),Is.False,"Champion requires the complete faction roster");
+                for(int d=0;d<7;d++) {
+                    game.World.SelectedDesign=faction*7+d;bool built=false;
+                    for(int y=6;y<20&&!built;y++)for(int x=26+d;x<45&&!built;x++)if(game.World.CanBuild(x,y,out _)) {
+                        Assert.That(game.World.OrderBuild(x,y,out _),Is.True);
+                        for(int tick=0;tick<300;tick++)game.World.Step();
+                        Assert.That(game.World.Grid.At(x,y),Is.Not.Null);built=true;
+                    }
+                    Assert.That(built,Is.True);spent+=game.World.Config.Catalog[faction*7+d].Cost;
+                }
+                yield return null;yield return null;
+                Assert.That(game.World.Gold,Is.EqualTo(1200-spent));
+                for(int i=0;i<7;i++) {
+                    var tower=game.World.Grid.Towers[i];var view=GameObject.Find("Tower "+tower.Id).GetComponent<TowerView>();
+                    Assert.That(view.transform.Find(remainingPaths[faction-4][i]),Is.Not.Null,"Missing faction model");
+                    Assert.That(view.GetComponentsInChildren<Collider>().Length,Is.Zero);
+                }
+                var antiAir=game.World.Grid.Towers[4];
+                Assert.That(antiAir.Spec.TargetsAir&&!antiAir.Spec.TargetsGround,Is.True);
+                var finalTower=game.World.Grid.Towers[6];int price=game.World.UpgradeCost(finalTower);
+                Assert.That(game.World.Upgrade(finalTower.Id,out _),Is.True);
+                yield return null;
+                Assert.That(GameObject.Find("Tower "+finalTower.Id).GetComponent<TowerView>().VisibleLevel,Is.EqualTo(2));
+                Assert.That(game.World.Gold,Is.EqualTo(1200-spent-price));
+            }
             yield return new ExitPlayMode();
         }
         [UnityTest]
