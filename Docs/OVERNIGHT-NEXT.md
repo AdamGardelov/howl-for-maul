@@ -2,10 +2,10 @@
 
 ## Latest state
 
-- Readability/stonework follow-through: overlapping health bars are suppressed, selection stays clear, Alt reveals all bars, and perspective Ctrl-click inspection follows ground/flying models. Existing-tower hover no longer looks like a rejected placement. Corrected terrain texture thresholds restore paving joints, snow edges and wall courses. 64 pure cases and five focused Unity cases pass across the recorded runs. Read READABILITY-AND-STONEWORK.md. Package/visual evidence follows separately.
+- Readability/stonework follow-through: overlapping health bars are suppressed, selection stays clear, Alt reveals all bars, and perspective Ctrl-click inspection follows ground/flying models. Existing-tower hover no longer looks like a rejected placement. Corrected terrain texture thresholds restore paving joints, snow edges and wall courses. 64 pure cases and five focused Unity cases pass across the recorded runs. Read READABILITY-AND-STONEWORK.md. Current packages contain 110633b. Both builds, both-map Linux smoke and three isolated Linux input/visual sessions passed: paid purchases/removal, Alt reveal, both-map stonework and live-wave ground Ctrl-click inspection. All normal closes exit zero; Windows is build-tested only.
 - Paid investment diagnostic: first compact Rime solo win, 48 towers, 87 upgrades, 14 lives. New strategy wins 11/12 solo factions and both tested mixed pairs; all twelve have a compact win across saved strategies. No game stats changed. Read Balance/COMPACT-INVESTMENT.md.
 
-- Crowded-combat presentation: offscreen shots no longer consume the visible effect budget; crossing beams and edge splashes remain visible. Stable view synchronization reuses buffers and builder tints, with zero managed bytes in the warmed 100-call regression. Compilation, 64 pure cases and six focused Unity cases pass. Read CROWDED-COMBAT.md. Current packages contain 3522f2c; both builds, both-map Linux smoke and isolated Linux paid build/select/remove (1200 → 1195 → 1198, exit zero) passed. Windows is build-tested only.
+- Crowded-combat presentation: offscreen shots no longer consume the visible effect budget; crossing beams and edge splashes remain visible. Stable view synchronization reuses buffers and builder tints, with zero managed bytes in the warmed 100-call regression. Compilation, 64 pure cases and six focused Unity cases pass. Read CROWDED-COMBAT.md. The preceding packages contain 3522f2c; both builds, both-map Linux smoke and isolated Linux paid build/select/remove (1200 → 1195 → 1198, exit zero) passed. Windows is build-tested only.
 
 - New perspective inspection camera and themed stonework: smooth lower close view, ground-ray dragging, fit-to-projected-corners overview, fixed terrain and north-up minimap. New paving/cliff materials, inset trim, forge pillars, leaf veins and foundation details. 64 pure tests and three focused depth integration checks passed; final pillar refinement passed the mask-clearance case again. Read DEPTH-AND-TERRAIN.md. The preceding Linux/Windows packages contain 4763c56. Linux both-map smoke and actual close-zoom construction/removal, camera gestures and both-map visual inspection passed; Windows is build-tested only.
 
@@ -27,7 +27,7 @@
 
 ## Next priorities
 
-1. Preserve user Play sessions and unsaved scenes. Current packages are verified through 3522f2c.
+1. Preserve user Play sessions and unsaved scenes. Current packages are verified through 110633b.
 2. Continue faction/maze progression and meaningful paid-defense testing; use human sessions to judge beginner difficulty; compact limits are diagnostics only.
 3. Continue the original minimalistic art direction while keeping silhouettes readable and every scenic footprint on blocked mask cells. No final-art or performance promise is implied by the procedural pass.
 

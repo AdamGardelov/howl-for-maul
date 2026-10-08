@@ -1,14 +1,14 @@
 {
   "builds": [
     {
-      "buildId": "build_6a153e9202fa",
+      "buildId": "build_20d9446cdc3e",
       "result": "Succeeded",
       "platform": "StandaloneLinux64",
       "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Linux/HowlForMaul",
-      "totalSizeBytes": 92253640,
-      "buildTimeMs": 20733,
-      "buildStartedAt": "2026-10-08T17:55:25.0486960Z",
-      "buildEndedAt": "2026-10-08T17:55:45.7826890Z",
+      "totalSizeBytes": 92256200,
+      "buildTimeMs": 22122,
+      "buildStartedAt": "2026-10-08T18:29:51.4767950Z",
+      "buildEndedAt": "2026-10-08T18:30:13.5990880Z",
       "totalWarnings": 1,
       "totalErrors": 0,
       "warnings": [
@@ -18,14 +18,14 @@
       ]
     },
     {
-      "buildId": "build_1f2be4018caf",
+      "buildId": "build_cbfd25c07660",
       "result": "Succeeded",
       "platform": "StandaloneWindows64",
       "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Windows/HowlForMaul.exe",
-      "totalSizeBytes": 95897664,
-      "buildTimeMs": 26415,
-      "buildStartedAt": "2026-10-08T17:56:24.3418980Z",
-      "buildEndedAt": "2026-10-08T17:56:50.7577350Z",
+      "totalSizeBytes": 95900224,
+      "buildTimeMs": 29935,
+      "buildStartedAt": "2026-10-08T18:31:14.1531350Z",
+      "buildEndedAt": "2026-10-08T18:31:44.0886670Z",
       "totalWarnings": 19,
       "totalErrors": 0,
       "warnings": [
@@ -126,9 +126,9 @@
     "sourceCheckpoint": "465974e",
     "exitCode": 0
   },
-  "sourceCheckpoint": "3522f2c",
+  "sourceCheckpoint": "110633b",
   "linuxHeadlessSmoke": {
-    "sourceCheckpoint": "3522f2c",
+    "sourceCheckpoint": "110633b",
     "command": "Tools/smoke-linux.sh",
     "display": "DISPLAY and WAYLAND_DISPLAY unset for child process",
     "graphicsDevice": "Null Device",
@@ -137,11 +137,11 @@
       "Rimewatch",
       "Ironfold"
     ],
-    "note": "Fresh crowded-combat presentation package passed both data-only map checks and clean exit.",
+    "note": "Fresh readability/inspection/stonework package passed both data-only map checks and clean exit.",
     "consecutivePasses": 1
   },
   "linuxPackagedSmoke": {
-    "sourceCheckpoint": "3522f2c",
+    "sourceCheckpoint": "110633b",
     "backend": "headless -batchmode -nographics",
     "exitCode": 0,
     "markers": [
@@ -150,7 +150,7 @@
       "HOWL_SMOKE_PASS Ironfold lanes=4 factions=8 towers=56 waves=20",
       "HOWL_SMOKE_COMPLETE"
     ],
-    "note": "Fresh crowded-combat presentation package passed both data-only map checks and clean exit."
+    "note": "Fresh readability/inspection/stonework package passed both data-only map checks and clean exit."
   },
   "nativeWaylandVulkan": {
     "sourceCheckpoint": "465974e",
@@ -392,6 +392,45 @@
       "No combat wave in this packaged input sequence; combat cues verified in the six Unity integration cases",
       "No Windows runtime or native :0 desktop compatibility claim",
       "No frame-rate benchmark"
+    ]
+  },
+  "linuxReadabilityInput": {
+    "sourceCheckpoint": "110633b",
+    "display": ":98",
+    "renderer": "Mesa llvmpipe OpenGL",
+    "resolution": [
+      1440,
+      900
+    ],
+    "rimeGoldSequence": [
+      1200,
+      1195,
+      1198
+    ],
+    "ironGoldSequence": [
+      1200,
+      1180
+    ],
+    "exitCodes": [
+      0,
+      0,
+      0
+    ],
+    "checks": [
+      "Rimewatch: Start, Home, wheel, paid Snow Cairn purchase, selection with full outlined health bar and quoted 3-gold refund",
+      "Cancel selection hides the healthy bar; holding Alt reveals it; releasing restores quiet display",
+      "Remove mode and tower click refund exactly 3 gold and remove the model",
+      "Esc help including Alt fits; End overview and rendered north-up minimap visually inspected",
+      "Ironfold: actual map selection and two paid Fuse Cadets, paused E rotation, close and End overview inspection",
+      "Both maps show the corrected flagstone joints and masonry courses, with distinct snow/slate and plum/forge palettes",
+      "Separate Rimewatch wave: Enter starts wave 1, minimap pans to upper lane, P pauses; Ctrl-click visible ground model produces selected health outline",
+      "Details confirms Enemy selected, wave 1, all 3 lanes active, 21 enemies, 1200 gold, 30 lives and Orders: 0",
+      "All three graphical players close via WM_DELETE_WINDOW and exit zero"
+    ],
+    "limits": [
+      "No full human-input campaign or frame-rate benchmark",
+      "Flying model picking covered by Unity fixtures, not an actual-input flying wave here",
+      "No native :0 desktop or Windows runtime verification"
     ]
   }
 }
