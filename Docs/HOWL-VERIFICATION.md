@@ -61,3 +61,5 @@ Map-tag follow-up: lane numbers and the exit now use compact dark-backed labels 
 Rendering experiment: GPU instancing reduced draw calls but did not show a clear frame-time win against repeated SRP baselines. Both screenshot pairs were pixel-identical. Temporary changes restored; saved rendering configuration unchanged. See Performance/Instancing/README.md.
 
 Latest combined regression: 74/74 passed after combat audio and siege feedback, with every individual case confirmed from Unity XML. See SIEGE-FEEDBACK.md. Camera traversal subsequently passed its four focused checks and packaged input sequence.
+
+Placement-hint follow-up: compilation and native staged valid/invalid tooltip inspection passed. It reuses existing placement validation and changes no simulation rules. No new full-suite or packaged-input pass is claimed for this text-only addition. Packages remain 9368630. See PLACEMENT-HINTS.md.

@@ -5,7 +5,7 @@ namespace FrostMaze
     public sealed class PrototypeHud : MonoBehaviour
     {
         Prototype game; CombatFeedback feedback;
-        GUIStyle title, small, label, button, section, mapLabel, card, selectedCard, primary, badge, number, alertButton, alertNumber;
+        GUIStyle title, small, label, button, section, mapLabel, card, selectedCard, primary, badge, number, alertButton, alertNumber, placementHint;
         readonly System.Collections.Generic.List<Texture2D> textures=new System.Collections.Generic.List<Texture2D>();
         Texture2D panel;
         readonly MinimapTerrain minimapTerrain=new MinimapTerrain();
@@ -43,6 +43,7 @@ namespace FrostMaze
             alertButton.normal.textColor=new Color(1,.77f,.7f);
             alertNumber=new GUIStyle(number);alertNumber.normal.textColor=new Color(1,.43f,.4f);
             panel=Swatch(new Color(.035f,.065f,.079f,.98f));
+            placementHint=new GUIStyle(label){fontSize=12,padding=new RectOffset(9,9,6,6),normal={background=panel}};
         }
         void Rule()
         {
@@ -159,7 +160,7 @@ namespace FrostMaze
                 if(GUILayout.Button("Reset map + waves",button))game.ResetSimulation();
                 if(!w.Config.Economy&&GUILayout.Button("Play Howl for Maul",button))game.SwitchMap(true);
             }
-            GUILayout.EndScrollView();GUILayout.EndArea();GUI.matrix=previousMatrix;DrawHealth();DrawMapLabels();DrawMinimap();
+            GUILayout.EndScrollView();GUILayout.EndArea();GUI.matrix=previousMatrix;DrawHealth();DrawMapLabels();DrawMinimap();DrawPlacementHint();
         }
         void DrawTowerStats(TowerSpec spec)
         {
@@ -300,6 +301,23 @@ namespace FrostMaze
             rect.width *= Mathf.Clamp01(fraction);
             GUI.color = color;
             GUI.DrawTexture(rect, Texture2D.whiteTexture);
+        }
+        void DrawPlacementHint()
+        {
+            if(Event.current.type!=EventType.Repaint||!game.HasHover||game.SetupOpen||game.World.Finished||string.IsNullOrEmpty(game.HoverHint))return;
+            float scale=game.UiScale;
+            var p=game.View.WorldToScreenPoint(new Vector3(game.Hover.X+.5f,0,game.Hover.Y+.5f));
+            if(p.z<=0)return;
+            var content=new GUIContent(game.HoverHint);
+            float width=Mathf.Min(270,Screen.width/scale-game.Sidebar.xMax/scale-24);
+            if(width<100)return;
+            float height=placementHint.CalcHeight(content,width);
+            float x=Mathf.Clamp((p.x+16)/scale,game.Sidebar.xMax/scale+8,Screen.width/scale-width-8);
+            float y=Mathf.Clamp((Screen.height-p.y+20)/scale,8,Screen.height/scale-height-8);
+            var rect=new Rect(x,y,width,height);
+            if(new Rect(x*scale,y*scale,width*scale,height*scale).Overlaps(game.MinimapRect))rect.y=game.MinimapRect.yMin/scale-height-8;
+            var previous=GUI.matrix;GUI.matrix=Matrix4x4.Scale(new Vector3(scale,scale,1));
+            GUI.Label(rect,content,placementHint);GUI.matrix=previous;
         }
         void OnDestroy()
         {

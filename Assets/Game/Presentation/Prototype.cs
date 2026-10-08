@@ -75,6 +75,8 @@ namespace FrostMaze
         public bool SellMode;
         public V2 Hover;
         public bool HasHover;
+        public string HoverHint;
+        public bool HoverBuildValid;
         public float UiScale => Mathf.Clamp(Mathf.Min(Screen.width / 1200f, Screen.height / 800f), 0.65f, 1f);
         public Rect MinimapRect => new Rect(Screen.width-156*UiScale,Screen.height-184*UiScale,140*UiScale,156*UiScale);
         public Rect Sidebar => new Rect(18 * UiScale, 18 * UiScale, 324 * UiScale, Screen.height - 36 * UiScale);
@@ -293,7 +295,14 @@ namespace FrostMaze
             ghost.SetActive(true);
             ghost.transform.position = new Vector3(x + World.BuildSpec.Width * 0.5f, 0.04f, y + World.BuildSpec.Height * 0.5f);
             ghost.transform.localScale=new Vector3(World.BuildSpec.Width-.1f,.08f,World.BuildSpec.Height-.1f);
-            ghostMaterial.color = SellMode || (!MoveMode && !World.CanBuild(x, y, out _)) ? new Color(1, 0.3f, 0.3f) : new Color(0.24f, 0.9f, 0.74f);
+            HoverHint=null;HoverBuildValid=false;
+            if(!SellMode&&!MoveMode) {
+                HoverBuildValid=World.CanBuild(x,y,out string reason);
+                // Existing towers are selectable; do not label their occupied cell as a failed purchase.
+                var existing=World.Grid.At(x,y);
+                HoverHint=existing!=null?"Click to inspect "+existing.Name:HoverBuildValid?World.BuildName+(World.Config.Economy?" · "+World.BuildCost+" gold":" · free build"):reason;
+            }
+            ghostMaterial.color = SellMode || (!MoveMode && !HoverBuildValid) ? new Color(1, 0.3f, 0.3f) : new Color(0.24f, 0.9f, 0.74f);
             if (World.Config.BuilderEnabled && (UnityEngine.Input.GetMouseButtonDown(1) || MoveMode && UnityEngine.Input.GetMouseButtonDown(0)))
             {
                 World.MoveBuilder(new V2(point.x, point.z));

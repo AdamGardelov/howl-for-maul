@@ -2,6 +2,8 @@
 
 ## Latest state
 
+A subsequent source-only follow-up adds placement cost/blocked-reason hints, compiled and visually inspected at 1920×884. Read PLACEMENT-HINTS.md. Packages remain at camera checkpoint 9368630; include the hint on the next package refresh. Linux target restored and verified.
+
 - Source 9368630 adds the requested edge scrolling and Space + left-drag camera. Enter launches waves; Shift speeds up keyboard/edge panning. Four focused Unity checks and actual Linux mouse/keyboard input passed. Read CAMERA-CONTROLS.md.
 - Source 44b2290 adds actual enemy melee poses, tower impact outlines and destruction rubble. Paid wall-seal integration and native close/normal screenshots passed. Full combined Unity suite: 74/74, individually confirmed in XML. There are now 76 available cases after the camera additions; do not claim a full 76-case pass.
 - Linux and Windows packages include 9368630; both builds have zero errors. Windows runtime remains untested. Linux build and both data-only smoke checks passed; actual camera input on isolated :98 passed and normal close exited zero. Read Howl-Builds.json for finalized per-platform provenance.
