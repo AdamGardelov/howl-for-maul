@@ -1428,3 +1428,93 @@ MonoBehaviour:
       Damage: 12
       AttackInterval: 0.6
       Flying: 1
+    - Name: "II \xB7 Reinforced patrol"
+      Count: 24
+      SpawnInterval: 0.75
+      Health: 180
+      Speed: 1.9
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: "II \xB7 Skitter rush"
+      Count: 30
+      SpawnInterval: 0.45
+      Health: 155
+      Speed: 2.7
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: "II \xB7 Swarm column"
+      Count: 38
+      SpawnInterval: 0.3
+      Health: 150
+      Speed: 2.1
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: "II \xB7 Siege wardens"
+      Count: 16
+      SpawnInterval: 1.05
+      Health: 340
+      Speed: 1.55
+      Radius: 0.2
+      Damage: 30
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: "II \xB7 Sky lancers"
+      Count: 28
+      SpawnInterval: 0.65
+      Health: 230
+      Speed: 2.5
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 1
+    - Name: "III \xB7 Veteran vanguard"
+      Count: 30
+      SpawnInterval: 0.65
+      Health: 310
+      Speed: 2.1
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: "III \xB7 Iron procession"
+      Count: 18
+      SpawnInterval: 1
+      Health: 560
+      Speed: 1.6
+      Radius: 0.2
+      Damage: 36
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: "III \xB7 Last rush"
+      Count: 42
+      SpawnInterval: 0.35
+      Health: 285
+      Speed: 2.65
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: "III \xB7 Gatebreakers"
+      Count: 12
+      SpawnInterval: 1.4
+      Health: 1000
+      Speed: 1.4
+      Radius: 0.2
+      Damage: 50
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: "Finale \xB7 Storm host"
+      Count: 30
+      SpawnInterval: 0.65
+      Health: 480
+      Speed: 2.5
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 1

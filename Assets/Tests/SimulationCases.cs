@@ -87,6 +87,9 @@ namespace FrostMaze.Tests
             ,new Case("Cannon splash damages ground crowds but not air",TowerCases.GroundSplash)
             ,new Case("Barricades have no weapon",TowerCases.WallNoWeapon)
             ,new Case("Queued construction retains designs and cancels cleanly",TowerCases.QueuedConstruction)
+            ,new Case("Twenty-wave escalation preserves opening and forecasts",MapCases.ExtendedCampaign)
+            ,new Case("Robot faction strengths and paid reclamation",MapCases.RobotIdentity)
+            ,new Case("Captured dense Ironfold corner crowd clears without siege",MapCases.DenseIronfoldCorners)
         };
     }
 }

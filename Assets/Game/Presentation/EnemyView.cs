@@ -36,6 +36,12 @@ namespace FrostMaze
                     for (int leg = -1; leg <= 1; leg += 2)
                         Part("Crawler foot", PrimitiveType.Cube, body, new Vector3(side * .36f, -.17f, leg * .3f), new Vector3(.23f, .24f, .35f), normal);
             }
+            if(!flying&&(enemy.Spec.Damage>=30||enemy.Spec.Speed<=1.6f)) {
+                Part("Siege shield",PrimitiveType.Cube,body,new Vector3(0,.32f,.46f),new Vector3(.9f,.65f,.17f),shell);
+                Part("Siege beacon",PrimitiveType.Cylinder,body,new Vector3(0,.72f,0),new Vector3(.25f,.17f,.25f),normal);
+            } else if(!flying&&enemy.Spec.Speed>=2.6f) {
+                for(int side=-1;side<=1;side+=2)Part("Runner fin",PrimitiveType.Cube,body,new Vector3(side*.25f,.28f,-.35f),new Vector3(.12f,.4f,.65f),normal);
+            }
             slowHalo = Part("Frost status", PrimitiveType.Cylinder, transform, Vector3.zero, new Vector3(radius * 2.4f, .018f, radius * 2.4f), frost);
             slowHalo.SetActive(false);
         }

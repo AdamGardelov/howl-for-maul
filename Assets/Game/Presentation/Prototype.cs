@@ -35,6 +35,7 @@ namespace FrostMaze
             ClearUnitViews();
             World=new World(JsonUtility.FromJson<Scenario>(JsonUtility.ToJson(Map.Settings)),SetupOptions);
             SetupOpen=false; matchStarted=true; Paused=false; accumulator=0; ClearInteraction();
+            View.GetComponent<RtsCamera>().FocusBuilder(World.BuilderPosition);
             Notice="All lanes active. Build your maze, then launch the first wave.";
         }
         public void ChooseStart(int player,int position)
@@ -76,6 +77,15 @@ namespace FrostMaze
         readonly Dictionary<int, GameObject> towers = new Dictionary<int, GameObject>();
         readonly Dictionary<int, EnemyView> enemies = new Dictionary<int, EnemyView>();
         readonly List<Material> materials = new List<Material>();
+        readonly Dictionary<int,Material[]> towerPalettes=new Dictionary<int,Material[]>();
+        public Material[] TowerPalette(int faction)
+        {
+            if(towerPalettes.TryGetValue(faction,out var palette))return palette;
+            Color[] winter={new Color(.3f,.82f,1),new Color(.58f,.72f,.36f),new Color(1,.4f,.12f),new Color(.62f,.47f,1)};
+            Color color=World.Config.Theme=="iron"?Color.HSVToRGB((.54f+faction*.113f)%1,.68f,.95f):winter[faction%4];
+            palette=new[]{MakeMaterial(new Color(.16f,.21f,.25f)),MakeMaterial(color),MakeMaterial(Color.Lerp(color,Color.white,.4f),true)};
+            towerPalettes.Add(faction,palette);return palette;
+        }
         Material barricadeMaterial,cannonMaterial;
         Material[] factionMaterials;
         Material towerMaterial, enemyMaterial, airMaterial, blockedMaterial, ghostMaterial, enemyShellMaterial, slowMaterial;
@@ -221,7 +231,8 @@ namespace FrostMaze
         {
             int shortcut=0;for(int i=0;i<World.Config.Catalog.Length;i++)if(World.DesignAvailable(i)){if(UnityEngine.Input.GetKeyDown(KeyCode.Alpha1+shortcut)){World.SelectedDesign=i;SellMode=false;MoveMode=false;}shortcut++;}
             if(UnityEngine.Input.GetKeyDown(KeyCode.U)&&SelectedTowerId>0){World.Upgrade(SelectedTowerId,out string message);Notice=message;}
-            if(UnityEngine.Input.GetKeyDown(KeyCode.Home))View.GetComponent<RtsCamera>().Focus=new Vector3(World.BuilderPosition.X,0,World.BuilderPosition.Y);
+            if(UnityEngine.Input.GetKeyDown(KeyCode.Home))View.GetComponent<RtsCamera>().FocusBuilder(World.BuilderPosition);
+            if(UnityEngine.Input.GetKeyDown(KeyCode.End))View.GetComponent<RtsCamera>().Overview();
             if (UnityEngine.Input.GetKeyDown(KeyCode.Space))
                 Launch();
             if (UnityEngine.Input.GetKeyDown(KeyCode.P))
@@ -362,28 +373,16 @@ namespace FrostMaze
                 live.Add(t.Id);
                 if (!towers.TryGetValue(t.Id, out var obj))
                 {
-                    var material=World.Config.Factions.Length>0?factionMaterials[World.Config.Catalog[t.Design].VisualStyle]:t.Spec.Damage==0?barricadeMaterial:t.Spec.SplashRadius>0?cannonMaterial:towerMaterial;
-                    obj = Primitive("Tower " + t.Id, PrimitiveType.Cube, new Vector3(t.Center.X, 0.6f, t.Center.Y), new Vector3(t.Half.X * 2, 1.2f, t.Half.Y * 2), material);
-                    towers.Add(t.Id, obj);
-                    var crown = Primitive("Crown", t.Spec.SplashRadius>0?PrimitiveType.Sphere:PrimitiveType.Cylinder, new Vector3(t.Center.X, 1.3f, t.Center.Y), new Vector3(0.4f, 0.13f, 0.4f), material);
-                    if(t.Spec.Damage<=0)crown.SetActive(false);
-                    crown.transform.SetParent(obj.transform, true);
-                    if(World.Config.Factions.Length>0&&t.Spec.Damage>0) {
-                        var accent=factionMaterials[World.Config.Catalog[t.Design].VisualStyle];
-                        if(World.Config.Catalog[t.Design].VisualStyle==3) {
-                            var head=Primitive("Visored sentry",PrimitiveType.Sphere,new Vector3(t.Center.X,1.55f,t.Center.Y),new Vector3(.45f,.4f,.4f),accent);head.transform.SetParent(obj.transform,true);
-                            var arm=Primitive("Arm cannon",PrimitiveType.Cylinder,new Vector3(t.Center.X+.3f,1.05f,t.Center.Y+.22f),new Vector3(.24f,.38f,.24f),accent);arm.transform.rotation=Quaternion.Euler(90,0,0);arm.transform.SetParent(obj.transform,true);
-                        } else {
-                            var crest=Primitive("Faction crest",World.Config.Catalog[t.Design].VisualStyle==0?PrimitiveType.Cube:PrimitiveType.Capsule,new Vector3(t.Center.X,1.55f,t.Center.Y),new Vector3(.25f,.5f,.25f),accent);
-                            crest.transform.rotation=Quaternion.Euler(0,45,World.Config.Catalog[t.Design].VisualStyle==0?25:0);crest.transform.SetParent(obj.transform,true);
-                        }
-                    }
+                    obj=new GameObject("Tower "+t.Id);
+                    obj.transform.SetParent(worldRoot.transform,false);
+                    var design=World.Config.Catalog.Length>t.Design?World.Config.Catalog[t.Design]:null;
+                    int faction=0;
+                    for(int f=0;f<World.Config.Factions.Length;f++)if(System.Array.IndexOf(World.Config.Factions[f].Designs,t.Design)>=0)faction=f;
+                    obj.AddComponent<TowerView>().Initialize(this,t,design,faction);
+                    towers.Add(t.Id,obj);
                 }
-                float health = t.Health / t.Spec.Health;
-                // Lower only the presentation during clearance inspection; collision stays unchanged.
-                float height = ShowNavigation ? 0.12f : t.Spec.Damage==0?.45f:0.65f + 0.35f * health + .15f*t.Level;
-                obj.transform.position = new Vector3(t.Center.X, height * 0.5f, t.Center.Y);
-                obj.transform.localScale = new Vector3(t.Half.X * 2, height, t.Half.Y * 2);
+                obj.GetComponent<TowerView>().Sync(t,ShowNavigation);
+
             }
             foreach (var id in new List<int>(towers.Keys))
                 if (!live.Contains(id))

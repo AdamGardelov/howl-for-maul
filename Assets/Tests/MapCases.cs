@@ -14,6 +14,121 @@ namespace FrostMaze.Tests
 #endif
    string text=File.ReadAllText(root+(iron?"Ironfold":"Rimewatch")+".txt");return iron?ReferenceMaps.Ironfold(text):ReferenceMaps.Rimewatch(text);
   }
+  public static void ExtendedCampaign() {
+   foreach(bool iron in new[]{false,true}) {
+    var c=Load(iron);Check(c.Waves.Length==20,"campaign length");
+    var opening=Scenario.SharedDefense();
+    for(int i=0;i<20;i++) {
+     Check(c.Waves[i].Flying==((i+1)%5==0),"air warning cadence");
+     if(i<10)Check(c.Waves[i].Health==opening.Waves[i].Health&&c.Waves[i].Count==opening.Waves[i].Count,"opening changed");
+     var w=new World(c,new MatchOptions{Difficulty=Difficulty.Hard});var preview=w.PreviewWave(i);
+     Check(Math.Abs(preview.Health-c.Waves[i].Health*1.4f)<.001f,"late difficulty preview");
+    }
+    Check(c.Waves[11].Speed>c.Waves[10].Speed&&c.Waves[12].SpawnInterval<c.Waves[10].SpawnInterval,"rush/swarm variety");
+    Check(c.Waves[18].Damage>c.Waves[10].Damage&&c.Waves[18].Health>c.Waves[10].Health,"siege escalation");
+    Check(c.StartingGold==1200&&c.WaveReward==120,"economy changed");
+   }
+  }
+  public static void RobotIdentity() {
+   var c=Load(true);
+   Check(c.Catalog[8].Spec.Interval>c.Catalog[1].Spec.Interval,"pulse fire rate");
+   Check(c.Catalog[9].Spec.SplashRadius>c.Catalog[2].Spec.SplashRadius,"blast area");
+   Check(c.Catalog[15].Spec.ChainTargets==3,"prism chain");
+   Check(c.Catalog[25].Spec.Range>c.Catalog[4].Spec.Range,"horizon air reach");
+   Check(c.Catalog[29].Spec.SlowFraction==.4f&&c.Catalog[29].Spec.SlowDuration==3,"gravity control");
+   var w=new World(c,new MatchOptions{Factions=new[]{5,0,0,0}});w.SelectedDesign=36;
+   int bx=-1,by=-1;for(int y=0;y<c.Height&&bx<0;y++)for(int x=0;x<c.Width&&bx<0;x++)if(w.CanBuild(x,y,out _)){bx=x;by=y;}
+   int gold=w.Gold;Check(bx>=0&&w.OrderBuild(bx,by,out _),"scrap order");for(int i=0;i<500;i++)w.Step();
+   Check(w.Gold==gold-30&&w.Sell(bx,by)&&w.Gold==gold-3,"scrap paid refund");
+   foreach(var d in c.Catalog)Check(d.Spec.TargetsAir||d.Spec.TargetsGround,"unarmed robot");
+  }
+  public static void DenseIronfoldCorners() {
+   // Captured live positions from the wave-13 Prism/Horizon paid campaign stall.
+   // Recreate geometry and surviving units, with weapons disabled to isolate movement.
+   var c=Load(true);c.Economy=false;var w=new World(c);w.TowersFire=false;
+   w.Grid.Build(31,5,c.Catalog[14].Spec.Copy());
+   w.Grid.Build(33,5,c.Catalog[15].Spec.Copy());
+   w.Grid.Build(33,3,c.Catalog[16].Spec.Copy());
+   w.Grid.Build(33,7,c.Catalog[17].Spec.Copy());
+   w.Grid.Build(29,7,c.Catalog[18].Spec.Copy());
+   w.Grid.Build(31,3,c.Catalog[19].Spec.Copy());
+   w.Grid.Build(35,5,c.Catalog[21].Spec.Copy());
+   w.Grid.Build(35,7,c.Catalog[22].Spec.Copy());
+   w.Grid.Build(29,9,c.Catalog[23].Spec.Copy());
+   w.Grid.Build(35,9,c.Catalog[24].Spec.Copy());
+   w.Grid.Build(27,7,c.Catalog[25].Spec.Copy());
+   w.Grid.Build(27,5,c.Catalog[26].Spec.Copy());
+   w.Grid.Build(33,1,c.Catalog[20].Spec.Copy());
+   w.Grid.Build(27,9,c.Catalog[27].Spec.Copy());
+   w.Enemies.Add(new Enemy{Id=923,Position=new V2(37.801567f,15.970833f),Health=97.5f,Spec=c.Waves[12],Lane=2,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=927,Position=new V2(37.799763f,16.373245f),Health=97.5f,Spec=c.Waves[12],Lane=2,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=931,Position=new V2(37.500004f,15.704073f),Health=97.5f,Spec=c.Waves[12],Lane=2,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=934,Position=new V2(27.178057f,15.886239f),Health=97.5f,Spec=c.Waves[12],Lane=1,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=935,Position=new V2(37.420155f,16.097921f),Health=97.5f,Spec=c.Waves[12],Lane=2,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=938,Position=new V2(27.449364f,16.179422f),Health=97.5f,Spec=c.Waves[12],Lane=1,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=939,Position=new V2(37.238144f,16.454094f),Health=97.5f,Spec=c.Waves[12],Lane=2,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=942,Position=new V2(27.531744f,15.701534f),Health=97.5f,Spec=c.Waves[12],Lane=1,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=943,Position=new V2(36.988308f,16.767675f),Health=97.5f,Spec=c.Waves[12],Lane=2,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=946,Position=new V2(27.724037f,16.469297f),Health=97.5f,Spec=c.Waves[12],Lane=1,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=947,Position=new V2(36.700714f,17.048931f),Health=97.5f,Spec=c.Waves[12],Lane=2,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=950,Position=new V2(27.929472f,16.812792f),Health=97.5f,Spec=c.Waves[12],Lane=1,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=951,Position=new V2(36.483795f,17.383898f),Health=97.5f,Spec=c.Waves[12],Lane=2,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=954,Position=new V2(28.219242f,17.091143f),Health=97.5f,Spec=c.Waves[12],Lane=1,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=955,Position=new V2(36.24832f,17.70655f),Health=97.5f,Spec=c.Waves[12],Lane=2,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=958,Position=new V2(28.49379f,17.381811f),Health=97.5f,Spec=c.Waves[12],Lane=1,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=959,Position=new V2(35.953358f,17.97664f),Health=97.5f,Spec=c.Waves[12],Lane=2,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=962,Position=new V2(28.785292f,17.654657f),Health=97.5f,Spec=c.Waves[12],Lane=1,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=963,Position=new V2(35.73161f,18.31161f),Health=97.5f,Spec=c.Waves[12],Lane=2,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=966,Position=new V2(29.00551f,17.988424f),Health=97.5f,Spec=c.Waves[12],Lane=1,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=967,Position=new V2(35.496178f,18.63401f),Health=97.5f,Spec=c.Waves[12],Lane=2,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=970,Position=new V2(29.245441f,18.30807f),Health=97.5f,Spec=c.Waves[12],Lane=1,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=971,Position=new V2(35.207737f,18.912344f),Health=97.5f,Spec=c.Waves[12],Lane=2,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=974,Position=new V2(29.533485f,18.58828f),Health=97.5f,Spec=c.Waves[12],Lane=1,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=975,Position=new V2(34.978138f,19.23926f),Health=97.5f,Spec=c.Waves[12],Lane=2,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=978,Position=new V2(29.756245f,18.923216f),Health=97.5f,Spec=c.Waves[12],Lane=1,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=979,Position=new V2(34.760956f,19.576443f),Health=97.5f,Spec=c.Waves[12],Lane=2,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=982,Position=new V2(29.991634f,19.246323f),Health=97.5f,Spec=c.Waves[12],Lane=1,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=983,Position=new V2(34.596424f,19.93996f),Health=97.5f,Spec=c.Waves[12],Lane=2,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=986,Position=new V2(30.264519f,19.5385f),Health=97.5f,Spec=c.Waves[12],Lane=1,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=987,Position=new V2(34.413895f,20.294973f),Health=97.5f,Spec=c.Waves[12],Lane=2,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=990,Position=new V2(30.424482f,19.905457f),Health=97.5f,Spec=c.Waves[12],Lane=1,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=991,Position=new V2(34.30419f,20.679222f),Health=97.5f,Spec=c.Waves[12],Lane=2,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=994,Position=new V2(30.53649f,20.288736f),Health=97.5f,Spec=c.Waves[12],Lane=1,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=995,Position=new V2(34.237106f,21.07262f),Health=97.5f,Spec=c.Waves[12],Lane=2,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=998,Position=new V2(30.672506f,20.66388f),Health=97.5f,Spec=c.Waves[12],Lane=1,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=999,Position=new V2(34.045723f,21.424053f),Health=97.5f,Spec=c.Waves[12],Lane=2,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=1002,Position=new V2(30.818369f,21.03633f),Health=97.5f,Spec=c.Waves[12],Lane=1,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=1003,Position=new V2(33.93092f,21.806938f),Health=97.5f,Spec=c.Waves[12],Lane=2,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=1006,Position=new V2(30.933199f,21.418486f),Health=97.5f,Spec=c.Waves[12],Lane=1,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=1007,Position=new V2(33.864326f,22.200838f),Health=97.5f,Spec=c.Waves[12],Lane=2,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=1010,Position=new V2(31.041851f,21.80292f),Health=97.5f,Spec=c.Waves[12],Lane=1,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=1011,Position=new V2(33.67389f,22.552397f),Health=97.5f,Spec=c.Waves[12],Lane=2,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=1014,Position=new V2(31.209562f,22.165289f),Health=97.5f,Spec=c.Waves[12],Lane=1,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=1015,Position=new V2(33.558006f,22.934484f),Health=97.5f,Spec=c.Waves[12],Lane=2,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=1018,Position=new V2(31.323503f,22.548117f),Health=97.5f,Spec=c.Waves[12],Lane=1,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=1019,Position=new V2(33.45167f,23.319107f),Health=97.5f,Spec=c.Waves[12],Lane=2,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=1022,Position=new V2(31.38664f,22.94219f),Health=97.5f,Spec=c.Waves[12],Lane=1,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=1023,Position=new V2(33.282288f,23.680544f),Health=97.5f,Spec=c.Waves[12],Lane=2,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=1026,Position=new V2(31.577343f,23.293692f),Health=97.5f,Spec=c.Waves[12],Lane=1,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=1027,Position=new V2(33.168724f,24.063345f),Health=97.5f,Spec=c.Waves[12],Lane=2,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=1030,Position=new V2(31.693464f,23.675875f),Health=97.5f,Spec=c.Waves[12],Lane=1,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=1031,Position=new V2(33.089867f,24.455084f),Health=97.5f,Spec=c.Waves[12],Lane=2,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=1034,Position=new V2(31.800274f,24.060385f),Health=97.5f,Spec=c.Waves[12],Lane=1,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=1035,Position=new V2(32.89557f,24.80367f),Health=97.5f,Spec=c.Waves[12],Lane=2,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=1038,Position=new V2(31.972261f,24.421062f),Health=97.5f,Spec=c.Waves[12],Lane=1,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=1039,Position=new V2(32.695652f,25.151785f),Health=97.5f,Spec=c.Waves[12],Lane=2,Checkpoint=1});
+   w.Enemies.Add(new Enemy{Id=1042,Position=new V2(32.04574f,24.813583f),Health=97.5f,Spec=c.Waves[12],Lane=1,Checkpoint=2});
+   w.Enemies.Add(new Enemy{Id=1043,Position=new V2(33.05912f,25.31658f),Health=97.5f,Spec=c.Waves[12],Lane=2,Checkpoint=1});
+   w.Enemies.Add(new Enemy{Id=1046,Position=new V2(32.194588f,25.183794f),Health=97.5f,Spec=c.Waves[12],Lane=1,Checkpoint=1});
+   w.Enemies.Add(new Enemy{Id=1047,Position=new V2(32.62454f,25.544432f),Health=97.5f,Spec=c.Waves[12],Lane=2,Checkpoint=1});
+   for(int tick=0;tick<3600&&w.Enemies.Count>0;tick++) {
+    w.Step();foreach(var e in w.Enemies) {
+     Check(!e.Blocked,"crowding triggered siege");Check(w.Grid.Clear(e.Position,e.Position,e.Spec.Radius),"crowd crossed terrain/tower");
+     foreach(var other in w.Enemies)if(other.Id>e.Id)Check(V2.Distance(e.Position,other.Position)>=e.Spec.Radius+other.Spec.Radius-.002f,"crowd overlap");
+    }
+   }
+   Check(w.Enemies.Count==0&&w.Leaked==61,"dense corner crowd stalled: "+w.Enemies.Count+(w.Enemies.Count>0?" first "+w.Enemies[0].Position:""));
+  }
   // Three alternating arms in the supplied upper-left corridor, leaving one-unit gaps.
   // This is a test strategy, never generated terrain or a restriction on player building.
   public static int[,] MazeCells(bool iron) {

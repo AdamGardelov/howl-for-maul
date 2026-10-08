@@ -70,7 +70,7 @@ namespace FrostMaze.Editor
                 AssetDatabase.CreateAsset(new Material(shader), path);
             }
         }
-        [MenuItem("Howl for Maul/Open maze lab")]
+        [MenuItem("Howl for Maul/Open game")]
         public static void OpenScene()
         {
             UnityEditor.SceneManagement.EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");

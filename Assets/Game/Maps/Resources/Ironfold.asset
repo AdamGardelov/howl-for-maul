@@ -15,36 +15,43 @@ MonoBehaviour:
   Settings:
     Factions:
     - Name: Pulse Foundry
-      Description: Fast arm-cannon sentries and a slowing specialist. Build all six
-        regular designs to unlock the champion.
+      Description: Rapid fire and 30% frost control. Build long firing corridors;
+        individual hits are light. Build all six regular designs to unlock the champion.
       Designs: 00000000010000000200000003000000040000000500000006000000
     - Name: Blast Circuit
-      Description: Explosive attacks with steady firing speed. Build all six regular
-        designs to unlock the champion.
+      Description: Wide ground blasts and an air-splash interceptor. Cluster enemies;
+        slow fire struggles against scattered targets. Build all six regular designs
+        to unlock the champion.
       Designs: 0700000008000000090000000a0000000b0000000c0000000d000000
     - Name: Prism Division
-      Description: Balanced precision weapons and chained energy. Build all six regular
-        designs to unlock the champion.
+      Description: Three-link chain weapons punish compact groups. Pair them with
+        precision anti-air for isolated flyers. Build all six regular designs to
+        unlock the champion.
       Designs: 0e0000000f0000001000000011000000120000001300000014000000
     - Name: Horizon Guild
-      Description: Long-range specialists cover wide approaches. Build all six regular
-        designs to unlock the champion.
+      Description: The longest firing lanes and sky coverage. Exploit bends; limited
+        crowd control rewards careful placement. Build all six regular designs to
+        unlock the champion.
       Designs: 15000000160000001700000018000000190000001a0000001b000000
     - Name: Gravity Works
-      Description: Costly specialists mix control and area attacks. Build all six
-        regular designs to unlock the champion.
+      Description: 40% gravity control and broad impacts. Expensive towers need time
+        on target; protect their maze. Build all six regular designs to unlock the
+        champion.
       Designs: 1c0000001d0000001e0000001f000000200000002100000022000000
     - Name: Scrap Frontier
-      Description: The cheapest armed maze pieces and adaptable support. Build all
-        six regular designs to unlock the champion.
+      Description: Seven-gold armed walls and 90% base refunds. Rebuild flexible
+        mazes; modest damage needs investment. Build all six regular designs to unlock
+        the champion.
       Designs: 23000000240000002500000026000000270000002800000029000000
     - Name: Overdrive Order
-      Description: Heavy damage trades away range and firing speed. Build all six
-        regular designs to unlock the champion.
+      Description: Heavy short-range hits and a freezing opener. Fold the route close
+        to weapons; fast enemies punish open layouts. Build all six regular designs
+        to unlock the champion.
       Designs: 2a0000002b0000002c0000002d0000002e0000002f00000030000000
     - Name: Tidal Array
-      Description: A versatile collection of splash, control and precision. Build
-        all six regular designs to unlock the champion.
+      Description: Water control, splash and chains. Layer complementary specialists
+        instead of relying on one weapon. Build all six regular designs to unlock
+        the champion.
       Designs: 31000000320000003300000034000000350000003600000037000000
     SelectableMap: 1
     Theme: iron
@@ -3480,7 +3487,7 @@ MonoBehaviour:
         Health: 100
         Damage: 41.600002
         Interval: 0.55
-        Range: 4
+        Range: 5
         SplashRadius: 0
         SlowFraction: 0
         SlowDuration: 0
@@ -3488,7 +3495,7 @@ MonoBehaviour:
         TargetsGround: 0
         TargetsAir: 1
     - Name: Rime Runner
-      Description: "Ground + air \xB7 25% slow"
+      Description: "Ground + air \xB7 30% slow"
       Cost: 150
       Refund: 112
       VisualStyle: 3
@@ -3502,7 +3509,7 @@ MonoBehaviour:
         Interval: 0.55
         Range: 4
         SplashRadius: 0
-        SlowFraction: 0.25
+        SlowFraction: 0.3
         SlowDuration: 2
         ChainTargets: 0
         TargetsGround: 1
@@ -3581,7 +3588,7 @@ MonoBehaviour:
         Damage: 28.6
         Interval: 1
         Range: 4
-        SplashRadius: 1.2
+        SplashRadius: 1.6
         SlowFraction: 0
         SlowDuration: 0
         ChainTargets: 0
@@ -3620,8 +3627,8 @@ MonoBehaviour:
         Health: 100
         Damage: 57.2
         Interval: 1
-        Range: 4
-        SplashRadius: 1.2
+        Range: 5
+        SplashRadius: 1.6
         SlowFraction: 0
         SlowDuration: 0
         ChainTargets: 0
@@ -3688,7 +3695,7 @@ MonoBehaviour:
         TargetsGround: 1
         TargetsAir: 1
     - Name: Spark Herald
-      Description: "Ground + air \xB7 chains to two enemies"
+      Description: "Ground + air \xB7 chains to three enemies"
       Cost: 30
       Refund: 22
       VisualStyle: 3
@@ -3704,7 +3711,7 @@ MonoBehaviour:
         SplashRadius: 0
         SlowFraction: 0
         SlowDuration: 0
-        ChainTargets: 2
+        ChainTargets: 3
         TargetsGround: 1
         TargetsAir: 1
     - Name: Lodestone
@@ -3760,7 +3767,7 @@ MonoBehaviour:
         Health: 100
         Damage: 52
         Interval: 0.8
-        Range: 4
+        Range: 5
         SplashRadius: 0
         SlowFraction: 0
         SlowDuration: 0
@@ -3900,7 +3907,7 @@ MonoBehaviour:
         Health: 100
         Damage: 52
         Interval: 0.8
-        Range: 5.5
+        Range: 7
         SplashRadius: 0
         SlowFraction: 0
         SlowDuration: 0
@@ -3949,8 +3956,8 @@ MonoBehaviour:
         TargetsAir: 1
     - Name: Gyro Cadet
       Description: Ground + air
-      Cost: 14
-      Refund: 10
+      Cost: 12
+      Refund: 9
       VisualStyle: 3
       Requires: 
       Spec:
@@ -3968,9 +3975,9 @@ MonoBehaviour:
         TargetsGround: 1
         TargetsAir: 1
     - Name: Gravity Anchor
-      Description: "Ground + air \xB7 25% slow"
-      Cost: 42
-      Refund: 31
+      Description: "Ground + air \xB7 40% slow"
+      Cost: 36
+      Refund: 27
       VisualStyle: 3
       Requires: 
       Spec:
@@ -3982,15 +3989,15 @@ MonoBehaviour:
         Interval: 1
         Range: 4
         SplashRadius: 0
-        SlowFraction: 0.25
-        SlowDuration: 2
+        SlowFraction: 0.4
+        SlowDuration: 3
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
     - Name: Starcaller
       Description: "Ground only \xB7 splash"
-      Cost: 77
-      Refund: 57
+      Cost: 66
+      Refund: 49
       VisualStyle: 3
       Requires: 
       Spec:
@@ -4001,7 +4008,7 @@ MonoBehaviour:
         Damage: 31.2
         Interval: 1
         Range: 4
-        SplashRadius: 1.2
+        SplashRadius: 1.4
         SlowFraction: 0
         SlowDuration: 0
         ChainTargets: 0
@@ -4009,8 +4016,8 @@ MonoBehaviour:
         TargetsAir: 0
     - Name: Wavekeeper
       Description: Ground + air
-      Cost: 112
-      Refund: 84
+      Cost: 96
+      Refund: 72
       VisualStyle: 3
       Requires: 
       Spec:
@@ -4029,8 +4036,8 @@ MonoBehaviour:
         TargetsAir: 1
     - Name: Chargeguard
       Description: "Air only \xB7 interceptor"
-      Cost: 154
-      Refund: 115
+      Cost: 132
+      Refund: 99
       VisualStyle: 3
       Requires: 
       Spec:
@@ -4040,7 +4047,7 @@ MonoBehaviour:
         Health: 100
         Damage: 62.4
         Interval: 1
-        Range: 4
+        Range: 5
         SplashRadius: 0
         SlowFraction: 0
         SlowDuration: 0
@@ -4049,8 +4056,8 @@ MonoBehaviour:
         TargetsAir: 1
     - Name: Granite Sentinel
       Description: Ground + air
-      Cost: 210
-      Refund: 157
+      Cost: 180
+      Refund: 135
       VisualStyle: 3
       Requires: 
       Spec:
@@ -4069,8 +4076,8 @@ MonoBehaviour:
         TargetsAir: 1
     - Name: Eclipse Champion
       Description: "Ground + air \xB7 requires all six regular designs standing"
-      Cost: 364
-      Refund: 273
+      Cost: 312
+      Refund: 234
       VisualStyle: 3
       Requires: 1c0000001d0000001e0000001f0000002000000021000000
       Spec:
@@ -4090,7 +4097,7 @@ MonoBehaviour:
     - Name: Strider Cadet
       Description: Ground + air
       Cost: 7
-      Refund: 5
+      Refund: 6
       VisualStyle: 3
       Requires: 
       Spec:
@@ -4110,7 +4117,7 @@ MonoBehaviour:
     - Name: Lance Knight
       Description: Ground + air
       Cost: 30
-      Refund: 22
+      Refund: 27
       VisualStyle: 3
       Requires: 
       Spec:
@@ -4130,7 +4137,7 @@ MonoBehaviour:
     - Name: Windkeeper
       Description: Ground + air
       Cost: 55
-      Refund: 41
+      Refund: 49
       VisualStyle: 3
       Requires: 
       Spec:
@@ -4150,7 +4157,7 @@ MonoBehaviour:
     - Name: Bloomguard
       Description: Ground + air
       Cost: 80
-      Refund: 60
+      Refund: 72
       VisualStyle: 3
       Requires: 
       Spec:
@@ -4170,7 +4177,7 @@ MonoBehaviour:
     - Name: Whiteout
       Description: "Air only \xB7 interceptor"
       Cost: 110
-      Refund: 82
+      Refund: 99
       VisualStyle: 3
       Requires: 
       Spec:
@@ -4180,7 +4187,7 @@ MonoBehaviour:
         Health: 100
         Damage: 52
         Interval: 0.8
-        Range: 4
+        Range: 5
         SplashRadius: 0
         SlowFraction: 0
         SlowDuration: 0
@@ -4190,7 +4197,7 @@ MonoBehaviour:
     - Name: Hatchet Herald
       Description: "Ground + air \xB7 25% slow"
       Cost: 150
-      Refund: 112
+      Refund: 135
       VisualStyle: 3
       Requires: 
       Spec:
@@ -4210,7 +4217,7 @@ MonoBehaviour:
     - Name: Fossil Champion
       Description: "Ground + air \xB7 requires all six regular designs standing"
       Cost: 260
-      Refund: 195
+      Refund: 234
       VisualStyle: 3
       Requires: 230000002400000025000000260000002700000028000000
       Spec:
@@ -4320,7 +4327,7 @@ MonoBehaviour:
         Health: 100
         Damage: 85.799995
         Interval: 1.2
-        Range: 3.5
+        Range: 4.5
         SplashRadius: 0
         SlowFraction: 0
         SlowDuration: 0
@@ -4460,7 +4467,7 @@ MonoBehaviour:
         Health: 100
         Damage: 52
         Interval: 0.8
-        Range: 4
+        Range: 5
         SplashRadius: 0
         SlowFraction: 0
         SlowDuration: 0
@@ -4608,6 +4615,96 @@ MonoBehaviour:
       SpawnInterval: 0.8
       Health: 143
       Speed: 2.2
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 1
+    - Name: "II \xB7 Reinforced patrol"
+      Count: 24
+      SpawnInterval: 0.75
+      Health: 116.99999
+      Speed: 1.9
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: "II \xB7 Skitter rush"
+      Count: 30
+      SpawnInterval: 0.45
+      Health: 100.75
+      Speed: 2.7
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: "II \xB7 Swarm column"
+      Count: 38
+      SpawnInterval: 0.3
+      Health: 97.5
+      Speed: 2.1
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: "II \xB7 Siege wardens"
+      Count: 16
+      SpawnInterval: 1.05
+      Health: 220.99998
+      Speed: 1.55
+      Radius: 0.2
+      Damage: 30
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: "II \xB7 Sky lancers"
+      Count: 28
+      SpawnInterval: 0.65
+      Health: 149.5
+      Speed: 2.5
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 1
+    - Name: "III \xB7 Veteran vanguard"
+      Count: 30
+      SpawnInterval: 0.65
+      Health: 201.5
+      Speed: 2.1
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: "III \xB7 Iron procession"
+      Count: 18
+      SpawnInterval: 1
+      Health: 364
+      Speed: 1.6
+      Radius: 0.2
+      Damage: 36
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: "III \xB7 Last rush"
+      Count: 42
+      SpawnInterval: 0.35
+      Health: 185.25
+      Speed: 2.65
+      Radius: 0.2
+      Damage: 12
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: "III \xB7 Gatebreakers"
+      Count: 12
+      SpawnInterval: 1.4
+      Health: 650
+      Speed: 1.4
+      Radius: 0.2
+      Damage: 50
+      AttackInterval: 0.6
+      Flying: 0
+    - Name: "Finale \xB7 Storm host"
+      Count: 30
+      SpawnInterval: 0.65
+      Health: 312
+      Speed: 2.5
       Radius: 0.2
       Damage: 12
       AttackInterval: 0.6

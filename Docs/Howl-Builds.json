@@ -1,81 +1,102 @@
-[
-  {
-    "result": "Succeeded",
-    "platform": "StandaloneLinux64",
-    "totalSizeBytes": 92041128,
-    "buildTimeMs": 10038,
-    "totalErrors": 0,
-    "totalWarnings": 1,
-    "warnings": [
-      {
-        "message": "Pipeline: No RuntimePipelineConfig asset found (Project Settings > Pipeline > Runtime). Pipeline will be disabled in Player builds."
-      }
-    ]
+{
+  "builds": [
+    {
+      "result": "Succeeded",
+      "platform": "StandaloneLinux64",
+      "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Linux/HowlForMaul",
+      "totalSizeBytes": 92050712,
+      "buildTimeMs": 8779,
+      "buildStartedAt": "2026-10-08T04:51:24.5477330Z",
+      "buildEndedAt": "2026-10-08T04:51:33.3268910Z",
+      "totalErrors": 0,
+      "totalWarnings": 1,
+      "warnings": [
+        {
+          "message": "Pipeline: No RuntimePipelineConfig asset found (Project Settings > Pipeline > Runtime). Pipeline will be disabled in Player builds."
+        }
+      ]
+    },
+    {
+      "result": "Succeeded",
+      "platform": "StandaloneWindows64",
+      "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Windows/HowlForMaul.exe",
+      "totalSizeBytes": 95793264,
+      "buildTimeMs": 13973,
+      "buildStartedAt": "2026-10-08T04:52:17.5325780Z",
+      "buildEndedAt": "2026-10-08T04:52:31.5056990Z",
+      "totalErrors": 0,
+      "totalWarnings": 19,
+      "warnings": [
+        {
+          "message": "Pipeline: No RuntimePipelineConfig asset found (Project Settings > Pipeline > Runtime). Pipeline will be disabled in Player builds."
+        },
+        {
+          "message": "Shader warning in 'TraceRays': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+        },
+        {
+          "message": "Shader warning in 'RisEstimation': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+        },
+        {
+          "message": "Shader warning in 'TraceRenderingLayerMask': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+        },
+        {
+          "message": "Shader warning in 'UniformEstimation': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+        },
+        {
+          "message": "Shader warning in 'TraceTransparentRays': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+        },
+        {
+          "message": "Shader warning in 'DynamicGISkyOcclusion': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+        },
+        {
+          "message": "Shader warning in 'TraceRaysAndFetchAttributes': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+        },
+        {
+          "message": "Shader warning in 'RestirCandidateTemporal': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+        },
+        {
+          "message": "Shader warning in 'TraceVirtualOffset': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+        },
+        {
+          "message": "Shader warning in 'RestirCandidateTemporal': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+        },
+        {
+          "message": "Shader warning in 'TraceTransparentRays': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+        },
+        {
+          "message": "Shader warning in 'TraceRenderingLayerMask': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+        },
+        {
+          "message": "Shader warning in 'TraceRaysAndFetchAttributes': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+        },
+        {
+          "message": "Shader warning in 'DynamicGISkyOcclusion': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+        },
+        {
+          "message": "Shader warning in 'TraceVirtualOffset': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+        },
+        {
+          "message": "Shader warning in 'TraceRays': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+        },
+        {
+          "message": "Shader warning in 'RisEstimation': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+        },
+        {
+          "message": "Shader warning in 'UniformEstimation': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+        }
+      ]
+    }
+  ],
+  "linuxSmoke": {
+    "exitCode": 0,
+    "display": ":98",
+    "note": "Desktop :0 failed its X video-mode query before game initialization; isolated virtual display used."
   },
-  {
-    "result": "Succeeded",
-    "platform": "StandaloneWindows64",
-    "verifiedBy": "Unity batch build log: ProjectSetup.BuildWindows",
-    "warnings": [
-      {
-        "message": "Pipeline: No RuntimePipelineConfig asset found (Project Settings > Pipeline > Runtime). Pipeline will be disabled in Player builds."
-      },
-      {
-        "message": "Shader warning in 'TraceRays': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
-      },
-      {
-        "message": "Shader warning in 'RisEstimation': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
-      },
-      {
-        "message": "Shader warning in 'TraceRenderingLayerMask': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
-      },
-      {
-        "message": "Shader warning in 'UniformEstimation': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
-      },
-      {
-        "message": "Shader warning in 'TraceTransparentRays': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
-      },
-      {
-        "message": "Shader warning in 'DynamicGISkyOcclusion': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
-      },
-      {
-        "message": "Shader warning in 'TraceRaysAndFetchAttributes': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
-      },
-      {
-        "message": "Shader warning in 'RestirCandidateTemporal': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
-      },
-      {
-        "message": "Shader warning in 'TraceVirtualOffset': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
-      },
-      {
-        "message": "Shader warning in 'RestirCandidateTemporal': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
-      },
-      {
-        "message": "Shader warning in 'TraceTransparentRays': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
-      },
-      {
-        "message": "Shader warning in 'TraceRenderingLayerMask': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
-      },
-      {
-        "message": "Shader warning in 'TraceRaysAndFetchAttributes': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
-      },
-      {
-        "message": "Shader warning in 'DynamicGISkyOcclusion': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
-      },
-      {
-        "message": "Shader warning in 'TraceVirtualOffset': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
-      },
-      {
-        "message": "Shader warning in 'TraceRays': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
-      },
-      {
-        "message": "Shader warning in 'RisEstimation': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
-      },
-      {
-        "message": "Shader warning in 'UniformEstimation': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
-      }
-    ],
-    "observedWarningMessages": 19,
-    "buildTimeMs": 13795
+  "windowsRuntime": "Not tested on Windows",
+  "linuxNativeDesktopSmoke": {
+    "headlessExitCode": 1,
+    "windowedExitCode": 1,
+    "failure": "XFree86-VidModeExtension BadValue before game initialization",
+    "recommendation": "Use Unity Play mode on this machine; virtual-display packaged smoke passed."
   }
-]
+}

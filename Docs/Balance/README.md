@@ -62,3 +62,5 @@ The [24 roster/upgrade campaigns](ROSTER-BASELINE.md) add paid champions, upgrad
 The [paid maze baseline](MAZE-BASELINE.md) adds twelve Normal solo maze-first campaigns and exact-mask detour/reopening regressions.
 
 The [three/four-player team baseline](TEAM-BASELINE.md) adds mixed-faction coverage and roster campaigns, with exact per-wallet audits after every wave.
+
+The [twenty-wave baseline](TWENTY-WAVE-BASELINE.md) supersedes earlier ten-wave balance evidence for the current campaign and robot tuning. Earlier raw datasets remain historical evidence.

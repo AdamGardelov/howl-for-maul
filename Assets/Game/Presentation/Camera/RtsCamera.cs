@@ -16,8 +16,21 @@ namespace FrostMaze
             BoundsMax = new Vector2(width, height);
             Focus = new Vector3(width / 2, 0, height / 2);
             view.orthographic = true;
-            view.orthographicSize = Mathf.Max(height * Mathf.Sin(55*Mathf.Deg2Rad) * .55f, width * .55f / view.aspect);
+            Overview();
             MaxZoom=Mathf.Max(MaxZoom,view.orthographicSize*1.5f);
+            Apply();
+        }
+        public void FocusBuilder(FrostMaze.Simulation.V2 point)
+        {
+            Focus=new Vector3(point.X,0,point.Y);
+            view.orthographicSize=11;
+            Apply();
+        }
+        public void Overview()
+        {
+            Focus=new Vector3(BoundsMax.x*.5f,0,BoundsMax.y*.5f);
+            view.orthographicSize=Mathf.Max(BoundsMax.y*Mathf.Sin(55*Mathf.Deg2Rad)*.55f,BoundsMax.x*.55f/Mathf.Max(.1f,view.aspect));
+            MaxZoom=Mathf.Max(MaxZoom,view.orthographicSize);
             Apply();
         }
         public void SetInput(ICameraInput input)

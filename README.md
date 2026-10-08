@@ -8,11 +8,11 @@ Built with Unity 6.3 LTS, C# and URP for Windows and Ubuntu Linux. All code, pro
 
 ## Play
 
-Open this project with **Unity 6000.3.25f1**, choose **Howl for Maul → Open maze lab**, then press Play. The scene generates the selected map at runtime.
+Open this project with **Unity 6000.3.25f1**, choose **Howl for Maul → Open game**, then press Play. The scene generates the selected map at runtime.
 
 Choose **Rimewatch** (three upper lanes) or **Ironfold** (four upper lanes), both reconstructed from the supplied map layouts. Every lane stays active at every player count. Select difficulty, an original builder faction for each player, and—with multiple player slots—starting positions before spawning. The maps retain downstream defense areas and one bottom exit.
 
-Solo starts with the full **1,200 gold** team budget. Two players receive 600 each, three receive 400 each, four receive 300 each. Kill income and wave rewards are split without losing integer remainders. Every enemy reaching the final exit removes one of 30 shared lives. Finish ten waves with lives remaining to win. Waves 5 and 10 fly.
+Solo starts with the full **1,200 gold** team budget. Two players receive 600 each, three receive 400 each, four receive 300 each. Kill income and wave rewards are split without losing integer remainders. Every enemy reaching the final exit removes one of 30 shared lives. Finish twenty waves with lives remaining to win. Waves 5, 10, 15 and 20 fly. Later waves alternate fast rushes, dense swarms and tough siege units.
 
 ## Controls
 
@@ -32,6 +32,7 @@ Solo starts with the full **1,200 gold** team budget. Two players receive 600 ea
 | Pause | P |
 | Pan | WASD / arrows / middle drag |
 | Focus active builder | Home |
+| Whole-map overview | End |
 | Tactical-map pan | Click or drag on the minimap |
 | Zoom | Wheel |
 | Grid / clearance overlay | G / F |
@@ -40,7 +41,7 @@ Build orders are charged when they succeed, not when queued. New unmodified buil
 
 Opening **New match / setup** freezes the current match. **Return to match** keeps its towers, gold, wave and pause state; **Start new match** applies the selected options to a fresh defense. Changing maps closes the current match. Starting or resetting clears Sell/Move mode and selections. Escape also leaves Sell/Move mode and cancels queued construction.
 
-Ground enemies use orange armored crawler silhouettes; flying enemies have purple animated wings and hover above the battlefield. Damaged or selected enemies show health bars. Cyan markers indicate slowing, and a red crest indicates siege. Splash and chain effects follow ground/flight height and freeze while paused. These original procedural models remain prototype art.
+Towers have distinct wall, sentry, control, artillery, relay, interceptor and champion silhouettes, faction colors and illuminated upgrade tiers. Home focuses the builder; End restores the overview; the minimap outlines the camera view. Ground enemies use orange armored crawler silhouettes; flying enemies have purple animated wings and hover above the battlefield. Damaged or selected enemies show health bars. Cyan markers indicate slowing, and a red crest indicates siege. Splash and chain effects follow ground/flight height and freeze while paused. These original procedural models remain prototype art.
 
 Full route blockage is allowed: ground enemies find a player-built obstruction to attack. Selling or destruction opens the route again. Congestion alone does not trigger siege. Permanent terrain cannot be built on, sold, damaged or crossed by ground units.
 
@@ -53,7 +54,7 @@ Full route blockage is allowed: ground enemies find a player-built obstruction t
 | Ember Assembly | Rapid fire, ground artillery, fast anti-air |
 | Volt Vanguard | Arm-cannon sentries, chain attacks, long-range air defense |
 
-Rimewatch factions have five exclusive designs. Ironfold instead offers eight robot factions: Pulse Foundry, Blast Circuit, Prism Division, Horizon Guild, Gravity Works, Scrap Frontier, Overdrive Order and Tidal Array. Each has six regular designs and a powerful champion unlocked by owning all six. Every roster includes affordable maze construction and an air specialist. These are original interpretations, not a claimed transcription of any one historical version. See [research and decisions](Docs/MAUL-RESEARCH.md).
+Rimewatch factions have five exclusive designs. Ironfold instead offers eight robot factions: Pulse Foundry, Blast Circuit, Prism Division, Horizon Guild, Gravity Works, Scrap Frontier, Overdrive Order and Tidal Array. Each has six regular designs and a powerful champion unlocked by owning all six. Every roster includes affordable maze construction and an air specialist. These are original interpretations, not a claimed transcription of any one historical version. See [research and decisions](Docs/MAUL-RESEARCH.md), [the battlefield update](Docs/BATTLEFIELD-UPDATE.md) and [current twenty-wave balance results](Docs/Balance/TWENTY-WAVE-BASELINE.md).
 
 Before buying, the sidebar shows damage, firing interval, direct DPS, range, targeting and special effects. Locked champions list the specific towers you still need to own. Wave previews show difficulty-scaled health and siege damage, speed, spawn interval and the next flying wave.
 
@@ -61,7 +62,7 @@ Purchased towers can be upgraded twice. Upgrades improve health and weapon damag
 
 ## Maps and tuning
 
-Choose **Howl for Maul → Select map parameters** to inspect Rimewatch.asset. Runtime data is copied so playing does not modify the asset. The original unrestricted Maze Lab remains accessible through the sidebar.
+Choose **Howl for Maul → Select map parameters** to inspect Rimewatch.asset. Runtime data is copied so playing does not modify the asset. The unrestricted Maze Lab is a development fixture; it is no longer offered in normal match setup.
 
 Map layout, terrain, lane routes, builder starts, tower catalog and waves are data-driven. Map assets with SelectableMap enabled appear in setup automatically. See [map authoring](Docs/MAP-AUTHORING.md) and [design direction](Docs/DESIGN-NOTES.md).
 

@@ -14,8 +14,23 @@ static class BalanceSweep
     sealed class UpgradeResult { public int Player{get;set;} public int TowerId{get;set;} public string Tower{get;set;} public int Level{get;set;} public int Cost{get;set;} public int BeforeWave{get;set;} }
     sealed class WaveResult { public int[] PlayerGold{get;set;} public int Wave{get;set;} public bool Flying{get;set;} public int Killed{get;set;} public int Leaked{get;set;} public int Ticks{get;set;} public int Gold{get;set;} }
     sealed class Result { public int[] FinalWallets{get;set;} public int[] PlayerSpending{get;set;} public string Strategy{get;set;} public string[] Factions{get;set;} public List<UpgradeResult> Upgrades{get;set;}=new List<UpgradeResult>(); public int PlayerCount{get;set;} public string Map{get;set;} public string Faction{get;set;} public string Difficulty{get;set;} public bool Won{get;set;} public bool Stalled{get;set;} public int Lives{get;set;} public int Gold{get;set;} public int Spent{get;set;} public List<Placement> Placements{get;set;}=new List<Placement>(); public List<WaveResult> Waves{get;set;}=new List<WaveResult>(); }
+    sealed class Candidate { public int X,Y; public int[] Samples; }
+    static readonly Dictionary<TowerSpec,List<Candidate>> influence=new Dictionary<TowerSpec,List<Candidate>>();
+    static List<Candidate> Candidates(World w,TowerSpec spec,List<Sample> samples)
+    {
+        if(influence.TryGetValue(spec,out var cached))return cached;
+        cached=new List<Candidate>();
+        for(int y=1;y<w.Config.Height-1;y+=2)for(int x=1;x<w.Config.Width-1;x+=2) {
+            if(w.Grid.TerrainOverlaps(x,y,spec.Width,spec.Height))continue;
+            var affected=new List<int>();var p=new V2(x+.5f,y+.5f);
+            for(int i=0;i<samples.Count;i++)if((samples[i].Air?spec.TargetsAir:spec.TargetsGround)&&V2.Distance(p,samples[i].Position)<spec.Range)affected.Add(i);
+            cached.Add(new Candidate{X=x,Y=y,Samples=affected.ToArray()});
+        }
+        influence.Add(spec,cached);return cached;
+    }
     static List<Sample> Samples(Scenario c)
     {
+        influence.Clear();
         var result=new List<Sample>();
         for(int lane=0;lane<c.Lanes.Length;lane++)foreach(bool air in new[]{false,true}) {
             var w=new World(c);w.TowersFire=false;w.Spawn(new WaveSpec{Flying=air},w.LaneSpawn(lane),lane);
@@ -48,11 +63,11 @@ static class BalanceSweep
             foreach(int design in w.Config.Factions[w.Players[w.ActivePlayer].Faction].Designs) {
                 var d=w.Config.Catalog[design];if(d.Spec.Damage<=0||d.Cost>w.Gold||!w.RequirementsMet(design))continue;
                 w.SelectedDesign=design;
-                for(int y=1;y<w.Config.Height-1;y+=2)for(int x=1;x<w.Config.Width-1;x+=2) {
-                    if(!w.CanBuild(x,y,out _))continue;
-                    var p=new V2(x+.5f,y+.5f);double score=0;
-                    foreach(var sample in samples)if((sample.Air?d.Spec.TargetsAir:d.Spec.TargetsGround)&&V2.Distance(p,sample.Position)<d.Spec.Range)
-                        score+=(sample.Air?1.5:1)*Math.Log(1+d.Spec.Damage/d.Spec.Interval/(10+sample.Coverage));
+                var weights=new double[samples.Count];
+                for(int i=0;i<samples.Count;i++)weights[i]=(samples[i].Air?1.5:1)*Math.Log(1+d.Spec.Damage/d.Spec.Interval/(10+samples[i].Coverage));
+                foreach(var candidate in Candidates(w,d.Spec,samples)) {
+                    int x=candidate.X,y=candidate.Y;if(!w.CanBuild(x,y,out _))continue;
+                    double score=0;foreach(int index in candidate.Samples)score+=weights[index];
                     score/=d.Cost;
                     if(score>best){best=score;bx=x;by=y;bd=design;}
                 }
@@ -97,6 +112,24 @@ static class BalanceSweep
             }
         Spend(w,samples,result);
     }
+    static void SpendAdaptive(World w,List<Sample> samples,Result result)
+    {
+        Spend(w,samples,result);
+        // When sampled building sites fill up, reinvest leftover gold instead of hoarding it.
+        // Prefer affordable upgrades with actual route exposure; never wait for one expensive item.
+        while(true) {
+            Tower best=null;double value=0;
+            foreach(var tower in Owned(w,result)) {
+                int cost=w.UpgradeCost(tower);if(tower.Level>=3||tower.Spec.Damage<=0||cost>w.Gold)continue;
+                double exposure=0;foreach(var sample in samples)if((sample.Air?tower.Spec.TargetsAir:tower.Spec.TargetsGround)&&V2.Distance(tower.Center,sample.Position)<tower.Spec.Range+.35f)exposure+=sample.Air?1.5:1;
+                double score=exposure*tower.Spec.Damage/tower.Spec.Interval*.6/cost;
+                if(score>value){value=score;best=tower;}
+            }
+            if(best==null)break;int price=w.UpgradeCost(best),before=w.Gold;
+            if(!w.Upgrade(best.Id,out string reason)||before-w.Gold!=price)throw new Exception("Adaptive upgrade failed: "+reason);
+            result.Spent+=price;result.Upgrades.Add(new UpgradeResult{Player=w.ActivePlayer+1,TowerId=best.Id,Tower=best.Name,Level=best.Level,Cost=price,BeforeWave=w.WaveIndex+2});
+        }
+    }
     static int[] AuditWallets(World w,Result result,int completedWaves)
     {
         // Rewards rotate across wallets continuously, including the initial team grant.
@@ -112,14 +145,15 @@ static class BalanceSweep
         result.PlayerSpending=spending;return wallets;
     }
     static int TeamGold(World w) { int total=0;foreach(var p in w.Players)total+=p.Gold;return total; }
-    public static int Run(string path,Difficulty difficulty,int players,string strategy="coverage",bool mixed=false)
+    public static int Run(string path,Difficulty difficulty,int players,string strategy="coverage",bool mixed=false,string mapFilter="",int factionFilter=-1)
     {
-        if(strategy!="coverage"&&strategy!="roster"&&strategy!="maze")throw new ArgumentException("Strategy must be coverage, roster or maze.");
+        if(strategy!="coverage"&&strategy!="roster"&&strategy!="maze"&&strategy!="adaptive")throw new ArgumentException("Strategy must be coverage, roster, maze or adaptive.");
         if(players<1||players>4)throw new ArgumentException("Player count must be 1–4.");
         var results=new List<Result>();
         foreach(bool iron in new[]{false,true}) {
-            var c=MapCases.Load(iron);var samples=Samples(c);
+            var c=MapCases.Load(iron);if(mapFilter.Length>0&&c.Name!=mapFilter)continue;var samples=Samples(c);
             for(int faction=0;faction<c.Factions.Length;faction++) {
+                if(factionFilter>=0&&faction!=factionFilter)continue;
                 var factions=new int[4];for(int player=0;player<4;player++)factions[player]=mixed?(faction+player)%c.Factions.Length:faction;
                 var w=new World(c,new MatchOptions{PlayerCount=players,Difficulty=difficulty,Factions=factions});
                 var r=new Result{Strategy=strategy,Factions=factions.Take(players).Select(f=>c.Factions[f].Name).ToArray(),PlayerCount=players,Map=c.Name,Faction=c.Factions[faction].Name,Difficulty=difficulty.ToString()};
@@ -129,11 +163,15 @@ static class BalanceSweep
                         if(!Purchase(w,cells[cell,0],cells[cell,1],design,r))throw new Exception("Paid maze fixture could not be built");
                 }
                 for(int wave=0;wave<c.Waves.Length&&!w.Finished;wave++) {
-                    for(int player=0;player<players;player++){w.SelectPlayer(player);if(strategy=="roster")SpendRoster(w,samples,r);else Spend(w,samples,r);}int killed=w.Killed,leaked=w.Leaked;
+                    for(int player=0;player<players;player++){w.SelectPlayer(player);if(strategy=="roster")SpendRoster(w,samples,r);else if(strategy=="adaptive")SpendAdaptive(w,samples,r);else Spend(w,samples,r);}int killed=w.Killed,leaked=w.Leaked;
                     if(!w.StartWave())throw new Exception("Wave failed to start");int ticks=0;
                     while(w.WaveActive&&!w.Finished&&ticks<18000){w.Step();ticks++;}
                     r.Waves.Add(new WaveResult{PlayerGold=AuditWallets(w,r,wave+(!w.Defeated&&!w.WaveActive?1:0)),Wave=wave+1,Flying=c.Waves[wave].Flying,Killed=w.Killed-killed,Leaked=w.Leaked-leaked,Ticks=ticks,Gold=TeamGold(w)});
-                    if(ticks>=18000){r.Stalled=true;break;}
+                    if(ticks>=18000){
+                        r.Stalled=true;
+                        var diagnostic=new {Map=c.Name,Faction=faction,Wave=wave+1,Enemies=w.Enemies.Select(e=>new {e.Id,Position=new{e.Position.X,e.Position.Y},Velocity=new{e.Velocity.X,e.Velocity.Y},e.Health,e.Blocked,e.BlockerId,e.Checkpoint,Destination=new{e.Destination.X,e.Destination.Y},e.Lane}).ToArray(),Towers=w.Grid.Towers.Select(t=>new {t.Id,t.CellX,t.CellY,t.Design,t.Health}).ToArray()};
+                        File.WriteAllText(path+"."+c.Name+"-"+faction+".stall.json",JsonSerializer.Serialize(diagnostic,new JsonSerializerOptions{WriteIndented=true,IncludeFields=true}));break;
+                    }
                 }
                 r.Won=w.Won;r.Lives=w.Lives;r.Gold=TeamGold(w);
                 int completed=r.Waves.Count-(w.Defeated||r.Stalled?1:0);

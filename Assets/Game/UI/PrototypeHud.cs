@@ -7,7 +7,7 @@ namespace FrostMaze
         Prototype game;
         GUIStyle title, small, label, button, section, mapLabel;
         Texture2D panel;
-        Vector2 scroll; bool wasSetup;
+        Vector2 scroll; bool wasSetup,showTools;
         public void Initialize(Prototype prototype)
         {
             game = prototype;
@@ -132,14 +132,16 @@ namespace FrostMaze
                 if(GUILayout.Button("Sell selected tower",button))game.Notice=w.Sell(selected.CellX,selected.CellY)?"Sold.":"Select one of your own towers.";
             }
             GUILayout.Space(16);
-            GUILayout.Label("NAVIGATION OVERLAY", section);
             game.SoundEnabled=GUILayout.Toggle(game.SoundEnabled,"Combat sound");
+            game.ShowGrid=GUILayout.Toggle(game.ShowGrid,"Placement grid [G]");
+            showTools=GUILayout.Toggle(showTools,"Advanced inspection");
+            if(showTools) {
+            GUILayout.Label("NAVIGATION OVERLAY", section);
             game.ShowRoutes=GUILayout.Toggle(game.ShowRoutes,"Lane and flight route guides");
-            game.ShowGrid = GUILayout.Toggle(game.ShowGrid, "Placement grid [G]");
             game.ShowNavigation = GUILayout.Toggle(game.ShowNavigation, "Clearance + low towers [F]");
             game.ShowDirections = GUILayout.Toggle(game.ShowDirections, "Enemy intent + siege target");
             game.ShowValues = GUILayout.Toggle(game.ShowValues, "Distance at hovered cell");
-            w.TowersFire = GUILayout.Toggle(w.TowersFire, "Tower weapons enabled");
+            if(!w.Config.Economy)w.TowersFire = GUILayout.Toggle(w.TowersFire, "Tower weapons enabled");
             GUILayout.Label("Low towers show collision footprints.\nOrange rings show ground-unit radii.\nGreen: route   ·   Red: no clearance\nAmber: unreachable   ·   Purple: flight route\nRed enemies: route blocked, seeking breach", small);
             if (game.HasHover && game.ShowValues)
             {
@@ -155,17 +157,17 @@ namespace FrostMaze
             else
                 GUILayout.Label("Ctrl + click an enemy to inspect it.", small);
             GUILayout.Space(16);
-            GUILayout.Label("EXPERIMENTS", section);
+            }
+            GUILayout.Label("MATCH", section);
             if (!w.Config.Economy && GUILayout.Button("Load zig-zag maze", button))
                 game.DemoMaze();
             if(w.Config.Lanes.Length>0 && GUILayout.Button("New match / setup",button))game.OpenSetup();
             if (GUILayout.Button("Reset map + waves", button))
                 game.ResetSimulation();
-            if (GUILayout.Button(w.Config.Economy ? "Switch to Maze Lab" : "Play Howl for Maul", button))
-                game.SwitchMap(!w.Config.Economy);
+            if (!w.Config.Economy && GUILayout.Button("Play Howl for Maul", button))game.SwitchMap(true);
             GUILayout.Space(14);
-            GUILayout.Label("WASD / arrows: pan\nWheel: zoom   ·   Middle drag: pan\nHome: focus selected builder", small);
-            GUILayout.Label($"Tick {w.Tick}  ·  Fields built {w.Navigation.Rebuilds}\nNavigation step {w.Config.NavigationStep:0.00}  ·  30 Hz simulation", small);
+            GUILayout.Label("WASD / arrows: pan\nWheel: zoom   ·   Middle drag: pan\nHome: builder view  ·  End: overview", small);
+            if(showTools)GUILayout.Label($"Tick {w.Tick}  ·  Fields built {w.Navigation.Rebuilds}\nNavigation step {w.Config.NavigationStep:0.00}  ·  30 Hz simulation", small);
             GUILayout.EndScrollView();
             GUILayout.EndArea();
             GUI.matrix = previousMatrix;
@@ -222,7 +224,7 @@ namespace FrostMaze
                 }
             }
             GUILayout.Space(14);
-            if(GUILayout.Button("Open Maze Lab",button))game.SwitchMap(false);
+            GUILayout.Label($"{game.World.Config.Waves.Length} waves · flying attacks every fifth wave. Build during combat; prepare dedicated air defense.",small);
         }
         void DrawMinimap()
         {
@@ -235,6 +237,19 @@ namespace FrostMaze
             foreach(var tower in w.Grid.Towers)MiniDot(r,tower.Center,new Color(.1f,.95f,.8f),2);
             foreach(var enemy in w.Enemies)MiniDot(r,enemy.Position,enemy.Spec.Flying?new Color(.85f,.4f,1):new Color(1,.48f,.2f),2);
             for(int i=0;i<w.Players.Length;i++)MiniDot(r,w.Players[i].Position,i==w.ActivePlayer?Color.white:Color.cyan,4);
+            // Ground-plane viewport outline makes the zoomed builder view easy to locate.
+            var plane=new Plane(Vector3.up,Vector3.zero);Vector2 low=new Vector2(float.MaxValue,float.MaxValue),high=new Vector2(float.MinValue,float.MinValue);
+            for(int corner=0;corner<4;corner++) {
+                var ray=game.View.ViewportPointToRay(new Vector3(corner%2,corner/2,0));
+                if(plane.Raycast(ray,out float distance)){var p=ray.GetPoint(distance);low=Vector2.Min(low,new Vector2(p.x,p.z));high=Vector2.Max(high,new Vector2(p.x,p.z));}
+            }
+            if(low.x<=high.x) {
+                float left=r.x+Mathf.Clamp01(low.x/w.Config.Width)*r.width,right=r.x+Mathf.Clamp01(high.x/w.Config.Width)*r.width;
+                float top=r.y+(1-Mathf.Clamp01(high.y/w.Config.Height))*r.height,bottom=r.y+(1-Mathf.Clamp01(low.y/w.Config.Height))*r.height;
+                GUI.color=new Color(1,1,1,.75f);
+                GUI.DrawTexture(new Rect(left,top,right-left,1),Texture2D.whiteTexture);GUI.DrawTexture(new Rect(left,bottom,right-left,1),Texture2D.whiteTexture);
+                GUI.DrawTexture(new Rect(left,top,1,bottom-top),Texture2D.whiteTexture);GUI.DrawTexture(new Rect(right,top,1,bottom-top),Texture2D.whiteTexture);
+            }
             var focus=game.View.GetComponent<RtsCamera>().Focus;
             MiniDot(r,new V2(focus.x,focus.z),Color.yellow,3);
             GUI.color=Color.white;

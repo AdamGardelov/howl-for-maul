@@ -365,6 +365,7 @@ namespace FrostMaze.Simulation
                 desired += separation;
                 if (desired.Length > speed)
                     desired = desired.Normalized * speed;
+                if(e.DetourTicks>0&&!e.Blocked){desired=e.DetourDirection*speed;e.DetourTicks--;}
                 var acceleration = desired - e.Velocity;
                 float limit = Config.Acceleration * FixedDelta;
                 if (acceleration.Length > limit)
@@ -407,12 +408,24 @@ namespace FrostMaze.Simulation
             var start = e.Position;
             for (int n = 0; n < steps; n++)
             {
+                var before=e.Position;
                 if (CanMove(e, e.Position + step))
                     e.Position += step;
                 else if (CanMove(e, e.Position + new V2(step.X, 0)))
                     e.Position += new V2(step.X, 0);
                 else if (CanMove(e, e.Position + new V2(0, step.Y)))
                     e.Position += new V2(0, step.Y);
+                // Contact with a neighbour at a corner can defeat both axis slides.
+                // Try deterministic side steps and brief backsteps, using swept collision checks.
+                // A truly blocked route retains the normal siege behaviour.
+                if(!e.Blocked&&V2.Distance(before,e.Position)<.000001f&&step.Length>.000001f) {
+                    var tangent=new V2(-step.Y,step.X);int preferred=e.Id%2==0?1:-1;
+                    for(int attempt=0;attempt<7;attempt++) {
+                        int side=attempt%2==0?preferred:-preferred;
+                        var candidate=attempt<2?step*.5f+tangent*(side*.8660254f):attempt<4?tangent*side:attempt<6?step*-.5f+tangent*(side*.8660254f):step*-1;
+                        if(CanMove(e,e.Position+candidate)&&CanMove(e,e.Position+candidate.Normalized*(e.Spec.Radius*.5f))){e.Position+=candidate;e.DetourDirection=candidate.Normalized;e.DetourTicks=20;break;}
+                    }
+                }
             }
             e.Velocity = (e.Position - start) / FixedDelta;
         }

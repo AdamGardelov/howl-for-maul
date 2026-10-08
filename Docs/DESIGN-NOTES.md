@@ -12,9 +12,9 @@ The user's reference images and corrections are the primary direction:
 
 ## Implemented direction
 
-Frostfall Maul has four independent upper spawners, separated upper defense spaces, a common junction and a lower last stand. All four lanes spawn every wave. Ten waves are authored; waves 5 and 10 fly along separate routes.
+Rimewatch and Ironfold follow the user-supplied winter and robot map masks, with three and four upper lanes respectively and one bottom exit. All lanes remain active. Both maps now have twenty authored waves; air arrives every fifth wave. The second half tests fast rushes, swarms and siege units.
 
-Three original tower roles support meaningful decisions: Bolt Spires handle ground and air; Barricades make inexpensive maze walls; Ember Cannons punish clustered ground enemies but cannot hit flying units. Towers can be upgraded twice. Queued builder orders support long maze construction. A minimap helps manage distant defenses; shot effects and synthesized sounds make combat readable.
+Four winter factions provide twenty designs, and eight robot factions provide fifty-six designs with owned-roster champion prerequisites. Roles include cheap maze pieces, direct fire, slowing, splash, chaining and dedicated anti-air. Towers can be upgraded twice. Original procedural role silhouettes, faction palettes, tier markers, surface detail and a builder-focused camera improve readability. A minimap, wave forecasts and pre-purchase stats support planning. See BATTLEFIELD-UPDATE.md for this pass and Balance/TWENTY-WAVE-BASELINE.md for strategy-specific outcomes.
 
 The current setup supports solo and local control of up to four player slots. It is NOT online multiplayer. Networking remains explicitly deferred by the original brief. Simulation state, ownership and player commands are ready for later authoritative-host work.
 
@@ -22,13 +22,13 @@ The current setup supports solo and local control of up to four player slots. It
 
 [Magi Maul's author description](https://www.hiveworkshop.com/threads/magi-maul-v7-7.259682/) describes setup difficulty, differentiated tower choices/upgrades and informative tower/wave descriptions. Those are useful usability references, not a requirement to copy its heroes, races or rules. The user's preferred free-form mazing and shared downstream defenses remain central.
 
-[Wintermaul One's creator discussion](https://us.forums.blizzard.com/en/warcraft3/t/hi-im-the-creator-of-wintermaul-one-and-this-my-opinion/19128) establishes creator context, but does not provide enough technical gameplay detail to infer missing rules. A fetch of the project's main site was unavailable. No game assets or map files were downloaded or copied.
+[Wintermaul One's creator discussion](https://us.forums.blizzard.com/en/warcraft3/t/hi-im-the-creator-of-wintermaul-one-and-this-my-opinion/19128) establishes creator context, but does not provide enough technical gameplay detail to infer missing rules. A fetch of the project's main site was unavailable. No reference game assets are included in the project. Later archive research was isolated in scratch space; see MAUL-RESEARCH.md.
 
 ## Deferred choices
 
 - Final difficulty and wave count; current 70/100/140% health and siege damage are initial tuning.
 - Whether four is the final maximum player count. The current budget is based on four players, as requested.
 - Whether kill income should remain equally split. Current total kill and wave income is conserved, with integer remainder rotation so three-player games lose no gold.
-- Final faction system, tower roster, armor/status interactions, bosses and long-term progression.
+- Further roster tuning, armor/status interactions, bosses and longer-term progression.
 - Final art/audio direction. Current visuals are original procedural placeholders and sound is synthesized.
 - Match saving, persistence, lobbies, reconnects and online multiplayer.

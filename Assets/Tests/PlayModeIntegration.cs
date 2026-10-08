@@ -9,6 +9,42 @@ namespace FrostMaze.Tests
     public sealed class PlayModeIntegration
     {
         [UnityTest]
+        public IEnumerator TowerRolesUpgradesAndCamera()
+        {
+            EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
+            yield return new EnterPlayMode();yield return null;
+            var game=Object.FindFirstObjectByType<Prototype>();game.StartMatch();game.Paused=true;
+            Assert.That(game.View.orthographicSize,Is.EqualTo(11));
+            Assert.That(game.View.GetComponent<RtsCamera>().Focus.z,Is.EqualTo(game.World.BuilderPosition.Y));
+            string[] roles={"Sentry","Wall","Control","Artillery","Interceptor"};
+            for(int i=0;i<5;i++) {
+                game.World.SelectedDesign=i;
+                Assert.That(game.World.OrderBuild(16+i,14,out _),Is.True);
+                for(int tick=0;tick<180;tick++)game.World.Step();
+            }
+            yield return null;yield return null;
+            for(int i=0;i<5;i++) {
+                var tower=game.World.Grid.At(16+i,14);Assert.That(tower,Is.Not.Null);
+                var view=GameObject.Find("Tower "+tower.Id).GetComponent<TowerView>();
+                Assert.That(view.Role,Is.EqualTo(roles[i]));
+                Assert.That(view.GetComponentsInChildren<Collider>().Length,Is.Zero);
+                Assert.That(view.transform.Find("Upgrade tier 2").gameObject.activeSelf,Is.False);
+            }
+            var sentry=game.World.Grid.At(16,14);
+            Assert.That(game.World.Upgrade(sentry.Id,out _),Is.True);
+            yield return null;
+            var upgraded=GameObject.Find("Tower "+sentry.Id).GetComponent<TowerView>();
+            Assert.That(upgraded.VisibleLevel,Is.EqualTo(2));
+            Assert.That(upgraded.transform.Find("Upgrade tier 2").gameObject.activeSelf,Is.True);
+            Assert.That(upgraded.transform.Find("Upgrade tier 3").gameObject.activeSelf,Is.False);
+            game.ShowNavigation=true;yield return null;
+            Assert.That(upgraded.transform.localScale.y,Is.EqualTo(.08f));
+            Assert.That(game.World.Grid.At(16,14),Is.SameAs(sentry));
+            game.View.GetComponent<RtsCamera>().Overview();
+            Assert.That(game.View.orthographicSize,Is.GreaterThan(11));
+            yield return new ExitPlayMode();
+        }
+        [UnityTest]
         public IEnumerator BuilderViewsAndMapSwitching()
         {
             EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
@@ -55,6 +91,8 @@ namespace FrostMaze.Tests
             yield return null;yield return null;
             game=Object.FindFirstObjectByType<Prototype>();
             Assert.That(game.World.LaneCount,Is.EqualTo(4));
+            Assert.That(game.World.Config.Waves.Length,Is.EqualTo(20));
+            Assert.That(game.World.Config.Catalog[29].Spec.SlowFraction,Is.EqualTo(.4f));
             foreach(var design in game.World.Config.Catalog) Assert.That(design.Spec.Damage<=0||design.Spec.TargetsAir||design.Spec.TargetsGround, Is.True, design.Name+" has no targets in the packaged map");
             Assert.That(game.World.Config.Catalog[11].Spec.TargetsAir && !game.World.Config.Catalog[11].Spec.TargetsGround, Is.True);
             game.SetupOptions.Factions[0]=3;game.StartMatch();game.Paused=true;
@@ -65,7 +103,7 @@ namespace FrostMaze.Tests
             Assert.That(bx,Is.GreaterThanOrEqualTo(0));
             Assert.That(game.World.Build(bx,by,out _),Is.True);
             yield return null;
-            Assert.That(GameObject.Find("Visored sentry"),Is.Not.Null);
+            Assert.That(GameObject.Find("Tower "+game.World.Grid.Towers[0].Id).GetComponent<TowerView>().Role,Is.EqualTo("Sentry"));
             game.SetupOptions.Factions[0]=0;game.StartMatch();game.Paused=true;
             Assert.That(game.World.Build(bx,by,out _),Is.True);
             yield return null;yield return null;
@@ -85,11 +123,17 @@ namespace FrostMaze.Tests
             var ground = game.World.Spawn(new FrostMaze.Simulation.WaveSpec(), game.World.LaneSpawn(0));
             var air = game.World.Spawn(new FrostMaze.Simulation.WaveSpec { Flying = true }, game.World.LaneSpawn(0));
             Assert.That(ground, Is.Not.Null); Assert.That(air, Is.Not.Null);
+            // Relaxed difficulty reduces siege damage but must retain the heavy silhouette.
+            var heavy=game.World.Spawn(new FrostMaze.Simulation.WaveSpec{Damage=21,Speed=1.55f},game.World.LaneSpawn(1),1);
+            var runner=game.World.Spawn(new FrostMaze.Simulation.WaveSpec{Speed=2.7f},game.World.LaneSpawn(2),2);
+            Assert.That(heavy,Is.Not.Null);Assert.That(runner,Is.Not.Null);
             ground.Velocity = new FrostMaze.Simulation.V2(1, 0);
             ground.SlowRemaining = 2;
             yield return null; yield return null;
             var groundView = GameObject.Find("Enemy " + ground.Id);
             var airView = GameObject.Find("Enemy " + air.Id);
+            Assert.That(GameObject.Find("Enemy "+heavy.Id).transform.Find("Armored crawler/Siege shield"),Is.Not.Null);
+            Assert.That(GameObject.Find("Enemy "+runner.Id).transform.Find("Armored crawler/Runner fin"),Is.Not.Null);
             Assert.That(groundView.transform.Find("Armored crawler"), Is.Not.Null);
             var wings = airView.transform.Find("Winged drifter/Left wing");
             Assert.That(wings, Is.Not.Null);
