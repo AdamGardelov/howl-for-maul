@@ -30,7 +30,11 @@ namespace FrostMaze
         public void Overview()
         {
             Focus=new Vector3(BoundsMax.x*.5f,0,BoundsMax.y*.5f);
-            view.orthographicSize=Mathf.Max(BoundsMax.y*Mathf.Sin(55*Mathf.Deg2Rad)*.55f,BoundsMax.x*.55f/Mathf.Max(.1f,view.aspect));
+            float top=game!=null&&!game.SetupOpen?game.TopHud.yMax+8:0;
+            float bottom=game!=null&&!game.SetupOpen?Screen.height-game.BuildHud.yMin+8:0;
+            float fraction=Mathf.Max(.2f,(Screen.height-top-bottom)/Mathf.Max(1,Screen.height));
+            view.orthographicSize=Mathf.Max(BoundsMax.y*Mathf.Sin(55*Mathf.Deg2Rad)*.55f/fraction,BoundsMax.x*.55f/Mathf.Max(.1f,view.aspect));
+            Focus.z-=(bottom-top)*view.orthographicSize/Mathf.Max(1,Screen.height)/Mathf.Sin(55*Mathf.Deg2Rad);
             MaxZoom=Mathf.Max(MaxZoom,view.orthographicSize);
             Apply();
         }
@@ -45,12 +49,12 @@ namespace FrostMaze
             var intent = source.Read();
             var mouse=intent.Pointer;
             var uiPoint=new Vector2(mouse.x,Screen.height-mouse.y);
-            bool overUi=game!=null&&(game.Sidebar.Contains(uiPoint)||game.MinimapRect.Contains(uiPoint));
+            bool overUi=game!=null&&game.PointerOverHud(uiPoint);
             if(!intent.Dragging)dragAllowed=false;
             if(intent.DragStarted)dragAllowed=!overUi;
             if(overUi)intent.Zoom=0;
             if(!dragAllowed||overUi)intent.Drag=Vector2.zero;
-            if(game!=null&&game.SetupOpen){dragAllowed=false;return;}
+            if(game!=null&&(game.SetupOpen||game.MenuOpen)){dragAllowed=false;return;}
             var pan = Vector2.ClampMagnitude(intent.Pan, 1);
             Focus += new Vector3(pan.x, 0, pan.y) * PanSpeed * Mathf.Clamp(view.orthographicSize/11,.5f,2.5f) * (intent.Fast?2:1) * Time.unscaledDeltaTime;
             float pixelScale = view.orthographicSize * 2 / Mathf.Max(1, Screen.height);

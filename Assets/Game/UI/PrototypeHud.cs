@@ -2,7 +2,7 @@ using UnityEngine;
 using FrostMaze.Simulation;
 namespace FrostMaze
 {
-    public sealed class PrototypeHud : MonoBehaviour
+    public sealed partial class PrototypeHud : MonoBehaviour
     {
         Prototype game; CombatFeedback feedback;
         GUIStyle title, small, label, button, section, mapLabel, card, selectedCard, primary, badge, number, alertButton, alertNumber, placementHint;
@@ -68,10 +68,13 @@ namespace FrostMaze
             if(feedback==null)feedback=game.GetComponent<CombatFeedback>();
             if(wasSetup!=game.SetupOpen){scroll=Vector2.zero;wasSetup=game.SetupOpen;}
             if(lastSelectedTower!=game.SelectedTowerId){if(game.SelectedTowerId!=0)scroll=Vector2.zero;lastSelectedTower=game.SelectedTowerId;}
+            if(game.MenuOpen){DrawPauseMenu();return;}
+            if(!game.SetupOpen&&!game.DetailsOpen){DrawCompact();return;}
             var w=game.World;var previousMatrix=GUI.matrix;float scale=game.UiScale;
             GUI.matrix=Matrix4x4.Scale(new Vector3(scale,scale,1));
             GUI.DrawTexture(new Rect(18,18,324,Screen.height/scale-36),panel);
             GUILayout.BeginArea(new Rect(32,28,296,Screen.height/scale-52));
+            if(!game.SetupOpen&&GUILayout.Button("CLOSE DETAILS [TAB]",button))game.DetailsOpen=false;
             GUILayout.Label("HOWL FOR MAUL",title);
             GUILayout.Label(w.Config.Name.ToUpperInvariant()+"  /  "+(game.SetupOpen?"MATCH SETUP":w.FactionName.ToUpperInvariant()),small);
             if(game.SetupOpen) {
@@ -156,7 +159,7 @@ namespace FrostMaze
 
             Rule();GUILayout.Label("OPTIONS & CONTROLS",section);
             game.SoundEnabled=GUILayout.Toggle(game.SoundEnabled,"Combat sound",button);game.ShowGrid=GUILayout.Toggle(game.ShowGrid,"Placement grid [G]",button);
-            GUILayout.Label("Click to build · right click to move\nShift + click queues · Esc cancels orders\nSelect a tower to upgrade · U upgrades\nEdges / WASD: pan · Shift: faster\nSpace + left drag / middle drag: pan · wheel: zoom\nHome: builder · End: overview",small);
+            GUILayout.Label("Click to build · right click to move\nShift + click queues · Cancel button clears orders · Esc: menu\nSelect a tower to upgrade · U upgrades\nEdges / WASD: pan · Shift: faster\nSpace + left drag / middle drag: pan · wheel: zoom\nHome: builder · End: overview",small);
             showTools=GUILayout.Toggle(showTools,"Advanced inspection",button);
             if(showTools) {
                 game.ShowRoutes=GUILayout.Toggle(game.ShowRoutes,"Lane and flight route guides",button);
@@ -172,7 +175,7 @@ namespace FrostMaze
                 if(GUILayout.Button("Reset map + waves",button))game.ResetSimulation();
                 if(!w.Config.Economy&&GUILayout.Button("Play Howl for Maul",button))game.SwitchMap(true);
             }
-            GUILayout.EndScrollView();GUILayout.EndArea();GUI.matrix=previousMatrix;DrawHealth();DrawMapLabels();DrawMinimap();DrawPlacementHint();
+            GUILayout.EndScrollView();GUILayout.EndArea();GUI.matrix=previousMatrix;DrawHealth();DrawMapLabels();DrawMinimap();DrawPlacementHint();if(game.MenuOpen)DrawPauseMenu();
         }
         void DrawTowerStats(TowerSpec spec)
         {
@@ -278,7 +281,7 @@ namespace FrostMaze
             var p=game.View.WorldToScreenPoint(position);
             float width=mapLabel.CalcSize(new GUIContent(text)).x+12;
             var rect=new Rect(p.x-width*.5f,Screen.height-p.y-24,width,18);
-            if(p.z<=0||rect.xMin<=game.Sidebar.xMax||rect.xMax>=Screen.width||rect.yMin<0||rect.yMax>=Screen.height||rect.Overlaps(game.MinimapRect))return;
+            if(p.z<=0||rect.xMin<=game.Sidebar.xMax||rect.xMax>=Screen.width||rect.yMin<0||rect.yMax>=Screen.height||rect.Overlaps(game.MinimapRect)||CoversCompactHud(rect))return;
             GUI.color=new Color(.035f,.065f,.079f,.9f);
             GUI.DrawTexture(rect,Texture2D.whiteTexture);
             GUI.color=exit?new Color(.97f,.83f,.39f):new Color(.78f,.91f,.88f);
@@ -307,7 +310,7 @@ namespace FrostMaze
             float height = width < 18 ? 2 : 4;
             var rect = new Rect(p.x - width * .5f, Screen.height - p.y, width, height);
             // World overlays must not cover the sidebar or minimap.
-            if (p.z <= 0 || rect.xMin <= game.Sidebar.xMax || rect.xMax >= Screen.width || rect.yMin < 0 || rect.yMax >= Screen.height || rect.Overlaps(game.MinimapRect)) return;
+            if (p.z <= 0 || rect.xMin <= game.Sidebar.xMax || rect.xMax >= Screen.width || rect.yMin < 0 || rect.yMax >= Screen.height || rect.Overlaps(game.MinimapRect)||CoversCompactHud(rect)) return;
             GUI.color = new Color(.07f, .1f, .14f);
             GUI.DrawTexture(new Rect(rect.x - 1, rect.y - 1, rect.width + 2, rect.height + 2), Texture2D.whiteTexture);
             rect.width *= Mathf.Clamp01(fraction);
@@ -316,7 +319,7 @@ namespace FrostMaze
         }
         void DrawPlacementHint()
         {
-            if(Event.current.type!=EventType.Repaint||!game.HasHover||game.SetupOpen||game.World.Finished||string.IsNullOrEmpty(game.HoverHint))return;
+            if(Event.current.type!=EventType.Repaint||!game.HasHover||game.SetupOpen||game.MenuOpen||game.World.Finished||string.IsNullOrEmpty(game.HoverHint))return;
             float scale=game.UiScale;
             var p=game.View.WorldToScreenPoint(new Vector3(game.Hover.X+.5f,0,game.Hover.Y+.5f));
             if(p.z<=0)return;
@@ -328,6 +331,11 @@ namespace FrostMaze
             float y=Mathf.Clamp((Screen.height-p.y+20)/scale,8,Screen.height/scale-height-8);
             var rect=new Rect(x,y,width,height);
             if(new Rect(x*scale,y*scale,width*scale,height*scale).Overlaps(game.MinimapRect))rect.y=game.MinimapRect.yMin/scale-height-8;
+            if(!game.DetailsOpen) {
+                float limit=(game.World.Grid.Find(game.SelectedTowerId)!=null?game.SelectionHud.yMin:game.BuildHud.yMin)/scale;
+                rect.y=Mathf.Min(rect.y,limit-height-8);
+                rect.y=Mathf.Max(rect.y,game.TopHud.yMax/scale+8);
+            }
             var previous=GUI.matrix;GUI.matrix=Matrix4x4.Scale(new Vector3(scale,scale,1));
             GUI.Label(rect,content,placementHint);GUI.matrix=previous;
         }

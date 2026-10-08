@@ -1,0 +1,11 @@
+# Full-map gameplay HUD and game menu
+
+Gameplay renders through the full camera viewport. The left sidebar is closed by default, and closing/opening Details no longer changes the camera's viewport or shifts the map.
+
+The compact HUD keeps gold, shared lives, wave progress and launch/pause controls across the top. The faction's tower roster sits along the bottom. Selecting a placed tower opens a compact owner/health/upgrade/refund panel above it. Overview framing fits the entire terrain between the top and bottom controls. The minimap remains in the lower right, and breach/victory/wave-income feedback remains visible.
+
+Tab opens or closes the existing detailed panel for wave advice, complete tower statistics and inspection tools. Esc or the Menu button opens a centered modal game menu with Return, New Game, sound, placement grid, game speed and (in the standalone player) a fullscreen-window toggle. New Game enters the existing setup flow; Return/Esc can resume the match before committing a new match.
+
+The modal menu freezes simulation, camera movement, combat feedback/audio and flame animation without changing the player's own pause flag. Closing it preserves a manually paused game. HUD and modal regions block world clicks; hidden sidebar and stale selection-panel regions do not. World labels and health bars are clipped away from compact controls. Cancel Orders is now an explicit bottom-bar button; Esc is reserved for the game menu.
+
+Compilation passed. Four affected Unity camera/audio/tower checks passed, with every case confirmed in XML. After the overview and hidden-control boundary fixes, the extended camera/menu test passed again on final source. Native 1920×884 captures verified both roster layouts, the centered menu and paid tower inspector; the overview framing correction is additionally covered by projected-boundary assertions. This is focused regression coverage, not a new full-suite run. This change does not alter map masks, tower prices, wave balance or ownership rules. Windows runtime is not tested on this Linux host.

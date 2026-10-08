@@ -1,0 +1,18 @@
+[
+  {
+    "name": "FrostMaze.Tests.PlayModeIntegration.CameraDragRejectsUiOriginsAndFreezesInSetup",
+    "result": "Passed"
+  },
+  {
+    "name": "FrostMaze.Tests.PlayModeIntegration.CombatAudioLimitsBurstsFollowsCameraAndPrioritizesLeaks",
+    "result": "Passed"
+  },
+  {
+    "name": "FrostMaze.Tests.PlayModeIntegration.TowerRolesUpgradesAndCamera",
+    "result": "Passed"
+  },
+  {
+    "name": "FrostMaze.Tests.UnityTests.CameraGesturesHandleEdgesFocusAndDragTransitions",
+    "result": "Passed"
+  }
+]

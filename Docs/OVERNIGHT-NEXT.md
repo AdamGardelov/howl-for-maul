@@ -2,6 +2,8 @@
 
 ## Latest state
 
+- Full-map HUD: permanent sidebar removed from play, compact top/bottom controls, contextual tower inspector, Tab details and Esc paused game menu. Overview reserves space for HUD strips. Four focused checks passed, then the final boundary/overview test passed again. Read FULL-MAP-HUD.md.
+
 - Source 9f228e1 adds original themed dressing: Rimewatch has 58 frost-plant clusters and 9 blue lanterns; Ironfold has 8 copper scrub clusters and 5 warm braziers. Deterministic placement, five batched material groups, no colliders or dynamic lights. Flame brightness freezes on pause. Read THEMED-SCENERY.md.
 - Current Linux and Windows packages contain 9f228e1. Both builds succeeded with zero errors. Linux both-map data smoke and actual paid wall-adjacent construction passed, gold 1,200 → 1,180, normal close exit zero. Windows runtime remains untested. Read Howl-Builds.json for exact per-check provenance.
 - Final scenery compilation, expanded both-map prop-clearance test, native overview/close-up inspection and live pause/flicker fixtures passed. Last full Unity suite was 77/77 at the preceding exit/terrain/progression checkpoint; no new full-suite claim for this scenery-only pass.

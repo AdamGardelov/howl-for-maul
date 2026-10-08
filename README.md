@@ -14,6 +14,8 @@ Choose **Rimewatch** (three upper lanes) or **Ironfold** (four upper lanes), bot
 
 Solo starts with the full **1,200 gold** team budget. Two players receive 600 each, three receive 400 each, four receive 300 each. Kill income and wave rewards are split without losing integer remainders. Every enemy reaching the final exit removes one of 30 shared lives. Finish twenty waves with lives remaining to win. Waves 5, 10, 15 and 20 fly. Later waves alternate fast rushes, dense swarms and tough siege units. Open Wave details for faction-specific suggestions. The team defense count distinguishes air and ground targeting; it does not measure whether towers cover the route.
 
+Gameplay uses the full map viewport with a compact top status strip and bottom tower bar. Esc opens the paused game menu for settings and New Game; Tab opens the optional detailed panel. The standalone menu also offers a fullscreen-window toggle.
+
 ## Controls
 
 | Action | Control |
@@ -21,7 +23,9 @@ Solo starts with the full **1,200 gold** team budget. Two players receive 600 ea
 | Build selected tower | Left click on an empty cell |
 | Queue another build | Shift + left click |
 | Move builder / cancel its queue | Right click, or M then click |
-| Cancel construction / clear selection | Escape |
+| Cancel construction / clear selection | Cancel Orders button |
+| Open / close game menu | Escape |
+| Open / close detailed panel | Tab |
 | Select tower | Click an existing tower |
 | Upgrade selected tower | U or its sidebar button |
 | Sell your tower | X then click, or selected-tower button |

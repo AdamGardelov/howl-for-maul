@@ -99,7 +99,7 @@ namespace FrostMaze
         }
         void Update()
         {
-            if(flameMaterial==null||sceneryGame==null||sceneryGame.Paused)return;
+            if(flameMaterial==null||sceneryGame==null||sceneryGame.Paused||sceneryGame.MenuOpen)return;
             flameTime+=Time.deltaTime;
             float glow=.91f+.06f*Mathf.Sin(flameTime*4.1f)+.03f*Mathf.Sin(flameTime*9.7f);
             flameMaterial.color=flameColor*glow;

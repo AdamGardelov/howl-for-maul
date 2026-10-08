@@ -13,9 +13,16 @@ namespace FrostMaze
         WaveSummary observedWaveSummary;
         public bool MoveMode;
         public bool SetupOpen;
+        public bool MenuOpen, DetailsOpen;
+        public void ToggleMenu() { MenuOpen=!MenuOpen;HasHover=false;if(ghost!=null)ghost.SetActive(false); }
+        public Rect TopHud => new Rect(12*UiScale,12*UiScale,Screen.width-24*UiScale,48*UiScale);
+        public Rect BuildHud => new Rect(12*UiScale,Screen.height-116*UiScale,Screen.width-184*UiScale,104*UiScale);
+        public Rect SelectionHud => new Rect(12*UiScale,Screen.height-220*UiScale,Mathf.Min(660*UiScale,Screen.width-184*UiScale),96*UiScale);
+        public Rect AlertHud => (feedback!=null&&feedback.RecentLeaks>0)||(World!=null&&(World.Finished||!World.WaveActive&&World.LastWaveSummary!=null))?new Rect(12*UiScale,64*UiScale,340*UiScale,56*UiScale):Rect.zero;
+        public bool PointerOverHud(Vector2 point) => MenuOpen||SetupOpen||Sidebar.Contains(point)||MinimapRect.Contains(point)||(!DetailsOpen&&(TopHud.Contains(point)||AlertHud.Contains(point)||BuildHud.Contains(point)||(World!=null&&World.Grid.Find(SelectedTowerId)!=null&&SelectionHud.Contains(point))));
         bool matchStarted;
         public bool CanReturnToMatch => matchStarted;
-        public void OpenSetup() { SetupOpen=true; }
+        public void OpenSetup() { SetupOpen=true;MenuOpen=false; }
         public void ReturnToMatch() { if(CanReturnToMatch)SetupOpen=false; }
         void ClearInteraction()
         {
@@ -38,7 +45,7 @@ namespace FrostMaze
         {
             ClearUnitViews();
             World=new World(JsonUtility.FromJson<Scenario>(JsonUtility.ToJson(Map.Settings)),SetupOptions);
-            SetupOpen=false; matchStarted=true; Paused=false; accumulator=0; ClearInteraction();
+            SetupOpen=false;MenuOpen=false;DetailsOpen=false; matchStarted=true; Paused=false; accumulator=0; ClearInteraction();
             View.GetComponent<RtsCamera>().FocusPoint(World.BuilderPosition);
             Notice="All lanes active. Build your maze, then launch the first wave.";
         }
@@ -79,11 +86,10 @@ namespace FrostMaze
         public bool HoverBuildValid;
         public float UiScale => Mathf.Clamp(Mathf.Min(Screen.width / 1200f, Screen.height / 800f), 0.65f, 1f);
         public Rect MinimapRect => new Rect(Screen.width-156*UiScale,Screen.height-184*UiScale,140*UiScale,156*UiScale);
-        public Rect Sidebar => new Rect(18 * UiScale, 18 * UiScale, 324 * UiScale, Screen.height - 36 * UiScale);
+        public Rect Sidebar => !SetupOpen&&!DetailsOpen?Rect.zero:new Rect(18 * UiScale, 18 * UiScale, 324 * UiScale, Screen.height - 36 * UiScale);
         void SetViewport()
         {
-            float inset = Mathf.Clamp((Sidebar.xMax + 12 * UiScale) / Screen.width, 0, 0.48f);
-            View.rect = new Rect(inset, 0, 1 - inset, 1);
+            View.rect = new Rect(0,0,1,1);
         }
         readonly Dictionary<int, GameObject> towers = new Dictionary<int, GameObject>();
         readonly Dictionary<int, EnemyView> enemies = new Dictionary<int, EnemyView>();
@@ -230,9 +236,13 @@ namespace FrostMaze
                 return;
             }
             SetViewport();
-            if(!SetupOpen)ReadBuildInput();
+            if(UnityEngine.Input.GetKeyDown(KeyCode.Escape)) {
+                if(SetupOpen)ReturnToMatch();else ToggleMenu();
+            }
+            if(!SetupOpen&&!MenuOpen&&UnityEngine.Input.GetKeyDown(KeyCode.Tab))DetailsOpen=!DetailsOpen;
+            if(!SetupOpen&&!MenuOpen)ReadBuildInput();
             else {HasHover=false;ghost.SetActive(false);}
-            if (!Paused && !SetupOpen)
+            if (!Paused && !SetupOpen && !MenuOpen)
             {
                 accumulator += Time.deltaTime * Speed;
                 int steps = 0;
@@ -266,7 +276,6 @@ namespace FrostMaze
             if (UnityEngine.Input.GetKeyDown(KeyCode.X))
                 { SellMode = true; MoveMode = false; }
             if (UnityEngine.Input.GetKeyDown(KeyCode.M)) { MoveMode = true; SellMode = false; }
-            if (UnityEngine.Input.GetKeyDown(KeyCode.Escape)) CancelInteraction();
             var mouse = UnityEngine.Input.mousePosition;
             var uiPoint = new Vector2(mouse.x, Screen.height - mouse.y);
             HasHover = false;
@@ -280,7 +289,7 @@ namespace FrostMaze
                 }
                 return;
             }
-            if (World.Finished||Sidebar.Contains(uiPoint))
+            if (World.Finished||PointerOverHud(uiPoint))
                 return;
             var plane = new Plane(Vector3.up, Vector3.zero);
             if (!plane.Raycast(View.ScreenPointToRay(mouse), out float distance))

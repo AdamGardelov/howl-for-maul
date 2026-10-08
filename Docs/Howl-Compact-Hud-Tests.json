@@ -1,0 +1,42 @@
+{
+  "success": true,
+  "command": "command test_status",
+  "data": {
+    "command": "test_status",
+    "parameters": {},
+    "result": {
+      "status": "completed",
+      "duration": 4.5,
+      "summary": {
+        "total": 4,
+        "passed": 4,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "results": [
+        {
+          "FullName": "FrostMaze.Tests.PlayModeIntegration.TowerRolesUpgradesAndCamera",
+          "Status": "Passed",
+          "Duration": 66.6696406,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "FrostMaze.Tests.UnityTests.CameraGesturesHandleEdgesFocusAndDragTransitions",
+          "Status": "Passed",
+          "Duration": 0.003912,
+          "Message": null,
+          "StackTrace": null
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "/home/adam/Documents/Dev/howl-for-maul"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

@@ -105,11 +105,11 @@ namespace FrostMaze
             if(game==null||game.World==null)return;
             ObserveWorld();
             // Cosmetic clock follows pause and speed, but may finish fading after victory.
-            if(!game.Paused&&!game.SetupOpen) {
+            if(!game.Paused&&!game.SetupOpen&&!game.MenuOpen) {
                 effectTime+=Time.unscaledDeltaTime*game.Speed;
                 alertTime+=Time.unscaledDeltaTime;
             }
-            bool audioActive=game.SoundEnabled&&!game.Paused&&!game.SetupOpen;
+            bool audioActive=game.SoundEnabled&&!game.Paused&&!game.SetupOpen&&!game.MenuOpen;
             sound.mute=!audioActive;
             if(observed.Leaked>observedLeaks) {
                 if(alertTime>=leakAlertUntil)recentLeaks=0;

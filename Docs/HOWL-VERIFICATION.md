@@ -71,3 +71,5 @@ Packaged inspector follow-up (afe6680): actual Linux build/select/U-upgrade/sell
 Exit/terrain/progression follow-up: 62/62 pure cases and 77/77 Unity cases passed (all individual XML results preserved). Final material falloff correction separately compiled and inspected in both native map views. No scenic colliders or geometry changes. Paid campaign evidence and limits: EXIT-TERRAIN-PROGRESSION.md.
 
 Themed scenery: final compilation, expanded prop-clearance regression on both maps, native overview/close-up inspection and live pause/flicker fixtures passed. No gameplay changes; the prior full 77-case suite is historical. Read THEMED-SCENERY.md.
+
+Full-map HUD follow-up: clean compilation, four focused camera/audio/tower checks and final updated camera/menu/overview assertions passed. Native menu, rosters and paid inspector captures inspected. Read FULL-MAP-HUD.md; previous 77-case suite remains historical.
