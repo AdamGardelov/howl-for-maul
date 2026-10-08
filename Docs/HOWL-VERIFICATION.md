@@ -18,6 +18,8 @@ Off-camera leak alerts: the new focused integration case passes (1/1), bringing 
 
 Enemy silhouettes: narrower runners and heavier bevelled siege units retain existing collision/navigation. The enemy-presentation case passed (1/1); final cosmetic bevels compiled and were visually inspected afterward, then the combined 72/72 suite passed. See ENEMY-READABILITY.md.
 
+Audio follow-up: the new focused integration case passes (1/1), covering burst limits, camera gating, mute/pause/setup, global breach priority and reset. The last complete suite remains 72/72; 73 cases are now available. Actual synthesized clips exported and checked for finite, bounded samples. See COMBAT-AUDIO.md.
+
 ## Paid campaigns
 
 New Hard solo Prism adaptive campaign: twenty waves won, 30 lives, 324 purchases, 184 upgrades, 6740 spent and 364 gold left. New Hard mixed Gravity/Scrap campaign: twenty waves won, 30 lives, 324 purchases, 270 upgrades, each player spent 3372 and retained 180. No stalls or wallet errors. See Balance/PRISM-HARD.md and Balance/GRAVITY-SCRAP-HARD.md plus raw ledgers.

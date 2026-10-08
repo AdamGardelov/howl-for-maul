@@ -12,7 +12,10 @@ namespace FrostMaze
         float alertTime, leakAlertUntil;
         // UI alerts use real play time, independent of simulation speed and camera visibility.
         public int RecentLeaks => alertTime<leakAlertUntil ? recentLeaks : 0;
-        Material bolt,ember,defeat,airDefeat,leak; AudioSource sound; AudioClip boltClip,emberClip;
+        Material bolt,ember,defeat,airDefeat,leak; AudioSource sound; AudioClip boltClip,emberClip,leakClip;
+        float nextShotSound,nextLeakSound;
+        public int SoundDispatches {get;private set;}
+        public string LastSound {get;private set;}
         readonly List<Flash> flashes=new List<Flash>();
         sealed class Flash { public GameObject Object; public float Until,Start,Duration,Scale; public Vector3 Origin; public bool Pulse; }
         public void Initialize(Prototype prototype)
@@ -20,13 +23,13 @@ namespace FrostMaze
             effectsRoot=new GameObject("Combat cues").transform;effectsRoot.SetParent(transform,false);
             game=prototype;bolt=game.MakeMaterial(new Color(.2f,1,.85f),true);ember=game.MakeMaterial(new Color(1,.5f,.12f),true);
             defeat=game.MakeMaterial(new Color(1,.73f,.28f),true);airDefeat=game.MakeMaterial(new Color(.8f,.6f,1),true);leak=game.MakeMaterial(new Color(1,.16f,.22f),true);
-            sound=gameObject.AddComponent<AudioSource>();sound.spatialBlend=0;sound.volume=.12f;
-            boltClip=Tone("Original bolt",900,.055f);emberClip=Tone("Original cannon",130,.14f);
+            sound=gameObject.AddComponent<AudioSource>();sound.spatialBlend=0;sound.volume=.12f;sound.playOnAwake=false;
+            boltClip=Tone("Original bolt",900,.055f);emberClip=Tone("Original cannon",130,.14f);leakClip=Tone("Original breach",660,.22f,1000);
         }
-        AudioClip Tone(string name,float frequency,float length)
+        AudioClip Tone(string name,float frequency,float length,float fall=120)
         {
             const int rate=22050;var data=new float[(int)(length*rate)];
-            for(int i=0;i<data.Length;i++){float t=(float)i/rate,envelope=1-(float)i/data.Length;data[i]=Mathf.Sin(2*Mathf.PI*(frequency*t-120*t*t))*envelope*envelope*.5f;}
+            for(int i=0;i<data.Length;i++){float t=(float)i/rate,envelope=1-(float)i/data.Length;data[i]=Mathf.Sin(2*Mathf.PI*(frequency*t-fall*t*t))*envelope*envelope*.5f;}
             var clip=AudioClip.Create(name,data.Length,1,rate,false);clip.SetData(data,0);return clip;
         }
         void ObserveWorld()
@@ -34,6 +37,7 @@ namespace FrostMaze
             if(observed==game.World)return;
             observed=game.World;serial=0;effectTime=0;
             observedLeaks=0;recentLeaks=0;alertTime=0;leakAlertUntil=0;
+            nextShotSound=nextLeakSound=0;SoundDispatches=0;LastSound=null;sound.Stop();
             foreach(var f in flashes)Destroy(f.Object);flashes.Clear();
         }
         public void EnemyRemoved(Enemy enemy)
@@ -61,6 +65,15 @@ namespace FrostMaze
             obj.transform.localScale=Vector3.one*scale;
             flashes.Add(new Flash{Object=obj,Origin=origin,Start=effectTime,Until=effectTime+duration,Duration=duration,Scale=scale,Pulse=true});
         }
+        bool InView(V2 point,float height)
+        {
+            var screen=game.View.WorldToViewportPoint(new Vector3(point.X,height,point.Y));
+            return screen.z>0&&screen.x>=0&&screen.x<=1&&screen.y>=0&&screen.y<=1;
+        }
+        void DispatchSound(AudioClip clip)
+        {
+            sound.PlayOneShot(clip);SoundDispatches++;LastSound=clip.name;
+        }
         static readonly Unity.Profiling.ProfilerMarker PhaseProfile=new Unity.Profiling.ProfilerMarker("Howl.Effects");
         void Update() { using(PhaseProfile.Auto()) UpdateEffects(); }
         void UpdateEffects()
@@ -72,10 +85,16 @@ namespace FrostMaze
                 effectTime+=Time.unscaledDeltaTime*game.Speed;
                 alertTime+=Time.unscaledDeltaTime;
             }
+            bool audioActive=game.SoundEnabled&&!game.Paused&&!game.SetupOpen;
+            sound.mute=!audioActive;
             if(observed.Leaked>observedLeaks) {
                 if(alertTime>=leakAlertUntil)recentLeaks=0;
                 recentLeaks+=observed.Leaked-observedLeaks;
                 observedLeaks=observed.Leaked;leakAlertUntil=alertTime+4;
+                if(audioActive&&alertTime>=nextLeakSound) {
+                    sound.Stop();DispatchSound(leakClip);
+                    nextLeakSound=alertTime+.6f;nextShotSound=alertTime+.22f;
+                }
             }
             for(int i=flashes.Count-1;i>=0;i--) {
                 var f=flashes[i];
@@ -86,7 +105,9 @@ namespace FrostMaze
                     f.Object.transform.position=f.Origin+Vector3.up*(t*.25f);
                 }
             }
-            int sounds=0;
+            // One camera-local weapon cue per 120 ms, regardless of frame rate or speed.
+            bool weaponReady=audioActive&&alertTime>=nextShotSound;
+            ShotEvent audible=null;
             foreach(var shot in observed.Shots)if(shot.Serial>serial) {
                 serial=shot.Serial;
                 if(flashes.Count<64) {
@@ -100,9 +121,11 @@ namespace FrostMaze
                         flashes.Add(new Flash{Object=ring,Until=effectTime+.22f});
                     }
                 }
-                if(game.SoundEnabled&&sounds++<2)sound.PlayOneShot(shot.Splash>0?emberClip:boltClip);
+                if(weaponReady&&!shot.Chained&&(audible==null||shot.Splash>audible.Splash)&&
+                    (InView(shot.From,1.3f)||InView(shot.To,shot.Flying?1.7f:.3f)))audible=shot;
             }
+            if(audible!=null){DispatchSound(audible.Splash>0?emberClip:boltClip);nextShotSound=alertTime+.12f;}
         }
-        void OnDestroy(){if(boltClip!=null)Destroy(boltClip);if(emberClip!=null)Destroy(emberClip);}
+        void OnDestroy(){if(leakClip!=null)Destroy(leakClip);if(boltClip!=null)Destroy(boltClip);if(emberClip!=null)Destroy(emberClip);}
     }
 }

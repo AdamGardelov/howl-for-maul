@@ -1,0 +1,29 @@
+{
+  "path": "/home/adam/Documents/Codex/2026-10-06/cre/outputs/Howl-for-Maul-combat-cues.wav",
+  "clips": [
+    {
+      "name": "Original bolt",
+      "samples": 1212,
+      "seconds": 0.054,
+      "peak": 0.4948065,
+      "rms": 0.1581098020504144,
+      "previewGain": 0.12
+    },
+    {
+      "name": "Original cannon",
+      "samples": 3087,
+      "seconds": 0.14,
+      "peak": 0.486410975,
+      "rms": 0.15808560774355696,
+      "previewGain": 0.12
+    },
+    {
+      "name": "Original breach",
+      "samples": 4850,
+      "seconds": 0.219,
+      "peak": 0.497231126,
+      "rms": 0.15811348701500683,
+      "previewGain": 0.12
+    }
+  ]
+}

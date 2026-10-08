@@ -103,6 +103,54 @@ namespace FrostMaze.Tests
             yield return new ExitPlayMode();
         }
         [UnityTest]
+        public IEnumerator CombatAudioLimitsBurstsFollowsCameraAndPrioritizesLeaks()
+        {
+            EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
+            yield return new EnterPlayMode();yield return null;
+            var game=Object.FindFirstObjectByType<Prototype>();game.StartMatch();game.SoundEnabled=true;
+            var w=game.World;var feedback=game.GetComponent<CombatFeedback>();var source=game.GetComponent<AudioSource>();
+            var point=w.BuilderPosition;game.View.GetComponent<RtsCamera>().FocusPoint(point);
+            yield return null;yield return null;
+            long serial=0;
+            void Shot(FrostMaze.Simulation.V2 p,bool chain=false,float splash=0) {
+                w.Shots.Add(new FrostMaze.Simulation.ShotEvent{Serial=++serial,From=p,To=p+new FrostMaze.Simulation.V2(.5f,0),Chained=chain,Splash=splash});
+            }
+            for(int i=0;i<100;i++)Shot(point,false,i==99?1:0);
+            yield return null;yield return null;
+            Assert.That(feedback.SoundDispatches,Is.EqualTo(1),"A volley must not create one voice per shot");
+            Assert.That(feedback.LastSound,Is.EqualTo("Original cannon"),"A visible impact should take priority within the volley");
+            Assert.That(source.mute,Is.False);
+            int before=feedback.SoundDispatches;float start=Time.realtimeSinceStartup;
+            while(Time.realtimeSinceStartup-start<.5f){w.Shots.Clear();Shot(point);yield return null;}
+            float elapsed=Time.realtimeSinceStartup-start;
+            Assert.That(feedback.SoundDispatches-before,Is.InRange(1,Mathf.CeilToInt(elapsed/.12f)+1),"Weapon cadence depends on rendered frame rate");
+            w.Shots.Clear();yield return new WaitForSecondsRealtime(.16f);before=feedback.SoundDispatches;
+            Shot(new FrostMaze.Simulation.V2(1,63));yield return null;yield return null;
+            Assert.That(feedback.SoundDispatches,Is.EqualTo(before),"Off-camera weapons should be quiet");
+            Shot(point,true);yield return null;yield return null;
+            Assert.That(feedback.SoundDispatches,Is.EqualTo(before),"Chain arcs must not multiply weapon voices");
+            game.Paused=true;Shot(point);yield return null;yield return null;
+            Assert.That(source.mute,Is.True);Assert.That(feedback.SoundDispatches,Is.EqualTo(before));
+            game.Paused=false;yield return new WaitForSecondsRealtime(.16f);
+            Assert.That(feedback.SoundDispatches,Is.EqualTo(before),"Unpausing replayed an old shot");
+            game.OpenSetup();Shot(point);yield return null;yield return null;
+            Assert.That(source.mute,Is.True);Assert.That(feedback.SoundDispatches,Is.EqualTo(before));
+            game.ReturnToMatch();game.SoundEnabled=false;Shot(point);yield return null;yield return null;
+            Assert.That(source.mute,Is.True);Assert.That(feedback.SoundDispatches,Is.EqualTo(before));
+            game.SoundEnabled=true;yield return new WaitForSecondsRealtime(.16f);
+            Assert.That(feedback.SoundDispatches,Is.EqualTo(before),"Unmuting replayed old shots");
+            // Real exits outside the camera must still produce a single global warning.
+            game.View.GetComponent<RtsCamera>().FocusPoint(new FrostMaze.Simulation.V2(8,50));
+            var route=w.LaneRoute(0,true);
+            for(int i=0;i<3;i++){var e=w.Spawn(new FrostMaze.Simulation.WaveSpec{Flying=true},route[route.Length-1]);e.Checkpoint=route.Length-1;w.Step();}
+            Shot(new FrostMaze.Simulation.V2(8,50),false,1);yield return null;yield return null;
+            Assert.That(w.Leaked,Is.EqualTo(3));Assert.That(feedback.SoundDispatches,Is.EqualTo(before+1));
+            Assert.That(feedback.LastSound,Is.EqualTo("Original breach"),"Breach warning lost priority to weapon sound");
+            game.StartMatch();game.Paused=true;yield return null;yield return null;
+            Assert.That(feedback.SoundDispatches,Is.Zero);Assert.That(feedback.LastSound,Is.Null);Assert.That(source.mute,Is.True);
+            yield return new ExitPlayMode();
+        }
+        [UnityTest]
         public IEnumerator MapLandmarksNeverCoverWalkableCells()
         {
             EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
