@@ -100,7 +100,7 @@ static class BalanceSweep
     static int TeamGold(World w) { int total=0;foreach(var p in w.Players)total+=p.Gold;return total; }
     public static int Run(string path,Difficulty difficulty,int players,string strategy="coverage",bool mixed=false)
     {
-        if(strategy!="coverage"&&strategy!="roster")throw new ArgumentException("Strategy must be coverage or roster.");
+        if(strategy!="coverage"&&strategy!="roster"&&strategy!="maze")throw new ArgumentException("Strategy must be coverage, roster or maze.");
         if(players<1||players>4)throw new ArgumentException("Player count must be 1–4.");
         var results=new List<Result>();
         foreach(bool iron in new[]{false,true}) {
@@ -109,6 +109,11 @@ static class BalanceSweep
                 var factions=new int[4];for(int player=0;player<4;player++)factions[player]=mixed?(faction+player)%c.Factions.Length:faction;
                 var w=new World(c,new MatchOptions{PlayerCount=players,Difficulty=difficulty,Factions=factions});
                 var r=new Result{Strategy=strategy,Factions=factions.Take(players).Select(f=>c.Factions[f].Name).ToArray(),PlayerCount=players,Map=c.Name,Faction=c.Factions[faction].Name,Difficulty=difficulty.ToString()};
+                if(strategy=="maze") {
+                    int design=MapCases.MazeDesign(w);var cells=MapCases.MazeCells(iron);
+                    for(int cell=0;cell<cells.GetLength(0);cell++)
+                        if(!Purchase(w,cells[cell,0],cells[cell,1],design,r))throw new Exception("Paid maze fixture could not be built");
+                }
                 for(int wave=0;wave<c.Waves.Length&&!w.Finished;wave++) {
                     for(int player=0;player<players;player++){w.SelectPlayer(player);if(strategy=="roster")SpendRoster(w,samples,r);else Spend(w,samples,r);}int killed=w.Killed,leaked=w.Leaked;
                     if(!w.StartWave())throw new Exception("Wave failed to start");int ticks=0;

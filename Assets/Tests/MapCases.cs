@@ -14,6 +14,60 @@ namespace FrostMaze.Tests
 #endif
    string text=File.ReadAllText(root+(iron?"Ironfold":"Rimewatch")+".txt");return iron?ReferenceMaps.Ironfold(text):ReferenceMaps.Rimewatch(text);
   }
+  // Three alternating arms in the supplied upper-left corridor, leaving one-unit gaps.
+  // This is a test strategy, never generated terrain or a restriction on player building.
+  public static int[,] MazeCells(bool iron) {
+   int left=iron?8:6,right=iron?14:12,top=iron?56:50;
+   var cells=new int[3*(right-left),2];int at=0;
+   for(int row=0;row<3;row++)for(int x=left;x<=right;x++) {
+    if(x==(row%2==0?right:left))continue;
+    cells[at,0]=x;cells[at++,1]=top-row*4;
+   }
+   return cells;
+  }
+  public static int MazeDesign(World w) {
+   int best=w.Config.Factions[w.Players[w.ActivePlayer].Faction].Designs[0];
+   foreach(int design in w.Config.Factions[w.Players[w.ActivePlayer].Faction].Designs)
+    if(w.Config.Catalog[design].Cost<w.Config.Catalog[best].Cost)best=design;
+   return best;
+  }
+  public static void PaidReferenceMazes() {
+   foreach(bool iron in new[]{false,true}) {
+    var c=Load(iron);var empty=new World(c);var maze=new World(c);maze.SelectedDesign=MazeDesign(maze);
+    int cost=maze.BuildCost;var cells=MazeCells(iron);
+    for(int cell=0;cell<cells.GetLength(0);cell++) {
+     Check(maze.OrderBuild(cells[cell,0],cells[cell,1],out string reason),"maze purchase rejected: "+reason);
+     for(int tick=0;tick<1000&&maze.HasBuildOrder;tick++)maze.Step();
+     Check(!maze.HasBuildOrder&&maze.Grid.Towers.Count==cell+1,"paid maze order did not complete");
+    }
+    Check(maze.Gold==c.StartingGold-cost*cells.GetLength(0),"maze spending was not paid exactly");
+    var baseline=Traverse(empty);var detour=Traverse(maze);
+    Check(detour[0]>baseline[0]+60,c.Name+" maze failed to lengthen ground traversal");
+    for(int lane=0;lane<maze.LaneCount;lane++) {
+     Check(detour[lane*2+1]==baseline[lane*2+1],"maze changed flight traversal");
+     if(lane>0)Check(detour[lane*2]==baseline[lane*2],"left maze changed another lane");
+    }
+    // Selling opens the shortcut and invalidates its cached navigation fields.
+    foreach(var tower in maze.Grid.Towers.ToArray())Check(maze.Sell(tower.CellX,tower.CellY),"owned maze sale failed");
+    var reopened=Traverse(maze);
+    Check(reopened[0]==baseline[0],"selling maze did not restore original traversal");
+   }
+  }
+  static int[] Traverse(World w) {
+   w.TowersFire=false;var units=new Enemy[w.LaneCount*2];var ticks=new int[units.Length];
+   for(int lane=0;lane<w.LaneCount;lane++)for(int air=0;air<2;air++) {
+    int index=lane*2+air;units[index]=w.Spawn(new WaveSpec{Flying=air==1},w.LaneSpawn(lane),lane);Check(units[index]!=null,"test spawn blocked");
+   }
+   for(int tick=1;tick<=9000&&w.Enemies.Count>0;tick++) {
+    w.Step();
+    for(int i=0;i<units.Length;i++) {
+     Check(!units[i].Blocked,"open zig-zag triggered siege");
+     if(units[i].Exited&&ticks[i]==0)ticks[i]=tick;
+    }
+   }
+   foreach(int tick in ticks)Check(tick>0,"maze traversal stalled");
+   return ticks;
+  }
   public static void Masks() {
    foreach(bool iron in new[]{false,true}) {var c=Load(iron);var w=new World(c);Check(w.LaneCount==(iron?4:3),"lane count");
     for(int y=0;y<c.LayoutRows.Length;y++)for(int x=0;x<c.LayoutRows[y].Length;x++) {

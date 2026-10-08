@@ -73,7 +73,7 @@ With the .NET 10 SDK:
 dotnet run --project Headless/HowlForMaul.Headless.csproj -c Release
 ```
 
-The headless runner executes pure simulation cases. Its optional `--balance` mode exercises paid defenses across both maps and every faction; see [the coverage baseline](Docs/Balance/README.md) and [24 roster/upgrade campaigns](Docs/Balance/ROSTER-BASELINE.md) for commands, results and limitations. The latter includes real champion purchases, paid upgrades and mixed-faction teams. Unity's **Window → General → Test Runner → EditMode → Run All** additionally checks real Play-mode setup, builder/tower visuals, chosen starts, map switching and difficulty. Stop Play before starting Edit-mode tests.
+The headless runner executes pure simulation cases. Its optional `--balance` mode exercises paid defenses across both maps and every faction; see [the coverage baseline](Docs/Balance/README.md) and [24 roster/upgrade campaigns](Docs/Balance/ROSTER-BASELINE.md) for commands, results and limitations. The latter includes real champion purchases, paid upgrades and mixed-faction teams. The [paid maze baseline](Docs/Balance/MAZE-BASELINE.md) adds deliberate zig-zag construction and route/reopening checks. Unity's **Window → General → Test Runner → EditMode → Run All** additionally checks real Play-mode setup, builder/tower visuals, chosen starts, map switching and difficulty. Stop Play before starting Edit-mode tests.
 
 Use **Howl for Maul → Build Linux** or **Build Windows**. Windows requires the Windows Mono build module. Output executables:
 

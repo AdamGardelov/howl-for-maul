@@ -1,8 +1,14 @@
-# Howl for Maul verification — combat feedback checkpoint
+# Howl for Maul verification — paid maze checkpoint
 
-Unity 6000.3.25f1 passed **53/53 tests**, including actual Play-mode integration. The standalone .NET suite passed **50/50**. Exact Unity results are in Howl-Unity-Tests.json.
+Unity 6000.3.25f1 passed **54/54 tests**, including actual Play-mode integration. The standalone .NET suite passed **51/51**. Exact Unity results are in Howl-Unity-Tests.json.
 
 Coverage includes collision-mask fidelity, spatial-index equivalence, every map lane, siege and congestion behavior, difficulty, conserved economy, ownership, paid builder queues, upgrades, combat effects, faction restrictions and champion prerequisites. New regression coverage checks that difficulty-scaled wave previews match actual spawns, cannot mutate source data, forecast air waves, and list only the current player's missing prerequisites.
+
+## Deliberate paid mazes
+
+The new reference-map regression builds and pays for three alternating wall arms, measures all ground/flying lanes, verifies a real detour without siege, and sells the walls to verify the original path is restored. Weapons are disabled only for this geometry measurement. A separate twelve-faction solo Normal sweep uses paid maze-first construction with normal combat, followed by coverage defenses. See Balance/MAZE-BASELINE.md for exact layouts, complete results and limits.
+
+This checkpoint changes only tests, the headless driver and documentation. Runtime source and map assets are unchanged. Desktop builds and smoke results below belong to the preceding combat-feedback checkpoint; no new packaged build is claimed here.
 
 ## Flight-aware and pausable combat feedback
 
@@ -40,7 +46,7 @@ These earlier runs are reproducible starter-heavy winning strategies, not proof 
 
 ## Desktop builds
 
-Fresh Linux and Windows builds succeeded; Howl-Builds.json records their evidence. The actual updated Linux executable passed its packaged-map smoke test, loading both maps and traversing every ground and flying route before exiting 0. The test used an isolated virtual display because the desktop had no usable screen dimensions.
+At the preceding runtime checkpoint, Linux and Windows builds succeeded; Howl-Builds.json records their evidence. The actual updated Linux executable passed its packaged-map smoke test, loading both maps and traversing every ground and flying route before exiting 0. The test used an isolated virtual display because the desktop had no usable screen dimensions.
 
 Linux reports the expected warning that editor automation is disabled in player builds. Windows additionally reports unsupported ray-tracing shader warnings from Unity packages. The game uses standard URP rendering, not ray tracing. Windows execution has not been tested on Windows. A packaged smoke test is not a full human desktop playthrough.
 
