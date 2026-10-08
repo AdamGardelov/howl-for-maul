@@ -46,7 +46,7 @@ Tower-query follow-up: spatial indexing reduced the matched crowded fixture from
 
 ## Packages and platform limits
 
-Fresh Linux and Windows packages include source 9368630: all 76 models, tower collision indexing, repaint-only world overlays map props kept off walkable cells wave income recaps bounded combat cues off-camera leak alerts refined enemy silhouettes, paced combat audio, siege feedback and faster camera controls. Both builds succeeded with zero errors; Linux reported one Pipeline-disabled warning, Windows 19 including unsupported package ray-tracing shaders. Windows runtime remains untested.
+Fresh Linux and Windows packages include source afe6680: all 76 models, tower collision indexing, repaint-only world overlays map props kept off walkable cells wave income recaps bounded combat cues off-camera leak alerts refined enemy silhouettes, paced combat audio, siege feedback faster camera controls, placement hints and owner/refund inspector. Both builds succeeded with zero errors; Linux reported one Pipeline-disabled warning, Windows 19 including unsupported package ray-tracing shaders. Windows runtime remains untested.
 
 Fresh Linux packaged route/data smoke passed both maps without a display server, exit zero. The repeatable Tools/smoke-linux.sh checks data-only initialization, both map markers and clean process exit. An initial audio-shutdown crash (133) was caught; the explicit smoke path now skips presentation and passed three consecutive runs. See Platform/headless-audio-shutdown.json. The preceding 465974e package passed mouse-driven Start Match/build beside wall/select/upgrade/sell on isolated :98, with 1200 → 1180 → 1160 → 1190 gold and normal close exiting zero. These are separate checks, not a full mouse-played campaign or a GPU benchmark.
 
@@ -62,6 +62,8 @@ Rendering experiment: GPU instancing reduced draw calls but did not show a clear
 
 Latest combined regression: 74/74 passed after combat audio and siege feedback, with every individual case confirmed from Unity XML. See SIEGE-FEEDBACK.md. Camera traversal subsequently passed its four focused checks and packaged input sequence.
 
-Placement-hint follow-up: compilation and native staged valid/invalid tooltip inspection passed. It reuses existing placement validation and changes no simulation rules. No new full-suite or packaged-input pass is claimed for this text-only addition. Packages remain 9368630. See PLACEMENT-HINTS.md.
+Placement-hint follow-up: compilation and native staged valid/invalid tooltip inspection passed. It reuses existing placement validation and changes no simulation rules. The subsequent afe6680 Linux package verified the live inspect/checkpoint hints during actual input; no new full-suite pass is claimed for this addition. See PLACEMENT-HINTS.md.
 
 Tower ownership inspector: compilation, all 61 pure cases, and native owner/non-owner captures passed. Actual paid fixture: P1 600 → 560 after tower + upgrade, P2 stays 600, refund 30, next upgrade 40. No mutation of ownership/refund rules. See TOWER-OWNERSHIP-UI.md.
+
+Packaged inspector follow-up (afe6680): actual Linux build/select/U-upgrade/sell sequence passed on isolated :98. Gold 1200 → 1180 → 1160 → 1190 agrees with the quoted 15/30 gold refunds. Normal close exited zero; both map/data smoke checks passed.

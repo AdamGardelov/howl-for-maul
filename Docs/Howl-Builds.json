@@ -1,14 +1,14 @@
 {
   "builds": [
     {
-      "buildId": "build_1d04dab5cda6",
+      "buildId": "build_3d537d2fd948",
       "result": "Succeeded",
       "platform": "StandaloneLinux64",
       "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Linux/HowlForMaul",
-      "totalSizeBytes": 92223432,
-      "buildTimeMs": 21114,
-      "buildStartedAt": "2026-10-08T13:26:52.3475960Z",
-      "buildEndedAt": "2026-10-08T13:27:13.4624480Z",
+      "totalSizeBytes": 92224968,
+      "buildTimeMs": 18428,
+      "buildStartedAt": "2026-10-08T14:07:43.5779780Z",
+      "buildEndedAt": "2026-10-08T14:08:02.0066960Z",
       "totalWarnings": 1,
       "totalErrors": 0,
       "warnings": [
@@ -18,14 +18,14 @@
       ]
     },
     {
-      "buildId": "build_363541e89e0d",
+      "buildId": "build_f9fda7d7e041",
       "result": "Succeeded",
       "platform": "StandaloneWindows64",
       "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Windows/HowlForMaul.exe",
-      "totalSizeBytes": 95867088,
-      "buildTimeMs": 19639,
-      "buildStartedAt": "2026-10-08T13:30:31.0821440Z",
-      "buildEndedAt": "2026-10-08T13:30:50.7219840Z",
+      "totalSizeBytes": 95868624,
+      "buildTimeMs": 23622,
+      "buildStartedAt": "2026-10-08T14:10:02.5744010Z",
+      "buildEndedAt": "2026-10-08T14:10:26.1970880Z",
       "totalWarnings": 19,
       "totalErrors": 0,
       "warnings": [
@@ -126,9 +126,9 @@
     "sourceCheckpoint": "465974e",
     "exitCode": 0
   },
-  "sourceCheckpoint": "9368630",
+  "sourceCheckpoint": "afe6680",
   "linuxHeadlessSmoke": {
-    "sourceCheckpoint": "9368630",
+    "sourceCheckpoint": "afe6680",
     "command": "Tools/smoke-linux.sh",
     "display": "DISPLAY and WAYLAND_DISPLAY unset for child process",
     "graphicsDevice": "Null Device",
@@ -137,11 +137,11 @@
       "Rimewatch",
       "Ironfold"
     ],
-    "note": "Fresh 9368630 package passed explicit data-only isolation, both map route checks and clean exit. Earlier 75ab3ae smoke isolation was separately checked in three consecutive runs.",
+    "note": "Fresh afe6680 package passed explicit data-only isolation, both map route checks and clean exit. Earlier 75ab3ae smoke isolation was separately checked in three consecutive runs.",
     "consecutivePasses": 1
   },
   "linuxPackagedSmoke": {
-    "sourceCheckpoint": "9368630",
+    "sourceCheckpoint": "afe6680",
     "backend": "headless -batchmode -nographics",
     "exitCode": 0,
     "markers": [
@@ -208,5 +208,33 @@
     ],
     "exitCode": 0,
     "note": "Keyboard focus was explicitly assigned to the owned isolated test window; Xvfb has no window manager. Native desktop and Windows runtime not verified."
+  },
+  "linuxTowerInspectorInput": {
+    "sourceCheckpoint": "afe6680",
+    "display": ":98",
+    "resolution": [
+      1440,
+      900
+    ],
+    "renderer": "Mesa llvmpipe",
+    "goldSequence": [
+      1200,
+      1180,
+      1160,
+      1190
+    ],
+    "displayedRefunds": [
+      15,
+      30
+    ],
+    "checks": [
+      "Paid build and selection",
+      "U upgrade raises displayed refund to 30",
+      "Sale returns exactly the quoted 30 gold",
+      "Live inspect and blocked-checkpoint placement hints",
+      "Normal close exits zero"
+    ],
+    "exitCode": 0,
+    "limitations": "No Windows runtime or native desktop compatibility claim. Two-player ownership controls were checked in an editor fixture."
   }
 }

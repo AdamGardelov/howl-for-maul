@@ -2,18 +2,15 @@
 
 ## Latest state
 
-Tower inspector follow-up: exact owner and paid sale refund, disabled foreign/unaffordable actions. Compilation, 61 pure cases and owner/non-owner visual fixtures passed. See TOWER-OWNERSHIP-UI.md. Refresh packages to include this and the placement hint.
-
-A subsequent source-only follow-up adds placement cost/blocked-reason hints, compiled and visually inspected at 1920×884. Read PLACEMENT-HINTS.md. Packages remain at camera checkpoint 9368630; include the hint on the next package refresh. Linux target restored and verified.
-
-- Source 9368630 adds the requested edge scrolling and Space + left-drag camera. Enter launches waves; Shift speeds up keyboard/edge panning. Four focused Unity checks and actual Linux mouse/keyboard input passed. Read CAMERA-CONTROLS.md.
-- Source 44b2290 adds actual enemy melee poses, tower impact outlines and destruction rubble. Paid wall-seal integration and native close/normal screenshots passed. Full combined Unity suite: 74/74, individually confirmed in XML. There are now 76 available cases after the camera additions; do not claim a full 76-case pass.
-- Linux and Windows packages include 9368630; both builds have zero errors. Windows runtime remains untested. Linux build and both data-only smoke checks passed; actual camera input on isolated :98 passed and normal close exited zero. Read Howl-Builds.json for finalized per-platform provenance.
-- Normal solo Rime scripted maze cleared twenty waves with 30 lives, valid ledger, 266 purchases and no upgrades. This is separate from the unresolved 48-tower compact solo Rime case. Read Balance/COMPACT-DEFENSE.md and RIME-PAID-MAZE.json.
+- Source afe6680 adds owner/refund inspector guidance and disabled foreign/unaffordable actions. Compilation and all 61 pure simulation cases passed. Native two-player inspector fixtures passed. Actual Linux input verified build/select/U-upgrade/sell, with gold 1200 → 1180 → 1160 → 1190 and refund quotes 15 → 30. Normal close exited zero. Read TOWER-OWNERSHIP-UI.md.
+- Linux and Windows packages include afe6680, including placement hints from e4cf5e6. Both builds have zero errors; Windows runtime remains untested. Both Linux map/data smoke checks pass. Live inspect/checkpoint hints were checked in the package. Read Howl-Builds.json for per-check source provenance.
+- Source 9368630 introduced requested edge scrolling and Space + left-drag. Enter launches waves; Shift speeds keyboard/edge pan. Four focused Unity checks and actual Linux camera input passed. Read CAMERA-CONTROLS.md.
+- Source 44b2290 added melee poses, tower impact outlines and destruction rubble. Paid wall-seal integration and native screenshots passed. Last complete Unity suite: 74/74 individually confirmed in XML. There are 76 available cases after camera additions; no full 76-case pass is claimed.
+- Normal solo Rime scripted maze cleared twenty waves with 30 lives and a valid ledger using 266 purchases. The arbitrary 48-tower compact solo Rime case remains unresolved. Read Balance/COMPACT-DEFENSE.md.
 
 ## Next priorities
 
-1. Preserve user Play sessions and unsaved scenes; packages and metadata are current through 9368630.
+1. Preserve user Play sessions and unsaved scenes; packages and metadata are current through afe6680.
 2. Continue paid-defense progression and clearer player-facing faction/maze guidance. Compact tests show bot choices matter: 10/12 slot-aware solo wins, role-aware Stonebound wins too, and both compact mixed pairs win. Rime compact remains unresolved; no balance change solely to make that arbitrary restriction pass.
 3. Continue original minimalistic, League-inspired presentation. All 76 tower models are implemented as a first procedural pass, not final art. Maintain readable silhouettes and keep every raised scenic prop on blocked mask cells.
 
