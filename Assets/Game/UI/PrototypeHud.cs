@@ -196,6 +196,8 @@ namespace FrostMaze
         }
         void DrawMinimap()
         {
+            // Absolute-position overlays have no controls or layout to process.
+            if(Event.current.type!=EventType.Repaint)return;
             var w=game.World;if(w.Config.Lanes.Length==0)return;
             var r=game.MinimapRect;
             GUI.color=new Color(.035f,.075f,.09f,.95f);GUI.DrawTexture(new Rect(r.x-4,r.y-18,r.width+8,r.height+22),Texture2D.whiteTexture);
@@ -227,6 +229,8 @@ namespace FrostMaze
         }
         void DrawMapLabels()
         {
+            // Absolute-position overlays have no controls or layout to process.
+            if(Event.current.type!=EventType.Repaint)return;
             if (!game.World.Config.BuilderEnabled) return;
             for (int i = 0; i < game.World.LaneCount; i++) {
                 var spawn=game.World.LaneSpawn(i);
@@ -252,6 +256,8 @@ namespace FrostMaze
         }
         void DrawHealth()
         {
+            // Absolute-position overlays have no controls or layout to process.
+            if(Event.current.type!=EventType.Repaint)return;
             foreach (var tower in game.World.Grid.Towers)
                 if (tower.Health < tower.Spec.Health)
                     HealthBar(new Vector3(tower.Center.X, 1.7f, tower.Center.Y), tower.Health / tower.Spec.Health, new Color(.28f, .9f, .73f), 36);
