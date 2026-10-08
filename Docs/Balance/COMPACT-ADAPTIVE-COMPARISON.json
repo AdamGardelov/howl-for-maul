@@ -1,0 +1,11 @@
+{
+  "baseline": "Docs/Balance/GRAVITY-SCRAP-HARD.json",
+  "exactWholeLedgerMatch": true,
+  "includes": [
+    "purchases",
+    "upgrades",
+    "wave results",
+    "ticks",
+    "wallets"
+  ]
+}

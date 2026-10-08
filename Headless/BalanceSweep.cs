@@ -9,7 +9,7 @@ using FrostMaze.Tests;
 // Reproducible baseline, not a skilled-player substitute. Uses normal builder orders and wallets.
 static class BalanceSweep
 {
-    sealed class Sample { public V2 Position; public bool Air; public float Coverage; }
+    sealed class Sample { public V2 Position; public bool Air; public float Coverage,Slow; }
     sealed class Placement { public int TowerId{get;set;} public int BeforeWave{get;set;} public int Player{get;set;} public int X{get;set;} public int Y{get;set;} public string Tower{get;set;} public int Cost{get;set;} }
     sealed class UpgradeResult { public int Player{get;set;} public int TowerId{get;set;} public string Tower{get;set;} public int Level{get;set;} public int Cost{get;set;} public int BeforeWave{get;set;} }
     sealed class WaveResult { public int[] PlayerGold{get;set;} public int Wave{get;set;} public bool Flying{get;set;} public int Killed{get;set;} public int Leaked{get;set;} public int Ticks{get;set;} public int Gold{get;set;} }
@@ -50,31 +50,44 @@ static class BalanceSweep
         int cost=before-w.Gold;if(cost!=w.Config.Catalog[design].Cost)throw new Exception("Purchase accounting mismatch");
         result.Spent+=cost;result.Placements.Add(new Placement{TowerId=w.Grid.Towers[w.Grid.Towers.Count-1].Id,BeforeWave=w.WaveIndex+2,Player=w.ActivePlayer+1,X=x,Y=y,Tower=w.BuildName,Cost=cost});return true;
     }
-    static void Spend(World w,List<Sample> samples,Result result)
+    static float ScoredDps(TowerSpec spec,bool roles)
+    {
+        float direct=spec.Damage/spec.Interval;
+        // Conservative bot estimates, not promised combat DPS. Crowd geometry decides real results.
+        return roles?direct*(1+Math.Min(2,spec.SplashRadius)+.6f*spec.ChainTargets)/(1-.5f*spec.SlowFraction):direct;
+    }
+    static void Spend(World w,List<Sample> samples,Result result,int towerLimit=int.MaxValue,bool valueSlots=false,bool roles=false,bool support=false)
     {
         // Whole-map route coverage, diminishing returns. No teleporting, free towers, or balance overrides.
+        // Compact-value weights scarce tower slots as well as gold; this is a bot heuristic, not game tuning.
         foreach(var sample in samples) {
-            sample.Coverage=0;
+            sample.Coverage=0;sample.Slow=0;
             foreach(var t in w.Grid.Towers)if((sample.Air?t.Spec.TargetsAir:t.Spec.TargetsGround)&&V2.Distance(t.Center,sample.Position)<t.Spec.Range)
-                sample.Coverage+=t.Spec.Damage/t.Spec.Interval;
+                { sample.Coverage+=ScoredDps(t.Spec,roles);sample.Slow=Math.Max(sample.Slow,t.Spec.SlowFraction); }
         }
-        for(int purchase=0;purchase<100;purchase++) {
+        int owned=Owned(w,result).Count();
+        for(int purchase=0;purchase<100&&owned<towerLimit;purchase++) {
             double best=0;int bx=-1,by=-1,bd=-1;
             foreach(int design in w.Config.Factions[w.Players[w.ActivePlayer].Faction].Designs) {
                 var d=w.Config.Catalog[design];if(d.Spec.Damage<=0||d.Cost>w.Gold||!w.RequirementsMet(design))continue;
                 w.SelectedDesign=design;
                 var weights=new double[samples.Count];
-                for(int i=0;i<samples.Count;i++)weights[i]=(samples[i].Air?1.5:1)*Math.Log(1+d.Spec.Damage/d.Spec.Interval/(10+samples[i].Coverage));
+                for(int i=0;i<samples.Count;i++) {
+                    float power=ScoredDps(d.Spec,roles);
+                    // Slowing extends other towers' firing time, but repeated slows do not stack.
+                    if(support)power+=samples[i].Coverage*Math.Max(0,d.Spec.SlowFraction-samples[i].Slow)*.5f/(1-d.Spec.SlowFraction);
+                    weights[i]=(samples[i].Air?1.5:1)*Math.Log(1+power/(10+samples[i].Coverage));
+                }
                 foreach(var candidate in Candidates(w,d.Spec,samples)) {
                     int x=candidate.X,y=candidate.Y;if(!w.CanBuild(x,y,out _))continue;
                     double score=0;foreach(int index in candidate.Samples)score+=weights[index];
-                    score/=d.Cost;
+                    score/=valueSlots?Math.Sqrt(d.Cost):d.Cost;
                     if(score>best){best=score;bx=x;by=y;bd=design;}
                 }
             }
             if(bd<0||!Purchase(w,bx,by,bd,result))break;
-            var spec=w.Config.Catalog[bd].Spec;
-            foreach(var sample in samples)if((sample.Air?spec.TargetsAir:spec.TargetsGround)&&V2.Distance(new V2(bx+.5f,by+.5f),sample.Position)<spec.Range)sample.Coverage+=spec.Damage/spec.Interval;
+            owned++;var spec=w.Config.Catalog[bd].Spec;
+            foreach(var sample in samples)if((sample.Air?spec.TargetsAir:spec.TargetsGround)&&V2.Distance(new V2(bx+.5f,by+.5f),sample.Position)<spec.Range){sample.Coverage+=ScoredDps(spec,roles);sample.Slow=Math.Max(sample.Slow,spec.SlowFraction);}
         }
     }
     static IEnumerable<Tower> Owned(World w,Result result)
@@ -112,9 +125,9 @@ static class BalanceSweep
             }
         Spend(w,samples,result);
     }
-    static void SpendAdaptive(World w,List<Sample> samples,Result result)
+    static void SpendAdaptive(World w,List<Sample> samples,Result result,int towerLimit=int.MaxValue,bool valueSlots=false,bool roles=false,bool support=false)
     {
-        Spend(w,samples,result);
+        Spend(w,samples,result,towerLimit,valueSlots,roles,support);
         // When sampled building sites fill up, reinvest leftover gold instead of hoarding it.
         // Prefer affordable upgrades with actual route exposure; never wait for one expensive item.
         while(true) {
@@ -122,7 +135,7 @@ static class BalanceSweep
             foreach(var tower in Owned(w,result)) {
                 int cost=w.UpgradeCost(tower);if(tower.Level>=3||tower.Spec.Damage<=0||cost>w.Gold)continue;
                 double exposure=0;foreach(var sample in samples)if((sample.Air?tower.Spec.TargetsAir:tower.Spec.TargetsGround)&&V2.Distance(tower.Center,sample.Position)<tower.Spec.Range+.35f)exposure+=sample.Air?1.5:1;
-                double score=exposure*tower.Spec.Damage/tower.Spec.Interval*.6/cost;
+                double score=roles?exposure*ScoredDps(tower.Spec,true)*.6/cost:exposure*tower.Spec.Damage/tower.Spec.Interval*.6/cost;
                 if(score>value){value=score;best=tower;}
             }
             if(best==null)break;int price=w.UpgradeCost(best),before=w.Gold;
@@ -147,7 +160,7 @@ static class BalanceSweep
     static int TeamGold(World w) { int total=0;foreach(var p in w.Players)total+=p.Gold;return total; }
     public static int Run(string path,Difficulty difficulty,int players,string strategy="coverage",bool mixed=false,string mapFilter="",int factionFilter=-1)
     {
-        if(strategy!="coverage"&&strategy!="roster"&&strategy!="maze"&&strategy!="adaptive")throw new ArgumentException("Strategy must be coverage, roster, maze or adaptive.");
+        if(strategy!="coverage"&&strategy!="roster"&&strategy!="maze"&&strategy!="adaptive"&&strategy!="compact"&&strategy!="compact-value"&&strategy!="compact-roles"&&strategy!="compact-support")throw new ArgumentException("Strategy must be coverage, roster, maze, adaptive, compact, compact-value, compact-roles or compact-support.");
         if(players<1||players>4)throw new ArgumentException("Player count must be 1–4.");
         var results=new List<Result>();
         foreach(bool iron in new[]{false,true}) {
@@ -163,9 +176,10 @@ static class BalanceSweep
                         if(!Purchase(w,cells[cell,0],cells[cell,1],design,r))throw new Exception("Paid maze fixture could not be built");
                 }
                 for(int wave=0;wave<c.Waves.Length&&!w.Finished;wave++) {
-                    for(int player=0;player<players;player++){w.SelectPlayer(player);if(strategy=="roster")SpendRoster(w,samples,r);else if(strategy=="adaptive")SpendAdaptive(w,samples,r);else Spend(w,samples,r);}int killed=w.Killed,leaked=w.Leaked;
+                    for(int player=0;player<players;player++){w.SelectPlayer(player);if(strategy=="roster")SpendRoster(w,samples,r);else if(strategy=="adaptive"||strategy.StartsWith("compact"))SpendAdaptive(w,samples,r,strategy.StartsWith("compact")?48/players:int.MaxValue,strategy=="compact-value"||strategy=="compact-roles"||strategy=="compact-support",strategy=="compact-roles"||strategy=="compact-support",strategy=="compact-support");else Spend(w,samples,r);}int killed=w.Killed,leaked=w.Leaked;
                     if(!w.StartWave())throw new Exception("Wave failed to start");int ticks=0;
                     while(w.WaveActive&&!w.Finished&&ticks<18000){w.Step();ticks++;}
+                    if(strategy.StartsWith("compact")&&w.Grid.Towers.Count>48)throw new Exception("Compact diagnostic exceeded its 48-tower team limit");
                     r.Waves.Add(new WaveResult{PlayerGold=AuditWallets(w,r,wave+(!w.Defeated&&!w.WaveActive?1:0)),Wave=wave+1,Flying=c.Waves[wave].Flying,Killed=w.Killed-killed,Leaked=w.Leaked-leaked,Ticks=ticks,Gold=TeamGold(w)});
                     if(ticks>=18000){
                         r.Stalled=true;

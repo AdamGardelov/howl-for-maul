@@ -24,6 +24,8 @@ New Hard solo Prism adaptive campaign: twenty waves won, 30 lives, 324 purchases
 
 Earlier added coverage: four adaptive wins with 30 lives (Hard solo on both maps; Normal mixed two-player teams on both maps), documented in Balance/HARD-AND-MIXED.md. The earlier full Normal matrix remains 36 campaigns, 27 wins and nine defeats, zero stalls/wallet errors; all twelve factions won under adaptive spending. Roster-first strategies still lose. These bots know routes and often buy hundreds of cheap towers. These results do not settle final balance or establish beginner-friendly defenses.
 
+Compact-defense follow-up: 10/12 Normal solo wins with a slot-aware bot; splash/slow-aware Stonebound adds an eleventh faction win. Both tested compact two-player mixes win with audited wallets. Solo Rime remains unresolved under the artificial 48-tower diagnostic limit. The previous Hard Gravity/Scrap adaptive ledger still matches exactly. See Balance/COMPACT-DEFENSE.md.
+
 ## Visual and input checks
 
 Every faction's lineup has been inspected at gameplay zoom; the six new Ironfold sets also have native 1920×884 close and normal-zoom captures. Paused lineups use normal purchases; they are not human playthroughs. Crowded diagnostic inspection used 324 injected towers and 74 high-health enemies, separately from economy tests. Ordinary health bars now shrink in the overview while the selected enemy stays readable. See Performance/LIVE-COMBAT.md.
