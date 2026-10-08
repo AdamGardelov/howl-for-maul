@@ -21,6 +21,7 @@ namespace FrostMaze.Simulation
     public sealed class ShotEvent
     {
         public long Serial;
+        public int Design=-1;
         public V2 From, To;
         public float Splash;
         public bool Flying, Chained, FromFlying;

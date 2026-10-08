@@ -21,11 +21,11 @@ namespace FrostMaze
             GUILayout.Label("HOWL FOR MAUL",section,GUILayout.Width(138));
             if(GUILayout.Button("MENU [ESC]",button,GUILayout.Width(104)))game.ToggleMenu();
             if(GUILayout.Button("DETAILS [TAB]",button,GUILayout.Width(108)))game.DetailsOpen=true;
-            if(GUILayout.Button(game.Paused?"RESUME [P]":"PAUSE [P]",button,GUILayout.Width(100)))game.Paused=!game.Paused;
+            if(GUILayout.Button(game.Paused?"RESUME [P]":"PAUSE [P]",button,GUILayout.Width(100)))game.VotePause();
             GUI.enabled=!w.Finished&&!w.WaveActive;
             if(GUILayout.Button(w.Finished?(w.Won?"VICTORY":"DEFEAT"):w.WaveActive?"WAVE ACTIVE":"NEXT WAVE [ENTER]",button,GUILayout.Width(148)))game.Launch();
             GUI.enabled=true;GUILayout.FlexibleSpace();
-            if(w.Players.Length>1&&GUILayout.Button($"P{w.ActivePlayer+1}",button,GUILayout.Width(40)))w.SelectPlayer((w.ActivePlayer+1)%w.Players.Length);
+            if(!game.NetworkMatch&&w.Players.Length>1&&GUILayout.Button($"P{w.ActivePlayer+1}",button,GUILayout.Width(40)))w.SelectPlayer((w.ActivePlayer+1)%w.Players.Length);
             GUILayout.Label($"{w.Gold} GOLD    ·    {w.Lives} LIVES    ·    WAVE {Mathf.Max(0,w.WaveIndex+1)}/{w.Config.Waves.Length}",section,GUILayout.Width(310));
             GUILayout.EndHorizontal();GUILayout.EndArea();
             Frame(Logical(game.MinimapPanel));
@@ -45,9 +45,9 @@ namespace FrostMaze
             GUI.Label(new Rect(box.x+12,box.y+31,box.width-24,18),$"{tower.Health:0}/{tower.Spec.Health:0} HP · Damage {tower.Spec.Damage:0.#} · Range {tower.Spec.Range:0.0}",small);
             float width=(box.width-30)*.5f;
             GUI.enabled=own&&!w.Finished&&tower.Level<3&&(!w.Config.Economy||w.Gold>=price);
-            if(GUI.Button(new Rect(box.x+12,box.y+56,width,28),tower.Level>=3?"MAX LEVEL":$"UPGRADE [U] · {price}g",button)){w.Upgrade(tower.Id,out string message);game.Notice=message;}
+            if(GUI.Button(new Rect(box.x+12,box.y+56,width,28),tower.Level>=3?"MAX LEVEL":$"UPGRADE [U] · {price}g",button))game.UpgradeTower(tower.Id);
             GUI.enabled=!w.Finished&&(own||owner<0);
-            if(GUI.Button(new Rect(box.x+18+width,box.y+56,width,28),$"REMOVE · +{w.SaleRefund(tower.Id)}g",button))w.Sell(tower.CellX,tower.CellY);
+            if(GUI.Button(new Rect(box.x+18+width,box.y+56,width,28),$"REMOVE · +{w.SaleRefund(tower.Id)}g",button))game.SellTower(tower.CellX,tower.CellY);
             GUI.enabled=true;if(GUI.Button(new Rect(box.xMax-30,box.y+7,22,22),"×",button))game.SelectedTowerId=0;
         }
         void DrawPauseMenu()
@@ -56,18 +56,24 @@ namespace FrostMaze
             GUI.matrix=Matrix4x4.Scale(new Vector3(scale,scale,1));
             float width=Screen.width/scale,height=Screen.height/scale;
             var old=GUI.color;GUI.color=new Color(0,0,0,.65f);GUI.DrawTexture(new Rect(0,0,width,height),Texture2D.whiteTexture);GUI.color=old;
-            var box=new Rect((width-380)/2,(height-520)/2,380,520);Frame(box);
-            GUILayout.BeginArea(new Rect(box.x+24,box.y+18,332,484));
-            GUILayout.Label("HOWL FOR MAUL",title);GUILayout.Label("GAME MENU · match paused",section);GUILayout.Space(12);
+            var box=new Rect((width-380)/2,(height-640)/2,380,640);Frame(box);
+            GUILayout.BeginArea(new Rect(box.x+24,box.y+18,332,604));
+            GUILayout.Label("HOWL FOR MAUL",title);GUILayout.Label(game.NetworkMatch&&!OnlineGame.Current.LocalOnly?"GAME MENU · [P] votes to pause":"GAME MENU · match paused",section);GUILayout.Space(12);
             if(GUILayout.Button("RETURN TO GAME [ESC]",primary))game.ToggleMenu();
-            if(GUILayout.Button("NEW GAME",button))game.OpenSetup();
+            if(game.NetworkMatch&&GUILayout.Button(game.Paused?"VOTE TO RESUME":"VOTE TO PAUSE",button))game.VotePause();
+            if(GUILayout.Button(game.NetworkMatch?"LEAVE MATCH":"NEW GAME",button))game.OpenSetup();
             if(GUILayout.Button("QUIT GAME",button))game.QuitGame();
             GUILayout.Space(12);GUILayout.Label("SETTINGS",section);
             game.SoundEnabled=GUILayout.Toggle(game.SoundEnabled,"Combat sound",button);
+            GUILayout.Label("Effects volume",small);game.EffectsVolume=GUILayout.HorizontalSlider(game.EffectsVolume,0,1);
+            GUILayout.Label("Music volume",small);game.MusicVolume=GUILayout.HorizontalSlider(game.MusicVolume,0,1);
+            if(GUILayout.Button("RESET CAMERA ANGLE [R]",button))game.ResetView();
+            GUILayout.Label("Snowfall / Signal to Noise\nScott Buckley · CC BY 4.0 · scottbuckley.com.au",small);
+            if(GUILayout.Button("MUSIC CREDITS",button))Application.OpenURL("https://www.scottbuckley.com.au/library/");
             game.ShowGrid=GUILayout.Toggle(game.ShowGrid,"Placement grid",button);
-            if(GUILayout.Button(game.Speed==1?"Game speed: 1×":"Game speed: 2×",button))game.Speed=game.Speed==1?2:1;
+            if(!game.NetworkMatch&&GUILayout.Button(game.Speed==1?"Game speed: 1×":"Game speed: 2×",button))game.Speed=game.Speed==1?2:1;
             if(!Application.isEditor)Screen.fullScreen=GUILayout.Toggle(Screen.fullScreen,"Fullscreen window",button);
-            GUILayout.Space(8);GUILayout.Label("Details [Tab]: wave advice, tower stats and inspection tools.\nEdges / WASD: pan · Space + drag: pan · wheel: zoom\nQ / E: rotate · Home: default view at builder\nHold Alt: reveal all health bars",small);
+            GUILayout.Space(8);GUILayout.Label("Details [Tab]: wave advice, tower stats and inspection tools.\nEdges / WASD: pan · Space + drag: pan · wheel: zoom\nQ / E: rotate · R: reset angle · Home: builder\nHold Alt: reveal all health bars",small);
             GUILayout.EndArea();GUI.matrix=matrix;
         }
     }

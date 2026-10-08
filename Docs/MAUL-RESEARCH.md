@@ -14,7 +14,7 @@ Rimewatch offers four original builder factions before spawning. Rime Covenant o
 
 All three Rimewatch lanes and all four Ironfold lanes remain active. One shared team budget is split among the active local player slots. Towers can be built on any legal open terrain. Complete blockage triggers enemy siege, while congestion alone does not. Flying waves occur every fifth round.
 
-The current playable campaign is twenty waves, with the original opening ten preserved. Thirty-five-wave progression, late-game lumber/research, armor tables, second-faction unlocks and hero leveling are **not implemented**. They need deliberate balancing and clearer version evidence; no hidden assumptions are presented as historical facts. Online multiplayer is still deferred by the original brief.
+The current playable campaign is twenty waves, with the original opening ten preserved. Thirty-five-wave progression, late-game lumber/research, armor tables, second-faction unlocks and hero leveling are **not implemented**. They need deliberate balancing and clearer version evidence; no hidden assumptions are presented as historical facts. The latest user request supersedes the original online deferral; see ONLINE-PLAY.md.
 
 ## Layout interpretation awaiting later user review
 

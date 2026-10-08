@@ -162,6 +162,59 @@ namespace FrostMaze.Tests
             camera.FocusPoint(new FrostMaze.Simulation.V2(32,32));camera.Overview();
             yield return new ExitPlayMode();
         }
+        [UnityTest, Category("OnlineSetup")]
+        public IEnumerator SoloStagedSetupUsesChosenStartMusicAndAuthoritativeTicks()
+        {
+            EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");yield return new EnterPlayMode();yield return null;
+            var game=Object.FindFirstObjectByType<Prototype>();game.BeginSolo();var net=OnlineGame.Current.Session;
+            Assert.That(net.Stage,Is.EqualTo(FrostMaze.Simulation.Online.Stage.Factions));
+            net.Send(new FrostMaze.Simulation.Online.Packet{Kind=FrostMaze.Simulation.Online.Kind.Faction,A=2});net.Send(new FrostMaze.Simulation.Online.Packet{Kind=FrostMaze.Simulation.Online.Kind.Ready});
+            Assert.That(net.Stage,Is.EqualTo(FrostMaze.Simulation.Online.Stage.Lanes));
+            net.Send(new FrostMaze.Simulation.Online.Packet{Kind=FrostMaze.Simulation.Online.Kind.Lane,A=4});net.Send(new FrostMaze.Simulation.Online.Packet{Kind=FrostMaze.Simulation.Online.Kind.Ready});
+            Assert.That(net.Stage,Is.EqualTo(FrostMaze.Simulation.Online.Stage.Difficulty));
+            net.Send(new FrostMaze.Simulation.Online.Packet{Kind=FrostMaze.Simulation.Online.Kind.Difficulty,A=1});yield return null;yield return null;
+            Assert.That(game.World,Is.SameAs(net.World));Assert.That(game.World.Players[0].Faction,Is.EqualTo(2));
+            Assert.That(game.World.BuilderPosition,Is.EqualTo(game.World.Config.BuilderStarts[4]));Assert.That(game.World.Gold,Is.EqualTo(1200));
+            Assert.That(game.World.LaneCount,Is.EqualTo(3));Assert.That(game.SetupOpen,Is.False);
+            var music=Object.FindFirstObjectByType<MapMusic>();var source=music.GetComponent<AudioSource>();
+            Assert.That(source.clip,Is.Not.Null);Assert.That(source.clip.length,Is.GreaterThan(60));Assert.That(source.clip.loadType,Is.EqualTo(AudioClipLoadType.Streaming));
+            game.MusicVolume=0;yield return new WaitForSecondsRealtime(1);Assert.That(source.volume,Is.Zero);game.MusicVolume=.5f;yield return new WaitForSecondsRealtime(.3f);Assert.That(source.volume,Is.GreaterThan(0));
+            game.VotePause();yield return null;long tick=game.World.Tick;yield return new WaitForSecondsRealtime(.15f);Assert.That(game.World.Tick,Is.EqualTo(tick));
+            game.VotePause();yield return new WaitForSecondsRealtime(.15f);Assert.That(game.World.Tick,Is.GreaterThan(tick));
+            tick=game.World.Tick;game.ToggleMenu();yield return new WaitForSecondsRealtime(.15f);Assert.That(game.World.Tick,Is.EqualTo(tick),"Solo menu must pause");
+            game.ToggleMenu();game.LeaveOnline();yield return null;Assert.That(OnlineGame.Current,Is.Null);Assert.That(game.SetupOpen,Is.True);
+            yield return new ExitPlayMode();
+        }
+        [UnityTest, Category("WorldAtmosphere")]
+        public IEnumerator ExteriorAndSoundIdentityPreservePlayfield()
+        {
+            EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");yield return new EnterPlayMode();yield return null;
+            var game=Object.FindFirstObjectByType<Prototype>();game.StartMatch();game.Paused=true;
+            var camera=game.View.GetComponent<RtsCamera>();var input=new CameraInputFixture();camera.SetInput(input);
+            camera.FocusPoint(new FrostMaze.Simulation.V2(22,29));camera.SetZoom(8,true);
+            input.Intent=new CameraIntent{Pointer=new Vector2(Screen.width*.5f,Screen.height*.5f),Rotate=1};yield return null;yield return null;
+            input.Intent=default;var focus=camera.Focus;float zoom=camera.Zoom;game.ResetView();
+            Assert.That(camera.Yaw,Is.Zero);Assert.That(camera.Focus,Is.EqualTo(focus));Assert.That(camera.Zoom,Is.EqualTo(zoom));
+            foreach(var name in new[]{"Rimewatch","Ironfold"}){
+                if(game.Map.name!=name){game.ChooseMap(Resources.Load<MapDefinition>(name));yield return null;yield return null;game=Object.FindFirstObjectByType<Prototype>();}
+                var backdrop=Object.FindFirstObjectByType<WorldBackdrop>();Assert.That(backdrop,Is.Not.Null);
+                Assert.That(backdrop.GetComponentsInChildren<Collider>().Length,Is.Zero);
+                foreach(var filter in backdrop.GetComponentsInChildren<MeshFilter>()){
+                    Assert.That(filter.gameObject.layer,Is.Not.EqualTo(30),"Exterior must not pollute minimap");
+                    var mesh=filter.sharedMesh;var vertices=mesh.vertices;var triangles=mesh.triangles;
+                    for(int i=0;i<triangles.Length;i+=3){var a=vertices[triangles[i]];var b=vertices[triangles[i+1]];var c=vertices[triangles[i+2]];
+                        Assert.That(Mathf.Max(a.x,b.x,c.x)<=0||Mathf.Min(a.x,b.x,c.x)>=game.World.Config.Width||Mathf.Max(a.z,b.z,c.z)<=0||Mathf.Min(a.z,b.z,c.z)>=game.World.Config.Height,Is.True,"Exterior crosses playable rectangle");}
+                }
+                using(var bank=new TowerSoundBank(game.World.Config)){
+                    var hashes=new System.Collections.Generic.HashSet<long>();
+                    for(int i=0;i<game.World.Config.Catalog.Length;i++){var clip=bank.Get(i);Assert.That(bank.Get(i),Is.SameAs(clip));var samples=new float[clip.samples];clip.GetData(samples,0);long hash=17;float peak=0;
+                        foreach(float sample in samples){Assert.That(float.IsNaN(sample),Is.False);peak=Mathf.Max(peak,Mathf.Abs(sample));unchecked{hash=hash*31+Mathf.RoundToInt(sample*100000);}}
+                        Assert.That(peak,Is.InRange(.01f,.9f));Assert.That(hashes.Add(hash),Is.True,"Repeated tower sound");}
+                    Assert.That(bank.Count,Is.EqualTo(game.World.Config.Catalog.Length));
+                }
+            }
+            yield return new ExitPlayMode();
+        }
         [UnityTest, Category("CrowdedPresentation")]
         public IEnumerator PaidWallSiegeShowsStrikesDestructionAndRouteOpening()
         {

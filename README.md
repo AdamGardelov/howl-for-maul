@@ -2,15 +2,15 @@
 
 An original maze tower-defense prototype inspired by the cooperative mauls played as Warcraft III custom maps. Build winding defenses, upgrade towers, and catch enemies that survive into downstream areas.
 
-Built with Unity 6.3 LTS, C# and URP for Windows and Ubuntu Linux. All code, procedural visuals and synthesized sounds are original; no Warcraft III or Mega Man assets are included.
+Built with Unity 6.3 LTS, C# and URP for Windows and Ubuntu Linux. Game code, procedural visuals and synthesized effects are original; no Warcraft III or Mega Man assets are included. The soundtrack uses attributed Scott Buckley tracks under CC BY 4.0; see THIRD-PARTY-NOTICES.md.
 
-**Current status:** playable offline prototype. The setup can simulate 1–4 player slots with independent builders, wallets and tower ownership on one computer. Online multiplayer is not implemented.
+**Current status:** playable solo/local prototype with direct host/join multiplayer. Online players share a lobby, choose factions and unique starts, vote difficulty, and vote pause/resume. Direct connections need a reachable host; relay/public matchmaking is not configured. See [online play](Docs/ONLINE-PLAY.md) for setup and tested scope.
 
 ## Play
 
 Open this project with **Unity 6000.3.25f1**, choose **Howl for Maul → Open game**, then press Play. The scene generates the selected map at runtime.
 
-Choose **Rimewatch** (three upper lanes) or **Ironfold** (four upper lanes), both reconstructed from the supplied map layouts. Every lane stays active at every player count. Select difficulty, an original builder faction for each player, and—with multiple player slots—starting positions before spawning. The maps retain downstream defense areas and one bottom exit. Rimewatch is dressed with frost ferns and blue-flame lanterns; Ironfold has copper scrub and warm braziers. Decorative props stay on blocked terrain so the buildable map remains clear.
+Choose **Rimewatch** (three upper lanes) or **Ironfold** (four upper lanes), both reconstructed from the supplied map layouts. Every lane stays active at every player count. Start solo or create/join a lobby, then choose factions, starting positions and difficulty before spawning. The maps retain downstream defense areas and one bottom exit. Rimewatch is dressed with frost ferns and blue-flame lanterns; Ironfold has copper scrub and warm braziers. Decorative props stay on blocked terrain so the buildable map remains clear.
 
 Solo starts with the full **1,200 gold** team budget. Two players receive 600 each, three receive 400 each, four receive 300 each. Kill income and wave rewards are split without losing integer remainders. Every enemy reaching the final exit removes one of 30 shared lives. Finish twenty waves with lives remaining to win. Waves 5, 10, 15 and 20 fly. Later waves alternate fast rushes, dense swarms and tough siege units. Open Wave details for faction-specific suggestions. The team defense count distinguishes air and ground targeting; it does not measure whether towers cover the route.
 
@@ -34,10 +34,11 @@ Gameplay uses the full map viewport with a compact top status strip and bottom-r
 | Inspect an enemy | Ctrl + click |
 | Reveal all health bars | Hold Alt |
 | Launch next wave | Enter |
-| Pause | P |
+| Pause / resume (majority vote online) | P |
 | Pan | Screen edges / Space + left drag / middle drag / WASD / arrows |
 | Faster keyboard / edge pan | Hold Shift |
 | Rotate camera left / right | Hold Q / E |
+| Reset camera angle without moving | R / minimap north button |
 | Restore default orientation at builder | Home |
 | Whole-map overview | End |
 | Tactical-map pan | Click or drag on the minimap |
@@ -109,3 +110,5 @@ The minimap stays on the left and renders the actual scenery from above. The mid
 Zoom in for a lower perspective view of the 3D models; zoom out for a steep overview. Rimewatch has frost-worn paving and layered icy stonework; Ironfold has weathered foundry slate and copper trim. See Docs/DEPTH-AND-TERRAIN.md.
 
 The [three-player compact campaigns](Docs/Balance/COMPACT-THREE-PLAYER.md) cover all twelve factions with separate 400-gold starting wallets. The [champion queue recovery regression](Docs/CHAMPION-QUEUE-RECOVERY.md) verifies paid rebuilding after a sold or destroyed prerequisite.
+
+The landscape now continues beyond the playable boundary. Read [world atmosphere](Docs/WORLD-ATMOSPHERE.md) for scenery, tower sound identities and soundtrack attribution.

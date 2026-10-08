@@ -56,7 +56,7 @@ Native default X11 startup remains unresolved. A native Wayland/OpenGL probe rea
 
 ## Preserved constraints
 
-Both supplied terrain masks remain authoritative. Every lane stays active; enemies move top to bottom. Team start is 1200 gold split across one to four wallets. Faction ownership, paid travel/construction/upgrades, flush wall placement, freeform mazing and blockage/siege are preserved. Online networking is deferred. No copyrighted reference assets were imported.
+Both supplied terrain masks remain authoritative. Every lane stays active; enemies move top to bottom. Team start is 1200 gold split across one to four wallets. Faction ownership, paid travel/construction/upgrades, flush wall placement, freeform mazing and blockage/siege are preserved. Online networking is now authorized; see ONLINE-PLAY.md. No copyrighted reference assets were imported.
 
 Map-tag follow-up: lane numbers and the exit now use compact dark-backed labels with light text; the exit is gold. Native 1920×884 overviews on both maps inspected. Tags are centered on their markers and clipped away from the sidebar/minimap. Clean compilation; this cosmetic follow-up did not rerun the 65/65 roster suite.
 
@@ -113,3 +113,7 @@ A new real-Ironfold paid queue regression checks all eight robot factions after 
 ## Packaged construction feedback — source 945da86
 
 Linux-Next and Windows-Next builds succeeded with zero errors. Actual isolated Linux input showed three numbered queued footprints, then three paid towers (1200 → 1185 gold) and no remaining markers. Both game-menu Quit and initial-setup Quit exited zero. Both-map data smoke passed on isolated display :98. Two no-display starts crashed in native PlayerMain before game initialization (139); these are failures, not passes. Windows runtime is untested. The user’s existing player and standard package directory were preserved. New executable: Builds/Linux-Next/HowlForMaul.
+
+## Direct online and atmosphere source checkpoint
+
+67/67 pure gameplay cases pass. Real TCP/.NET checks pass two-process paid builds, ownership rejection, ordered ticks/digests, pause/resume and disconnect recovery on both maps; three/four-player checks verify budgets, capacity, unique starts, difficulty ties, vote expiry and malformed inputs. Three focused Unity cases pass separately: exterior/camera/all 76 sound identities; staged solo setup/selected spawn/streaming music/menu pause; combat audio voice limits/camera filtering/leak priority. No new full-suite claim. Read ONLINE-PLAY.md and WORLD-ATMOSPHERE.md. New packaged and internet/Windows runtime results are not implied.

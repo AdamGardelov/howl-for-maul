@@ -3,7 +3,7 @@ using UnityEngine;
 using FrostMaze.Simulation;
 namespace FrostMaze
 {
-    public sealed class Prototype : MonoBehaviour
+    public sealed partial class Prototype : MonoBehaviour
     {
         static readonly Unity.Profiling.ProfilerMarker InputProfile=new Unity.Profiling.ProfilerMarker("Howl.Input");
         static readonly Unity.Profiling.ProfilerMarker SimulationProfile=new Unity.Profiling.ProfilerMarker("Howl.Simulation");
@@ -24,6 +24,7 @@ namespace FrostMaze
         public string PlacementFailure { get; private set; }
         public float PlacementFailureUntil { get; private set; }
         public bool SubmitBuild(float x,float y,bool append) {
+            if(NetworkMatch){if(!World.CanBuild(x,y,out string invalid)){Notice=PlacementFailure=invalid;PlacementFailureUntil=Time.unscaledTime+5;return false;}Issue(new FrostMaze.Simulation.Online.Order{Kind=FrostMaze.Simulation.Online.ActionKind.Build,Design=World.SelectedDesign,X=x,Y=y,Append=append});PlacementFailure=null;return true;}
             bool accepted=World.OrderBuild(x,y,out string reason,append);Notice=reason;
             PlacementFailure=accepted?null:reason;PlacementFailureUntil=Time.unscaledTime+5;
             return accepted;
@@ -39,7 +40,7 @@ namespace FrostMaze
         public bool PointerOverHud(Vector2 point) => MenuOpen||SetupOpen||Sidebar.Contains(point)||MinimapRect.Contains(point)||(!DetailsOpen&&(TopHud.Contains(point)||AlertHud.Contains(point)||(BuildHud.Contains(point)||MinimapPanel.Contains(point)||(World!=null&&World.Grid.Find(SelectedTowerId)!=null&&SelectionHud.Contains(point)))));
         bool matchStarted;
         public bool CanReturnToMatch => matchStarted;
-        public void OpenSetup() { SetupOpen=true;MenuOpen=false; }
+        public void OpenSetup() { if(NetworkMatch){LeaveOnline();return;}SetupOpen=true;MenuOpen=false; }
         public void ReturnToMatch() { if(CanReturnToMatch)SetupOpen=false; }
         void ClearInteraction()
         {
@@ -48,7 +49,7 @@ namespace FrostMaze
         }
         public void CancelInteraction()
         {
-            World.MoveBuilder(World.BuilderPosition);
+            if(NetworkMatch)Issue(new FrostMaze.Simulation.Online.Order{Kind=FrostMaze.Simulation.Online.ActionKind.Cancel});else World.MoveBuilder(World.BuilderPosition);
             ClearInteraction();
         }
         public MapDefinition[] AvailableMaps;
@@ -97,6 +98,8 @@ namespace FrostMaze
         public float Speed = 1;
         public int SelectedId, SelectedTowerId;
         public bool SoundEnabled=true;
+        public float EffectsVolume=1, MusicVolume=.35f;
+        public void ResetView()=>View.GetComponent<RtsCamera>().ResetRotation();
         public bool SellMode;
         public V2 Hover;
         public bool HasHover;
@@ -137,7 +140,7 @@ namespace FrostMaze
             requestedMap = "Rimewatch";
             UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
             // Data-only smoke exits immediately; it must not initialize transient graphics/audio.
-            if(!StandaloneSmoke.Requested)UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
+            if(!StandaloneSmoke.Requested&&!StandaloneNetworkSmoke.Requested)UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
         }
         static void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
         {
@@ -181,6 +184,7 @@ namespace FrostMaze
                 orderMarker = Primitive("Builder destination", PrimitiveType.Cylinder, Vector3.zero, new Vector3(.6f,.02f,.6f), MakeMaterial(new Color(.1f,.8f,.65f)));
                 Notice = "Build near the route or across the flight corridor. The drone travels to your build orders.";
             }
+            var exterior=new GameObject("Surrounding world");exterior.transform.SetParent(transform,false);exterior.AddComponent<WorldBackdrop>().Build(this);
             var oldCamera = Camera.main;
             if (oldCamera != null)
                 Destroy(oldCamera.gameObject);
@@ -221,6 +225,7 @@ namespace FrostMaze
             gameObject.AddComponent<BuildQueueView>().Initialize(this);
             gameObject.AddComponent<PrototypeHud>().Initialize(this);
             feedback=gameObject.AddComponent<CombatFeedback>();feedback.Initialize(this);
+            var music=new GameObject("Map soundtrack");music.transform.SetParent(transform,false);music.AddComponent<MapMusic>().Initialize(this);
         }
         void Marker(V2 p, Color color, string name, float radius = 0.55f)
         {
@@ -260,13 +265,15 @@ namespace FrostMaze
                 return;
             }
             SetViewport();
+            if(LobbyOpen){SetupOpen=true;HasHover=false;ghost.SetActive(false);return;}
+            if(NetworkMatch){Paused=Net.Paused;Notice=Net.Notice;Speed=1;if(MenuOpen&&UnityEngine.Input.GetKeyDown(KeyCode.P))VotePause();}
             if(UnityEngine.Input.GetKeyDown(KeyCode.Escape)) {
                 if(SetupOpen)ReturnToMatch();else ToggleMenu();
             }
             if(!SetupOpen&&!MenuOpen&&UnityEngine.Input.GetKeyDown(KeyCode.Tab))DetailsOpen=!DetailsOpen;
             if(!SetupOpen&&!MenuOpen)ReadBuildInput();
             else {HasHover=false;ghost.SetActive(false);}
-            if (!Paused && !SetupOpen && !MenuOpen)
+            if (!NetworkMatch && !Paused && !SetupOpen && !MenuOpen)
             {
                 accumulator += Time.deltaTime * Speed;
                 int steps = 0;
@@ -284,13 +291,14 @@ namespace FrostMaze
         void ReadBuildInputProfiled()
         {
             int shortcut=0;for(int i=0;i<World.Config.Catalog.Length;i++)if(World.DesignAvailable(i)){if(UnityEngine.Input.GetKeyDown(KeyCode.Alpha1+shortcut)){World.SelectedDesign=i;SellMode=false;MoveMode=false;}shortcut++;}
-            if(UnityEngine.Input.GetKeyDown(KeyCode.U)&&SelectedTowerId>0){World.Upgrade(SelectedTowerId,out string message);Notice=message;}
+            if(UnityEngine.Input.GetKeyDown(KeyCode.U)&&SelectedTowerId>0)UpgradeTower(SelectedTowerId);
+            if(UnityEngine.Input.GetKeyDown(KeyCode.R))ResetView();
             if(UnityEngine.Input.GetKeyDown(KeyCode.Home)){var camera=View.GetComponent<RtsCamera>();camera.ResetRotation();camera.FocusPoint(World.BuilderPosition);}
             if(UnityEngine.Input.GetKeyDown(KeyCode.End))View.GetComponent<RtsCamera>().Overview();
             if (!UnityEngine.Input.GetKey(KeyCode.Space)&&(UnityEngine.Input.GetKeyDown(KeyCode.Return)||UnityEngine.Input.GetKeyDown(KeyCode.KeypadEnter)))
                 Launch();
             if (UnityEngine.Input.GetKeyDown(KeyCode.P))
-                Paused = !Paused;
+                VotePause();
             if (UnityEngine.Input.GetKeyDown(KeyCode.G))
                 ShowGrid = !ShowGrid;
             if (UnityEngine.Input.GetKeyDown(KeyCode.F))
@@ -353,13 +361,13 @@ namespace FrostMaze
             ghostMaterial.color = SellMode || (!MoveMode && !HoverBuildValid) ? new Color(1, 0.3f, 0.3f) : new Color(0.24f, 0.9f, 0.74f);
             if (World.Config.BuilderEnabled && (UnityEngine.Input.GetMouseButtonDown(1) || MoveMode && UnityEngine.Input.GetMouseButtonDown(0)))
             {
-                World.MoveBuilder(new V2(point.x, point.z));
+                MoveTo(new V2(point.x, point.z));
                 Notice = "Builder moving. Select Build [B] to construct.";
                 return;
             }
             if (UnityEngine.Input.GetMouseButtonDown(1) || UnityEngine.Input.GetMouseButtonDown(0) && SellMode)
             {
-                Notice = World.Sell(x, y) ? "Tower sold. Navigation updated." : "No owned tower at this cell.";
+                Notice = SellTower(x, y) ? "Tower sold. Navigation updated." : "No owned tower at this cell.";
             }
             else if (UnityEngine.Input.GetMouseButtonDown(0))
             {
@@ -386,6 +394,7 @@ namespace FrostMaze
         }
         public void Launch()
         {
+            if(NetworkMatch){Issue(new FrostMaze.Simulation.Online.Order{Kind=FrostMaze.Simulation.Online.ActionKind.Launch});return;}
             Notice = World.StartWave() ? "Wave launched. You can edit the maze during combat." : World.WaveActive ? "Finish the current wave first." : World.Defeated ? "Defense lost. Reset for a new match." : "All waves complete. Reset to play again.";
         }
         void ClearUnitViews()
@@ -395,6 +404,7 @@ namespace FrostMaze
         }
         public void ResetSimulation()
         {
+            if(NetworkMatch)return;
             ClearUnitViews();
             World = World.Restart();
             accumulator = 0;

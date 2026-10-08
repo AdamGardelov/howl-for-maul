@@ -18,6 +18,7 @@ namespace FrostMaze.Simulation
     {
         public int[] Factions={0,0,0,0};
         public int PlayerCount=1;
+        public bool UseSelectedSoloStart;
         public Difficulty Difficulty=Difficulty.Normal;
         public int[] StartingPositions={0,1,2,3};
         public void Validate(int startCount=4)

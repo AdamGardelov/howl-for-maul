@@ -166,11 +166,11 @@ namespace FrostMaze.Simulation
             config.Validate();
             Config = config;
             var selected=matchOptions??new MatchOptions(); selected.Validate(config.BuilderStarts.Length==0?4:config.BuilderStarts.Length);
-            options=new MatchOptions {PlayerCount=selected.PlayerCount,Difficulty=selected.Difficulty,StartingPositions=(int[])selected.StartingPositions.Clone(),Factions=(int[])selected.Factions.Clone()};
+            options=new MatchOptions {PlayerCount=selected.PlayerCount,UseSelectedSoloStart=selected.UseSelectedSoloStart,Difficulty=selected.Difficulty,StartingPositions=(int[])selected.StartingPositions.Clone(),Factions=(int[])selected.Factions.Clone()};
             Difficulty=options.Difficulty;
             Players=new PlayerState[options.PlayerCount];
             for(int i=0;i<Players.Length;i++) {
-                var pos=config.Lanes.Length==0?config.Spawn:Players.Length==1?config.SoloBuilderStart:config.BuilderStarts[options.StartingPositions[i]];
+                var pos=config.Lanes.Length==0?config.Spawn:Players.Length==1&&!options.UseSelectedSoloStart?config.SoloBuilderStart:config.BuilderStarts[options.StartingPositions[i]];
                 int faction=options.Factions[i];
                 if(config.Factions.Length>0&&(faction<0||faction>=config.Factions.Length))throw new ArgumentException("Invalid faction.");
                 Players[i]=new PlayerState {Position=pos,Destination=pos,Faction=faction,SelectedDesign=config.Factions.Length==0?0:config.Factions[faction].Designs[0]};
@@ -330,10 +330,10 @@ namespace FrostMaze.Simulation
                         if(tower.Spec.ChainTargets>0) {
                             int left=tower.Spec.ChainTargets;
                             foreach(var other in Enemies)if(other!=e&&other.Health>0&&(other.Spec.Flying?tower.Spec.TargetsAir:tower.Spec.TargetsGround)&&V2.Distance(other.Position,e.Position)<=2) {
-                                Hit(other,tower.Spec);Shots.Add(new ShotEvent{Serial=++nextShot,From=e.Position,To=other.Position,Flying=other.Spec.Flying,Chained=true,FromFlying=e.Spec.Flying});if(--left==0)break;
+                                Hit(other,tower.Spec);Shots.Add(new ShotEvent{Serial=++nextShot,Design=tower.Design,From=e.Position,To=other.Position,Flying=other.Spec.Flying,Chained=true,FromFlying=e.Spec.Flying});if(--left==0)break;
                             }
                         }
-                        Shots.Add(new ShotEvent {Serial=++nextShot,From=tower.Center,To=e.Position,Splash=tower.Spec.SplashRadius,Flying=e.Spec.Flying});
+                        Shots.Add(new ShotEvent {Serial=++nextShot,Design=tower.Design,From=tower.Center,To=e.Position,Splash=tower.Spec.SplashRadius,Flying=e.Spec.Flying});
                         if(Shots.Count>128)Shots.RemoveRange(0,Shots.Count-128);
                         tower.Cooldown = tower.Spec.Interval;
                         tower.LastTarget = e.Id;
