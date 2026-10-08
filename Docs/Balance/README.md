@@ -60,3 +60,5 @@ A further [12 Hard solo runs](HARD-BASELINE.md) also finished without leaks. Ful
 The [24 roster/upgrade campaigns](ROSTER-BASELINE.md) add paid champions, upgrades and mixed-faction two-player teams after the Quicksilver targeting fix. They produced 19 wins and five legitimate defeats, unlike this earlier coverage baseline. Read both methods before drawing balance conclusions.
 
 The [paid maze baseline](MAZE-BASELINE.md) adds twelve Normal solo maze-first campaigns and exact-mask detour/reopening regressions.
+
+The [three/four-player team baseline](TEAM-BASELINE.md) adds mixed-faction coverage and roster campaigns, with exact per-wallet audits after every wave.
