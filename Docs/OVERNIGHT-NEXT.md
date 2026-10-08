@@ -2,12 +2,12 @@
 
 ## Latest state
 
-- New perspective inspection camera and themed stonework: smooth lower close view, ground-ray dragging, fit-to-projected-corners overview, fixed terrain and north-up minimap. New paving/cliff materials, inset trim, forge pillars, leaf veins and foundation details. 64 pure tests and three focused depth integration checks passed; final pillar refinement passed the mask-clearance case again. Read DEPTH-AND-TERRAIN.md. Player rebuild/inspection follows.
+- New perspective inspection camera and themed stonework: smooth lower close view, ground-ray dragging, fit-to-projected-corners overview, fixed terrain and north-up minimap. New paving/cliff materials, inset trim, forge pillars, leaf veins and foundation details. 64 pure tests and three focused depth integration checks passed; final pillar refinement passed the mask-clearance case again. Read DEPTH-AND-TERRAIN.md. Current Linux/Windows packages contain 4763c56. Linux both-map smoke and actual close-zoom construction/removal, camera gestures and both-map visual inspection passed; Windows is build-tested only.
 
 - Three four-player Hard paid campaigns now win all twenty waves with 30 lives, covering all twelve factions across both maps. Independent wallets audited throughout; 64/64 pure tests pass including contested/enemy-blocked concurrent queues. Unity compilation passed. Read Balance/HARD-FOUR-PLAYER.md. No runtime change or package rebuild in this checkpoint.
 - Camera preference is now resolved by the authorized close-perspective request; see QUESTIONS.md and DEPTH-AND-TERRAIN.md.
 
-- Current source: modern stone/brass command HUD with left rendered minimap, right tower portraits plus Remove, and a clear centre except for small contextual controls. Q/E rotates the view; Home resets it. Four camera cases and the both-map rendering/cleanup case pass. Read TOWER-PORTRAIT-GRID.md. Current packages contain source 1c112bc; Linux actual input checks and both-map smoke passed, with exact 5-gold wall charge and 3-gold removal refund. Windows is build-tested only.
+- Earlier command-HUD pass: modern stone/brass command HUD with left rendered minimap, right tower portraits plus Remove, and a clear centre except for small contextual controls. Q/E rotates the view; Home resets it. Four camera cases and the both-map rendering/cleanup case pass. Read TOWER-PORTRAIT-GRID.md. Earlier packages contain source 1c112bc; Linux actual input checks and both-map smoke passed, with exact 5-gold wall charge and 3-gold removal refund. Windows is build-tested only.
 
 - Shift-click queue feedback: compact pending count, explicit skipped-order status and new blocked-footprint FIFO/payment regression. All 63 pure simulation cases pass. Read BUILD-QUEUE.md.
 
@@ -22,7 +22,7 @@
 
 ## Next priorities
 
-1. Preserve user Play sessions and unsaved scenes. Current packages are verified through 1c112bc.
+1. Preserve user Play sessions and unsaved scenes. Current packages are verified through 4763c56.
 2. Continue faction/maze progression and meaningful paid-defense testing; compact Rime is a diagnostic, not a game tower limit.
 3. Continue the original minimalistic art direction while keeping silhouettes readable and every scenic footprint on blocked mask cells. No final-art or performance promise is implied by the procedural pass.
 

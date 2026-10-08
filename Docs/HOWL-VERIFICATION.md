@@ -87,3 +87,5 @@ Packaged command-HUD verification (1c112bc): both builds succeeded with zero err
 ## Perspective inspection and terrain pass
 
 All 64 pure cases pass. Three focused Unity checks cover smooth zoom, ground-ray picking/dragging, rotation and protected UI, both-map scenery clearance, all 76 portraits, rendered minimaps and texture cleanup. A distant-ray precision failure was fixed through proportional near clipping and the original strict tolerance passed. The final forge-pillar geometry passed both-map clearance again. See DEPTH-AND-TERRAIN.md and Howl-Depth-Tests.json; no new full-suite or native-platform claim.
+
+Final depth/terrain packages use source 4763c56. Both platform builds passed with zero errors, Linux both-map data smoke passed, and actual isolated Linux clicks confirmed the 5-gold close-view purchase and 3-gold refund plus two Ironfold purchases. Wheel, orbit, drag, edge, Home/End and menu controls were inspected in the player. Both normal closes exited zero. Windows runtime and native desktop compatibility remain unverified.

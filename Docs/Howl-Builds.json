@@ -1,14 +1,14 @@
 {
   "builds": [
     {
-      "buildId": "build_0b9e95d19ee5",
+      "buildId": "build_6f200cb3593c",
       "result": "Succeeded",
       "platform": "StandaloneLinux64",
       "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Linux/HowlForMaul",
-      "totalSizeBytes": 92248520,
-      "buildTimeMs": 22641,
-      "buildStartedAt": "2026-10-08T16:22:52.2512870Z",
-      "buildEndedAt": "2026-10-08T16:23:14.8927400Z",
+      "totalSizeBytes": 92252616,
+      "buildTimeMs": 20624,
+      "buildStartedAt": "2026-10-08T17:14:28.3935510Z",
+      "buildEndedAt": "2026-10-08T17:14:49.0181340Z",
       "totalWarnings": 1,
       "totalErrors": 0,
       "warnings": [
@@ -18,14 +18,14 @@
       ]
     },
     {
-      "buildId": "build_4bbc846028d9",
+      "buildId": "build_b30730204530",
       "result": "Succeeded",
       "platform": "StandaloneWindows64",
       "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Windows/HowlForMaul.exe",
-      "totalSizeBytes": 95892544,
-      "buildTimeMs": 32324,
-      "buildStartedAt": "2026-10-08T16:25:35.6620890Z",
-      "buildEndedAt": "2026-10-08T16:26:07.9870200Z",
+      "totalSizeBytes": 95896640,
+      "buildTimeMs": 27887,
+      "buildStartedAt": "2026-10-08T17:18:43.2760330Z",
+      "buildEndedAt": "2026-10-08T17:19:11.1639030Z",
       "totalWarnings": 19,
       "totalErrors": 0,
       "warnings": [
@@ -126,9 +126,9 @@
     "sourceCheckpoint": "465974e",
     "exitCode": 0
   },
-  "sourceCheckpoint": "1c112bc",
+  "sourceCheckpoint": "4763c56",
   "linuxHeadlessSmoke": {
-    "sourceCheckpoint": "1c112bc",
+    "sourceCheckpoint": "4763c56",
     "command": "Tools/smoke-linux.sh",
     "display": "DISPLAY and WAYLAND_DISPLAY unset for child process",
     "graphicsDevice": "Null Device",
@@ -137,11 +137,11 @@
       "Rimewatch",
       "Ironfold"
     ],
-    "note": "Fresh command-HUD/rotation/rendered-minimap package passed both data-only map checks and clean exit.",
+    "note": "Fresh perspective camera and terrain package passed both data-only map checks and clean exit.",
     "consecutivePasses": 1
   },
   "linuxPackagedSmoke": {
-    "sourceCheckpoint": "1c112bc",
+    "sourceCheckpoint": "4763c56",
     "backend": "headless -batchmode -nographics",
     "exitCode": 0,
     "markers": [
@@ -149,7 +149,8 @@
       "HOWL_SMOKE_PASS Rimewatch lanes=3 factions=4 towers=20 waves=20",
       "HOWL_SMOKE_PASS Ironfold lanes=4 factions=8 towers=56 waves=20",
       "HOWL_SMOKE_COMPLETE"
-    ]
+    ],
+    "note": "Fresh perspective camera and terrain package passed both data-only map checks and clean exit."
   },
   "nativeWaylandVulkan": {
     "sourceCheckpoint": "465974e",
@@ -332,5 +333,38 @@
       "Both graphical processes closed normally with exit zero"
     ],
     "limitations": "Isolated Linux display only. Windows build succeeded but Windows runtime remains untested. Fullscreen mode switching and a full human-input campaign are not covered."
+  },
+  "linuxDepthInput": {
+    "sourceCheckpoint": "4763c56",
+    "display": ":98",
+    "renderer": "Mesa llvmpipe OpenGL",
+    "resolution": [
+      1440,
+      900
+    ],
+    "rimeGoldSequence": [
+      1200,
+      1195,
+      1198
+    ],
+    "ironGoldSequence": [
+      1200,
+      1180
+    ],
+    "checks": [
+      "Mouse wheel reaches close perspective and returns to a broader view",
+      "Protected checkpoint placement rejected without a charge",
+      "Snow Cairn built with actual clicks, selected with its 3-gold refund displayed, and sold for that exact refund",
+      "E orbit, Space-left drag, edge scrolling, End rotated overview and Home reset",
+      "Esc opens and closes the paused menu",
+      "Separate Ironfold launch selects map and builds two 10-gold Fuse Cadets before paused close/overview inspection",
+      "Both graphical processes close normally with exit zero"
+    ],
+    "exitCode": 0,
+    "limits": [
+      "No Windows runtime test",
+      "No native :0 desktop compatibility claim",
+      "No full mouse-played campaign in this check"
+    ]
   }
 }
