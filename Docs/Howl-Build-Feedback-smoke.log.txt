@@ -1,0 +1,2 @@
+Selected window backend: (null) 
+Caught fatal signal - signo:11 code:1 errno:0 addr:0x5c8

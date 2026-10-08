@@ -432,5 +432,120 @@
       "Flying model picking covered by Unity fixtures, not an actual-input flying wave here",
       "No native :0 desktop or Windows runtime verification"
     ]
+  },
+  "constructionFeedbackCheckpoint": {
+    "source": "945da86",
+    "builds": [
+      {
+        "status": "completed",
+        "buildId": "build_cf1c87cf16b5",
+        "result": "Succeeded",
+        "platform": "StandaloneLinux64",
+        "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Linux-Next/HowlForMaul",
+        "totalSizeBytes": 92261832,
+        "buildTimeMs": 25902,
+        "buildStartedAt": "2026-10-08T19:20:24.7508520Z",
+        "buildEndedAt": "2026-10-08T19:20:50.6531450Z",
+        "totalWarnings": 1,
+        "totalErrors": 0,
+        "warnings": [
+          {
+            "message": "Pipeline: No RuntimePipelineConfig asset found (Project Settings > Pipeline > Runtime). Pipeline will be disabled in Player builds."
+          }
+        ]
+      },
+      {
+        "status": "completed",
+        "buildId": "build_036d2fad3872",
+        "result": "Succeeded",
+        "platform": "StandaloneWindows64",
+        "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Windows-Next/HowlForMaul.exe",
+        "totalSizeBytes": 95906032,
+        "buildTimeMs": 40757,
+        "buildStartedAt": "2026-10-08T19:21:12.3753290Z",
+        "buildEndedAt": "2026-10-08T19:21:53.1331420Z",
+        "totalWarnings": 19,
+        "totalErrors": 0,
+        "warnings": [
+          {
+            "message": "Pipeline: No RuntimePipelineConfig asset found (Project Settings > Pipeline > Runtime). Pipeline will be disabled in Player builds."
+          },
+          {
+            "message": "Shader warning in 'TraceRays': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'RisEstimation': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceRenderingLayerMask': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'UniformEstimation': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceTransparentRays': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'DynamicGISkyOcclusion': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceRaysAndFetchAttributes': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'RestirCandidateTemporal': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceVirtualOffset': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'RestirCandidateTemporal': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceTransparentRays': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceRenderingLayerMask': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceRaysAndFetchAttributes': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'DynamicGISkyOcclusion': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceVirtualOffset': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceRays': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'RisEstimation': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'UniformEstimation': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          }
+        ]
+      }
+    ],
+    "linuxInput": {
+      "display": ":98",
+      "queueMarkers": 3,
+      "goldBefore": 1200,
+      "goldAfter": 1185,
+      "towersCompleted": 3,
+      "menuQuitExit": 0,
+      "setupQuitExit": 0
+    },
+    "dataSmoke": {
+      "withoutDisplay": [
+        139,
+        139
+      ],
+      "isolatedDisplay": ":98",
+      "isolatedExit": 0,
+      "bothMaps": true,
+      "limitation": "No-display native startup crashes before game initialization; isolated-display data checks passed. Windows runtime untested."
+    },
+    "oldPackagePreserved": "Builds/Linux still contains 110633b; existing player left running."
   }
 }
