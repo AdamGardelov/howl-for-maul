@@ -4,10 +4,10 @@
       "result": "Succeeded",
       "platform": "StandaloneLinux64",
       "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Linux/HowlForMaul",
-      "totalSizeBytes": 92195608,
-      "buildTimeMs": 35702,
-      "buildStartedAt": "2026-10-08T08:44:09.4190370Z",
-      "buildEndedAt": "2026-10-08T08:44:45.1213250Z",
+      "totalSizeBytes": 92210456,
+      "buildTimeMs": 13794,
+      "buildStartedAt": "2026-10-08T09:39:08.3782970Z",
+      "buildEndedAt": "2026-10-08T09:39:22.1729390Z",
       "totalWarnings": 1,
       "totalErrors": 0,
       "warnings": [
@@ -20,10 +20,10 @@
       "result": "Succeeded",
       "platform": "StandaloneWindows64",
       "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Windows/HowlForMaul.exe",
-      "totalSizeBytes": 95839264,
-      "buildTimeMs": 22901,
-      "buildStartedAt": "2026-10-08T08:45:06.6359420Z",
-      "buildEndedAt": "2026-10-08T08:45:29.5370540Z",
+      "totalSizeBytes": 95854112,
+      "buildTimeMs": 17499,
+      "buildStartedAt": "2026-10-08T09:39:54.6138960Z",
+      "buildEndedAt": "2026-10-08T09:40:12.1135960Z",
       "totalWarnings": 19,
       "totalErrors": 0,
       "warnings": [
@@ -90,7 +90,11 @@
   "linuxSmoke": {
     "exitCode": 0,
     "display": ":98",
-    "note": "Quality and minimap-cache package passed both map route/data checks."
+    "maps": [
+      "Rimewatch: 3 lanes, 4 factions, 20 towers, 20 waves",
+      "Ironfold: 4 lanes, 8 factions, 56 towers, 20 waves"
+    ],
+    "note": "Fresh complete-roster package passed both route/data smoke checks; not a graphical performance test."
   },
   "windowsRuntime": "Not tested on Windows",
   "linuxNativeDesktopSmoke": {
@@ -114,6 +118,8 @@
       "Native :0 desktop",
       "Windows runtime"
     ],
-    "note": "Isolated virtual display. Restricted process/network visibility initially hid the live display; reconnected with authorized host access and verified sale."
-  }
+    "note": "Isolated virtual display. Restricted process/network visibility initially hid the live display; reconnected with authorized host access and verified sale.",
+    "sourceCheckpoint": "Earlier quality package, before six new model sets and HUD refinements"
+  },
+  "sourceCheckpoint": "9e656e8"
 }

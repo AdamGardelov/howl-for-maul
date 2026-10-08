@@ -28,7 +28,9 @@ The separate moving-combat diagnostic reported about 24.87 ms median render time
 
 ## Packages and platform limits
 
-Current packages are the preceding graphics-quality checkpoint, before Prism, Horizon, the final four Ironfold sets and compact health bars. A packaging follow-up is next. Those Linux/Windows builds succeeded with zero errors and 1/19 warnings. Windows runtime is untested. Linux route/data smoke passed both maps on isolated :98, exit 0. Earlier native :0 attempts failed with XFree86-VidModeExtension BadValue before game code; that issue is unresolved. Use Unity Play here. Read Howl-Builds.json for exact package evidence.
+Fresh Linux and Windows packages now include all 76 tower models, compact overview health bars and contrast-backed map tags (source 9e656e8). Both builds succeeded with zero errors; Linux reported one Pipeline-disabled warning, Windows 19 including unsupported package ray-tracing shaders. Fresh Linux packaged route/data smoke passed both maps on isolated :98, exit 0. Windows runtime remains untested.
+
+The mouse-driven start/build/select/upgrade/sell result above belongs to the earlier quality package, not a fresh full GUI pass of these packages. Earlier native :0 attempts failed with XFree86-VidModeExtension BadValue before game code; that issue is unresolved. Use Unity Play here. Read Howl-Builds.json for exact package evidence. Editor restored to StandaloneLinux64.
 
 ## Preserved constraints
 

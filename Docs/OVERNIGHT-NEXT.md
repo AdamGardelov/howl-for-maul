@@ -2,13 +2,13 @@
 
 Latest source milestone: all twelve factions now have original design-specific tower models (20 winter + 56 Ironfold). Fresh Unity suite 65/65 passed. Native close/normal captures inspected for all new sets. Read HOWL-VERIFICATION.md, IRON-MODELS.md and Performance/LIVE-COMBAT.md.
 
-Next: rebuild Linux/Windows packages and run packaged-map smoke; improve low-contrast map labels; then profile crowded combat and deepen visual/material quality. The first procedural roster is complete, but final art and balance are not. No need to invent additional factions or maps yet.
+Fresh Linux/Windows packages include source 9e656e8; zero build errors and both Linux map smoke checks passed on :98. Map labels are now high-contrast and inspected on both maps. Next: compare repeated-mesh GPU instancing against SRP batching in a controlled diagnostic before deciding on any rendering change; then deepen visual/material quality. The first procedural roster is complete, but final art and balance are not. No need to invent additional factions or maps yet.
 
 Hard solo Prism and Hard mixed Gravity/Scrap adaptive campaigns both won twenty waves with 30 lives and valid wallets. Earlier roster-first defeats remain; do not tune from one bot or claim final balance. Bot strategies heavily favor cheap maze towers and have whole-map knowledge.
 
 The crowded diagnostic used 324 injected towers and 74 injected high-health enemies, not normal economy. It exposed overview health-bar clutter, now fixed by zoom scaling. Median live editor render time was about 24.87 ms; paused-map 8.33 ms must not be quoted as live-battle performance. Deeper profiling is still needed.
 
-Live Unity editor is available through host-authorized CLI at port 7800. Sandbox-only process/network checks hide it. Editor transitions often produce initial five-second eval timeouts; wait, inspect state, retry only idempotent actions. The source folder is /home/adam/Documents/Dev/howl-for-maul and is registered in Hub. Restore StandaloneLinux64 after Windows builds. Preserve dirty scenes and user play state. Current source packages lag the new model sets until the packaging follow-up.
+Live Unity editor is available through host-authorized CLI at port 7800. Sandbox-only process/network checks hide it. Editor transitions often produce initial five-second eval timeouts; wait, inspect state, retry only idempotent actions. The source folder is /home/adam/Documents/Dev/howl-for-maul and is registered in Hub. Restore StandaloneLinux64 after Windows builds. Preserve dirty scenes and user play state. Packages are current through the map-label checkpoint 9e656e8.
 
 The virtual-display Linux Start Match/build/select/upgrade/sell mouse sequence passed on the earlier quality package. Native :0 video-mode startup remains broken; Windows has only been built. Keep these limits explicit. The isolated :98 display may still be running; it belongs to our verification work. Do not touch the user's :0 desktop for input automation.
 
