@@ -8,6 +8,7 @@ namespace FrostMaze
         GUIStyle title, small, label, button, section, mapLabel, card, selectedCard, primary, badge, number;
         readonly System.Collections.Generic.List<Texture2D> textures=new System.Collections.Generic.List<Texture2D>();
         Texture2D panel;
+        readonly MinimapTerrain minimapTerrain=new MinimapTerrain();
         Vector2 scroll; bool wasSetup,showTools,showForecast;
         int lastSelectedTower;
         public void Initialize(Prototype prototype)
@@ -197,8 +198,7 @@ namespace FrostMaze
             var r=game.MinimapRect;
             GUI.color=new Color(.035f,.075f,.09f,.95f);GUI.DrawTexture(new Rect(r.x-4,r.y-18,r.width+8,r.height+22),Texture2D.whiteTexture);
             GUI.color=Color.white;GUI.Label(new Rect(r.x,r.y-18,r.width,18),"MAP · click to pan",small);
-            GUI.color=new Color(.4f,.57f,.6f);GUI.DrawTexture(r,Texture2D.whiteTexture);
-            foreach(var b in w.Grid.Terrain){GUI.color=new Color(.08f,.17f,.2f);GUI.DrawTexture(new Rect(r.x+b.X*r.width/w.Config.Width,r.y+(w.Config.Height-b.Y-b.Height)*r.height/w.Config.Height,b.Width*r.width/w.Config.Width,b.Height*r.height/w.Config.Height),Texture2D.whiteTexture);}
+            GUI.color=Color.white;GUI.DrawTexture(r,minimapTerrain.Get(w.Grid,w.PlacementStep));
             foreach(var tower in w.Grid.Towers)MiniDot(r,tower.Center,new Color(.1f,.95f,.8f),2);
             foreach(var enemy in w.Enemies)MiniDot(r,enemy.Position,enemy.Spec.Flying?new Color(.85f,.4f,1):new Color(1,.48f,.2f),2);
             for(int i=0;i<w.Players.Length;i++)MiniDot(r,w.Players[i].Position,i==w.ActivePlayer?Color.white:Color.cyan,4);
@@ -265,6 +265,7 @@ namespace FrostMaze
         }
         void OnDestroy()
         {
+            minimapTerrain.Dispose();
             foreach(var texture in textures)if(texture!=null)Destroy(texture);
         }
     }

@@ -1,10 +1,10 @@
-# Howl for Maul verification — tower batching checkpoint
+# Howl for Maul verification — minimap cache checkpoint
 
 Latest source: original bespoke models for all four winter factions and Pulse Foundry/Blast Circuit. Remaining Ironfold factions retain generic role models. This is early procedural art, not finished League-quality presentation. Read PULSE-MODELS.md and WINTER-MODELS.md.
 
 ## Automated tests
 
-Fresh Unity 6000.3.25f1 suite: **64/64 passed**, including seven Play-mode integration cases; 25.02 seconds. Compilation: zero errors/warnings. Exact results are in Howl-Unity-Tests.json.
+Fresh Unity 6000.3.25f1 suite: **65/65 passed**, including seven Play-mode integration cases; 25.07 seconds. Compilation: zero errors/warnings. Exact results are in Howl-Unity-Tests.json.
 
 The new Pulse test buys all six prerequisites and the champion through normal builder travel, verifies distinct models and no cosmetic colliders, and upgrades the champion. It checks 505 then 245 gold remain. Winter paid models/upgrades, mesh sharing/cleanup, enemy animation pause/resume, shot-facing/recoil, setup flow, and map switching remain covered.
 
@@ -29,9 +29,13 @@ Every faction won the full twenty-wave campaign under adaptive spending, with al
 
 These policies do not exhaust human maze designs, difficulty choices or multiplayer combinations. Roster-first robot defenses remain weak in these tests. Final balance is not settled, and no online multiplayer is implemented.
 
+The final minimap test independently verifies all 20,480 cells against the supplied ASCII masks, cache reuse after building, and texture disposal on map replacement.
+
 ## Rendering performance
 
 Rigid tower pieces now use shared per-design batches. A controlled 324-tower editor overview reduced draw calls from 6,206 to 5,021 and median reported render time from 11.99 to 10.92 ms, with a stable empty-map control. See Performance/TOWER-BATCHING.md for raw samples, visual comparison and limitations. No standalone FPS or busy-wave performance claim is made.
+
+The permanent minimap cache removes another 616 draw calls. With both optimizations, the 324-tower fixture reports 4,405 draw calls and 8.29 ms median render time, compared with 6,206 and 11.99 ms originally. See Performance/MINIMAP-CACHE.md.
 
 ## Native visual inspection
 
@@ -41,7 +45,7 @@ No end-to-end mouse-click pass is claimed: editor GUI injection did not activate
 
 ## Builds and platform limits
 
-Fresh packages include all four winter sets, Pulse, Blast and rigid tower batching. Both Linux and Windows builds succeeded with zero errors; Linux reported one expected Pipeline-disabled warning, Windows 19 including unsupported package ray-tracing shaders. See Howl-Builds.json.
+Packages remain preceding checkpoint aa500eb; the minimap cache is not packaged yet. Those packages include all four winter sets, Pulse, Blast and rigid tower batching. Both Linux and Windows builds succeeded with zero errors; Linux reported one expected Pipeline-disabled warning, Windows 19 including unsupported package ray-tracing shaders. See Howl-Builds.json.
 
 The Linux executable passed both packaged-map route/data smoke checks on isolated :98, exit 0. The display was stopped. Earlier native :0 desktop attempts failed in X video-mode initialization before game code; use Unity Play here. Windows runtime remains untested. Smoke checks do not verify graphical performance.
 
