@@ -4,9 +4,11 @@ All twelve factions now have original design-specific models: twenty winter towe
 
 ## Automated tests
 
-Fresh Unity 6000.3.25f1 suite: **66/66 passed**, including seven Play-mode integration cases. Tool-reported duration 17.94 seconds; wall time includes editor reloads. Compilation had zero errors/warnings. Exact result: Howl-Unity-Tests.json.
+Fresh Unity 6000.3.25f1 suite: **67/67 passed**, including eight Play-mode integration cases. Compilation had zero errors/warnings. Exact result: Howl-Unity-Tests.json.
 
 Paid presentation coverage buys all eight Ironfold rosters, checks each champion's six prerequisites, air targeting, cosmetic collider absence and champion upgrades. It preserves higher Gravity costs and Scrap's cheap opener. Winter models/upgrades, shared mesh cleanup, animation pause/resume, shot facing/recoil, setup flow and map switching remain covered. Simulation cases cover exact masks, all lanes, fixed team economy, ownership, half-cell paid construction, wall seams, siege/reopening, combat targeting and the captured 61-unit corner jam. The minimap case independently checks all 20,480 source cells, cache reuse and texture cleanup.
+
+An additional focused rerun checks every raised scenic prop against both source masks (1/1 passed). Spawn/exit beacons were moved off walkable ground and the corridor-spanning arch removed. Read SCENERY-CLEARANCE.md.
 
 ## Paid campaigns
 

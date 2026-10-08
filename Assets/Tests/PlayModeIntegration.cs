@@ -9,6 +9,42 @@ namespace FrostMaze.Tests
     public sealed class PlayModeIntegration
     {
         [UnityTest]
+        public IEnumerator MapLandmarksNeverCoverWalkableCells()
+        {
+            EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
+            yield return new EnterPlayMode();yield return null;
+            foreach(string map in new[]{"Rimewatch","Ironfold"}) {
+                var game=Object.FindFirstObjectByType<Prototype>();
+                if(game.Map.name!=map){game.ChooseMap(Resources.Load<MapDefinition>(map));yield return null;yield return null;game=Object.FindFirstObjectByType<Prototype>();}
+                game.Paused=true;
+                var scenery=Object.FindFirstObjectByType<MapScenery>();Assert.That(scenery,Is.Not.Null);
+                Assert.That(scenery.GetComponentsInChildren<Collider>().Length,Is.Zero,"Scenery cannot add physical blockers");
+                var config=game.World.Config;float cell=config.LayoutCellSize;
+                foreach(string batch in new[]{"Scenery 3","Scenery 4","Scenery 5","Scenery 11","Scenery 12","Scenery 13"}) {
+                    var prop=scenery.transform.Find(batch);
+                    if(batch=="Scenery 12"||batch=="Scenery 13")Assert.That(prop,Is.Not.Null,"Map must retain its landmark silhouettes");
+                    if(prop==null)continue; // Theme-specific trees/rocks are optional.
+                    var mesh=prop.GetComponent<MeshFilter>().sharedMesh;var vertices=mesh.vertices;var triangles=mesh.triangles;
+                    // Check the projected triangle bounds, not only endpoints: a bridge can have
+                    // both ends on blocked cells while still hiding the playable corridor.
+                    for(int i=0;i<triangles.Length;i+=3) {
+                        Vector3 a=prop.TransformPoint(vertices[triangles[i]]),b=prop.TransformPoint(vertices[triangles[i+1]]),c=prop.TransformPoint(vertices[triangles[i+2]]);
+                        int minX=Mathf.FloorToInt(Mathf.Min(a.x,b.x,c.x)/cell),maxX=Mathf.FloorToInt(Mathf.Max(a.x,b.x,c.x)/cell);
+                        int minZ=Mathf.FloorToInt(Mathf.Min(a.z,b.z,c.z)/cell),maxZ=Mathf.FloorToInt(Mathf.Max(a.z,b.z,c.z)/cell);
+                        for(int z=minZ;z<=maxZ;z++)for(int x=minX;x<=maxX;x++) {
+                            int row=config.LayoutRows.Length-1-z;
+                            Assert.That(row,Is.InRange(0,config.LayoutRows.Length-1),map+" landmark outside source mask");
+                            Assert.That(x,Is.InRange(0,config.LayoutRows[row].Length-1),map+" landmark outside source mask");
+                            Assert.That(config.WalkableSymbols.IndexOf(config.LayoutRows[row][x]),Is.LessThan(0),map+" landmark visually covers buildable cell "+x+","+z);
+                        }
+                    }
+                }
+            }
+            // Restore the default map for subsequent scene-based integration cases.
+            var last=Object.FindFirstObjectByType<Prototype>();last.ChooseMap(Resources.Load<MapDefinition>("Rimewatch"));yield return null;
+            yield return new ExitPlayMode();
+        }
+        [UnityTest]
         public IEnumerator TowerFireFeedbackTracksShotsAndPauses()
         {
             EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");

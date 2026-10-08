@@ -19,7 +19,7 @@ namespace FrostMaze
             }
         }
         public void Build(Prototype game) {
-            var c=game.World.Config;bool ice=c.Theme!="iron";var batches=new Batch[12];for(int i=0;i<batches.Length;i++)batches[i]=new Batch();
+            var c=game.World.Config;bool ice=c.Theme!="iron";var batches=new Batch[14];for(int i=0;i<batches.Length;i++)batches[i]=new Batch();
             // Draw the source cells as one continuous surface: only exposed edges receive bevels.
             bool Solid(int row,int col) {
                 if(row<0||row>=c.LayoutRows.Length||col<0||col>=c.LayoutRows[row].Length)return false;
@@ -67,17 +67,28 @@ namespace FrostMaze
                 }
                 else {batches[3].Box(x0-.25f,z-.25f,.5f,.5f,.5f,2);batches[5].Box(x0-.28f,z-.28f,.56f,.56f,1.6f,1.72f);}
             }
-            foreach(var lane in c.Lanes) {
-                float x=lane.Spawn.X,z=lane.Spawn.Y;
-                for(int side=-1;side<=1;side+=2){batches[3].Box(x+side*1.1f-.15f,z-.15f,.3f,.3f,0,1.9f);batches[5].Peak(x+side*1.1f,z,.24f,1.9f,.5f);}
+            // Tall landmarks sit wholly on blocked source cells. Never reserve or cover a build cell.
+            // Keep a small gap to the source-cell edge even on Ironfold's half-unit mask.
+            void Beacon(FrostMaze.Simulation.V2 origin,int side,bool exit) {
+                if(!TryLandmarkAnchor(c,origin,side,out var anchor))return;
+                float x=anchor.X,z=anchor.Y,h=ice?.72f:.6f;
+                if(exit) {
+                    batches[12].Box(x-.22f,z-.22f,.44f,.44f,h,h+1.9f);
+                    batches[13].Box(x-.12f,z-.23f,.24f,.46f,h+.5f,h+1.6f);
+                    batches[13].Peak(x,z,.23f,h+1.9f,.35f);
+                } else {
+                    batches[12].Box(x-.15f,z-.15f,.3f,.3f,h,h+1.2f);
+                    batches[13].Peak(x,z,.23f,h+1.2f,.4f);
+                }
             }
+            foreach(var lane in c.Lanes)for(int side=-1;side<=1;side+=2)Beacon(lane.Spawn,side,false);
             var exit=c.GroundRoute[c.GroundRoute.Length-1];
-            for(int side=-1;side<=1;side+=2){batches[3].Box(exit.X+side*1.25f-.25f,exit.Y-.25f,.5f,.5f,0,2.8f);batches[5].Box(exit.X+side*1.25f-.12f,exit.Y-.27f,.24f,.54f,1,2.5f);}
-            batches[3].Box(exit.X-1.5f,exit.Y-.25f,3,.5f,2.6f,2.9f);
+            for(int side=-1;side<=1;side+=2)Beacon(exit,side,true);
             Color[] colors=ice?new[]{new Color(.22f,.34f,.36f),new Color(.69f,.77f,.75f),new Color(.045f,.13f,.17f),new Color(.27f,.29f,.25f),new Color(.11f,.25f,.22f),new Color(.34f,.72f,.63f)}:new[]{new Color(.19f,.22f,.27f),new Color(.36f,.4f,.43f),new Color(.045f,.065f,.09f),new Color(.27f,.25f,.22f),new Color(.2f,.26f,.29f),new Color(.83f,.55f,.25f)};
             var palette=new List<Color>(colors);
             for(int i=0;i<5;i++)palette.Add(Color.Lerp(ice?new Color(.35f,.46f,.46f):new Color(.19f,.25f,.29f),ice?new Color(.43f,.54f,.52f):new Color(.24f,.3f,.34f),i/4f));
             palette.Add(new Color(.31f,.39f,.39f));
+            palette.Add(colors[3]);palette.Add(colors[5]);
             groundTexture=new Texture2D(256,256,TextureFormat.RGB24,false){name="Original broad terrain wash",wrapMode=TextureWrapMode.Clamp,filterMode=FilterMode.Bilinear};
             var pixels=new Color[256*256];
             for(int y=0;y<256;y++)for(int x=0;x<256;x++) {
@@ -90,9 +101,23 @@ namespace FrostMaze
             for(int i=0;i<batches.Length;i++) {
                 var b=batches[i];if(b.V.Count==0)continue;var mesh=new Mesh{name="Original terrain batch "+i,indexFormat=UnityEngine.Rendering.IndexFormat.UInt32};mesh.SetVertices(b.V);mesh.SetTriangles(b.T,0);mesh.RecalculateNormals();mesh.RecalculateBounds();meshes.Add(mesh);
                 if(i==6){var uv=new List<Vector2>();foreach(var vertex in b.V)uv.Add(new Vector2(vertex.x/c.Width,vertex.z/c.Height));mesh.SetUVs(0,uv);}
-                var obj=new GameObject("Scenery "+i);obj.transform.SetParent(transform,false);obj.AddComponent<MeshFilter>().sharedMesh=mesh;var renderer=obj.AddComponent<MeshRenderer>();renderer.sharedMaterial=game.MakeMaterial(i==6?Color.white:palette[i],i==5);
+                var obj=new GameObject("Scenery "+i);obj.transform.SetParent(transform,false);obj.AddComponent<MeshFilter>().sharedMesh=mesh;var renderer=obj.AddComponent<MeshRenderer>();renderer.sharedMaterial=game.MakeMaterial(i==6?Color.white:palette[i],i==5||i==13);
                 if(i==6){renderer.sharedMaterial.mainTexture=groundTexture;renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;}
             }
+        }
+        static bool TryLandmarkAnchor(FrostMaze.Simulation.Scenario c,FrostMaze.Simulation.V2 origin,int side,out FrostMaze.Simulation.V2 anchor)
+        {
+            anchor=default;float best=256;bool found=false;float cell=c.LayoutCellSize;
+            for(int row=0;row<c.LayoutRows.Length;row++)for(int col=0;col<c.LayoutRows[row].Length;col++) {
+                char k=c.LayoutRows[row][col];
+                if(c.WalkableSymbols.IndexOf(k)>=0||k=='D'||k=='W'||k=='p')continue;
+                var point=new FrostMaze.Simulation.V2((col+.5f)*cell,(c.LayoutRows.Length-row-.5f)*cell);
+                if((point.X-origin.X)*side<.75f)continue;
+                float distance=(point-origin).LengthSquared;
+                if(distance>=best||cell<.5f)continue;
+                best=distance;anchor=point;found=true;
+            }
+            return found;
         }
         void OnDestroy(){foreach(var mesh in meshes)Destroy(mesh);if(groundTexture!=null)Destroy(groundTexture);}
     }
