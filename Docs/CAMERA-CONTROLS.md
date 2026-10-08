@@ -10,4 +10,6 @@ Unity compilation passed. All four Camera-filtered checks passed, with each case
 
 ## Camera rotation
 
-Hold Q/E to orbit left/right at 55 degrees per second around the ground focus. Camera pitch stays at 55 degrees. Keyboard, edge and drag movement follow screen directions at the current yaw. Home restores the default north-facing orientation at the active builder; End fits the rotated map in the overview. Focus loss prevents rotation, and setup/the Esc menu freeze it. The north-up minimap draws the rotated camera footprint.
+Hold Q/E to orbit left/right at 55 degrees per second around the ground focus. Camera pitch now changes smoothly with zoom from 62 degrees at overview distances to 38 degrees close up. Keyboard, edge and drag movement follow screen directions at the current yaw. Home restores the default north-facing orientation at the active builder; End fits the rotated map in the overview. Focus loss prevents rotation, and setup/the Esc menu freeze it. The north-up minimap draws the rotated camera footprint.
+
+The later depth pass uses perspective throughout and ground-ray dragging; see DEPTH-AND-TERRAIN.md for projection details and current validation.

@@ -1,0 +1,35 @@
+{
+  "summary": {
+    "id": "2",
+    "testcasecount": "3",
+    "result": "Passed",
+    "total": "3",
+    "passed": "3",
+    "failed": "0",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-10-08 19:01:31Z",
+    "end-time": "2026-10-08 19:01:38Z",
+    "duration": "7.4665523"
+  },
+  "cases": [
+    {
+      "name": "FrostMaze.Tests.PlayModeIntegration.CameraDragRejectsUiOriginsAndFreezesInSetup",
+      "result": "Passed",
+      "duration": "78.090249"
+    },
+    {
+      "name": "FrostMaze.Tests.PlayModeIntegration.MapLandmarksNeverCoverWalkableCells",
+      "result": "Passed",
+      "duration": "80.518716"
+    },
+    {
+      "name": "FrostMaze.Tests.PlayModeIntegration.TowerPortraitsCacheActualModelsWithoutChangingMatch",
+      "result": "Passed",
+      "duration": "81.960693"
+    }
+  ]
+}

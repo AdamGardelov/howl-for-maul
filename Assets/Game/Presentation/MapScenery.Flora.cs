@@ -56,6 +56,7 @@ namespace FrostMaze
                     var root=new Vector3(x,surface+.025f,z);
                     var tip=root+new Vector3(Mathf.Cos(a)*length,(.28f+(i%3)*.12f)*size,Mathf.Sin(a)*length);
                     Leaf(b[14],root,tip,(ice?.14f:.105f)*size);
+                    Leaf(b[15],root+Vector3.up*.012f,tip+Vector3.up*.014f,.016f*size);
                     Leaf(b[15],Vector3.Lerp(root,tip,.66f),tip+Vector3.up*.015f,(ice?.065f:.045f)*size);
                 }
                 // Ice blooms / copper seed heads: small accents, never a glowing gameplay marker.

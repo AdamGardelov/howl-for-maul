@@ -17,7 +17,7 @@ namespace FrostMaze.Tests
             public CameraIntent Intent;
             public CameraIntent Read()=>Intent;
         }
-        [UnityTest]
+        [UnityTest, Category("DepthPresentation")]
         public IEnumerator TowerPortraitsCacheActualModelsWithoutChangingMatch()
         {
             EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
@@ -49,7 +49,7 @@ namespace FrostMaze.Tests
             Object.FindFirstObjectByType<Prototype>().ChooseMap(Resources.Load<MapDefinition>("Rimewatch"));yield return null;
             yield return new ExitPlayMode();
         }
-        [UnityTest]
+        [UnityTest, Category("DepthPresentation")]
         public IEnumerator CameraDragRejectsUiOriginsAndFreezesInSetup()
         {
             EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
@@ -103,19 +103,39 @@ namespace FrostMaze.Tests
             input.Intent=new CameraIntent{Pointer=world};yield return null;
             input.Intent=new CameraIntent{Pointer=world,Dragging=true,DragStarted=true};yield return null;
             Assert.That(camera.Focus,Is.EqualTo(start),"First drag frame jumped");
+            camera.GroundPoint(world+new Vector2(100,50),out var grabbed);camera.GroundPoint(world,out var underPointer);
             input.Intent=new CameraIntent{Pointer=world,Dragging=true,Drag=new Vector2(100,50)};yield return null;
-            float scale=game.View.orthographicSize*2/Screen.height;
-            Assert.That(camera.Focus.x-start.x,Is.EqualTo(100*scale).Within(.01f));
-            Assert.That(camera.Focus.z-start.z,Is.EqualTo(50*scale/Mathf.Sin(55*Mathf.Deg2Rad)).Within(.01f));
+            Assert.That(Vector3.Distance(camera.Focus-start,grabbed-underPointer),Is.LessThan(.01f),"Perspective drag lost its ground anchor");
             input.Intent=new CameraIntent{Pointer=world};yield return null;
             game.OpenSetup();start=camera.Focus;float zoom=game.View.orthographicSize;
             input.Intent=new CameraIntent{Pointer=world,Pan=Vector2.one,Zoom=5};yield return null;yield return null;
             Assert.That(camera.Focus,Is.EqualTo(start));Assert.That(game.View.orthographicSize,Is.EqualTo(zoom));
             game.ReturnToMatch();input.Intent=new CameraIntent{Pointer=world,Dragging=true,DragStarted=true};yield return null;
-            input.Intent=new CameraIntent{Pointer=world,Dragging=true,Drag=Vector2.one*100000};yield return null;
+            input.Intent=new CameraIntent{Pointer=world,Dragging=true,Drag=Vector2.one*100000};for(int i=0;i<20;i++)yield return null;
             Assert.That(camera.Focus.x,Is.EqualTo(camera.BoundsMax.x));Assert.That(camera.Focus.z,Is.EqualTo(camera.BoundsMax.y));
             Assert.That(game.World.Gold,Is.EqualTo(1200));Assert.That(game.World.Grid.Towers.Count,Is.Zero);
-            input.Intent=new CameraIntent{Pointer=world};yield return new ExitPlayMode();
+            input.Intent=new CameraIntent{Pointer=world};yield return null;
+            camera.FocusPoint(new FrostMaze.Simulation.V2(32,32));
+            float previousPitch=0;var scenery=Object.FindFirstObjectByType<MapScenery>();var terrainPosition=scenery.transform.position;var terrainRotation=scenery.transform.rotation;
+            foreach(float zoomLevel in new[]{5f,11f,24f}) {
+                camera.SetZoom(zoomLevel,true);
+                Assert.That(game.View.orthographic,Is.False,"Close inspection requires actual perspective");
+                Assert.That(camera.Pitch,Is.GreaterThan(previousPitch));previousPitch=camera.Pitch;
+                foreach(var ground in new[]{new Vector3(31.5f,0,31.5f),new Vector3(33,0,33),camera.Focus}) {
+                    var screen=game.View.WorldToScreenPoint(ground);
+                    Assert.That(camera.GroundPoint(screen,out var hit),Is.True);
+                    Assert.That(Vector3.Distance(hit,ground),Is.LessThan(.002f),"Placement ray drifted at zoom "+zoomLevel);
+                }
+                for(int x=0;x<2;x++)for(int y=0;y<2;y++)Assert.That(camera.GroundPoint(new Vector2(x*Screen.width,y*Screen.height),out _),Is.True,"Viewport crossed horizon");
+            }
+            camera.SetZoom(5);float previousZoom=camera.Zoom;
+            for(int i=0;i<20;i++) {
+                yield return null;Assert.That(camera.Zoom,Is.InRange(5f,previousZoom));previousZoom=camera.Zoom;
+            }
+            Assert.That(camera.Zoom,Is.LessThan(24),"Smooth zoom did not progress");
+            Assert.That(scenery.transform.position,Is.EqualTo(terrainPosition));Assert.That(scenery.transform.rotation,Is.EqualTo(terrainRotation));
+            camera.FocusPoint(new FrostMaze.Simulation.V2(32,32));camera.Overview();
+            yield return new ExitPlayMode();
         }
         [UnityTest]
         public IEnumerator PaidWallSiegeShowsStrikesDestructionAndRouteOpening()
@@ -306,7 +326,7 @@ namespace FrostMaze.Tests
             Assert.That(feedback.SoundDispatches,Is.Zero);Assert.That(feedback.LastSound,Is.Null);Assert.That(source.mute,Is.True);
             yield return new ExitPlayMode();
         }
-        [UnityTest]
+        [UnityTest, Category("DepthPresentation")]
         public IEnumerator MapLandmarksNeverCoverWalkableCells()
         {
             EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
@@ -319,7 +339,7 @@ namespace FrostMaze.Tests
                 Assert.That(scenery.GetComponentsInChildren<Collider>().Length,Is.Zero,"Scenery cannot add physical blockers");
                 Assert.That(scenery.PlantClusters,Is.InRange(1,90));Assert.That(scenery.Braziers,Is.InRange(1,24));
                 var config=game.World.Config;float cell=config.LayoutCellSize;
-                foreach(string batch in new[]{"Scenery 3","Scenery 4","Scenery 5","Scenery 11","Scenery 12","Scenery 13","Scenery 14","Scenery 15","Scenery 16","Scenery 17","Scenery 18"}) {
+                foreach(string batch in new[]{"Scenery 3","Scenery 4","Scenery 5","Scenery 11","Scenery 12","Scenery 13","Scenery 14","Scenery 15","Scenery 16","Scenery 17","Scenery 18","Scenery 19"}) {
                     var prop=scenery.transform.Find(batch);
                     if(batch=="Scenery 12"||batch=="Scenery 13"||int.Parse(batch.Substring(8))>=14)Assert.That(prop,Is.Not.Null,"Map must retain its landmark silhouettes");
                     if(prop==null)continue; // Theme-specific trees/rocks are optional.

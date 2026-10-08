@@ -21,4 +21,4 @@ No answers are needed to run the current prototype. This replaces the obsolete s
 6. Should eventual multiplayer allow explicit gold transfers, shared construction permissions or only separate ownership? Current local slots keep wallets and tower sale/upgrade ownership separate.
 7. After human play sessions, does the opening budget feel generous enough across all always-active lanes? Bot wins rely heavily on cheap towers and route knowledge, so they do not establish beginner balance.
 
-8. Camera follow-up: the user says only the camera should rotate and the map should stay still. Current Q/E orbits the camera around its ground focus; terrain coordinates do not move. A gentler limited viewing angle or side lean may be intended, but is not confirmed. Preserve the current tested controls until this visual preference is clarified; do not silently substitute roll or pitch.
+8. Camera follow-up resolved by the later request: zoom now lowers the camera and widens perspective, while Q/E moves the camera around its focus and the map remains fixed. Fine-tune the 38-degree close angle after human play if desired.

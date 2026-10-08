@@ -182,6 +182,14 @@ namespace FrostMaze
             Role=spec.Damage<=0?"Wall":design!=null&&design.Requires.Length>0?"Champion":!spec.TargetsGround?"Interceptor":spec.SlowFraction>0?"Control":spec.ChainTargets>0?"Relay":spec.SplashRadius>0?"Artillery":"Sentry";
             Part("Foundation",PrimitiveType.Cylinder,new Vector3(0,.1f,0),new Vector3(.94f,.13f,.94f),shell);
             Part("Faction band",PrimitiveType.Cylinder,new Vector3(0,.23f,0),new Vector3(.78f,.035f,.78f),accent);
+            // Small foundation details read at close zoom and reuse the existing two base materials.
+            for(int corner=0;corner<4;corner++) {
+                float angle=(45+corner*90)*Mathf.Deg2Rad;
+                var inset=Part(robot?"Foundation fastener":"Foundation seal",robot?PrimitiveType.Cylinder:PrimitiveType.Cube,
+                    new Vector3(Mathf.Sin(angle)*.375f,.239f,Mathf.Cos(angle)*.375f),
+                    robot?new Vector3(.075f,.018f,.075f):new Vector3(.09f,.023f,.14f),accent);
+                inset.transform.localRotation=Quaternion.Euler(0,45+corner*90,0);
+            }
             if(robot&&faction==0)PulseTower(palette[3],palette[4],tower.Design);
             else if(robot&&faction==1)BlastTower(palette[3],palette[4],tower.Design-7);
             else if(robot&&faction==2)PrismTower(palette[3],palette[4],tower.Design-14);

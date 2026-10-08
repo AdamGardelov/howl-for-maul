@@ -321,8 +321,10 @@ namespace FrostMaze
         {
             var p = game.View.WorldToScreenPoint(position);
             // Match world scale in the overview; keep the inspected unit easy to read.
-            if (!selected && game.View.orthographic)
-                width = Mathf.Clamp(game.View.pixelHeight * .75f / (2 * game.View.orthographicSize), 10, width);
+            if (!selected) {
+                var edge=game.View.WorldToScreenPoint(position+game.View.transform.right*.75f);
+                width=Mathf.Clamp(Mathf.Abs(edge.x-p.x),10,width);
+            }
             float height = width < 18 ? 2 : 4;
             var rect = new Rect(p.x - width * .5f, Screen.height - p.y, width, height);
             // World overlays must not cover the sidebar or minimap.

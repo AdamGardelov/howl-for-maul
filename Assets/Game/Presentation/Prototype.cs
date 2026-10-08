@@ -180,13 +180,14 @@ namespace FrostMaze
             var sun = lightObject.AddComponent<Light>();
             sun.type = LightType.Directional;
             sun.intensity = 1.05f;
-            sun.color=new Color(1,.91f,.76f);
+            bool winter=World.Config.Theme!="iron";
+            sun.color=winter?new Color(.91f,.95f,1):new Color(1,.84f,.65f);
             sun.shadowStrength=.65f;
             sun.shadowBias=.035f;
             sun.shadows = LightShadows.Soft;
             lightObject.transform.rotation = Quaternion.Euler(48, -35, 0);
             RenderSettings.ambientMode=UnityEngine.Rendering.AmbientMode.Trilight;
-            RenderSettings.ambientSkyColor = new Color(.53f,.65f,.73f);
+            RenderSettings.ambientSkyColor = winter?new Color(.53f,.65f,.73f):new Color(.52f,.56f,.67f);
             RenderSettings.ambientEquatorColor = new Color(.34f,.4f,.43f);
             RenderSettings.ambientGroundColor = new Color(.2f,.23f,.24f);
             for(int lane=0;lane<World.LaneCount;lane++) {

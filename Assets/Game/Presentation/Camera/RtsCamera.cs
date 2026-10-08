@@ -7,6 +7,11 @@ namespace FrostMaze
         public Vector2 BoundsMin, BoundsMax = new Vector2(30, 20);
         public Vector3 Focus;
         public float Yaw { get; private set; }
+        public float Pitch { get; private set; }
+        // Retain orthographicSize as the zoom scale for saved fixtures and inspector tooling.
+        // It is the half-height at the focus plane; the actual rendering uses perspective.
+        public float Zoom => view.orthographicSize;
+        float targetZoom,lastZoom;
         public void ResetRotation(){Yaw=0;Apply();}
         Vector3 GroundRight => Quaternion.Euler(0,Yaw,0)*Vector3.right;
         Vector3 GroundUp => Quaternion.Euler(0,Yaw,0)*Vector3.forward;
@@ -20,61 +25,85 @@ namespace FrostMaze
             game=FindFirstObjectByType<Prototype>();
             BoundsMax = new Vector2(width, height);
             Focus = new Vector3(width / 2, 0, height / 2);
-            view.orthographic = true;
+            view.orthographic = false;
             Overview();
-            MaxZoom=Mathf.Max(MaxZoom,view.orthographicSize*1.5f);
-            Apply();
+            MaxZoom=Mathf.Max(MaxZoom,Zoom*1.5f);
+        }
+        public void SetZoom(float scale,bool immediate=false)
+        {
+            targetZoom=Mathf.Clamp(scale,MinZoom,MaxZoom);
+            if(immediate){view.orthographicSize=targetZoom;Apply();}
         }
         public void FocusPoint(FrostMaze.Simulation.V2 point)
         {
             Focus=new Vector3(point.X,0,point.Y);
-            view.orthographicSize=11;
-            Apply();
+            SetZoom(11,true);
         }
         public void Overview()
         {
             Focus=new Vector3(BoundsMax.x*.5f,0,BoundsMax.y*.5f);
-            float top=game!=null&&!game.SetupOpen?game.TopHud.yMax+8:0;
-            float bottom=game!=null&&!game.SetupOpen?(game.World.Grid.Find(game.SelectedTowerId)!=null?Screen.height-game.SelectionHud.yMin+8:24*game.UiScale):0;
-            float fraction=Mathf.Max(.2f,(Screen.height-top-bottom)/Mathf.Max(1,Screen.height));
-            float radians=Yaw*Mathf.Deg2Rad,c=Mathf.Abs(Mathf.Cos(radians)),s=Mathf.Abs(Mathf.Sin(radians));
-            float across=BoundsMax.x*c+BoundsMax.y*s,up=BoundsMax.x*s+BoundsMax.y*c;
-            view.orthographicSize=Mathf.Max(up*Mathf.Sin(55*Mathf.Deg2Rad)*.55f/fraction,across*.55f/Mathf.Max(.1f,view.aspect));
-            Focus-=GroundUp*((bottom-top)*view.orthographicSize/Mathf.Max(1,Screen.height)/Mathf.Sin(55*Mathf.Deg2Rad));
-            MaxZoom=Mathf.Max(MaxZoom,view.orthographicSize);
-            Apply();
+            float top=game!=null&&!game.SetupOpen?game.TopHud.yMax+8:8;
+            float bottom=game!=null&&!game.SetupOpen?(game.World.Grid.Find(game.SelectedTowerId)!=null?Screen.height-game.SelectionHud.yMin+8:24*game.UiScale):8;
+            float low=bottom/Mathf.Max(1,Screen.height),high=1-top/Mathf.Max(1,Screen.height);
+            // Fit the actual projected corners, including perspective foreshortening and yaw.
+            view.orthographicSize=Mathf.Max(18,Mathf.Max(BoundsMax.x/Mathf.Max(.1f,view.aspect),BoundsMax.y)*.45f);
+            for(int i=0;i<60;i++) {
+                Apply();bool fits=true;
+                for(int x=0;x<2;x++)for(int z=0;z<2;z++) {
+                    var p=view.WorldToViewportPoint(new Vector3(x*BoundsMax.x,0,z*BoundsMax.y));
+                    if(p.z<=0||p.x<.035f||p.x>.965f||p.y<low||p.y>high)fits=false;
+                }
+                if(fits)break;
+                view.orthographicSize*=1.035f;
+            }
+            MaxZoom=Mathf.Max(MaxZoom,Zoom);targetZoom=Zoom;Apply();
         }
-        public void SetInput(ICameraInput input)
+        public void SetInput(ICameraInput input){source=input;}
+        public bool GroundPoint(Vector2 screen,out Vector3 point)
         {
-            source = input;
+            var ray=view.ScreenPointToRay(screen);
+            if(new Plane(Vector3.up,Vector3.zero).Raycast(ray,out float distance)){point=ray.GetPoint(distance);return true;}
+            point=default;return false;
         }
         void Update()
         {
-            if (view == null)
-                return;
-            var intent = source.Read();
-            var mouse=intent.Pointer;
-            var uiPoint=new Vector2(mouse.x,Screen.height-mouse.y);
-            bool overUi=game!=null&&game.PointerOverHud(uiPoint);
+            if(view==null)return;
+            var intent=source.Read();var mouse=intent.Pointer;
+            bool overUi=game!=null&&game.PointerOverHud(new Vector2(mouse.x,Screen.height-mouse.y));
             if(!intent.Dragging)dragAllowed=false;
             if(intent.DragStarted)dragAllowed=!overUi;
             if(overUi)intent.Zoom=0;
             if(!dragAllowed||overUi)intent.Drag=Vector2.zero;
             if(game!=null&&(game.SetupOpen||game.MenuOpen)){dragAllowed=false;return;}
+            if(!Mathf.Approximately(Zoom,lastZoom))targetZoom=Zoom;
             Yaw=Mathf.Repeat(Yaw+intent.Rotate*55*Time.unscaledDeltaTime,360);
-            var pan = Vector2.ClampMagnitude(intent.Pan, 1);
-            Focus += (GroundRight*pan.x+GroundUp*pan.y) * PanSpeed * Mathf.Clamp(view.orthographicSize/11,.5f,2.5f) * (intent.Fast?2:1) * Time.unscaledDeltaTime;
-            float pixelScale = view.orthographicSize * 2 / Mathf.Max(1, Screen.height);
-            Focus += (GroundRight*intent.Drag.x+GroundUp*(intent.Drag.y / Mathf.Sin(55 * Mathf.Deg2Rad))) * pixelScale;
-            Focus.x = Mathf.Clamp(Focus.x, BoundsMin.x, BoundsMax.x);
-            Focus.z = Mathf.Clamp(Focus.z, BoundsMin.y, BoundsMax.y);
-            view.orthographicSize = Mathf.Clamp(view.orthographicSize - intent.Zoom * ZoomSpeed, MinZoom, MaxZoom);
+            var pan=Vector2.ClampMagnitude(intent.Pan,1);
+            Focus+=(GroundRight*pan.x+GroundUp*pan.y)*PanSpeed*Mathf.Clamp(Zoom/11,.5f,2.5f)*(intent.Fast?2:1)*Time.unscaledDeltaTime;
+            Apply();
+            if(intent.Drag!=Vector2.zero) {
+                // Ground intersections keep the grabbed point under the cursor at any pitch/yaw.
+                // Clamp synthetic/out-of-window samples so a ray can never cross the horizon.
+                var previous=new Vector2(Mathf.Clamp(mouse.x+intent.Drag.x,0,Screen.width),Mathf.Clamp(mouse.y+intent.Drag.y,0,Screen.height));
+                if(GroundPoint(previous,out var from)&&GroundPoint(mouse,out var to))Focus+=from-to;
+            }
+            Focus.x=Mathf.Clamp(Focus.x,BoundsMin.x,BoundsMax.x);
+            Focus.z=Mathf.Clamp(Focus.z,BoundsMin.y,BoundsMax.y);
+            if(intent.Zoom!=0)targetZoom=Mathf.Clamp(targetZoom-intent.Zoom*ZoomSpeed,MinZoom,MaxZoom);
+            view.orthographicSize=Mathf.Lerp(Zoom,targetZoom,1-Mathf.Exp(-14*Time.unscaledDeltaTime));
+            if(Mathf.Abs(Zoom-targetZoom)<.001f)view.orthographicSize=targetZoom;
             Apply();
         }
         void Apply()
         {
-            transform.rotation = Quaternion.Euler(55, Yaw, 0);
-            transform.position = Focus - transform.forward * 40;
+            float close=1-Mathf.SmoothStep(0,1,Mathf.InverseLerp(MinZoom,24,Zoom));
+            Pitch=Mathf.Lerp(62,38,close);
+            view.fieldOfView=Mathf.Lerp(16,46,close);
+            float distance=Zoom/Mathf.Tan(view.fieldOfView*.5f*Mathf.Deg2Rad);
+            // Keep the depth range proportional at overview distances for precise placement rays.
+            view.nearClipPlane=Mathf.Max(.1f,distance*.02f);view.farClipPlane=distance+Mathf.Max(BoundsMax.x,BoundsMax.y)*2+20;
+            transform.rotation=Quaternion.Euler(Pitch,Yaw,0);
+            transform.position=Focus-transform.forward*distance;
+            lastZoom=Zoom;
         }
     }
 }

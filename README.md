@@ -14,7 +14,7 @@ Choose **Rimewatch** (three upper lanes) or **Ironfold** (four upper lanes), bot
 
 Solo starts with the full **1,200 gold** team budget. Two players receive 600 each, three receive 400 each, four receive 300 each. Kill income and wave rewards are split without losing integer remainders. Every enemy reaching the final exit removes one of 30 shared lives. Finish twenty waves with lives remaining to win. Waves 5, 10, 15 and 20 fly. Later waves alternate fast rushes, dense swarms and tough siege units. Open Wave details for faction-specific suggestions. The team defense count distinguishes air and ground targeting; it does not measure whether towers cover the route.
 
-Gameplay uses the full map viewport with a compact top status strip and bottom tower bar. Esc opens the paused game menu for settings and New Game; Tab opens the optional detailed panel. The standalone menu also offers a fullscreen-window toggle.
+Gameplay uses the full map viewport with a compact top status strip and bottom-right tower grid. Esc opens the paused game menu for settings and New Game; Tab opens the optional detailed panel. The standalone menu also offers a fullscreen-window toggle.
 
 ## Controls
 
@@ -104,3 +104,5 @@ See [verification](Docs/HOWL-VERIFICATION.md) for actual test/build results and 
 The tower picker is a compact bottom-right portrait grid. Click a tower image or use its number key; hover for its name, role and details. Costs and locked states stay visible on each tile.
 
 The minimap stays on the left and renders the actual scenery from above. The middle stays clear except for contextual upgrade/removal controls on a selected tower. The command grid includes Remove [X]; hover a tower in removal mode to see its refund.
+
+Zoom in for a lower perspective view of the 3D models; zoom out for a steep overview. Rimewatch has frost-worn paving and layered icy stonework; Ironfold has weathered foundry slate and copper trim. See Docs/DEPTH-AND-TERRAIN.md.
