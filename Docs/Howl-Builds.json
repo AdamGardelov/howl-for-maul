@@ -4,10 +4,10 @@
       "result": "Succeeded",
       "platform": "StandaloneLinux64",
       "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Linux/HowlForMaul",
-      "totalSizeBytes": 92056856,
-      "buildTimeMs": 8649,
-      "buildStartedAt": "2026-10-08T06:08:50.1222700Z",
-      "buildEndedAt": "2026-10-08T06:08:58.7717310Z",
+      "totalSizeBytes": 92057880,
+      "buildTimeMs": 8438,
+      "buildStartedAt": "2026-10-08T06:28:35.1341450Z",
+      "buildEndedAt": "2026-10-08T06:28:43.5726220Z",
       "totalErrors": 0,
       "totalWarnings": 1,
       "warnings": [
@@ -20,10 +20,10 @@
       "result": "Succeeded",
       "platform": "StandaloneWindows64",
       "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Windows/HowlForMaul.exe",
-      "totalSizeBytes": 95799408,
-      "buildTimeMs": 14101,
-      "buildStartedAt": "2026-10-08T06:09:24.0347560Z",
-      "buildEndedAt": "2026-10-08T06:09:38.1361910Z",
+      "totalSizeBytes": 95800432,
+      "buildTimeMs": 14056,
+      "buildStartedAt": "2026-10-08T06:29:02.5718380Z",
+      "buildEndedAt": "2026-10-08T06:29:16.6279550Z",
       "totalErrors": 0,
       "totalWarnings": 19,
       "warnings": [
@@ -90,7 +90,7 @@
   "linuxSmoke": {
     "exitCode": 0,
     "display": ":98",
-    "note": "Wall-placement package passed both map route/data checks. Native desktop issue remains prior-checkpoint evidence, not retested here."
+    "note": "HUD-update package passed both map route/data checks. Native desktop issue remains prior-checkpoint evidence, not retested here."
   },
   "windowsRuntime": "Not tested on Windows",
   "linuxNativeDesktopSmoke": {

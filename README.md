@@ -45,6 +45,8 @@ Towers have distinct wall, sentry, control, artillery, relay, interceptor and ch
 
 Full route blockage is allowed: ground enemies find a player-built obstruction to attack. Selling or destruction opens the route again. Congestion alone does not trigger siege. Permanent terrain cannot be built on, sold, damaged or crossed by ground units. Towers can align with map walls: placement snaps to one unit on Rimewatch and half a unit on Ironfold, preserving the same tower sizes. See [wall placement verification](Docs/WALL-PLACEMENT.md).
 
+The HUD keeps gold, lives, wave controls and action messages visible while the construction roster scrolls. Cards show role, targeting, price and lock/affordability state. Selecting a tower brings its upgrade inspector into view. See [HUD update and verification limits](Docs/HUD-UPDATE.md).
+
 ## Towers
 
 | Faction | Main roles |

@@ -5,175 +5,140 @@ namespace FrostMaze
     public sealed class PrototypeHud : MonoBehaviour
     {
         Prototype game;
-        GUIStyle title, small, label, button, section, mapLabel;
+        GUIStyle title, small, label, button, section, mapLabel, card, selectedCard, primary, badge, number;
+        readonly System.Collections.Generic.List<Texture2D> textures=new System.Collections.Generic.List<Texture2D>();
         Texture2D panel;
-        Vector2 scroll; bool wasSetup,showTools;
+        Vector2 scroll; bool wasSetup,showTools,showForecast;
+        int lastSelectedTower;
         public void Initialize(Prototype prototype)
         {
             game = prototype;
         }
+        Texture2D Swatch(Color color)
+        {
+            var texture=new Texture2D(1,1);texture.SetPixel(0,0,color);texture.Apply();textures.Add(texture);return texture;
+        }
         void Styles()
         {
-            if (title != null)
-                return;
-            title = new GUIStyle(GUI.skin.label) { fontSize = 25, fontStyle = FontStyle.Bold };
-            title.normal.textColor = new Color(0.85f, 0.96f, 0.97f);
-            label = new GUIStyle(GUI.skin.label) { fontSize = 13, wordWrap = true };
-            label.normal.textColor = new Color(0.78f, 0.86f, 0.9f);
-            small = new GUIStyle(label) { fontSize = 11 };
-            small.normal.textColor = new Color(0.49f, 0.67f, 0.73f);
-            section = new GUIStyle(label) { fontStyle = FontStyle.Bold, fontSize = 11 };
-            section.normal.textColor = new Color(0.26f, 0.87f, 0.74f);
-            mapLabel = new GUIStyle(small) { fontStyle = FontStyle.Bold };
-            mapLabel.normal.textColor = new Color(.08f,.22f,.27f);
-            button = new GUIStyle(GUI.skin.button) { fontSize = 13, fixedHeight = 32 };
-            panel = new Texture2D(1, 1);
-            panel.SetPixel(0, 0, new Color(0.025f, 0.055f, 0.075f, 0.97f));
-            panel.Apply();
+            if(title!=null)return;
+            title=new GUIStyle(GUI.skin.label){fontSize=21,fontStyle=FontStyle.Bold};title.normal.textColor=new Color(.9f,.91f,.83f);
+            label=new GUIStyle(GUI.skin.label){fontSize=13,wordWrap=true};label.normal.textColor=new Color(.8f,.85f,.83f);
+            small=new GUIStyle(label){fontSize=11};small.normal.textColor=new Color(.56f,.67f,.66f);
+            section=new GUIStyle(label){fontSize=11,fontStyle=FontStyle.Bold};section.normal.textColor=new Color(.54f,.81f,.71f);
+            mapLabel=new GUIStyle(small){fontStyle=FontStyle.Bold};mapLabel.normal.textColor=new Color(.08f,.22f,.27f);
+            var surface=Swatch(new Color(.085f,.13f,.15f));var hover=Swatch(new Color(.14f,.22f,.23f));var active=Swatch(new Color(.18f,.32f,.29f));
+            button=new GUIStyle(GUI.skin.button){fontSize=12,fixedHeight=30,border=new RectOffset(),padding=new RectOffset(8,8,5,5),margin=new RectOffset(2,2,3,3)};
+            button.normal.background=surface;button.hover.background=hover;button.active.background=active;
+            button.onNormal.background=active;button.onHover.background=hover;button.onActive.background=active;
+            button.normal.textColor=button.hover.textColor=button.active.textColor=new Color(.86f,.91f,.88f);
+            button.onNormal.textColor=button.onHover.textColor=button.onActive.textColor=new Color(.72f,1,.86f);
+            primary=new GUIStyle(button){fixedHeight=34,fontStyle=FontStyle.Bold};primary.normal.background=active;
+            card=new GUIStyle(button){fixedHeight=47,alignment=TextAnchor.MiddleLeft,richText=true,padding=new RectOffset(12,10,5,5)};
+            selectedCard=new GUIStyle(card);selectedCard.normal.background=active;selectedCard.normal.textColor=new Color(.83f,1,.9f);
+            badge=new GUIStyle(GUI.skin.box){normal={background=surface},padding=new RectOffset(8,8,6,6),margin=new RectOffset(2,2,3,3)};
+            number=new GUIStyle(title){fontSize=20};number.normal.textColor=new Color(.92f,.81f,.52f);
+            panel=Swatch(new Color(.035f,.065f,.079f,.98f));
+        }
+        void Rule()
+        {
+            GUILayout.Space(6);var r=GUILayoutUtility.GetRect(1,1);var old=GUI.color;GUI.color=new Color(.23f,.34f,.34f);GUI.DrawTexture(r,Texture2D.whiteTexture);GUI.color=old;GUILayout.Space(8);
+        }
+        void Resource(string name,string value)
+        {
+            GUILayout.BeginVertical(badge);GUILayout.Label(name,small);GUILayout.Label(value,number);GUILayout.EndVertical();
+        }
+        static string Role(TowerSpec spec)
+        {
+            if(spec.Damage<=0)return "MAZE WALL";
+            string role=spec.ChainTargets>0?"CHAIN":spec.SlowFraction>0?"CONTROL":spec.SplashRadius>0?"SPLASH":"DIRECT";
+            return role+" / "+(spec.TargetsGround?(spec.TargetsAir?"GROUND + AIR":"GROUND"):"AIR");
         }
         void OnGUI()
         {
-            if (game == null || game.World == null)
-                return;
+            if(game==null||game.World==null)return;
             Styles();
             if(wasSetup!=game.SetupOpen){scroll=Vector2.zero;wasSetup=game.SetupOpen;}
-            var w = game.World;
-            var previousMatrix = GUI.matrix;
-            float scale = game.UiScale;
-            GUI.matrix = Matrix4x4.Scale(new Vector3(scale, scale, 1));
-            GUI.DrawTexture(new Rect(18, 18, 292, Screen.height / scale - 36), panel);
-            GUILayout.BeginArea(new Rect(34, 30, 260, Screen.height / scale - 62));
-            scroll = GUILayout.BeginScrollView(scroll);
-            GUILayout.Label("HOWL FOR MAUL", title);
-            GUILayout.Label(w.Config.Name.ToUpperInvariant(), small);
+            if(lastSelectedTower!=game.SelectedTowerId){if(game.SelectedTowerId!=0)scroll=Vector2.zero;lastSelectedTower=game.SelectedTowerId;}
+            var w=game.World;var previousMatrix=GUI.matrix;float scale=game.UiScale;
+            GUI.matrix=Matrix4x4.Scale(new Vector3(scale,scale,1));
+            GUI.DrawTexture(new Rect(18,18,324,Screen.height/scale-36),panel);
+            GUILayout.BeginArea(new Rect(32,28,296,Screen.height/scale-52));
+            GUILayout.Label("HOWL FOR MAUL",title);
+            GUILayout.Label(w.Config.Name.ToUpperInvariant()+"  /  "+(game.SetupOpen?"MATCH SETUP":w.FactionName.ToUpperInvariant()),small);
             if(game.SetupOpen) {
-                DrawSetup();
-                GUILayout.EndScrollView();
-                if(game.CanReturnToMatch && GUILayout.Button("RETURN TO MATCH",button))game.ReturnToMatch();
-                if(GUILayout.Button(game.CanReturnToMatch?"START NEW MATCH":"START MATCH",button))game.StartMatch();
+                scroll=GUILayout.BeginScrollView(scroll);DrawSetup();GUILayout.EndScrollView();
+                if(game.CanReturnToMatch&&GUILayout.Button("RETURN TO MATCH",button))game.ReturnToMatch();
+                if(GUILayout.Button(game.CanReturnToMatch?"START NEW MATCH":"START MATCH",primary))game.StartMatch();
                 GUILayout.EndArea();GUI.matrix=previousMatrix;DrawMapLabels();return;
             }
-            GUILayout.Space(18);
-            GUILayout.Label("SHARED DEFENSE", section);
-            if(w.Config.Lanes.Length>0) {
-                GUILayout.Label($"{w.LaneCount} lanes active  ·  {w.Difficulty}",small);
-                if(w.Players.Length>1) {
-                    GUILayout.Label("Local player controls",small);
-                    GUILayout.BeginHorizontal();
-                    for(int i=0;i<w.Players.Length;i++)if(GUILayout.Button($"P{i+1}: {w.Players[i].Gold}g"))w.SelectPlayer(i);
-                    GUILayout.EndHorizontal();
-                }
+            GUILayout.BeginHorizontal();Resource("YOUR GOLD",w.Gold.ToString());Resource("TEAM LIVES",w.Lives.ToString());Resource("WAVE",Mathf.Max(0,w.WaveIndex+1)+" / "+w.Config.Waves.Length);GUILayout.EndHorizontal();
+            GUILayout.Label(w.Finished?(w.Won?"VICTORY — all waves cleared":"DEFEAT — the crossing fell"):$"{w.LaneCount} lanes active  ·  {w.Difficulty}  ·  {w.Enemies.Count} enemies",section);
+            GUI.enabled=!w.Finished&&!w.WaveActive&&w.WaveIndex+1<w.Config.Waves.Length;
+            if(GUILayout.Button(w.WaveActive?"WAVE IN PROGRESS":w.Finished?"MATCH COMPLETE":"LAUNCH WAVE "+(w.WaveIndex+2)+"     [SPACE]",primary))game.Launch();
+            GUI.enabled=true;
+            GUILayout.BeginHorizontal();if(GUILayout.Button(game.Paused?"Resume [P]":"Pause [P]",button))game.Paused=!game.Paused;
+            if(GUILayout.Button(game.Speed==1?"Speed 1×":"Speed 2×",button))game.Speed=game.Speed==1?2:1;
+            if(GUILayout.Button("Setup",button))game.OpenSetup();GUILayout.EndHorizontal();
+            GUILayout.Label(game.Notice,small);
+            Rule();
+            scroll=GUILayout.BeginScrollView(scroll);
+            if(w.Players.Length>1){GUILayout.Label("LOCAL PLAYER",section);GUILayout.BeginHorizontal();for(int i=0;i<w.Players.Length;i++)if(GUILayout.Button($"{(i==w.ActivePlayer?"• ":"")}P{i+1}  {w.Players[i].Gold}g",button))w.SelectPlayer(i);GUILayout.EndHorizontal();}
+            if(!w.Finished) {
+                int index=Mathf.Clamp(w.WaveIndex+(w.WaveActive?0:1),0,w.Config.Waves.Length-1);var preview=w.PreviewWave(index);
+                GUILayout.Label((w.WaveActive?"CURRENT: ":"NEXT: ")+preview.Name,section);
+                GUILayout.Label($"{(preview.Flying?"AIR · ignores mazes":"GROUND")}  /  {preview.Count*w.LaneCount} enemies  /  {preview.Health:0.#} HP",label);
+                for(int i=index;i<w.Config.Waves.Length;i++)if(w.Config.Waves[i].Flying){GUILayout.Label(i==index?"Prepare towers that can hit air.":$"Next flying attack: wave {i+1}",small);break;}
+                if(GUILayout.Button(showForecast?"Hide wave details":"Wave details",button))showForecast=!showForecast;
+                if(showForecast)GUILayout.Label($"{preview.Count} per lane · speed {preview.Speed:0.0}\nSiege hit {preview.Damage:0.#} · spawn every {preview.SpawnInterval:0.0}s\n{w.Pending} awaiting spawn · {w.Killed} defeated · {w.Leaked} leaked",small);
             }
-            GUILayout.Label($"Wave {Mathf.Max(0, w.WaveIndex + 1):00} / {w.Config.Waves.Length:00}     •     {w.Enemies.Count} active", label);
-            if(w.Config.Lanes.Length>0 && !w.Finished) {
-                int previewIndex=Mathf.Clamp(w.WaveIndex+(w.WaveActive?0:1),0,w.Config.Waves.Length-1);
-                var preview=w.PreviewWave(previewIndex);
-                GUILayout.Label($"{(preview.Flying?"AIR — ignores mazes":"GROUND")}  ·  {preview.Count}/lane  ·  {preview.Count*w.LaneCount} total",small);
-                GUILayout.Label($"Health {preview.Health:0.#}  ·  Speed {preview.Speed:0.0}\nSiege hit {preview.Damage:0.#}  ·  Spawn every {preview.SpawnInterval:0.0}s",small);
-                for(int upcoming=previewIndex;upcoming<w.Config.Waves.Length;upcoming++)if(w.Config.Waves[upcoming].Flying) {
-                    GUILayout.Label(upcoming==previewIndex?"AIR WAVE — prepare towers that can hit air":$"Next air wave: {upcoming+1}",section);break;
-                }
-            }
-            GUILayout.Label($"{w.Pending} awaiting spawn   ·   {w.Killed} defeated   ·   {w.Leaked} leaked", small);
-            if (w.Config.Economy)
-            {
-                GUILayout.Label($"GOLD {w.Gold}    /    LIVES {w.Lives}", section);
-                GUILayout.Label(w.Finished ? (w.Won ? "VICTORY — all waves cleared" : "DEFEAT — the crossing fell") : w.WaveActive ? w.Config.Waves[w.WaveIndex].Name : $"Next: {w.Config.Waves[Mathf.Min(w.WaveIndex + 1, w.Config.Waves.Length - 1)].Name}", label);
-            }
-            GUILayout.Space(10);
-            GUI.enabled = !w.Finished && !w.WaveActive && w.WaveIndex + 1 < w.Config.Waves.Length;
-            if (GUILayout.Button("LAUNCH WAVE     [SPACE]", button))
-                game.Launch();
-            GUI.enabled = true;
-            GUILayout.BeginHorizontal();
-            if (GUILayout.Button(game.Paused ? "Resume [P]" : "Pause [P]", button))
-                game.Paused = !game.Paused;
-            if (GUILayout.Button(game.Speed == 1 ? "Speed  1×" : "Speed  2×", button))
-                game.Speed = game.Speed == 1 ? 2 : 1;
-            GUILayout.EndHorizontal();
-            GUILayout.Space(16);
-            GUILayout.Label("CONSTRUCTION", section);
-            if(w.Config.Catalog.Length>0) {
-                int shortcut=0;
-                GUILayout.Label(w.FactionName,section);
-                for(int i=0;i<w.Config.Catalog.Length;i++) {
-                    if(!w.DesignAvailable(i))continue;shortcut++;
-                    var design=w.Config.Catalog[i];
-                    if(GUILayout.Button($"{(w.SelectedDesign==i?"● ":"")}{shortcut}. {design.Name}  {design.Cost}g{(w.RequirementsMet(i)?"":" [locked]")}",button)){w.SelectedDesign=i;game.SellMode=false;game.MoveMode=false;}
-                }
-                GUILayout.Label(w.Config.Catalog[w.SelectedDesign].Description,small);
-                DrawTowerStats(w.BuildSpec);
-                foreach(int missing in w.MissingPrerequisites(w.SelectedDesign))
-                    GUILayout.Label("Requires your "+w.Config.Catalog[missing].Name,small);
-            }
-            GUILayout.BeginHorizontal();
-            if (GUILayout.Button((game.SellMode || game.MoveMode) ? "Build [B]" : "● Build [B]", button))
-                { game.SellMode = false; game.MoveMode = false; }
-            if (GUILayout.Button(game.SellMode ? "● Sell [X]" : "Sell [X]", button))
-                { game.SellMode = true; game.MoveMode = false; }
-            GUILayout.EndHorizontal();
-            if (w.Config.BuilderEnabled)
-            {
-                if (GUILayout.Button(game.MoveMode ? "● Move builder [M]" : "Move builder [M]", button)) { game.MoveMode = true; game.SellMode = false; }
-                GUILayout.Label($"Tower: {w.BuildCost}g  ·  Select a tower to upgrade\nKill: +{w.Config.KillReward}g  ·  Wave: +{w.Config.WaveReward}g", small);
-                GUILayout.Label("Click: build order  ·  Right click: move\nShift + click: queue builds  ·  Esc: cancel\nCtrl + click: inspect an enemy", small);
-                GUILayout.Label($"Orders: {w.QueuedBuilds}  ·  {w.BuilderNotice}", small);
-            }
-            else GUILayout.Label("Click: place   /   Right click: sell\nCtrl + click: inspect an enemy", small);
-            GUILayout.Space(8);
-            GUILayout.Label(game.Notice, label);
             var selected=w.Grid.Find(game.SelectedTowerId);
             if(selected!=null) {
-                GUILayout.Label($"{selected.Name}  ·  LEVEL {selected.Level}",section);
-                GUILayout.Label($"HP {selected.Health:0}/{selected.Spec.Health:0}",small);
-                DrawTowerStats(selected.Spec);
-                if(selected.Level<3)GUILayout.Label($"Next level: damage {selected.Spec.Damage*1.6f:0.#} · range {selected.Spec.Range+.35f:0.0} · max HP {selected.Spec.Health*1.5f:0}",small);
-                if(selected.Level<3&&GUILayout.Button($"Upgrade [U]  {w.UpgradeCost(selected)}g",button)){w.Upgrade(selected.Id,out string message);game.Notice=message;}
-                if(GUILayout.Button("Sell selected tower",button))game.Notice=w.Sell(selected.CellX,selected.CellY)?"Sold.":"Select one of your own towers.";
+                Rule();GUILayout.Label("SELECTED TOWER",section);GUILayout.Label(selected.Name+"  /  LEVEL "+selected.Level,label);
+                DrawTowerStats(selected.Spec);GUILayout.Label($"Current health {selected.Health:0}/{selected.Spec.Health:0}",small);
+                if(selected.Level<3) {
+                    GUILayout.Label($"Next: {selected.Spec.Damage*1.6f:0.#} damage · {selected.Spec.Range+.35f:0.0} range · {selected.Spec.Health*1.5f:0} HP",small);
+                    if(GUILayout.Button($"UPGRADE [U]   /   {w.UpgradeCost(selected)} GOLD",primary)){w.Upgrade(selected.Id,out string message);game.Notice=message;}
+                } else GUILayout.Label("MAXIMUM LEVEL",section);
+                GUILayout.BeginHorizontal();if(GUILayout.Button("Sell selected",button))game.Notice=w.Sell(selected.CellX,selected.CellY)?"Sold.":"Select one of your own towers.";
+                if(GUILayout.Button("Deselect",button))game.SelectedTowerId=0;GUILayout.EndHorizontal();
             }
-            GUILayout.Space(16);
-            game.SoundEnabled=GUILayout.Toggle(game.SoundEnabled,"Combat sound");
-            game.ShowGrid=GUILayout.Toggle(game.ShowGrid,"Placement grid [G]");
-            showTools=GUILayout.Toggle(showTools,"Advanced inspection");
+            Rule();GUILayout.Label("BUILD  /  "+w.FactionName.ToUpperInvariant(),section);
+            GUILayout.BeginHorizontal();
+            if(GUILayout.Button(!game.SellMode&&!game.MoveMode?"• Build [B]":"Build [B]",button)){game.SellMode=false;game.MoveMode=false;}
+            if(GUILayout.Button(game.SellMode?"• Sell [X]":"Sell [X]",button)){game.SellMode=true;game.MoveMode=false;}
+            if(w.Config.BuilderEnabled&&GUILayout.Button(game.MoveMode?"• Move [M]":"Move [M]",button)){game.MoveMode=true;game.SellMode=false;}
+            GUILayout.EndHorizontal();
+            if(w.Config.Catalog.Length>0) {
+                int shortcut=0;for(int i=0;i<w.Config.Catalog.Length;i++) {
+                    if(!w.DesignAvailable(i))continue;shortcut++;var design=w.Config.Catalog[i];bool ready=w.RequirementsMet(i);
+                    string availability=!ready?" · LOCKED":w.Config.Economy&&w.Gold<design.Cost?" · NEED GOLD":"";
+                    string text=$"<b>{shortcut}  {design.Name}</b>    {design.Cost}g\n<size=10>{Role(design.Spec)}{availability}</size>";
+                    if(GUILayout.Button(text,w.SelectedDesign==i?selectedCard:card)){w.SelectedDesign=i;game.SellMode=false;game.MoveMode=false;}
+                }
+                GUILayout.Space(5);GUILayout.Label(w.Config.Catalog[w.SelectedDesign].Description,small);DrawTowerStats(w.BuildSpec);
+                foreach(int missing in w.MissingPrerequisites(w.SelectedDesign))GUILayout.Label("Requires: "+w.Config.Catalog[missing].Name,small);
+            }
+            if(w.Config.BuilderEnabled)GUILayout.Label($"Orders: {w.QueuedBuilds} · {w.BuilderNotice}",small);
+
+            Rule();GUILayout.Label("OPTIONS & CONTROLS",section);
+            game.SoundEnabled=GUILayout.Toggle(game.SoundEnabled,"Combat sound",button);game.ShowGrid=GUILayout.Toggle(game.ShowGrid,"Placement grid [G]",button);
+            GUILayout.Label("Click to build · right click to move\nShift + click queues · Esc cancels orders\nSelect a tower to upgrade · U upgrades\nWASD: pan · wheel: zoom · middle drag: pan\nHome: builder · End: overview",small);
+            showTools=GUILayout.Toggle(showTools,"Advanced inspection",button);
             if(showTools) {
-            GUILayout.Label("NAVIGATION OVERLAY", section);
-            game.ShowRoutes=GUILayout.Toggle(game.ShowRoutes,"Lane and flight route guides");
-            game.ShowNavigation = GUILayout.Toggle(game.ShowNavigation, "Clearance + low towers [F]");
-            game.ShowDirections = GUILayout.Toggle(game.ShowDirections, "Enemy intent + siege target");
-            game.ShowValues = GUILayout.Toggle(game.ShowValues, "Distance at hovered cell");
-            if(!w.Config.Economy)w.TowersFire = GUILayout.Toggle(w.TowersFire, "Tower weapons enabled");
-            GUILayout.Label("Low towers show collision footprints.\nOrange rings show ground-unit radii.\nGreen: route   ·   Red: no clearance\nAmber: unreachable   ·   Purple: flight route\nRed enemies: route blocked, seeking breach", small);
-            if (game.HasHover && game.ShowValues)
-            {
-                var f = w.Navigation.Get(w.Config.GroundRoute[0], w.Config.Waves[0].Radius);
-                int at = f.Index(game.Hover + new V2(0.5f, 0.5f));
-                GUILayout.Label($"Cell {game.Hover.X:0.#}, {game.Hover.Y:0.#}  |  Distance {f.Distance[at]:0.00}", label);
+                game.ShowRoutes=GUILayout.Toggle(game.ShowRoutes,"Lane and flight route guides",button);
+                game.ShowNavigation=GUILayout.Toggle(game.ShowNavigation,"Clearance + low towers [F]",button);
+                game.ShowDirections=GUILayout.Toggle(game.ShowDirections,"Enemy intent + siege target",button);
+                game.ShowValues=GUILayout.Toggle(game.ShowValues,"Distance at hovered cell",button);
+                if(!w.Config.Economy)w.TowersFire=GUILayout.Toggle(w.TowersFire,"Tower weapons enabled",button);
+                if(game.HasHover&&game.ShowValues){var f=w.Navigation.Get(w.Config.GroundRoute[0],w.Config.Waves[0].Radius);GUILayout.Label($"Cell {game.Hover.X:0.#}, {game.Hover.Y:0.#} · distance {f.Distance[f.Index(game.Hover+new V2(.5f,.5f))]:0.00}",small);}
+                var e=w.Enemies.Find(enemy=>enemy.Id==game.SelectedId);
+                GUILayout.Label(e==null?"Ctrl + click an enemy to inspect it.":$"Enemy #{e.Id} · {(e.Spec.Flying?"AIR":"GROUND")} · HP {e.Health:0}\n{(e.Blocked?"SIEGE":"ROUTE OPEN")} · speed {e.Velocity.Length:0.00}",small);
+                GUILayout.Label($"Tick {w.Tick} · fields {w.Navigation.Rebuilds} · 30 Hz simulation",small);
+                if(!w.Config.Economy&&GUILayout.Button("Load zig-zag maze",button))game.DemoMaze();
+                if(GUILayout.Button("Reset map + waves",button))game.ResetSimulation();
+                if(!w.Config.Economy&&GUILayout.Button("Play Howl for Maul",button))game.SwitchMap(true);
             }
-            var e = w.Enemies.Find(enemy => enemy.Id == game.SelectedId);
-            GUILayout.Space(12);
-            GUILayout.Label("ENEMY INSPECTOR", section);
-            if (e != null)
-                GUILayout.Label($"#{e.Id}  {(e.Spec.Flying ? "AIR" : "GROUND")}   HP {e.Health:0}\nDestination {e.Destination}\n{(e.Blocked ? "BLOCKED" : "ROUTE OPEN")}  /  Tower {(e.BlockerId == 0 ? "—" : e.BlockerId.ToString())}\nRadius {e.Spec.Radius:0.00}  ·  Speed {e.Velocity.Length:0.00}", label);
-            else
-                GUILayout.Label("Ctrl + click an enemy to inspect it.", small);
-            GUILayout.Space(16);
-            }
-            GUILayout.Label("MATCH", section);
-            if (!w.Config.Economy && GUILayout.Button("Load zig-zag maze", button))
-                game.DemoMaze();
-            if(w.Config.Lanes.Length>0 && GUILayout.Button("New match / setup",button))game.OpenSetup();
-            if (GUILayout.Button("Reset map + waves", button))
-                game.ResetSimulation();
-            if (!w.Config.Economy && GUILayout.Button("Play Howl for Maul", button))game.SwitchMap(true);
-            GUILayout.Space(14);
-            GUILayout.Label("WASD / arrows: pan\nWheel: zoom   ·   Middle drag: pan\nHome: builder view  ·  End: overview", small);
-            if(showTools)GUILayout.Label($"Tick {w.Tick}  ·  Fields built {w.Navigation.Rebuilds}\nNavigation step {w.Config.NavigationStep:0.00}  ·  30 Hz simulation", small);
-            GUILayout.EndScrollView();
-            GUILayout.EndArea();
-            GUI.matrix = previousMatrix;
-            DrawHealth();
-            DrawMapLabels();
-            DrawMinimap();
+            GUILayout.EndScrollView();GUILayout.EndArea();GUI.matrix=previousMatrix;DrawHealth();DrawMapLabels();DrawMinimap();
         }
         void DrawTowerStats(TowerSpec spec)
         {
@@ -196,11 +161,11 @@ namespace FrostMaze
             }
             GUILayout.Space(10);
             GUILayout.Label("PLAYERS",section);
-            game.SetupOptions.PlayerCount=GUILayout.SelectionGrid(game.SetupOptions.PlayerCount-1,new[]{"1","2","3","4"},4)+1;
+            game.SetupOptions.PlayerCount=GUILayout.SelectionGrid(game.SetupOptions.PlayerCount-1,new[]{"1","2","3","4"},4,button)+1;
             GUILayout.Label("Solo or local control of multiple players. Online play is not available yet.",small);
             GUILayout.Space(10);
             GUILayout.Label("DIFFICULTY",section);
-            game.SetupOptions.Difficulty=(Difficulty)GUILayout.SelectionGrid((int)game.SetupOptions.Difficulty,new[]{"Relaxed","Normal","Hard"},1);
+            game.SetupOptions.Difficulty=(Difficulty)GUILayout.SelectionGrid((int)game.SetupOptions.Difficulty,new[]{"Relaxed","Normal","Hard"},1,button);
             GUILayout.Label("Enemy health and siege damage: 70% / 100% / 140%. Lane counts stay unchanged.",small);
             GUILayout.Space(10);
             int n=game.SetupOptions.PlayerCount,total=game.World.Config.StartingGold;
@@ -209,7 +174,7 @@ namespace FrostMaze
                 GUILayout.Label("STARTING POSITIONS",section);
                 for(int i=0;i<n;i++) {
                     GUILayout.Label("Player "+(i+1),small);
-                    int choice=GUILayout.SelectionGrid(game.SetupOptions.StartingPositions[i],game.World.Config.StartNames,2);
+                    int choice=GUILayout.SelectionGrid(game.SetupOptions.StartingPositions[i],game.World.Config.StartNames,2,button);
                     if(choice!=game.SetupOptions.StartingPositions[i])game.ChooseStart(i,choice);
                 }
                 GUILayout.Label("Choosing an occupied start swaps the players. You can build anywhere on open terrain.",small);
@@ -219,7 +184,7 @@ namespace FrostMaze
                 var factions=game.World.Config.Factions;var names=new string[factions.Length];for(int j=0;j<names.Length;j++)names[j]=factions[j].Name;
                 for(int player=0;player<n;player++) {
                     GUILayout.Label("Player "+(player+1),small);
-                    game.SetupOptions.Factions[player]=GUILayout.SelectionGrid(game.SetupOptions.Factions[player],names,2);
+                    game.SetupOptions.Factions[player]=GUILayout.SelectionGrid(game.SetupOptions.Factions[player],names,2,button);
                     GUILayout.Label(factions[game.SetupOptions.Factions[player]].Description,small);
                 }
             }
@@ -300,8 +265,7 @@ namespace FrostMaze
         }
         void OnDestroy()
         {
-            if (panel != null)
-                Destroy(panel);
+            foreach(var texture in textures)if(texture!=null)Destroy(texture);
         }
     }
 }

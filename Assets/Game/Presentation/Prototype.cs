@@ -68,7 +68,7 @@ namespace FrostMaze
         public bool HasHover;
         public float UiScale => Mathf.Clamp(Mathf.Min(Screen.width / 1200f, Screen.height / 800f), 0.65f, 1f);
         public Rect MinimapRect => new Rect(Screen.width-156*UiScale,Screen.height-184*UiScale,140*UiScale,156*UiScale);
-        public Rect Sidebar => new Rect(18 * UiScale, 18 * UiScale, 292 * UiScale, Screen.height - 36 * UiScale);
+        public Rect Sidebar => new Rect(18 * UiScale, 18 * UiScale, 324 * UiScale, Screen.height - 36 * UiScale);
         void SetViewport()
         {
             float inset = Mathf.Clamp((Sidebar.xMax + 12 * UiScale) / Screen.width, 0, 0.48f);
