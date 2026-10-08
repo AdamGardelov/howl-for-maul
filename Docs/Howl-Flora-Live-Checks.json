@@ -1,0 +1,14 @@
+{
+  "rime": {
+    "map": "Rimewatch",
+    "pauseFreezesFlame": true,
+    "unpausedChangesBrightness": true,
+    "lights": 0
+  },
+  "iron": {
+    "map": "Ironfold",
+    "pauseFreezesFlame": true,
+    "unpausedChangesBrightness": true,
+    "lights": 0
+  }
+}

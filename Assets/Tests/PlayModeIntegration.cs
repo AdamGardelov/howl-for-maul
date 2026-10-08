@@ -246,10 +246,11 @@ namespace FrostMaze.Tests
                 game.Paused=true;
                 var scenery=Object.FindFirstObjectByType<MapScenery>();Assert.That(scenery,Is.Not.Null);
                 Assert.That(scenery.GetComponentsInChildren<Collider>().Length,Is.Zero,"Scenery cannot add physical blockers");
+                Assert.That(scenery.PlantClusters,Is.InRange(1,90));Assert.That(scenery.Braziers,Is.InRange(1,24));
                 var config=game.World.Config;float cell=config.LayoutCellSize;
-                foreach(string batch in new[]{"Scenery 3","Scenery 4","Scenery 5","Scenery 11","Scenery 12","Scenery 13"}) {
+                foreach(string batch in new[]{"Scenery 3","Scenery 4","Scenery 5","Scenery 11","Scenery 12","Scenery 13","Scenery 14","Scenery 15","Scenery 16","Scenery 17","Scenery 18"}) {
                     var prop=scenery.transform.Find(batch);
-                    if(batch=="Scenery 12"||batch=="Scenery 13")Assert.That(prop,Is.Not.Null,"Map must retain its landmark silhouettes");
+                    if(batch=="Scenery 12"||batch=="Scenery 13"||int.Parse(batch.Substring(8))>=14)Assert.That(prop,Is.Not.Null,"Map must retain its landmark silhouettes");
                     if(prop==null)continue; // Theme-specific trees/rocks are optional.
                     var mesh=prop.GetComponent<MeshFilter>().sharedMesh;var vertices=mesh.vertices;var triangles=mesh.triangles;
                     // Check the projected triangle bounds, not only endpoints: a bridge can have

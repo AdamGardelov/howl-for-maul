@@ -3,7 +3,7 @@ using UnityEngine;
 namespace FrostMaze
 {
     // Original scenery is generated separately from the authoritative navigation mask.
-    public sealed class MapScenery : MonoBehaviour
+    public sealed partial class MapScenery : MonoBehaviour
     {
         readonly List<Mesh> meshes=new List<Mesh>();
         Texture2D groundTexture,capTexture;
@@ -19,7 +19,7 @@ namespace FrostMaze
             }
         }
         public void Build(Prototype game) {
-            var c=game.World.Config;bool ice=c.Theme!="iron";var batches=new Batch[14];for(int i=0;i<batches.Length;i++)batches[i]=new Batch();
+            var c=game.World.Config;bool ice=c.Theme!="iron";var batches=new Batch[19];for(int i=0;i<batches.Length;i++)batches[i]=new Batch();
             // Draw the source cells as one continuous surface: only exposed edges receive bevels.
             bool Solid(int row,int col) {
                 if(row<0||row>=c.LayoutRows.Length||col<0||col>=c.LayoutRows[row].Length)return false;
@@ -84,11 +84,18 @@ namespace FrostMaze
             foreach(var lane in c.Lanes)for(int side=-1;side<=1;side+=2)Beacon(lane.Spawn,side,false);
             var exit=c.GroundRoute[c.GroundRoute.Length-1];
             for(int side=-1;side<=1;side+=2)Beacon(exit,side,true);
+            BuildFlora(batches,c,ice);
+            sceneryGame=game;
             Color[] colors=ice?new[]{new Color(.22f,.34f,.36f),new Color(.65f,.74f,.79f),new Color(.045f,.13f,.17f),new Color(.27f,.29f,.25f),new Color(.11f,.25f,.22f),new Color(.34f,.72f,.63f)}:new[]{new Color(.19f,.22f,.27f),new Color(.36f,.4f,.43f),new Color(.045f,.065f,.09f),new Color(.27f,.25f,.22f),new Color(.2f,.26f,.29f),new Color(.83f,.55f,.25f)};
             var palette=new List<Color>(colors);
             for(int i=0;i<5;i++)palette.Add(Color.Lerp(ice?new Color(.35f,.46f,.46f):new Color(.19f,.25f,.29f),ice?new Color(.43f,.54f,.52f):new Color(.24f,.3f,.34f),i/4f));
             palette.Add(new Color(.31f,.39f,.39f));
             palette.Add(colors[3]);palette.Add(colors[5]);
+            palette.Add(ice?new Color(.12f,.34f,.32f):new Color(.3f,.22f,.16f));
+            palette.Add(ice?new Color(.56f,.69f,.79f):new Color(.69f,.4f,.17f));
+            palette.Add(ice?new Color(.24f,.34f,.38f):new Color(.22f,.23f,.25f));
+            palette.Add(ice?new Color(.25f,.8f,.95f):new Color(1,.39f,.075f));
+            palette.Add(ice?new Color(.8f,.97f,1):new Color(1,.85f,.36f));
             groundTexture=new Texture2D(256,256,TextureFormat.RGB24,false){name="Original broad terrain wash",wrapMode=TextureWrapMode.Clamp,filterMode=FilterMode.Bilinear};
             var pixels=new Color[256*256];var caps=new Color[256*256];
             // Painted edge shading stays in the material: no props or collision on build cells.
@@ -122,7 +129,9 @@ namespace FrostMaze
             for(int i=0;i<batches.Length;i++) {
                 var b=batches[i];if(b.V.Count==0)continue;var mesh=new Mesh{name="Original terrain batch "+i,indexFormat=UnityEngine.Rendering.IndexFormat.UInt32};mesh.SetVertices(b.V);mesh.SetTriangles(b.T,0);mesh.RecalculateNormals();mesh.RecalculateBounds();meshes.Add(mesh);
                 if(i==6||i==1){var uv=new List<Vector2>();foreach(var vertex in b.V)uv.Add(new Vector2(vertex.x/c.Width,vertex.z/c.Height));mesh.SetUVs(0,uv);}
-                var obj=new GameObject("Scenery "+i);obj.transform.SetParent(transform,false);obj.AddComponent<MeshFilter>().sharedMesh=mesh;var renderer=obj.AddComponent<MeshRenderer>();renderer.sharedMaterial=game.MakeMaterial(i==6?Color.white:palette[i],i==5||i==13);
+                var obj=new GameObject("Scenery "+i);obj.transform.SetParent(transform,false);obj.AddComponent<MeshFilter>().sharedMesh=mesh;var renderer=obj.AddComponent<MeshRenderer>();renderer.sharedMaterial=game.MakeMaterial(i==6?Color.white:palette[i],i==5||i==13||i==17||i==18);
+                if(i==17){flameMaterial=renderer.sharedMaterial;flameColor=palette[i];}
+                if(i==17||i==18)renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;
                 if(i==1)renderer.sharedMaterial.mainTexture=capTexture;
                 if(i==6){renderer.sharedMaterial.mainTexture=groundTexture;renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;}
             }
