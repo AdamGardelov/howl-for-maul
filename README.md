@@ -28,9 +28,10 @@ Solo starts with the full **1,200 gold** team budget. Two players receive 600 ea
 | Select tower design | 1–7 within your faction roster |
 | Build mode | B |
 | Inspect an enemy | Ctrl + click |
-| Launch next wave | Space |
+| Launch next wave | Enter |
 | Pause | P |
-| Pan | WASD / arrows / middle drag |
+| Pan | Screen edges / Space + left drag / middle drag / WASD / arrows |
+| Faster keyboard / edge pan | Hold Shift |
 | Focus active builder | Home |
 | Whole-map overview | End |
 | Tactical-map pan | Click or drag on the minimap |

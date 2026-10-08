@@ -49,3 +49,7 @@ Available additional harness strategies:
 These are deliberately simple heuristics. Role estimates are not actual promised DPS. The bots know whole-map empty-route samples, do not deliberately design a shared maze and do not sell/rebuild their late layout. The 48-slot restriction is arbitrary and exposes poor spending choices as well as real defense weaknesses. Do not label this beginner-friendly balance or nerf waves solely to make this matrix green.
 
 The final harness retains the older adaptive strategy exactly: the Hard two-player Gravity/Scrap rerun matches the entire saved ledger, including all purchases, upgrades, wave ticks and wallets. See COMPACT-ADAPTIVE-COMPARISON.json. The pure simulation suite also passed 61/61 before the scoring-only follow-ups.
+
+## Paid maze comparison
+
+The existing `maze` strategy was also run for Normal solo Rime Covenant after the siege-feedback work. It completed all twenty waves with 30 lives, no stalls and a valid wallet ledger: 5,925 gold spent, 303 left, 266 purchases (223 Shard Sentries, 25 Aurora Needles and 18 Snow Cairns), with no upgrades. Raw record: RIME-PAID-MAZE.json. This is a large scripted maze/coverage defense using whole-map knowledge, not a compact win or a beginner balance claim. No tower, enemy or economy values were changed.

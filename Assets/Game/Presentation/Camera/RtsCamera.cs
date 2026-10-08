@@ -3,12 +3,13 @@ namespace FrostMaze
 {
     public sealed class RtsCamera : MonoBehaviour
     {
-        public float PanSpeed = 15, ZoomSpeed = 2, MinZoom = 5, MaxZoom = 25;
+        public float PanSpeed = 28, ZoomSpeed = 2, MinZoom = 5, MaxZoom = 25;
         public Vector2 BoundsMin, BoundsMax = new Vector2(30, 20);
         public Vector3 Focus;
         ICameraInput source = new DesktopInput();
         Camera view;
         Prototype game;
+        bool dragAllowed;
         public void Initialize(float width, float height)
         {
             view = GetComponent<Camera>();
@@ -42,11 +43,16 @@ namespace FrostMaze
             if (view == null)
                 return;
             var intent = source.Read();
-            var mouse=UnityEngine.Input.mousePosition;
+            var mouse=intent.Pointer;
             var uiPoint=new Vector2(mouse.x,Screen.height-mouse.y);
-            if(game!=null&&(game.Sidebar.Contains(uiPoint)||game.MinimapRect.Contains(uiPoint))) {intent.Zoom=0;intent.Drag=Vector2.zero;}
+            bool overUi=game!=null&&(game.Sidebar.Contains(uiPoint)||game.MinimapRect.Contains(uiPoint));
+            if(!intent.Dragging)dragAllowed=false;
+            if(intent.DragStarted)dragAllowed=!overUi;
+            if(overUi)intent.Zoom=0;
+            if(!dragAllowed||overUi)intent.Drag=Vector2.zero;
+            if(game!=null&&game.SetupOpen){dragAllowed=false;return;}
             var pan = Vector2.ClampMagnitude(intent.Pan, 1);
-            Focus += new Vector3(pan.x, 0, pan.y) * PanSpeed * Time.unscaledDeltaTime;
+            Focus += new Vector3(pan.x, 0, pan.y) * PanSpeed * Mathf.Clamp(view.orthographicSize/11,.5f,2.5f) * (intent.Fast?2:1) * Time.unscaledDeltaTime;
             float pixelScale = view.orthographicSize * 2 / Mathf.Max(1, Screen.height);
             Focus += new Vector3(intent.Drag.x, 0, intent.Drag.y / Mathf.Sin(55 * Mathf.Deg2Rad)) * pixelScale;
             Focus.x = Mathf.Clamp(Focus.x, BoundsMin.x, BoundsMax.x);

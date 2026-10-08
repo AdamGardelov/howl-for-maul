@@ -251,7 +251,7 @@ namespace FrostMaze
             if(UnityEngine.Input.GetKeyDown(KeyCode.U)&&SelectedTowerId>0){World.Upgrade(SelectedTowerId,out string message);Notice=message;}
             if(UnityEngine.Input.GetKeyDown(KeyCode.Home))View.GetComponent<RtsCamera>().FocusPoint(World.BuilderPosition);
             if(UnityEngine.Input.GetKeyDown(KeyCode.End))View.GetComponent<RtsCamera>().Overview();
-            if (UnityEngine.Input.GetKeyDown(KeyCode.Space))
+            if (!UnityEngine.Input.GetKey(KeyCode.Space)&&(UnityEngine.Input.GetKeyDown(KeyCode.Return)||UnityEngine.Input.GetKeyDown(KeyCode.KeypadEnter)))
                 Launch();
             if (UnityEngine.Input.GetKeyDown(KeyCode.P))
                 Paused = !Paused;
@@ -269,6 +269,8 @@ namespace FrostMaze
             var uiPoint = new Vector2(mouse.x, Screen.height - mouse.y);
             HasHover = false;
             ghost.SetActive(false);
+            // Camera gestures must never place, sell, select or order the builder.
+            if(UnityEngine.Input.GetKey(KeyCode.Space)||UnityEngine.Input.GetMouseButton(2))return;
             if(World.Config.Lanes.Length>0&&MinimapRect.Contains(uiPoint)) {
                 if(UnityEngine.Input.GetMouseButton(0)) {
                     float mx=(uiPoint.x-MinimapRect.x)/MinimapRect.width,my=1-(uiPoint.y-MinimapRect.y)/MinimapRect.height;

@@ -5,6 +5,27 @@ namespace FrostMaze.Tests
     public sealed class UnityTests
     {
         [Test]
+        public void CameraGesturesHandleEdgesFocusAndDragTransitions()
+        {
+            var input=new DesktopInput();var screen=new UnityEngine.Vector2(1440,900);var center=screen*.5f;
+            CameraIntent Sample(UnityEngine.Vector2 mouse,bool focus=true,bool middle=false,bool left=false,bool space=false)
+                =>input.ReadSample(mouse,screen,UnityEngine.Vector2.zero,1,focus,middle,left,space,false);
+            Assert.That(Sample(new UnityEngine.Vector2(0,450)).Pan.x,Is.EqualTo(-1));
+            Assert.That(Sample(new UnityEngine.Vector2(1439,899)).Pan,Is.EqualTo(UnityEngine.Vector2.one));
+            Assert.That(Sample(new UnityEngine.Vector2(-1,450)).Pan,Is.EqualTo(UnityEngine.Vector2.zero));
+            Assert.That(Sample(new UnityEngine.Vector2(1440,450)).Pan,Is.EqualTo(UnityEngine.Vector2.zero));
+            Assert.That(Sample(new UnityEngine.Vector2(0,450),left:true).Pan,Is.EqualTo(UnityEngine.Vector2.zero),"Clicking UI must not edge-scroll");
+            Assert.That(Sample(center,space:true).Dragging,Is.False);
+            var first=Sample(center,left:true,space:true);Assert.That(first.DragStarted,Is.True);Assert.That(first.Drag,Is.EqualTo(UnityEngine.Vector2.zero));
+            var moved=Sample(center+new UnityEngine.Vector2(80,40),left:true,space:true);
+            Assert.That(moved.DragStarted,Is.False);Assert.That(moved.Drag,Is.EqualTo(new UnityEngine.Vector2(-80,-40)));
+            var unfocused=Sample(new UnityEngine.Vector2(0,450),focus:false,left:true,space:true);
+            Assert.That(unfocused.Pan,Is.EqualTo(UnityEngine.Vector2.zero));Assert.That(unfocused.Dragging,Is.False);Assert.That(unfocused.Zoom,Is.Zero);
+            Assert.That(Sample(center,left:true,space:true).Drag,Is.EqualTo(UnityEngine.Vector2.zero),"Refocus must not jump");
+            Sample(center);
+            Assert.That(Sample(center,middle:true).DragStarted,Is.True,"Middle drag remains supported");
+        }
+        [Test]
         public void MinimapTerrainMatchesBothSourceGridsAndCachesOnlyPermanentCells()
         {
             using(var cache=new MinimapTerrain())foreach(bool iron in new[]{false,true}) {

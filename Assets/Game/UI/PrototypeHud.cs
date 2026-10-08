@@ -82,7 +82,7 @@ namespace FrostMaze
             GUILayout.BeginHorizontal();Resource("YOUR GOLD",w.Gold.ToString());Resource("TEAM LIVES",w.Lives.ToString(),w.Lives<=5||(feedback!=null&&feedback.RecentLeaks>0));Resource("WAVE",Mathf.Max(0,w.WaveIndex+1)+" / "+w.Config.Waves.Length);GUILayout.EndHorizontal();
             GUILayout.Label(w.Finished?(w.Won?"VICTORY — all waves cleared":"DEFEAT — the crossing fell"):$"{w.LaneCount} lanes active  ·  {w.Difficulty}  ·  {w.Enemies.Count} enemies",section);
             GUI.enabled=!w.Finished&&!w.WaveActive&&w.WaveIndex+1<w.Config.Waves.Length;
-            if(GUILayout.Button(w.Finished?"MATCH COMPLETE":w.WaveActive?"WAVE IN PROGRESS":"LAUNCH WAVE "+(w.WaveIndex+2)+"     [SPACE]",primary))game.Launch();
+            if(GUILayout.Button(w.Finished?"MATCH COMPLETE":w.WaveActive?"WAVE IN PROGRESS":"LAUNCH WAVE "+(w.WaveIndex+2)+"     [ENTER]",primary))game.Launch();
             GUI.enabled=true;
             GUILayout.BeginHorizontal();if(GUILayout.Button(game.Paused?"Resume [P]":"Pause [P]",button))game.Paused=!game.Paused;
             if(GUILayout.Button(game.Speed==1?"Speed 1×":"Speed 2×",button))game.Speed=game.Speed==1?2:1;
@@ -143,7 +143,7 @@ namespace FrostMaze
 
             Rule();GUILayout.Label("OPTIONS & CONTROLS",section);
             game.SoundEnabled=GUILayout.Toggle(game.SoundEnabled,"Combat sound",button);game.ShowGrid=GUILayout.Toggle(game.ShowGrid,"Placement grid [G]",button);
-            GUILayout.Label("Click to build · right click to move\nShift + click queues · Esc cancels orders\nSelect a tower to upgrade · U upgrades\nWASD: pan · wheel: zoom · middle drag: pan\nHome: builder · End: overview",small);
+            GUILayout.Label("Click to build · right click to move\nShift + click queues · Esc cancels orders\nSelect a tower to upgrade · U upgrades\nEdges / WASD: pan · Shift: faster\nSpace + left drag / middle drag: pan · wheel: zoom\nHome: builder · End: overview",small);
             showTools=GUILayout.Toggle(showTools,"Advanced inspection",button);
             if(showTools) {
                 game.ShowRoutes=GUILayout.Toggle(game.ShowRoutes,"Lane and flight route guides",button);

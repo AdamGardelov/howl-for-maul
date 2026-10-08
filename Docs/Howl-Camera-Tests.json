@@ -1,0 +1,77 @@
+{
+  "source": "Unity TestResults.xml",
+  "run": {
+    "id": "2",
+    "testcasecount": "4",
+    "result": "Passed",
+    "total": "4",
+    "passed": "4",
+    "failed": "0",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-10-08 15:25:57Z",
+    "end-time": "2026-10-08 15:26:01Z",
+    "duration": "3.4876632"
+  },
+  "results": [
+    {
+      "id": "1002",
+      "name": "CameraDragRejectsUiOriginsAndFreezesInSetup",
+      "fullname": "FrostMaze.Tests.PlayModeIntegration.CameraDragRejectsUiOriginsAndFreezesInSetup",
+      "methodname": "CameraDragRejectsUiOriginsAndFreezesInSetup",
+      "classname": "FrostMaze.Tests.PlayModeIntegration",
+      "runstate": "Runnable",
+      "seed": "1248910821",
+      "result": "Passed",
+      "start-time": "2026-10-08 15:23:25Z",
+      "end-time": "2026-10-08 15:24:15Z",
+      "duration": "50.406857",
+      "asserts": "0"
+    },
+    {
+      "id": "1006",
+      "name": "CombatAudioLimitsBurstsFollowsCameraAndPrioritizesLeaks",
+      "fullname": "FrostMaze.Tests.PlayModeIntegration.CombatAudioLimitsBurstsFollowsCameraAndPrioritizesLeaks",
+      "methodname": "CombatAudioLimitsBurstsFollowsCameraAndPrioritizesLeaks",
+      "classname": "FrostMaze.Tests.PlayModeIntegration",
+      "runstate": "Runnable",
+      "seed": "1859725795",
+      "result": "Passed",
+      "start-time": "2026-10-08 15:24:15Z",
+      "end-time": "2026-10-08 15:25:08Z",
+      "duration": "53.135531",
+      "asserts": "0"
+    },
+    {
+      "id": "1009",
+      "name": "TowerRolesUpgradesAndCamera",
+      "fullname": "FrostMaze.Tests.PlayModeIntegration.TowerRolesUpgradesAndCamera",
+      "methodname": "TowerRolesUpgradesAndCamera",
+      "classname": "FrostMaze.Tests.PlayModeIntegration",
+      "runstate": "Runnable",
+      "seed": "241396594",
+      "result": "Passed",
+      "start-time": "2026-10-08 15:25:08Z",
+      "end-time": "2026-10-08 15:26:00Z",
+      "duration": "52.149094",
+      "asserts": "0"
+    },
+    {
+      "id": "1016",
+      "name": "CameraGesturesHandleEdgesFocusAndDragTransitions",
+      "fullname": "FrostMaze.Tests.UnityTests.CameraGesturesHandleEdgesFocusAndDragTransitions",
+      "methodname": "CameraGesturesHandleEdgesFocusAndDragTransitions",
+      "classname": "FrostMaze.Tests.UnityTests",
+      "runstate": "Runnable",
+      "seed": "595232580",
+      "result": "Passed",
+      "start-time": "2026-10-08 15:26:01Z",
+      "end-time": "2026-10-08 15:26:01Z",
+      "duration": "0.003764",
+      "asserts": "0"
+    }
+  ]
+}

@@ -2,7 +2,7 @@
 
 Use the shipped map, enter Play, and keep the Console visible. These checks supplement the automated simulation tests.
 
-1. Pan with WASD and arrows, zoom to both limits, middle-drag, and try panning beyond map bounds. Camera orientation stays fixed.
+1. Pan at all four window edges and corners, use Space + left-drag and middle-drag, use WASD/arrows with and without Shift, zoom to both limits, and try panning beyond map bounds. Space-drag must not build or launch a wave; Enter launches. Try a drag starting over UI and leaving/refocusing the game window. Camera orientation stays fixed.
 2. Place and sell towers at edges and near each other. Confirm the preview and rendered footprint match the configured dimensions.
 3. Toggle grid and navigation overlay. Red crosses mean insufficient clearance, green arrows mean reachable samples, amber marks mean disconnected free samples.
 4. Disable tower weapons. Load the sample zig-zag, launch a wave, and watch units take the full detour. Inspect an enemy with Shift-click.

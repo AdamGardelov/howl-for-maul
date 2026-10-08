@@ -12,6 +12,40 @@ namespace FrostMaze.Tests
         {
             return feedback.transform.Find("Combat cues").GetComponentsInChildren<Renderer>().Length;
         }
+        sealed class CameraInputFixture : ICameraInput
+        {
+            public CameraIntent Intent;
+            public CameraIntent Read()=>Intent;
+        }
+        [UnityTest]
+        public IEnumerator CameraDragRejectsUiOriginsAndFreezesInSetup()
+        {
+            EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
+            yield return new EnterPlayMode();yield return null;
+            var game=Object.FindFirstObjectByType<Prototype>();game.StartMatch();game.Paused=true;
+            var camera=game.View.GetComponent<RtsCamera>();var input=new CameraInputFixture();camera.SetInput(input);
+            camera.FocusPoint(new FrostMaze.Simulation.V2(32,32));var start=camera.Focus;
+            var ui=new Vector2(50,Screen.height*.5f);var world=new Vector2(Screen.width*.6f,Screen.height*.5f);
+            input.Intent=new CameraIntent{Pointer=ui,Dragging=true,DragStarted=true};yield return null;
+            input.Intent=new CameraIntent{Pointer=world,Dragging=true,Drag=new Vector2(100,50)};yield return null;
+            Assert.That(camera.Focus,Is.EqualTo(start),"Drag starting over sidebar leaked into camera");
+            input.Intent=new CameraIntent{Pointer=world};yield return null;
+            input.Intent=new CameraIntent{Pointer=world,Dragging=true,DragStarted=true};yield return null;
+            Assert.That(camera.Focus,Is.EqualTo(start),"First drag frame jumped");
+            input.Intent=new CameraIntent{Pointer=world,Dragging=true,Drag=new Vector2(100,50)};yield return null;
+            float scale=game.View.orthographicSize*2/Screen.height;
+            Assert.That(camera.Focus.x-start.x,Is.EqualTo(100*scale).Within(.01f));
+            Assert.That(camera.Focus.z-start.z,Is.EqualTo(50*scale/Mathf.Sin(55*Mathf.Deg2Rad)).Within(.01f));
+            input.Intent=new CameraIntent{Pointer=world};yield return null;
+            game.OpenSetup();start=camera.Focus;float zoom=game.View.orthographicSize;
+            input.Intent=new CameraIntent{Pointer=world,Pan=Vector2.one,Zoom=5};yield return null;yield return null;
+            Assert.That(camera.Focus,Is.EqualTo(start));Assert.That(game.View.orthographicSize,Is.EqualTo(zoom));
+            game.ReturnToMatch();input.Intent=new CameraIntent{Pointer=world,Dragging=true,DragStarted=true};yield return null;
+            input.Intent=new CameraIntent{Pointer=world,Dragging=true,Drag=Vector2.one*100000};yield return null;
+            Assert.That(camera.Focus.x,Is.EqualTo(camera.BoundsMax.x));Assert.That(camera.Focus.z,Is.EqualTo(camera.BoundsMax.y));
+            Assert.That(game.World.Gold,Is.EqualTo(1200));Assert.That(game.World.Grid.Towers.Count,Is.Zero);
+            input.Intent=new CameraIntent{Pointer=world};yield return new ExitPlayMode();
+        }
         [UnityTest]
         public IEnumerator PaidWallSiegeShowsStrikesDestructionAndRouteOpening()
         {
