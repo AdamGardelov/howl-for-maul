@@ -2,6 +2,8 @@
 
 ## Latest state
 
+- Crowded-combat presentation: offscreen shots no longer consume the visible effect budget; crossing beams and edge splashes remain visible. Stable view synchronization reuses buffers and builder tints, with zero managed bytes in the warmed 100-call regression. Compilation, 64 pure cases and six focused Unity cases pass. Read CROWDED-COMBAT.md. Package evidence follows separately.
+
 - New perspective inspection camera and themed stonework: smooth lower close view, ground-ray dragging, fit-to-projected-corners overview, fixed terrain and north-up minimap. New paving/cliff materials, inset trim, forge pillars, leaf veins and foundation details. 64 pure tests and three focused depth integration checks passed; final pillar refinement passed the mask-clearance case again. Read DEPTH-AND-TERRAIN.md. Current Linux/Windows packages contain 4763c56. Linux both-map smoke and actual close-zoom construction/removal, camera gestures and both-map visual inspection passed; Windows is build-tested only.
 
 - Three four-player Hard paid campaigns now win all twenty waves with 30 lives, covering all twelve factions across both maps. Independent wallets audited throughout; 64/64 pure tests pass including contested/enemy-blocked concurrent queues. Unity compilation passed. Read Balance/HARD-FOUR-PLAYER.md. No runtime change or package rebuild in this checkpoint.

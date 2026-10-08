@@ -17,6 +17,7 @@ namespace FrostMaze
         public int SoundDispatches {get;private set;}
         public string LastSound {get;private set;}
         readonly List<Flash> flashes=new List<Flash>();
+        readonly Plane[] shotFrustum=new Plane[6];
         sealed class Flash { public GameObject Object; public float Until,Start,Duration,Scale; public Vector3 Origin; public bool Pulse; }
         public void Initialize(Prototype prototype)
         {
@@ -94,6 +95,17 @@ namespace FrostMaze
             var screen=game.View.WorldToViewportPoint(new Vector3(point.X,height,point.Y));
             return screen.z>0&&screen.x>=0&&screen.x<=1&&screen.y>=0&&screen.y<=1;
         }
+        bool ShotInView(ShotEvent shot,Vector3 from,Vector3 to)
+        {
+            // Conservative bounds keep beams crossing the screen and splashes reaching its edge.
+            // Testing endpoints alone would incorrectly hide both cases at close zoom.
+            var bounds=new Bounds(from,Vector3.zero);bounds.Encapsulate(to);
+            if(shot.Splash>0)bounds.Encapsulate(new Bounds(
+                new Vector3(shot.To.X,shot.Flying?1.7f:.12f,shot.To.Y),
+                new Vector3(shot.Splash*2,.05f,shot.Splash*2)));
+            bounds.Expand(.12f); // Include the beam/ring width at the frustum boundary.
+            return GeometryUtility.TestPlanesAABB(shotFrustum,bounds);
+        }
         void DispatchSound(AudioClip clip)
         {
             sound.PlayOneShot(clip);SoundDispatches++;LastSound=clip.name;
@@ -131,16 +143,22 @@ namespace FrostMaze
             }
             // One camera-local weapon cue per 120 ms, regardless of frame rate or speed.
             bool weaponReady=audioActive&&alertTime>=nextShotSound;
-            ShotEvent audible=null;
+            ShotEvent audible=null;bool frustumReady=false;
             foreach(var shot in observed.Shots)if(shot.Serial>serial) {
                 serial=shot.Serial;
-                if(flashes.Count<64) {
+                if(!frustumReady){GeometryUtility.CalculateFrustumPlanes(game.View,shotFrustum);frustumReady=true;}
+                var from=new Vector3(shot.From.X,shot.Chained?(shot.FromFlying?1.7f:.3f):1.3f,shot.From.Y);
+                var to=new Vector3(shot.To.X,shot.Flying?1.7f:.3f,shot.To.Y);
+                // Consume unseen events without spending the shared visible-effect budget.
+                if(flashes.Count<64&&ShotInView(shot,from,to)) {
                     var obj=new GameObject(shot.Chained?"Chain arc":"Tower shot");obj.transform.SetParent(effectsRoot,false);
                     var line=obj.AddComponent<LineRenderer>();line.sharedMaterial=shot.Splash>0?ember:bolt;line.positionCount=2;line.startWidth=.055f;line.endWidth=.02f;
-                    line.SetPosition(0,new Vector3(shot.From.X,shot.Chained?(shot.FromFlying?1.7f:.3f):1.3f,shot.From.Y));line.SetPosition(1,new Vector3(shot.To.X,shot.Flying?1.7f:.3f,shot.To.Y));
+                    line.SetPosition(0,from);line.SetPosition(1,to);
+                    line.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;line.receiveShadows=false;
                     flashes.Add(new Flash{Object=obj,Until=effectTime+.12f});
                     if(shot.Splash>0 && flashes.Count<64) {
                         var ring=new GameObject("Splash impact");ring.transform.SetParent(effectsRoot,false);var r=ring.AddComponent<LineRenderer>();r.sharedMaterial=ember;r.positionCount=25;r.startWidth=r.endWidth=.05f;
+                        r.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;r.receiveShadows=false;
                         for(int i=0;i<25;i++){float a=i*Mathf.PI*2/24;r.SetPosition(i,new Vector3(shot.To.X+Mathf.Cos(a)*shot.Splash,shot.Flying?1.7f:.12f,shot.To.Y+Mathf.Sin(a)*shot.Splash));}
                         flashes.Add(new Flash{Object=ring,Until=effectTime+.22f});
                     }

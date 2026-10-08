@@ -1,0 +1,56 @@
+{
+  "status": "completed",
+  "duration": 4.66,
+  "summary": {
+    "total": 6,
+    "passed": 6,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "results": [
+    {
+      "FullName": "FrostMaze.Tests.PlayModeIntegration.CombatAudioLimitsBurstsFollowsCameraAndPrioritizesLeaks",
+      "Status": "Passed",
+      "Duration": 83.470163,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "FrostMaze.Tests.PlayModeIntegration.HitDefeatAndLeakCuesRespectPauseResetAndBudget",
+      "Status": "Passed",
+      "Duration": 83.964695,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "FrostMaze.Tests.PlayModeIntegration.OffscreenVolleysKeepVisibleBeamsAndEdgeSplashes",
+      "Status": "Passed",
+      "Duration": 82.374122,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "FrostMaze.Tests.PlayModeIntegration.PaidWallSiegeShowsStrikesDestructionAndRouteOpening",
+      "Status": "Passed",
+      "Duration": 85.024751,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "FrostMaze.Tests.PlayModeIntegration.ReusedViewBuffersKeepSalesDeathsAndRestartAccurate",
+      "Status": "Passed",
+      "Duration": 83.962261,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "FrostMaze.Tests.PlayModeIntegration.TowerFireFeedbackTracksShotsAndPauses",
+      "Status": "Passed",
+      "Duration": 84.965125,
+      "Message": null,
+      "StackTrace": null
+    }
+  ],
+  "note": "Individual case results recovered from Unity XML; CLI and XML aggregate duration exclude domain reloads. Six-case run took about nine minutes wall time."
+}

@@ -137,7 +137,7 @@ namespace FrostMaze.Tests
             camera.FocusPoint(new FrostMaze.Simulation.V2(32,32));camera.Overview();
             yield return new ExitPlayMode();
         }
-        [UnityTest]
+        [UnityTest, Category("CrowdedPresentation")]
         public IEnumerator PaidWallSiegeShowsStrikesDestructionAndRouteOpening()
         {
             EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
@@ -188,7 +188,7 @@ namespace FrostMaze.Tests
             Assert.That(EffectRendererCount(feedback),Is.Zero,"Restart left stale siege effects");
             yield return new ExitPlayMode();
         }
-        [UnityTest]
+        [UnityTest, Category("CrowdedPresentation")]
         public IEnumerator HitDefeatAndLeakCuesRespectPauseResetAndBudget()
         {
             EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
@@ -278,7 +278,7 @@ namespace FrostMaze.Tests
             Assert.That(feedback.RecentLeaks,Is.Zero);Assert.That(game.World.Leaked,Is.Zero);
             yield return new ExitPlayMode();
         }
-        [UnityTest]
+        [UnityTest, Category("CrowdedPresentation")]
         public IEnumerator CombatAudioLimitsBurstsFollowsCameraAndPrioritizesLeaks()
         {
             EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
@@ -363,7 +363,7 @@ namespace FrostMaze.Tests
             var last=Object.FindFirstObjectByType<Prototype>();last.ChooseMap(Resources.Load<MapDefinition>("Rimewatch"));yield return null;
             yield return new ExitPlayMode();
         }
-        [UnityTest]
+        [UnityTest, Category("CrowdedPresentation")]
         public IEnumerator TowerFireFeedbackTracksShotsAndPauses()
         {
             EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
@@ -844,6 +844,88 @@ namespace FrostMaze.Tests
             game.CancelInteraction();
             Assert.That(game.World.QueuedBuilds,Is.Zero);Assert.That(game.SellMode||game.MoveMode,Is.False);
             Assert.That(game.SelectedId+game.SelectedTowerId,Is.Zero);
+            yield return new ExitPlayMode();
+        }
+        [UnityTest, Category("CrowdedPresentation")]
+        public IEnumerator OffscreenVolleysKeepVisibleBeamsAndEdgeSplashes()
+        {
+            EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
+            yield return new EnterPlayMode();yield return null;
+            var game=Object.FindFirstObjectByType<Prototype>();game.StartMatch();game.Paused=true;game.SoundEnabled=false;
+            var camera=game.View.GetComponent<RtsCamera>();camera.FocusPoint(new FrostMaze.Simulation.V2(32,32));camera.SetZoom(5,true);camera.enabled=false;
+            yield return null;yield return null;
+            var w=game.World;var feedback=game.GetComponent<CombatFeedback>();int gold=w.Gold,lives=w.Lives;long tick=w.Tick,serial=0;
+            FrostMaze.Simulation.V2 At(float x,float y,float height) {
+                var ray=game.View.ViewportPointToRay(new Vector3(x,y,0));
+                var plane=new Plane(Vector3.up,new Vector3(0,height,0));Assert.That(plane.Raycast(ray,out float distance),Is.True);
+                var hit=ray.GetPoint(distance);return new FrostMaze.Simulation.V2(hit.x,hit.z);
+            }
+            void Shot(FrostMaze.Simulation.V2 from,FrostMaze.Simulation.V2 to,bool chain=false,float splash=0) {
+                w.Shots.Add(new FrostMaze.Simulation.ShotEvent{Serial=++serial,From=from,To=to,Chained=chain,Splash=splash});
+            }
+            var centre=At(.5f,.5f,.3f);var off=centre+new FrostMaze.Simulation.V2(10000,0);
+            for(int i=0;i<100;i++)Shot(off,off+new FrostMaze.Simulation.V2(1,0));
+            Shot(centre,centre+new FrostMaze.Simulation.V2(.5f,0));yield return null;yield return null;
+            Assert.That(EffectRendererCount(feedback),Is.EqualTo(1),"Unseen volley consumed the visible shot budget");
+            var beam=feedback.transform.Find("Combat cues").GetComponentInChildren<LineRenderer>();
+            Assert.That(beam.GetPosition(1).x,Is.EqualTo(centre.X+.5f).Within(.001f));
+            // Moving the camera must not replay the hundred already-consumed events.
+            var cameraPosition=game.View.transform.position;game.View.transform.position+=new Vector3(10000,0,0);
+            yield return null;yield return null;Assert.That(EffectRendererCount(feedback),Is.EqualTo(1));game.View.transform.position=cameraPosition;
+            var left=At(-.1f,.5f,.3f);var right=At(1.1f,.5f,.3f);
+            Shot(left,right,true);yield return null;yield return null;
+            Assert.That(EffectRendererCount(feedback),Is.EqualTo(2),"Beam crossing the screen was culled with its endpoints");
+            var outside=At(1.15f,.5f,.12f);float radius=FrostMaze.Simulation.V2.Distance(outside,At(.96f,.5f,.12f));
+            Shot(outside,outside,false,radius);yield return null;yield return null;
+            Assert.That(EffectRendererCount(feedback),Is.EqualTo(4),"Offscreen impact reaching the viewport was hidden");
+            foreach(var line in feedback.transform.Find("Combat cues").GetComponentsInChildren<LineRenderer>()) {
+                Assert.That(line.shadowCastingMode,Is.EqualTo(UnityEngine.Rendering.ShadowCastingMode.Off));
+                Assert.That(line.receiveShadows,Is.False);
+            }
+            yield return new WaitForSecondsRealtime(.15f);Assert.That(EffectRendererCount(feedback),Is.EqualTo(4),"Pause expired combat visuals");
+            for(int i=0;i<100;i++)Shot(centre,centre+new FrostMaze.Simulation.V2(.5f,0));yield return null;yield return null;
+            Assert.That(EffectRendererCount(feedback),Is.EqualTo(64),"Onscreen volley exceeded the shared cap");
+            Assert.That(feedback.GetComponentsInChildren<Collider>().Length,Is.Zero);
+            Assert.That(w.Gold,Is.EqualTo(gold));Assert.That(w.Lives,Is.EqualTo(lives));Assert.That(w.Tick,Is.EqualTo(tick));
+            game.StartMatch();game.Paused=true;yield return null;yield return null;
+            Assert.That(EffectRendererCount(feedback),Is.Zero,"New match kept old volley visuals");
+            yield return new ExitPlayMode();
+        }
+        [UnityTest, Category("CrowdedPresentation")]
+        public IEnumerator ReusedViewBuffersKeepSalesDeathsAndRestartAccurate()
+        {
+            EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
+            yield return new EnterPlayMode();yield return null;
+            var game=Object.FindFirstObjectByType<Prototype>();
+            if(game.Map.name!="Rimewatch") {game.ChooseMap(Resources.Load<MapDefinition>("Rimewatch"));yield return null;yield return null;game=Object.FindFirstObjectByType<Prototype>();}
+            game.StartMatch();game.Paused=true;game.SoundEnabled=false;var w=game.World;w.TowersFire=false;
+            Assert.That(w.OrderBuild(16,14,out _),Is.True);for(int i=0;i<150;i++)w.Step();
+            Assert.That(w.OrderBuild(16,16,out _),Is.True);for(int i=0;i<150;i++)w.Step();
+            Assert.That(w.Grid.Towers.Count,Is.EqualTo(2));var sold=w.Grid.At(16,14);var kept=w.Grid.At(16,16);
+            var removed=w.Spawn(new FrostMaze.Simulation.WaveSpec{Flying=true,Health=100},new FrostMaze.Simulation.V2(20,20));
+            var survivor=w.Spawn(new FrostMaze.Simulation.WaveSpec{Flying=true,Health=100},new FrostMaze.Simulation.V2(22,20));
+            Assert.That(removed,Is.Not.Null);Assert.That(survivor,Is.Not.Null);yield return null;yield return null;
+            var method=typeof(Prototype).GetMethod("SyncViewsProfiled",System.Reflection.BindingFlags.NonPublic|System.Reflection.BindingFlags.Instance);
+            var sync=(System.Action)System.Delegate.CreateDelegate(typeof(System.Action),game,method);
+            for(int i=0;i<20;i++)sync();
+            long before=System.GC.GetAllocatedBytesForCurrentThread();for(int i=0;i<100;i++)sync();
+            long allocated=System.GC.GetAllocatedBytesForCurrentThread()-before;
+            Assert.That(allocated,Is.Zero,"Warmed stable view updates should not allocate managed memory");
+            Assert.That(w.Sell(16,14),Is.True);removed.Health=0;w.Step();yield return null;yield return null;
+            Assert.That(GameObject.Find("Tower "+sold.Id),Is.Null);Assert.That(GameObject.Find("Tower "+kept.Id),Is.Not.Null);
+            Assert.That(GameObject.Find("Enemy "+removed.Id),Is.Null);Assert.That(GameObject.Find("Enemy "+survivor.Id),Is.Not.Null);
+            Assert.That(Object.FindObjectsByType<TowerView>(FindObjectsSortMode.None).Length,Is.EqualTo(1));
+            Assert.That(Object.FindObjectsByType<EnemyView>(FindObjectsSortMode.None).Length,Is.EqualTo(1));
+            game.ResetSimulation();game.Paused=true;yield return null;yield return null;
+            Assert.That(Object.FindObjectsByType<TowerView>(FindObjectsSortMode.None).Length,Is.Zero);
+            Assert.That(Object.FindObjectsByType<EnemyView>(FindObjectsSortMode.None).Length,Is.Zero);
+            Assert.That(game.World.OrderBuild(16,14,out _),Is.True);for(int i=0;i<150;i++)game.World.Step();yield return null;yield return null;
+            Assert.That(Object.FindObjectsByType<TowerView>(FindObjectsSortMode.None).Length,Is.EqualTo(1),"Reused model IDs lost their new views");
+            // The active builder is reused when a new match chooses another faction.
+            game.SetupOptions.Factions[0]=1;game.StartMatch();game.Paused=true;yield return null;yield return null;
+            var builder=typeof(Prototype).GetField("builder",System.Reflection.BindingFlags.NonPublic|System.Reflection.BindingFlags.Instance).GetValue(game) as GameObject;
+            foreach(var renderer in builder.GetComponentsInChildren<Renderer>())if(renderer.name.StartsWith("Faction"))
+                Assert.That(renderer.sharedMaterial,Is.SameAs(game.TowerPalette(1)[1]),"Cached builder tint ignored a new faction");
             yield return new ExitPlayMode();
         }
         [UnityTearDown]

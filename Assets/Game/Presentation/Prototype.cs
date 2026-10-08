@@ -64,6 +64,7 @@ namespace FrostMaze
             SetupOptions.StartingPositions[player]=position;
         }
         readonly Dictionary<int,GameObject> extraBuilders=new Dictionary<int,GameObject>();
+        readonly Dictionary<GameObject,int> builderTints=new Dictionary<GameObject,int>();
         public void SwitchMap(bool shared)
         {
             requestedMap = shared ? "Rimewatch" : "TestMap";
@@ -96,6 +97,9 @@ namespace FrostMaze
         }
         readonly Dictionary<int, GameObject> towers = new Dictionary<int, GameObject>();
         readonly Dictionary<int, EnemyView> enemies = new Dictionary<int, EnemyView>();
+        // Reused across frames; removal happens only after dictionary enumeration finishes.
+        readonly HashSet<int> liveViewIds = new HashSet<int>();
+        readonly List<int> staleViewIds = new List<int>();
         readonly List<Material> materials = new List<Material>();
         public readonly ModelMeshes Models=new ModelMeshes();
         readonly Dictionary<int,Material[]> towerPalettes=new Dictionary<int,Material[]>();
@@ -420,10 +424,10 @@ namespace FrostMaze
                 var pos=World.Players[i].Position;drone.transform.position=new Vector3(pos.X,1.1f,pos.Y);
             }
             foreach(var pair in extraBuilders)if(pair.Key>=World.Players.Length||pair.Key==World.ActivePlayer)pair.Value.SetActive(false);
-            var live = new HashSet<int>();
+            liveViewIds.Clear();
             foreach (var t in World.Grid.Towers)
             {
-                live.Add(t.Id);
+                liveViewIds.Add(t.Id);
                 if (!towers.TryGetValue(t.Id, out var obj))
                 {
                     obj=new GameObject("Tower "+t.Id);
@@ -437,17 +441,18 @@ namespace FrostMaze
                 obj.GetComponent<TowerView>().Sync(t,ShowNavigation);
 
             }
-            foreach (var id in new List<int>(towers.Keys))
-                if (!live.Contains(id))
-                {
-                    feedback.TowerStruck(towers[id].GetComponent<TowerView>().Subject,true);
-                    Destroy(towers[id]);
-                    towers.Remove(id);
-                }
-            live.Clear();
+            staleViewIds.Clear();
+            foreach (var id in towers.Keys)if(!liveViewIds.Contains(id))staleViewIds.Add(id);
+            foreach (var id in staleViewIds)
+            {
+                feedback.TowerStruck(towers[id].GetComponent<TowerView>().Subject,true);
+                Destroy(towers[id]);
+                towers.Remove(id);
+            }
+            liveViewIds.Clear();
             foreach (var e in World.Enemies)
             {
-                live.Add(e.Id);
+                liveViewIds.Add(e.Id);
                 if (!enemies.TryGetValue(e.Id, out var obj))
                 {
                     var root = new GameObject("Enemy " + e.Id);
@@ -458,13 +463,14 @@ namespace FrostMaze
                 }
                 obj.Sync(e, World.Tick);
             }
-            foreach (var id in new List<int>(enemies.Keys))
-                if (!live.Contains(id))
-                {
-                    feedback.EnemyRemoved(enemies[id].Subject);
-                    Destroy(enemies[id].gameObject);
-                    enemies.Remove(id);
-                }
+            staleViewIds.Clear();
+            foreach (var id in enemies.Keys)if(!liveViewIds.Contains(id))staleViewIds.Add(id);
+            foreach (var id in staleViewIds)
+            {
+                feedback.EnemyRemoved(enemies[id].Subject);
+                Destroy(enemies[id].gameObject);
+                enemies.Remove(id);
+            }
         }
         GameObject CreateBuilder(string name)
         {
@@ -484,7 +490,13 @@ namespace FrostMaze
             }
             return root;
         }
-        void TintBuilder(GameObject root,int faction){var palette=TowerPalette(faction);foreach(var renderer in root.GetComponentsInChildren<Renderer>())if(renderer.name.StartsWith("Faction"))renderer.sharedMaterial=palette[1];}
+        void TintBuilder(GameObject root,int faction)
+        {
+            if(builderTints.TryGetValue(root,out int shown)&&shown==faction)return;
+            var palette=TowerPalette(faction);
+            foreach(var renderer in root.GetComponentsInChildren<Renderer>())if(renderer.name.StartsWith("Faction"))renderer.sharedMaterial=palette[1];
+            builderTints[root]=faction;
+        }
         void OnDestroy()
         {
             Models.Dispose();
