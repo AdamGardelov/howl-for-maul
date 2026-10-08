@@ -92,6 +92,7 @@ namespace FrostMaze
                 scroll=GUILayout.BeginScrollView(scroll);DrawSetup();GUILayout.EndScrollView();
                 if(game.CanReturnToMatch&&GUILayout.Button("RETURN TO MATCH",button))game.ReturnToMatch();
                 if(GUILayout.Button(game.CanReturnToMatch?"START NEW MATCH":"START MATCH",primary))game.StartMatch();
+                if(GUILayout.Button("QUIT GAME",button))game.QuitGame();
                 GUILayout.EndArea();GUI.matrix=previousMatrix;DrawMapLabels();return;
             }
             GUILayout.BeginHorizontal();Resource("YOUR GOLD",w.Gold.ToString());Resource("TEAM LIVES",w.Lives.ToString(),w.Lives<=5||(feedback!=null&&feedback.RecentLeaks>0));Resource("WAVE",Mathf.Max(0,w.WaveIndex+1)+" / "+w.Config.Waves.Length);GUILayout.EndHorizontal();
@@ -186,7 +187,7 @@ namespace FrostMaze
                 if(GUILayout.Button("Reset map + waves",button))game.ResetSimulation();
                 if(!w.Config.Economy&&GUILayout.Button("Play Howl for Maul",button))game.SwitchMap(true);
             }
-            GUILayout.EndScrollView();GUILayout.EndArea();GUI.matrix=previousMatrix;DrawHealth();DrawMapLabels();DrawMinimap();DrawPlacementHint();if(game.MenuOpen)DrawPauseMenu();
+            GUILayout.EndScrollView();GUILayout.EndArea();GUI.matrix=previousMatrix;DrawHealth();DrawMapLabels();DrawMinimap();DrawBuildFeedback();DrawPlacementHint();if(game.MenuOpen)DrawPauseMenu();
         }
         void DrawTowerStats(TowerSpec spec)
         {

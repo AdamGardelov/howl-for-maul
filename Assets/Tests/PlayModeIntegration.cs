@@ -8,6 +8,31 @@ namespace FrostMaze.Tests
 {
     public sealed class PlayModeIntegration
     {
+        [UnityTest, Category("BuildFeedback")]
+        public IEnumerator QueuedFootprintsTrackEveryDesignAndClearWithOrders()
+        {
+            EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");yield return new EnterPlayMode();yield return null;
+            var game=Object.FindFirstObjectByType<Prototype>();game.StartMatch();game.Paused=true;
+            var w=game.World;var view=game.GetComponent<BuildQueueView>();int gold=w.Gold;long tick=w.Tick;
+            w.SelectedDesign=1;Assert.That(game.SubmitBuild(6,50,false),Is.True);
+            w.SelectedDesign=0;Assert.That(game.SubmitBuild(7,50,true),Is.True);
+            w.SelectedDesign=2;Assert.That(game.SubmitBuild(8,50,true),Is.True);
+            view.Refresh();Assert.That(view.Orders.Count,Is.EqualTo(3));
+            for(int i=0;i<3;i++){Assert.That(view.Orders[i].Number,Is.EqualTo(i+1));Assert.That(view.Orders[i].Origin.X,Is.EqualTo(6+i));}
+            Assert.That(view.Orders[0].Design,Is.EqualTo(1));Assert.That(view.Orders[2].Design,Is.EqualTo(2));
+            Assert.That(view.GetComponentsInChildren<Collider>().Length,Is.Zero);
+            Assert.That(view.transform.Find("Current build footprints").GetComponent<MeshFilter>().sharedMesh.vertexCount,Is.EqualTo(16));
+            Assert.That(view.transform.Find("Queued build footprints").GetComponent<MeshFilter>().sharedMesh.vertexCount,Is.EqualTo(32));
+            game.ToggleMenu();view.Refresh();Assert.That(view.Orders.Count,Is.EqualTo(3));game.ToggleMenu();
+            Assert.That(w.Gold,Is.EqualTo(gold));Assert.That(w.Tick,Is.EqualTo(tick));
+            for(int i=0;i<1000&&w.QueuedBuilds==3;i++)w.Step();view.Refresh();
+            Assert.That(view.Orders.Count,Is.EqualTo(2));Assert.That(view.Orders[0].Design,Is.EqualTo(0));Assert.That(view.Orders[0].Number,Is.EqualTo(1));
+            game.CancelInteraction();view.Refresh();Assert.That(view.Orders.Count,Is.Zero);
+            Assert.That(game.SubmitBuild(w.LaneSpawn(0).X,w.LaneSpawn(0).Y,false),Is.False);
+            Assert.That(game.PlacementFailure,Is.Not.Null.And.Not.Empty);Assert.That(game.PlacementFailureUntil,Is.GreaterThan(Time.unscaledTime));
+            game.StartMatch();view.Refresh();Assert.That(view.Orders.Count,Is.Zero);Assert.That(game.PlacementFailure,Is.Null);
+            yield return new ExitPlayMode();
+        }
         static int EffectRendererCount(CombatFeedback feedback)
         {
             return feedback.transform.Find("Combat cues").GetComponentsInChildren<Renderer>().Length;

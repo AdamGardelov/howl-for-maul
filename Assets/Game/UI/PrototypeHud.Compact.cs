@@ -34,7 +34,7 @@ namespace FrostMaze
             if(feedback!=null&&feedback.RecentLeaks>0){if(GUI.Button(alert,$"EXIT BREACHED · {feedback.RecentLeaks} leaked · View exit",alertButton))game.FocusExit();}
             else if(w.Finished)GUI.Label(alert,w.Won?"VICTORY — all waves cleared":"DEFEAT — open Menu for a new game",section);
             else if(!w.WaveActive&&w.LastWaveSummary!=null)GUI.Label(alert,$"Wave {w.LastWaveSummary.WaveNumber}: {w.LastWaveSummary.Killed} defeated · {w.LastWaveSummary.Leaked} leaked\nIncome: {w.LastWaveSummary.GoldForPlayer(w.ActivePlayer)}g",small);
-            GUI.matrix=matrix;DrawHealth();DrawMapLabels();DrawMinimap();DrawPlacementHint();
+            GUI.matrix=matrix;DrawHealth();DrawMapLabels();DrawMinimap();DrawBuildFeedback();DrawPlacementHint();
         }
         void DrawCommandDetails()
         {
@@ -56,11 +56,12 @@ namespace FrostMaze
             GUI.matrix=Matrix4x4.Scale(new Vector3(scale,scale,1));
             float width=Screen.width/scale,height=Screen.height/scale;
             var old=GUI.color;GUI.color=new Color(0,0,0,.65f);GUI.DrawTexture(new Rect(0,0,width,height),Texture2D.whiteTexture);GUI.color=old;
-            var box=new Rect((width-380)/2,(height-470)/2,380,470);Frame(box);
-            GUILayout.BeginArea(new Rect(box.x+24,box.y+18,332,434));
+            var box=new Rect((width-380)/2,(height-520)/2,380,520);Frame(box);
+            GUILayout.BeginArea(new Rect(box.x+24,box.y+18,332,484));
             GUILayout.Label("HOWL FOR MAUL",title);GUILayout.Label("GAME MENU · match paused",section);GUILayout.Space(12);
             if(GUILayout.Button("RETURN TO GAME [ESC]",primary))game.ToggleMenu();
             if(GUILayout.Button("NEW GAME",button))game.OpenSetup();
+            if(GUILayout.Button("QUIT GAME",button))game.QuitGame();
             GUILayout.Space(12);GUILayout.Label("SETTINGS",section);
             game.SoundEnabled=GUILayout.Toggle(game.SoundEnabled,"Combat sound",button);
             game.ShowGrid=GUILayout.Toggle(game.ShowGrid,"Placement grid",button);

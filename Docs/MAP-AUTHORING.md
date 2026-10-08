@@ -27,3 +27,5 @@ The internal C# namespace/assembly names retain FrostMaze to preserve serialized
 `ProjectSetup` creates missing Rimewatch/Ironfold assets. It does not overwrite authored assets on every compilation. After deliberately changing a layout or its factory, regenerate the corresponding asset explicitly and re-run mask and route tests. `SelectableMap` controls whether it appears in the match menu. `Theme` controls original procedural scenery independently of collision.
 
 Faction rosters are map data. Match options select one faction per player. The simulation rejects designs outside that roster; UI filtering is not the only enforcement. Ground and air targeting, splash, slow duration and chain limits live on tower specifications.
+
+Intermediate ground checkpoints are routing hints, not reserved construction cells. If a tower covers a hint, navigation targets clear samples within 1.25 units plus enemy radius, with terrain line-of-sight to the authored point. Keep this local area within the intended corridor. Unoccupied hints retain exact routing. A fully tower-sealed area still triggers siege; spawns and terminal exits remain protected.

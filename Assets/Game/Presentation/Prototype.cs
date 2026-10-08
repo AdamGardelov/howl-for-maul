@@ -14,6 +14,20 @@ namespace FrostMaze
         public bool MoveMode;
         public bool SetupOpen;
         public bool MenuOpen, DetailsOpen;
+        public void QuitGame() {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying=false;
+#else
+            Application.Quit();
+#endif
+        }
+        public string PlacementFailure { get; private set; }
+        public float PlacementFailureUntil { get; private set; }
+        public bool SubmitBuild(float x,float y,bool append) {
+            bool accepted=World.OrderBuild(x,y,out string reason,append);Notice=reason;
+            PlacementFailure=accepted?null:reason;PlacementFailureUntil=Time.unscaledTime+5;
+            return accepted;
+        }
         public void ToggleMenu() { MenuOpen=!MenuOpen;HasHover=false;if(ghost!=null)ghost.SetActive(false); }
         public Rect TopHud => new Rect(12*UiScale,12*UiScale,Screen.width-24*UiScale,48*UiScale);
         public int BuildColumns => World!=null&&World.Config.Theme=="iron"?4:3;
@@ -29,7 +43,7 @@ namespace FrostMaze
         public void ReturnToMatch() { if(CanReturnToMatch)SetupOpen=false; }
         void ClearInteraction()
         {
-            MoveMode=false;SellMode=false;SelectedId=0;SelectedTowerId=0;HasHover=false;
+            MoveMode=false;SellMode=false;SelectedId=0;SelectedTowerId=0;HasHover=false;PlacementFailure=null;
             if(ghost!=null)ghost.SetActive(false);
         }
         public void CancelInteraction()
@@ -204,6 +218,7 @@ namespace FrostMaze
                 Marker(p, new Color(0.63f, 0.5f, 0.91f), "Flight checkpoint", 0.22f);
             ghost = Primitive("Placement preview", PrimitiveType.Cube, Vector3.zero, new Vector3(World.Config.Tower.Width - 0.1f, 0.08f, World.Config.Tower.Height - 0.1f), ghostMaterial);
             gameObject.AddComponent<MazeDebug>().Initialize(this);
+            gameObject.AddComponent<BuildQueueView>().Initialize(this);
             gameObject.AddComponent<PrototypeHud>().Initialize(this);
             feedback=gameObject.AddComponent<CombatFeedback>();feedback.Initialize(this);
         }
@@ -351,8 +366,7 @@ namespace FrostMaze
                 var tower=World.Grid.At(x,y);
                 if(tower!=null){SelectedTowerId=tower.Id;SelectedId=0;Notice=tower.Name+" selected. U upgrades.";return;}
                 SelectedTowerId=0;
-                World.OrderBuild(x,y,out string reason,UnityEngine.Input.GetKey(KeyCode.LeftShift)||UnityEngine.Input.GetKey(KeyCode.RightShift));
-                Notice=reason;
+                SubmitBuild(x,y,UnityEngine.Input.GetKey(KeyCode.LeftShift)||UnityEngine.Input.GetKey(KeyCode.RightShift));
             }
         }
         public int EnemyAtScreenPoint(Vector2 point)

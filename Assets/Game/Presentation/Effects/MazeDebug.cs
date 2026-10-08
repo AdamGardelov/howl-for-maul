@@ -50,6 +50,7 @@ namespace FrostMaze
             Add("Enemy collision radii", new Color(0.9f, 0.24f, 0.05f));
             Add("Checkpoint guide", new Color(.55f,.38f,.08f));
             Add("Construction range", new Color(.05f,.65f,.5f));
+            Add("Protected placement points", new Color(1,.55f,.2f));
         }
         void Add(string name, Color color)
         {
@@ -178,6 +179,22 @@ namespace FrostMaze
                 }
             }
             layers[10].Upload();
+            layers[11].Points.Clear();
+            if(game.HasHover&&!game.HoverBuildValid&&!game.SellMode&&!game.MoveMode) {
+                var w=game.World;float radius=w.Config.NavigationStep*1.5f;
+                foreach(var wave in w.Config.Waves)radius=Mathf.Max(radius,wave.Radius);
+                for(int lane=0;lane<w.LaneCount;lane++) {
+                    Circle(w.LaneSpawn(lane));var route=w.LaneRoute(lane,false);Circle(route[route.Length-1]);
+                }
+                void Circle(V2 point) {
+                    if(V2.Distance(point,game.Hover)>4)return;
+                    for(int i=0;i<32;i++) {
+                        float a=i*Mathf.PI/16,b=(i+1)*Mathf.PI/16;
+                        layers[11].Line(point+new V2(Mathf.Cos(a),Mathf.Sin(a))*radius,point+new V2(Mathf.Cos(b),Mathf.Sin(b))*radius,.09f);
+                    }
+                }
+            }
+            layers[11].Upload();
         }
         void OnDestroy()
         {

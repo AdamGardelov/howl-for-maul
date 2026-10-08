@@ -237,13 +237,13 @@ namespace FrostMaze.Simulation
                 reason = "Keep the spawn clear.";
                 return false;
             }
-            for(int lane=0;lane<LaneCount;lane++)
-            foreach (var p in LaneRoute(lane,false))
-                if (Geometry.PointBox(p, center, half) < protection)
-                {
-                    reason = "Keep route checkpoints clear.";
+            for(int lane=0;lane<LaneCount;lane++) {
+                var route=LaneRoute(lane,false);
+                if (Geometry.PointBox(route[route.Length-1], center, half) < protection) {
+                    reason = "Keep the exit clear.";
                     return false;
                 }
+            }
             foreach (var e in Enemies)
                 if (!e.Spec.Flying && Geometry.PointBox(e.Position, center, half) < e.Spec.Radius)
                 {
@@ -293,6 +293,14 @@ namespace FrostMaze.Simulation
             Enemies.Add(e);
             return e;
         }
+        float CheckpointRegion(Enemy enemy,V2[] route)
+        {
+            // Intermediate route hints are areas when a tower covers their exact point.
+            // Terrain still separates areas; the terminal exit remains exact and protected.
+            return !enemy.Spec.Flying && enemy.Checkpoint<route.Length-1
+                && !Grid.Clear(enemy.Destination,enemy.Destination,enemy.Spec.Radius)
+                ? 1.25f+enemy.Spec.Radius : 0;
+        }
         public void Step()
         {
             if (Finished) return;
@@ -339,7 +347,9 @@ namespace FrostMaze.Simulation
                     continue;
                 var route = RouteFor(e);
                 e.Destination = route[e.Checkpoint];
-                if (V2.Distance(e.Position, e.Destination) < Config.CheckpointRadius + e.Spec.Radius && (e.Spec.Flying || Grid.Clear(e.Position, e.Destination, e.Spec.Radius)))
+                float goalRegion=CheckpointRegion(e,route);
+                if (V2.Distance(e.Position, e.Destination) < (goalRegion>0?goalRegion:Config.CheckpointRadius+e.Spec.Radius)
+                    && (e.Spec.Flying || (goalRegion>0?Grid.TerrainClear(e.Position,e.Destination,e.Spec.Radius):Grid.Clear(e.Position,e.Destination,e.Spec.Radius))))
                 {
                     e.Checkpoint++;
                     if (e.Checkpoint >= route.Length)
@@ -350,18 +360,19 @@ namespace FrostMaze.Simulation
                         continue;
                     }
                     e.Destination = route[e.Checkpoint];
+                    goalRegion=CheckpointRegion(e,route);
                 }
                 V2 aim = e.Destination;
                 e.Blocked = false;
                 e.BlockerId = 0;
                 if (!e.Spec.Flying)
                 {
-                    var field = Navigation.Get(e.Destination, e.Spec.Radius);
+                    var field = Navigation.Get(e.Destination, e.Spec.Radius, false, goalRegion);
                     aim = Navigation.Waypoint(field, e.Position, out bool reachable, out _);
                     if (!reachable)
                     {
                         e.Blocked = true;
-                        var breach = Navigation.Get(e.Destination, e.Spec.Radius, true);
+                        var breach = Navigation.Get(e.Destination, e.Spec.Radius, true, goalRegion);
                         aim = Navigation.Waypoint(breach, e.Position, out _, out var blocker);
                         if (blocker != null)
                         {

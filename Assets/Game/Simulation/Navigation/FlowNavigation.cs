@@ -7,10 +7,10 @@ namespace FrostMaze.Simulation
         public readonly float[] Distance;
         public readonly int[] Next;
         public readonly int Columns, Rows;
-        public readonly float Step, Radius;
+        public readonly float Step, Radius, GoalRegion;
         public readonly V2 Goal;
         public readonly bool Breach;
-        public FlowField(int columns, int rows, float step, float radius, V2 goal, bool breach)
+        public FlowField(int columns, int rows, float step, float radius, V2 goal, bool breach, float goalRegion = 0)
         {
             Columns = columns;
             Rows = rows;
@@ -18,6 +18,7 @@ namespace FrostMaze.Simulation
             Radius = radius;
             Goal = goal;
             Breach = breach;
+            GoalRegion = goalRegion;
             Distance = new float[columns * rows];
             Next = new int[Distance.Length];
             for (int i = 0; i < Next.Length; i++)
@@ -48,29 +49,32 @@ namespace FrostMaze.Simulation
             Step = step;
             BreachCost = breachCost;
         }
-        public FlowField Get(V2 goal, float radius, bool breach = false)
+        public FlowField Get(V2 goal, float radius, bool breach = false, float goalRegion = 0)
         {
             if (version != grid.Version)
             {
                 cache.Clear();
                 version = grid.Version;
             }
-            string key = goal.X.ToString("R", System.Globalization.CultureInfo.InvariantCulture) + "," + goal.Y.ToString("R", System.Globalization.CultureInfo.InvariantCulture) + "," + radius.ToString("R", System.Globalization.CultureInfo.InvariantCulture) + "," + breach;
+            string key = goal.X.ToString("R", System.Globalization.CultureInfo.InvariantCulture) + "," + goal.Y.ToString("R", System.Globalization.CultureInfo.InvariantCulture) + "," + radius.ToString("R", System.Globalization.CultureInfo.InvariantCulture) + "," + breach + "," + goalRegion.ToString("R", System.Globalization.CultureInfo.InvariantCulture);
             if (!cache.TryGetValue(key, out var field))
             {
-                field = Build(goal, radius, breach);
+                field = Build(goal, radius, breach, goalRegion);
                 cache.Add(key, field);
                 Rebuilds++;
             }
             return field;
         }
-        FlowField Build(V2 goal, float radius, bool breach)
+        FlowField Build(V2 goal, float radius, bool breach, float goalRegion)
         {
-            var f = new FlowField((int)Math.Ceiling(grid.Width / Step), (int)Math.Ceiling(grid.Height / Step), Step, radius, goal, breach);
+            var f = new FlowField((int)Math.Ceiling(grid.Width / Step), (int)Math.Ceiling(grid.Height / Step), Step, radius, goal, breach, goalRegion);
             var heap = new MinHeap();
             // Multiple seeds avoid making an otherwise reachable checkpoint depend on one sample.
             for (int i = 0; i < f.Next.Length; i++)
-                if (V2.Distance(f.Point(i), goal) <= Step * 1.5f && grid.Clear(f.Point(i), goal, radius))
+                if (V2.Distance(f.Point(i), goal) <= (goalRegion>0?goalRegion:Step*1.5f)
+                    && (goalRegion>0
+                        ? grid.TerrainClear(f.Point(i),goal,radius) && (breach||grid.Clear(f.Point(i),f.Point(i),radius))
+                        : grid.Clear(f.Point(i),goal,radius)))
                 {
                     f.Distance[i] = V2.Distance(f.Point(i), goal);
                     heap.Push(i, f.Distance[i]);
@@ -154,7 +158,7 @@ namespace FrostMaze.Simulation
             for (int k = 0; k < 10; k++)
             {
                 int next = f.Next[at];
-                var p = next < 0 ? f.Goal : f.Point(next);
+                var p = next < 0 ? (f.GoalRegion>0?f.Point(at):f.Goal) : f.Point(next);
                 var hit = grid.FirstHit(position, p, f.Radius);
                 if (hit != null)
                 {

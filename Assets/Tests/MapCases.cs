@@ -196,6 +196,40 @@ namespace FrostMaze.Tests
     if(w.Config.Catalog[design].Cost<w.Config.Catalog[best].Cost)best=design;
    return best;
   }
+  public static void OccupiedIntermediateCheckpoints() {
+   foreach(bool iron in new[]{false,true}) {
+    var c=Load(iron);var baseline=Traverse(new World(c));var w=new World(c);w.SelectedDesign=MazeDesign(w);
+    int purchased=0,cost=w.BuildCost;
+    for(int lane=0;lane<w.LaneCount;lane++) {
+     var route=w.LaneRoute(lane,false);
+     for(int i=0;i<route.Length-1;i++) {
+      var point=route[i];if(w.Grid.At(point.X,point.Y)!=null)continue;
+      bool built=false;float step=w.PlacementStep;
+      for(float y=(float)Math.Floor(point.Y/step)*step;y>point.Y-1&&!built;y-=step)
+       for(float x=(float)Math.Floor(point.X/step)*step;x>point.X-1&&!built;x-=step) {
+        if(!w.CanBuild(x,y,out _))continue;
+        Check(w.OrderBuild(x,y,out _),"checkpoint paid order rejected");
+        for(int tick=0;tick<1000&&w.HasBuildOrder;tick++)w.Step();
+        Check(w.Grid.At(point.X,point.Y)!=null,"checkpoint construction failed");purchased++;built=true;
+       }
+     }
+     var exit=route[route.Length-1];var snapped=w.SnapBuildOrigin(exit);
+     Check(!w.CanBuild(snapped.X,snapped.Y,out string reason)&&reason.Contains("exit"),"exit lost protection");
+    }
+    Check(purchased>=6,c.Name+" lacks checkpoint-placement coverage: "+purchased);
+    Check(w.Gold==c.StartingGold-purchased*cost,"checkpoint builds were not paid");
+    // Real lanes must pass occupied hints without false siege, clipping or skipping flight rules.
+    w.TowersFire=false;var units=new Enemy[w.LaneCount];
+    for(int lane=0;lane<w.LaneCount;lane++)units[lane]=w.Spawn(new WaveSpec(),w.LaneSpawn(lane),lane);
+    for(int tick=0;tick<9000&&w.Enemies.Count>0;tick++) {
+     w.Step();foreach(var e in w.Enemies)Check(!e.Blocked&&w.Grid.Clear(e.Position,e.Position,e.Spec.Radius),c.Name+" occupied hint caused siege/clipping");
+    }
+    Check(w.Leaked==w.LaneCount,c.Name+" occupied hint stalled");
+    foreach(var e in units)Check(e.Checkpoint==w.LaneRoute(e.Lane,false).Length,"route hints skipped");
+    foreach(var tower in new System.Collections.Generic.List<Tower>(w.Grid.Towers))Check(w.Sell(tower.CellX,tower.CellY),"checkpoint tower sale failed");
+    var reopened=Traverse(w);for(int i=0;i<baseline.Length;i++)Check(reopened[i]==baseline[i],"sold checkpoint did not restore exact route");
+   }
+  }
   public static void PaidReferenceMazes() {
    foreach(bool iron in new[]{false,true}) {
     var c=Load(iron);var empty=new World(c);var maze=new World(c);maze.SelectedDesign=MazeDesign(maze);

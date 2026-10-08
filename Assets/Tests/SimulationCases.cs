@@ -38,6 +38,14 @@ namespace FrostMaze.Tests
         public static readonly Case[] All ={
             new Case("Tower spatial queries match full scans through removal and rebuild",SpatialCases.TowerQueriesMatchFullScan),
             new Case("Reference wall seams accept flush towers and exclude enemies",MapCases.WallSeams),
+            new Case("Paid intermediate-checkpoint towers preserve every lane and reopen after sale",MapCases.OccupiedIntermediateCheckpoints),
+            new Case("Fully sealed checkpoint region still triggers siege and clears",()=>{
+                var c=Config();c.GroundRoute=new[]{new V2(5.5f,4.5f),new V2(10.5f,4.5f)};var w=new World(c);w.TowersFire=false;
+                for(int y=3;y<=5;y++)for(int x=4;x<=6;x++)w.Grid.Build(x,y,Solid());
+                var e=w.Spawn(new WaveSpec{Health=1000,Damage=100},c.Spawn);bool siege=false;
+                for(int i=0;i<4000&&w.Enemies.Count>0;i++){w.Step();siege|=e.Blocked;Check(w.Grid.Clear(e.Position,e.Position,e.Spec.Radius),"sealed checkpoint clipped a tower");}
+                Check(siege&&w.Grid.Towers.Count<9&&w.Leaked==1,"sealed region bypassed siege or stalled");
+            }),
             new Case("Half-cell paid queues preserve position ownership and selection",MapCases.FractionalPaidOrders),
             new Case("Half-cell wall seal triggers siege and reopens after sale",MapCases.FractionalWallSiege),
             new Case("Paid reference mazes detour ground, preserve flight and reopen",MapCases.PaidReferenceMazes),

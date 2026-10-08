@@ -1,0 +1,43 @@
+{
+  "initial": {
+    "status": "completed",
+    "duration": 4.34,
+    "summary": {
+      "total": 1,
+      "passed": 0,
+      "failed": 1,
+      "skipped": 0,
+      "inconclusive": 0
+    },
+    "results": [
+      {
+        "FullName": "FrostMaze.Tests.PlayModeIntegration.QueuedFootprintsTrackEveryDesignAndClearWithOrders",
+        "Status": "Failed",
+        "Duration": 95.2989991,
+        "Message": "  Expected: 16\n  But was:  24\n",
+        "StackTrace": "at FrostMaze.Tests.PlayModeIntegration+<QueuedFootprintsTrackEveryDesignAndClearWithOrders>d__0.MoveNext () [0x001cf] in /home/adam/Documents/Dev/howl-for-maul/Assets/Tests/PlayModeIntegration.cs:24\nat UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@0bd5c5194236/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:44\n"
+      }
+    ]
+  },
+  "final": {
+    "status": "completed",
+    "duration": 4.86,
+    "summary": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0
+    },
+    "results": [
+      {
+        "FullName": "FrostMaze.Tests.PlayModeIntegration.QueuedFootprintsTrackEveryDesignAndClearWithOrders",
+        "Status": "Passed",
+        "Duration": 92.2246553,
+        "Message": null,
+        "StackTrace": null
+      }
+    ]
+  },
+  "note": "Initial test inspected the floor mesh by index; corrected to select the queue meshes by name. Final focused case passed; no new full-suite claim."
+}
