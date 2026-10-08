@@ -285,6 +285,31 @@ namespace FrostMaze.Tests
             Assert.That(game.World.Gold,Is.EqualTo(505));
             var air=game.World.Grid.Towers[4];
             Assert.That(air.Spec.TargetsAir&&!air.Spec.TargetsGround&&air.Spec.SplashRadius>0,Is.True,"Quicksilver's aircraft model must retain air-only splash");
+            game.SetupOptions.Factions[0]=2;game.StartMatch();game.Paused=true;
+            string[] prismPaths={"Sentry weapon/Shade hood","Relay weapon/Spark core","Sentry weapon/Magnet bridge","Sentry weapon/Serpent head","Interceptor weapon/Twin sky lance","Sentry weapon/Needle rack","Champion weapon/Champion carapace"};
+            for(int d=0;d<7;d++) {
+                game.World.SelectedDesign=14+d;bool built=false;
+                for(int y=6;y<20&&!built;y++)for(int x=26+d;x<45&&!built;x++)if(game.World.CanBuild(x,y,out _)) {
+                    Assert.That(game.World.OrderBuild(x,y,out _),Is.True);
+                    for(int tick=0;tick<300;tick++)game.World.Step();
+                    Assert.That(game.World.Grid.At(x,y),Is.Not.Null);built=true;
+                }
+                Assert.That(built,Is.True);
+            }
+            yield return null;yield return null;
+            for(int i=0;i<7;i++) {
+                var tower=game.World.Grid.Towers[i];var view=GameObject.Find("Tower "+tower.Id).GetComponent<TowerView>();
+                Assert.That(view.transform.Find(prismPaths[i]),Is.Not.Null,"Missing Prism model");
+                Assert.That(view.GetComponentsInChildren<Collider>().Length,Is.Zero);
+            }
+            Assert.That(game.World.Gold,Is.EqualTo(505));
+            Assert.That(game.World.Grid.Towers[1].Spec.ChainTargets,Is.EqualTo(3));
+            Assert.That(game.World.Grid.Towers[4].Spec.TargetsGround,Is.False);
+            var prismChampion=game.World.Grid.Towers[6];
+            Assert.That(game.World.Upgrade(prismChampion.Id,out _),Is.True);
+            yield return null;
+            Assert.That(GameObject.Find("Tower "+prismChampion.Id).GetComponent<TowerView>().VisibleLevel,Is.EqualTo(2));
+            Assert.That(game.World.Gold,Is.EqualTo(245));
             yield return new ExitPlayMode();
         }
         [UnityTest]

@@ -106,14 +106,14 @@
       "Start Match button",
       "Buy Shard Sentry: 1200 to 1180 gold",
       "Select placed tower",
-      "Upgrade button: level 2 and 1160 gold"
+      "Upgrade button: level 2 and 1160 gold",
+      "Sell upgraded tower: 30 gold refund, 1190 balance"
     ],
     "notVerified": [
-      "Sale",
       "Full wave playthrough",
       "Native :0 desktop",
       "Windows runtime"
     ],
-    "note": "Isolated virtual display. Test display ended before sale follow-up; no sale result claimed."
+    "note": "Isolated virtual display. Restricted process/network visibility initially hid the live display; reconnected with authorized host access and verified sale."
   }
 }

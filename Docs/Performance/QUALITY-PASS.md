@@ -4,7 +4,7 @@ Enabled 2x MSAA and medium soft shadows in the URP pipeline, with the active qua
 
 Inspected native editor captures on both maps, including rebuilt render-pipeline state (the live pipeline initially retained old settings). Fresh Linux and Windows packages succeeded with zero errors; warning counts were 1 and 19 respectively. Windows has not been run. Linux package route/data smoke passed both maps on isolated display :98, exit 0.
 
-An actual Linux package mouse sequence at 1440x900 on :98 started a match, purchased a Shard Sentry (1200 to 1180 gold), selected it and upgraded it to level 2 (1160 gold). This verifies those specific HUD controls. The virtual display was no longer available for the later sale check; sale, wave controls and a complete human playthrough are not claimed. The earlier native :0 video-mode failure remains unresolved.
+An actual Linux package mouse sequence at 1440x900 on :98 started a match, purchased a Shard Sentry (1200 to 1180 gold), selected it and upgraded it to level 2 (1160 gold). This verifies those specific HUD controls. A follow-up sale click returned 30 gold, leaving 1190. Restricted tool visibility initially hid the running display; authorized host access restored the connection. Wave controls and a complete human playthrough are not claimed. The earlier native :0 video-mode failure remains unresolved.
 
 ## Matched editor measurement
 

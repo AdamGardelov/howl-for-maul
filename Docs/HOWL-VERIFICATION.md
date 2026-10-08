@@ -1,10 +1,10 @@
-# Howl for Maul verification — graphics quality checkpoint
+# Howl for Maul verification — Prism model checkpoint
 
-Latest source: original bespoke models for all four winter factions and Pulse Foundry/Blast Circuit. Remaining Ironfold factions retain generic role models. This is early procedural art, not finished League-quality presentation. Read PULSE-MODELS.md and WINTER-MODELS.md.
+Latest source: original bespoke models for all four winter factions and Pulse Foundry/Blast Circuit/Prism Division. Remaining Ironfold factions retain generic role models. This is early procedural art, not finished League-quality presentation. Read PULSE-MODELS.md and WINTER-MODELS.md.
 
 ## Automated tests
 
-Last full Unity 6000.3.25f1 suite (minimap checkpoint, before quality settings): **65/65 passed**, including seven Play-mode integration cases; 25.07 seconds. Compilation: zero errors/warnings. Exact results are in Howl-Unity-Tests.json.
+Fresh Unity 6000.3.25f1 suite: **65/65 passed**, including seven Play-mode integration cases; 25.50 seconds. Compilation: zero errors/warnings. Exact results are in Howl-Unity-Tests.json.
 
 The new Pulse test buys all six prerequisites and the champion through normal builder travel, verifies distinct models and no cosmetic colliders, and upgrades the champion. It checks 505 then 245 gold remain. Winter paid models/upgrades, mesh sharing/cleanup, enemy animation pause/resume, shot-facing/recoil, setup flow, and map switching remain covered.
 
@@ -41,7 +41,7 @@ The permanent minimap cache removes another 616 draw calls. With both optimizati
 
 Fresh Blast (zoom 7) and Pulse lineup captures at 1920×884 were inspected at zoom 7 and normal zoom 11. Seven towers were bought for 695 gold; no wave was active. Temporary input disabling hid the hover ghost during paused captures. Prior native captures cover all four winter model sets, HUD setup/construction/upgrade panels, and Ironfold wall-fit placement. These are controlled visual fixtures, not full human playthroughs or crowded-battle performance measurements.
 
-A packaged Linux mouse check on isolated :98 at 1440×900 verified Start Match, buying/selecting a Shard Sentry, and its upgrade button (1200 → 1180 → 1160 gold, level 2). Sale and full wave play were not checked. Earlier editor injection failures remain historical; this is a separate packaged check. See Performance/QUALITY-PASS.md.
+A packaged Linux mouse check on isolated :98 at 1440×900 verified Start Match, buying/selecting a Shard Sentry, and its upgrade button (1200 → 1180 → 1160 gold, level 2). Sale also passed (30 gold refund, 1190 balance). Full wave play was not checked. Earlier editor injection failures remain historical; this is a separate packaged check. See Performance/QUALITY-PASS.md.
 
 ## Builds and platform limits
 
@@ -56,3 +56,5 @@ Exact supplied map masks and terrain collision remain unchanged. Every lane stay
 ## Quality follow-up
 
 Both map captures inspected with the new quality settings. Matched editor measurements and limitations are in Performance/QUALITY-PASS.md. Median render time changed from 8.29 to 8.33 ms for the paused 324-tower fixture; slower tail samples prevent a no-cost claim.
+
+Prism follow-up: seven paid models plus champion upgrade passed the extended integration test. Lineups inspected at zoom 7 and 11. See PRISM-MODELS.md. The packaged builds predate Prism.
