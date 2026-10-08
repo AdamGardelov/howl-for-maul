@@ -3,7 +3,7 @@ using FrostMaze.Simulation;
 namespace FrostMaze
 {
     // All shapes are original, cosmetic and kept inside the simulation footprint.
-    public sealed class TowerView : MonoBehaviour
+    public sealed partial class TowerView : MonoBehaviour
     {
         public string Role { get; private set; }
         public int VisibleLevel { get; private set; }
@@ -179,7 +179,8 @@ namespace FrostMaze
             Role=spec.Damage<=0?"Wall":design!=null&&design.Requires.Length>0?"Champion":!spec.TargetsGround?"Interceptor":spec.SlowFraction>0?"Control":spec.ChainTargets>0?"Relay":spec.SplashRadius>0?"Artillery":"Sentry";
             Part("Foundation",PrimitiveType.Cylinder,new Vector3(0,.1f,0),new Vector3(.94f,.13f,.94f),shell);
             Part("Faction band",PrimitiveType.Cylinder,new Vector3(0,.23f,0),new Vector3(.78f,.035f,.78f),accent);
-            if(!robot&&faction==0)RimeTower(palette[3],palette[4]);
+            if(robot&&faction==0)PulseTower(palette[3],palette[4],tower.Design);
+            else if(!robot&&faction==0)RimeTower(palette[3],palette[4]);
             else if(!robot&&faction==1)StoneTower(palette[3],palette[4],spec.TargetsAir);
             else if(!robot&&faction==2)EmberTower(palette[3],palette[4],design!=null&&design.Name=="Meteor Crucible");
             else if(!robot&&faction==3)VoltTower(palette[3],palette[4],design!=null&&design.Name=="Nova Marshal");

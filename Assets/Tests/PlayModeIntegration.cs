@@ -209,6 +209,44 @@ namespace FrostMaze.Tests
             yield return new ExitPlayMode();
         }
         [UnityTest]
+        public IEnumerator PulseModelsFollowPaidChampionProgression()
+        {
+            EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
+            yield return new EnterPlayMode();yield return null;
+            var game=Object.FindFirstObjectByType<Prototype>();
+            game.ChooseMap(Resources.Load<MapDefinition>("Ironfold"));
+            yield return null;yield return null;
+            game=Object.FindFirstObjectByType<Prototype>();game.StartMatch();game.Paused=true;
+            game.World.SelectedDesign=6;
+            Assert.That(game.World.OrderBuild(26,6,out _),Is.False,"Champion must remain locked before its six prerequisites");
+            string[] paths={"Sentry weapon/Fuse barrel","Sentry weapon/Iron gauntlet","Artillery weapon/Shear blade","Sentry weapon/Ranger rifle","Interceptor weapon/Flare rocket pod","Control weapon/Cryo reservoir","Champion weapon/Echo crest"};
+            for(int d=0;d<7;d++) {
+                game.World.SelectedDesign=d;bool built=false;
+                for(int y=6;y<20&&!built;y++)for(int x=26+d;x<45&&!built;x++)if(game.World.CanBuild(x,y,out _)) {
+                    Assert.That(game.World.OrderBuild(x,y,out _),Is.True);
+                    for(int tick=0;tick<300;tick++)game.World.Step();
+                    Assert.That(game.World.Grid.At(x,y),Is.Not.Null);built=true;
+                }
+                Assert.That(built,Is.True,"No paid placement found");
+            }
+            yield return null;yield return null;
+            Assert.That(game.World.Gold,Is.EqualTo(505));
+            for(int i=0;i<7;i++) {
+                var tower=game.World.Grid.Towers[i];var view=GameObject.Find("Tower "+tower.Id).GetComponent<TowerView>();
+                Assert.That(tower.Design,Is.EqualTo(i));
+                Assert.That(view.transform.Find(paths[i]),Is.Not.Null,"Missing distinct Pulse model");
+                Assert.That(view.GetComponentsInChildren<Collider>().Length,Is.Zero);
+            }
+            var champion=game.World.Grid.Towers[6];
+            Assert.That(game.World.Upgrade(champion.Id,out _),Is.True);
+            yield return null;
+            var championView=GameObject.Find("Tower "+champion.Id).GetComponent<TowerView>();
+            Assert.That(championView.VisibleLevel,Is.EqualTo(2));
+            Assert.That(championView.transform.Find(paths[6]),Is.Not.Null);
+            Assert.That(game.World.Gold,Is.EqualTo(245));
+            yield return new ExitPlayMode();
+        }
+        [UnityTest]
         public IEnumerator EnemyPresentationTracksSimulationAndResets()
         {
             EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
