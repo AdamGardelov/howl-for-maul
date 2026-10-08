@@ -1,0 +1,94 @@
+{
+  "minimap-empty": {
+    "samples": 180,
+    "frameTime": {
+      "median": 0.0048651435,
+      "p95": 0.005440633
+    },
+    "renderTime": {
+      "median": 0.0028199035,
+      "p95": 0.003156351
+    },
+    "drawCalls": {
+      "median": 115.0,
+      "p95": 115.0
+    },
+    "setPassCalls": {
+      "median": 83.0,
+      "p95": 83.0
+    },
+    "triangles": {
+      "median": 137895.0,
+      "p95": 137895.0
+    }
+  },
+  "minimap-crowd": {
+    "samples": 180,
+    "frameTime": {
+      "median": 0.01032601,
+      "p95": 0.01137067
+    },
+    "renderTime": {
+      "median": 0.008293175,
+      "p95": 0.009214472
+    },
+    "drawCalls": {
+      "median": 4405.0,
+      "p95": 4405.0
+    },
+    "setPassCalls": {
+      "median": 412.0,
+      "p95": 412.0
+    },
+    "triangles": {
+      "median": 363635.0,
+      "p95": 363635.0
+    }
+  },
+  "quality-empty": {
+    "samples": 180,
+    "frameTime": {
+      "median": 0.004970957,
+      "p95": 0.00588728
+    },
+    "renderTime": {
+      "median": 0.0029678675,
+      "p95": 0.003343722
+    },
+    "drawCalls": {
+      "median": 115.0,
+      "p95": 115.0
+    },
+    "setPassCalls": {
+      "median": 83.0,
+      "p95": 83.0
+    },
+    "triangles": {
+      "median": 137895.0,
+      "p95": 137895.0
+    }
+  },
+  "quality-crowd": {
+    "samples": 180,
+    "frameTime": {
+      "median": 0.010371615,
+      "p95": 0.01201114
+    },
+    "renderTime": {
+      "median": 0.008334969000000001,
+      "p95": 0.009955769
+    },
+    "drawCalls": {
+      "median": 4405.0,
+      "p95": 4405.0
+    },
+    "setPassCalls": {
+      "median": 412.0,
+      "p95": 412.0
+    },
+    "triangles": {
+      "median": 363635.0,
+      "p95": 363635.0
+    }
+  }
+}

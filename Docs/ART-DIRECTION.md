@@ -21,3 +21,7 @@ This is an in-engine art-direction prototype, not the final asset quality target
 Next visual priorities: distinct faction-specific tower sets, a coordinated enemy silhouette pass, and further HUD polish after checking smaller viewports. Judge each at normal gameplay zoom before adding more surface detail. Keep silhouettes and ownership colors readable through full waves.
 
 No map, economy, faction roster, combat balance or pathfinding changes belong to this visual pass. No copyrighted game assets were imported.
+
+## Graphics quality follow-up
+
+See Performance/QUALITY-PASS.md for 2× MSAA, medium soft shadows, matched measurements and the packaged 1440×900 Linux mouse check. Start/build/select/upgrade are verified on a virtual display; native desktop and Windows runtime limits remain explicit.

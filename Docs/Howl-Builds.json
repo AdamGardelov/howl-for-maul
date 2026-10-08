@@ -4,10 +4,10 @@
       "result": "Succeeded",
       "platform": "StandaloneLinux64",
       "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Linux/HowlForMaul",
-      "totalSizeBytes": 92076824,
-      "buildTimeMs": 10760,
-      "buildStartedAt": "2026-10-08T08:21:24.1146960Z",
-      "buildEndedAt": "2026-10-08T08:21:34.8749120Z",
+      "totalSizeBytes": 92195608,
+      "buildTimeMs": 35702,
+      "buildStartedAt": "2026-10-08T08:44:09.4190370Z",
+      "buildEndedAt": "2026-10-08T08:44:45.1213250Z",
       "totalWarnings": 1,
       "totalErrors": 0,
       "warnings": [
@@ -20,10 +20,10 @@
       "result": "Succeeded",
       "platform": "StandaloneWindows64",
       "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Windows/HowlForMaul.exe",
-      "totalSizeBytes": 95819552,
-      "buildTimeMs": 16177,
-      "buildStartedAt": "2026-10-08T08:22:13.7038200Z",
-      "buildEndedAt": "2026-10-08T08:22:29.8814620Z",
+      "totalSizeBytes": 95839264,
+      "buildTimeMs": 22901,
+      "buildStartedAt": "2026-10-08T08:45:06.6359420Z",
+      "buildEndedAt": "2026-10-08T08:45:29.5370540Z",
       "totalWarnings": 19,
       "totalErrors": 0,
       "warnings": [
@@ -90,7 +90,7 @@
   "linuxSmoke": {
     "exitCode": 0,
     "display": ":98",
-    "note": "Winter, Pulse, Blast and tower batching package passed both map route/data checks. Native desktop limitation not retested."
+    "note": "Quality and minimap-cache package passed both map route/data checks."
   },
   "windowsRuntime": "Not tested on Windows",
   "linuxNativeDesktopSmoke": {
@@ -98,5 +98,22 @@
     "windowedExitCode": 1,
     "failure": "XFree86-VidModeExtension BadValue before game initialization",
     "recommendation": "Use Unity Play mode on this machine; virtual-display packaged smoke passed."
+  },
+  "linuxGraphicalInput": {
+    "display": ":98",
+    "resolution": "1440x900",
+    "verified": [
+      "Start Match button",
+      "Buy Shard Sentry: 1200 to 1180 gold",
+      "Select placed tower",
+      "Upgrade button: level 2 and 1160 gold"
+    ],
+    "notVerified": [
+      "Sale",
+      "Full wave playthrough",
+      "Native :0 desktop",
+      "Windows runtime"
+    ],
+    "note": "Isolated virtual display. Test display ended before sale follow-up; no sale result claimed."
   }
 }

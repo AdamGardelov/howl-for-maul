@@ -1,10 +1,10 @@
-# Howl for Maul verification — minimap cache checkpoint
+# Howl for Maul verification — graphics quality checkpoint
 
 Latest source: original bespoke models for all four winter factions and Pulse Foundry/Blast Circuit. Remaining Ironfold factions retain generic role models. This is early procedural art, not finished League-quality presentation. Read PULSE-MODELS.md and WINTER-MODELS.md.
 
 ## Automated tests
 
-Fresh Unity 6000.3.25f1 suite: **65/65 passed**, including seven Play-mode integration cases; 25.07 seconds. Compilation: zero errors/warnings. Exact results are in Howl-Unity-Tests.json.
+Last full Unity 6000.3.25f1 suite (minimap checkpoint, before quality settings): **65/65 passed**, including seven Play-mode integration cases; 25.07 seconds. Compilation: zero errors/warnings. Exact results are in Howl-Unity-Tests.json.
 
 The new Pulse test buys all six prerequisites and the champion through normal builder travel, verifies distinct models and no cosmetic colliders, and upgrades the champion. It checks 505 then 245 gold remain. Winter paid models/upgrades, mesh sharing/cleanup, enemy animation pause/resume, shot-facing/recoil, setup flow, and map switching remain covered.
 
@@ -41,14 +41,18 @@ The permanent minimap cache removes another 616 draw calls. With both optimizati
 
 Fresh Blast (zoom 7) and Pulse lineup captures at 1920×884 were inspected at zoom 7 and normal zoom 11. Seven towers were bought for 695 gold; no wave was active. Temporary input disabling hid the hover ghost during paused captures. Prior native captures cover all four winter model sets, HUD setup/construction/upgrade panels, and Ironfold wall-fit placement. These are controlled visual fixtures, not full human playthroughs or crowded-battle performance measurements.
 
-No end-to-end mouse-click pass is claimed: editor GUI injection did not activate the control, Pipeline lacks this project's legacy input support, and the native fallback failed window validation before clicking. See HUD-UPDATE.md. Smaller resolutions were not visually checked.
+A packaged Linux mouse check on isolated :98 at 1440×900 verified Start Match, buying/selecting a Shard Sentry, and its upgrade button (1200 → 1180 → 1160 gold, level 2). Sale and full wave play were not checked. Earlier editor injection failures remain historical; this is a separate packaged check. See Performance/QUALITY-PASS.md.
 
 ## Builds and platform limits
 
-Packages remain preceding checkpoint aa500eb; the minimap cache is not packaged yet. Those packages include all four winter sets, Pulse, Blast and rigid tower batching. Both Linux and Windows builds succeeded with zero errors; Linux reported one expected Pipeline-disabled warning, Windows 19 including unsupported package ray-tracing shaders. See Howl-Builds.json.
+Fresh packages now include minimap caching, 2× MSAA and medium soft shadows, plus all four winter sets, Pulse, Blast and rigid tower batching. Both Linux and Windows builds succeeded with zero errors; Linux reported one expected Pipeline-disabled warning, Windows 19 including unsupported package ray-tracing shaders. See Howl-Builds.json.
 
 The Linux executable passed both packaged-map route/data smoke checks on isolated :98, exit 0. The display was stopped. Earlier native :0 desktop attempts failed in X video-mode initialization before game code; use Unity Play here. Windows runtime remains untested. Smoke checks do not verify graphical performance.
 
 ## Preserved constraints
 
 Exact supplied map masks and terrain collision remain unchanged. Every lane stays active. Team start is 1,200 gold, split across one to four wallets. Exclusive faction rosters, ownership, paid construction, upgrades and freeform blockade/siege remain. Online networking is deferred. No copyrighted reference game assets were imported.
+
+## Quality follow-up
+
+Both map captures inspected with the new quality settings. Matched editor measurements and limitations are in Performance/QUALITY-PASS.md. Median render time changed from 8.29 to 8.33 ms for the paused 324-tower fixture; slower tail samples prevent a no-cost claim.

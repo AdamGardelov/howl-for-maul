@@ -13,3 +13,7 @@ Actual 1920×884 Game-view captures were inspected for setup, Ironfold's seven-c
 A GUI event injection attempt did not activate the upgrade button. The Pipeline pointer command reported that legacy input injection is unsupported and the Input System package is absent. No input package or project input settings were changed. A native mouse fallback also failed its window validation before sending a click. Do not describe this as an end-to-end mouse-click test. Existing Play-mode regressions exercise match/setup state, tower upgrades and rendering, but do not click every HUD control. Smaller desktop resolutions have not been visually inspected in this checkpoint.
 
 No simulation, map, economy, roster, pathfinding or art assets changed in this HUD pass. The prior wall-placement and campaign results remain their original evidence.
+
+## Graphics quality follow-up
+
+See Performance/QUALITY-PASS.md for 2× MSAA, medium soft shadows, matched measurements and the packaged 1440×900 Linux mouse check. Start/build/select/upgrade are verified on a virtual display; native desktop and Windows runtime limits remain explicit.
