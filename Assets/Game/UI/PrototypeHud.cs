@@ -26,7 +26,7 @@ namespace FrostMaze
             label=new GUIStyle(GUI.skin.label){fontSize=13,wordWrap=true};label.normal.textColor=new Color(.8f,.85f,.83f);
             small=new GUIStyle(label){fontSize=11};small.normal.textColor=new Color(.56f,.67f,.66f);
             section=new GUIStyle(label){fontSize=11,fontStyle=FontStyle.Bold};section.normal.textColor=new Color(.54f,.81f,.71f);
-            mapLabel=new GUIStyle(small){fontStyle=FontStyle.Bold};mapLabel.normal.textColor=new Color(.08f,.22f,.27f);
+            mapLabel=new GUIStyle(small){fontStyle=FontStyle.Bold,alignment=TextAnchor.MiddleCenter,wordWrap=false,padding=new RectOffset()};mapLabel.normal.textColor=Color.white;
             var surface=Swatch(new Color(.085f,.13f,.15f));var hover=Swatch(new Color(.14f,.22f,.23f));var active=Swatch(new Color(.18f,.32f,.29f));
             button=new GUIStyle(GUI.skin.button){fontSize=12,fixedHeight=30,border=new RectOffset(),padding=new RectOffset(8,8,5,5),margin=new RectOffset(2,2,3,3)};
             button.normal.background=surface;button.hover.background=hover;button.active.background=active;
@@ -226,19 +226,27 @@ namespace FrostMaze
         void DrawMapLabels()
         {
             if (!game.World.Config.BuilderEnabled) return;
-            for (int i = 0; i < game.World.LaneCount; i++)
-            {
+            for (int i = 0; i < game.World.LaneCount; i++) {
                 var spawn=game.World.LaneSpawn(i);
-                var p = game.View.WorldToScreenPoint(new Vector3(spawn.X, .05f, spawn.Y));
-                var rect = new Rect(p.x - 25, Screen.height - p.y - 22, 80, 24);
-                if (p.z > 0 && rect.x > game.Sidebar.xMax) GUI.Label(rect, "LANE "+(i+1), mapLabel);
+                MapTag(new Vector3(spawn.X,.05f,spawn.Y),"LANE "+(i+1),false);
             }
-            var route = game.World.Config.GroundRoute;
-            for (int i = 0; i < route.Length; i++)
-            {
-                var p = game.View.WorldToScreenPoint(new Vector3(route[i].X, .1f, route[i].Y));
-                if (p.z > 0 && p.x > game.Sidebar.xMax + 20) GUI.Label(new Rect(p.x - 8, Screen.height - p.y - 24, 60, 20), i == route.Length - 1 ? "EXIT" : (i + 1).ToString(), mapLabel);
+            var route=game.World.Config.GroundRoute;
+            for(int i=0;i<route.Length;i++) {
+                bool exit=i==route.Length-1;
+                MapTag(new Vector3(route[i].X,.1f,route[i].Y),exit?"EXIT":(i+1).ToString(),exit);
             }
+        }
+        void MapTag(Vector3 position,string text,bool exit)
+        {
+            var p=game.View.WorldToScreenPoint(position);
+            float width=mapLabel.CalcSize(new GUIContent(text)).x+12;
+            var rect=new Rect(p.x-width*.5f,Screen.height-p.y-24,width,18);
+            if(p.z<=0||rect.xMin<=game.Sidebar.xMax||rect.xMax>=Screen.width||rect.yMin<0||rect.yMax>=Screen.height||rect.Overlaps(game.MinimapRect))return;
+            GUI.color=new Color(.035f,.065f,.079f,.9f);
+            GUI.DrawTexture(rect,Texture2D.whiteTexture);
+            GUI.color=exit?new Color(.97f,.83f,.39f):new Color(.78f,.91f,.88f);
+            GUI.Label(rect,text,mapLabel);
+            GUI.color=Color.white;
         }
         void DrawHealth()
         {

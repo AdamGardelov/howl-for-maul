@@ -21,3 +21,5 @@ See Performance/QUALITY-PASS.md for 2× MSAA, medium soft shadows, matched measu
 ## Crowded overview readability
 
 Damaged-unit health bars now shrink with orthographic zoom; selected enemies retain full-size bars. Native overview and gameplay-zoom captures checked in a 324-tower/74-enemy diagnostic. See Performance/LIVE-COMBAT.md for fixture and measurement limits.
+
+Map-tag follow-up: lane numbers and the exit now use compact dark-backed labels with light text; the exit is gold. Native 1920×884 overviews on both maps inspected. Tags are centered on their markers and clipped away from the sidebar/minimap. Clean compilation; this cosmetic follow-up did not rerun the 65/65 roster suite.
