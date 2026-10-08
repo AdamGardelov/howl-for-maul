@@ -2,14 +2,14 @@
 
 ## Latest state
 
-- Current source: modern stone/brass command HUD with left rendered minimap, right tower portraits plus Remove, and a clear centre except for small contextual controls. Q/E rotates the view; Home resets it. Four camera cases and the both-map rendering/cleanup case pass. Read TOWER-PORTRAIT-GRID.md. Previous package checkpoints below remain historical until the new package is recorded.
+- Current source: modern stone/brass command HUD with left rendered minimap, right tower portraits plus Remove, and a clear centre except for small contextual controls. Q/E rotates the view; Home resets it. Four camera cases and the both-map rendering/cleanup case pass. Read TOWER-PORTRAIT-GRID.md. Current packages contain source 1c112bc; Linux actual input checks and both-map smoke passed, with exact 5-gold wall charge and 3-gold removal refund. Windows is build-tested only.
 
 - Shift-click queue feedback: compact pending count, explicit skipped-order status and new blocked-footprint FIFO/payment regression. All 63 pure simulation cases pass. Read BUILD-QUEUE.md.
 
 - Full-map HUD: permanent sidebar removed from play, compact top/bottom controls, contextual tower inspector, Tab details and Esc paused game menu. Overview reserves space for HUD strips. Four focused checks passed, then the final boundary/overview test passed again. Read FULL-MAP-HUD.md.
 
 - Source 9f228e1 adds original themed dressing: Rimewatch has 58 frost-plant clusters and 9 blue lanterns; Ironfold has 8 copper scrub clusters and 5 warm braziers. Deterministic placement, five batched material groups, no colliders or dynamic lights. Flame brightness freezes on pause. Read THEMED-SCENERY.md.
-- Current Linux and Windows packages contain 485bb5e. Both builds succeeded with zero errors. Linux both-map data smoke and actual compact-HUD build/upgrade/menu/New Game return/Tab/overview input passed, gold 1,200 → 1,180 → 1,160, normal close exit zero. Windows runtime remains untested. Read Howl-Builds.json for exact per-check provenance.
+- The preceding Linux and Windows packages contained 485bb5e. Both builds succeeded with zero errors. Linux both-map data smoke and actual compact-HUD build/upgrade/menu/New Game return/Tab/overview input passed, gold 1,200 → 1,180 → 1,160, normal close exit zero. Windows runtime remains untested. Read Howl-Builds.json for exact per-check provenance.
 - Final scenery compilation, expanded both-map prop-clearance test, native overview/close-up inspection and live pause/flicker fixtures passed. Last full Unity suite was 77/77 at the preceding exit/terrain/progression checkpoint; no new full-suite claim for this scenery-only pass.
 - Rimewatch exit is centered at (31, 8.5). Wave details give faction-aware suggestions and team targeting counts. Read EXIT-TERRAIN-PROGRESSION.md. All 62 pure cases passed at that checkpoint.
 - Latest paid compact role-scoring matrix wins 10/12 factions. Alternative Blast strategy wins; compact solo Rime remains unresolved. Rime's larger paid maze clears twenty waves with 30 lives. Compact mixed pairs win on both maps. No balance stats changed to force a bot strategy to pass.
@@ -17,7 +17,7 @@
 
 ## Next priorities
 
-1. Preserve user Play sessions and unsaved scenes. Current packages are verified through 485bb5e.
+1. Preserve user Play sessions and unsaved scenes. Current packages are verified through 1c112bc.
 2. Continue faction/maze progression and meaningful paid-defense testing; compact Rime is a diagnostic, not a game tower limit.
 3. Continue the original minimalistic art direction while keeping silhouettes readable and every scenic footprint on blocked mask cells. No final-art or performance promise is implied by the procedural pass.
 
