@@ -71,6 +71,47 @@ namespace FrostMaze.Tests
             Assert.That(game.World.Grid.Towers[0].Design,Is.EqualTo(0));
             yield return new ExitPlayMode();
         }
+        [UnityTest]
+        public IEnumerator EnemyPresentationTracksSimulationAndResets()
+        {
+            EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
+            yield return new EnterPlayMode();
+            yield return null;
+            var game = Object.FindFirstObjectByType<Prototype>();
+            game.StartMatch(); game.Paused = true;
+            Assert.That(game.World.StartWave(), Is.True);
+            var ground = game.World.Spawn(new FrostMaze.Simulation.WaveSpec(), game.World.LaneSpawn(0));
+            var air = game.World.Spawn(new FrostMaze.Simulation.WaveSpec { Flying = true }, game.World.LaneSpawn(0));
+            Assert.That(ground, Is.Not.Null); Assert.That(air, Is.Not.Null);
+            ground.Velocity = new FrostMaze.Simulation.V2(1, 0);
+            ground.SlowRemaining = 2;
+            yield return null; yield return null;
+            var groundView = GameObject.Find("Enemy " + ground.Id);
+            var airView = GameObject.Find("Enemy " + air.Id);
+            Assert.That(groundView.transform.Find("Armored crawler"), Is.Not.Null);
+            var wings = airView.transform.Find("Winged drifter/Left wing");
+            Assert.That(wings, Is.Not.Null);
+            Assert.That(groundView.transform.forward.x, Is.EqualTo(1).Within(.001f));
+            Assert.That(groundView.transform.Find("Frost status").gameObject.activeSelf, Is.True);
+            Assert.That(groundView.GetComponentsInChildren<Collider>().Length, Is.Zero, "Cosmetics must not add physics blockers");
+            Assert.That(airView.GetComponentsInChildren<Collider>().Length, Is.Zero);
+            var pausedWing = wings.localRotation;
+            var pausedBody = wings.parent.localPosition;
+            yield return null; yield return null;
+            Assert.That(wings.localRotation, Is.EqualTo(pausedWing), "Paused animation must use simulation time");
+            Assert.That(wings.parent.localPosition, Is.EqualTo(pausedBody));
+            ground.SlowRemaining = 0;
+            for (int step = 0; step < 6; step++) game.World.Step();
+            yield return null;
+            Assert.That(wings.localRotation, Is.Not.EqualTo(pausedWing));
+            Assert.That(groundView.transform.Find("Frost status").gameObject.activeSelf, Is.False);
+            Assert.That(airView.transform.position.y, Is.EqualTo(1.7f));
+            Assert.That(groundView.transform.position.x, Is.EqualTo(ground.Position.X));
+            game.StartMatch(); game.Paused = true;
+            yield return null; yield return null;
+            Assert.That(Object.FindObjectsByType<EnemyView>(FindObjectsSortMode.None).Length, Is.Zero, "New matches must remove all old enemy parts");
+            yield return new ExitPlayMode();
+        }
         [UnityTearDown]
         public IEnumerator Cleanup()
         {

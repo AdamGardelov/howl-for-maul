@@ -1,8 +1,16 @@
-# Howl for Maul verification — planning readouts checkpoint
+# Howl for Maul verification — enemy readability checkpoint
 
-Unity 6000.3.25f1 passed **48/48 tests**, including actual Play-mode integration. The standalone .NET suite passed **47/47**. Exact Unity results are in Howl-Unity-Tests.json.
+Unity 6000.3.25f1 passed **49/49 tests**, including actual Play-mode integration. The standalone .NET suite passed **47/47**. Exact Unity results are in Howl-Unity-Tests.json.
 
 Coverage includes collision-mask fidelity, spatial-index equivalence, every map lane, siege and congestion behavior, difficulty, conserved economy, ownership, paid builder queues, upgrades, combat effects, faction restrictions and champion prerequisites. New regression coverage checks that difficulty-scaled wave previews match actual spawns, cannot mutate source data, forecast air waves, and list only the current player's missing prerequisites.
+
+## Enemy presentation
+
+Ground spheres are now original armored crawlers; air enemies have wider winged silhouettes, simulation-timed flapping and hover. They face their movement direction. Red crests indicate blocked/siege state and cyan markers indicate active slow effects. Damaged or selected enemies show health bars, with overlays excluded from the sidebar and minimap. Cosmetic meshes add no colliders and do not change navigation or balance.
+
+The new real Play-mode regression checks ground/air model selection, movement alignment, slow expiry feedback, simulation-timed pause behavior, absence of cosmetic colliders, flight height and complete cleanup on a new match. The first test run exposed a fixture error (manual spawn before launching a wave); after fixing the fixture, the complete suite passed 49/49.
+
+Native 1206×534 Game View captures were inspected on both Rimewatch and Ironfold. These are controlled presentation samples containing damaged, slowed and blocked enemies, not additional paid-defense campaigns or proof of final art quality. Screenshots are in the chat outputs. No gameplay parameters changed; the prior 36-run campaign evidence remains the balance baseline and was not rerun for this presentation-only change.
 
 ## Player information
 

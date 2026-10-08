@@ -60,11 +60,11 @@ namespace FrostMaze
             View.rect = new Rect(inset, 0, 1 - inset, 1);
         }
         readonly Dictionary<int, GameObject> towers = new Dictionary<int, GameObject>();
-        readonly Dictionary<int, GameObject> enemies = new Dictionary<int, GameObject>();
+        readonly Dictionary<int, EnemyView> enemies = new Dictionary<int, EnemyView>();
         readonly List<Material> materials = new List<Material>();
         Material barricadeMaterial,cannonMaterial;
         Material[] factionMaterials;
-        Material towerMaterial, enemyMaterial, airMaterial, blockedMaterial, ghostMaterial;
+        Material towerMaterial, enemyMaterial, airMaterial, blockedMaterial, ghostMaterial, enemyShellMaterial, slowMaterial;
         GameObject ghost, worldRoot, builder, orderMarker;
         float accumulator;
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
@@ -101,6 +101,8 @@ namespace FrostMaze
             enemyMaterial = MakeMaterial(new Color(1f, 0.48f, 0.23f));
             airMaterial = MakeMaterial(new Color(0.67f, 0.38f, 0.96f));
             blockedMaterial = MakeMaterial(new Color(1f, 0.17f, 0.24f));
+            enemyShellMaterial = MakeMaterial(new Color(.12f, .18f, .25f));
+            slowMaterial = MakeMaterial(new Color(.25f, .94f, 1f), true);
             ghostMaterial = MakeMaterial(new Color(0.24f, 0.9f, 0.74f));
             var floor = Primitive("Snowfield", PrimitiveType.Cube, new Vector3(World.Config.Width / 2f, -0.15f, World.Config.Height / 2f), new Vector3(World.Config.Width, 0.25f, World.Config.Height), MakeMaterial(World.Config.Theme=="iron"?new Color(.22f,.25f,.28f):new Color(.52f,.72f,.8f)));
             if (World.Config.BuilderEnabled)
@@ -289,7 +291,7 @@ namespace FrostMaze
         void ClearUnitViews()
         {
             foreach(var view in towers.Values)Destroy(view);towers.Clear();
-            foreach(var view in enemies.Values)Destroy(view);enemies.Clear();
+            foreach(var view in enemies.Values)Destroy(view.gameObject);enemies.Clear();
         }
         public void ResetSimulation()
         {
@@ -381,16 +383,18 @@ namespace FrostMaze
                 live.Add(e.Id);
                 if (!enemies.TryGetValue(e.Id, out var obj))
                 {
-                    obj = Primitive("Enemy " + e.Id, PrimitiveType.Sphere, Vector3.zero, Vector3.one * e.Spec.Radius * 2, enemyMaterial);
+                    var root = new GameObject("Enemy " + e.Id);
+                    root.transform.SetParent(worldRoot.transform, false);
+                    obj = root.AddComponent<EnemyView>();
+                    obj.Initialize(e, e.Spec.Flying ? airMaterial : enemyMaterial, blockedMaterial, enemyShellMaterial, slowMaterial);
                     enemies.Add(e.Id, obj);
                 }
-                obj.transform.position = new Vector3(e.Position.X, e.Spec.Flying ? 1.7f : e.Spec.Radius, e.Position.Y);
-                obj.GetComponent<Renderer>().sharedMaterial = e.Blocked ? blockedMaterial : e.Spec.Flying ? airMaterial : enemyMaterial;
+                obj.Sync(e, World.Tick);
             }
             foreach (var id in new List<int>(enemies.Keys))
                 if (!live.Contains(id))
                 {
-                    Destroy(enemies[id]);
+                    Destroy(enemies[id].gameObject);
                     enemies.Remove(id);
                 }
         }

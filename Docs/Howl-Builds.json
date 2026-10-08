@@ -2,8 +2,8 @@
   {
     "result": "Succeeded",
     "platform": "StandaloneLinux64",
-    "totalSizeBytes": 92036856,
-    "buildTimeMs": 16604,
+    "totalSizeBytes": 92040088,
+    "buildTimeMs": 11080,
     "totalErrors": 0,
     "totalWarnings": 1,
     "warnings": [
@@ -76,6 +76,6 @@
       }
     ],
     "observedWarningMessages": 19,
-    "buildTimeMs": 89407
+    "buildTimeMs": 15979
   }
 ]

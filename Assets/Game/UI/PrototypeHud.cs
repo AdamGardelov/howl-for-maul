@@ -260,20 +260,25 @@ namespace FrostMaze
         void DrawHealth()
         {
             foreach (var tower in game.World.Grid.Towers)
-            {
-                if (tower.Health >= tower.Spec.Health)
-                    continue;
-                var p = game.View.WorldToScreenPoint(new Vector3(tower.Center.X, 1.7f, tower.Center.Y));
-                if (p.z <= 0)
-                    continue;
-                var rect = new Rect(p.x - 18, Screen.height - p.y, 36, 4);
-                GUI.color = new Color(0.12f, 0.18f, 0.22f);
-                GUI.DrawTexture(rect, Texture2D.whiteTexture);
-                rect.width *= Mathf.Clamp01(tower.Health / tower.Spec.Health);
-                GUI.color = new Color(0.28f, 0.9f, 0.73f);
-                GUI.DrawTexture(rect, Texture2D.whiteTexture);
-            }
+                if (tower.Health < tower.Spec.Health)
+                    HealthBar(new Vector3(tower.Center.X, 1.7f, tower.Center.Y), tower.Health / tower.Spec.Health, new Color(.28f, .9f, .73f), 36);
+            foreach (var enemy in game.World.Enemies)
+                if (enemy.Health < enemy.Spec.Health || enemy.Id == game.SelectedId)
+                    HealthBar(new Vector3(enemy.Position.X, enemy.Spec.Flying ? 2.5f : enemy.Spec.Radius * 2 + .25f, enemy.Position.Y), enemy.Health / enemy.Spec.Health,
+                        enemy.Blocked ? new Color(1f, .23f, .27f) : enemy.Spec.Flying ? new Color(.8f, .55f, 1f) : new Color(1f, .65f, .25f), 28);
             GUI.color = Color.white;
+        }
+        void HealthBar(Vector3 position, float fraction, Color color, float width)
+        {
+            var p = game.View.WorldToScreenPoint(position);
+            var rect = new Rect(p.x - width * .5f, Screen.height - p.y, width, 4);
+            // World overlays must not cover the sidebar or minimap.
+            if (p.z <= 0 || rect.xMin <= game.Sidebar.xMax || rect.xMax >= Screen.width || rect.yMin < 0 || rect.yMax >= Screen.height || rect.Overlaps(game.MinimapRect)) return;
+            GUI.color = new Color(.07f, .1f, .14f);
+            GUI.DrawTexture(new Rect(rect.x - 1, rect.y - 1, rect.width + 2, rect.height + 2), Texture2D.whiteTexture);
+            rect.width *= Mathf.Clamp01(fraction);
+            GUI.color = color;
+            GUI.DrawTexture(rect, Texture2D.whiteTexture);
         }
         void OnDestroy()
         {
