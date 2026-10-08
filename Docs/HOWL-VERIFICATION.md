@@ -32,9 +32,11 @@ Tower-query follow-up: spatial indexing reduced the matched crowded fixture from
 
 ## Packages and platform limits
 
-Fresh Linux and Windows packages now include all 76 tower models, compact overview health bars and contrast-backed map tags (source 9e656e8). Both builds succeeded with zero errors; Linux reported one Pipeline-disabled warning, Windows 19 including unsupported package ray-tracing shaders. Fresh Linux packaged route/data smoke passed both maps on isolated :98, exit 0. Windows runtime remains untested.
+Fresh Linux and Windows packages include source 465974e: all 76 models, tower collision indexing, repaint-only world overlays and map props kept off walkable cells. Both builds succeeded with zero errors; Linux reported one Pipeline-disabled warning, Windows 19 including unsupported package ray-tracing shaders. Windows runtime remains untested.
 
-The mouse-driven start/build/select/upgrade/sell result above belongs to the earlier quality package, not a fresh full GUI pass of these packages. Earlier native :0 attempts failed with XFree86-VidModeExtension BadValue before game code; that issue is unresolved. Use Unity Play here. Read Howl-Builds.json for exact package evidence. Editor restored to StandaloneLinux64.
+Fresh Linux packaged route/data smoke passed both maps without a display server, exit zero. The repeatable Tools/smoke-linux.sh checks both map markers and clean process exit. Fresh mouse-driven Start Match/build beside wall/select/upgrade/sell also passed on isolated :98, with 1200 → 1180 → 1160 → 1190 gold and normal close exiting zero. These are separate checks, not a full mouse-played campaign or a GPU benchmark.
+
+Native default X11 startup remains unresolved. A native Wayland/OpenGL probe reached the smoke markers but crashed on shutdown (139); not a pass. Read Platform/README.md and Howl-Builds.json for evidence. Editor restored to StandaloneLinux64.
 
 ## Preserved constraints
 

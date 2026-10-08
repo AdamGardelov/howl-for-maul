@@ -1,13 +1,14 @@
 {
   "builds": [
     {
+      "buildId": "build_8e7648327e39",
       "result": "Succeeded",
       "platform": "StandaloneLinux64",
       "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Linux/HowlForMaul",
-      "totalSizeBytes": 92210456,
-      "buildTimeMs": 13794,
-      "buildStartedAt": "2026-10-08T09:39:08.3782970Z",
-      "buildEndedAt": "2026-10-08T09:39:22.1729390Z",
+      "totalSizeBytes": 92213016,
+      "buildTimeMs": 12511,
+      "buildStartedAt": "2026-10-08T10:37:59.5968480Z",
+      "buildEndedAt": "2026-10-08T10:38:12.1083130Z",
       "totalWarnings": 1,
       "totalErrors": 0,
       "warnings": [
@@ -17,13 +18,14 @@
       ]
     },
     {
+      "buildId": "build_fd5dd1f9ef1f",
       "result": "Succeeded",
       "platform": "StandaloneWindows64",
       "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Windows/HowlForMaul.exe",
-      "totalSizeBytes": 95854112,
-      "buildTimeMs": 17499,
-      "buildStartedAt": "2026-10-08T09:39:54.6138960Z",
-      "buildEndedAt": "2026-10-08T09:40:12.1135960Z",
+      "totalSizeBytes": 95856672,
+      "buildTimeMs": 18969,
+      "buildStartedAt": "2026-10-08T10:38:52.7572100Z",
+      "buildEndedAt": "2026-10-08T10:39:11.7262300Z",
       "totalWarnings": 19,
       "totalErrors": 0,
       "warnings": [
@@ -94,14 +96,16 @@
       "Rimewatch: 3 lanes, 4 factions, 20 towers, 20 waves",
       "Ironfold: 4 lanes, 8 factions, 56 towers, 20 waves"
     ],
-    "note": "Fresh complete-roster package passed both route/data smoke checks; not a graphical performance test."
+    "note": "Historical virtual-display route/data smoke from the earlier complete-roster package.",
+    "sourceCheckpoint": "9e656e8"
   },
   "windowsRuntime": "Not tested on Windows",
   "linuxNativeDesktopSmoke": {
     "headlessExitCode": 1,
     "windowedExitCode": 1,
     "failure": "XFree86-VidModeExtension BadValue before game initialization",
-    "recommendation": "Use Unity Play mode on this machine; virtual-display packaged smoke passed."
+    "recommendation": "Use Unity Play mode on this machine; virtual-display packaged smoke passed.",
+    "note": "Historical default X11 startup failure. Native Wayland/OpenGL probe reached both map checks but exited 139 during shutdown; not a pass."
   },
   "linuxGraphicalInput": {
     "display": ":98",
@@ -118,8 +122,40 @@
       "Native :0 desktop",
       "Windows runtime"
     ],
-    "note": "Isolated virtual display. Restricted process/network visibility initially hid the live display; reconnected with authorized host access and verified sale.",
-    "sourceCheckpoint": "Earlier quality package, before six new model sets and HUD refinements"
+    "note": "Fresh package on isolated :98, 1440x900. Mouse-built Shard Sentry beside the exit wall, selected, upgraded and sold. Closed via WM_DELETE_WINDOW and exited zero. First bounded attempt expired before finishing input; relaunched for the complete sequence.",
+    "sourceCheckpoint": "465974e",
+    "exitCode": 0
   },
-  "sourceCheckpoint": "9e656e8"
+  "sourceCheckpoint": "465974e",
+  "linuxHeadlessSmoke": {
+    "sourceCheckpoint": "465974e",
+    "command": "Tools/smoke-linux.sh",
+    "display": "DISPLAY and WAYLAND_DISPLAY unset for child process",
+    "graphicsDevice": "Null Device",
+    "exitCode": 0,
+    "passedMaps": [
+      "Rimewatch",
+      "Ironfold"
+    ],
+    "note": "Both route/data markers and HOWL_SMOKE_COMPLETE checked; script also requires exit zero. No graphical claim."
+  },
+  "linuxPackagedSmoke": {
+    "sourceCheckpoint": "465974e",
+    "backend": "headless -batchmode -nographics",
+    "exitCode": 0,
+    "markers": [
+      "HOWL_SMOKE_PASS Rimewatch lanes=3 factions=4 towers=20 waves=20",
+      "HOWL_SMOKE_PASS Ironfold lanes=4 factions=8 towers=56 waves=20",
+      "HOWL_SMOKE_COMPLETE"
+    ]
+  },
+  "nativeWaylandVulkan": {
+    "sourceCheckpoint": "465974e",
+    "exitCode": 0,
+    "mapSmokePassed": true,
+    "graphicsVerified": false,
+    "renderer": "NVIDIA GeForce GTX 1080",
+    "warning": "DRM Syncobj surface object already created for surface 39",
+    "note": "Both route/data markers and clean exit; graphics/input not verified. Keep experimental backend out of saved defaults."
+  }
 }

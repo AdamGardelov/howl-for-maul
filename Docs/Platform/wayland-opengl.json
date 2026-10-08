@@ -1,0 +1,24 @@
+{
+  "sourceCheckpoint": "9e656e8",
+  "backend": "wayland",
+  "display": "wayland-0",
+  "renderer": "NVIDIA GeForce GTX 1080/PCIe/SSE2",
+  "arguments": [
+    "-force-wayland",
+    "-screen-fullscreen",
+    "0",
+    "-screen-width",
+    "1280",
+    "-screen-height",
+    "720",
+    "--howl-smoke-test"
+  ],
+  "mapSmokeMessages": [
+    "HOWL_SMOKE_PASS Rimewatch lanes=3 factions=4 towers=20 waves=20",
+    "HOWL_SMOKE_PASS Ironfold lanes=4 factions=8 towers=56 waves=20",
+    "HOWL_SMOKE_COMPLETE"
+  ],
+  "exitCode": 139,
+  "passed": false,
+  "limitation": "Segmentation fault during shutdown after both smoke messages. No input or prolonged gameplay check."
+}

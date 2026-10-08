@@ -85,6 +85,8 @@ Use **Howl for Maul → Build Linux** or **Build Windows**. Windows requires the
 - `Builds/Linux/HowlForMaul`
 - `Builds/Windows/HowlForMaul.exe`
 
+After building Linux, run `./Tools/smoke-linux.sh` to check both packaged maps without a display server. The script requires a clean exit and both route/data checks; it is not a graphics test. See [platform evidence](Docs/Platform/README.md).
+
 Keep each executable with its accompanying data and runtime files. Do not run a second Unity editor against the same project. Stop and restart Play after changing scripts; simulation state does not survive a domain reload.
 
 The internal C# namespaces/assembly names retain `FrostMaze` for serialized compatibility. The product, repository and build names are **Howl for Maul**.
