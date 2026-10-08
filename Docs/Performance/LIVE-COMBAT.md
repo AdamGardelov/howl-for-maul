@@ -1,0 +1,9 @@
+# Live combat diagnostic and overview health bars
+
+A controlled Ironfold overview uses the earlier 324-tower profiling layout and 74 injected high-health enemies (34 ground, 40 flying). Ground collision rejected other spawn positions; collision was not bypassed. Economy is bypassed for this diagnostic, tower levels are visual fixture values, and enemy health is 100000 to sustain effects. This is not a paid campaign or representative wave balance.
+
+The first capture used a smaller Game view scaled to the requested output dimensions; its timings are excluded from comparisons. The final run verified native Screen.width/height 1920×884, with 60 warm-up and 180 unique sampled frames while simulation and effects advanced. Median editor-reported render time was about 24.87 ms and frame time 27.14 ms; median draw count 5727. All sampled frames had 74 enemies. The bounded shot-history count was 128, not shots per frame. CSV and precise summary accompany this note. This is a short diagnostic, not standalone FPS, cross-machine evidence or a controlled before/after performance comparison.
+
+The inspection exposed screen-sized health bars obscuring units in the overview. Ordinary damaged-unit bars now scale with orthographic projection (minimum 10 pixels, existing maximum retained); bars narrower than 18 pixels use two-pixel fill height. The selected enemy retains its full-size bar. Normal gameplay zoom, faction/status colors, health fractions and sidebar/minimap clipping remain.
+
+Verification: compilation passed with zero errors/warnings; native overview and zoom-11 captures inspected, including a selected enemy beside ordinary bars. No new simulation suite was run for this cosmetic HUD change. Prior 65/65 full suite and Horizon's targeted 1/1 remain the latest gameplay checks. More crowded-combat optimization needs profiling; the paused-map timing must not be quoted as live-battle performance.

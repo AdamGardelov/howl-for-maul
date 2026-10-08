@@ -60,3 +60,5 @@ Both map captures inspected with the new quality settings. Matched editor measur
 Prism follow-up: seven paid models plus champion upgrade passed the extended integration test. Lineups inspected at zoom 7 and 11. See PRISM-MODELS.md. The packaged builds predate Prism.
 
 Horizon follow-up: clean compile and targeted paid-model integration case passed 1/1; last full suite remains 65/65 at Prism. Close/normal native captures inspected. See HORIZON-MODELS.md. Hard solo Prism adaptive campaign won all 20 waves with 30 lives, no stalls or wallet errors; see Balance/PRISM-HARD.md. Packages predate Prism and Horizon.
+
+Crowded combat follow-up: native 1920×884 diagnostic with 324 injected towers and 74 injected high-health enemies inspected. Ordinary health bars now shrink in the overview while selected enemies retain full-size bars. Clean compilation and close/overview visual checks; no additional gameplay-suite run for this HUD-only change. See Performance/LIVE-COMBAT.md.

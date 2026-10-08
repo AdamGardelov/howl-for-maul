@@ -1,0 +1,41 @@
+{
+  "samples": 180,
+  "width": 1920,
+  "height": 884,
+  "towers": 324,
+  "initialGround": 34,
+  "initialAir": 40,
+  "diagnosticOnly": true,
+  "statistics": {
+    "frameTime": {
+      "median": 0.027141215,
+      "p95": 0.02993785,
+      "min": 0.01236189,
+      "max": 0.03202277
+    },
+    "renderTime": {
+      "median": 0.024870235,
+      "p95": 0.02736506,
+      "min": 0.01039999,
+      "max": 0.02960925
+    },
+    "drawCalls": {
+      "median": 5727.0,
+      "p95": 5775.0,
+      "min": 5713.0,
+      "max": 5779.0
+    },
+    "enemies": {
+      "median": 74.0,
+      "p95": 74.0,
+      "min": 74.0,
+      "max": 74.0
+    },
+    "shots": {
+      "median": 128.0,
+      "p95": 128.0,
+      "min": 128.0,
+      "max": 128.0
+    }
+  }
+}

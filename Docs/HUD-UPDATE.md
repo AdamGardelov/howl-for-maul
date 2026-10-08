@@ -17,3 +17,7 @@ No simulation, map, economy, roster, pathfinding or art assets changed in this H
 ## Graphics quality follow-up
 
 See Performance/QUALITY-PASS.md for 2× MSAA, medium soft shadows, matched measurements and the packaged 1440×900 Linux mouse check. Start/build/select/upgrade are verified on a virtual display; native desktop and Windows runtime limits remain explicit.
+
+## Crowded overview readability
+
+Damaged-unit health bars now shrink with orthographic zoom; selected enemies retain full-size bars. Native overview and gameplay-zoom captures checked in a 324-tower/74-enemy diagnostic. See Performance/LIVE-COMBAT.md for fixture and measurement limits.

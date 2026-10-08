@@ -248,13 +248,17 @@ namespace FrostMaze
             foreach (var enemy in game.World.Enemies)
                 if (enemy.Health < enemy.Spec.Health || enemy.Id == game.SelectedId)
                     HealthBar(new Vector3(enemy.Position.X, enemy.Spec.Flying ? 2.5f : enemy.Spec.Radius * 2 + .25f, enemy.Position.Y), enemy.Health / enemy.Spec.Health,
-                        enemy.Blocked ? new Color(1f, .23f, .27f) : enemy.Spec.Flying ? new Color(.8f, .55f, 1f) : new Color(1f, .65f, .25f), 28);
+                        enemy.Blocked ? new Color(1f, .23f, .27f) : enemy.Spec.Flying ? new Color(.8f, .55f, 1f) : new Color(1f, .65f, .25f), 28, enemy.Id == game.SelectedId);
             GUI.color = Color.white;
         }
-        void HealthBar(Vector3 position, float fraction, Color color, float width)
+        void HealthBar(Vector3 position, float fraction, Color color, float width, bool selected = false)
         {
             var p = game.View.WorldToScreenPoint(position);
-            var rect = new Rect(p.x - width * .5f, Screen.height - p.y, width, 4);
+            // Match world scale in the overview; keep the inspected unit easy to read.
+            if (!selected && game.View.orthographic)
+                width = Mathf.Clamp(game.View.pixelHeight * .75f / (2 * game.View.orthographicSize), 10, width);
+            float height = width < 18 ? 2 : 4;
+            var rect = new Rect(p.x - width * .5f, Screen.height - p.y, width, height);
             // World overlays must not cover the sidebar or minimap.
             if (p.z <= 0 || rect.xMin <= game.Sidebar.xMax || rect.xMax >= Screen.width || rect.yMin < 0 || rect.yMax >= Screen.height || rect.Overlaps(game.MinimapRect)) return;
             GUI.color = new Color(.07f, .1f, .14f);
