@@ -14,6 +14,8 @@ Wave-result follow-up: 61 pure cases and the 70-case Unity suite passed. Recaps 
 
 Combat cues: real-hit/kill feedback, flight-height leaks, pause/setup/reset and the shared 64-effect budget pass the new integration case. Native staged visual capture inspected. See COMBAT-CUES.md.
 
+Off-camera leak alerts: the new focused integration case passes (1/1), bringing the available suite to 72. The last full-suite run remains the 71/71 combat-cue checkpoint; no fresh 72/72 result is claimed. Native sidebar/focus fixtures inspected. See LEAK-ALERT.md.
+
 ## Paid campaigns
 
 New Hard solo Prism adaptive campaign: twenty waves won, 30 lives, 324 purchases, 184 upgrades, 6740 spent and 364 gold left. New Hard mixed Gravity/Scrap campaign: twenty waves won, 30 lives, 324 purchases, 270 upgrades, each player spent 3372 and retained 180. No stalls or wallet errors. See Balance/PRISM-HARD.md and Balance/GRAVITY-SCRAP-HARD.md plus raw ledgers.

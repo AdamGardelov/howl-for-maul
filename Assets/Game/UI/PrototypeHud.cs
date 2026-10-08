@@ -4,8 +4,8 @@ namespace FrostMaze
 {
     public sealed class PrototypeHud : MonoBehaviour
     {
-        Prototype game;
-        GUIStyle title, small, label, button, section, mapLabel, card, selectedCard, primary, badge, number;
+        Prototype game; CombatFeedback feedback;
+        GUIStyle title, small, label, button, section, mapLabel, card, selectedCard, primary, badge, number, alertButton, alertNumber;
         readonly System.Collections.Generic.List<Texture2D> textures=new System.Collections.Generic.List<Texture2D>();
         Texture2D panel;
         readonly MinimapTerrain minimapTerrain=new MinimapTerrain();
@@ -38,15 +38,19 @@ namespace FrostMaze
             selectedCard=new GUIStyle(card);selectedCard.normal.background=active;selectedCard.normal.textColor=new Color(.83f,1,.9f);
             badge=new GUIStyle(GUI.skin.box){normal={background=surface},padding=new RectOffset(8,8,6,6),margin=new RectOffset(2,2,3,3)};
             number=new GUIStyle(title){fontSize=20};number.normal.textColor=new Color(.92f,.81f,.52f);
+            alertButton=new GUIStyle(primary){fixedHeight=40};
+            alertButton.normal.background=Swatch(new Color(.27f,.095f,.12f));
+            alertButton.normal.textColor=new Color(1,.77f,.7f);
+            alertNumber=new GUIStyle(number);alertNumber.normal.textColor=new Color(1,.43f,.4f);
             panel=Swatch(new Color(.035f,.065f,.079f,.98f));
         }
         void Rule()
         {
             GUILayout.Space(6);var r=GUILayoutUtility.GetRect(1,1);var old=GUI.color;GUI.color=new Color(.23f,.34f,.34f);GUI.DrawTexture(r,Texture2D.whiteTexture);GUI.color=old;GUILayout.Space(8);
         }
-        void Resource(string name,string value)
+        void Resource(string name,string value,bool danger=false)
         {
-            GUILayout.BeginVertical(badge);GUILayout.Label(name,small);GUILayout.Label(value,number);GUILayout.EndVertical();
+            GUILayout.BeginVertical(badge);GUILayout.Label(name,small);GUILayout.Label(value,danger?alertNumber:number);GUILayout.EndVertical();
         }
         static string Role(TowerSpec spec)
         {
@@ -60,6 +64,7 @@ namespace FrostMaze
         {
             if(game==null||game.World==null)return;
             Styles();
+            if(feedback==null)feedback=game.GetComponent<CombatFeedback>();
             if(wasSetup!=game.SetupOpen){scroll=Vector2.zero;wasSetup=game.SetupOpen;}
             if(lastSelectedTower!=game.SelectedTowerId){if(game.SelectedTowerId!=0)scroll=Vector2.zero;lastSelectedTower=game.SelectedTowerId;}
             var w=game.World;var previousMatrix=GUI.matrix;float scale=game.UiScale;
@@ -74,7 +79,7 @@ namespace FrostMaze
                 if(GUILayout.Button(game.CanReturnToMatch?"START NEW MATCH":"START MATCH",primary))game.StartMatch();
                 GUILayout.EndArea();GUI.matrix=previousMatrix;DrawMapLabels();return;
             }
-            GUILayout.BeginHorizontal();Resource("YOUR GOLD",w.Gold.ToString());Resource("TEAM LIVES",w.Lives.ToString());Resource("WAVE",Mathf.Max(0,w.WaveIndex+1)+" / "+w.Config.Waves.Length);GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal();Resource("YOUR GOLD",w.Gold.ToString());Resource("TEAM LIVES",w.Lives.ToString(),w.Lives<=5||(feedback!=null&&feedback.RecentLeaks>0));Resource("WAVE",Mathf.Max(0,w.WaveIndex+1)+" / "+w.Config.Waves.Length);GUILayout.EndHorizontal();
             GUILayout.Label(w.Finished?(w.Won?"VICTORY — all waves cleared":"DEFEAT — the crossing fell"):$"{w.LaneCount} lanes active  ·  {w.Difficulty}  ·  {w.Enemies.Count} enemies",section);
             GUI.enabled=!w.Finished&&!w.WaveActive&&w.WaveIndex+1<w.Config.Waves.Length;
             if(GUILayout.Button(w.Finished?"MATCH COMPLETE":w.WaveActive?"WAVE IN PROGRESS":"LAUNCH WAVE "+(w.WaveIndex+2)+"     [SPACE]",primary))game.Launch();
@@ -82,7 +87,9 @@ namespace FrostMaze
             GUILayout.BeginHorizontal();if(GUILayout.Button(game.Paused?"Resume [P]":"Pause [P]",button))game.Paused=!game.Paused;
             if(GUILayout.Button(game.Speed==1?"Speed 1×":"Speed 2×",button))game.Speed=game.Speed==1?2:1;
             if(GUILayout.Button(w.Finished?"New match":"Setup",button))game.OpenSetup();GUILayout.EndHorizontal();
-            GUILayout.Label(game.Notice,small);
+            if(feedback!=null&&feedback.RecentLeaks>0) {
+                if(GUILayout.Button($"EXIT BREACHED · {feedback.RecentLeaks} leaked\nView exit",alertButton))game.FocusExit();
+            } else GUILayout.Label(game.Notice,small);
             if(w.LastWaveSummary!=null) {
                 var result=w.LastWaveSummary;
                 GUILayout.BeginVertical(badge);

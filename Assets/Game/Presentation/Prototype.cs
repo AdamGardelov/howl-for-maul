@@ -39,8 +39,13 @@ namespace FrostMaze
             ClearUnitViews();
             World=new World(JsonUtility.FromJson<Scenario>(JsonUtility.ToJson(Map.Settings)),SetupOptions);
             SetupOpen=false; matchStarted=true; Paused=false; accumulator=0; ClearInteraction();
-            View.GetComponent<RtsCamera>().FocusBuilder(World.BuilderPosition);
+            View.GetComponent<RtsCamera>().FocusPoint(World.BuilderPosition);
             Notice="All lanes active. Build your maze, then launch the first wave.";
+        }
+        public void FocusExit()
+        {
+            var route=World.Config.GroundRoute;
+            if(route.Length>0)View.GetComponent<RtsCamera>().FocusPoint(route[route.Length-1]);
         }
         public void ChooseStart(int player,int position)
         {
@@ -243,7 +248,7 @@ namespace FrostMaze
         {
             int shortcut=0;for(int i=0;i<World.Config.Catalog.Length;i++)if(World.DesignAvailable(i)){if(UnityEngine.Input.GetKeyDown(KeyCode.Alpha1+shortcut)){World.SelectedDesign=i;SellMode=false;MoveMode=false;}shortcut++;}
             if(UnityEngine.Input.GetKeyDown(KeyCode.U)&&SelectedTowerId>0){World.Upgrade(SelectedTowerId,out string message);Notice=message;}
-            if(UnityEngine.Input.GetKeyDown(KeyCode.Home))View.GetComponent<RtsCamera>().FocusBuilder(World.BuilderPosition);
+            if(UnityEngine.Input.GetKeyDown(KeyCode.Home))View.GetComponent<RtsCamera>().FocusPoint(World.BuilderPosition);
             if(UnityEngine.Input.GetKeyDown(KeyCode.End))View.GetComponent<RtsCamera>().Overview();
             if (UnityEngine.Input.GetKeyDown(KeyCode.Space))
                 Launch();

@@ -64,6 +64,45 @@ namespace FrostMaze.Tests
             yield return new ExitPlayMode();
         }
         [UnityTest]
+        public IEnumerator OffscreenLeakAlertAggregatesPausesExpiresAndFocusesExit()
+        {
+            EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
+            yield return new EnterPlayMode();yield return null;
+            var game=Object.FindFirstObjectByType<Prototype>();game.StartMatch();game.Paused=true;game.SoundEnabled=false;
+            var w=game.World;var feedback=game.GetComponent<CombatFeedback>();
+            var route=w.LaneRoute(0,true);var end=route[route.Length-1];
+            // Each unit exits before presentation has a chance to create its view.
+            for(int i=0;i<2;i++) {
+                var e=w.Spawn(new FrostMaze.Simulation.WaveSpec{Flying=true},end);Assert.That(e,Is.Not.Null);
+                e.Checkpoint=route.Length-1;w.Step();
+            }
+            yield return null;yield return null;
+            Assert.That(w.Leaked,Is.EqualTo(2));Assert.That(feedback.RecentLeaks,Is.EqualTo(2));
+            Assert.That(GameObject.Find("Enemy leaked"),Is.Null,"Fixture should have no rendered removal to depend on");
+            var camera=game.View.GetComponent<RtsCamera>();camera.Focus=new Vector3(5,0,50);game.View.orthographicSize=25;
+            int gold=w.Gold,lives=w.Lives;game.FocusExit();yield return null;
+            var groundExit=w.Config.GroundRoute[w.Config.GroundRoute.Length-1];
+            Assert.That(camera.Focus,Is.EqualTo(new Vector3(groundExit.X,0,groundExit.Y)));
+            Assert.That(game.View.orthographicSize,Is.EqualTo(11));Assert.That(game.Paused,Is.True);
+            Assert.That(w.Gold,Is.EqualTo(gold));Assert.That(w.Lives,Is.EqualTo(lives));
+            game.Speed=2;game.Paused=false;yield return new WaitForSecondsRealtime(2.1f);
+            Assert.That(feedback.RecentLeaks,Is.EqualTo(2),"Double speed must not halve the UI alert duration");
+            game.Paused=true;
+            var another=w.Spawn(new FrostMaze.Simulation.WaveSpec{Flying=true},end);another.Checkpoint=route.Length-1;w.Step();
+            yield return null;yield return null;Assert.That(feedback.RecentLeaks,Is.EqualTo(3));
+            yield return new WaitForSecondsRealtime(4.1f);
+            Assert.That(feedback.RecentLeaks,Is.EqualTo(3),"Pause expired the alert");
+            game.Paused=false;game.OpenSetup();yield return new WaitForSecondsRealtime(4.1f);
+            Assert.That(feedback.RecentLeaks,Is.EqualTo(3),"Setup expired the alert");
+            game.ReturnToMatch();yield return new WaitForSecondsRealtime(4.1f);
+            Assert.That(feedback.RecentLeaks,Is.Zero,"Alert failed to expire after real play time");
+            game.Paused=true;another=w.Spawn(new FrostMaze.Simulation.WaveSpec{Flying=true},end);another.Checkpoint=route.Length-1;w.Step();
+            yield return null;yield return null;Assert.That(feedback.RecentLeaks,Is.EqualTo(1),"Expired bursts must not accumulate forever");
+            game.StartMatch();game.Paused=true;yield return null;yield return null;
+            Assert.That(feedback.RecentLeaks,Is.Zero);Assert.That(game.World.Leaked,Is.Zero);
+            yield return new ExitPlayMode();
+        }
+        [UnityTest]
         public IEnumerator MapLandmarksNeverCoverWalkableCells()
         {
             EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");

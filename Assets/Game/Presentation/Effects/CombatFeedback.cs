@@ -8,6 +8,10 @@ namespace FrostMaze
     {
         Transform effectsRoot;
         Prototype game; World observed; long serial; float effectTime;
+        int observedLeaks, recentLeaks;
+        float alertTime, leakAlertUntil;
+        // UI alerts use real play time, independent of simulation speed and camera visibility.
+        public int RecentLeaks => alertTime<leakAlertUntil ? recentLeaks : 0;
         Material bolt,ember,defeat,airDefeat,leak; AudioSource sound; AudioClip boltClip,emberClip;
         readonly List<Flash> flashes=new List<Flash>();
         sealed class Flash { public GameObject Object; public float Until,Start,Duration,Scale; public Vector3 Origin; public bool Pulse; }
@@ -29,6 +33,7 @@ namespace FrostMaze
         {
             if(observed==game.World)return;
             observed=game.World;serial=0;effectTime=0;
+            observedLeaks=0;recentLeaks=0;alertTime=0;leakAlertUntil=0;
             foreach(var f in flashes)Destroy(f.Object);flashes.Clear();
         }
         public void EnemyRemoved(Enemy enemy)
@@ -63,7 +68,15 @@ namespace FrostMaze
             if(game==null||game.World==null)return;
             ObserveWorld();
             // Cosmetic clock follows pause and speed, but may finish fading after victory.
-            if(!game.Paused&&!game.SetupOpen)effectTime+=Time.unscaledDeltaTime*game.Speed;
+            if(!game.Paused&&!game.SetupOpen) {
+                effectTime+=Time.unscaledDeltaTime*game.Speed;
+                alertTime+=Time.unscaledDeltaTime;
+            }
+            if(observed.Leaked>observedLeaks) {
+                if(alertTime>=leakAlertUntil)recentLeaks=0;
+                recentLeaks+=observed.Leaked-observedLeaks;
+                observedLeaks=observed.Leaked;leakAlertUntil=alertTime+4;
+            }
             for(int i=flashes.Count-1;i>=0;i--) {
                 var f=flashes[i];
                 if(effectTime>=f.Until){Destroy(f.Object);flashes.RemoveAt(i);continue;}

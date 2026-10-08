@@ -20,7 +20,7 @@ namespace FrostMaze
             MaxZoom=Mathf.Max(MaxZoom,view.orthographicSize*1.5f);
             Apply();
         }
-        public void FocusBuilder(FrostMaze.Simulation.V2 point)
+        public void FocusPoint(FrostMaze.Simulation.V2 point)
         {
             Focus=new Vector3(point.X,0,point.Y);
             view.orthographicSize=11;
