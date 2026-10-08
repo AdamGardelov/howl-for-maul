@@ -11,3 +11,5 @@ The existing EnemyPresentationTracksSimulationAndResets case passed (1/1). It ch
 Visual inspection then prompted a final cosmetic refinement from a plain box hull to the cached bevelled armor mesh. That mesh-only follow-up compiled cleanly and was inspected at native 1920×884 close and normal gameplay zoom; the focused test was not rerun after the bevel adjustment. The last complete regression suite remains 71/71 at 05cad27, with later focused UI/enemy results recorded separately.
 
 The captures are staged four-enemy lineups, not wave playthroughs. No FPS gain or newly verified platform is claimed. Package source provenance is in Howl-Builds.json.
+
+Later combined checkpoint: all 72 Unity cases passed after the final silhouette bevels, including leak alerts, combat cues and enemy animation/cleanup. See Howl-Unity-Tests.json for the current full result. Earlier focused-run notes above describe their historical verification order.

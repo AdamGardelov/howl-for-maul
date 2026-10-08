@@ -4,7 +4,7 @@ All twelve factions now have original design-specific models: twenty winter towe
 
 ## Automated tests
 
-Fresh Unity 6000.3.25f1 suite: **71/71 passed**, including nine Play-mode integration cases. Compilation had zero errors/warnings. Exact result: Howl-Unity-Tests.json.
+Fresh Unity 6000.3.25f1 suite: **72/72 passed**, including ten Play-mode integration cases. Compilation had zero errors/warnings. Exact result: Howl-Unity-Tests.json.
 
 Paid presentation coverage buys all eight Ironfold rosters, checks each champion's six prerequisites, air targeting, cosmetic collider absence and champion upgrades. It preserves higher Gravity costs and Scrap's cheap opener. Winter models/upgrades, shared mesh cleanup, animation pause/resume, shot facing/recoil, setup flow and map switching remain covered. Simulation cases cover exact masks, all lanes, fixed team economy, ownership, half-cell paid construction, wall seams, siege/reopening, combat targeting and the captured 61-unit corner jam. The minimap case independently checks all 20,480 source cells, cache reuse and texture cleanup.
 
@@ -14,9 +14,9 @@ Wave-result follow-up: 61 pure cases and the 70-case Unity suite passed. Recaps 
 
 Combat cues: real-hit/kill feedback, flight-height leaks, pause/setup/reset and the shared 64-effect budget pass the new integration case. Native staged visual capture inspected. See COMBAT-CUES.md.
 
-Off-camera leak alerts: the new focused integration case passes (1/1), bringing the available suite to 72. The last full-suite run remains the 71/71 combat-cue checkpoint; no fresh 72/72 result is claimed. Native sidebar/focus fixtures inspected. A fresh packaged :98 mouse sequence also verified the grouped warning and View exit during natural wave progression, then closed with exit zero. See LEAK-ALERT.md.
+Off-camera leak alerts: the new focused integration case passes (1/1), bringing the available suite to 72. The subsequent combined suite now passes 72/72. Native sidebar/focus fixtures inspected. A fresh packaged :98 mouse sequence also verified the grouped warning and View exit during natural wave progression, then closed with exit zero. See LEAK-ALERT.md.
 
-Enemy silhouettes: narrower runners and heavier bevelled siege units retain existing collision/navigation. The enemy-presentation case passed (1/1); final cosmetic bevels compiled and were visually inspected afterward. See ENEMY-READABILITY.md.
+Enemy silhouettes: narrower runners and heavier bevelled siege units retain existing collision/navigation. The enemy-presentation case passed (1/1); final cosmetic bevels compiled and were visually inspected afterward, then the combined 72/72 suite passed. See ENEMY-READABILITY.md.
 
 ## Paid campaigns
 

@@ -15,3 +15,5 @@ Native 1920×884 sidebar capture inspected while focused on upper lanes away fro
 ## Packaged mouse verification
 
 Fresh source 303f2a0 Linux package on isolated :98 at 1440×900 also passed actual mouse input. Started the match, launched an undefended first wave, selected speed 2× and panned to upper lanes using the minimap. Wave one finished with 24 leaks, six lives and 1,320 gold (120 completion bonus). On wave two the warning grouped four recent leaks; pausing held it with two lives and 26 enemies remaining. Clicking View exit moved the camera to the goal while retaining those values and pause. Normal window close exited zero. This deliberately undefended alert check is separate from paid campaign verification. Native desktop and Windows runtime limitations remain unchanged.
+
+Later combined checkpoint: all 72 Unity cases passed after the final silhouette bevels, including leak alerts, combat cues and enemy animation/cleanup. See Howl-Unity-Tests.json for the current full result. Earlier focused-run notes above describe their historical verification order.
