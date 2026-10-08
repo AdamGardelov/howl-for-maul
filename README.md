@@ -87,7 +87,7 @@ Use **Howl for Maul → Build Linux** or **Build Windows**. Windows requires the
 - `Builds/Linux/HowlForMaul`
 - `Builds/Windows/HowlForMaul.exe`
 
-After building Linux, run `./Tools/smoke-linux.sh` to check both packaged maps without a display server. The script requires a clean exit and both route/data checks; it is not a graphics test. See [platform evidence](Docs/Platform/README.md).
+After building Linux, run `./Tools/smoke-linux.sh` to check both packaged maps without a display server. The explicit smoke mode skips presentation/audio startup; the script requires that isolation marker, both route/data checks and a clean exit. It is not a graphics or audio test. See [platform evidence](Docs/Platform/README.md).
 
 Keep each executable with its accompanying data and runtime files. Do not run a second Unity editor against the same project. Stop and restart Play after changing scripts; simulation state does not survive a domain reload.
 

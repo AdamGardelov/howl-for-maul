@@ -1,14 +1,14 @@
 {
   "builds": [
     {
-      "buildId": "build_425c5eb12643",
+      "buildId": "build_46aeac20e1f8",
       "result": "Succeeded",
       "platform": "StandaloneLinux64",
       "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Linux/HowlForMaul",
-      "totalSizeBytes": 92218648,
-      "buildTimeMs": 13361,
-      "buildStartedAt": "2026-10-08T12:08:46.3268110Z",
-      "buildEndedAt": "2026-10-08T12:08:59.6886850Z",
+      "totalSizeBytes": 92220360,
+      "buildTimeMs": 57610,
+      "buildStartedAt": "2026-10-08T12:45:58.9050400Z",
+      "buildEndedAt": "2026-10-08T12:46:56.5156440Z",
       "totalWarnings": 1,
       "totalErrors": 0,
       "warnings": [
@@ -18,14 +18,14 @@
       ]
     },
     {
-      "buildId": "build_48ab96c622a0",
+      "buildId": "build_ddc65d7cfd92",
       "result": "Succeeded",
       "platform": "StandaloneWindows64",
       "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Windows/HowlForMaul.exe",
-      "totalSizeBytes": 95862480,
-      "buildTimeMs": 19672,
-      "buildStartedAt": "2026-10-08T12:09:29.4158910Z",
-      "buildEndedAt": "2026-10-08T12:09:49.0879240Z",
+      "totalSizeBytes": 95864016,
+      "buildTimeMs": 15238,
+      "buildStartedAt": "2026-10-08T12:47:25.1266270Z",
+      "buildEndedAt": "2026-10-08T12:47:40.3654950Z",
       "totalWarnings": 19,
       "totalErrors": 0,
       "warnings": [
@@ -126,9 +126,9 @@
     "sourceCheckpoint": "465974e",
     "exitCode": 0
   },
-  "sourceCheckpoint": "0bcf8af",
+  "sourceCheckpoint": "75ab3ae",
   "linuxHeadlessSmoke": {
-    "sourceCheckpoint": "0bcf8af",
+    "sourceCheckpoint": "75ab3ae",
     "command": "Tools/smoke-linux.sh",
     "display": "DISPLAY and WAYLAND_DISPLAY unset for child process",
     "graphicsDevice": "Null Device",
@@ -137,13 +137,15 @@
       "Rimewatch",
       "Ironfold"
     ],
-    "note": "Both route/data markers and HOWL_SMOKE_COMPLETE checked; script also requires exit zero. No graphical claim."
+    "note": "Three consecutive clean exits; each run asserts presentation/audio were not initialized and checks both maps plus completion. Explicit data-only smoke is not a graphics/audio test.",
+    "consecutivePasses": 3
   },
   "linuxPackagedSmoke": {
-    "sourceCheckpoint": "0bcf8af",
+    "sourceCheckpoint": "75ab3ae",
     "backend": "headless -batchmode -nographics",
     "exitCode": 0,
     "markers": [
+      "HOWL_SMOKE_DATA_ONLY",
       "HOWL_SMOKE_PASS Rimewatch lanes=3 factions=4 towers=20 waves=20",
       "HOWL_SMOKE_PASS Ironfold lanes=4 factions=8 towers=56 waves=20",
       "HOWL_SMOKE_COMPLETE"
@@ -176,5 +178,18 @@
       "No native :0 display or Windows runtime claim"
     ],
     "note": "First launched process exited zero before warning inspection while editor build-target work was still being finalized; cause not established. Separate retry after those transitions completed produced the verified sequence."
+  },
+  "headlessAudioShutdownFailure": {
+    "sourceCheckpoint": "fdfbde8",
+    "exitCode": 133,
+    "bothMapChecksCompleted": true,
+    "messages": [
+      "ADTM: Destroying manager while a mix has not ended",
+      "ADTM: Attempting to update control while a mix is ongoing, but realtime thread is disabled"
+    ],
+    "resolution": "Explicit --howl-smoke-test now skips presentation bootstrap and asserts no Prototype/AudioSource exists. Normal launches still bootstrap the game.",
+    "fixedSourceCheckpoint": "75ab3ae",
+    "consecutiveCleanSmokeRuns": 3,
+    "note": "Failure occurred during native audio shutdown. The exact underlying native race is not established; this removes unnecessary presentation/audio initialization from the data-only test path."
   }
 }

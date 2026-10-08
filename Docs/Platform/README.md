@@ -11,3 +11,7 @@ Native desktop limits remain: older default X11 launches failed in XF86VidModeGe
 A subsequent source 465974e Wayland/Vulkan smoke reached both map checks and exited zero, but logged a DRM Syncobj surface protocol error. This verifies the route/data path only, not a working native graphical window or input. Saved graphics defaults remain unchanged.
 
 Package refresh a56b875 adds the wave recap and terminal-state corrections. Both builds have zero errors (same 1/19 warning counts), and display-free Linux route/data smoke passes with exit zero. The graphical mouse evidence above remains tied to 465974e.
+
+## Explicit data-only smoke and audio shutdown
+
+The fdfbde8 package completed both map smoke checks but exited 133 during native audio shutdown, with ADTM warnings about ending a manager while a mix was active. The smoke path had unnecessarily created the procedural presentation and its synthetic clips before immediately quitting. Source 75ab3ae skips presentation bootstrap only for the explicit `--howl-smoke-test` mode, then asserts no Prototype/AudioSource was created. Three consecutive Linux runs passed both maps and exited zero without those messages. `Tools/smoke-linux.sh` now also requires HOWL_SMOKE_DATA_ONLY. This is an isolated route/data check, not an audio device or graphics test. The underlying native race is not claimed to be solved for every platform.

@@ -1,35 +1,20 @@
 {
-  "success": true,
-  "command": "command test_status",
-  "data": {
-    "command": "test_status",
-    "parameters": {},
-    "result": {
-      "status": "completed",
-      "duration": 3.66,
-      "summary": {
-        "total": 1,
-        "passed": 1,
-        "failed": 0,
-        "skipped": 0,
-        "inconclusive": 0
-      },
-      "results": [
-        {
-          "FullName": "FrostMaze.Tests.PlayModeIntegration.CombatAudioLimitsBurstsFollowsCameraAndPrioritizesLeaks",
-          "Status": "Passed",
-          "Duration": 45.1689284,
-          "Message": null,
-          "StackTrace": null
-        }
-      ]
-    },
-    "target": {
-      "host": "127.0.0.1",
-      "port": 7800,
-      "projectPath": "/home/adam/Documents/Dev/howl-for-maul"
-    }
+  "status": "completed",
+  "duration": 3.65,
+  "summary": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0
   },
-  "errors": [],
-  "warnings": []
+  "results": [
+    {
+      "FullName": "FrostMaze.Tests.PlayModeIntegration.CombatAudioLimitsBurstsFollowsCameraAndPrioritizesLeaks",
+      "Status": "Passed",
+      "Duration": 46.8165272,
+      "Message": null,
+      "StackTrace": null
+    }
+  ]
 }
