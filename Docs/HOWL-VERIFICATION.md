@@ -75,3 +75,5 @@ Themed scenery: final compilation, expanded prop-clearance regression on both ma
 Full-map HUD follow-up: clean compilation, four focused camera/audio/tower checks and final updated camera/menu/overview assertions passed. Native menu, rosters and paid inspector captures inspected. Read FULL-MAP-HUD.md; previous 77-case suite remains historical.
 
 Packaged compact-HUD verification (485bb5e): both-map data smoke passed; actual isolated Linux build/upgrade, Esc menu, New Game setup/Return preserving the match, Tab details and final overview were captured and inspected. Gold 1200 → 1180 → 1160; normal close exited zero. Fullscreen mode switching and Windows runtime are unverified. See FULL-MAP-HUD.md and Howl-Builds.json.
+
+Build queue follow-up: 63/63 pure simulation cases passed, including the new enemy-blocked middle order, click-order completion, no skipped charge/retry and unreserved wallet exhaustion. Compact HUD exposes the pending count. See BUILD-QUEUE.md.

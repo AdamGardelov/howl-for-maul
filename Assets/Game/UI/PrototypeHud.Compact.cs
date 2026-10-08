@@ -23,7 +23,7 @@ namespace FrostMaze
             GUILayout.EndHorizontal();GUILayout.EndArea();
             var build=Logical(game.BuildHud);GUI.DrawTexture(build,panel);
             GUILayout.BeginArea(new Rect(build.x+8,build.y+4,build.width-16,build.height-8));
-            GUILayout.BeginHorizontal();GUILayout.Label(w.FactionName.ToUpperInvariant(),section,GUILayout.ExpandWidth(true));
+            GUILayout.BeginHorizontal();GUILayout.Label(w.FactionName.ToUpperInvariant()+$" · {w.QueuedBuilds} QUEUED · SHIFT + CLICK TO QUEUE",section,GUILayout.ExpandWidth(true));
             if(GUILayout.Button(game.SellMode?"SELLING [X]":game.MoveMode?"MOVING [M]":"BUILDING [B]",button,GUILayout.Width(132))){game.SellMode=false;game.MoveMode=false;}
             if(GUILayout.Button("CANCEL ORDERS",button,GUILayout.Width(126)))game.CancelInteraction();GUILayout.EndHorizontal();
             GUILayout.BeginHorizontal();int shortcut=0;

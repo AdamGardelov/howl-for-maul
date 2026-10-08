@@ -111,6 +111,35 @@ namespace FrostMaze.Tests
             for(int i=0;i<300;i++)w.Step();
             Check(w.QueuedBuilds==0&&w.Grid.Towers.Count==3,"move did not cancel queue");
         }
+        public static void BlockedQueueContinues()
+        {
+            var w=new World(Scenario.SharedDefense());w.SelectedDesign=1;
+            // Farther first, nearer last: completion must follow clicks, not travel distance.
+            Check(w.OrderBuild(3,32,out _),"first order rejected");
+            Check(w.OrderBuild(3,31,out _,true),"middle order rejected");
+            Check(w.OrderBuild(3,30,out _,true),"last order rejected");
+            var blocker=w.Spawn(new WaveSpec{Speed=0,Health=10000},new V2(3.5f,31.5f));
+            Check(blocker!=null,"blocker fixture missing");
+            bool skipped=false;
+            for(int i=0;i<600&&w.QueuedBuilds>0;i++) {
+                w.Step();skipped|=w.BuilderNotice.StartsWith("Skipped order:");
+                if(w.Grid.At(3,30)!=null)Check(w.Grid.At(3,32)!=null,"queue reordered by distance");
+            }
+            Check(w.QueuedBuilds==0&&skipped,"blocked order stalled queue or lacked feedback");
+            Check(w.Grid.At(3,31)==null&&w.Grid.At(3,32)!=null&&w.Grid.At(3,30)!=null,"blocked footprint built or later order lost");
+            Check(w.Grid.Towers.Count==2&&w.Gold==1190,"skipped order charged gold");
+            // Skipping discards the order; clearing the enemy later must not retry it.
+            w.Enemies.Clear();for(int i=0;i<100;i++)w.Step();
+            Check(w.Grid.At(3,31)==null&&w.Gold==1190,"skipped order retried");
+
+            // Orders are paid at completion; accepting a queue does not reserve gold.
+            var c=Scenario.SharedDefense();c.StartingGold=10;var poor=new World(c);
+            poor.SelectedDesign=1;Check(poor.OrderBuild(3,32,out _),"cheap first order");
+            poor.SelectedDesign=1;Check(poor.OrderBuild(3,31,out _,true),"cheap middle order");
+            Check(poor.OrderBuild(3,30,out _,true),"cheap final order");
+            for(int i=0;i<600&&poor.QueuedBuilds>0;i++)poor.Step();
+            Check(poor.Gold==0&&poor.Grid.Towers.Count==2&&poor.Grid.At(3,30)==null&&poor.QueuedBuilds==0,"unfunded order charged or stalled");
+        }
         public static void WallNoWeapon()
         {
             var w=new World(Scenario.SharedDefense());w.SelectedDesign=1;w.Build(16,14,out _);

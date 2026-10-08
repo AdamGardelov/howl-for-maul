@@ -2,6 +2,8 @@
 
 ## Latest state
 
+- Shift-click queue feedback: compact pending count, explicit skipped-order status and new blocked-footprint FIFO/payment regression. All 63 pure simulation cases pass. Read BUILD-QUEUE.md.
+
 - Full-map HUD: permanent sidebar removed from play, compact top/bottom controls, contextual tower inspector, Tab details and Esc paused game menu. Overview reserves space for HUD strips. Four focused checks passed, then the final boundary/overview test passed again. Read FULL-MAP-HUD.md.
 
 - Source 9f228e1 adds original themed dressing: Rimewatch has 58 frost-plant clusters and 9 blue lanterns; Ironfold has 8 copper scrub clusters and 5 warm braziers. Deterministic placement, five batched material groups, no colliders or dynamic lights. Flame brightness freezes on pause. Read THEMED-SCENERY.md.

@@ -142,9 +142,9 @@ namespace FrostMaze.Simulation
             {
                 HasBuildOrder = false;
                 int selected=SelectedDesign;SelectedDesign=Player.OrderedDesign;
-                Build(BuildOrder.X, BuildOrder.Y, out string message);
+                bool built=Build(BuildOrder.X, BuildOrder.Y, out string message);
                 SelectedDesign=selected;
-                BuilderNotice = message;
+                BuilderNotice = built ? message : "Skipped order: " + message;
                 BuilderDestination = BuilderPosition;
                 // Advance without reordering or changing the user's toolbar selection.
                 if(Player.Queue.Count>0) {

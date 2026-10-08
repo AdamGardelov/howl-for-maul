@@ -92,6 +92,7 @@ namespace FrostMaze.Tests
             ,new Case("Cannon splash damages ground crowds but not air",TowerCases.GroundSplash)
             ,new Case("Barricades have no weapon",TowerCases.WallNoWeapon)
             ,new Case("Queued construction retains designs and cancels cleanly",TowerCases.QueuedConstruction)
+            ,new Case("Blocked queued construction skips in click order without charging",TowerCases.BlockedQueueContinues)
             ,new Case("Twenty-wave escalation preserves opening and forecasts",MapCases.ExtendedCampaign)
             ,new Case("Robot faction strengths and paid reclamation",MapCases.RobotIdentity)
             ,new Case("Wave income excludes spending and preserves independent snapshots",WaveSummaryCases.IncomeIgnoresSpendingAndSnapshots)
