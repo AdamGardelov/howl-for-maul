@@ -27,7 +27,8 @@ namespace FrostMaze.Simulation
     }
     public sealed class Tower
     {
-        public int Id, CellX, CellY, Design, Level=1;
+        public int Id, Design, Level=1;
+        public float CellX, CellY;
         public string Name="Bolt Spire";
         public TowerSpec Spec;
         public float Health, Cooldown;

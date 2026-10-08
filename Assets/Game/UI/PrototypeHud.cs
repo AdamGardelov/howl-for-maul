@@ -147,7 +147,7 @@ namespace FrostMaze
             {
                 var f = w.Navigation.Get(w.Config.GroundRoute[0], w.Config.Waves[0].Radius);
                 int at = f.Index(game.Hover + new V2(0.5f, 0.5f));
-                GUILayout.Label($"Cell {game.Hover.X:0}, {game.Hover.Y:0}  |  Distance {f.Distance[at]:0.00}", label);
+                GUILayout.Label($"Cell {game.Hover.X:0.#}, {game.Hover.Y:0.#}  |  Distance {f.Distance[at]:0.00}", label);
             }
             var e = w.Enemies.Find(enemy => enemy.Id == game.SelectedId);
             GUILayout.Space(12);

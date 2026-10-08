@@ -72,9 +72,9 @@ namespace FrostMaze
             var w = game.World;
             if (game.ShowGrid)
             {
-                for (int x = 0; x <= w.Grid.Width; x++)
+                for (float x = 0; x <= w.Grid.Width; x+=w.PlacementStep)
                     layers[0].Line(new V2(x, 0), new V2(x, w.Grid.Height), 0.015f);
-                for (int y = 0; y <= w.Grid.Height; y++)
+                for (float y = 0; y <= w.Grid.Height; y+=w.PlacementStep)
                     layers[0].Line(new V2(0, y), new V2(w.Grid.Width, y), 0.015f);
             }
             if (game.ShowNavigation)

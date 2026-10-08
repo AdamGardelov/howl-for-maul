@@ -36,6 +36,9 @@ namespace FrostMaze.Tests
                 w.Step();
         }
         public static readonly Case[] All ={
+            new Case("Reference wall seams accept flush towers and exclude enemies",MapCases.WallSeams),
+            new Case("Half-cell paid queues preserve position ownership and selection",MapCases.FractionalPaidOrders),
+            new Case("Half-cell wall seal triggers siege and reopens after sale",MapCases.FractionalWallSiege),
             new Case("Paid reference mazes detour ground, preserve flight and reopen",MapCases.PaidReferenceMazes),
             new Case("Mixed-flight chain feedback preserves source and target",TowerCases.ChainFeedbackOrigins),
             new Case("Every armed roster design has valid targeting and air splash",TowerCases.EveryArmedDesignHasTargets),

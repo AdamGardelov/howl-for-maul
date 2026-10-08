@@ -43,7 +43,7 @@ Opening **New match / setup** freezes the current match. **Return to match** kee
 
 Towers have distinct wall, sentry, control, artillery, relay, interceptor and champion silhouettes, faction colors and illuminated upgrade tiers. Weapons turn toward actual shots and recoil briefly; the animation follows simulation speed and freezes in pause/setup. Home focuses the builder; End restores the overview; the minimap outlines the camera view. Ground enemies use orange armored crawler silhouettes; flying enemies have purple animated wings and hover above the battlefield. Damaged or selected enemies show health bars. Cyan markers indicate slowing, and a red crest indicates siege. Splash and chain effects follow ground/flight height and freeze while paused. The first stylized visual pass adds continuous terrain shading, beveled cliffs, layered snow pines, faceted tower shapes and matte lighting. These original procedural models remain prototype art; see Docs/ART-DIRECTION.md.
 
-Full route blockage is allowed: ground enemies find a player-built obstruction to attack. Selling or destruction opens the route again. Congestion alone does not trigger siege. Permanent terrain cannot be built on, sold, damaged or crossed by ground units.
+Full route blockage is allowed: ground enemies find a player-built obstruction to attack. Selling or destruction opens the route again. Congestion alone does not trigger siege. Permanent terrain cannot be built on, sold, damaged or crossed by ground units. Towers can align with map walls: placement snaps to one unit on Rimewatch and half a unit on Ironfold, preserving the same tower sizes. See [wall placement verification](Docs/WALL-PLACEMENT.md).
 
 ## Towers
 

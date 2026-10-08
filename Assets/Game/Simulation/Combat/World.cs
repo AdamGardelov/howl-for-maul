@@ -82,12 +82,12 @@ namespace FrostMaze.Simulation
             BuilderDestination = new V2(Geometry.Clamp(destination.X, .5f, Config.Width - .5f), Geometry.Clamp(destination.Y, .5f, Config.Height - .5f));
             BuilderNotice = "Moving. Previous build order cancelled.";
         }
-        public bool OrderBuild(int x, int y, out string reason, bool append=false)
+        public bool OrderBuild(float x, float y, out string reason, bool append=false)
         {
             if (!Config.BuilderEnabled) return Build(x, y, out reason);
             if (!CanBuild(x, y, out reason)) return false;
             if(append&&HasBuildOrder) {
-                if((int)BuildOrder.X==x&&(int)BuildOrder.Y==y){reason="That cell is already ordered.";return false;}
+                if(BuildOrder.X==x&&BuildOrder.Y==y){reason="That cell is already ordered.";return false;}
                 foreach(var task in Player.Queue)if(task.X==x&&task.Y==y){reason="That cell is already queued.";return false;}
                 if(Player.Queue.Count>=128){reason="Build queue is full.";return false;}
                 Player.Queue.Enqueue(new BuildTask{X=x,Y=y,Design=SelectedDesign});
@@ -111,7 +111,7 @@ namespace FrostMaze.Simulation
             {
                 HasBuildOrder = false;
                 int selected=SelectedDesign;SelectedDesign=Player.OrderedDesign;
-                Build((int)BuildOrder.X, (int)BuildOrder.Y, out string message);
+                Build(BuildOrder.X, BuildOrder.Y, out string message);
                 SelectedDesign=selected;
                 BuilderNotice = message;
                 BuilderDestination = BuilderPosition;
@@ -183,8 +183,11 @@ namespace FrostMaze.Simulation
             foreach(int missing in MissingPrerequisites(design))return false;
             return true;
         }
-        public bool CanBuild(int x, int y, out string reason)
+        public float PlacementStep => Config.LayoutRows.Length>0?Config.LayoutCellSize:1f;
+        public V2 SnapBuildOrigin(V2 point) => new V2((float)Math.Floor(point.X/PlacementStep)*PlacementStep,(float)Math.Floor(point.Y/PlacementStep)*PlacementStep);
+        public bool CanBuild(float x, float y, out string reason)
         {
+            if(float.IsNaN(x)||float.IsNaN(y)||float.IsInfinity(x)||float.IsInfinity(y)||Math.Abs(x/PlacementStep-Math.Round(x/PlacementStep))>.0001||Math.Abs(y/PlacementStep-Math.Round(y/PlacementStep))>.0001){reason="Align the tower to the placement grid.";return false;}
             if (Finished) { reason = "Match finished. Reset to play again."; return false; }
             if(!RequirementsMet(SelectedDesign)){reason="Build each regular tower in your faction before its champion.";return false;}
             if (Config.Economy && Gold < BuildCost) { reason = "Not enough gold."; return false; }
@@ -215,8 +218,7 @@ namespace FrostMaze.Simulation
                 }
             if(Grid.TerrainOverlaps(x,y,spec.Width,spec.Height)){reason="Terrain cannot be built on.";return false;}
             bool occupied = x < 0 || y < 0 || x + spec.Width > Grid.Width || y + spec.Height > Grid.Height;
-            for (int cx = x; cx < x + spec.Width && !occupied; cx++)
-                for (int cy = y; cy < y + spec.Height; cy++) occupied |= Grid.At(cx, cy) != null;
+            foreach(var tower in Grid.Towers)occupied |= x<tower.CellX+tower.Spec.Width&&x+spec.Width>tower.CellX&&y<tower.CellY+tower.Spec.Height&&y+spec.Height>tower.CellY;
             if (occupied)
             {
                 reason = "Outside map or occupied footprint.";
@@ -225,7 +227,7 @@ namespace FrostMaze.Simulation
             reason = "Placement valid.";
             return true;
         }
-        public bool Build(int x, int y, out string reason)
+        public bool Build(float x, float y, out string reason)
         {
             if (!CanBuild(x, y, out reason)) return false;
             var center = new V2(x + BuildSpec.Width * .5f, y + BuildSpec.Height * .5f);
@@ -238,7 +240,7 @@ namespace FrostMaze.Simulation
             reason = "Tower built. Complete route blockage is allowed.";
             return true;
         }
-        public bool Sell(int x, int y)
+        public bool Sell(float x, float y)
         {
             if (Finished) return false;
             var t = Grid.At(x, y);

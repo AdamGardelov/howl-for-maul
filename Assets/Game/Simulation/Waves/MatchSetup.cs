@@ -31,7 +31,7 @@ namespace FrostMaze.Simulation
             }
         }
     }
-    public sealed class BuildTask { public int X,Y,Design; }
+    public sealed class BuildTask { public float X,Y; public int Design; }
     public sealed class PlayerState
     {
         public readonly System.Collections.Generic.Queue<BuildTask> Queue=new System.Collections.Generic.Queue<BuildTask>();

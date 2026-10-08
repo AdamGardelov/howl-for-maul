@@ -271,7 +271,8 @@ namespace FrostMaze
             if (!plane.Raycast(View.ScreenPointToRay(mouse), out float distance))
                 return;
             var point = View.ScreenPointToRay(mouse).GetPoint(distance);
-            int x = Mathf.FloorToInt(point.x), y = Mathf.FloorToInt(point.z);
+            var snapped=World.SnapBuildOrigin(new V2(point.x,point.z));
+            float x=snapped.X,y=snapped.Y;
             if (x < 0 || y < 0 || x >= World.Grid.Width || y >= World.Grid.Height)
                 return;
             Hover = new V2(x, y);

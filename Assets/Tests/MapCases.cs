@@ -14,6 +14,56 @@ namespace FrostMaze.Tests
 #endif
    string text=File.ReadAllText(root+(iron?"Ironfold":"Rimewatch")+".txt");return iron?ReferenceMaps.Ironfold(text):ReferenceMaps.Rimewatch(text);
   }
+  public static void WallSeams() {
+   foreach(bool iron in new[]{false,true}) {
+    var w=new World(Load(iron));float step=w.PlacementStep;int seams=0,halfSeams=0;var radius=w.Config.Waves[0].Radius;
+    for(float y=0;y<w.Config.Height;y+=step)for(float x=0;x<w.Config.Width;x+=step) {
+     if(!w.CanBuild(x,y,out _))continue;
+     foreach(var terrain in w.Grid.Terrain) {
+      float lo=Math.Max(y,terrain.Y),hi=Math.Min(y+1,terrain.Y+terrain.Height);
+      V2 seam=default;bool touching=false;
+      if(hi-lo>.01f&&terrain.X+terrain.Width==x){seam=new V2(x+.035f,(lo+hi)*.5f);touching=true;}
+      if(hi-lo>.01f&&terrain.X==x+1){seam=new V2(x+1-.035f,(lo+hi)*.5f);touching=true;}
+      lo=Math.Max(x,terrain.X);hi=Math.Min(x+1,terrain.X+terrain.Width);
+      if(hi-lo>.01f&&terrain.Y+terrain.Height==y){seam=new V2((lo+hi)*.5f,y+.035f);touching=true;}
+      if(hi-lo>.01f&&terrain.Y==y+1){seam=new V2((lo+hi)*.5f,y+1-.035f);touching=true;}
+      if(!touching)continue;
+      var t=w.Grid.Build(x,y,w.BuildSpec.Copy());Check(t!=null,"flush placement rejected");
+      Check(!w.Grid.Clear(seam,seam,radius),"enemy fits between tower and source wall");
+      Check(!w.Grid.TerrainOverlaps(x,y,1,1),"flush tower overlaps terrain");
+      w.Grid.Remove(t.Id);seams++;if(x%1!=0||y%1!=0)halfSeams++;
+     }
+    }
+    Check(seams>100,"insufficient real-map wall/corner coverage");Check(!iron||halfSeams>100,"missing Ironfold half-cell edge coverage");
+   }
+  }
+  public static void FractionalPaidOrders() {
+   var w=new World(Load(true));float bx=-1,by=-1,cx=-1,cy=-1;
+   for(float y=1;y<63&&bx<0;y+=.5f)for(float x=1;x<63&&bx<0;x+=.5f)
+    if((x%1!=0||y%1!=0)&&w.CanBuild(x,y,out _)&&w.CanBuild(x+2,y,out _)){bx=x;by=y;cx=x+2;cy=y;}
+   Check(bx>=0,"no fractional fixture");int gold=w.Gold,cost=w.BuildCost;
+   Check(w.OrderBuild(bx,by,out _),"paid fractional order");Check(!w.OrderBuild(bx,by,out _,true),"duplicate order accepted");
+   Check(w.OrderBuild(cx,cy,out _,true),"queued fractional order");
+   for(int i=0;i<1000&&w.QueuedBuilds>0;i++)w.Step();
+   var first=w.Grid.At(bx+.2f,by+.2f);var second=w.Grid.At(cx+.2f,cy+.2f);
+   Check(first!=null&&first.CellX==bx&&first.CellY==by&&second!=null&&second.CellX==cx&&second.CellY==cy,"builder truncated half cells");
+   Check(w.Gold==gold-2*cost,"fractional purchase wallet");
+   Check(!w.CanBuild(bx+.5f,by,out _),"partial footprint overlap accepted");Check(!w.CanBuild(bx+.25f,by,out _),"off-grid placement accepted");
+   Check(w.Upgrade(first.Id,out _),"fractional upgrade");Check(w.Sell(bx+.2f,by+.2f),"fractional point selection/sale");
+   Check(w.Grid.At(cx+.2f,cy+.2f)==second,"sale removed neighbor");
+   var snap=w.SnapBuildOrigin(new V2(12.8f,14.6f));Check(snap.X==12.5f&&snap.Y==14.5f,"cursor snapping");
+  }
+  public static void FractionalWallSiege() {
+   var c=new Scenario{Width=12,Height=8,Economy=true,BuilderEnabled=true,LayoutRows=new[]{"."},LayoutCellSize=.5f,
+    Spawn=new V2(1.5f,3),GroundRoute=new[]{new V2(10.5f,3)},FlightRoute=new[]{new V2(10.5f,3)},
+    Tower=new TowerSpec{Damage=0,Health=10000},Waves=new[]{new WaveSpec{Count=1,Health=1000}},
+    Terrain=new[]{new TerrainBlock{X=0,Y=0,Width=12,Height=2.5f},new TerrainBlock{X=0,Y=3.5f,Width=12,Height=4.5f}}};
+   var w=new World(c);Check(w.OrderBuild(5,2.5f,out _),"flush paid seal");for(int i=0;i<200;i++)w.Step();
+   var tower=w.Grid.At(5,2.5f);Check(tower!=null,"seal not built");Check(w.StartWave(),"start siege fixture");bool siege=false;
+   for(int i=0;i<400;i++){w.Step();foreach(var enemy in w.Enemies){siege|=enemy.Blocked;Check(enemy.Position.X<6,"enemy slipped through flush seal");Check(w.Grid.Clear(enemy.Position,enemy.Position,enemy.Spec.Radius),"enemy penetrated seal");}}
+   Check(siege&&tower.Health<10000&&w.Leaked==0,"sealed route did not trigger siege");
+   Check(w.Sell(5,2.5f),"sell seal");for(int i=0;i<1000&&w.Leaked==0;i++)w.Step();Check(w.Leaked==1,"sold seal did not reopen route");
+  }
   public static void ExtendedCampaign() {
    foreach(bool iron in new[]{false,true}) {
     var c=Load(iron);Check(c.Waves.Length==20,"campaign length");
