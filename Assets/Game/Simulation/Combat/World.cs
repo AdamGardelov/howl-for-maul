@@ -58,7 +58,17 @@ namespace FrostMaze.Simulation
             reason=tower.Name+" upgraded to level "+tower.Level;return true;
         }
         int rewardCursor;
-        void Reward(int amount) { for(int i=0;i<amount;i++) {Players[rewardCursor].Gold++;rewardCursor=(rewardCursor+1)%Players.Length;} }
+        readonly int[] waveGold;
+        int waveKilledStart,waveLeakedStart;
+        public WaveSummary LastWaveSummary { get; private set; }
+        void Reward(int amount) {
+            for(int i=0;i<amount;i++) {
+                Players[rewardCursor].Gold++;
+                if(WaveIndex>=0&&LastWaveSummary==null)waveGold[rewardCursor]++;
+                rewardCursor=(rewardCursor+1)%Players.Length;
+            }
+        }
+        void SummarizeWave(bool cleared) { LastWaveSummary=new WaveSummary(WaveIndex+1,Killed-waveKilledStart,Leaked-waveLeakedStart,cleared,waveGold); }
         public int LaneCount => Math.Max(1,Config.Lanes.Length);
         public V2 LaneSpawn(int lane) => Config.Lanes.Length==0?Config.Spawn:Config.Lanes[lane].Spawn;
         public V2[] LaneRoute(int lane,bool flying) => Config.Lanes.Length==0?(flying?Config.FlightRoute:Config.GroundRoute):(flying?Config.Lanes[lane].FlightRoute:Config.Lanes[lane].GroundRoute);
@@ -144,6 +154,7 @@ namespace FrostMaze.Simulation
                 if(config.Factions.Length>0&&(faction<0||faction>=config.Factions.Length))throw new ArgumentException("Invalid faction.");
                 Players[i]=new PlayerState {Position=pos,Destination=pos,Faction=faction,SelectedDesign=config.Factions.Length==0?0:config.Factions[faction].Designs[0]};
             }
+            waveGold=new int[Players.Length];
             Reward(config.StartingGold);
             spawnTimers=new float[LaneCount]; lanePending=new int[LaneCount];
             Grid = new MazeGrid(config.Width, config.Height);
@@ -155,6 +166,8 @@ namespace FrostMaze.Simulation
             if (Finished || WaveActive || WaveIndex + 1 >= Config.Waves.Length)
                 return false;
             WaveIndex++;
+            LastWaveSummary=null;Array.Clear(waveGold,0,waveGold.Length);
+            waveKilledStart=Killed;waveLeakedStart=Leaked;
             currentWave=PreviewWave(WaveIndex);
             Pending=currentWave.Count*LaneCount;
             for(int lane=0;lane<LaneCount;lane++){lanePending[lane]=currentWave.Count;spawnTimers[lane]=0;}
@@ -394,7 +407,9 @@ namespace FrostMaze.Simulation
             {
                 rewardedWave = WaveIndex;
                 if (Config.Economy) Reward(Config.WaveReward);
+                SummarizeWave(true);
             }
+            if(Defeated&&WaveIndex>=0&&LastWaveSummary==null)SummarizeWave(false);
             if (Finished) foreach(var player in Players){player.HasBuildOrder=false;player.Queue.Clear();}
         }
         static void Hit(Enemy enemy,TowerSpec spec)

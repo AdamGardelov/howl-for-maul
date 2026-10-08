@@ -93,6 +93,9 @@ namespace FrostMaze.Tests
             ,new Case("Queued construction retains designs and cancels cleanly",TowerCases.QueuedConstruction)
             ,new Case("Twenty-wave escalation preserves opening and forecasts",MapCases.ExtendedCampaign)
             ,new Case("Robot faction strengths and paid reclamation",MapCases.RobotIdentity)
+            ,new Case("Wave income excludes spending and preserves independent snapshots",WaveSummaryCases.IncomeIgnoresSpendingAndSnapshots)
+            ,new Case("Wave results distinguish survived leaks from defeat",WaveSummaryCases.LeaksAndDefeat)
+            ,new Case("Free-build wave results do not invent income",WaveSummaryCases.FreeBuildAwardsNoIncome)
             ,new Case("Captured dense Ironfold corner crowd clears without siege",MapCases.DenseIronfoldCorners)
         };
     }

@@ -77,12 +77,23 @@ namespace FrostMaze
             GUILayout.BeginHorizontal();Resource("YOUR GOLD",w.Gold.ToString());Resource("TEAM LIVES",w.Lives.ToString());Resource("WAVE",Mathf.Max(0,w.WaveIndex+1)+" / "+w.Config.Waves.Length);GUILayout.EndHorizontal();
             GUILayout.Label(w.Finished?(w.Won?"VICTORY — all waves cleared":"DEFEAT — the crossing fell"):$"{w.LaneCount} lanes active  ·  {w.Difficulty}  ·  {w.Enemies.Count} enemies",section);
             GUI.enabled=!w.Finished&&!w.WaveActive&&w.WaveIndex+1<w.Config.Waves.Length;
-            if(GUILayout.Button(w.WaveActive?"WAVE IN PROGRESS":w.Finished?"MATCH COMPLETE":"LAUNCH WAVE "+(w.WaveIndex+2)+"     [SPACE]",primary))game.Launch();
+            if(GUILayout.Button(w.Finished?"MATCH COMPLETE":w.WaveActive?"WAVE IN PROGRESS":"LAUNCH WAVE "+(w.WaveIndex+2)+"     [SPACE]",primary))game.Launch();
             GUI.enabled=true;
             GUILayout.BeginHorizontal();if(GUILayout.Button(game.Paused?"Resume [P]":"Pause [P]",button))game.Paused=!game.Paused;
             if(GUILayout.Button(game.Speed==1?"Speed 1×":"Speed 2×",button))game.Speed=game.Speed==1?2:1;
-            if(GUILayout.Button("Setup",button))game.OpenSetup();GUILayout.EndHorizontal();
+            if(GUILayout.Button(w.Finished?"New match":"Setup",button))game.OpenSetup();GUILayout.EndHorizontal();
             GUILayout.Label(game.Notice,small);
+            if(w.LastWaveSummary!=null) {
+                var result=w.LastWaveSummary;
+                GUILayout.BeginVertical(badge);
+                GUILayout.Label(w.Won?"VICTORY":!result.Cleared?"DEFENSE LOST — WAVE "+result.WaveNumber:"WAVE "+result.WaveNumber+(result.Leaked==0?" CLEARED":" FINISHED"),section);
+                GUILayout.Label($"{result.Killed} defeated · {result.Leaked} leaked",label);
+                if(w.Config.Economy) {
+                    GUILayout.Label(w.Players.Length==1?$"Earned {result.GoldForPlayer(0)} gold":$"Your income: {result.GoldForPlayer(w.ActivePlayer)}g · team: {result.TeamGold}g",label);
+                    GUILayout.Label(result.Cleared?"Kill bounty + wave bonus":"Kill bounty; no completion bonus",small);
+                }
+                GUILayout.EndVertical();
+            }
             Rule();
             scroll=GUILayout.BeginScrollView(scroll);
             if(w.Players.Length>1){GUILayout.Label("LOCAL PLAYER",section);GUILayout.BeginHorizontal();for(int i=0;i<w.Players.Length;i++)if(GUILayout.Button($"{(i==w.ActivePlayer?"• ":"")}P{i+1}  {w.Players[i].Gold}g",button))w.SelectPlayer(i);GUILayout.EndHorizontal();}

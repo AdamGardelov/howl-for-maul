@@ -10,6 +10,7 @@ namespace FrostMaze
         static readonly Unity.Profiling.ProfilerMarker ViewsProfile=new Unity.Profiling.ProfilerMarker("Howl.Views");
         public MapDefinition Map;
         static string requestedMap = "Rimewatch";
+        WaveSummary observedWaveSummary;
         public bool MoveMode;
         public bool SetupOpen;
         bool matchStarted;
@@ -267,7 +268,7 @@ namespace FrostMaze
                 }
                 return;
             }
-            if (Sidebar.Contains(uiPoint))
+            if (World.Finished||Sidebar.Contains(uiPoint))
                 return;
             var plane = new Plane(Vector3.up, Vector3.zero);
             if (!plane.Raycast(View.ScreenPointToRay(mouse), out float distance))
@@ -360,6 +361,10 @@ namespace FrostMaze
         void SyncViews() { using(ViewsProfile.Auto()) SyncViewsProfiled(); }
         void SyncViewsProfiled()
         {
+            if(observedWaveSummary!=World.LastWaveSummary) {
+                observedWaveSummary=World.LastWaveSummary;
+                if(observedWaveSummary!=null)Notice=World.Won?"Victory! All waves survived.":World.Defeated?"Defense lost. Open Setup to start a new match.":"Wave finished. Build and upgrade before the next attack.";
+            }
             if (builder != null)
             {
                 TintBuilder(builder,World.Players[World.ActivePlayer].Faction);
