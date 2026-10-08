@@ -16,13 +16,13 @@ namespace FrostMaze
         static void Run(){if(Requested)new GameObject("Packaged network smoke").AddComponent<StandaloneNetworkSmoke>();}
         void Start(){try{
             if(FindFirstObjectByType<Prototype>()!=null||FindFirstObjectByType<AudioSource>()!=null)throw new Exception("Unexpected presentation in data-only network probe");
-            started=Time.realtimeSinceStartup;session=new Session(Resolve,StateDigest.Scenario);
+            Application.targetFrameRate=60;started=Time.realtimeSinceStartup;session=new Session(Resolve,StateDigest.Scenario);
             if(Array.IndexOf(Environment.GetCommandLineArgs(),"--howl-network-host")>=0){session.Host(Argument("--howl-network-map","Rimewatch"),"Packaged host","smoke",int.Parse(Argument("--howl-network-port","0")));Debug.Log("HOWL_NETWORK_LISTEN "+session.Port);}
             else session.Join("127.0.0.1",int.Parse(Argument("--howl-network-port","27888")),"Packaged client","smoke");
         }catch(Exception e){Fail(e);}}
         void Update(){if(finished||session==null)return;try{
             if(Time.realtimeSinceStartup-started>90)throw new Exception("Packaged network probe timed out");
-            session.Update(.033333334);if(session.Failure.Length>0)throw new Exception(session.Failure);
+            session.Update(Time.unscaledDeltaTime);if(session.Failure.Length>0)throw new Exception(session.Failure);
             var me=session.Members.FirstOrDefault(m=>m.Id==session.LocalId);if(me==null)return;
             if(session.IsHost&&session.Stage==Stage.Lobby&&session.Members.Count==2&&session.Members.All(m=>m.Ready))session.Send(new Packet{Kind=Kind.Begin});
             if(session.Stage!=lastStage){lastStage=session.Stage;

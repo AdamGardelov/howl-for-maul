@@ -40,6 +40,7 @@ namespace FrostMaze
             Member me=null;foreach(var member in net.Members)if(member.Id==net.LocalId)me=member;
             if(me!=null){
                 if(net.Stage==Stage.Factions)for(int i=0;i<config.Factions.Length;i++)if(GUILayout.Button((me.Faction==i?"✓ ":"")+config.Factions[i].Name,me.Faction==i?primary:button))net.Send(new Packet{Kind=Kind.Faction,A=i});
+                if(net.Stage==Stage.Factions&&me.Faction>=0)GUILayout.Label(config.Factions[me.Faction].Description,label);
                 if(net.Stage==Stage.Lanes){GUILayout.Label("Choose a unique start. All enemy lanes remain active.",label);for(int i=0;i<config.BuilderStarts.Length;i++){bool taken=false;foreach(var m in net.Members)if(m.Id!=me.Id&&m.Lane==i)taken=true;GUI.enabled=!taken;
                     if(GUILayout.Button((me.Lane==i?"✓ ":"")+"Start "+(i+1)+(i<config.StartNames.Length?" · "+config.StartNames[i]:"")+(taken?" · taken":""),me.Lane==i?primary:button))net.Send(new Packet{Kind=Kind.Lane,A=i});GUI.enabled=true;}}
                 if(net.Stage==Stage.Difficulty){GUILayout.Label("Most votes wins; a tied Normal vote takes priority, otherwise Relaxed wins the tie.",small);for(int i=0;i<3;i++)if(GUILayout.Button((me.Vote==i?"✓ ":"")+((FrostMaze.Simulation.Difficulty)i),button))net.Send(new Packet{Kind=Kind.Difficulty,A=i});}

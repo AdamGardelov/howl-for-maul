@@ -9,3 +9,5 @@ Each tower design has its own cached original synthesized cue, combining faction
 The both-map Unity atmosphere regression passed: all exterior triangles remain outside the playable rectangle, no colliders/minimap contamination, reset preserves focus/zoom, and all 76 cues have distinct sample hashes, finite bounded amplitude and cached reuse. This verifies synthesis and playback configuration, not a subjective listening review. A separate Unity setup/music case and packaged visual/input evidence are recorded once completed.
 
 The staged solo Unity case also passed: chosen faction/start, 1,200 gold and three active lanes, streamed audio import/playback volume, pause/resume, frozen solo menu and session cleanup. Packaged graphical and network verification still pending for this source checkpoint.
+
+Visual review rejected the initial plain-blue exterior. The refined version uses the same original snow/slate palette and broad texture wash as the map, with tiered snow-covered pines. Its both-map clearance/reset/76-sound regression passed again (102.28 seconds).

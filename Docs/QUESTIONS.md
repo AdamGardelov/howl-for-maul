@@ -22,3 +22,7 @@ No answers are needed to run the current prototype. This replaces the obsolete s
 7. After human play sessions, does the opening budget feel generous enough across all always-active lanes? Bot wins rely heavily on cheap towers and route knowledge, so they do not establish beginner balance.
 
 8. Camera follow-up resolved by the later request: zoom now lowers the camera and widens perspective, while Q/E moves the camera around its focus and the map remains fixed. Fine-tune the 38-degree close angle after human play if desired.
+
+## Online follow-up choices (nonblocking, 2026-10-08)
+
+Direct host/join is implemented. Later choose whether invitations should use Steam, a Unity relay service, or a separately hosted service; none is configured or billed automatically. Decide whether disconnected players should be able to reconnect, transfer their wallet/tower control, or be replaced. Current behavior pauses, keeps their defenses/wallet, and lets remaining connected players vote to resume. Host migration and public matchmaking are not implemented. Music selections are licensed placeholders with in-game credits and separate volumes; subjective soundtrack/mix preference is still open.

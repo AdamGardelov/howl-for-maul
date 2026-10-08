@@ -5,6 +5,7 @@ namespace FrostMaze
     // Exterior terrain is cosmetic and never enters navigation, picking or the north-up minimap.
     public sealed class WorldBackdrop : MonoBehaviour
     {
+        Texture2D surface;
         readonly List<Mesh> meshes=new List<Mesh>();
         sealed class Batch {
             public readonly List<Vector3> V=new List<Vector3>();public readonly List<int> T=new List<int>();
@@ -26,19 +27,20 @@ namespace FrostMaze
             for(float x=-128;x<w+128;x+=8)for(float z=-128;z<h+128;z+=8){
                 if(x>=0&&x<w&&z>=0&&z<h)continue;
                 ground.Quad(new Vector3(x,Height(x,z),z),new Vector3(x,Height(x,z+8),z+8),new Vector3(x+8,Height(x+8,z+8),z+8),new Vector3(x+8,Height(x+8,z),z));
-                float cx=x+4,cz=z+4,d=Distance(cx,cz),n=Mathf.PerlinNoise(cx*.37f+53,cz*.29f+87);
+                float cx=x+3+Mathf.PerlinNoise(x*.8f+17,z*.6f+41)*2,cz=z+3+Mathf.PerlinNoise(x*.6f+72,z*.7f+33)*2,d=Distance(cx,cz),n=Mathf.PerlinNoise(cx*.37f+53,cz*.29f+87);
                 if(d<12||d>85||n<.43f)continue;
                 float y=Height(cx,cz),height=2+n*6;
                 rock.Peak(cx,cz,2+n*2,y,height*(ice?.55f:1));
-                if(ice){for(int j=0;j<3;j++){float px=cx+j*1.7f-2,pz=cz-j*1.6f;float py=Height(px,pz);leaves.Peak(px,pz,1.4f,py,5);snow.Peak(px,pz,1.15f,py+1.3f,3.7f);}}
+                if(ice){for(int j=0;j<3;j++){float px=cx+j*1.7f-2,pz=cz-j*1.6f,py=Height(px,pz),size=.9f+n*.7f;for(int tier=0;tier<3;tier++){float radius=(1.25f-tier*.3f)*size,bottom=py+.35f+tier*1.05f*size,tip=(2.2f-tier*.35f)*size;leaves.Peak(px,pz,radius,bottom,tip);snow.Peak(px,pz,radius*.77f,bottom+tip*.28f,tip*.74f);}}}
                 else if(n>.57f){snow.Peak(cx,cz,1.8f,y+height*.65f,height*.35f);leaves.Peak(cx+2,cz-2,.7f,y,2.5f);}
             }
-            Save("Outer terrain",ground,game.MakeMaterial(ice?new Color(.43f,.59f,.63f):new Color(.24f,.25f,.28f)));
+            var material=game.MakeMaterial(Color.white);surface=Paint(ice);material.mainTexture=surface;Save("Outer terrain",ground,material);
             Save("Distant ridges",rock,game.MakeMaterial(ice?new Color(.24f,.36f,.4f):new Color(.20f,.21f,.24f)));
             Save(ice?"Frost pines":"Copper outcrops",leaves,game.MakeMaterial(ice?new Color(.12f,.27f,.28f):new Color(.52f,.31f,.12f)));
             Save(ice?"Snow crowns":"Foundry peaks",snow,game.MakeMaterial(ice?new Color(.69f,.81f,.81f):new Color(.36f,.31f,.29f)));
         }
-        void Save(string name,Batch b,Material material){var mesh=new Mesh{name=name,indexFormat=UnityEngine.Rendering.IndexFormat.UInt32};mesh.SetVertices(b.V);mesh.SetTriangles(b.T,0);mesh.RecalculateNormals();mesh.RecalculateBounds();meshes.Add(mesh);var go=new GameObject(name);go.transform.SetParent(transform,false);go.AddComponent<MeshFilter>().sharedMesh=mesh;var renderer=go.AddComponent<MeshRenderer>();renderer.sharedMaterial=material;renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;}
-        void OnDestroy(){foreach(var mesh in meshes)if(mesh!=null)Destroy(mesh);}
+        void Save(string name,Batch b,Material material){var mesh=new Mesh{name=name,indexFormat=UnityEngine.Rendering.IndexFormat.UInt32};mesh.SetVertices(b.V);mesh.SetTriangles(b.T,0);var uv=new List<Vector2>();foreach(var vertex in b.V)uv.Add(new Vector2(vertex.x/64,vertex.z/64));mesh.SetUVs(0,uv);mesh.RecalculateNormals();mesh.RecalculateBounds();meshes.Add(mesh);var go=new GameObject(name);go.transform.SetParent(transform,false);go.AddComponent<MeshFilter>().sharedMesh=mesh;var renderer=go.AddComponent<MeshRenderer>();renderer.sharedMaterial=material;renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;}
+        Texture2D Paint(bool ice){const int size=512;var pixels=new Color[size*size];for(int y=0;y<size;y++)for(int x=0;x<size;x++){float wx=x*64f/size,wz=y*64f/size,wash=Mathf.PerlinNoise(wx*.22f+41,wz*.22f+7),detail=Mathf.PerlinNoise(wx*1.2f+5,wz*1.2f+23);var color=Color.Lerp(ice?new Color(.25f,.42f,.49f):new Color(.27f,.245f,.35f),ice?new Color(.48f,.65f,.69f):new Color(.44f,.4f,.5f),wash*.8f+detail*.2f);if(ice)color=Color.Lerp(color,new Color(.79f,.88f,.9f),Mathf.SmoothStep(0,1,Mathf.InverseLerp(.27f,.61f,wash+detail*.14f)));else color=Color.Lerp(color,new Color(.33f,.31f,.25f),Mathf.SmoothStep(0,1,Mathf.InverseLerp(.6f,.8f,detail))*.4f);pixels[y*size+x]=color;}var texture=new Texture2D(size,size,TextureFormat.RGB24,true){name="Original exterior terrain wash",wrapMode=TextureWrapMode.Repeat,filterMode=FilterMode.Trilinear,anisoLevel=4};texture.SetPixels(pixels);texture.Apply(true,true);return texture;}
+        void OnDestroy(){if(surface!=null)Destroy(surface);foreach(var mesh in meshes)if(mesh!=null)Destroy(mesh);}
     }
 }
