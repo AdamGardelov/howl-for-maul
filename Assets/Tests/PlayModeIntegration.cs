@@ -244,6 +244,26 @@ namespace FrostMaze.Tests
             Assert.That(championView.VisibleLevel,Is.EqualTo(2));
             Assert.That(championView.transform.Find(paths[6]),Is.Not.Null);
             Assert.That(game.World.Gold,Is.EqualTo(245));
+            game.SetupOptions.Factions[0]=1;game.StartMatch();game.Paused=true;
+            string[] blastPaths={"Sentry weapon/Alloy dome","Sentry weapon/Crash hammer","Artillery weapon/Gale vane","Sentry weapon/Heatkeeper boiler","Interceptor weapon/Quicksilver wing","Sentry weapon/Rootguard barrel","Champion weapon/Citadel keep"};
+            for(int d=0;d<7;d++) {
+                game.World.SelectedDesign=7+d;bool built=false;
+                for(int y=6;y<20&&!built;y++)for(int x=26+d;x<45&&!built;x++)if(game.World.CanBuild(x,y,out _)) {
+                    Assert.That(game.World.OrderBuild(x,y,out _),Is.True);
+                    for(int tick=0;tick<300;tick++)game.World.Step();
+                    Assert.That(game.World.Grid.At(x,y),Is.Not.Null);built=true;
+                }
+                Assert.That(built,Is.True);
+            }
+            yield return null;yield return null;
+            for(int i=0;i<7;i++) {
+                var tower=game.World.Grid.Towers[i];var view=GameObject.Find("Tower "+tower.Id).GetComponent<TowerView>();
+                Assert.That(view.transform.Find(blastPaths[i]),Is.Not.Null,"Missing Blast model");
+                Assert.That(view.GetComponentsInChildren<Collider>().Length,Is.Zero);
+            }
+            Assert.That(game.World.Gold,Is.EqualTo(505));
+            var air=game.World.Grid.Towers[4];
+            Assert.That(air.Spec.TargetsAir&&!air.Spec.TargetsGround&&air.Spec.SplashRadius>0,Is.True,"Quicksilver's aircraft model must retain air-only splash");
             yield return new ExitPlayMode();
         }
         [UnityTest]
