@@ -286,7 +286,7 @@ namespace FrostMaze.Simulation
                         if(tower.Spec.ChainTargets>0) {
                             int left=tower.Spec.ChainTargets;
                             foreach(var other in Enemies)if(other!=e&&other.Health>0&&(other.Spec.Flying?tower.Spec.TargetsAir:tower.Spec.TargetsGround)&&V2.Distance(other.Position,e.Position)<=2) {
-                                Hit(other,tower.Spec);Shots.Add(new ShotEvent{Serial=++nextShot,From=e.Position,To=other.Position,Flying=other.Spec.Flying});if(--left==0)break;
+                                Hit(other,tower.Spec);Shots.Add(new ShotEvent{Serial=++nextShot,From=e.Position,To=other.Position,Flying=other.Spec.Flying,Chained=true,FromFlying=e.Spec.Flying});if(--left==0)break;
                             }
                         }
                         Shots.Add(new ShotEvent {Serial=++nextShot,From=tower.Center,To=e.Position,Splash=tower.Spec.SplashRadius,Flying=e.Spec.Flying});

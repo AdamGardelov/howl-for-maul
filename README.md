@@ -38,7 +38,7 @@ Solo starts with the full **1,200 gold** team budget. Two players receive 600 ea
 
 Build orders are charged when they succeed, not when queued. New unmodified build orders replace the current queue. Each queued order remembers its tower design. Insufficient funds or occupied terrain at arrival rejects that construction without charging. Moving cancels the queue. Orders wait while paused.
 
-Ground enemies use orange armored crawler silhouettes; flying enemies have purple animated wings and hover above the battlefield. Damaged or selected enemies show health bars. Cyan markers indicate slowing, and a red crest indicates siege. These original procedural models remain prototype art.
+Ground enemies use orange armored crawler silhouettes; flying enemies have purple animated wings and hover above the battlefield. Damaged or selected enemies show health bars. Cyan markers indicate slowing, and a red crest indicates siege. Splash and chain effects follow ground/flight height and freeze while paused. These original procedural models remain prototype art.
 
 Full route blockage is allowed: ground enemies find a player-built obstruction to attack. Selling or destruction opens the route again. Congestion alone does not trigger siege. Permanent terrain cannot be built on, sold, damaged or crossed by ground units.
 

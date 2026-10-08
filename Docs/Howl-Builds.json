@@ -3,7 +3,7 @@
     "result": "Succeeded",
     "platform": "StandaloneLinux64",
     "totalSizeBytes": 92040616,
-    "buildTimeMs": 10267,
+    "buildTimeMs": 10225,
     "totalErrors": 0,
     "totalWarnings": 1,
     "warnings": [
@@ -76,6 +76,6 @@
       }
     ],
     "observedWarningMessages": 19,
-    "buildTimeMs": 14078
+    "buildTimeMs": 15040
   }
 ]

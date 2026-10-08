@@ -6,7 +6,7 @@ namespace FrostMaze
     // Cosmetic effects consume a bounded event history; damage remains authoritative in World.
     public sealed class CombatFeedback : MonoBehaviour
     {
-        Prototype game; World observed; long serial;
+        Prototype game; World observed; long serial; float effectTime;
         Material bolt,ember; AudioSource sound; AudioClip boltClip,emberClip;
         readonly List<Flash> flashes=new List<Flash>();
         sealed class Flash { public GameObject Object; public float Until; }
@@ -25,24 +25,26 @@ namespace FrostMaze
         void Update()
         {
             if(game==null||game.World==null)return;
-            if(observed!=game.World){observed=game.World;serial=0;foreach(var f in flashes)Destroy(f.Object);flashes.Clear();}
+            if(observed!=game.World){observed=game.World;serial=0;effectTime=0;foreach(var f in flashes)Destroy(f.Object);flashes.Clear();}
+            // Cosmetic clock follows pause and speed, but may finish fading after victory.
+            if(!game.Paused)effectTime+=Time.unscaledDeltaTime*game.Speed;
+            for(int i=flashes.Count-1;i>=0;i--)if(effectTime>=flashes[i].Until){Destroy(flashes[i].Object);flashes.RemoveAt(i);}
             int sounds=0;
             foreach(var shot in observed.Shots)if(shot.Serial>serial) {
                 serial=shot.Serial;
                 if(flashes.Count<64) {
-                    var obj=new GameObject("Tower shot");obj.transform.SetParent(transform);
+                    var obj=new GameObject(shot.Chained?"Chain arc":"Tower shot");obj.transform.SetParent(transform);
                     var line=obj.AddComponent<LineRenderer>();line.sharedMaterial=shot.Splash>0?ember:bolt;line.positionCount=2;line.startWidth=.055f;line.endWidth=.02f;
-                    line.SetPosition(0,new Vector3(shot.From.X,1.3f,shot.From.Y));line.SetPosition(1,new Vector3(shot.To.X,shot.Flying?1.7f:.3f,shot.To.Y));
-                    flashes.Add(new Flash{Object=obj,Until=Time.unscaledTime+.12f});
-                    if(shot.Splash>0) {
+                    line.SetPosition(0,new Vector3(shot.From.X,shot.Chained?(shot.FromFlying?1.7f:.3f):1.3f,shot.From.Y));line.SetPosition(1,new Vector3(shot.To.X,shot.Flying?1.7f:.3f,shot.To.Y));
+                    flashes.Add(new Flash{Object=obj,Until=effectTime+.12f});
+                    if(shot.Splash>0 && flashes.Count<64) {
                         var ring=new GameObject("Splash impact");ring.transform.SetParent(transform);var r=ring.AddComponent<LineRenderer>();r.sharedMaterial=ember;r.positionCount=25;r.startWidth=r.endWidth=.05f;
-                        for(int i=0;i<25;i++){float a=i*Mathf.PI*2/24;r.SetPosition(i,new Vector3(shot.To.X+Mathf.Cos(a)*shot.Splash,.12f,shot.To.Y+Mathf.Sin(a)*shot.Splash));}
-                        flashes.Add(new Flash{Object=ring,Until=Time.unscaledTime+.22f});
+                        for(int i=0;i<25;i++){float a=i*Mathf.PI*2/24;r.SetPosition(i,new Vector3(shot.To.X+Mathf.Cos(a)*shot.Splash,shot.Flying?1.7f:.12f,shot.To.Y+Mathf.Sin(a)*shot.Splash));}
+                        flashes.Add(new Flash{Object=ring,Until=effectTime+.22f});
                     }
                 }
                 if(game.SoundEnabled&&sounds++<2)sound.PlayOneShot(shot.Splash>0?emberClip:boltClip);
             }
-            for(int i=flashes.Count-1;i>=0;i--)if(Time.unscaledTime>=flashes[i].Until){Destroy(flashes[i].Object);flashes.RemoveAt(i);}
         }
         void OnDestroy(){if(boltClip!=null)Destroy(boltClip);if(emberClip!=null)Destroy(emberClip);}
     }

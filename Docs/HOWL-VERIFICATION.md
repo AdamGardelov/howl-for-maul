@@ -1,8 +1,16 @@
-# Howl for Maul verification — roster combat checkpoint
+# Howl for Maul verification — combat feedback checkpoint
 
-Unity 6000.3.25f1 passed **51/51 tests**, including actual Play-mode integration. The standalone .NET suite passed **49/49**. Exact Unity results are in Howl-Unity-Tests.json.
+Unity 6000.3.25f1 passed **53/53 tests**, including actual Play-mode integration. The standalone .NET suite passed **50/50**. Exact Unity results are in Howl-Unity-Tests.json.
 
 Coverage includes collision-mask fidelity, spatial-index equivalence, every map lane, siege and congestion behavior, difficulty, conserved economy, ownership, paid builder queues, upgrades, combat effects, faction restrictions and champion prerequisites. New regression coverage checks that difficulty-scaled wave previews match actual spawns, cannot mutate source data, forecast air waves, and list only the current player's missing prerequisites.
+
+## Flight-aware and pausable combat feedback
+
+Flying splash rings now appear at flight height. Chain events preserve whether their source is a ground enemy or flyer, so mixed-flight chains begin at the struck enemy rather than at a generic tower muzzle height. The cosmetic clock freezes while paused, follows game speed, and can finish fading after the match ends. Expired effects are removed before new ones are allocated, and the 64-object effect budget includes both beams and splash rings.
+
+A new pure simulation case verifies both directions of mixed-flight chain metadata. A real Play-mode case verifies rendered ring/beam heights, survival through a real-time pause, expiry after resuming, the 63-beams-plus-splash budget boundary, and cleanup on a new match. All 53 Unity and 50 headless cases pass.
+
+The native 1206×480 paused Game View was inspected and saved as chat outputs/combat-effects.png. This is a controlled effect fixture anchored to a paid tower, not a campaign playthrough or a claim that the starter tower has splash/chain weapons. No damage, targeting, economy, navigation, map or wave tuning changed. The earlier campaign sweeps were not rerun for this cosmetic change.
 
 ## Combat fixes and progression evidence
 

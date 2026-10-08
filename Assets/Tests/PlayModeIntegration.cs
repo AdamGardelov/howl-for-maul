@@ -114,6 +114,34 @@ namespace FrostMaze.Tests
             Assert.That(Object.FindObjectsByType<EnemyView>(FindObjectsSortMode.None).Length, Is.Zero, "New matches must remove all old enemy parts");
             yield return new ExitPlayMode();
         }
+        [UnityTest]
+        public IEnumerator CombatEffectsRespectFlightPauseAndBudget()
+        {
+            EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
+            yield return new EnterPlayMode(); yield return null;
+            var game=Object.FindFirstObjectByType<Prototype>();game.StartMatch();game.Paused=true;game.SoundEnabled=false;
+            game.World.Shots.Add(new FrostMaze.Simulation.ShotEvent{Serial=1,From=new FrostMaze.Simulation.V2(14,15),To=new FrostMaze.Simulation.V2(16,15),Flying=true,Splash=1});
+            game.World.Shots.Add(new FrostMaze.Simulation.ShotEvent{Serial=2,From=new FrostMaze.Simulation.V2(16,15),To=new FrostMaze.Simulation.V2(17,15),Chained=true,FromFlying=true});
+            yield return null; yield return null;
+            var ring=GameObject.Find("Splash impact").GetComponent<LineRenderer>();
+            var arc=GameObject.Find("Chain arc").GetComponent<LineRenderer>();
+            Assert.That(ring.GetPosition(0).y,Is.EqualTo(1.7f));
+            Assert.That(arc.GetPosition(0).y,Is.EqualTo(1.7f));
+            Assert.That(arc.GetPosition(1).y,Is.EqualTo(.3f));
+            yield return new WaitForSecondsRealtime(.3f);
+            Assert.That(ring!=null&&arc!=null,Is.True,"Paused effects expired in real time");
+            game.Paused=false;
+            yield return new WaitForSecondsRealtime(.35f);yield return null;
+            Assert.That(ring==null&&arc==null,Is.True,"Effects failed to expire after resuming");
+            game.StartMatch();game.Paused=true;
+            // 63 beams followed by a splash must not allocate a 65th effect object.
+            for(int i=1;i<=64;i++)game.World.Shots.Add(new FrostMaze.Simulation.ShotEvent{Serial=i,Splash=i==64?1:0});
+            yield return null;yield return null;
+            Assert.That(game.GetComponent<CombatFeedback>().GetComponentsInChildren<LineRenderer>().Length,Is.EqualTo(64));
+            game.StartMatch();game.Paused=true;yield return null;yield return null;
+            Assert.That(game.GetComponent<CombatFeedback>().GetComponentsInChildren<LineRenderer>().Length,Is.Zero,"New match retained old effects");
+            yield return new ExitPlayMode();
+        }
         [UnityTearDown]
         public IEnumerator Cleanup()
         {

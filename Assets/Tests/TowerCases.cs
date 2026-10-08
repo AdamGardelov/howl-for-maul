@@ -33,6 +33,20 @@ namespace FrostMaze.Tests
             }
             Check(w.Shots.Count == 128 && w.Shots[0].Serial > 1, "history should retain the latest events");
         }
+        public static void ChainFeedbackOrigins()
+        {
+            foreach(bool sourceAir in new[]{false,true}) {
+                var c=new Scenario{Width=12,Height=10,Spawn=new V2(1,5),GroundRoute=new[]{new V2(10,5)},FlightRoute=new[]{new V2(10,5)}};
+                var w=new World(c);
+                w.Grid.Build(4,3,new TowerSpec{Damage=1,ChainTargets=1,Range=8});
+                w.Spawn(new WaveSpec{Flying=sourceAir,Health=1000,Speed=0},new V2(6,5));
+                w.Spawn(new WaveSpec{Flying=!sourceAir,Health=1000,Speed=0},new V2(6.6f,5));
+                w.Step();
+                Check(w.Shots.Count==2,"expected a chain arc and tower shot");
+                Check(w.Shots[0].Chained&&w.Shots[0].FromFlying==sourceAir&&w.Shots[0].Flying!=sourceAir,"mixed-flight chain lost source/target identity");
+                Check(!w.Shots[1].Chained&&w.Shots[1].Flying==sourceAir,"direct shot mistaken for chain");
+            }
+        }
         public static void RolesAndOrders()
         {
             var w=new World(Scenario.SharedDefense());w.SelectedDesign=1;w.OrderBuild(3,30,out _);w.SelectedDesign=2;

@@ -23,7 +23,7 @@ namespace FrostMaze.Simulation
         public long Serial;
         public V2 From, To;
         public float Splash;
-        public bool Flying;
+        public bool Flying, Chained, FromFlying;
     }
     public sealed class Tower
     {
