@@ -3,7 +3,7 @@ namespace FrostMaze
 {
     public struct CameraIntent
     {
-        public Vector2 Pan, Drag, Pointer; public float Zoom;
+        public Vector2 Pan, Drag, Pointer; public float Zoom, Rotate;
         public bool Dragging, DragStarted, Fast;
     }
     public interface ICameraInput { CameraIntent Read(); }
@@ -15,9 +15,9 @@ namespace FrostMaze
         {
             return ReadSample(UnityEngine.Input.mousePosition,new Vector2(Screen.width,Screen.height),
                 new Vector2((Held(KeyCode.D,KeyCode.RightArrow)?1:0)-(Held(KeyCode.A,KeyCode.LeftArrow)?1:0),(Held(KeyCode.W,KeyCode.UpArrow)?1:0)-(Held(KeyCode.S,KeyCode.DownArrow)?1:0)),
-                UnityEngine.Input.mouseScrollDelta.y,Application.isFocused,UnityEngine.Input.GetMouseButton(2),UnityEngine.Input.GetMouseButton(0),UnityEngine.Input.GetKey(KeyCode.Space),Held(KeyCode.LeftShift,KeyCode.RightShift));
+                UnityEngine.Input.mouseScrollDelta.y,Application.isFocused,UnityEngine.Input.GetMouseButton(2),UnityEngine.Input.GetMouseButton(0),UnityEngine.Input.GetKey(KeyCode.Space),Held(KeyCode.LeftShift,KeyCode.RightShift),(UnityEngine.Input.GetKey(KeyCode.E)?1:0)-(UnityEngine.Input.GetKey(KeyCode.Q)?1:0));
         }
-        public CameraIntent ReadSample(Vector2 mouse,Vector2 screen,Vector2 keyboard,float zoom,bool focused,bool middle,bool left,bool space,bool fast)
+        public CameraIntent ReadSample(Vector2 mouse,Vector2 screen,Vector2 keyboard,float zoom,bool focused,bool middle,bool left,bool space,bool fast,float rotate=0)
         {
             bool inside=mouse.x>=0&&mouse.y>=0&&mouse.x<screen.x&&mouse.y<screen.y;
             bool dragging=focused&&inside&&(middle||(space&&left));
@@ -25,7 +25,7 @@ namespace FrostMaze
             if(focused) {
                 intent.Pan=keyboard;
                 if(inside&&!dragging&&!left)intent.Pan+=EdgePan(mouse,screen);
-                intent.Zoom=inside?zoom:0;intent.Fast=fast;
+                intent.Zoom=inside?zoom:0;intent.Rotate=rotate;intent.Fast=fast;
                 intent.Dragging=dragging;intent.DragStarted=dragging&&!wasDragging;
                 intent.Drag=dragging&&wasDragging?previous-mouse:Vector2.zero;
             }

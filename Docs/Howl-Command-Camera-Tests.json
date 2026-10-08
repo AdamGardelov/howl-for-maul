@@ -1,0 +1,71 @@
+{
+  "summary": {
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "cases": [
+    {
+      "id": "1003",
+      "name": "CameraDragRejectsUiOriginsAndFreezesInSetup",
+      "fullname": "FrostMaze.Tests.PlayModeIntegration.CameraDragRejectsUiOriginsAndFreezesInSetup",
+      "methodname": "CameraDragRejectsUiOriginsAndFreezesInSetup",
+      "classname": "FrostMaze.Tests.PlayModeIntegration",
+      "runstate": "Runnable",
+      "seed": "1429291148",
+      "result": "Passed",
+      "start-time": "2026-10-08 18:15:17Z",
+      "end-time": "2026-10-08 18:16:28Z",
+      "duration": "71.684630",
+      "asserts": "0",
+      "failure": null
+    },
+    {
+      "id": "1007",
+      "name": "CombatAudioLimitsBurstsFollowsCameraAndPrioritizesLeaks",
+      "fullname": "FrostMaze.Tests.PlayModeIntegration.CombatAudioLimitsBurstsFollowsCameraAndPrioritizesLeaks",
+      "methodname": "CombatAudioLimitsBurstsFollowsCameraAndPrioritizesLeaks",
+      "classname": "FrostMaze.Tests.PlayModeIntegration",
+      "runstate": "Runnable",
+      "seed": "748940174",
+      "result": "Passed",
+      "start-time": "2026-10-08 18:16:28Z",
+      "end-time": "2026-10-08 18:17:43Z",
+      "duration": "74.705741",
+      "asserts": "0",
+      "failure": null
+    },
+    {
+      "id": "1010",
+      "name": "TowerRolesUpgradesAndCamera",
+      "fullname": "FrostMaze.Tests.PlayModeIntegration.TowerRolesUpgradesAndCamera",
+      "methodname": "TowerRolesUpgradesAndCamera",
+      "classname": "FrostMaze.Tests.PlayModeIntegration",
+      "runstate": "Runnable",
+      "seed": "1492198164",
+      "result": "Passed",
+      "start-time": "2026-10-08 18:17:43Z",
+      "end-time": "2026-10-08 18:18:57Z",
+      "duration": "74.256904",
+      "asserts": "0",
+      "failure": null
+    },
+    {
+      "id": "1017",
+      "name": "CameraGesturesHandleEdgesFocusAndDragTransitions",
+      "fullname": "FrostMaze.Tests.UnityTests.CameraGesturesHandleEdgesFocusAndDragTransitions",
+      "methodname": "CameraGesturesHandleEdgesFocusAndDragTransitions",
+      "classname": "FrostMaze.Tests.UnityTests",
+      "runstate": "Runnable",
+      "seed": "1252435423",
+      "result": "Passed",
+      "start-time": "2026-10-08 18:18:57Z",
+      "end-time": "2026-10-08 18:18:57Z",
+      "duration": "0.004055",
+      "asserts": "0",
+      "failure": null
+    }
+  ]
+}

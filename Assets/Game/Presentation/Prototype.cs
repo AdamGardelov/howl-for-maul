@@ -16,10 +16,13 @@ namespace FrostMaze
         public bool MenuOpen, DetailsOpen;
         public void ToggleMenu() { MenuOpen=!MenuOpen;HasHover=false;if(ghost!=null)ghost.SetActive(false); }
         public Rect TopHud => new Rect(12*UiScale,12*UiScale,Screen.width-24*UiScale,48*UiScale);
-        public Rect BuildHud => new Rect(12*UiScale,Screen.height-116*UiScale,Screen.width-184*UiScale,104*UiScale);
-        public Rect SelectionHud => new Rect(12*UiScale,Screen.height-220*UiScale,Mathf.Min(660*UiScale,Screen.width-184*UiScale),96*UiScale);
+        public int BuildColumns => World!=null&&World.Config.Theme=="iron"?4:3;
+        public Rect DockHud => new Rect(12*UiScale,Screen.height-246*UiScale,Screen.width-24*UiScale,234*UiScale);
+        public Rect BuildHud => new Rect(Screen.width-(BuildColumns*78+28)*UiScale,DockHud.y,(BuildColumns*78+16)*UiScale,234*UiScale);
+        public Rect MinimapPanel => new Rect(12*UiScale,DockHud.y,202*UiScale,234*UiScale);
+        public Rect SelectionHud { get { float width=Mathf.Min(480*UiScale,BuildHud.xMin-238*UiScale);return new Rect((Screen.width-width)*.5f,Screen.height-108*UiScale,width,96*UiScale); } }
         public Rect AlertHud => (feedback!=null&&feedback.RecentLeaks>0)||(World!=null&&(World.Finished||!World.WaveActive&&World.LastWaveSummary!=null))?new Rect(12*UiScale,64*UiScale,340*UiScale,56*UiScale):Rect.zero;
-        public bool PointerOverHud(Vector2 point) => MenuOpen||SetupOpen||Sidebar.Contains(point)||MinimapRect.Contains(point)||(!DetailsOpen&&(TopHud.Contains(point)||AlertHud.Contains(point)||BuildHud.Contains(point)||(World!=null&&World.Grid.Find(SelectedTowerId)!=null&&SelectionHud.Contains(point))));
+        public bool PointerOverHud(Vector2 point) => MenuOpen||SetupOpen||Sidebar.Contains(point)||MinimapRect.Contains(point)||(!DetailsOpen&&(TopHud.Contains(point)||AlertHud.Contains(point)||(BuildHud.Contains(point)||MinimapPanel.Contains(point)||(World!=null&&World.Grid.Find(SelectedTowerId)!=null&&SelectionHud.Contains(point)))));
         bool matchStarted;
         public bool CanReturnToMatch => matchStarted;
         public void OpenSetup() { SetupOpen=true;MenuOpen=false; }
@@ -85,7 +88,7 @@ namespace FrostMaze
         public string HoverHint;
         public bool HoverBuildValid;
         public float UiScale => Mathf.Clamp(Mathf.Min(Screen.width / 1200f, Screen.height / 800f), 0.65f, 1f);
-        public Rect MinimapRect => new Rect(Screen.width-156*UiScale,Screen.height-184*UiScale,140*UiScale,156*UiScale);
+        public Rect MinimapRect => DetailsOpen||SetupOpen?Rect.zero:new Rect(28*UiScale,Screen.height-212*UiScale,178*UiScale,178*UiScale);
         public Rect Sidebar => !SetupOpen&&!DetailsOpen?Rect.zero:new Rect(18 * UiScale, 18 * UiScale, 324 * UiScale, Screen.height - 36 * UiScale);
         void SetViewport()
         {
@@ -150,11 +153,12 @@ namespace FrostMaze
             slowMaterial = MakeMaterial(new Color(.25f, .94f, 1f), true);
             ghostMaterial = MakeMaterial(new Color(0.24f, 0.9f, 0.74f));
             var floor = Primitive("Snowfield", PrimitiveType.Cube, new Vector3(World.Config.Width / 2f, -0.15f, World.Config.Height / 2f), new Vector3(World.Config.Width, 0.25f, World.Config.Height), MakeMaterial(World.Config.Theme=="iron"?new Color(.22f,.25f,.28f):new Color(.52f,.72f,.8f)));
+            floor.layer=30;
             if (World.Config.BuilderEnabled)
             {
                 if(World.Config.LayoutRows.Length>0)worldRoot.AddComponent<MapScenery>().Build(this);
                 else foreach(var block in World.Config.Terrain)
-                    Primitive("Frozen ridge",PrimitiveType.Cube,new Vector3(block.Center.X,.25f,block.Center.Y),new Vector3(block.Width,.6f,block.Height),MakeMaterial(new Color(.10f,.22f,.27f)));
+                    Primitive("Frozen ridge",PrimitiveType.Cube,new Vector3(block.Center.X,.25f,block.Center.Y),new Vector3(block.Width,.6f,block.Height),MakeMaterial(new Color(.10f,.22f,.27f))).layer=30;
                 builder = CreateBuilder("Builder drone");
                 orderMarker = Primitive("Builder destination", PrimitiveType.Cylinder, Vector3.zero, new Vector3(.6f,.02f,.6f), MakeMaterial(new Color(.1f,.8f,.65f)));
                 Notice = "Build near the route or across the flight corridor. The drone travels to your build orders.";
@@ -261,7 +265,7 @@ namespace FrostMaze
         {
             int shortcut=0;for(int i=0;i<World.Config.Catalog.Length;i++)if(World.DesignAvailable(i)){if(UnityEngine.Input.GetKeyDown(KeyCode.Alpha1+shortcut)){World.SelectedDesign=i;SellMode=false;MoveMode=false;}shortcut++;}
             if(UnityEngine.Input.GetKeyDown(KeyCode.U)&&SelectedTowerId>0){World.Upgrade(SelectedTowerId,out string message);Notice=message;}
-            if(UnityEngine.Input.GetKeyDown(KeyCode.Home))View.GetComponent<RtsCamera>().FocusPoint(World.BuilderPosition);
+            if(UnityEngine.Input.GetKeyDown(KeyCode.Home)){var camera=View.GetComponent<RtsCamera>();camera.ResetRotation();camera.FocusPoint(World.BuilderPosition);}
             if(UnityEngine.Input.GetKeyDown(KeyCode.End))View.GetComponent<RtsCamera>().Overview();
             if (!UnityEngine.Input.GetKey(KeyCode.Space)&&(UnityEngine.Input.GetKeyDown(KeyCode.Return)||UnityEngine.Input.GetKeyDown(KeyCode.KeypadEnter)))
                 Launch();
@@ -305,6 +309,10 @@ namespace FrostMaze
             ghost.transform.position = new Vector3(x + World.BuildSpec.Width * 0.5f, 0.04f, y + World.BuildSpec.Height * 0.5f);
             ghost.transform.localScale=new Vector3(World.BuildSpec.Width-.1f,.08f,World.BuildSpec.Height-.1f);
             HoverHint=null;HoverBuildValid=false;
+            if(SellMode) {
+                var target=World.Grid.At(x,y);
+                HoverHint=target==null?"Remove mode · click your tower":World.TowerOwner(target.Id)!=World.ActivePlayer?"This tower belongs to another player":"Remove "+target.Name+" · refund "+World.SaleRefund(target.Id)+" gold";
+            }
             if(!SellMode&&!MoveMode) {
                 HoverBuildValid=World.CanBuild(x,y,out string reason);
                 // Existing towers are selectable; do not label their occupied cell as a failed purchase.

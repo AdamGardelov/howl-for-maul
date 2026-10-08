@@ -1,0 +1,25 @@
+{
+  "summary": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "cases": [
+    {
+      "id": "1002",
+      "name": "TowerPortraitsCacheActualModelsWithoutChangingMatch",
+      "fullname": "FrostMaze.Tests.PlayModeIntegration.TowerPortraitsCacheActualModelsWithoutChangingMatch",
+      "methodname": "TowerPortraitsCacheActualModelsWithoutChangingMatch",
+      "classname": "FrostMaze.Tests.PlayModeIntegration",
+      "runstate": "Runnable",
+      "seed": "224673283",
+      "result": "Passed",
+      "start-time": "2026-10-08 18:19:25Z",
+      "end-time": "2026-10-08 18:20:40Z",
+      "duration": "74.811808",
+      "asserts": "0"
+    }
+  ]
+}

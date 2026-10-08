@@ -42,7 +42,18 @@ namespace FrostMaze
             alertButton.normal.background=Swatch(new Color(.27f,.095f,.12f));
             alertButton.normal.textColor=new Color(1,.77f,.7f);
             alertNumber=new GUIStyle(number);alertNumber.normal.textColor=new Color(1,.43f,.4f);
-            panel=Swatch(new Color(.035f,.065f,.079f,.98f));
+            panel=Swatch(new Color(.035f,.049f,.056f,.98f));
+            section.normal.textColor=new Color(.79f,.73f,.55f);
+            title.normal.textColor=new Color(.95f,.9f,.75f);
+            button.border=primary.border=card.border=selectedCard.border=new RectOffset(2,2,2,2);
+            button.normal.background=Beveled(new Color(.085f,.115f,.13f),new Color(.37f,.34f,.25f));
+            button.hover.background=Beveled(new Color(.16f,.21f,.23f),new Color(.66f,.57f,.34f));
+            button.active.background=button.hover.background;
+            button.onNormal.background=button.hover.background;
+            primary.normal.background=button.hover.background;
+            card.normal.background=Beveled(new Color(.05f,.075f,.085f),new Color(.27f,.29f,.28f));
+            card.hover.background=button.hover.background;card.active.background=button.hover.background;
+            selectedCard.normal.background=Beveled(new Color(.13f,.19f,.20f),new Color(.83f,.69f,.34f));
             placementHint=new GUIStyle(label){fontSize=12,padding=new RectOffset(9,9,6,6),normal={background=panel}};
         }
         void Rule()
@@ -72,7 +83,7 @@ namespace FrostMaze
             if(!game.SetupOpen&&!game.DetailsOpen){DrawCompact();return;}
             var w=game.World;var previousMatrix=GUI.matrix;float scale=game.UiScale;
             GUI.matrix=Matrix4x4.Scale(new Vector3(scale,scale,1));
-            GUI.DrawTexture(new Rect(18,18,324,Screen.height/scale-36),panel);
+            Frame(new Rect(18,18,324,Screen.height/scale-36));
             GUILayout.BeginArea(new Rect(32,28,296,Screen.height/scale-52));
             if(!game.SetupOpen&&GUILayout.Button("CLOSE DETAILS [TAB]",button))game.DetailsOpen=false;
             GUILayout.Label("HOWL FOR MAUL",title);
@@ -232,30 +243,35 @@ namespace FrostMaze
         {
             // Absolute-position overlays have no controls or layout to process.
             if(Event.current.type!=EventType.Repaint)return;
-            var w=game.World;if(w.Config.Lanes.Length==0)return;
+            var w=game.World;if(w.Config.Lanes.Length==0||game.SetupOpen||game.DetailsOpen)return;
             var r=game.MinimapRect;
-            GUI.color=new Color(.035f,.075f,.09f,.95f);GUI.DrawTexture(new Rect(r.x-4,r.y-18,r.width+8,r.height+22),Texture2D.whiteTexture);
-            GUI.color=Color.white;GUI.Label(new Rect(r.x,r.y-18,r.width,18),"MAP · click to pan",small);
-            GUI.color=Color.white;GUI.DrawTexture(r,minimapTerrain.Get(w.Grid,w.PlacementStep));
+            Frame(new Rect(r.x-8*game.UiScale,r.y-24*game.UiScale,r.width+16*game.UiScale,r.height+32*game.UiScale));
+            GUI.color=Color.white;GUI.Label(new Rect(r.x,r.y-21*game.UiScale,r.width,18),"BATTLEFIELD · click to pan",small);
+            GUI.color=Color.white;GUI.DrawTexture(r,renderedMinimap.Texture!=null?renderedMinimap.Texture:minimapTerrain.Get(w.Grid,w.PlacementStep));
             foreach(var tower in w.Grid.Towers)MiniDot(r,tower.Center,new Color(.1f,.95f,.8f),2);
             foreach(var enemy in w.Enemies)MiniDot(r,enemy.Position,enemy.Spec.Flying?new Color(.85f,.4f,1):new Color(1,.48f,.2f),2);
             for(int i=0;i<w.Players.Length;i++)MiniDot(r,w.Players[i].Position,i==w.ActivePlayer?Color.white:Color.cyan,4);
-            // Ground-plane viewport outline makes the zoomed builder view easy to locate.
-            var plane=new Plane(Vector3.up,Vector3.zero);Vector2 low=new Vector2(float.MaxValue,float.MaxValue),high=new Vector2(float.MinValue,float.MinValue);
-            for(int corner=0;corner<4;corner++) {
-                var ray=game.View.ViewportPointToRay(new Vector3(corner%2,corner/2,0));
-                if(plane.Raycast(ray,out float distance)){var p=ray.GetPoint(distance);low=Vector2.Min(low,new Vector2(p.x,p.z));high=Vector2.Max(high,new Vector2(p.x,p.z));}
+            // North-up map with the actual rotated ground-plane camera footprint.
+            var plane=new Plane(Vector3.up,Vector3.zero);var corners=new Vector2[4];bool complete=true;
+            var viewport=new[]{new Vector2(0,0),new Vector2(1,0),new Vector2(1,1),new Vector2(0,1)};
+            for(int i=0;i<4;i++) {
+                var ray=game.View.ViewportPointToRay(viewport[i]);
+                if(!plane.Raycast(ray,out float distance)){complete=false;break;}
+                var p=ray.GetPoint(distance);corners[i]=new Vector2(r.x+p.x/w.Config.Width*r.width,r.yMax-p.z/w.Config.Height*r.height);
             }
-            if(low.x<=high.x) {
-                float left=r.x+Mathf.Clamp01(low.x/w.Config.Width)*r.width,right=r.x+Mathf.Clamp01(high.x/w.Config.Width)*r.width;
-                float top=r.y+(1-Mathf.Clamp01(high.y/w.Config.Height))*r.height,bottom=r.y+(1-Mathf.Clamp01(low.y/w.Config.Height))*r.height;
-                GUI.color=new Color(1,1,1,.75f);
-                GUI.DrawTexture(new Rect(left,top,right-left,1),Texture2D.whiteTexture);GUI.DrawTexture(new Rect(left,bottom,right-left,1),Texture2D.whiteTexture);
-                GUI.DrawTexture(new Rect(left,top,1,bottom-top),Texture2D.whiteTexture);GUI.DrawTexture(new Rect(right,top,1,bottom-top),Texture2D.whiteTexture);
-            }
+            if(complete)for(int i=0;i<4;i++)DrawMinimapEdge(corners[i],corners[(i+1)%4],r);
             var focus=game.View.GetComponent<RtsCamera>().Focus;
             MiniDot(r,new V2(focus.x,focus.z),Color.yellow,3);
             GUI.color=Color.white;
+        }
+        void DrawMinimapEdge(Vector2 a,Vector2 b,Rect rect)
+        {
+            var d=b-a;float lo=0,hi=1;
+            bool Clip(float p,float q){if(Mathf.Abs(p)<.0001f)return q>=0;float t=q/p;if(p<0)lo=Mathf.Max(lo,t);else hi=Mathf.Min(hi,t);return lo<=hi;}
+            if(!Clip(-d.x,a.x-rect.xMin)||!Clip(d.x,rect.xMax-a.x)||!Clip(-d.y,a.y-rect.yMin)||!Clip(d.y,rect.yMax-a.y))return;
+            b=a+d*hi;a+=d*lo;var old=GUI.matrix;var color=GUI.color;
+            GUI.color=new Color(1,.94f,.72f,.95f);GUIUtility.RotateAroundPivot(Mathf.Atan2(b.y-a.y,b.x-a.x)*Mathf.Rad2Deg,a);
+            GUI.DrawTexture(new Rect(a.x,a.y,(b-a).magnitude,1),Texture2D.whiteTexture);GUI.matrix=old;GUI.color=color;
         }
         void MiniDot(Rect rect,V2 point,Color color,float size)
         {
@@ -332,8 +348,8 @@ namespace FrostMaze
             var rect=new Rect(x,y,width,height);
             if(new Rect(x*scale,y*scale,width*scale,height*scale).Overlaps(game.MinimapRect))rect.y=game.MinimapRect.yMin/scale-height-8;
             if(!game.DetailsOpen) {
-                float limit=(game.World.Grid.Find(game.SelectedTowerId)!=null?game.SelectionHud.yMin:game.BuildHud.yMin)/scale;
-                rect.y=Mathf.Min(rect.y,limit-height-8);
+                float limit=(game.World.Grid.Find(game.SelectedTowerId)!=null&&rect.Overlaps(Logical(game.SelectionHud))?game.SelectionHud.yMin:game.DockHud.yMin)/scale;
+                if(rect.Overlaps(Logical(game.BuildHud))||rect.Overlaps(Logical(game.MinimapPanel))||(game.World.Grid.Find(game.SelectedTowerId)!=null&&rect.Overlaps(Logical(game.SelectionHud))))rect.y=Mathf.Min(rect.y,limit-height-8);
                 rect.y=Mathf.Max(rect.y,game.TopHud.yMax/scale+8);
             }
             var previous=GUI.matrix;GUI.matrix=Matrix4x4.Scale(new Vector3(scale,scale,1));
@@ -341,6 +357,8 @@ namespace FrostMaze
         }
         void OnDestroy()
         {
+            renderedMinimap.Dispose();
+            portraits.Dispose();
             minimapTerrain.Dispose();
             foreach(var texture in textures)if(texture!=null)Destroy(texture);
         }

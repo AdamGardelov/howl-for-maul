@@ -22,6 +22,8 @@ namespace FrostMaze.Tests
             var unfocused=Sample(new UnityEngine.Vector2(0,450),focus:false,left:true,space:true);
             Assert.That(unfocused.Pan,Is.EqualTo(UnityEngine.Vector2.zero));Assert.That(unfocused.Dragging,Is.False);Assert.That(unfocused.Zoom,Is.Zero);
             Assert.That(Sample(center,left:true,space:true).Drag,Is.EqualTo(UnityEngine.Vector2.zero),"Refocus must not jump");
+            Assert.That(input.ReadSample(center,screen,UnityEngine.Vector2.zero,0,true,false,false,false,false,1).Rotate,Is.EqualTo(1));
+            Assert.That(input.ReadSample(center,screen,UnityEngine.Vector2.zero,0,false,false,false,false,false,1).Rotate,Is.Zero);
             Sample(center);
             Assert.That(Sample(center,middle:true).DragStarted,Is.True,"Middle drag remains supported");
         }

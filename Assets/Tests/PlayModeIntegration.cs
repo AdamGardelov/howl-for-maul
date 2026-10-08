@@ -18,6 +18,38 @@ namespace FrostMaze.Tests
             public CameraIntent Read()=>Intent;
         }
         [UnityTest]
+        public IEnumerator TowerPortraitsCacheActualModelsWithoutChangingMatch()
+        {
+            EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
+            yield return new EnterPlayMode();yield return null;
+            foreach(string map in new[]{"Rimewatch","Ironfold"}) {
+                var game=Object.FindFirstObjectByType<Prototype>();
+                if(game.Map.name!=map){game.ChooseMap(Resources.Load<MapDefinition>(map));yield return null;yield return null;game=Object.FindFirstObjectByType<Prototype>();}
+                game.StartMatch();game.Paused=true;
+                var world=game.World;int gold=world.Gold,towers=world.Grid.Towers.Count;long tick=world.Tick;
+                var minimap=new RenderedMinimap();minimap.Prepare(game);var terrainImage=minimap.Texture;
+                Assert.That(terrainImage,Is.Not.Null);Assert.That(terrainImage.width,Is.EqualTo(512));
+                var shades=new System.Collections.Generic.HashSet<Color32>(terrainImage.GetPixels32());
+                Assert.That(shades.Count,Is.GreaterThan(64),"Minimap is blank or only a flat mask");
+                minimap.Prepare(game);Assert.That(minimap.Texture,Is.SameAs(terrainImage),"Scenery snapshot regenerated");
+                var cache=new TowerPortraits();Texture2D first=null;
+                for(int i=0;i<world.Config.Catalog.Length;i++) {
+                    cache.Prepare(game,i);var image=cache.Get(i);
+                    Assert.That(image,Is.Not.Null,map+" design "+i);Assert.That(image.width,Is.EqualTo(160));
+                    cache.Prepare(game,i);Assert.That(cache.Get(i),Is.SameAs(image),"Portrait regenerated");
+                    if(first==null)first=image;
+                    yield return null;
+                }
+                Assert.That(world.Gold,Is.EqualTo(gold));Assert.That(world.Grid.Towers.Count,Is.EqualTo(towers));
+                Assert.That(world.Tick,Is.EqualTo(tick));Assert.That(world.QueuedBuilds,Is.Zero);
+                Assert.That(GameObject.Find("Tower portrait preview"),Is.Null,"Temporary preview leaked");
+                Assert.That(GameObject.Find("Tower portrait camera"),Is.Null,"Temporary camera leaked");
+                cache.Dispose();minimap.Dispose();yield return null;Assert.That(first==null,Is.True,"Cached texture leaked");Assert.That(terrainImage==null,Is.True,"Scenery texture leaked");
+            }
+            Object.FindFirstObjectByType<Prototype>().ChooseMap(Resources.Load<MapDefinition>("Rimewatch"));yield return null;
+            yield return new ExitPlayMode();
+        }
+        [UnityTest]
         public IEnumerator CameraDragRejectsUiOriginsAndFreezesInSetup()
         {
             EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
@@ -27,21 +59,41 @@ namespace FrostMaze.Tests
             camera.Overview();
             var bottomPoint=game.View.WorldToScreenPoint(new Vector3(game.World.Config.Width*.5f,0,0));
             var topPoint=game.View.WorldToScreenPoint(new Vector3(game.World.Config.Width*.5f,0,game.World.Config.Height));
-            Assert.That(Screen.height-bottomPoint.y,Is.LessThan(game.BuildHud.yMin),"Overview bottom is covered by tower bar");
+            Assert.That(game.PointerOverHud(new Vector2(bottomPoint.x,Screen.height-bottomPoint.y)),Is.False,"Overview exit is covered by HUD");
+            Assert.That(bottomPoint.y,Is.GreaterThan(0),"Overview exit is off screen");
+            Assert.That(game.BuildHud.width,Is.LessThan(340*game.UiScale));
+            Assert.That(game.PointerOverHud(game.SelectionHud.center),Is.False,"Empty centre still blocks world clicks");
+            Assert.That(game.MinimapRect.xMax,Is.LessThan(Screen.width*.5f),"Minimap belongs on the left");
+            Assert.That(game.BuildHud.xMin,Is.GreaterThan(Screen.width*.5f),"Command grid belongs on the right");
             Assert.That(Screen.height-topPoint.y,Is.GreaterThan(game.TopHud.yMax),"Overview top is covered by status bar");
             Assert.That(game.View.rect,Is.EqualTo(new Rect(0,0,1,1)));Assert.That(game.Sidebar,Is.EqualTo(Rect.zero));
             Assert.That(game.PointerOverHud(game.TopHud.center),Is.True);Assert.That(game.PointerOverHud(game.BuildHud.center),Is.True);
             Assert.That(game.PointerOverHud(new Vector2(50,Screen.height*.5f)),Is.False,"Hidden sidebar still blocks the map");
             game.Paused=false;game.ToggleMenu();long tick=game.World.Tick;var menuFocus=camera.Focus;
-            input.Intent=new CameraIntent{Pointer=Vector2.one*400,Pan=Vector2.one,Zoom=5};
+            input.Intent=new CameraIntent{Pointer=Vector2.one*400,Pan=Vector2.one,Zoom=5,Rotate=1};
             yield return null;yield return null;yield return null;
-            Assert.That(game.World.Tick,Is.EqualTo(tick),"Menu failed to pause simulation");Assert.That(camera.Focus,Is.EqualTo(menuFocus));
+            Assert.That(camera.Yaw,Is.Zero,"Menu allowed rotation");Assert.That(game.World.Tick,Is.EqualTo(tick),"Menu failed to pause simulation");Assert.That(camera.Focus,Is.EqualTo(menuFocus));
             Assert.That(game.PointerOverHud(Vector2.zero),Is.True,"Modal menu permits world input");
             game.ToggleMenu();Assert.That(game.Paused,Is.False,"Closing menu changed prior pause state");
             game.Paused=true;game.ToggleMenu();game.ToggleMenu();Assert.That(game.Paused,Is.True);
             game.DetailsOpen=true;Assert.That(game.Sidebar.width,Is.GreaterThan(0));
-            Assert.That(game.PointerOverHud(game.BuildHud.center),Is.False,"Hidden tower bar still blocks map in Details view");
+            Assert.That(game.PointerOverHud(new Vector2(Screen.width*.5f,Screen.height-40)),Is.False,"Hidden tower controls still block map in Details view");
             game.DetailsOpen=false;
+            input.Intent=new CameraIntent{Pointer=new Vector2(Screen.width*.5f,Screen.height*.5f),Rotate=1};
+            for(int i=0;i<12;i++)yield return null;
+            Assert.That(camera.Yaw,Is.GreaterThan(0),"Rotation input ignored");
+            camera.FocusPoint(new FrostMaze.Simulation.V2(32,32));var rotatedFocus=camera.Focus;var screenRight=camera.transform.right;
+            input.Intent=new CameraIntent{Pointer=new Vector2(Screen.width*.5f,Screen.height*.5f),Dragging=true,DragStarted=true};yield return null;
+            input.Intent=new CameraIntent{Pointer=new Vector2(Screen.width*.5f,Screen.height*.5f),Dragging=true,Drag=new Vector2(80,0)};yield return null;
+            var dragged=camera.Focus-rotatedFocus;
+            Assert.That(Vector3.Dot(dragged,screenRight),Is.GreaterThan(0),"Rotated drag went the wrong way");
+            Assert.That(Vector3.Cross(dragged,screenRight).magnitude,Is.LessThan(.01f),"Drag no longer follows screen horizontal");
+            camera.Overview();
+            for(int x=0;x<=1;x++)for(int z=0;z<=1;z++) {
+                var corner=game.View.WorldToViewportPoint(new Vector3(x*game.World.Config.Width,0,z*game.World.Config.Height));
+                Assert.That(corner.x,Is.InRange(0f,1f));Assert.That(corner.y,Is.InRange(0f,1f));
+            }
+            camera.ResetRotation();Assert.That(camera.Yaw,Is.Zero);
 
             camera.FocusPoint(new FrostMaze.Simulation.V2(32,32));var start=camera.Focus;
             var ui=new Vector2(game.TopHud.center.x,Screen.height-game.TopHud.center.y);var world=new Vector2(Screen.width*.6f,Screen.height*.5f);

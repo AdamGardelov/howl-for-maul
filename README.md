@@ -36,13 +36,15 @@ Gameplay uses the full map viewport with a compact top status strip and bottom t
 | Pause | P |
 | Pan | Screen edges / Space + left drag / middle drag / WASD / arrows |
 | Faster keyboard / edge pan | Hold Shift |
+| Rotate camera left / right | Hold Q / E |
+| Restore default orientation at builder | Home |
 | Focus active builder | Home |
 | Whole-map overview | End |
 | Tactical-map pan | Click or drag on the minimap |
 | Zoom | Wheel |
 | Grid / clearance overlay | G / F |
 
-Build orders are charged when they succeed, not when queued. New unmodified build orders replace the current queue. Each queued order remembers its tower design. At arrival, an enemy-blocked, occupied or unaffordable order is skipped without charging; the builder continues in click order. Skipped orders are discarded rather than retried. The bottom bar shows the remaining queue count. Moving cancels the queue. Orders wait while paused.
+Build orders are charged when they succeed, not when queued. New unmodified build orders replace the current queue. Each queued order remembers its tower design. At arrival, an enemy-blocked, occupied or unaffordable order is skipped without charging; the builder continues in click order. Skipped orders are discarded rather than retried. The compact portrait grid shows the remaining queue count. Moving cancels the queue. Orders wait while paused.
 
 Opening **New match / setup** freezes the current match. **Return to match** keeps its towers, gold, wave and pause state; **Start new match** applies the selected options to a fresh defense. Changing maps closes the current match. Starting or resetting clears Sell/Move mode and selections. Escape opens the paused game menu and preserves queued construction. Use Cancel Orders or move the builder to cancel it.
 
@@ -99,3 +101,7 @@ Keep each executable with its accompanying data and runtime files. Do not run a 
 The internal C# namespaces/assembly names retain `FrostMaze` for serialized compatibility. The product, repository and build names are **Howl for Maul**.
 
 See [verification](Docs/HOWL-VERIFICATION.md) for actual test/build results and limitations. Historical FrostMaze documents describe earlier prototypes, not the current match rules.
+
+The tower picker is a compact bottom-right portrait grid. Click a tower image or use its number key; hover for its name, role and details. Costs and locked states stay visible on each tile.
+
+The minimap stays on the left and renders the actual scenery from above. The middle stays clear except for contextual upgrade/removal controls on a selected tower. The command grid includes Remove [X]; hover a tower in removal mode to see its refund.
