@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 using FrostMaze.Simulation;
 using FrostMaze.Tests;
@@ -9,9 +10,10 @@ using FrostMaze.Tests;
 static class BalanceSweep
 {
     sealed class Sample { public V2 Position; public bool Air; public float Coverage; }
-    sealed class Placement { public int Player{get;set;} public int X{get;set;} public int Y{get;set;} public string Tower{get;set;} public int Cost{get;set;} }
+    sealed class Placement { public int TowerId{get;set;} public int BeforeWave{get;set;} public int Player{get;set;} public int X{get;set;} public int Y{get;set;} public string Tower{get;set;} public int Cost{get;set;} }
+    sealed class UpgradeResult { public int Player{get;set;} public int TowerId{get;set;} public string Tower{get;set;} public int Level{get;set;} public int Cost{get;set;} public int BeforeWave{get;set;} }
     sealed class WaveResult { public int Wave{get;set;} public bool Flying{get;set;} public int Killed{get;set;} public int Leaked{get;set;} public int Ticks{get;set;} public int Gold{get;set;} }
-    sealed class Result { public int PlayerCount{get;set;} public string Map{get;set;} public string Faction{get;set;} public string Difficulty{get;set;} public bool Won{get;set;} public bool Stalled{get;set;} public int Lives{get;set;} public int Gold{get;set;} public int Spent{get;set;} public List<Placement> Placements{get;set;}=new List<Placement>(); public List<WaveResult> Waves{get;set;}=new List<WaveResult>(); }
+    sealed class Result { public string Strategy{get;set;} public string[] Factions{get;set;} public List<UpgradeResult> Upgrades{get;set;}=new List<UpgradeResult>(); public int PlayerCount{get;set;} public string Map{get;set;} public string Faction{get;set;} public string Difficulty{get;set;} public bool Won{get;set;} public bool Stalled{get;set;} public int Lives{get;set;} public int Gold{get;set;} public int Spent{get;set;} public List<Placement> Placements{get;set;}=new List<Placement>(); public List<WaveResult> Waves{get;set;}=new List<WaveResult>(); }
     static List<Sample> Samples(Scenario c)
     {
         var result=new List<Sample>();
@@ -31,7 +33,7 @@ static class BalanceSweep
         for(int tick=0;tick<1000&&w.HasBuildOrder;tick++)w.Step();
         if(w.HasBuildOrder||w.Grid.Towers.Count!=count+1)throw new Exception("Builder failed a legal purchase");
         int cost=before-w.Gold;if(cost!=w.Config.Catalog[design].Cost)throw new Exception("Purchase accounting mismatch");
-        result.Spent+=cost;result.Placements.Add(new Placement{Player=w.ActivePlayer+1,X=x,Y=y,Tower=w.BuildName,Cost=cost});return true;
+        result.Spent+=cost;result.Placements.Add(new Placement{TowerId=w.Grid.Towers[w.Grid.Towers.Count-1].Id,BeforeWave=w.WaveIndex+2,Player=w.ActivePlayer+1,X=x,Y=y,Tower=w.BuildName,Cost=cost});return true;
     }
     static void Spend(World w,List<Sample> samples,Result result)
     {
@@ -60,18 +62,55 @@ static class BalanceSweep
             foreach(var sample in samples)if((sample.Air?spec.TargetsAir:spec.TargetsGround)&&V2.Distance(new V2(bx+.5f,by+.5f),sample.Position)<spec.Range)sample.Coverage+=spec.Damage/spec.Interval;
         }
     }
-    static int TeamGold(World w) { int total=0;foreach(var p in w.Players)total+=p.Gold;return total; }
-    public static int Run(string path,Difficulty difficulty,int players)
+    static IEnumerable<Tower> Owned(World w,Result result)
     {
+        foreach(var p in result.Placements)if(p.Player==w.ActivePlayer+1) {
+            var tower=w.Grid.Find(p.TowerId);if(tower!=null)yield return tower;
+        }
+    }
+    static void SpendRoster(World w,List<Sample> samples,Result result)
+    {
+        // Buy one of each design, unlock the champion, then upgrade strongest weapons first.
+        // Savings are intentional: this strategy waits for its next roster purchase/upgrade.
+        foreach(int design in w.Config.Factions[w.Players[w.ActivePlayer].Faction].Designs) {
+            if(Owned(w,result).Any(t=>t.Design==design))continue;
+            var d=w.Config.Catalog[design];
+            if(d.Cost>w.Gold||!w.RequirementsMet(design))return;
+            w.SelectedDesign=design;double best=-1;int bx=-1,by=-1;
+            for(int y=1;y<w.Config.Height-1;y+=2)for(int x=1;x<w.Config.Width-1;x+=2) {
+                if(!w.CanBuild(x,y,out _))continue;
+                var p=new V2(x+.5f,y+.5f);double score=0;
+                foreach(var sample in samples)if((sample.Air?d.Spec.TargetsAir:d.Spec.TargetsGround)&&V2.Distance(p,sample.Position)<d.Spec.Range)
+                    score+=sample.Air?1.5:1;
+                if(score>best){best=score;bx=x;by=y;}
+            }
+            if(bx<0||!Purchase(w,bx,by,design,result))return;
+        }
+        foreach(var tower in Owned(w,result).OrderByDescending(t=>t.Spec.Damage/t.Spec.Interval).ToArray())
+            while(tower.Level<3) {
+                int cost=w.UpgradeCost(tower);if(cost>w.Gold)return;
+                int before=w.Gold;
+                if(!w.Upgrade(tower.Id,out string reason))throw new Exception("Roster upgrade rejected: "+reason);
+                if(before-w.Gold!=cost)throw new Exception("Upgrade accounting mismatch");
+                result.Spent+=cost;
+                result.Upgrades.Add(new UpgradeResult{Player=w.ActivePlayer+1,TowerId=tower.Id,Tower=tower.Name,Level=tower.Level,Cost=cost,BeforeWave=w.WaveIndex+2});
+            }
+        Spend(w,samples,result);
+    }
+    static int TeamGold(World w) { int total=0;foreach(var p in w.Players)total+=p.Gold;return total; }
+    public static int Run(string path,Difficulty difficulty,int players,string strategy="coverage",bool mixed=false)
+    {
+        if(strategy!="coverage"&&strategy!="roster")throw new ArgumentException("Strategy must be coverage or roster.");
         if(players<1||players>4)throw new ArgumentException("Player count must be 1–4.");
         var results=new List<Result>();
         foreach(bool iron in new[]{false,true}) {
             var c=MapCases.Load(iron);var samples=Samples(c);
             for(int faction=0;faction<c.Factions.Length;faction++) {
-                var w=new World(c,new MatchOptions{PlayerCount=players,Difficulty=difficulty,Factions=new[]{faction,faction,faction,faction}});
-                var r=new Result{PlayerCount=players,Map=c.Name,Faction=c.Factions[faction].Name,Difficulty=difficulty.ToString()};
+                var factions=new int[4];for(int player=0;player<4;player++)factions[player]=mixed?(faction+player)%c.Factions.Length:faction;
+                var w=new World(c,new MatchOptions{PlayerCount=players,Difficulty=difficulty,Factions=factions});
+                var r=new Result{Strategy=strategy,Factions=factions.Take(players).Select(f=>c.Factions[f].Name).ToArray(),PlayerCount=players,Map=c.Name,Faction=c.Factions[faction].Name,Difficulty=difficulty.ToString()};
                 for(int wave=0;wave<c.Waves.Length&&!w.Finished;wave++) {
-                    for(int player=0;player<players;player++){w.SelectPlayer(player);Spend(w,samples,r);}int killed=w.Killed,leaked=w.Leaked;
+                    for(int player=0;player<players;player++){w.SelectPlayer(player);if(strategy=="roster")SpendRoster(w,samples,r);else Spend(w,samples,r);}int killed=w.Killed,leaked=w.Leaked;
                     if(!w.StartWave())throw new Exception("Wave failed to start");int ticks=0;
                     while(w.WaveActive&&!w.Finished&&ticks<18000){w.Step();ticks++;}
                     r.Waves.Add(new WaveResult{Wave=wave+1,Flying=c.Waves[wave].Flying,Killed=w.Killed-killed,Leaked=w.Leaked-leaked,Ticks=ticks,Gold=TeamGold(w)});
@@ -81,7 +120,7 @@ static class BalanceSweep
                 int completed=r.Waves.Count-(w.Defeated||r.Stalled?1:0);
                 if(r.Spent+r.Gold!=c.StartingGold+w.Killed*c.KillReward+completed*c.WaveReward)throw new Exception("Team budget was not conserved");
                 results.Add(r);
-                Console.Error.WriteLine($"{r.Map} / {r.Faction}: {(r.Won?"WIN":r.Stalled?"STALL":"LOSS")} lives={r.Lives} waves={r.Waves.Count} spent={r.Spent}");
+                Console.Error.WriteLine($"{r.Map} / {r.Faction}: {(r.Won?"WIN":r.Stalled?"STALL":"LOSS")} lives={r.Lives} waves={r.Waves.Count} spent={r.Spent} upgrades={r.Upgrades.Count}");
                 File.WriteAllText(path,JsonSerializer.Serialize(results,new JsonSerializerOptions{WriteIndented=true}));
             }
         }

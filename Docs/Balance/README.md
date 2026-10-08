@@ -54,3 +54,7 @@ The command records results after each faction and emits progress on stderr. Exi
 
 
 A further [12 Hard solo runs](HARD-BASELINE.md) also finished without leaks. Full data is in hard-solo.json; these use the same strategy and have the same limitations.
+
+## Roster and upgrade follow-up
+
+The [24 roster/upgrade campaigns](ROSTER-BASELINE.md) add paid champions, upgrades and mixed-faction two-player teams after the Quicksilver targeting fix. They produced 19 wins and five legitimate defeats, unlike this earlier coverage baseline. Read both methods before drawing balance conclusions.

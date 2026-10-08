@@ -55,6 +55,8 @@ namespace FrostMaze.Tests
             yield return null;yield return null;
             game=Object.FindFirstObjectByType<Prototype>();
             Assert.That(game.World.LaneCount,Is.EqualTo(4));
+            foreach(var design in game.World.Config.Catalog) Assert.That(design.Spec.Damage<=0||design.Spec.TargetsAir||design.Spec.TargetsGround, Is.True, design.Name+" has no targets in the packaged map");
+            Assert.That(game.World.Config.Catalog[11].Spec.TargetsAir && !game.World.Config.Catalog[11].Spec.TargetsGround, Is.True);
             game.SetupOptions.Factions[0]=3;game.StartMatch();game.Paused=true;
             Assert.That(game.World.SelectedDesign,Is.EqualTo(21));
             int bx=-1,by=-1;

@@ -1,8 +1,14 @@
-# Howl for Maul verification — enemy readability checkpoint
+# Howl for Maul verification — roster combat checkpoint
 
-Unity 6000.3.25f1 passed **49/49 tests**, including actual Play-mode integration. The standalone .NET suite passed **47/47**. Exact Unity results are in Howl-Unity-Tests.json.
+Unity 6000.3.25f1 passed **51/51 tests**, including actual Play-mode integration. The standalone .NET suite passed **49/49**. Exact Unity results are in Howl-Unity-Tests.json.
 
 Coverage includes collision-mask fidelity, spatial-index equivalence, every map lane, siege and congestion behavior, difficulty, conserved economy, ownership, paid builder queues, upgrades, combat effects, faction restrictions and champion prerequisites. New regression coverage checks that difficulty-scaled wave previews match actual spawns, cannot mutate source data, forecast air waves, and list only the current player's missing prerequisites.
+
+## Combat fixes and progression evidence
+
+Blast Circuit's Quicksilver now targets flying enemies and applies splash only to flyers. Its generated definition and shipped Ironfold asset previously had both target flags off. Chain volleys now discard all excess visual events, keeping the shot history at 128 rather than allowing multiple-event volleys to grow it indefinitely. New pure regressions demonstrate the failures before the fixes and pass afterward. Real Play-mode integration verifies the serialized roster targeting as well.
+
+24 additional Normal paid-defense campaigns exercise full rosters, champion unlocks, upgrades and mixed-faction two-player teams: 19 wins, five legitimate defeats, no stalls or accounting failures. They include 24 paid champion purchases and 636 paid upgrades. See Balance/ROSTER-BASELINE.md and raw JSON for methods and exact results. No global balance values changed. Prior 36-run coverage results below are historical and predate this targeting correction.
 
 ## Enemy presentation
 
@@ -10,7 +16,7 @@ Ground spheres are now original armored crawlers; air enemies have wider winged 
 
 The new real Play-mode regression checks ground/air model selection, movement alignment, slow expiry feedback, simulation-timed pause behavior, absence of cosmetic colliders, flight height and complete cleanup on a new match. The first test run exposed a fixture error (manual spawn before launching a wave); after fixing the fixture, the complete suite passed 49/49.
 
-Native 1206×534 Game View captures were inspected on both Rimewatch and Ironfold. These are controlled presentation samples containing damaged, slowed and blocked enemies, not additional paid-defense campaigns or proof of final art quality. Screenshots are in the chat outputs. No gameplay parameters changed; the prior 36-run campaign evidence remains the balance baseline and was not rerun for this presentation-only change.
+Native 1206×534 Game View captures were inspected on both Rimewatch and Ironfold. These are controlled presentation samples containing damaged, slowed and blocked enemies, not additional paid-defense campaigns or proof of final art quality. Screenshots are in the chat outputs. This previous presentation-only checkpoint did not change gameplay parameters. Its screenshots are not captures of the new roster campaigns.
 
 ## Player information
 
@@ -22,7 +28,7 @@ Live visual checks covered Hard wave health/siege values, slowing tower stats, a
 
 The balance driver completed **36 paid-defense campaigns**: all 12 map-specific factions on Normal with one and two players, plus all 12 on Hard solo. Every run cleared ten waves with 30 lives, no stalls, and exact team-gold conservation. It uses real builder orders and no gameplay overrides. See Balance/README.md and Balance/HARD-BASELINE.md for exact placements, wave results, method and limitations.
 
-These are reproducible starter-heavy winning strategies, not proof of final balance. The bot does not score utility effects, use upgrades, deliberately maze, or mix factions. The Hard multiplier lengthened combat but did not cause leaks. More demanding progression and wave variety need evaluation.
+These earlier runs are reproducible starter-heavy winning strategies, not proof of final balance. The bot does not score utility effects, use upgrades, deliberately maze, or mix factions. The Hard multiplier lengthened combat but did not cause leaks. More demanding progression and wave variety need evaluation.
 
 ## Desktop builds
 

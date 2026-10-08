@@ -4,7 +4,7 @@ class Program
 {
     static int Main(string[] args)
     {
-        if(args.Length>0&&args[0]=="--balance")return BalanceSweep.Run(args.Length>1?args[1]:"balance-results.json",args.Length>2?Enum.Parse<FrostMaze.Simulation.Difficulty>(args[2]):FrostMaze.Simulation.Difficulty.Normal,args.Length>3?int.Parse(args[3]):1);
+        if(args.Length>0&&args[0]=="--balance")return BalanceSweep.Run(args.Length>1?args[1]:"balance-results.json",args.Length>2?Enum.Parse<FrostMaze.Simulation.Difficulty>(args[2]):FrostMaze.Simulation.Difficulty.Normal,args.Length>3?int.Parse(args[3]):1,args.Length>4?args[4]:"coverage",args.Length>5&&args[5]=="mixed");
         int failed = 0;
         foreach (var test in SimulationCases.All)
         {

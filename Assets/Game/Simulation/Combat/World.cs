@@ -290,7 +290,7 @@ namespace FrostMaze.Simulation
                             }
                         }
                         Shots.Add(new ShotEvent {Serial=++nextShot,From=tower.Center,To=e.Position,Splash=tower.Spec.SplashRadius,Flying=e.Spec.Flying});
-                        if(Shots.Count>128)Shots.RemoveAt(0);
+                        if(Shots.Count>128)Shots.RemoveRange(0,Shots.Count-128);
                         tower.Cooldown = tower.Spec.Interval;
                         tower.LastTarget = e.Id;
                         break;

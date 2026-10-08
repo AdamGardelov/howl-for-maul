@@ -5,6 +5,34 @@ namespace FrostMaze.Tests
     public static class TowerCases
     {
         static void Check(bool ok,string message){if(!ok)throw new Exception(message);}
+        public static void EveryArmedDesignHasTargets()
+        {
+            foreach (bool iron in new[] {false, true})
+                foreach (var design in MapCases.Load(iron).Catalog)
+                    Check(design.Spec.Damage <= 0 || design.Spec.TargetsGround || design.Spec.TargetsAir, design.Name + " has a weapon but cannot target anything");
+            var c = Scenario.SharedDefense(); RobotFactions.Apply(c); c.BuilderEnabled = false;
+            var w = new World(c, new MatchOptions { Factions = new[] {1, 0, 0, 0} });
+            w.SelectedDesign = 11;
+            Check(w.Build(16, 14, out _), "air splash purchase failed");
+            var first = w.Spawn(new WaveSpec {Flying = true, Health = 1000}, new V2(18, 15));
+            var second = w.Spawn(new WaveSpec {Flying = true, Health = 1000}, new V2(18.6f, 15));
+            var ground = w.Spawn(new WaveSpec {Health = 1000}, new V2(18, 15));
+            w.Step();
+            Check(first.Health < 1000 && second.Health == first.Health && ground.Health == 1000, "air splash must hit flyers and spare ground units");
+        }
+        public static void ShotHistoryBounded()
+        {
+            var c = new Scenario {Width = 12, Height = 10, Spawn = new V2(1, 5), GroundRoute = new[] {new V2(10, 5)}, FlightRoute = new[] {new V2(10, 5)}};
+            var w = new World(c);
+            w.Grid.Build(4, 3, new TowerSpec {Damage = 1, ChainTargets = 2, Interval = World.FixedDelta, Range = 8});
+            for (int i = 0; i < 3; i++) w.Spawn(new WaveSpec {Health = 10000, Speed = 0}, new V2(6 + i * .6f, 5));
+            for (int tick = 0; tick < 200; tick++) {
+                w.Step();
+                Check(w.Shots.Count <= 128, "chain attacks grew the cosmetic shot history beyond its bound");
+                for (int shot = 1; shot < w.Shots.Count; shot++) Check(w.Shots[shot].Serial > w.Shots[shot - 1].Serial, "retained shots lost serial order");
+            }
+            Check(w.Shots.Count == 128 && w.Shots[0].Serial > 1, "history should retain the latest events");
+        }
         public static void RolesAndOrders()
         {
             var w=new World(Scenario.SharedDefense());w.SelectedDesign=1;w.OrderBuild(3,30,out _);w.SelectedDesign=2;

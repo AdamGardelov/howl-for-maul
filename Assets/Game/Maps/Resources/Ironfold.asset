@@ -3608,7 +3608,7 @@ MonoBehaviour:
         TargetsGround: 1
         TargetsAir: 1
     - Name: Quicksilver
-      Description: "Air only \xB7 interceptor"
+      Description: "Air only \xB7 splash interceptor"
       Cost: 110
       Refund: 82
       VisualStyle: 3
@@ -3626,7 +3626,7 @@ MonoBehaviour:
         SlowDuration: 0
         ChainTargets: 0
         TargetsGround: 0
-        TargetsAir: 0
+        TargetsAir: 1
     - Name: Rootguard
       Description: Ground + air
       Cost: 150

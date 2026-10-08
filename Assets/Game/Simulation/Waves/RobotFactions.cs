@@ -35,12 +35,12 @@ namespace FrostMaze.Simulation
                     bool slow=(t==5&&(f==0||f==5))||t==1&&(f==4||f==6)||t==3&&f==7;
                     bool chain=t==1&&(f==2||f==7);
                     bool airOnly=t==4;
-                    string role=airOnly?"Air only · interceptor":splash?"Ground only · splash":"Ground + air";
+                    string role=airOnly?(splash?"Air only · splash interceptor":"Air only · interceptor"):splash?"Ground only · splash":"Ground + air";
                     if(slow)role+=" · 25% slow";if(chain)role+=" · chains to two enemies";
                     if(t==6)role+=" · requires all six regular designs standing";
                     catalog.Add(new TowerDesign{Name=towers[f][t],Description=role,Cost=cost,Refund=cost*3/4,VisualStyle=3,
                         Requires=t==6?new[]{f*7,f*7+1,f*7+2,f*7+3,f*7+4,f*7+5}:new int[0],
-                        Spec=new TowerSpec{Damage=damage,Interval=interval,Range=range,Health=t==6?240:100,TargetsAir=!splash,TargetsGround=!airOnly,SplashRadius=splash?1.2f:0,SlowFraction=slow?.25f:0,SlowDuration=slow?2:0,ChainTargets=chain?2:0}});
+                        Spec=new TowerSpec{Damage=damage,Interval=interval,Range=range,Health=t==6?240:100,TargetsAir=airOnly||!splash,TargetsGround=!airOnly,SplashRadius=splash?1.2f:0,SlowFraction=slow?.25f:0,SlowDuration=slow?2:0,ChainTargets=chain?2:0}});
                 }
             }
             c.Catalog=catalog.ToArray();

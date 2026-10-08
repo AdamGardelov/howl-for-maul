@@ -36,6 +36,8 @@ namespace FrostMaze.Tests
                 w.Step();
         }
         public static readonly Case[] All ={
+            new Case("Every armed roster design has valid targeting and air splash",TowerCases.EveryArmedDesignHasTargets),
+            new Case("Chain volleys retain bounded ordered shot history",TowerCases.ShotHistoryBounded),
             new Case("Wave previews match spawns and show owned prerequisites",MapCases.WavePreviews),
             new Case("Robot champion progression and ownership",MapCases.RobotProgression),
             new Case("Reference map masks and spatial index",MapCases.Masks),
