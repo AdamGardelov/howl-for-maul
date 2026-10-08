@@ -86,6 +86,7 @@ namespace FrostMaze.Tests
             ,new Case("All upper lanes reach shared bottom exit",LaneCases.Routes)
             ,new Case("Fixed team economy and selected starting positions",LaneCases.EconomyAndStarts)
             ,new Case("Independent builders and owned sale refunds",LaneCases.OwnershipAndBuilders)
+            ,new Case("Four builder queues skip contested and enemy-blocked cells independently",LaneCases.CompetingBuilderQueues)
             ,new Case("Difficulty scales enemies without disabling lanes",LaneCases.Difficulty)
             ,new Case("Build orders retain their tower design",TowerCases.RolesAndOrders)
             ,new Case("Tower upgrades preserve blueprints and refund investments",TowerCases.Upgrades)

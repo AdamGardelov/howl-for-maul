@@ -64,6 +64,32 @@ namespace FrostMaze.Tests
             Check(w.TowerOwner(w.Grid.At(3,30).Id)==0&&w.SaleRefund(w.Grid.At(3,30).Id)==15,"foreign inspector changed owner or refund");
             w.SelectPlayer(0);Check(w.Sell(3,30)&&w.Gold==595,"owner refund failed");
         }
+        public static void CompetingBuilderQueues()
+        {
+            var w=new World(Scenario.SharedDefense(),new MatchOptions{PlayerCount=4});
+            for(int player=0;player<4;player++) {
+                w.SelectPlayer(player);w.SelectedDesign=1;
+                Check(w.OrderBuild(20,30,out _),"shared order rejected before construction");
+                Check(w.OrderBuild(3+player*3,32,out _,true),"individual order rejected");
+                Check(w.OrderBuild(3+player*3,33,out _,true),"last order rejected");
+            }
+            Check(w.Spawn(new WaveSpec{Speed=0,Health=10000},new V2(3.5f,32.5f))!=null,"enemy fixture missing");
+            for(int tick=0;tick<600;tick++) {
+                w.Step();Check(w.ActivePlayer==3,"background builders changed local control");
+            }
+            var shared=w.Grid.At(20,30);Check(shared!=null,"no builder completed contested cell");
+            int winner=w.TowerOwner(shared.Id),total=0;
+            Check(winner>=0&&winner<4,"contested tower has no owner");
+            for(int player=0;player<4;player++) {
+                w.SelectPlayer(player);Check(w.QueuedBuilds==0,"queue stalled behind invalid order");
+                int expected=300-5*(player==0?1:2)-(winner==player?5:0);
+                Check(w.Gold==expected,"competing or blocked order charged wrong wallet");total+=w.Gold;
+                var last=w.Grid.At(3+player*3,33);
+                Check(last!=null&&w.TowerOwner(last.Id)==player,"later owned order was lost");
+                if(player!=winner)Check(!w.Sell(20,30),"losing builder sold another player's tower");
+            }
+            Check(w.Grid.At(3,32)==null&&w.Grid.Towers.Count==8&&total==1160,"shared-cell or enemy overlap changed team budget");
+        }
         public static void Difficulty()
         {
             var c=Scenario.SharedDefense();

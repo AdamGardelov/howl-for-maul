@@ -4,7 +4,7 @@ No answers are needed to run the current prototype. This replaces the obsolete s
 
 ## Current assumptions
 
-- Hovering wardens/drones travel at 9 world units/sec and build within 3 units. They ignore maze obstacles, preventing a trapped builder. Normal clicks replace orders; Shift queues up to 128. Construction is charged only when it succeeds at arrival. Move/Escape cancels the queue.
+- Hovering wardens/drones travel at 9 world units/sec and build within 3 units. They ignore maze obstacles, preventing a trapped builder. Normal clicks replace orders; Shift queues up to 128. Construction is charged only when it succeeds at arrival. Moving or Cancel Orders cancels the queue; Escape opens the paused menu and preserves it.
 - Every map lane is always active. The fixed 1,200 starting team budget is split among one to four independently owned local slots. Kill bounty and wave bonuses split without losing integer remainders. Online networking remains deferred.
 - The campaign has twenty waves, flying every fifth wave, with thirty shared lives. Each exit costs one life. Players launch waves manually and can build during combat. Three difficulties change health and siege damage, not lane counts.
 - Both supplied source masks determine terrain. Towers can seal against walls, including Ironfold half-cell positions. Complete blockage triggers siege; crowd congestion does not. Cosmetic props and effects cannot add collision obstacles.
@@ -20,3 +20,5 @@ No answers are needed to run the current prototype. This replaces the obsolete s
 5. Are the current original roster identities and simplified silhouettes the right direction? The requested League-inspired readability is a target; the procedural assets are an initial pass.
 6. Should eventual multiplayer allow explicit gold transfers, shared construction permissions or only separate ownership? Current local slots keep wallets and tower sale/upgrade ownership separate.
 7. After human play sessions, does the opening budget feel generous enough across all always-active lanes? Bot wins rely heavily on cheap towers and route knowledge, so they do not establish beginner balance.
+
+8. Camera follow-up: the user says only the camera should rotate and the map should stay still. Current Q/E orbits the camera around its ground focus; terrain coordinates do not move. A gentler limited viewing angle or side lean may be intended, but is not confirmed. Preserve the current tested controls until this visual preference is clarified; do not silently substitute roll or pitch.

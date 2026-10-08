@@ -2,6 +2,9 @@
 
 ## Latest state
 
+- Three four-player Hard paid campaigns now win all twenty waves with 30 lives, covering all twelve factions across both maps. Independent wallets audited throughout; 64/64 pure tests pass including contested/enemy-blocked concurrent queues. Unity compilation passed. Read Balance/HARD-FOUR-PLAYER.md. No runtime change or package rebuild in this checkpoint.
+- Preserve camera controls pending clarification: terrain is already fixed while the camera orbits; the possible request for a gentler side tilt is recorded in QUESTIONS.md.
+
 - Current source: modern stone/brass command HUD with left rendered minimap, right tower portraits plus Remove, and a clear centre except for small contextual controls. Q/E rotates the view; Home resets it. Four camera cases and the both-map rendering/cleanup case pass. Read TOWER-PORTRAIT-GRID.md. Current packages contain source 1c112bc; Linux actual input checks and both-map smoke passed, with exact 5-gold wall charge and 3-gold removal refund. Windows is build-tested only.
 
 - Shift-click queue feedback: compact pending count, explicit skipped-order status and new blocked-footprint FIFO/payment regression. All 63 pure simulation cases pass. Read BUILD-QUEUE.md.

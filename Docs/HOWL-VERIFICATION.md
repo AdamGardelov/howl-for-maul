@@ -24,6 +24,8 @@ Audio follow-up: the new focused integration case passes (1/1), covering burst l
 
 ## Paid campaigns
 
+Four-player Hard follow-up: all twelve factions across three mixed teams clear twenty waves with 30 lives. All 240 wave-end player balances pass the independent ledger audit; 886 purchases and 512 upgrades. The new concurrent contested/enemy-blocked build-queue regression passes alongside all 64 pure cases; Unity compilation passed. No runtime changes or new player builds. See Balance/HARD-FOUR-PLAYER.md for raw results, reproduction and limitations.
+
 New Hard solo Prism adaptive campaign: twenty waves won, 30 lives, 324 purchases, 184 upgrades, 6740 spent and 364 gold left. New Hard mixed Gravity/Scrap campaign: twenty waves won, 30 lives, 324 purchases, 270 upgrades, each player spent 3372 and retained 180. No stalls or wallet errors. See Balance/PRISM-HARD.md and Balance/GRAVITY-SCRAP-HARD.md plus raw ledgers.
 
 Earlier added coverage: four adaptive wins with 30 lives (Hard solo on both maps; Normal mixed two-player teams on both maps), documented in Balance/HARD-AND-MIXED.md. The earlier full Normal matrix remains 36 campaigns, 27 wins and nine defeats, zero stalls/wallet errors; all twelve factions won under adaptive spending. Roster-first strategies still lose. These bots know routes and often buy hundreds of cheap towers. These results do not settle final balance or establish beginner-friendly defenses.
