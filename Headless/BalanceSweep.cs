@@ -10,10 +10,10 @@ using FrostMaze.Tests;
 static partial class BalanceSweep
 {
     sealed class Sample { public V2 Position; public bool Air; public float Coverage,Slow; }
-    sealed class Placement { public int TowerId{get;set;} public int BeforeWave{get;set;} public int Player{get;set;} public int X{get;set;} public int Y{get;set;} public string Tower{get;set;} public int Cost{get;set;} }
+    sealed class Placement { public int TowerId{get;set;} public int TravelTicks{get;set;} public int BeforeWave{get;set;} public int Player{get;set;} public int X{get;set;} public int Y{get;set;} public string Tower{get;set;} public int Cost{get;set;} }
     sealed class UpgradeResult { public int Player{get;set;} public int TowerId{get;set;} public string Tower{get;set;} public int Level{get;set;} public int Cost{get;set;} public int BeforeWave{get;set;} }
     sealed class WaveResult { public int[] PlayerGold{get;set;} public int Wave{get;set;} public bool Flying{get;set;} public int Killed{get;set;} public int Leaked{get;set;} public int Ticks{get;set;} public int Gold{get;set;} }
-    sealed class Result { public int[] FinalWallets{get;set;} public int[] PlayerSpending{get;set;} public string Strategy{get;set;} public string[] Factions{get;set;} public List<UpgradeResult> Upgrades{get;set;}=new List<UpgradeResult>(); public int PlayerCount{get;set;} public string Map{get;set;} public string Faction{get;set;} public string Difficulty{get;set;} public bool Won{get;set;} public bool Stalled{get;set;} public int Lives{get;set;} public int Gold{get;set;} public int Spent{get;set;} public List<Placement> Placements{get;set;}=new List<Placement>(); public List<WaveResult> Waves{get;set;}=new List<WaveResult>(); }
+    sealed class Result { public int[] StartingPositions{get;set;} public float[][] InitialBuilderPositions{get;set;} public int ActiveLanes{get;set;} public int[] StartingWallets{get;set;} public int PreparationTicks{get;set;} public int[] FinalWallets{get;set;} public int[] PlayerSpending{get;set;} public string Strategy{get;set;} public string[] Factions{get;set;} public List<UpgradeResult> Upgrades{get;set;}=new List<UpgradeResult>(); public int PlayerCount{get;set;} public string Map{get;set;} public string Faction{get;set;} public string Difficulty{get;set;} public bool Won{get;set;} public bool Stalled{get;set;} public int Lives{get;set;} public int Gold{get;set;} public int Spent{get;set;} public List<Placement> Placements{get;set;}=new List<Placement>(); public List<WaveResult> Waves{get;set;}=new List<WaveResult>(); }
     sealed class Candidate { public int X,Y; public int[] Samples; }
     static readonly Dictionary<TowerSpec,List<Candidate>> influence=new Dictionary<TowerSpec,List<Candidate>>();
     static List<Candidate> Candidates(World w,TowerSpec spec,List<Sample> samples)
@@ -45,10 +45,12 @@ static partial class BalanceSweep
     {
         w.SelectedDesign=design;int before=w.Gold,count=w.Grid.Towers.Count;
         if(!w.OrderBuild(x,y,out _))return false;
-        for(int tick=0;tick<1000&&w.HasBuildOrder;tick++)w.Step();
+        int travelTicks=0;
+        while(travelTicks<1000&&w.HasBuildOrder){w.Step();travelTicks++;}
+        result.PreparationTicks+=travelTicks;
         if(w.HasBuildOrder||w.Grid.Towers.Count!=count+1)throw new Exception("Builder failed a legal purchase");
         int cost=before-w.Gold;if(cost!=w.Config.Catalog[design].Cost)throw new Exception("Purchase accounting mismatch");
-        result.Spent+=cost;result.Placements.Add(new Placement{TowerId=w.Grid.Towers[w.Grid.Towers.Count-1].Id,BeforeWave=w.WaveIndex+2,Player=w.ActivePlayer+1,X=x,Y=y,Tower=w.BuildName,Cost=cost});return true;
+        result.Spent+=cost;result.Placements.Add(new Placement{TravelTicks=travelTicks,TowerId=w.Grid.Towers[w.Grid.Towers.Count-1].Id,BeforeWave=w.WaveIndex+2,Player=w.ActivePlayer+1,X=x,Y=y,Tower=w.BuildName,Cost=cost});return true;
     }
     static float ScoredDps(TowerSpec spec,bool roles)
     {
@@ -158,27 +160,52 @@ static partial class BalanceSweep
         result.PlayerSpending=spending;return wallets;
     }
     static int TeamGold(World w) { int total=0;foreach(var p in w.Players)total+=p.Gold;return total; }
-    public static int Run(string path,Difficulty difficulty,int players,string strategy="coverage",bool mixed=false,string mapFilter="",int factionFilter=-1)
+    public static int Run(string path,Difficulty difficulty,int players,string strategy="coverage",bool mixed=false,string mapFilter="",int factionFilter=-1,int[] startingPositions=null)
     {
         if(strategy!="coverage"&&strategy!="roster"&&strategy!="maze"&&strategy!="adaptive"&&strategy!="compact"&&strategy!="compact-value"&&strategy!="compact-roles"&&strategy!="compact-support"&&strategy!="compact-invest")throw new ArgumentException("Strategy must be coverage, roster, maze, adaptive, compact, compact-value, compact-roles, compact-support or compact-invest.");
         if(players<1||players>4)throw new ArgumentException("Player count must be 1–4.");
+        if(!Enum.IsDefined(typeof(Difficulty),difficulty))throw new ArgumentException("Unknown difficulty.");
+        if(mapFilter!=""&&mapFilter!="Rimewatch"&&mapFilter!="Ironfold")throw new ArgumentException("Unknown map filter.");
+        if(factionFilter < -1)throw new ArgumentException("Invalid faction filter.");
+        // Reject the complete request before running campaigns or writing a partial sweep.
+        foreach(bool iron in new[]{false,true}) {
+            var c=MapCases.Load(iron);if(mapFilter.Length>0&&c.Name!=mapFilter)continue;
+            if(factionFilter>=c.Factions.Length)throw new ArgumentException("Faction is outside the selected map roster.");
+            if(startingPositions!=null) {
+                if(startingPositions.Length!=players)throw new ArgumentException("Provide exactly one start index per player.");
+                new MatchOptions{PlayerCount=players,StartingPositions=startingPositions}.Validate(c.BuilderStarts.Length);
+            }
+        }
         var results=new List<Result>();
         foreach(bool iron in new[]{false,true}) {
             var c=MapCases.Load(iron);if(mapFilter.Length>0&&c.Name!=mapFilter)continue;var samples=Samples(c);
             for(int faction=0;faction<c.Factions.Length;faction++) {
                 if(factionFilter>=0&&faction!=factionFilter)continue;
                 var factions=new int[4];for(int player=0;player<4;player++)factions[player]=mixed?(faction+player)%c.Factions.Length:faction;
-                var w=new World(c,new MatchOptions{PlayerCount=players,Difficulty=difficulty,Factions=factions});
-                var r=new Result{Strategy=strategy,Factions=factions.Take(players).Select(f=>c.Factions[f].Name).ToArray(),PlayerCount=players,Map=c.Name,Faction=c.Factions[faction].Name,Difficulty=difficulty.ToString()};
+                var options=new MatchOptions{PlayerCount=players,Difficulty=difficulty,Factions=factions};
+                if(startingPositions!=null){options.StartingPositions=(int[])startingPositions.Clone();options.UseSelectedSoloStart=true;}
+                var w=new World(c,options);
+                var restarted=w.Restart();
+                for(int player=0;player<players;player++) {
+                    V2 expected=players==1&&startingPositions==null?c.SoloBuilderStart:c.BuilderStarts[options.StartingPositions[player]];
+                    if(V2.Distance(w.Players[player].Position,expected)!=0||V2.Distance(restarted.Players[player].Position,expected)!=0)
+                        throw new Exception("Chosen builder start was not preserved at spawn/restart.");
+                    if(w.Players[player].Gold!=c.StartingGold/players||w.Players[player].Faction!=factions[player])
+                        throw new Exception("Initial wallet or faction mismatch.");
+                }
+                var r=new Result{StartingPositions=players==1&&startingPositions==null?new[]{-1}:options.StartingPositions.Take(players).ToArray(),InitialBuilderPositions=w.Players.Select(p=>new[]{p.Position.X,p.Position.Y}).ToArray(),ActiveLanes=w.LaneCount,StartingWallets=w.Players.Select(p=>p.Gold).ToArray(),Strategy=strategy,Factions=factions.Take(players).Select(f=>c.Factions[f].Name).ToArray(),PlayerCount=players,Map=c.Name,Faction=c.Factions[faction].Name,Difficulty=difficulty.ToString()};
                 if(strategy=="maze") {
                     int design=MapCases.MazeDesign(w);var cells=MapCases.MazeCells(iron);
                     for(int cell=0;cell<cells.GetLength(0);cell++)
                         if(!Purchase(w,cells[cell,0],cells[cell,1],design,r))throw new Exception("Paid maze fixture could not be built");
                 }
                 for(int wave=0;wave<c.Waves.Length&&!w.Finished;wave++) {
-                    for(int player=0;player<players;player++){w.SelectPlayer(player);if(strategy=="roster")SpendRoster(w,samples,r);else if(strategy=="compact-invest")SpendInvest(w,samples,r,48/players);else if(strategy=="adaptive"||strategy.StartsWith("compact"))SpendAdaptive(w,samples,r,strategy.StartsWith("compact")?48/players:int.MaxValue,strategy=="compact-value"||strategy=="compact-roles"||strategy=="compact-support",strategy=="compact-roles"||strategy=="compact-support",strategy=="compact-support");else Spend(w,samples,r);}int killed=w.Killed,leaked=w.Leaked;
+                    for(int player=0;player<players;player++){w.SelectPlayer(player);if(strategy=="roster")SpendRoster(w,samples,r);else if(strategy=="compact-invest")SpendInvest(w,samples,r,48/players);else if(strategy=="adaptive"||strategy.StartsWith("compact"))SpendAdaptive(w,samples,r,strategy.StartsWith("compact")?48/players:int.MaxValue,strategy=="compact-value"||strategy=="compact-roles"||strategy=="compact-support",strategy=="compact-roles"||strategy=="compact-support",strategy=="compact-support");else Spend(w,samples,r);}
+                    AuditWallets(w,r,wave);int killed=w.Killed,leaked=w.Leaked;
                     if(!w.StartWave())throw new Exception("Wave failed to start");int ticks=0;
                     while(w.WaveActive&&!w.Finished&&ticks<18000){w.Step();ticks++;}
+                    if(!w.Defeated&&!w.WaveActive&&w.Killed-killed+w.Leaked-leaked!=c.Waves[wave].Count*w.LaneCount)
+                        throw new Exception("Completed wave did not account for all active lanes.");
                     if(strategy.StartsWith("compact")&&w.Grid.Towers.Count>48)throw new Exception("Compact diagnostic exceeded its 48-tower team limit");
                     r.Waves.Add(new WaveResult{PlayerGold=AuditWallets(w,r,wave+(!w.Defeated&&!w.WaveActive?1:0)),Wave=wave+1,Flying=c.Waves[wave].Flying,Killed=w.Killed-killed,Leaked=w.Leaked-leaked,Ticks=ticks,Gold=TeamGold(w)});
                     if(ticks>=18000){

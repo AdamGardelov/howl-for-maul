@@ -2,6 +2,8 @@
 
 ## Latest state
 
+- Selected-start follow-up: twenty Normal paid campaigns cover every start on both maps, all twelve factions, and nondefault two/three/four-player teams. All finish twenty waves, with exact wallets and normal builder travel; Stonebound survives with two lives. Harness now records chosen starts/travel and rejects invalid filters instead of silently completing zero runs. 67 pure cases pass. Read Balance/SELECTED-STARTS.md. Tests/harness/docs only; packages remain runtime 0ca580c.
+
 - Latest runtime source 0ca580c adds direct host/join, shared faction → unique start → difficulty setup, authoritative paid commands and majority pause/resume. The original online deferral is superseded. Separate .NET and packaged Unity process checks pass on both maps; three/four-player tests cover budgets, capacity and votes. R camera reset, textured exterior terrain, original tower sound identities, faction attack colors and licensed map music are implemented. Read ONLINE-PLAY.md / WORLD-ATMOSPHERE.md. New packages: Builds/Linux-Online and Windows-Online. Existing user player and older packages preserved. Internet routing/relay and Windows runtime are untested. Current Unity target restored to Linux. Remote-client scene/session/ownership/host-clock regression also passed; final graphical Host/setup/camera/queue/Quit check exited zero.
 
 

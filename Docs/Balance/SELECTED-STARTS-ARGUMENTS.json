@@ -1,0 +1,182 @@
+[
+  {
+    "case": "unknown map",
+    "arguments": [
+      "Normal",
+      "1",
+      "compact-invest",
+      "mixed",
+      "NoSuchMap",
+      "0",
+      "0"
+    ],
+    "exitCode": 2,
+    "message": "Invalid balance request: Unknown map filter.",
+    "existingResultsPreserved": true
+  },
+  {
+    "case": "unknown faction",
+    "arguments": [
+      "Normal",
+      "1",
+      "compact-invest",
+      "mixed",
+      "Rimewatch",
+      "4",
+      "0"
+    ],
+    "exitCode": 2,
+    "message": "Invalid balance request: Faction is outside the selected map roster.",
+    "existingResultsPreserved": true
+  },
+  {
+    "case": "negative faction",
+    "arguments": [
+      "Normal",
+      "1",
+      "compact-invest",
+      "mixed",
+      "Rimewatch",
+      "-2",
+      "0"
+    ],
+    "exitCode": 2,
+    "message": "Invalid balance request: Invalid faction filter.",
+    "existingResultsPreserved": true
+  },
+  {
+    "case": "missing player start",
+    "arguments": [
+      "Normal",
+      "2",
+      "compact-invest",
+      "mixed",
+      "Rimewatch",
+      "0",
+      "0"
+    ],
+    "exitCode": 2,
+    "message": "Invalid balance request: Provide exactly one start index per player.",
+    "existingResultsPreserved": true
+  },
+  {
+    "case": "too many starts",
+    "arguments": [
+      "Normal",
+      "1",
+      "compact-invest",
+      "mixed",
+      "Rimewatch",
+      "0",
+      "0,1"
+    ],
+    "exitCode": 2,
+    "message": "Invalid balance request: Provide exactly one start index per player.",
+    "existingResultsPreserved": true
+  },
+  {
+    "case": "out of range start",
+    "arguments": [
+      "Normal",
+      "1",
+      "compact-invest",
+      "mixed",
+      "Rimewatch",
+      "0",
+      "8"
+    ],
+    "exitCode": 2,
+    "message": "Invalid balance request: Invalid starting position.",
+    "existingResultsPreserved": true
+  },
+  {
+    "case": "negative start",
+    "arguments": [
+      "Normal",
+      "1",
+      "compact-invest",
+      "mixed",
+      "Rimewatch",
+      "0",
+      "-1"
+    ],
+    "exitCode": 2,
+    "message": "Invalid balance request: Invalid starting position.",
+    "existingResultsPreserved": true
+  },
+  {
+    "case": "invalid start text",
+    "arguments": [
+      "Normal",
+      "1",
+      "compact-invest",
+      "mixed",
+      "Rimewatch",
+      "0",
+      "left"
+    ],
+    "exitCode": 2,
+    "message": "Invalid balance request: The input string 'left' was not in a correct format.",
+    "existingResultsPreserved": true
+  },
+  {
+    "case": "invalid difficulty",
+    "arguments": [
+      "9",
+      "1",
+      "compact-invest",
+      "mixed",
+      "Rimewatch",
+      "0",
+      "0"
+    ],
+    "exitCode": 2,
+    "message": "Invalid balance request: Unknown difficulty.",
+    "existingResultsPreserved": true
+  },
+  {
+    "case": "invalid player count",
+    "arguments": [
+      "Normal",
+      "0",
+      "compact-invest",
+      "mixed",
+      "Rimewatch",
+      "0",
+      "0"
+    ],
+    "exitCode": 2,
+    "message": "Invalid balance request: Player count must be 1\u20134.",
+    "existingResultsPreserved": true
+  },
+  {
+    "case": "number overflow",
+    "arguments": [
+      "Normal",
+      "1",
+      "compact-invest",
+      "mixed",
+      "Rimewatch",
+      "0",
+      "99999999999999999"
+    ],
+    "exitCode": 2,
+    "message": "Invalid balance request: Value was either too large or too small for an Int32.",
+    "existingResultsPreserved": true
+  },
+  {
+    "case": "duplicate starts",
+    "arguments": [
+      "Normal",
+      "2",
+      "compact-invest",
+      "mixed",
+      "Rimewatch",
+      "0",
+      "0,0"
+    ],
+    "exitCode": 2,
+    "message": "Invalid balance request: Starting positions must be unique.",
+    "existingResultsPreserved": true
+  }
+]

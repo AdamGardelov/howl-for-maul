@@ -114,3 +114,5 @@ Zoom in for a lower perspective view of the 3D models; zoom out for a steep over
 The [three-player compact campaigns](Docs/Balance/COMPACT-THREE-PLAYER.md) cover all twelve factions with separate 400-gold starting wallets. The [champion queue recovery regression](Docs/CHAMPION-QUEUE-RECOVERY.md) verifies paid rebuilding after a sold or destroyed prerequisite.
 
 The landscape now continues beyond the playable boundary. Read [world atmosphere](Docs/WORLD-ATMOSPHERE.md) for scenery, tower sound identities and soundtrack attribution.
+
+The [selected-start paid campaigns](Docs/Balance/SELECTED-STARTS.md) cover every starting position on both maps, all twelve factions and nondefault mixed-team starts. The balance harness accepts a final comma-separated start-index argument and records builder travel and wallet audits.

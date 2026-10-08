@@ -12,7 +12,7 @@ The author description of [Mega Man Maul 3.0 Final](https://wc3maps.com/map/2823
 
 Rimewatch offers four original builder factions before spawning. Rime Covenant offers slowing and ice splash; Stonebound emphasizes durable maze pieces and ground area damage; Ember Assembly trades cost for rapid fire and artillery; Volt Vanguard uses arm-cannon sentries, chaining electricity and precise air defense. Each has five exclusive tower designs, including a cheap maze piece and an air specialist. Ironfold separately offers eight robot factions with seven designs each. Each final champion requires the owner to have all six regular designs standing; selling a prerequisite locks future champion construction, without removing already-built champions. Slow effects expire and do not stack multiplicatively. Upgrades retain the purchased tower's identity.
 
-All three Rimewatch lanes and all four Ironfold lanes remain active. One shared team budget is split among the active local player slots. Towers can be built on any legal open terrain. Complete blockage triggers enemy siege, while congestion alone does not. Flying waves occur every fifth round.
+All three Rimewatch lanes and all four Ironfold lanes remain active. One shared team budget is split among the active player slots. Towers can be built on any legal open terrain. Complete blockage triggers enemy siege, while congestion alone does not. Flying waves occur every fifth round.
 
 The current playable campaign is twenty waves, with the original opening ten preserved. Thirty-five-wave progression, late-game lumber/research, armor tables, second-faction unlocks and hero leveling are **not implemented**. They need deliberate balancing and clearer version evidence; no hidden assumptions are presented as historical facts. The latest user request supersedes the original online deferral; see ONLINE-PLAY.md.
 
@@ -22,9 +22,9 @@ The current playable campaign is twenty waves, with the original opening ten pre
 - Rimewatch keeps all blocked cells, including the lower plug. Its exit sits in the last reachable central channel immediately above that plug. Confirm the intended terminal area later.
 - Ironfold uses half-unit source cells, preserving its 128×128 geometry in a 64×64 world. Player tower footprints remain one world unit.
 - Sealed top and side pockets are scenery. Spawns occupy the walkable tops of the three/four lanes, following the user's explicit direction rather than guessed marker meanings.
-- Both maps have eight selectable builder starts. Solo receives the full team wallet and starts downstream.
+- Both maps have eight selectable builder starts. Solo receives the full team wallet and chooses its start during setup. Older local test fixtures retain the legacy downstream default.
 - Character-like technology towers are original silhouettes and names; no Warcraft or Mega Man models, sounds, icons or extracted map data are shipped.
-- Area protection is not imposed: the user authorized building throughout the shared map. Multiplayer slots currently provide local testing, not networking.
+- Area protection is not imposed: the user authorized building throughout the shared map. Local slot switching remains a testing option; direct host/join sessions now bind players to authenticated slots (see ONLINE-PLAY.md).
 
 ## Next fidelity work
 
