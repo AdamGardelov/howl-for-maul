@@ -83,6 +83,21 @@ namespace FrostMaze.Tests
             Assert.That(game.World.Grid.At(16,14),Is.SameAs(sentry));
             game.View.GetComponent<RtsCamera>().Overview();
             Assert.That(game.View.orthographicSize,Is.GreaterThan(11));
+            game.SetupOptions.Factions[0]=1;game.StartMatch();game.Paused=true;
+            string[] stoneSignatures={"Artillery weapon/Pebble hopper","Basalt slab","Artillery weapon/Quake monolith","Interceptor weapon/Sky cradle","Control weapon/Worldroot trunk"};
+            for(int i=0;i<5;i++) {
+                game.World.SelectedDesign=5+i;
+                Assert.That(game.World.OrderBuild(16+i,14,out _),Is.True);
+                for(int tick=0;tick<180;tick++)game.World.Step();
+            }
+            yield return null;yield return null;
+            for(int i=0;i<5;i++) {
+                var tower=game.World.Grid.At(16+i,14);Assert.That(tower,Is.Not.Null);
+                var view=GameObject.Find("Tower "+tower.Id).GetComponent<TowerView>();
+                Assert.That(view.transform.Find(stoneSignatures[i]),Is.Not.Null,"Missing Stonebound silhouette");
+                Assert.That(view.GetComponentsInChildren<Collider>().Length,Is.Zero,"Scenery must not add physical blockers");
+            }
+            Assert.That(game.World.Gold,Is.EqualTo(959),"Models must retain actual paid Stonebound costs");
             yield return new ExitPlayMode();
         }
         [UnityTest]

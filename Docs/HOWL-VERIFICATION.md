@@ -1,8 +1,10 @@
-# Howl for Maul verification — Rime faction model checkpoint
+# Howl for Maul verification — Stonebound model checkpoint
 
 The user-requested four-part pass is implemented: clearer tower/enemy presentation and camera, stronger faction tradeoffs, twenty-wave campaigns, and a normal menu flow without the empty test arena. See BATTLEFIELD-UPDATE.md for implementation details. The new art-direction pass adds continuous softly varied ground, beveled mask edges, layered pines, original faceted tower meshes, winter stonework and warm/cool matte lighting; see ART-DIRECTION.md.
 
 The latest model slice gives Rime Covenant five distinct stone-and-ice designs, replaces builder capsules with wardens/drones, and adds faceted enemy shells, swept wings and tick-driven walking feet. See RIME-MODEL-SLICE.md.
+
+The latest Stonebound pass adds five distinct models. Its paid builder integration and full suite passed 63/63; see STONEBOUND-MODELS.md. A fresh 1920×884 paid lineup capture was inspected at zoom 7. Builds and campaign results below belong to preceding checkpoints, not this Stonebound source update.
 
 ## Automated tests
 
@@ -39,11 +41,11 @@ Prior HUD captures at 1920×884 verify setup, the seven-card Ironfold roster and
 
 Prior wall-fit capture: a paid tower at (26, 10.5) sits against an Ironfold half-unit wall edge, with the placement grid visible and wallet 1,190. The following art-pass captures are prior-checkpoint evidence.
 
-Inspected fresh 1920×884 Game-view captures on both maps. Rimewatch shows five paid tower roles, an upgraded sentry, and staged ground/flying enemies at normal zoom 11 and closer zoom 7. Ironfold shows seven paid robot designs at zoom 9. The first capture exposed overly blocky ground variation and uniform tree placement; both were revised and recaptured. The final views show continuous ground color, clean ledge surfaces, varied layered pines and visible faceted tower bases. These are controlled visual fixtures, not human playthroughs or performance benchmarks. Art remains an early procedural interpretation of the requested simpler League-like direction; HUD and enemy models have not had their matching art pass yet.
+Inspected fresh 1920×884 Game-view captures on both maps. Rimewatch shows five paid tower roles, an upgraded sentry, and staged ground/flying enemies at normal zoom 11 and closer zoom 7. Ironfold shows seven paid robot designs at zoom 9. The first capture exposed overly blocky ground variation and uniform tree placement; both were revised and recaptured. The final views show continuous ground color, clean ledge surfaces, varied layered pines and visible faceted tower bases. These are controlled visual fixtures, not human playthroughs or performance benchmarks. Art remains an early procedural interpretation of the requested simpler League-like direction; The HUD and enemy models subsequently received the passes documented above.
 
 ## Builds and platform limits
 
-Updated Linux and Windows builds succeeded with zero build errors. Howl-Builds.json records the final build summaries. Linux has the expected editor-automation-disabled warning; Windows additionally reports unsupported package ray-tracing shader warnings. Standard URP rendering is used.
+At the preceding Rime checkpoint, Linux and Windows builds succeeded with zero build errors. Howl-Builds.json records the final build summaries. Linux has the expected editor-automation-disabled warning; Windows additionally reports unsupported package ray-tracing shader warnings. Standard URP rendering is used.
 
 The actual final Linux executable passed the packaged smoke test on an isolated virtual display, exiting 0 and confirming both twenty-wave maps, faction data and every ground/flying lane route. At the previous checkpoint, both headless and ordinary windowed attempts on this machine's native :0 desktop failed during X video-mode initialization before game code. **Use Unity Play mode on this machine for now.** Native standalone desktop launch is not claimed to work. The temporary :98 display was stopped after verification.
 
