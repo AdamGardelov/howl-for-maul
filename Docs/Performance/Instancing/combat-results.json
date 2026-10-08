@@ -1,0 +1,73 @@
+{
+  "combat-srp": {
+    "frameTime": {
+      "median": 0.012601265,
+      "p95": 0.0138455
+    },
+    "renderTime": {
+      "median": 0.010552369999999998,
+      "p95": 0.01180173
+    },
+    "drawCalls": {
+      "median": 5764.0,
+      "p95": 5764.0
+    },
+    "setPassCalls": {
+      "median": 641.0,
+      "p95": 641.0
+    },
+    "triangles": {
+      "median": 401897.0,
+      "p95": 401897.0
+    }
+  },
+  "combat-instanced": {
+    "frameTime": {
+      "median": 0.012181535,
+      "p95": 0.0133106
+    },
+    "renderTime": {
+      "median": 0.010160175,
+      "p95": 0.01118022
+    },
+    "drawCalls": {
+      "median": 763.0,
+      "p95": 763.0
+    },
+    "setPassCalls": {
+      "median": 669.0,
+      "p95": 669.0
+    },
+    "triangles": {
+      "median": 401897.0,
+      "p95": 401897.0
+    }
+  },
+  "combat-srp-repeat": {
+    "frameTime": {
+      "median": 0.012176825,
+      "p95": 0.01622829
+    },
+    "renderTime": {
+      "median": 0.010175255000000001,
+      "p95": 0.01353297
+    },
+    "drawCalls": {
+      "median": 5764.0,
+      "p95": 5764.0
+    },
+    "setPassCalls": {
+      "median": 641.0,
+      "p95": 641.0
+    },
+    "triangles": {
+      "median": 401897.0,
+      "p95": 401897.0
+    }
+  },
+  "imageComparison": {
+    "changedPixels": 0,
+    "totalPixels": 1697280,
+    "maxChannelDifference": 0
+  }
+}

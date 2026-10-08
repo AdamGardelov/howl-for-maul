@@ -2,7 +2,7 @@
 
 Latest source milestone: all twelve factions now have original design-specific tower models (20 winter + 56 Ironfold). Fresh Unity suite 65/65 passed. Native close/normal captures inspected for all new sets. Read HOWL-VERIFICATION.md, IRON-MODELS.md and Performance/LIVE-COMBAT.md.
 
-Fresh Linux/Windows packages include source 9e656e8; zero build errors and both Linux map smoke checks passed on :98. Map labels are now high-contrast and inspected on both maps. Next: compare repeated-mesh GPU instancing against SRP batching in a controlled diagnostic before deciding on any rendering change; then deepen visual/material quality. The first procedural roster is complete, but final art and balance are not. No need to invent additional factions or maps yet.
+Fresh Linux/Windows packages include source 9e656e8; zero build errors and both Linux map smoke checks passed on :98. Map labels are now high-contrast and inspected on both maps. GPU instancing comparison completed with pixel-identical output but no clear frame-time gain; SRP batching retained. Read Performance/Instancing/README.md. Next: measure simulation, view synchronization, input, HUD and combat effects separately before optimizing crowded play. The first procedural roster is complete, but final art and balance are not. No need to invent additional factions or maps yet.
 
 Hard solo Prism and Hard mixed Gravity/Scrap adaptive campaigns both won twenty waves with 30 lives and valid wallets. Earlier roster-first defeats remain; do not tune from one bot or claim final balance. Bot strategies heavily favor cheap maze towers and have whole-map knowledge.
 
