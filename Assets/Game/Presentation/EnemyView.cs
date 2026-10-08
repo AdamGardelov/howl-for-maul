@@ -22,12 +22,15 @@ namespace FrostMaze
             meshes=models;Subject=enemy;observedHealth=enemy.Spec.Health;hitMaterial=hit;
             flying = enemy.Spec.Flying;
             radius = enemy.Spec.Radius;
+            bool heavy=!flying&&(enemy.Spec.Damage>=30||enemy.Spec.Speed<=1.6f);
+            bool runner=!flying&&!heavy&&enemy.Spec.Speed>=2.6f;
             normalMaterial = normal; siegeMaterial = siege;
             body = new GameObject(flying ? "Winged drifter" : "Armored crawler").transform;
             body.SetParent(transform, false);
-            body.localScale = Vector3.one * radius * 2;
-            Part("Carapace", PrimitiveType.Sphere, body, new Vector3(0, .12f, 0), new Vector3(.82f, .56f, .98f), shell);
-            core = Part("Signal crest", PrimitiveType.Sphere, body, new Vector3(0, .32f, .02f), new Vector3(.7f, .44f, .76f), normal).GetComponent<Renderer>();
+            body.localScale = new Vector3(runner?.78f:1,1,1) * radius * 2;
+            var hull=Part("Carapace", heavy?PrimitiveType.Cube:PrimitiveType.Sphere, body, new Vector3(0, heavy?.2f:.12f, 0), heavy?new Vector3(.94f,.7f,.92f):runner?new Vector3(.68f,.46f,.98f):new Vector3(.82f,.56f,.98f), shell);
+            if(heavy)hull.GetComponent<MeshFilter>().sharedMesh=meshes.Armor;
+            core = Part("Signal crest", heavy?PrimitiveType.Cube:PrimitiveType.Sphere, body, new Vector3(0, heavy?.58f:.32f, .02f), heavy?new Vector3(.7f,.18f,.65f):runner?new Vector3(.42f,.5f,.72f):new Vector3(.7f,.44f,.76f), normal).GetComponent<Renderer>();
             Part("Face visor", PrimitiveType.Cube, body, new Vector3(0, .17f, .48f), new Vector3(.56f, .12f, .1f), normal);
             if (flying)
             {
@@ -41,11 +44,16 @@ namespace FrostMaze
                     for (int leg = -1; leg <= 1; leg += 2)
                         feet.Add(Part("Crawler foot", PrimitiveType.Sphere, body, new Vector3(side * .36f, -.17f, leg * .3f), new Vector3(.23f, .25f, .42f), shell).transform);
             }
-            if(!flying&&(enemy.Spec.Damage>=30||enemy.Spec.Speed<=1.6f)) {
-                Part("Siege shield",PrimitiveType.Cube,body,new Vector3(0,.32f,.46f),new Vector3(.9f,.65f,.17f),shell);
+            if(heavy) {
+                var shield=Part("Siege shield",PrimitiveType.Cube,body,new Vector3(0,.39f,.4f),new Vector3(.9f,.78f,.17f),shell);
+                shield.GetComponent<MeshFilter>().sharedMesh=meshes.Armor;
                 Part("Siege beacon",PrimitiveType.Cylinder,body,new Vector3(0,.72f,0),new Vector3(.25f,.17f,.25f),normal);
-            } else if(!flying&&enemy.Spec.Speed>=2.6f) {
-                for(int side=-1;side<=1;side+=2)Part("Runner fin",PrimitiveType.Cube,body,new Vector3(side*.25f,.28f,-.35f),new Vector3(.12f,.4f,.65f),normal);
+            } else if(runner) {
+                for(int side=-1;side<=1;side+=2) {
+                    var fin=Part("Runner fin",PrimitiveType.Sphere,body,new Vector3(side*.25f,.4f,-.24f),new Vector3(.18f,.65f,.36f),normal);
+                    fin.GetComponent<MeshFilter>().sharedMesh=meshes.Crystal;
+                    fin.transform.localRotation=Quaternion.Euler(-25,0,side*15);
+                }
             }
             slowHalo = Part("Frost status", PrimitiveType.Cylinder, transform, Vector3.zero, new Vector3(radius * 2.4f, .018f, radius * 2.4f), frost);
             slowHalo.SetActive(false);

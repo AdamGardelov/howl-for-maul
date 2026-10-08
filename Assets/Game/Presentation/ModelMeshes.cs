@@ -9,6 +9,7 @@ namespace FrostMaze
         public Mesh Column => Profile("Stone column",8,new[]{-1f,-.78f,.78f,1f},new[]{.4f,.5f,.5f,.4f});
         public Mesh Crystal => Profile("Cut ice",5,new[]{-.5f,-.3f,.22f,.5f},new[]{0f,.42f,.31f,0f});
         public Mesh Shell => Profile("Carved shell",8,new[]{-.5f,-.27f,.14f,.36f,.5f},new[]{0f,.4f,.5f,.33f,0f});
+        public Mesh Armor => Profile("Beveled armor",8,new[]{-.5f,-.3f,.32f,.5f},new[]{.38f,.5f,.5f,.38f});
         public Mesh Robe => Profile("Warden mantle",7,new[]{-.5f,-.38f,.32f,.5f},new[]{.36f,.5f,.24f,.2f});
         Mesh Profile(string name,int sides,float[] heights,float[] radii)
         {

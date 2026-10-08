@@ -16,6 +16,8 @@ Combat cues: real-hit/kill feedback, flight-height leaks, pause/setup/reset and 
 
 Off-camera leak alerts: the new focused integration case passes (1/1), bringing the available suite to 72. The last full-suite run remains the 71/71 combat-cue checkpoint; no fresh 72/72 result is claimed. Native sidebar/focus fixtures inspected. A fresh packaged :98 mouse sequence also verified the grouped warning and View exit during natural wave progression, then closed with exit zero. See LEAK-ALERT.md.
 
+Enemy silhouettes: narrower runners and heavier bevelled siege units retain existing collision/navigation. The enemy-presentation case passed (1/1); final cosmetic bevels compiled and were visually inspected afterward. See ENEMY-READABILITY.md.
+
 ## Paid campaigns
 
 New Hard solo Prism adaptive campaign: twenty waves won, 30 lives, 324 purchases, 184 upgrades, 6740 spent and 364 gold left. New Hard mixed Gravity/Scrap campaign: twenty waves won, 30 lives, 324 purchases, 270 upgrades, each player spent 3372 and retained 180. No stalls or wallet errors. See Balance/PRISM-HARD.md and Balance/GRAVITY-SCRAP-HARD.md plus raw ledgers.

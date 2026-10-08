@@ -532,6 +532,8 @@ namespace FrostMaze.Tests
             Assert.That(groundView.transform.Find("Frost status").gameObject.activeSelf, Is.True);
             Assert.That(groundView.GetComponentsInChildren<Collider>().Length, Is.Zero, "Cosmetics must not add physics blockers");
             Assert.That(airView.GetComponentsInChildren<Collider>().Length, Is.Zero);
+            Assert.That(GameObject.Find("Enemy "+heavy.Id).GetComponentsInChildren<Collider>().Length,Is.Zero);
+            Assert.That(GameObject.Find("Enemy "+runner.Id).GetComponentsInChildren<Collider>().Length,Is.Zero);
             Assert.That(wings.Find("Wing vane").GetComponent<MeshFilter>().sharedMesh,Is.SameAs(game.Models.Wing(-1)));
             var foot=groundView.transform.Find("Armored crawler/Crawler foot");var pausedFoot=foot.localRotation;
             var pausedWing = wings.localRotation;
