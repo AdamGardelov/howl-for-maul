@@ -547,5 +547,99 @@
       "limitation": "No-display native startup crashes before game initialization; isolated-display data checks passed. Windows runtime untested."
     },
     "oldPackagePreserved": "Builds/Linux still contains 110633b; existing player left running."
+  },
+  "onlineAtmosphereCheckpoint": {
+    "source": "0ca580c",
+    "builds": [
+      {
+        "status": "completed",
+        "buildId": "build_38070d97a252",
+        "result": "Succeeded",
+        "platform": "StandaloneLinux64",
+        "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Linux-Online/HowlForMaul",
+        "totalSizeBytes": 105236592,
+        "buildTimeMs": 21594,
+        "buildStartedAt": "2026-10-08T20:01:24.1222660Z",
+        "buildEndedAt": "2026-10-08T20:01:45.7171920Z",
+        "totalWarnings": 1,
+        "totalErrors": 0
+      },
+      {
+        "status": "completed",
+        "buildId": "build_5a12b6e299a4",
+        "result": "Succeeded",
+        "platform": "StandaloneWindows64",
+        "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Windows-Online/HowlForMaul.exe",
+        "totalSizeBytes": 108880248,
+        "buildTimeMs": 37340,
+        "buildStartedAt": "2026-10-08T20:02:44.4817670Z",
+        "buildEndedAt": "2026-10-08T20:03:21.8222180Z",
+        "totalWarnings": 19,
+        "totalErrors": 0
+      }
+    ],
+    "packagedNetwork": [
+      {
+        "map": "Rimewatch",
+        "clientExit": 0,
+        "hostExit": 0,
+        "clientMarkers": [
+          "HOWL_NETWORK_CLIENT_PASS Rimewatch tick=420 hash=7OiuVvEHSFtGVYB5EHKo8WAzXhXiYgtqWwQ2ab7BqjE="
+        ],
+        "hostMarkers": [
+          "HOWL_NETWORK_HOST_PASS Rimewatch lanes=3 paid=2"
+        ]
+      },
+      {
+        "map": "Ironfold",
+        "clientExit": 0,
+        "hostExit": 0,
+        "clientMarkers": [
+          "HOWL_NETWORK_CLIENT_PASS Ironfold tick=420 hash=xVcKV1P/zX9OiWNmFHA3FbIyEmL0gUz1Nlt3xOwzUg8="
+        ],
+        "hostMarkers": [
+          "HOWL_NETWORK_HOST_PASS Ironfold lanes=4 paid=2"
+        ]
+      }
+    ],
+    "dataSmoke": {
+      "display": ":98",
+      "exitCode": 0,
+      "bothMaps": true
+    },
+    "limitations": [
+      "Loopback processes only; no real internet or separate-device test",
+      "Windows build only",
+      "Linux graphical checks use isolated Xvfb/llvmpipe; native desktop compatibility is not newly claimed"
+    ],
+    "priorProbeFailure": {
+      "source": "33be419",
+      "reason": "The probe advanced timeout clocks by a fixed increment in an uncapped player. Fixed to actual unscaled elapsed time; normal game already used real elapsed time."
+    },
+    "clientPresentationTest": {
+      "case": "RemoteClientChangesMapKeepsItsSlotAndUsesHostTicks",
+      "passed": true,
+      "durationSeconds": 120.1749434,
+      "record": "Howl-Online-Client-Unity-Test.json"
+    },
+    "graphicalInput": {
+      "display": ":98",
+      "renderer": "llvmpipe OpenGL",
+      "resolution": [
+        1440,
+        900
+      ],
+      "exitCode": 0,
+      "checks": [
+        "Solo staged faction/start/difficulty",
+        "Close zoom and E/R rotation reset preserving focus",
+        "Three numbered Shift queue markers become three paid towers, 1200 to 1185 gold",
+        "Ironfold online host lobby Ready/Begin, faction, unique start and difficulty",
+        "Q and clickable minimap north reset",
+        "Both map exteriors and menu inspected",
+        "Game-menu Quit exits zero"
+      ],
+      "userPlayerPreserved": true
+    }
   }
 }

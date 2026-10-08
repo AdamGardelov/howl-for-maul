@@ -2,6 +2,9 @@
 
 ## Latest state
 
+- Latest runtime source 0ca580c adds direct host/join, shared faction → unique start → difficulty setup, authoritative paid commands and majority pause/resume. The original online deferral is superseded. Separate .NET and packaged Unity process checks pass on both maps; three/four-player tests cover budgets, capacity and votes. R camera reset, textured exterior terrain, original tower sound identities, faction attack colors and licensed map music are implemented. Read ONLINE-PLAY.md / WORLD-ATMOSPHERE.md. New packages: Builds/Linux-Online and Windows-Online. Existing user player and older packages preserved. Internet routing/relay and Windows runtime are untested. Current Unity target restored to Linux. Remote-client scene/session/ownership/host-clock regression also passed; final graphical Host/setup/camera/queue/Quit check exited zero.
+
+
 - Construction feedback source 945da86: Quit, all queued footprints and legal intermediate checkpoint placement. 67 pure cases, focused queue Unity case and 12 paid Normal campaigns verified. New packages are in Linux-Next / Windows-Next to preserve the user’s existing running player. Both isolated graphical Quit checks and both-map data check pass; no-display bootstrap crashes remain. Continue the expanded camera/scenery/audio/online request in NEXT-PLAYTEST-REQUESTS.md.
 
 - Three-player compact follow-up: five Normal twenty-wave wins spanning all twelve factions, 48 towers per team, 436 total upgrades and 300 wave-end wallet checks. Rime/Stonebound/Ember finishes with nine lives after final-wave leaks; the other four teams keep 30. Read Balance/COMPACT-THREE-PLAYER.md. New paid champion queue recovery covers sold/destroyed prerequisites across all eight robot factions; all 65 pure cases pass. Read CHAMPION-QUEUE-RECOVERY.md for verification. Tests/docs only; player packages remain 110633b.
@@ -31,7 +34,7 @@
 
 ## Next priorities
 
-1. Preserve user Play sessions and unsaved scenes. Current packages are verified through 110633b.
+1. Preserve user Play sessions and unsaved scenes. Use the new Online package directories for current source; do not overwrite the older running player.
 2. Continue faction/maze progression and meaningful paid-defense testing; use human sessions to judge beginner difficulty; compact limits are diagnostics only.
 3. Continue the original minimalistic art direction while keeping silhouettes readable and every scenic footprint on blocked mask cells. No final-art or performance promise is implied by the procedural pass.
 

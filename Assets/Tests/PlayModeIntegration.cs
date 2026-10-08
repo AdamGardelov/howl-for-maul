@@ -162,6 +162,34 @@ namespace FrostMaze.Tests
             camera.FocusPoint(new FrostMaze.Simulation.V2(32,32));camera.Overview();
             yield return new ExitPlayMode();
         }
+        [UnityTest, Category("OnlineClient")]
+        public IEnumerator RemoteClientChangesMapKeepsItsSlotAndUsesHostTicks()
+        {
+            EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");yield return new EnterPlayMode();yield return null;
+            FrostMaze.Simulation.Scenario Resolve(string name)=>JsonUtility.FromJson<FrostMaze.Simulation.Scenario>(JsonUtility.ToJson(Resources.Load<MapDefinition>(name).Settings));
+            using(var host=new FrostMaze.Simulation.Online.Session(Resolve,FrostMaze.Simulation.Online.StateDigest.Scenario)){
+                host.Host("Ironfold","Host","fixture",0);var online=OnlineGame.Create();online.Join("127.0.0.1",host.Port,"Client","fixture");var client=online.Session;
+                for(int i=0;i<600&&(host.Members.Count<2||!client.IsConnected||Object.FindFirstObjectByType<Prototype>().Map.name!="Ironfold");i++){host.Update(Time.unscaledDeltaTime);yield return null;}
+                var game=Object.FindFirstObjectByType<Prototype>();Assert.That(game.Map.name,Is.EqualTo("Ironfold"));Assert.That(OnlineGame.Current,Is.SameAs(online));Assert.That(client.LocalSlot,Is.EqualTo(1));
+                void Send(FrostMaze.Simulation.Online.Session session,FrostMaze.Simulation.Online.Kind kind,int value=0)=>session.Send(new FrostMaze.Simulation.Online.Packet{Kind=kind,A=value});
+                Send(host,FrostMaze.Simulation.Online.Kind.Ready);Send(client,FrostMaze.Simulation.Online.Kind.Ready);
+                for(int i=0;i<60;i++){host.Update(Time.unscaledDeltaTime);yield return null;}
+                Send(host,FrostMaze.Simulation.Online.Kind.Begin);
+                for(int i=0;i<60;i++){host.Update(Time.unscaledDeltaTime);yield return null;}
+                Send(host,FrostMaze.Simulation.Online.Kind.Faction,0);Send(client,FrostMaze.Simulation.Online.Kind.Faction,3);Send(host,FrostMaze.Simulation.Online.Kind.Ready);Send(client,FrostMaze.Simulation.Online.Kind.Ready);
+                for(int i=0;i<60;i++){host.Update(Time.unscaledDeltaTime);yield return null;}
+                Send(host,FrostMaze.Simulation.Online.Kind.Lane,0);Send(client,FrostMaze.Simulation.Online.Kind.Lane,6);Send(host,FrostMaze.Simulation.Online.Kind.Ready);Send(client,FrostMaze.Simulation.Online.Kind.Ready);
+                for(int i=0;i<60;i++){host.Update(Time.unscaledDeltaTime);yield return null;}
+                Send(host,FrostMaze.Simulation.Online.Kind.Difficulty,1);Send(client,FrostMaze.Simulation.Online.Kind.Difficulty,1);
+                for(int i=0;i<120&&client.World==null;i++){host.Update(Time.unscaledDeltaTime);yield return null;}
+                yield return null;Assert.That(game.World,Is.SameAs(client.World));Assert.That(game.World.ActivePlayer,Is.EqualTo(1));Assert.That(game.World.Players[1].Faction,Is.EqualTo(3));Assert.That(game.World.Gold,Is.EqualTo(600));Assert.That(game.World.BuilderPosition,Is.EqualTo(game.World.Config.BuilderStarts[6]));
+                for(int i=0;i<10;i++)yield return null;long tick=game.World.Tick;yield return new WaitForSecondsRealtime(.1f);Assert.That(game.World.Tick,Is.EqualTo(tick),"Client advanced without host frames");
+                game.ToggleMenu();for(int i=0;i<30;i++){host.Update(Time.unscaledDeltaTime);yield return null;}Assert.That(game.World.Tick,Is.GreaterThan(tick),"Client menu paused the shared match");
+                Send(host,FrostMaze.Simulation.Online.Kind.PauseVote);game.VotePause();for(int i=0;i<30;i++){host.Update(Time.unscaledDeltaTime);yield return null;}Assert.That(host.Paused&&game.Paused,Is.True);Assert.That(client.Failure,Is.Empty);
+                game.LeaveOnline();yield return null;Assert.That(OnlineGame.Current,Is.Null);
+            }
+            yield return new ExitPlayMode();
+        }
         [UnityTest, Category("OnlineSetup")]
         public IEnumerator SoloStagedSetupUsesChosenStartMusicAndAuthoritativeTicks()
         {

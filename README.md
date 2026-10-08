@@ -90,10 +90,12 @@ dotnet run --project Headless/HowlForMaul.Headless.csproj -c Release
 
 The headless runner executes pure simulation cases. Its optional `--balance` mode exercises paid defenses across both maps and every faction; see [the coverage baseline](Docs/Balance/README.md) and [24 roster/upgrade campaigns](Docs/Balance/ROSTER-BASELINE.md) for commands, results and limitations. The latter includes real champion purchases, paid upgrades and mixed-faction teams. The [paid maze baseline](Docs/Balance/MAZE-BASELINE.md) adds deliberate zig-zag construction and route/reopening checks. The [team baseline](Docs/Balance/TEAM-BASELINE.md) covers three/four-player mixed teams with per-player wallet audits. The [compact-defense diagnostics](Docs/Balance/COMPACT-DEFENSE.md) compare 48-tower bots, including wins with all twelve factions across several strategies and mixed teams; the [paid investment follow-up](Docs/Balance/COMPACT-INVESTMENT.md) closes the Rime diagnostic gap without changing game stats. Unity's **Window → General → Test Runner → EditMode → Run All** additionally checks real Play-mode setup, builder/tower visuals, chosen starts, map switching and difficulty. Stop Play before starting Edit-mode tests.
 
-Use **Howl for Maul → Build Linux** or **Build Windows**. Windows requires the Windows Mono build module. Output executables:
+Use **Howl for Maul → Build Linux** or **Build Windows** for standard output directories. Windows requires the Windows Mono build module. The verified direct-online packages were built with explicit separate paths to preserve the running older player:
 
-- `Builds/Linux/HowlForMaul`
-- `Builds/Windows/HowlForMaul.exe`
+- `Builds/Linux-Online/HowlForMaul` (latest direct-online checkpoint)
+- `Builds/Linux/HowlForMaul` (older preserved package)
+- `Builds/Windows-Online/HowlForMaul.exe` (latest direct-online checkpoint)
+- `Builds/Windows/HowlForMaul.exe` (older preserved package)
 
 After building Linux, run `./Tools/smoke-linux.sh` to check both packaged maps without a display server. The explicit smoke mode skips presentation/audio startup; the script requires that isolation marker, both route/data checks and a clean exit. It is not a graphics or audio test. See [platform evidence](Docs/Platform/README.md).
 

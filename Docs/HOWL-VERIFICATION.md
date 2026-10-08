@@ -117,3 +117,13 @@ Linux-Next and Windows-Next builds succeeded with zero errors. Actual isolated L
 ## Direct online and atmosphere source checkpoint
 
 67/67 pure gameplay cases pass. Real TCP/.NET checks pass two-process paid builds, ownership rejection, ordered ticks/digests, pause/resume and disconnect recovery on both maps; three/four-player checks verify budgets, capacity, unique starts, difficulty ties, vote expiry and malformed inputs. Three focused Unity cases pass separately: exterior/camera/all 76 sound identities; staged solo setup/selected spawn/streaming music/menu pause; combat audio voice limits/camera filtering/leak priority. No new full-suite claim. Read ONLINE-PLAY.md and WORLD-ATMOSPHERE.md. New packaged and internet/Windows runtime results are not implied.
+
+## Packaged source 0ca580c
+
+Linux-Online and Windows-Online builds succeeded with zero errors. Corrected packaged multiplayer probes passed on both maps: two actual Unity processes per map, authenticated lobby/setup, two paid purchases from separate wallets, active waves and ordered state digests, majority pause/resume, departure pause and remaining-player recovery. Both clients and both hosts exited zero. Both-map data/route smoke passed on isolated display :98, exit zero. The earlier failed probe is recorded in ONLINE-PLAY.md and is not counted as a pass.
+
+Actual isolated graphical input verified staged solo faction/start/difficulty, close perspective, Q/E and R restoration, and three Shift-queued Snow Cairns becoming three paid towers with gold 1200 → 1185 and all markers clearing. UI and both map exteriors were captured and inspected. Windows remains build-tested only; all network checks so far are same-machine loopback.
+
+Final client presentation regression passed (120.17 seconds): a real TCP client switches from Rimewatch to the host's Ironfold scene while retaining its session, then adopts slot 1, its chosen faction/start and 600-gold wallet. It does not advance without host frames; its settings menu does not stop shared ticks; majority pause and leave cleanup pass. See Howl-Online-Client-Unity-Test.json.
+
+Final graphical source 0ca580c check also exercised actual Host/Ready/Begin UI, Pulse Foundry selection, Central Spine start and Normal vote on Ironfold. Q followed by the minimap north button restored the view. Both close scenery views were inspected. The game-menu Quit button closed normally with exit zero, and the player log contains no game exceptions. These checks ran on the owned isolated Xvfb display with llvmpipe; the user's existing desktop player was left running.

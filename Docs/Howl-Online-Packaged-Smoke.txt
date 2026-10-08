@@ -1,0 +1,4 @@
+HOWL_SMOKE_DATA_ONLY
+HOWL_SMOKE_PASS Rimewatch lanes=3 factions=4 towers=20 waves=20
+HOWL_SMOKE_PASS Ironfold lanes=4 factions=8 towers=56 waves=20
+HOWL_SMOKE_COMPLETE

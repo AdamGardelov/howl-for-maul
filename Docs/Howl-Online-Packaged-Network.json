@@ -1,0 +1,24 @@
+[
+  {
+    "map": "Rimewatch",
+    "clientExit": 0,
+    "hostExit": 0,
+    "clientMarkers": [
+      "HOWL_NETWORK_CLIENT_PASS Rimewatch tick=420 hash=7OiuVvEHSFtGVYB5EHKo8WAzXhXiYgtqWwQ2ab7BqjE="
+    ],
+    "hostMarkers": [
+      "HOWL_NETWORK_HOST_PASS Rimewatch lanes=3 paid=2"
+    ]
+  },
+  {
+    "map": "Ironfold",
+    "clientExit": 0,
+    "hostExit": 0,
+    "clientMarkers": [
+      "HOWL_NETWORK_CLIENT_PASS Ironfold tick=420 hash=xVcKV1P/zX9OiWNmFHA3FbIyEmL0gUz1Nlt3xOwzUg8="
+    ],
+    "hostMarkers": [
+      "HOWL_NETWORK_HOST_PASS Ironfold lanes=4 paid=2"
+    ]
+  }
+]
