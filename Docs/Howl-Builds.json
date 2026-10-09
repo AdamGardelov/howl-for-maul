@@ -769,5 +769,127 @@
       "Final-air refund wording verified by pure regressions, not a final-wave graphical playthrough"
     ],
     "linuxWarningNote": "Build also emitted an uncompiled-code-change warning referring to postprocessing/import code. This change modifies no postprocessing/import scripts; actual packaged forecast behavior was exercised. Both raw build warnings are retained."
+  },
+  "snowReadabilityCheckpoint": {
+    "source": "b70de3c",
+    "builds": [
+      {
+        "status": "completed",
+        "buildId": "build_55d36d9e11b3",
+        "result": "Succeeded",
+        "platform": "StandaloneLinux64",
+        "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Linux-Snow/HowlForMaul",
+        "totalSizeBytes": 105238640,
+        "buildTimeMs": 24795,
+        "buildStartedAt": "2026-10-08T23:38:00.7652430Z",
+        "buildEndedAt": "2026-10-08T23:38:25.5605290Z",
+        "totalWarnings": 1,
+        "totalErrors": 0,
+        "warnings": [
+          {
+            "message": "Pipeline: No RuntimePipelineConfig asset found (Project Settings > Pipeline > Runtime). Pipeline will be disabled in Player builds."
+          }
+        ]
+      },
+      {
+        "status": "completed",
+        "buildId": "build_e29f2a082580",
+        "result": "Succeeded",
+        "platform": "StandaloneWindows64",
+        "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Windows-Snow/HowlForMaul.exe",
+        "totalSizeBytes": 108882296,
+        "buildTimeMs": 39160,
+        "buildStartedAt": "2026-10-08T23:39:15.3305930Z",
+        "buildEndedAt": "2026-10-08T23:39:54.4914120Z",
+        "totalWarnings": 19,
+        "totalErrors": 0,
+        "warnings": [
+          {
+            "message": "Pipeline: No RuntimePipelineConfig asset found (Project Settings > Pipeline > Runtime). Pipeline will be disabled in Player builds."
+          },
+          {
+            "message": "Shader warning in 'TraceRays': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'RisEstimation': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceRenderingLayerMask': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'UniformEstimation': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceTransparentRays': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'DynamicGISkyOcclusion': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceRaysAndFetchAttributes': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'RestirCandidateTemporal': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceVirtualOffset': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'RestirCandidateTemporal': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceTransparentRays': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceRenderingLayerMask': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceRaysAndFetchAttributes': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'DynamicGISkyOcclusion': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceVirtualOffset': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceRays': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'RisEstimation': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'UniformEstimation': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          }
+        ]
+      }
+    ],
+    "linuxInput": {
+      "display": ":98",
+      "renderer": "llvmpipe OpenGL",
+      "resolution": [
+        1440,
+        900
+      ],
+      "exitCode": 0,
+      "checks": [
+        "Staged solo Stonebound on Rimewatch, upper-centre start, Normal",
+        "Paid Pebble Warden: 1200 to 1175 gold, one targeting-capable tower",
+        "Overview and close perspective snow, wall edges, props and rendered minimap inspected",
+        "Snow exterior repeat seams absent in final overview capture",
+        "Leave Match and switch to Ironfold; retained slate/copper terrain visually inspected",
+        "Main-menu Quit exited zero; no game exceptions in player log"
+      ]
+    },
+    "dataSmoke": {
+      "bothMaps": true,
+      "exitCode": 0
+    },
+    "limits": [
+      "Windows runtime untested",
+      "No new native desktop or networking compatibility test",
+      "Both-map scenery clearance passed before periodic-noise refinement; final seam regression and both package visual checks passed after it",
+      "Procedural prototype art; no new performance claim"
+    ]
   }
 }

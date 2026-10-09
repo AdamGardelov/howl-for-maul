@@ -6,6 +6,8 @@ Built with Unity 6.3 LTS, C# and URP for Windows and Ubuntu Linux. Game code, pr
 
 **Current status:** playable solo/local prototype with direct host/join multiplayer. Online players share a lobby, choose factions and unique starts, vote difficulty, and vote pause/resume. Direct connections need a reachable host; relay/public matchmaking is not configured. See [online play](Docs/ONLINE-PLAY.md) for setup and tested scope.
 
+Latest visual checkpoint: Rimewatch uses softer, seamless snow across ledges and outer terrain; see [verification](Docs/SNOW-READABILITY.md). Latest local packages are `Builds/Linux-Snow/HowlForMaul` and `Builds/Windows-Snow/HowlForMaul.exe`.
+
 ## Play
 
 Open this project with **Unity 6000.3.25f1**, choose **Howl for Maul → Open game**, then press Play. The scene generates the selected map at runtime.

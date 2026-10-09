@@ -2,6 +2,8 @@
 
 ## Latest state
 
+- Runtime b70de3c softens Rimewatch snow and removes exterior repeat seams. Shared cap/exterior sampling preserves Ironfold colors. 68 pure cases, both-map scenery clearance and new seam regression pass with the exact sequencing in SNOW-READABILITY.md. Final Linux/Windows builds, Linux overview/close/minimap/paid purchase/map switch/Quit and both-map data smoke pass. New packages: Linux-Snow / Windows-Snow. Windows runtime untested; editor target restored to Linux.
+
 - Runtime f9a858d adds a compact pre-wave forecast and owned final-air refund advice. 68 pure cases, focused Unity visibility/input test, both platform builds, Linux paid tower/count/click-to-details/combat-hide/Quit and both-map data smoke pass. New packages are Linux-WavePreview / Windows-WavePreview; prior packages preserved. Read WAVE-FORECAST.md for warnings and exact limits. Unity target restored to Linux.
 
 - Final-air rebuild diagnostic: fourteen matched pairs (28 paid campaigns) verify owner-only sale refunds and paid replacements. Stonebound improves from 2 to 16 lives and Ember 5 to 15; every pre-finale wave/transaction stays identical. Rime/Blast losses on wave 18 remain visible. No stat changes. 67 pure tests pass. Read Balance/FINALE-REBUILD.md. Harness/docs only; packages still runtime 0ca580c.
@@ -40,7 +42,7 @@
 
 ## Next priorities
 
-1. Preserve user Play sessions and unsaved scenes. Use the new Online package directories for current source; do not overwrite the older running player.
+1. Preserve user Play sessions and unsaved scenes. Use the new Snow package directories for current source; do not overwrite the older running player.
 2. Continue faction/maze progression and meaningful paid-defense testing; use human sessions to judge beginner difficulty; compact limits are diagnostics only.
 3. Continue the original minimalistic art direction while keeping silhouettes readable and every scenic footprint on blocked mask cells. No final-art or performance promise is implied by the procedural pass.
 

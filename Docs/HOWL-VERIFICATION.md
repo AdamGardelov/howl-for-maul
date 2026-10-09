@@ -145,3 +145,13 @@ Fourteen matched control/intervention pairs (28 campaigns) verify paid final-wav
 Linux-WavePreview and Windows-WavePreview builds succeeded with zero errors. Linux emitted two warnings (Pipeline disabled, plus an uncompiled-code-change warning about postprocessing/import code); Windows emitted the nineteen recorded Pipeline/ray-tracing warnings. No postprocessing/import code changed. Actual Linux input confirms the new runtime card is present and functional. Exact records are in Howl-Wave-Forecast-Packages.json.
 
 On the owned isolated 1440×900 llvmpipe display, staged solo Stonebound setup showed 24 ground enemies, 35 HP and all three Rimewatch lanes. Clicking the forecast opened expanded advice without building or spending. A paid Pebble Warden changed gold from 1,200 to 1,175 and targeting count from zero to one. Enter launched wave 1 and removed the card; game-menu Quit exited zero with no game exception in the player log. Both-map data smoke also exited zero. Unity target was restored to Linux. Existing player/package directories were preserved. Final-air refund text is verified in the pure regression, not in a manually played final-wave screen. Windows runtime and current native desktop/internet compatibility remain untested.
+
+## Snow readability
+
+The new SnowSurfaceRepeatsContinuouslyAcrossExteriorTiles Unity regression passed (1.59 seconds), checking both axes, opposite edges, translated samples and both sides of seams. The initial scenery-test submission timed out during a domain reload; the editor was confirmed idle before the successful retry. No duplicate test job was launched.
+
+Final Linux-Snow and Windows-Snow packages built with zero errors. Linux emitted one Pipeline-disabled warning; Windows emitted nineteen Pipeline/ray-tracing warnings, retained in Howl-Snow-Packages.json. Both packages contain source b70de3c and music attribution files. Unity was restored to StandaloneLinux64.
+
+Actual Linux input on the owned isolated 1440×900 llvmpipe display verified staged Stonebound setup, a paid Pebble Warden (1,200 → 1,175 gold), overview/close camera views and the rendered minimap. Final captures show subdued snow without the initial exterior repeat seams. Leave Match and map switching showed Ironfold's retained slate/copper palette. Main-menu Quit exited zero, with no game exceptions in the player log. Both-map data smoke also exited zero. Existing user player and older packages were preserved.
+
+Windows runtime, native desktop compatibility and networking were not retested in this texture pass. The 68 pure cases passed before the periodic-noise-only refinement; simulation source did not change. This is not a new full Unity-suite, performance or final-art claim.
