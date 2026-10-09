@@ -1,0 +1,34 @@
+{
+  "success": true,
+  "command": "command build_status",
+  "data": {
+    "command": "build_status",
+    "parameters": {},
+    "result": {
+      "status": "completed",
+      "buildId": "build_3c6ff872db26",
+      "result": "Succeeded",
+      "platform": "StandaloneLinux64",
+      "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Linux-Cohesion/HowlForMaul",
+      "totalSizeBytes": 105320080,
+      "buildTimeMs": 33049,
+      "buildStartedAt": "2026-10-09T10:29:18.2715270Z",
+      "buildEndedAt": "2026-10-09T10:29:51.3207030Z",
+      "totalWarnings": 1,
+      "totalErrors": 0,
+      "errors": [],
+      "warnings": [
+        {
+          "message": "Pipeline: No RuntimePipelineConfig asset found (Project Settings > Pipeline > Runtime). Pipeline will be disabled in Player builds."
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "/home/adam/Documents/Dev/howl-for-maul"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}
