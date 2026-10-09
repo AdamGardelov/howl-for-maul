@@ -87,7 +87,7 @@ namespace FrostMaze
             Frame(new Rect(18,18,324,Screen.height/scale-36));
             GUILayout.BeginArea(new Rect(32,28,296,Screen.height/scale-52));
             if(!game.SetupOpen&&GUILayout.Button("CLOSE DETAILS [TAB]",button))game.DetailsOpen=false;
-            GUILayout.Label("HOWL FOR MAUL",title);
+            if(game.SetupOpen)BrandHeading(190);else GUILayout.Label("HOWL FOR MAUL",title);
             GUILayout.Label(w.Config.Name.ToUpperInvariant()+"  /  "+(game.SetupOpen?"MATCH SETUP":w.FactionName.ToUpperInvariant()),small);
             if(game.SetupOpen) {
                 scroll=GUILayout.BeginScrollView(scroll);DrawSetup();GUILayout.Space(12);DrawOnlineEntry();GUILayout.EndScrollView();

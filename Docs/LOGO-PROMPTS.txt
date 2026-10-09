@@ -1,0 +1,12 @@
+Howl for Maul logo — generation record
+
+Created with the built-in image_gen tool, 2026-10-09.
+Final asset: Assets/Game/UI/Resources/Brand/HowlForMaul.png
+Transparent RGBA PNG; no external reference assets used.
+
+Initial generation prompt:
+Use case: logo-brand. Asset type: finished transparent game title logo for a Unity fantasy cooperative maze tower-defense game. Create ONE original logo with the exact text "HOWL FOR MAUL" and no other text. The main visual is a beautifully crafted fantasy wordmark: huge legible uppercase HOWL on the first line, smaller FOR integrated centrally above or between the lines, huge uppercase MAUL on the second line. Compact wide composition, about 2:1 silhouette, tight margins, centered. A restrained howling wolf profile and two subtle fortified tower shapes form a small integrated crest above/between the lettering, not a separate giant illustration. Carved monumental serif letterforms with slightly chiseled terminals, warm aged brass/gold bevel edges, pale ivory-gold front faces, very dark blue-slate recessed depth. Tiny muted teal inset detail. Warm, inviting adventurous classic fantasy RTS feeling, sophisticated and slightly stylized, minimal detail for excellent readability at 280 pixels wide. Premium crafted game logo, original identity, clean balanced silhouette, strong crisp contrast, restrained shallow 3D relief. Actual transparent background (RGBA alpha), transparent holes inside letters. No rectangular background, no scenery, no square badge, no banners, no slogan, no watermark. No copying an existing game's logo, no spiky esports mascot, no snarling face, no excessive filigree, no gritty noise, no fog or wide glow outside silhouette. Make HOWL and MAUL unmistakably spelled H O W L and M A U L.
+
+Final refinement prompt:
+Use case: precise-object-edit. Edit this Howl for Maul transparent game logo for production. Preserve the exact wording HOWL FOR MAUL, the letter shapes, gold/slate materials, howling wolf, two towers, teal details and overall design. Change only framing and edge cleanup: fit the ENTIRE logo comfortably inside the canvas with a consistent 5 percent transparent safety margin on all four sides, particularly above the wolf's nose. No part should touch an image edge. Remove tiny stray colored flecks and isolated translucent pixels outside the silhouette, leaving clean anti-aliased logo edges. Use actual transparent RGBA background, with clean fully transparent outer margins. No backdrop, no new decoration, no new text, no glow. Keep the lettering crisp at menu size.
+

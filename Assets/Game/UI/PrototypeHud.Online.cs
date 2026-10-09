@@ -29,12 +29,12 @@ namespace FrostMaze
             bool factions=net!=null&&net.Stage==Stage.Factions;
             float panelWidth=Mathf.Min(factions?1080:720,width-32);
             var box=new Rect((width-panelWidth)/2,24,panelWidth,height-48);Frame(box);
-            GUILayout.BeginArea(new Rect(box.x+24,box.y+18,box.width-48,box.height-36));GUILayout.Label("HOWL FOR MAUL",title);
-            if(net==null||online.Error.Length>0){GUILayout.Label(online.Error,label);if(GUILayout.Button("BACK",button))game.LeaveOnline();GUILayout.EndArea();GUI.matrix=matrix;return;}
+            GUILayout.BeginArea(new Rect(box.x+24,box.y+18,box.width-48,box.height-36));
+            if(net==null||online.Error.Length>0){BrandHeading(130);GUILayout.Label(online.Error,label);if(GUILayout.Button("BACK",button))game.LeaveOnline();GUILayout.EndArea();GUI.matrix=matrix;return;}
             var config=game.World.Config;Member me=null;foreach(var member in net.Members)if(member.Id==net.LocalId)me=member;
-            GUILayout.Label(net.Map+" · "+(online.LocalOnly?"SOLO":net.IsHost?"HOST":"CONNECTED PLAYER"),section);
-            GUILayout.Label(net.Members.Count==1?"FACTION → DIFFICULTY → DEFEND · Solo starts at Last Stand":"LOBBY → FACTION → STARTING POSITION → DIFFICULTY → DEFEND",small);
-            GUILayout.Label(factions?"CHOOSE YOUR FACTION":net.Stage.ToString().ToUpperInvariant(),title);
+            LobbyBrandHeading(box.width-48,net.Map+" · "+(online.LocalOnly?"SOLO":net.IsHost?"HOST":"CONNECTED PLAYER"),
+                net.Members.Count==1?"FACTION → DIFFICULTY → DEFEND · Solo starts at Last Stand":"LOBBY → FACTION → STARTING POSITION → DIFFICULTY → DEFEND",
+                factions?"CHOOSE YOUR FACTION":net.Stage.ToString().ToUpperInvariant());
             lobbyScroll=GUILayout.BeginScrollView(lobbyScroll);
             foreach(var member in net.Members){GUILayout.BeginHorizontal(badge);string faction=member.Faction>=0&&member.Faction<config.Factions.Length?config.Factions[member.Faction].Name:"Choosing faction";
                 string start=member.Lane>=0&&member.Lane<config.StartNames.Length?" · "+config.StartNames[member.Lane]:"";

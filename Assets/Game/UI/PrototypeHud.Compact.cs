@@ -93,14 +93,15 @@ namespace FrostMaze
             GUI.matrix=Matrix4x4.Scale(new Vector3(scale,scale,1));
             float width=Screen.width/scale,height=Screen.height/scale;
             var old=GUI.color;GUI.color=new Color(0,0,0,.65f);GUI.DrawTexture(new Rect(0,0,width,height),Texture2D.whiteTexture);GUI.color=old;
-            var box=new Rect((width-380)/2,(height-680)/2,380,680);Frame(box);
-            GUILayout.BeginArea(new Rect(box.x+24,box.y+18,332,644));
-            GUILayout.Label("HOWL FOR MAUL",title);GUILayout.Label(game.NetworkMatch&&!OnlineGame.Current.LocalOnly?"GAME MENU · [P] votes to pause":"GAME MENU · match paused",section);GUILayout.Space(12);
+            float menuHeight=Mathf.Min(820,height-36);
+            var box=new Rect((width-420)/2,(height-menuHeight)/2,420,menuHeight);Frame(box);
+            GUILayout.BeginArea(new Rect(box.x+24,box.y+18,box.width-48,box.height-36));
+            BrandHeading(130);GUILayout.Label(game.NetworkMatch&&!OnlineGame.Current.LocalOnly?"GAME MENU · [P] votes to pause":"GAME MENU · match paused",section);GUILayout.Space(12);
             if(GUILayout.Button("RETURN TO GAME [ESC]",primary))game.ToggleMenu();
             if(game.NetworkMatch&&GUILayout.Button(game.Paused?"VOTE TO RESUME":"VOTE TO PAUSE",button))game.VotePause();
             if(GUILayout.Button(game.NetworkMatch?"LEAVE MATCH":"NEW GAME",button))game.OpenSetup();
             if(GUILayout.Button("QUIT GAME",button))game.QuitGame();
-            GUILayout.Space(12);GUILayout.Label("SETTINGS",section);
+            GUILayout.Space(12);menuSettingsScroll=GUILayout.BeginScrollView(menuSettingsScroll);GUILayout.Label("SETTINGS",section);
             game.SoundEnabled=GUILayout.Toggle(game.SoundEnabled,"Combat sound",button);
             GUILayout.Label("Effects volume",small);game.EffectsVolume=GUILayout.HorizontalSlider(game.EffectsVolume,0,1);
             GUILayout.Label("Music volume",small);game.MusicVolume=GUILayout.HorizontalSlider(game.MusicVolume,0,1);
@@ -112,7 +113,7 @@ namespace FrostMaze
             if(game.NetworkMatch&&!game.Net.IsHost)GUILayout.Label("The host controls the shared game speed.",small);
             if(!Application.isEditor)Screen.fullScreen=GUILayout.Toggle(Screen.fullScreen,"Fullscreen window",button);
             GUILayout.Space(8);GUILayout.Label((game.NetworkMatch&&!game.Net.IsHost?"Speed: shared by everyone; controlled by the host.":"Speed [− / +]: 0.5× / 1× / 2× / 3×.")+"\nDetails [Tab]: wave advice, tower stats and inspection tools.\nEdges / WASD: pan · Space + drag: pan · wheel: zoom\nQ / E: rotate · R: reset angle · Home: builder\nHold Alt: reveal all health bars",small);
-            GUILayout.EndArea();GUI.matrix=matrix;
+            GUILayout.EndScrollView();GUILayout.EndArea();GUI.matrix=matrix;
         }
     }
 }
