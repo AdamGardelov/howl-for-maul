@@ -190,15 +190,17 @@ namespace FrostMaze
             }
             GUILayout.EndScrollView();GUILayout.EndArea();GUI.matrix=previousMatrix;DrawHealth();DrawMapLabels();DrawMinimap();DrawBuildFeedback();DrawPlacementHint();if(game.MenuOpen)DrawPauseMenu();
         }
-        void DrawTowerStats(TowerSpec spec)
+        public static string TowerStatsText(TowerSpec spec)
         {
-            if(spec.Damage<=0){GUILayout.Label($"Maze piece · {spec.Health:0} HP · no weapon",small);return;}
+            if(spec.Damage<=0)return $"Maze piece · {spec.Health:0} HP · no weapon";
             string targets=spec.TargetsGround?(spec.TargetsAir?"Ground + air":"Ground only"):"Air only";
-            GUILayout.Label($"{targets} · {spec.Health:0} HP\n{spec.Damage:0.#} damage every {spec.Interval:0.00}s\n{spec.Damage/spec.Interval:0.#} direct DPS · range {spec.Range:0.0}",small);
-            if(spec.SplashRadius>0)GUILayout.Label($"Splash radius {spec.SplashRadius:0.0}",small);
-            if(spec.SlowFraction>0)GUILayout.Label($"Slow {spec.SlowFraction*100:0}% for {spec.SlowDuration:0.#}s · strongest slow wins",small);
-            if(spec.ChainTargets>0)GUILayout.Label($"Chains to {spec.ChainTargets} extra targets within 2 units",small);
+            string text=$"{targets} · {spec.Health:0} HP\n{spec.Damage:0.#} damage every {spec.Interval:0.00}s\n{spec.Damage/spec.Interval:0.#} direct DPS · range {spec.Range:0.0}";
+            if(spec.SplashRadius>0)text+=$"\nSplash radius {spec.SplashRadius:0.0}";
+            if(spec.SlowFraction>0)text+=$"\nSlow {spec.SlowFraction*100:0}% for {spec.SlowDuration:0.#}s · strongest slow wins";
+            if(spec.ChainTargets>0)text+=$"\nChains to {spec.ChainTargets} extra targets within 2 units";
+            return text;
         }
+        void DrawTowerStats(TowerSpec spec) => GUILayout.Label(TowerStatsText(spec),small);
         void DrawSetup()
         {
             GUILayout.Space(14);

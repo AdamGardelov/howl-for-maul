@@ -67,6 +67,43 @@ namespace FrostMaze.Tests
                 Near(Sample(coordinate,63.999f),Sample(coordinate,64.001f),.001f);
             }
         }
+        [Test]
+        public void CompactTowerTooltipsTrackOwnedRequirementsAndExactShortfall()
+        {
+            foreach(bool iron in new[]{false,true}) {
+                var config=MapCases.Load(iron);config.BuilderEnabled=false;
+                for(int faction=0;faction<config.Factions.Length;faction++) {
+                    var world=new FrostMaze.Simulation.World(config,new FrostMaze.Simulation.MatchOptions{PlayerCount=2,Factions=new[]{faction,faction,0,0}});
+                    int gold=world.Gold,selected=world.SelectedDesign;long tick=world.Tick;
+                    foreach(int design in config.Factions[faction].Designs) {
+                        var tower=config.Catalog[design];string tip=PrototypeHud.BuildTooltip(world,design);
+                        Assert.That(tip,Does.Contain(tower.Name));
+                        Assert.That(tip,Does.Contain(PrototypeHud.TowerStatsText(tower.Spec)));
+                        if(tower.Spec.Damage==0)Assert.That(tip,Does.Contain("no weapon").And.Not.Contain("direct DPS"));
+                        else Assert.That(tip,Does.Contain(tower.Spec.TargetsGround?(tower.Spec.TargetsAir?"Ground + air":"Ground only"):"Air only"));
+                        foreach(int required in tower.Requires)Assert.That(tip,Does.Contain("• "+config.Catalog[required].Name));
+                    }
+                    Assert.That(world.Gold,Is.EqualTo(gold));Assert.That(world.SelectedDesign,Is.EqualTo(selected));Assert.That(world.Tick,Is.EqualTo(tick));Assert.That(world.Grid.Towers.Count,Is.Zero);
+                    if(!iron)continue;
+                    var roster=config.Factions[faction].Designs;int champion=roster[roster.Length-1];
+                    FrostMaze.Simulation.Tower Buy(int design) {
+                        world.SelectedDesign=design;
+                        for(int y=1;y<63;y++)for(int x=1;x<63;x++)if(world.Build(x,y,out _))return world.Grid.At(x,y);
+                        Assert.Fail("Paid tooltip prerequisite fixture could not build");return null;
+                    }
+                    world.SelectPlayer(1);Buy(roster[0]);world.SelectPlayer(0);
+                    Assert.That(PrototypeHud.BuildTooltip(world,champion),Does.Contain("• "+config.Catalog[roster[0]].Name),"Teammate tower must not satisfy owned requirement");
+                    var first=Buy(roster[0]);
+                    Assert.That(PrototypeHud.BuildTooltip(world,champion),Does.Not.Contain("• "+config.Catalog[roster[0]].Name));
+                    for(int d=1;d<roster.Length-1;d++)Buy(roster[d]);
+                    string unlocked=PrototypeHud.BuildTooltip(world,champion);
+                    Assert.That(unlocked,Does.Not.Contain("Missing owned towers"));
+                    Assert.That(unlocked,Does.Contain("Need "+(config.Catalog[champion].Cost-world.Gold)+"g more."));
+                    Assert.That(world.Sell(first.CellX,first.CellY),Is.True);
+                    Assert.That(PrototypeHud.BuildTooltip(world,champion),Does.Contain("• "+config.Catalog[roster[0]].Name),"Sold prerequisite remained marked owned");
+                }
+            }
+        }
         public static System.Collections.IEnumerable Cases {get{foreach(var test in SimulationCases.All)yield return new TestCaseData(test).SetName(test.Name);}}
         [TestCaseSource(nameof(Cases))] public void Simulation(Case test){test.Run();}
     }

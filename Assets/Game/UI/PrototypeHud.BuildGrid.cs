@@ -14,6 +14,23 @@ namespace FrostMaze
             for(int i=0;i<game.World.Config.Catalog.Length;i++)
                 if(game.World.DesignAvailable(i)&&portraits.Get(i)==null){portraits.Prepare(game,i);break;}
         }
+        public static string BuildTooltip(FrostMaze.Simulation.World world,int design)
+        {
+            var tower=world.Config.Catalog[design];
+            var text=new System.Text.StringBuilder();
+            text.Append(tower.Name).Append(" · ").Append(tower.Cost).Append("g\n").Append(Role(tower.Spec));
+            text.Append("\n").Append(TowerStatsText(tower.Spec));
+            if(!string.IsNullOrEmpty(tower.Description))text.Append("\n").Append(tower.Description);
+            bool missing=false;
+            foreach(int required in world.MissingPrerequisites(design)) {
+                if(!missing)text.Append("\nMissing owned towers:");
+                text.Append("\n• ").Append(world.Config.Catalog[required].Name);missing=true;
+            }
+            if(world.Finished)text.Append("\nMatch finished.");
+            else if(world.Config.Economy&&world.Gold<tower.Cost)text.Append("\nNeed ").Append(tower.Cost-world.Gold).Append("g more.");
+            else if(!missing)text.Append("\nClick to select · Shift + click map to queue");
+            return text.ToString();
+        }
         void DrawBuildGrid()
         {
             var w=game.World;var box=Logical(game.BuildHud);Frame(box);
@@ -60,10 +77,10 @@ namespace FrostMaze
                 var design=w.Config.Catalog[inspect];
                 GUI.Label(new Rect(box.x+8,box.yMax-23,box.width-16,20),game.SellMode?"REMOVE MODE · click your tower":design.Name,section);
                 if(hovered>=0) {
-                    string state=!w.RequirementsMet(inspect)?"Build every regular faction tower to unlock.":w.Config.Economy&&w.Gold<design.Cost?"Not enough gold.":"Click to select · Shift + click map to queue";
-                    string text=design.Name+" · "+design.Cost+"g\n"+Role(design.Spec)+"\n"+design.Description+"\n"+state;
-                    float width=Mathf.Max(box.width,300),height=placementHint.CalcHeight(new GUIContent(text),width);
-                    var tip=new Rect(box.xMax-width,box.y-height-8,width,height);
+                    string text=BuildTooltip(w,inspect);
+                    float width=Mathf.Min(Mathf.Max(box.width,360),Screen.width/game.UiScale-24);
+                    float height=placementHint.CalcHeight(new GUIContent(text),width);
+                    var tip=new Rect(box.xMax-width,Mathf.Max(8,box.y-height-8),width,height);
                     GUI.Label(tip,text,placementHint);
                 }
             }
