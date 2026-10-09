@@ -427,7 +427,7 @@ namespace FrostMaze.Tests
             Assert.That(feedback.RecentLeaks,Is.Zero);Assert.That(game.World.Leaked,Is.Zero);
             yield return new ExitPlayMode();
         }
-        [UnityTest, Category("CrowdedPresentation")]
+        [UnityTest, Category("CrowdedPresentation"), Category("MaterialAudio")]
         public IEnumerator CombatAudioLimitsBurstsFollowsCameraAndPrioritizesLeaks()
         {
             EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
@@ -473,6 +473,19 @@ namespace FrostMaze.Tests
             Assert.That(feedback.LastSound,Is.EqualTo("Original breach"),"Breach warning lost priority to weapon sound");
             game.StartMatch();game.Paused=true;yield return null;yield return null;
             Assert.That(feedback.SoundDispatches,Is.Zero);Assert.That(feedback.LastSound,Is.Null);Assert.That(source.mute,Is.True);
+            // Actual design IDs rotate variations, and competing tower types take turns in the mix.
+            w=game.World;point=w.BuilderPosition;game.View.GetComponent<RtsCamera>().FocusPoint(point);game.Paused=false;game.SoundEnabled=true;
+            yield return null;yield return null;var names=new System.Collections.Generic.HashSet<string>();serial=0;
+            for(int i=0;i<3;i++) {
+                w.Shots.Add(new FrostMaze.Simulation.ShotEvent{Serial=++serial,Design=0,From=point,To=point});yield return null;yield return null;names.Add(feedback.LastSound);
+                yield return new WaitForSecondsRealtime(.15f);
+            }
+            Assert.That(names.Count,Is.EqualTo(3),"Repeated shots must cycle distinct recordings");names.Clear();
+            for(int i=0;i<4;i++) {
+                foreach(int design in new[]{0,3})w.Shots.Add(new FrostMaze.Simulation.ShotEvent{Serial=++serial,Design=design,From=point,To=point,Splash=design==3?1:0});
+                yield return null;yield return null;names.Add(feedback.LastSound.Split('·')[0].Trim());yield return new WaitForSecondsRealtime(.15f);
+            }
+            Assert.That(names.Count,Is.EqualTo(2),"Artillery monopolized the mixed-weapon sound gate");
             yield return new ExitPlayMode();
         }
         [UnityTest, Category("DepthPresentation"), Category("FollowThrough"), Category("TerrainMaterials")]

@@ -1,0 +1,30 @@
+[
+  {
+    "file": "Howl-Ironfold-Weapon-Volley.wav",
+    "seconds": 5.0,
+    "rate": 48000,
+    "channels": 2,
+    "peak": 0.352813720703125
+  },
+  {
+    "file": "Howl-Ironfold-Weapon-Preview.wav",
+    "seconds": 9.282,
+    "rate": 48000,
+    "channels": 2,
+    "peak": 0.524261474609375
+  },
+  {
+    "file": "Howl-Rimewatch-Weapon-Volley.wav",
+    "seconds": 5.0,
+    "rate": 48000,
+    "channels": 2,
+    "peak": 0.21014404296875
+  },
+  {
+    "file": "Howl-Rimewatch-Weapon-Preview.wav",
+    "seconds": 4.816,
+    "rate": 48000,
+    "channels": 2,
+    "peak": 0.493988037109375
+  }
+]

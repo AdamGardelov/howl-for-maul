@@ -16,6 +16,17 @@ namespace FrostMaze
         readonly Dictionary<int,Material> weaponColors=new Dictionary<int,Material>();
         Material WeaponColor(ShotEvent shot){if(shot.Design<0||shot.Design>=game.World.Config.Catalog.Length)return shot.Splash>0?ember:bolt;if(weaponColors.TryGetValue(shot.Design,out var color))return color;color=game.MakeMaterial(ProjectileStyle.For(game.World.Config,shot.Design).Color,true);weaponColors[shot.Design]=color;return color;}
         float nextShotSound,nextLeakSound;TowerSoundBank soundBank;
+        readonly Dictionary<int,int> soundVariations=new Dictionary<int,int>();
+        readonly Dictionary<int,float> lastWeaponHeard=new Dictionary<int,float>();
+        float LastHeard(int design)=>lastWeaponHeard.TryGetValue(design,out var time)?time:-1;
+        bool PreferSound(ShotEvent candidate,ShotEvent current) {
+            if(current==null)return true;
+            if(candidate.Design>=0&&current.Design>=0) {
+                float a=LastHeard(candidate.Design),b=LastHeard(current.Design);
+                if(a!=b)return a<b; // Let quieter weapon types be heard in a mixed volley.
+            }
+            return candidate.Splash>current.Splash;
+        }
         public int SoundDispatches {get;private set;}
         public string LastSound {get;private set;}
         readonly List<Flash> flashes=new List<Flash>();
@@ -42,7 +53,7 @@ namespace FrostMaze
             soundBank?.Dispose();soundBank=new TowerSoundBank(game.World.Config);
             observed=game.World;serial=0;effectTime=0;
             observedLeaks=0;recentLeaks=0;alertTime=0;leakAlertUntil=0;
-            nextShotSound=nextLeakSound=0;SoundDispatches=0;LastSound=null;sound.Stop();
+            nextShotSound=nextLeakSound=0;soundVariations.Clear();lastWeaponHeard.Clear();SoundDispatches=0;LastSound=null;sound.Stop();
             foreach(var f in flashes)Destroy(f.Object);flashes.Clear();
         }
         public void EnemyRemoved(Enemy enemy)
@@ -175,10 +186,15 @@ namespace FrostMaze
                         flashes.Add(new Flash{Object=ring,Until=effectTime+.22f});
                     }
                 }
-                if(weaponReady&&!shot.Chained&&(audible==null||shot.Splash>audible.Splash)&&
+                if(weaponReady&&!shot.Chained&&PreferSound(shot,audible)&&
                     (InView(shot.From,1.3f)||InView(shot.To,shot.Flying?1.7f:.3f)))audible=shot;
             }
-            if(audible!=null){DispatchSound(soundBank.Get(audible.Design)??(audible.Splash>0?emberClip:boltClip));nextShotSound=alertTime+.12f;}
+            if(audible!=null){
+                soundVariations.TryGetValue(audible.Design,out int variation);
+                DispatchSound(soundBank.Get(audible.Design,variation)??(audible.Splash>0?emberClip:boltClip));
+                soundVariations[audible.Design]=(variation+1)%TowerSoundBank.Variations;lastWeaponHeard[audible.Design]=alertTime;
+                nextShotSound=alertTime+.12f;
+            }
         }
         void OnDestroy(){soundBank?.Dispose();if(leakClip!=null)Destroy(leakClip);if(boltClip!=null)Destroy(boltClip);if(emberClip!=null)Destroy(emberClip);}
     }

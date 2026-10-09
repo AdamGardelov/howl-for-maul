@@ -1,5 +1,7 @@
 # Combat audio pacing
 
+Current weapon timbres and mixed-volley selection: see [material-based weapon audio](WEAPON-MATERIAL-AUDIO.md). The initial implementation/history below predates the replacement of oscillator sweeps and the fair per-design selection gate.
+
 Weapon sound now uses a 120 ms real-play-time gate instead of allowing two voices on every rendered frame. The strongest visible splash cue takes priority within a volley. A shot is audible when its source or target is in the camera view; chained arcs do not trigger additional weapon sounds. The rate limit stays the same at speed 2×.
 
 A new original descending tone marks leaks, even outside the camera view. Leaks in one update produce one cue, with at least 600 ms before another breach cue. It interrupts weapon audio and reserves 220 ms before the next weapon cue. Pause, setup and the combat-sound toggle mute the source; consumed old events do not replay after resuming. New matches stop old voices and reset the gates.
