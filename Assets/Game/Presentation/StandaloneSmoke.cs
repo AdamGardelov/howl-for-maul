@@ -20,6 +20,12 @@ namespace FrostMaze
                     if(asset==null)throw new Exception("Missing packaged map "+name);
                     if(asset.Settings.Waves.Length!=20||!asset.Settings.Waves[19].Flying)throw new Exception("Stale packaged campaign "+name);
                     if(name=="Ironfold"&&Math.Abs(asset.Settings.Catalog[29].Spec.SlowFraction-.4f)>.001f)throw new Exception("Stale packaged faction tuning");
+                    bool iron=name=="Ironfold";
+                    if(asset.Settings.StartingGold!=(iron?2200:240)||asset.Settings.Waves[0].KillGold!=1||asset.Settings.Waves[19].KillGold!=5||asset.Settings.Waves[0].ClearGold!=56||asset.Settings.Waves[iron?13:8].WoodReward!=4)
+                        throw new Exception("Stale packaged gold/wood progression: "+name);
+                    if(iron&&(asset.Settings.Catalog[6].Cost!=750||asset.Settings.Catalog[6].WoodCost!=1))throw new Exception("Stale champion costs");
+                    if(!iron&&!asset.Settings.FactionWoodUnlocks)throw new Exception("Missing faction wood unlocks");
+                    var smoke=Resources.Load<Material>("HearthSmoke");if(smoke==null||smoke.shader==null)throw new Exception("Missing packaged hearth shader");
                     var world=new World(JsonUtility.FromJson<Scenario>(JsonUtility.ToJson(asset.Settings)));world.TowersFire=false;
                     for(int lane=0;lane<world.LaneCount;lane++) {
                         if(world.Spawn(new WaveSpec(),world.LaneSpawn(lane),lane)==null)throw new Exception("Blocked spawn");
