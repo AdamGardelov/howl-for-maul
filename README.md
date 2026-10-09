@@ -6,7 +6,7 @@ Built with Unity 6.3 LTS, C# and URP for Windows and Ubuntu Linux. Game code, pr
 
 **Current status:** playable offline solo prototype with direct host/join multiplayer for LAN or reachable internet hosts. Same-computer multi-slot control is a testing mode. Online players share a lobby, choose factions and unique starts, vote difficulty, and vote pause/resume. Direct connections need a reachable host; relay/public matchmaking is not configured. See [online play](Docs/ONLINE-PLAY.md) for setup and tested scope.
 
-Latest visuals: [terrain materials](Docs/TERRAIN-MATERIALS.md) and [living fire](Docs/LIVING-FIRE.md). Economy checkpoint: [progressive gold, milestone wood and inhabited map borders](Docs/MAUL-ECONOMY-IMPLEMENTED.md). Visible 0.5× / 1× / 2× / 3× match speed controls; see [verification](Docs/MATCH-SPEED.md). Latest Linux package is `Builds/Linux-Terrain/HowlForMaul`, including the new materials and living fire. `Builds/Windows-Maul/HowlForMaul.exe` retains the preceding economy/world checkpoint. Tower portraits include [weapon stats and owned champion requirements](Docs/TOWER-TOOLTIPS.md). Rimewatch retains the softer seamless snow from the [visual checkpoint](Docs/SNOW-READABILITY.md).
+Latest visuals: [tower and builder polish](Docs/ACTOR-POLISH.md), [terrain materials](Docs/TERRAIN-MATERIALS.md) and [living fire](Docs/LIVING-FIRE.md). Economy checkpoint: [progressive gold, milestone wood and inhabited map borders](Docs/MAUL-ECONOMY-IMPLEMENTED.md). Visible 0.5× / 1× / 2× / 3× match speed controls; see [verification](Docs/MATCH-SPEED.md). Latest Linux package is `Builds/Linux-Actors/HowlForMaul`, including detailed faction builders, tower material/geometry polish, terrain materials and living fire. `Builds/Windows-Maul/HowlForMaul.exe` retains the preceding economy/world checkpoint. Tower portraits include [weapon stats and owned champion requirements](Docs/TOWER-TOOLTIPS.md). Rimewatch retains the softer seamless snow from the [visual checkpoint](Docs/SNOW-READABILITY.md).
 
 Mobile development is on hold; Android/iOS remain future targets. Touch controls, phone UI and device builds are not implemented or verified; see [mobile status](Docs/MOBILE-STATUS.md).
 
@@ -100,7 +100,8 @@ The headless runner executes pure simulation cases. Its optional `--balance` mod
 
 Use **Howl for Maul → Build Linux** or **Build Windows** for standard output directories. Windows requires the Windows Mono build module. The verified direct-online packages were built with explicit separate paths to preserve the running older player:
 
-- `Builds/Linux-Terrain/HowlForMaul` (latest: map-specific snow, ice, moss and weathered rock materials)
+- `Builds/Linux-Actors/HowlForMaul` (latest: tower materials, foundation detail and animated faction builders)
+- `Builds/Linux-Terrain/HowlForMaul` (preserved terrain-material checkpoint)
 - `Builds/Linux-Fire/HowlForMaul` (preserved living-fire checkpoint)
 - `Builds/Linux-Maul/HowlForMaul` (preserved gold/wood and inhabited-border checkpoint)
 - `Builds/Linux-Speed/HowlForMaul` (preserved speed-control checkpoint)

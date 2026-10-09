@@ -21,3 +21,13 @@ This is a procedural art polish pass, not a claim of a finished sculpted/rigged 
 Final compilation reports zero errors/warnings. `CompleteRosterAndBuildersHaveStableDetailedPresentation` passes (139.43 seconds including Play Mode transitions; CLI aggregate 12.72 seconds). It checks all 76 designs and twelve builders across both maps: mesh UVs, foundation markings, faction palette assignment, no colliders, owner-color changes, facing resets, movement and frozen poses. Cosmetic roster fixtures spend no currency and do not count as campaign evidence. The same test separately purchases a real tower on each map, checks its gold deduction, moves the actual builder and verifies its authoritative position and paused pose.
 
 All twelve final faction lineups and both in-map captures were inspected after lifting the dark metal and adding rear-facing foundation markings. These are actual Unity camera renders. This is focused presentation coverage; no fresh campaign balance, network interoperability or crowded-battle FPS claim is made.
+
+The existing `TowerPortraitsCacheActualModelsWithoutChangingMatch` regression also passes (147.43 seconds including transitions; CLI aggregate 18.34 seconds): every actual tower model renders into its icon, caches reuse the image, temporary preview objects are removed, disposed icon/minimap textures are released, and match gold/tick/build state stays unchanged.
+
+## Playable package
+
+`Builds/Linux-Actors/HowlForMaul` contains runtime source `367418637416c687c0bdfcc5097c687b1a7a6310`, including the preceding terrain and living-fire changes. Linux built successfully with zero errors and one Pipeline-runtime-disabled warning. Both packaged map/resource/route checks pass on the isolated Xvfb/OpenGL display with a clean player exit. Smoke mode skips presentation and audio; visual evidence is the separate editor camera captures above. Windows was not rebuilt or runtime-tested for this pass.
+
+```sh
+/home/adam/Documents/Dev/howl-for-maul/Builds/Linux-Actors/HowlForMaul -force-wayland
+```
