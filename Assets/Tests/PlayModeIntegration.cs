@@ -8,6 +8,29 @@ namespace FrostMaze.Tests
 {
     public sealed class PlayModeIntegration
     {
+        [UnityTest, Category("TitleScreen")]
+        public IEnumerator TitleScreenFreezesWorldAndReturnsToSetup()
+        {
+            EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
+            yield return new EnterPlayMode();yield return null;
+            var game=Object.FindFirstObjectByType<Prototype>();game.OpenMainMenu();
+            long tick=game.World.Tick;int gold=game.World.Gold;
+            var camera=game.View.GetComponent<RtsCamera>();var focus=camera.Focus;float zoom=camera.Zoom;
+            for(int i=0;i<10;i++)yield return null;
+            Assert.That(game.World.Tick,Is.EqualTo(tick));Assert.That(game.World.Gold,Is.EqualTo(gold));
+            Assert.That(game.PointerOverHud(Vector2.zero),Is.True);
+            Assert.That(camera.Focus,Is.EqualTo(focus));Assert.That(camera.Zoom,Is.EqualTo(zoom));
+            game.OpenSetup();yield return null;yield return null;
+            Assert.That(game.MainMenuOpen,Is.False);Assert.That(game.SetupOpen,Is.True);
+            game.StartMatch();game.Paused=true;yield return null;
+            camera.SetInput(new CameraInputFixture());camera.FocusPoint(new FrostMaze.Simulation.V2(32,32));yield return null;
+            var position=camera.transform.position;var rotation=camera.transform.rotation;
+            game.OpenMainMenu();yield return null;yield return null;
+            game.ReturnToMatch();yield return null;yield return null;
+            Assert.That(Vector3.Distance(position,camera.transform.position),Is.LessThan(.001f));
+            Assert.That(Quaternion.Angle(rotation,camera.transform.rotation),Is.LessThan(.001f));
+            yield return new ExitPlayMode();
+        }
         [UnityTest, Category("SetupPreview")]
         public IEnumerator SetupPreviewFitsBesideMenuAndRestoresCamera()
         {
@@ -16,7 +39,7 @@ namespace FrostMaze.Tests
             foreach(var map in new[]{"Rimewatch","Ironfold"}) {
                 Object.FindFirstObjectByType<Prototype>().ChooseMap(Resources.Load<MapDefinition>(map));
                 yield return null;yield return null;yield return null;
-                var game=Object.FindFirstObjectByType<Prototype>();
+                var game=Object.FindFirstObjectByType<Prototype>();game.OpenSetup();yield return null;yield return null;
                 var min=new Vector2(float.PositiveInfinity,float.PositiveInfinity);var max=new Vector2(float.NegativeInfinity,float.NegativeInfinity);
                 for(int x=0;x<2;x++)for(int z=0;z<2;z++) {
                     Vector2 point=game.View.WorldToScreenPoint(new Vector3(x*game.World.Config.Width,0,z*game.World.Config.Height));

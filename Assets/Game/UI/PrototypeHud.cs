@@ -76,6 +76,7 @@ namespace FrostMaze
         {
             if(game==null||game.World==null)return;
             Styles();
+            if(game.SetupOpen&&game.MainMenuOpen&&!game.LobbyOpen){DrawTitleScreen();return;}
             if(game.LobbyOpen){DrawLobby();return;}
             if(feedback==null)feedback=game.GetComponent<CombatFeedback>();
             if(wasSetup!=game.SetupOpen){scroll=Vector2.zero;wasSetup=game.SetupOpen;}
@@ -87,13 +88,13 @@ namespace FrostMaze
             Frame(new Rect(18,18,324,Screen.height/scale-36));
             GUILayout.BeginArea(new Rect(32,28,296,Screen.height/scale-52));
             if(!game.SetupOpen&&GUILayout.Button("CLOSE DETAILS [TAB]",button))game.DetailsOpen=false;
-            if(game.SetupOpen)BrandHeading(190);else GUILayout.Label("HOWL FOR MAUL",title);
+            if(game.SetupOpen)BrandHeading(130);else GUILayout.Label("HOWL FOR MAUL",title);
             GUILayout.Label(w.Config.Name.ToUpperInvariant()+"  /  "+(game.SetupOpen?"MATCH SETUP":w.FactionName.ToUpperInvariant()),small);
             if(game.SetupOpen) {
                 scroll=GUILayout.BeginScrollView(scroll);DrawSetup();GUILayout.Space(12);DrawOnlineEntry();GUILayout.EndScrollView();
                 if(game.CanReturnToMatch&&GUILayout.Button("RETURN TO MATCH",button))game.ReturnToMatch();
                 if(GUILayout.Button(game.SetupOptions.PlayerCount==1?"PLAY SOLO":"START LOCAL SLOT TEST",primary)){if(game.SetupOptions.PlayerCount==1)game.BeginSolo();else game.StartMatch();}
-                if(GUILayout.Button("QUIT GAME",button))game.QuitGame();
+                if(GUILayout.Button("MAIN MENU",button))game.OpenMainMenu();
                 GUILayout.EndArea();GUI.matrix=previousMatrix;DrawMapLabels();return;
             }
             GUILayout.BeginHorizontal();Resource("YOUR GOLD",w.Gold.ToString());Resource("WOOD",w.Wood.ToString());Resource("TEAM LIVES",w.Lives.ToString(),w.Lives<=5||(feedback!=null&&feedback.RecentLeaks>0));Resource("WAVE",Mathf.Max(0,w.WaveIndex+1)+" / "+w.Config.Waves.Length);GUILayout.EndHorizontal();
@@ -216,7 +217,7 @@ namespace FrostMaze
             GUILayout.Label($"{game.World.LaneCount} upper lanes. One bottom exit. Every lane stays active at every player count.",label);
             if(game.AvailableMaps.Length>1) {
                 GUILayout.Label("MAP",section);
-                foreach(var map in game.AvailableMaps)if(GUILayout.Button(map.Settings.Name,button)&&map!=game.Map)game.ChooseMap(map);
+                foreach(var map in game.AvailableMaps)if(GUILayout.Button((map==game.Map?"✓ ":"")+map.Settings.Name+"\n"+(map.Settings.Theme=="iron"?"Four lanes · reclaimed foundry":"Three lanes · frozen sanctuary"),map==game.Map?selectedCard:card)&&map!=game.Map)game.ChooseMap(map);
                 if(game.CanReturnToMatch)GUILayout.Label("Changing maps closes the current match. Other choices apply when you start a new match.",small);
             }
             GUILayout.Space(10);

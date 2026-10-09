@@ -14,6 +14,10 @@ namespace FrostMaze
         WaveSummary observedWaveSummary;
         public bool MoveMode;
         public bool SetupOpen;
+        public bool MainMenuOpen;
+        readonly List<GameObject> routeMarkers=new List<GameObject>();
+        static bool openingMapSelection;
+        public void OpenMainMenu(){if(NetworkMatch)LeaveOnline();SetupOpen=true;MenuOpen=false;MainMenuOpen=true;}
         public bool MenuOpen, DetailsOpen;
         public void QuitGame() {
 #if UNITY_EDITOR
@@ -43,7 +47,7 @@ namespace FrostMaze
         public bool PointerOverHud(Vector2 point) => MenuOpen||SetupOpen||Sidebar.Contains(point)||MinimapRect.Contains(point)||(!DetailsOpen&&(TopHud.Contains(point)||ForecastHud.Contains(point)||AlertHud.Contains(point)||(BuildHud.Contains(point)||MinimapPanel.Contains(point)||(World!=null&&World.Grid.Find(SelectedTowerId)!=null&&SelectionHud.Contains(point)))));
         bool matchStarted;
         public bool CanReturnToMatch => matchStarted;
-        public void OpenSetup() { if(NetworkMatch){LeaveOnline();return;}SetupOpen=true;MenuOpen=false; }
+        public void OpenSetup() { if(NetworkMatch){LeaveOnline();return;}SetupOpen=true;MenuOpen=false;MainMenuOpen=false; }
         public void ReturnToMatch() { if(CanReturnToMatch)SetupOpen=false; }
         void ClearInteraction()
         {
@@ -58,7 +62,7 @@ namespace FrostMaze
         public MapDefinition[] AvailableMaps;
         public void ChooseMap(MapDefinition map)
         {
-            requestedMap=map.name;
+            requestedMap=map.name;openingMapSelection=true;
             UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
         }
         public MatchOptions SetupOptions = new MatchOptions();
@@ -120,6 +124,8 @@ namespace FrostMaze
         public Rect Sidebar => !SetupOpen&&!DetailsOpen?Rect.zero:new Rect(18 * UiScale, 18 * UiScale, 324 * UiScale, Screen.height - 36 * UiScale);
         void SetViewport()
         {
+            bool showMarkers=!(SetupOpen&&MainMenuOpen&&!LobbyOpen);
+            foreach(var marker in routeMarkers)if(marker!=null&&marker.activeSelf!=showMarkers)marker.SetActive(showMarkers);
             View.rect = new Rect(0,0,1,1);
         }
         readonly Dictionary<int, GameObject> towers = new Dictionary<int, GameObject>();
@@ -164,10 +170,14 @@ namespace FrostMaze
         }
         void Awake()
         {
+            SoundEnabled=PlayerPrefs.GetInt("Howl.Sound",1)!=0;
+            EffectsVolume=Mathf.Clamp01(PlayerPrefs.GetFloat("Howl.Effects",1));
+            MusicVolume=Mathf.Clamp01(PlayerPrefs.GetFloat("Howl.Music",.35f));
             if (Map == null)
                 Map = Resources.Load<MapDefinition>(requestedMap);
             World = new World(Map != null ? JsonUtility.FromJson<Scenario>(JsonUtility.ToJson(Map.Settings)) : Scenario.SharedDefense());
             SetupOpen=World.Config.Lanes.Length>0;
+            MainMenuOpen=SetupOpen&&!openingMapSelection;openingMapSelection=false;
             var maps=new List<MapDefinition>();
             foreach(var candidate in Resources.LoadAll<MapDefinition>(""))if(candidate.Settings.SelectableMap)maps.Add(candidate);
             AvailableMaps=maps.ToArray();
@@ -241,7 +251,7 @@ namespace FrostMaze
         }
         void Marker(V2 p, Color color, string name, float radius = 0.55f)
         {
-            Primitive(name, PrimitiveType.Cylinder, new Vector3(p.X, 0.015f, p.Y), new Vector3(radius, 0.025f, radius), MakeMaterial(color));
+            routeMarkers.Add(Primitive(name, PrimitiveType.Cylinder, new Vector3(p.X, 0.015f, p.Y), new Vector3(radius, 0.025f, radius), MakeMaterial(color)));
         }
         public Material MakeMaterial(Color color, bool unlit = false)
         {
@@ -280,7 +290,7 @@ namespace FrostMaze
             if(LobbyOpen){SetupOpen=true;HasHover=false;ghost.SetActive(false);return;}
             if(NetworkMatch){Paused=Net.Paused;Notice=Net.Notice;if(MenuOpen&&UnityEngine.Input.GetKeyDown(KeyCode.P))VotePause();}
             if(UnityEngine.Input.GetKeyDown(KeyCode.Escape)) {
-                if(SetupOpen)ReturnToMatch();else ToggleMenu();
+                if(SetupOpen){if(CanReturnToMatch)ReturnToMatch();else OpenMainMenu();}else ToggleMenu();
             }
             if(!SetupOpen&&!MenuOpen&&UnityEngine.Input.GetKeyDown(KeyCode.Tab))DetailsOpen=!DetailsOpen;
             if(!SetupOpen&&!MenuOpen)ReadBuildInput();
@@ -527,6 +537,8 @@ namespace FrostMaze
         void TintBuilder(GameObject root,int faction)=>root.GetComponent<BuilderView>().Configure(this,faction);
         void OnDestroy()
         {
+            PlayerPrefs.SetInt("Howl.Sound",SoundEnabled?1:0);
+            PlayerPrefs.SetFloat("Howl.Effects",EffectsVolume);PlayerPrefs.SetFloat("Howl.Music",MusicVolume);PlayerPrefs.Save();
             Models.Dispose();
             foreach(var texture in actorTextures.Values)if(texture!=null)Destroy(texture);
             foreach (var material in materials)
