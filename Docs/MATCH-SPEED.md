@@ -6,6 +6,12 @@ Solo changes immediately. In multiplayer the host alone changes one shared speed
 
 The host schedules more or fewer unchanged fixed simulation steps per real second. Builders, enemy movement, spawning, targeting, attacks and projectiles stay on the same clock, with unchanged costs, damage, rewards and routes. Clients follow ordered host frames. Unity timeScale remains 1: camera input and soundtrack pitch remain normal.
 
+## Guest controls clarification (2026-10-09)
+
+Guests now see only a read-only `SPEED … · HOST` indicator in the compact bar, details and settings. Minus/plus buttons and shortcut instructions are shown only to solo players and the host. Existing keyboard and server-side authority checks remain unchanged. Host changes still apply immediately; this is not a speed-voting feature.
+
+Unity recompilation passed with zero errors or warnings. The existing network runner passed again, including both-map two-process checks rejecting guest speed changes and synchronizing host speed changes. Its .NET build reports the existing obsolete PBKDF2 constructor warning. No new graphical multiplayer or internet test is claimed.
+
 ## Verification
 
 All 70 pure simulation cases pass. The network runner checks all four solo rates against expected tick counts, rejects invalid rates, verifies pause, and compares the same paid build/combat state at tick 300 across every rate. Both-map separate-process TCP checks verify shared 3× / 0.5× pacing, unauthorized client rejection, paid wallets, ownership, ordered state digests, majority pause/resume and disconnect recovery through 620 frames. Existing password/content refusal, three/four-player and real-time vote-expiry checks also pass. Raw evidence: Howl-Speed-Pure-Tests.txt and Howl-Speed-Network-Tests.txt.

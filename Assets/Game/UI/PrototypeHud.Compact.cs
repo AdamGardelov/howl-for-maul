@@ -65,6 +65,11 @@ namespace FrostMaze
         }
         void DrawSpeedControls()
         {
+            if(game.NetworkMatch&&!game.Net.IsHost)
+            {
+                GUILayout.Label("SPEED "+FrostMaze.Simulation.Online.MatchSpeeds.Label(game.SpeedIndex)+" · HOST",section,GUILayout.Width(120));
+                return;
+            }
             GUI.enabled=game.CanChangeSpeed&&game.SpeedIndex>0;
             if(GUILayout.Button("−",button,GUILayout.Width(28)))game.ChangeSpeed(-1);
             GUI.enabled=true;
@@ -97,7 +102,7 @@ namespace FrostMaze
             GUILayout.BeginHorizontal();DrawSpeedControls();GUILayout.EndHorizontal();
             if(game.NetworkMatch&&!game.Net.IsHost)GUILayout.Label("The host controls the shared game speed.",small);
             if(!Application.isEditor)Screen.fullScreen=GUILayout.Toggle(Screen.fullScreen,"Fullscreen window",button);
-            GUILayout.Space(8);GUILayout.Label("Speed [− / +]: 0.5× / 1× / 2× / 3× (host controls multiplayer).\nDetails [Tab]: wave advice, tower stats and inspection tools.\nEdges / WASD: pan · Space + drag: pan · wheel: zoom\nQ / E: rotate · R: reset angle · Home: builder\nHold Alt: reveal all health bars",small);
+            GUILayout.Space(8);GUILayout.Label((game.NetworkMatch&&!game.Net.IsHost?"Speed: shared by everyone; controlled by the host.":"Speed [− / +]: 0.5× / 1× / 2× / 3×.")+"\nDetails [Tab]: wave advice, tower stats and inspection tools.\nEdges / WASD: pan · Space + drag: pan · wheel: zoom\nQ / E: rotate · R: reset angle · Home: builder\nHold Alt: reveal all health bars",small);
             GUILayout.EndArea();GUI.matrix=matrix;
         }
     }
