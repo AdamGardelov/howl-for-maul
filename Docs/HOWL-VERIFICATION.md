@@ -163,3 +163,8 @@ Two-player Hard follow-through: six pairs cover all twelve factions with starts 
 ## Large paid rendered scenes
 
 Large paid Unity replay passed: both twenty-wave Hard campaigns reproduce saved purchases, builder travel, upgrades, kill/leak totals and wallets. Late-wave captures contain 226 towers / 44 enemies on Rimewatch and 347 / 66 on Ironfold. Warmed stable view sync allocates zero managed bytes; restart clears all unit views. GTX 1080/OpenGL editor captures inspected. Read LARGE-PAID-SCENES.md for exact timing scope and the two resolved harness failures. Tests/docs only; packages remain runtime b70de3c. Full combat/HUD frame-time profiling remains unverified.
+
+
+## Compact tower information
+
+Compact tower tooltips now show shared weapon stats, named missing owned champion requirements and exact gold shortfalls. All-roster focused Unity regression passes (1.79 s), including teammate exclusion and sale relocking. Final Linux/Windows packages contain db0369c; both builds and Linux normal paid purchase/live tooltip/Quit plus both-map data smoke pass. Windows runtime remains untested. Read TOWER-TOOLTIPS.md. New packages: Linux-TowerInfo / Windows-TowerInfo; editor target restored to Linux.

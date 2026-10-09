@@ -6,7 +6,7 @@ Built with Unity 6.3 LTS, C# and URP for Windows and Ubuntu Linux. Game code, pr
 
 **Current status:** playable solo/local prototype with direct host/join multiplayer. Online players share a lobby, choose factions and unique starts, vote difficulty, and vote pause/resume. Direct connections need a reachable host; relay/public matchmaking is not configured. See [online play](Docs/ONLINE-PLAY.md) for setup and tested scope.
 
-Latest visual checkpoint: Rimewatch uses softer, seamless snow across ledges and outer terrain; see [verification](Docs/SNOW-READABILITY.md). Latest local packages are `Builds/Linux-Snow/HowlForMaul` and `Builds/Windows-Snow/HowlForMaul.exe`.
+Latest checkpoint: tower portraits show weapon stats, missing owned champion requirements and exact gold shortfalls on hover; see [verification](Docs/TOWER-TOOLTIPS.md). Latest local packages are `Builds/Linux-TowerInfo/HowlForMaul` and `Builds/Windows-TowerInfo/HowlForMaul.exe`. Rimewatch retains the softer seamless snow from the [visual checkpoint](Docs/SNOW-READABILITY.md).
 
 ## Play
 
@@ -95,11 +95,13 @@ The headless runner executes pure simulation cases. Its optional `--balance` mod
 
 Use **Howl for Maul → Build Linux** or **Build Windows** for standard output directories. Windows requires the Windows Mono build module. The verified direct-online packages were built with explicit separate paths to preserve the running older player:
 
-- `Builds/Linux-Snow/HowlForMaul` (latest runtime: snow readability and forecast)
+- `Builds/Linux-TowerInfo/HowlForMaul` (latest runtime: compact tower information)
+- `Builds/Linux-Snow/HowlForMaul` (preserved snow readability checkpoint)
 - `Builds/Linux-WavePreview/HowlForMaul` (preserved pre-wave forecast checkpoint)
 - `Builds/Linux-Online/HowlForMaul` (preserved direct-online checkpoint)
 - `Builds/Linux/HowlForMaul` (older preserved package)
-- `Builds/Windows-Snow/HowlForMaul.exe` (latest runtime: snow readability and forecast)
+- `Builds/Windows-TowerInfo/HowlForMaul.exe` (latest runtime: compact tower information)
+- `Builds/Windows-Snow/HowlForMaul.exe` (preserved snow readability checkpoint)
 - `Builds/Windows-WavePreview/HowlForMaul.exe` (preserved pre-wave forecast checkpoint)
 - `Builds/Windows-Online/HowlForMaul.exe` (preserved direct-online checkpoint)
 - `Builds/Windows/HowlForMaul.exe` (older preserved package)
