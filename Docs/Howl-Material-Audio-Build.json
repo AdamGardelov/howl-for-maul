@@ -1,0 +1,16 @@
+{
+  "source": "009ddd95e7e4e35d4343811a451b6dc73680d29e",
+  "buildId": "build_b8a68874e376",
+  "result": "Succeeded",
+  "platform": "StandaloneLinux64",
+  "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Linux-MaterialAudio/HowlForMaul",
+  "totalSizeBytes": 105307280,
+  "buildTimeMs": 32672,
+  "totalErrors": 0,
+  "totalWarnings": 1,
+  "warnings": [
+    {
+      "message": "Pipeline: No RuntimePipelineConfig asset found (Project Settings > Pipeline > Runtime). Pipeline will be disabled in Player builds."
+    }
+  ]
+}

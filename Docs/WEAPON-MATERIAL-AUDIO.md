@@ -17,3 +17,11 @@ The new bank test initially failed because its editor-only preview called the ru
 Audition exports are the actual generated game clips: each faction's opener and slot-three weapon, with silence between samples, at 0.65 reference gain. The separate five-second volley files overlay generated samples at the combat source's 0.12 gain; they are synthetic mix stress previews, not recordings of actual battles. Automated waveform checks do not establish subjective audio quality or native-device loudness.
 
 The corrected bank test passes in 8.27 seconds: all 228 stereo clips and variants have unique sample hashes, bounded peak/RMS/DC, finite samples and silent edges. Repeated lookups reuse clips; out-of-range designs return null; all owned clips are released. Both synthetic volley exports remain below full scale. Final compilation reports zero errors/warnings. The disposal change affects Edit Mode only; the previously passed live integration result remains applicable to runtime playback.
+
+## Playable package
+
+`Builds/Linux-MaterialAudio/HowlForMaul` contains runtime source `009ddd9`, including the preceding projectile, actor and environment changes. Linux build succeeded with zero errors and one Pipeline-runtime-disabled warning. Both packaged map/resource/route smoke checks passed with a clean exit on isolated Xvfb/OpenGL. Smoke mode skips audio/presentation and therefore does not verify native audio-device playback; audio integration was checked separately in the live editor and actual bank samples exported. Windows was not rebuilt or runtime-tested for this pass.
+
+```sh
+/home/adam/Documents/Dev/howl-for-maul/Builds/Linux-MaterialAudio/HowlForMaul -force-wayland
+```
