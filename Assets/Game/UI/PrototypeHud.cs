@@ -90,9 +90,9 @@ namespace FrostMaze
             GUILayout.Label("HOWL FOR MAUL",title);
             GUILayout.Label(w.Config.Name.ToUpperInvariant()+"  /  "+(game.SetupOpen?"MATCH SETUP":w.FactionName.ToUpperInvariant()),small);
             if(game.SetupOpen) {
-                scroll=GUILayout.BeginScrollView(scroll);DrawOnlineEntry();DrawSetup();GUILayout.EndScrollView();
+                scroll=GUILayout.BeginScrollView(scroll);DrawSetup();GUILayout.Space(12);DrawOnlineEntry();GUILayout.EndScrollView();
                 if(game.CanReturnToMatch&&GUILayout.Button("RETURN TO MATCH",button))game.ReturnToMatch();
-                if(GUILayout.Button(game.CanReturnToMatch?"START NEW MATCH":"START MATCH",primary)){if(game.SetupOptions.PlayerCount==1)game.BeginSolo();else game.StartMatch();}
+                if(GUILayout.Button(game.SetupOptions.PlayerCount==1?"PLAY SOLO":"START LOCAL SLOT TEST",primary)){if(game.SetupOptions.PlayerCount==1)game.BeginSolo();else game.StartMatch();}
                 if(GUILayout.Button("QUIT GAME",button))game.QuitGame();
                 GUILayout.EndArea();GUI.matrix=previousMatrix;DrawMapLabels();return;
             }
@@ -212,11 +212,12 @@ namespace FrostMaze
                 if(game.CanReturnToMatch)GUILayout.Label("Changing maps closes the current match. Other choices apply when you start a new match.",small);
             }
             GUILayout.Space(10);
-            GUILayout.Label("PLAYERS",section);
-            game.SetupOptions.PlayerCount=GUILayout.SelectionGrid(game.SetupOptions.PlayerCount-1,new[]{"1","2","3","4"},4,button)+1;
-            GUILayout.Label("Solo uses faction → start → difficulty. Multiple local slots are a testing option; use Play Online for separate computers.",small);
+            GUILayout.Label("OFFLINE PLAY",section);
+            game.SetupOptions.PlayerCount=GUILayout.SelectionGrid(game.SetupOptions.PlayerCount-1,new[]{"Solo","2","3","4"},4,button)+1;
+            GUILayout.Label("Solo works offline. For friends on separate computers, choose Multiplayer / LAN below.",small);
             GUILayout.Space(10);
-            if(game.SetupOptions.PlayerCount==1){GUILayout.Label("Start to choose your faction, starting position and difficulty. Solo receives all 1,200 gold; every lane stays active.",label);return;}
+            if(game.SetupOptions.PlayerCount==1){GUILayout.Label("Play Solo to choose your faction, starting position and difficulty. You receive all 1,200 gold; every lane stays active.",label);return;}
+            GUILayout.Label("LOCAL SLOT TEST · one keyboard and mouse. Switch control with P1–P4; these slots are not separate players joining your game.",small);
             GUILayout.Label("DIFFICULTY",section);
             game.SetupOptions.Difficulty=(Difficulty)GUILayout.SelectionGrid((int)game.SetupOptions.Difficulty,new[]{"Relaxed","Normal","Hard"},1,button);
             GUILayout.Label("Enemy health and siege damage: 70% / 100% / 140%. Lane counts stay unchanged.",small);

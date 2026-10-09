@@ -7,8 +7,9 @@ namespace FrostMaze
         bool onlineForm;string playerName="Player",joinAddress="127.0.0.1",portText="27888",lobbyPassword="",lobbyError="";
         Vector2 lobbyScroll;
         void DrawOnlineEntry(){
-            if(GUILayout.Button(onlineForm?"HIDE ONLINE":"PLAY ONLINE",primary))onlineForm=!onlineForm;
+            if(GUILayout.Button(onlineForm?"CLOSE MULTIPLAYER":"MULTIPLAYER / LAN",primary))onlineForm=!onlineForm;
             if(!onlineForm)return;
+            GUILayout.Label("Play with up to four people on separate computers. LAN uses the host's local address; internet play needs a reachable host.",small);
             GUILayout.Label("Name",small);playerName=GUILayout.TextField(playerName,24);
             GUILayout.Label("Host address (join only)",small);joinAddress=GUILayout.TextField(joinAddress,128);
             GUILayout.Label("Port",small);portText=GUILayout.TextField(portText,5);
@@ -17,7 +18,7 @@ namespace FrostMaze
             if(GUILayout.Button("HOST",button))Connect(true);
             if(GUILayout.Button("JOIN",button))Connect(false);
             GUILayout.EndHorizontal();GUILayout.Label(lobbyError,small);
-            GUILayout.Label("Direct connection · up to 4 players. Host must be reachable at the shared address and TCP port.",small);
+            GUILayout.Label("Host chooses the map above. Join uses the address and port shared by the host.",small);
         }
         void Connect(bool host){if(!int.TryParse(portText,out int port)||port<1024||port>65535){lobbyError="Use a port from 1024 to 65535.";return;}
             string address=joinAddress.Trim();int split=address.LastIndexOf(':');if(!host&&split>0&&int.TryParse(address.Substring(split+1),out int invitePort)&&invitePort>=1024&&invitePort<=65535){port=invitePort;address=address.Substring(0,split);}
