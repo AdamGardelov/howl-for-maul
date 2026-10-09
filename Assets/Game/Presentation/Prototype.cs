@@ -36,8 +36,10 @@ namespace FrostMaze
         public Rect BuildHud => new Rect(Screen.width-(BuildColumns*78+28)*UiScale,DockHud.y,(BuildColumns*78+16)*UiScale,234*UiScale);
         public Rect MinimapPanel => new Rect(12*UiScale,DockHud.y,202*UiScale,234*UiScale);
         public Rect SelectionHud { get { float width=Mathf.Min(480*UiScale,BuildHud.xMin-238*UiScale);return new Rect((Screen.width-width)*.5f,Screen.height-108*UiScale,width,96*UiScale); } }
+        public Rect ForecastHud => World!=null&&!World.Finished&&!World.WaveActive&&!SetupOpen&&!DetailsOpen&&!MenuOpen&&!LobbyOpen
+            ?new Rect(Screen.width-342*UiScale,68*UiScale,330*UiScale,76*UiScale):Rect.zero;
         public Rect AlertHud => (feedback!=null&&feedback.RecentLeaks>0)||(World!=null&&(World.Finished||!World.WaveActive&&World.LastWaveSummary!=null))?new Rect(12*UiScale,64*UiScale,340*UiScale,56*UiScale):Rect.zero;
-        public bool PointerOverHud(Vector2 point) => MenuOpen||SetupOpen||Sidebar.Contains(point)||MinimapRect.Contains(point)||(!DetailsOpen&&(TopHud.Contains(point)||AlertHud.Contains(point)||(BuildHud.Contains(point)||MinimapPanel.Contains(point)||(World!=null&&World.Grid.Find(SelectedTowerId)!=null&&SelectionHud.Contains(point)))));
+        public bool PointerOverHud(Vector2 point) => MenuOpen||SetupOpen||Sidebar.Contains(point)||MinimapRect.Contains(point)||(!DetailsOpen&&(TopHud.Contains(point)||ForecastHud.Contains(point)||AlertHud.Contains(point)||(BuildHud.Contains(point)||MinimapPanel.Contains(point)||(World!=null&&World.Grid.Find(SelectedTowerId)!=null&&SelectionHud.Contains(point)))));
         bool matchStarted;
         public bool CanReturnToMatch => matchStarted;
         public void OpenSetup() { if(NetworkMatch){LeaveOnline();return;}SetupOpen=true;MenuOpen=false; }

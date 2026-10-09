@@ -4,7 +4,7 @@ namespace FrostMaze
 {
     public sealed partial class PrototypeHud
     {
-        bool CoversCompactHud(Rect r) => !game.SetupOpen&&!game.DetailsOpen&&(r.Overlaps(game.TopHud)||(r.Overlaps(game.BuildHud)||r.Overlaps(game.MinimapPanel)||(r.Overlaps(game.SelectionHud)&&HasSelectedTower()))||r.Overlaps(game.AlertHud));
+        bool CoversCompactHud(Rect r) => !game.SetupOpen&&!game.DetailsOpen&&(r.Overlaps(game.TopHud)||r.Overlaps(game.ForecastHud)||(r.Overlaps(game.BuildHud)||r.Overlaps(game.MinimapPanel)||(r.Overlaps(game.SelectionHud)&&HasSelectedTower()))||r.Overlaps(game.AlertHud));
         bool HasSelectedTower()
         {
             if(game.SelectedTowerId==0)return false;
@@ -28,6 +28,7 @@ namespace FrostMaze
             if(!game.NetworkMatch&&w.Players.Length>1&&GUILayout.Button($"P{w.ActivePlayer+1}",button,GUILayout.Width(40)))w.SelectPlayer((w.ActivePlayer+1)%w.Players.Length);
             GUILayout.Label($"{w.Gold} GOLD    ·    {w.Lives} LIVES    ·    WAVE {Mathf.Max(0,w.WaveIndex+1)}/{w.Config.Waves.Length}",section,GUILayout.Width(310));
             GUILayout.EndHorizontal();GUILayout.EndArea();
+            DrawForecast();
             Frame(Logical(game.MinimapPanel));
             DrawCommandDetails();DrawBuildGrid();
             var alert=new Rect(20,68,330,48);
@@ -35,6 +36,18 @@ namespace FrostMaze
             else if(w.Finished)GUI.Label(alert,w.Won?"VICTORY — all waves cleared":"DEFEAT — open Menu for a new game",section);
             else if(!w.WaveActive&&w.LastWaveSummary!=null)GUI.Label(alert,$"Wave {w.LastWaveSummary.WaveNumber}: {w.LastWaveSummary.Killed} defeated · {w.LastWaveSummary.Leaked} leaked\nIncome: {w.LastWaveSummary.GoldForPlayer(w.ActivePlayer)}g",small);
             GUI.matrix=matrix;DrawHealth();DrawMapLabels();DrawMinimap();DrawBuildFeedback();DrawPlacementHint();
+        }
+        void DrawForecast()
+        {
+            if(game.ForecastHud==Rect.zero)return;
+            var w=game.World;int index=w.WaveIndex+1;var wave=w.PreviewWave(index);
+            var box=Logical(game.ForecastHud);Frame(box);
+            string kind=wave.Flying?"AIR":"GROUND";
+            GUI.Label(new Rect(box.x+12,box.y+8,box.width-24,18),$"{(index==w.Config.Waves.Length-1?"FINAL":"NEXT")} {index+1}/{w.Config.Waves.Length} · {kind}",section);
+            GUI.Label(new Rect(box.x+12,box.y+27,box.width-24,18),$"{wave.Count*w.LaneCount} enemies · {wave.Health:0.#} HP · {w.LaneCount} lanes",label);
+            int defenses=w.DefensesFor(wave);
+            GUI.Label(new Rect(box.x+12,box.y+47,box.width-24,20),defenses==0?$"No team weapons hit {kind.ToLowerInvariant()} · Details [TAB]":$"{defenses} team {kind.ToLowerInvariant()} weapons · Check coverage [TAB]",defenses==0?section:small);
+            if(GUI.Button(box,GUIContent.none,GUIStyle.none)){game.DetailsOpen=true;showForecast=true;}
         }
         void DrawCommandDetails()
         {

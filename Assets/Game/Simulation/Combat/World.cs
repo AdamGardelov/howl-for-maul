@@ -49,6 +49,22 @@ namespace FrostMaze.Simulation
                 if(tower.Spec.Damage>0&&(wave.Flying?tower.Spec.TargetsAir:tower.Spec.TargetsGround))count++;
             return count;
         }
+        public string WaveAdvice(int index)
+        {
+            var wave=PreviewWave(index);string advice=WaveAdvice(wave);
+            for(int i=index;i<Config.Waves.Length;i++)if(!Config.Waves[i].Flying)return advice;
+            int count=0,refund=0;
+            foreach(var tower in Grid.Towers)
+                if(TowerOwner(tower.Id)==ActivePlayer&&tower.Spec.Damage>0&&!tower.Spec.TargetsAir) {
+                    count++;refund+=SaleRefund(tower.Id);
+                }
+            if(count==0)return advice;
+            advice+=" Only flying waves remain. Your "+count+" ground-only weapons cannot fire; selling them would return "+refund+"g. Check flight-route coverage before launching.";
+            foreach(var design in Config.Catalog)if(design.Requires!=null&&design.Requires.Length>0) {
+                advice+=" Selling prerequisites can lock new champions.";break;
+            }
+            return advice;
+        }
         public string WaveAdvice(WaveSpec wave)
         {
             string advice=wave.Flying?"Flying enemies ignore your maze.":wave.Speed>=2.6f?"Fast rush: lengthen the route and keep repeated firing coverage.":wave.SpawnInterval<=.45f&&wave.Count>=30?"Dense swarm: splash and chain attacks benefit from clustered enemies.":wave.Damage>=30?"Heavy siege: leave a route through your maze; sealed paths invite tower attacks.":"Keep an open winding route through overlapping tower ranges.";

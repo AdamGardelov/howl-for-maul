@@ -28,6 +28,27 @@ namespace FrostMaze.Tests
                 }
             }
         }
+        public static void FinalAirPlanning()
+        {
+            var map=MapCases.Load(false);map.BuilderEnabled=false;
+            var w=new World(map,new MatchOptions{PlayerCount=2});
+            w.SelectedDesign=3;Check(w.Build(28,11,out _),"paid ground fixture");
+            int tower=w.Grid.At(28,11).Id;Check(w.Upgrade(tower,out _),"paid upgraded ground fixture");
+            w.SelectPlayer(1);w.SelectedDesign=3;Check(w.Build(30,11,out _),"other-owner ground fixture");
+            w.SelectedDesign=1;Check(w.Build(32,11,out _),"unarmed fixture");
+            w.SelectPlayer(0);long tick=w.Tick;int gold=w.Gold;
+            Check(!w.WaveAdvice(4).Contains("selling"),"early flying wave suggested dismantling ground defense");
+            Check(w.WaveAdvice(19).Contains("Your 1 ground-only")&&w.WaveAdvice(19).Contains("96g"),"final advice ignored owner or upgrade refund");
+            Check(w.Gold==gold&&w.Tick==tick&&w.Grid.Towers.Count==3,"forecast mutated match");
+            w.SelectPlayer(1);Check(w.WaveAdvice(19).Contains("Your 1 ground-only")&&w.WaveAdvice(19).Contains("48g"),"wall or other owner entered refund suggestion");
+            map.Waves[19].Flying=false;Check(!w.WaveAdvice(14).Contains("selling"),"future ground wave ignored");map.Waves[19].Flying=true;
+            w.SelectPlayer(0);Check(w.Sell(28,11),"sale fixture");Check(!w.WaveAdvice(19).Contains("selling"),"sold tower persisted in advice");
+            var iron=MapCases.Load(true);iron.BuilderEnabled=false;var robot=new World(iron);
+            int choice=-1;foreach(int d in iron.Factions[0].Designs)if(iron.Catalog[d].Spec.Damage>0&&!iron.Catalog[d].Spec.TargetsAir){choice=d;break;}
+            Check(choice>=0,"robot ground design fixture");robot.SelectedDesign=choice;
+            bool built=false;for(int y=1;y<63&&!built;y++)for(int x=1;x<63&&!built;x++)built=robot.Build(x,y,out _);
+            Check(built&&robot.WaveAdvice(19).Contains("lock new champions"),"prerequisite warning missing");
+        }
         public static void EveryArmedDesignHasTargets()
         {
             foreach (bool iron in new[] {false, true})

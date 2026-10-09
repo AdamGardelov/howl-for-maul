@@ -135,3 +135,7 @@ Twenty Normal campaigns passed twenty waves from all eight starts on each map, c
 ## Paid final-air adaptation
 
 Fourteen matched control/intervention pairs (28 campaigns) verify paid final-wave selling/rebuilding, exact owner-only refunds and unchanged first-nineteen-wave histories. Stonebound finishes with 16 rather than two lives, Ember with 15 rather than five. Both groups win 12/14; Rime and Blast lose on wave 18 under this particular planner. Across the runs, 38 sales refund 5,182 gold with exact independent-wallet and team conservation. All 67 pure cases pass. See Balance/FINALE-REBUILD.md. Headless harness/docs only; player packages remain runtime 0ca580c.
+
+## Preparation forecast
+
+68 pure cases and the focused Unity forecast case pass (100.90 seconds), with clean Unity compilation. New compact preparation card shows scaled wave stats and target-capable team counts; clicking opens advice. Final-air advice uses owned, paid upgrade refunds without altering the match. Active combat has no leftover forecast hit area. Read WAVE-FORECAST.md. Package results are recorded separately after visual/input checks.

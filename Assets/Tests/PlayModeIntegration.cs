@@ -33,6 +33,23 @@ namespace FrostMaze.Tests
             game.StartMatch();view.Refresh();Assert.That(view.Orders.Count,Is.Zero);Assert.That(game.PlacementFailure,Is.Null);
             yield return new ExitPlayMode();
         }
+        [UnityTest, Category("WaveForecast")]
+        public IEnumerator PreparationForecastBlocksClicksOnlyWhileVisible()
+        {
+            EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");yield return new EnterPlayMode();yield return null;
+            var game=Object.FindFirstObjectByType<Prototype>();Assert.That(game.ForecastHud,Is.EqualTo(Rect.zero));
+            game.StartMatch();game.Paused=true;yield return null;
+            var rect=game.ForecastHud;Assert.That(rect.width,Is.GreaterThan(0));Assert.That(rect.yMin,Is.GreaterThan(game.TopHud.yMax));
+            Assert.That(rect.xMin,Is.GreaterThan(game.AlertHud.xMax));Assert.That(rect.yMax,Is.LessThan(game.BuildHud.yMin));
+            Assert.That(game.PointerOverHud(rect.center),Is.True,"Forecast permits build-through");
+            var gold=game.World.Gold;var tick=game.World.Tick;yield return null;
+            Assert.That(game.World.Gold,Is.EqualTo(gold));Assert.That(game.World.Tick,Is.EqualTo(tick));
+            game.DetailsOpen=true;Assert.That(game.ForecastHud,Is.EqualTo(Rect.zero));Assert.That(game.PointerOverHud(rect.center),Is.False);
+            game.DetailsOpen=false;game.ToggleMenu();Assert.That(game.ForecastHud,Is.EqualTo(Rect.zero));game.ToggleMenu();
+            Assert.That(game.World.StartWave(),Is.True);yield return null;
+            Assert.That(game.ForecastHud,Is.EqualTo(Rect.zero));Assert.That(game.PointerOverHud(rect.center),Is.False,"Hidden forecast still blocks map input");
+            yield return new ExitPlayMode();
+        }
         static int EffectRendererCount(CombatFeedback feedback)
         {
             return feedback.transform.Find("Combat cues").GetComponentsInChildren<Renderer>().Length;

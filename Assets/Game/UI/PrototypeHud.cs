@@ -129,7 +129,7 @@ namespace FrostMaze
                 if(GUILayout.Button(showForecast?"Hide wave details":"Wave details",button))showForecast=!showForecast;
                 int defenses=w.DefensesFor(preview);
                 GUILayout.Label(defenses==0?$"NO TEAM TOWERS CAN HIT {(preview.Flying?"AIR":"GROUND")}":$"Team defense: {defenses} towers can hit {(preview.Flying?"air":"ground")}",defenses==0?section:small);
-                if(showForecast)GUILayout.Label(w.WaveAdvice(preview),label);
+                if(showForecast)GUILayout.Label(w.WaveActive?w.WaveAdvice(preview):w.WaveAdvice(index),label);
                 if(showForecast)GUILayout.Label($"{preview.Count} per lane · speed {preview.Speed:0.0}\nSiege hit {preview.Damage:0.#} · spawn every {preview.SpawnInterval:0.0}s\n{w.Pending} awaiting spawn · {w.Killed} defeated · {w.Leaked} leaked",small);
             }
             var selected=w.Grid.Find(game.SelectedTowerId);

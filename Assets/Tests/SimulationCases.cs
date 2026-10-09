@@ -56,6 +56,7 @@ namespace FrostMaze.Tests
             new Case("Robot champion progression and ownership",MapCases.RobotProgression),
             new Case("Paid champion queues recover from sold or destroyed prerequisites",MapCases.PaidChampionQueueRecovery),
             new Case("Wave planning respects targeting, factions and team ownership",TowerCases.WavePlanning),
+            new Case("Final-air advice respects future waves, paid refunds and ownership",TowerCases.FinalAirPlanning),
             new Case("Reference map masks and spatial index",MapCases.Masks),
             new Case("Reference map lane traversal",MapCases.Routes),
             new Case("Faction selection enforces rosters",MapCases.FactionSelection),
