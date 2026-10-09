@@ -10,7 +10,8 @@ namespace FrostMaze
         static readonly Unity.Profiling.ProfilerMarker SimulationProfile=new Unity.Profiling.ProfilerMarker("Howl.Simulation");
         static readonly Unity.Profiling.ProfilerMarker ViewsProfile=new Unity.Profiling.ProfilerMarker("Howl.Views");
         public MapDefinition Map;
-        static string requestedMap = "Rimewatch";
+        const string DefaultMap = "Ironfold";
+        static string requestedMap = DefaultMap;
         WaveSummary observedWaveSummary;
         public bool MoveMode;
         public bool SetupOpen;
@@ -154,7 +155,7 @@ namespace FrostMaze
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         static void InstallBootstrap()
         {
-            requestedMap = "Rimewatch";
+            requestedMap = DefaultMap;
             UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
             // Data-only smoke exits immediately; it must not initialize transient graphics/audio.
             if(!StandaloneSmoke.Requested&&!StandaloneNetworkSmoke.Requested)UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
@@ -180,6 +181,8 @@ namespace FrostMaze
             MainMenuOpen=SetupOpen&&!openingMapSelection;openingMapSelection=false;
             var maps=new List<MapDefinition>();
             foreach(var candidate in Resources.LoadAll<MapDefinition>(""))if(candidate.Settings.SelectableMap)maps.Add(candidate);
+            // Keep the boot map first; resource enumeration order is not a menu order.
+            maps.Sort((a,b)=>a.name==DefaultMap?(b.name==DefaultMap?0:-1):b.name==DefaultMap?1:System.StringComparer.OrdinalIgnoreCase.Compare(a.Settings.Name,b.Settings.Name));
             AvailableMaps=maps.ToArray();
             worldRoot = new GameObject("Procedural map");
             worldRoot.transform.SetParent(transform);

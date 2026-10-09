@@ -41,9 +41,9 @@ namespace FrostMaze
                 portraitPrice=new GUIStyle(small){alignment=TextAnchor.MiddleCenter};
                 portraitPrice.normal.textColor=new Color(.94f,.83f,.55f);
             }
-            if(GUI.Button(new Rect(box.x+8,box.y+5,box.width-16,18),w.FactionName.ToUpperInvariant()+(w.Config.FactionWoodUnlocks?" ▾":""),section))game.DetailsOpen=true;
+            if(HudButton(new Rect(box.x+8,box.y+5,box.width-16,18),w.FactionName.ToUpperInvariant()+(w.Config.FactionWoodUnlocks?" ▾":""),section))game.DetailsOpen=true;
             GUI.Label(new Rect(box.x+8,box.y+24,box.width-88,18),$"{w.QueuedBuilds} queued · Shift + click",small);
-            if(GUI.Button(new Rect(box.xMax-74,box.y+22,66,20),"CANCEL",button))game.CancelInteraction();
+            if(HudButton(new Rect(box.xMax-74,box.y+22,66,20),"CANCEL",button))game.CancelInteraction();
             int slot=0,hovered=-1;
             for(int i=0;i<w.Config.Catalog.Length;i++) {
                 if(!w.RosterVisible(i))continue;
@@ -51,7 +51,7 @@ namespace FrostMaze
                 var tile=new Rect(box.x+8+col*78,box.y+48+row*80,72,76);
                 bool locked=!w.RequirementsMet(i),poor=w.Config.Economy&&(w.Gold<d.Cost||w.Wood<d.WoodCost);
                 GUI.enabled=!w.Finished;
-                if(GUI.Button(tile,GUIContent.none,!game.SellMode&&!game.MoveMode&&w.SelectedDesign==i?selectedPortraitTile:portraitTile)){
+                if(HudButton(tile,GUIContent.none,!game.SellMode&&!game.MoveMode&&w.SelectedDesign==i?selectedPortraitTile:portraitTile)){
                     w.SelectedDesign=i;game.SellMode=false;game.MoveMode=false;game.SelectedTowerId=0;
                 }
                 GUI.enabled=true;
@@ -67,7 +67,7 @@ namespace FrostMaze
             // A dedicated command slot replaces inventory: enter removal mode, then choose a tower.
             var remove=new Rect(box.x+8+(slot%game.BuildColumns)*78,box.y+48+(slot/game.BuildColumns)*80,72,76);
             GUI.enabled=!w.Finished;
-            if(GUI.Button(remove,GUIContent.none,game.SellMode?selectedPortraitTile:portraitTile)){game.SellMode=!game.SellMode;game.MoveMode=false;game.SelectedTowerId=0;}
+            if(HudButton(remove,GUIContent.none,game.SellMode?selectedPortraitTile:portraitTile)){game.SellMode=!game.SellMode;game.MoveMode=false;game.SelectedTowerId=0;}
             GUI.enabled=true;
             DrawRemoveIcon(new Rect(remove.x+16,remove.y+10,40,40));
             GUI.Label(new Rect(remove.x,remove.y+56,72,18),"REMOVE [X]",portraitPrice);

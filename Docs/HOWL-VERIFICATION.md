@@ -1,3 +1,5 @@
+Latest: [stone-and-brass buttons/HUD and warm Ironfold default](BRASS-HUD.md). Linux-Title rebuilt and standalone render check passed.
+
 Latest: [dedicated title screen](TITLE-SCREEN.md), Linux-Title build verified. Publishing held for [relay online work](RELAY-NEXT.md).
 
 Latest checkpoint: [centred setup preview](SETUP-PREVIEW.md), Linux-Preview build; logo and automatic wave source included. See that note for verification limits.

@@ -45,15 +45,22 @@ namespace FrostMaze
             panel=Swatch(new Color(.035f,.049f,.056f,.98f));
             section.normal.textColor=new Color(.79f,.73f,.55f);
             title.normal.textColor=new Color(.95f,.9f,.75f);
-            button.border=primary.border=card.border=selectedCard.border=new RectOffset(2,2,2,2);
-            button.normal.background=Beveled(new Color(.085f,.115f,.13f),new Color(.37f,.34f,.25f));
-            button.hover.background=Beveled(new Color(.16f,.21f,.23f),new Color(.66f,.57f,.34f));
-            button.active.background=button.hover.background;
-            button.onNormal.background=button.hover.background;
-            primary.normal.background=button.hover.background;
-            card.normal.background=Beveled(new Color(.05f,.075f,.085f),new Color(.27f,.29f,.28f));
-            card.hover.background=button.hover.background;card.active.background=button.hover.background;
-            selectedCard.normal.background=Beveled(new Color(.13f,.19f,.20f),new Color(.83f,.69f,.34f));
+            button.border=primary.border=card.border=selectedCard.border=new RectOffset(8,8,8,8);
+            var idle=Beveled(new Color(.075f,.095f,.10f),new Color(.49f,.40f,.25f));
+            var lit=Beveled(new Color(.15f,.17f,.15f),new Color(.85f,.67f,.36f));
+            var down=Beveled(new Color(.045f,.065f,.066f),new Color(.62f,.48f,.25f),true);
+            foreach(var style in new[]{button,primary,card,selectedCard}){
+                style.normal.background=idle;style.hover.background=lit;style.active.background=down;
+                style.focused.background=lit;style.onNormal.background=lit;style.onHover.background=lit;style.onActive.background=down;
+                style.normal.textColor=new Color(.88f,.85f,.74f);style.hover.textColor=new Color(1,.94f,.75f);
+                style.active.textColor=new Color(.85f,.77f,.57f);style.focused.textColor=new Color(1,.94f,.75f);
+            }
+            primary.normal.background=Beveled(new Color(.17f,.19f,.16f),new Color(.83f,.65f,.33f));
+            primary.normal.textColor=new Color(1,.92f,.69f);
+            card.normal.background=Beveled(new Color(.045f,.065f,.07f),new Color(.31f,.32f,.27f));
+            selectedCard.normal.background=lit;selectedCard.normal.textColor=new Color(1,.91f,.64f);
+            alertButton.normal.background=Beveled(new Color(.23f,.065f,.05f),new Color(.66f,.32f,.17f));
+            alertButton.hover.background=lit;alertButton.active.background=down;alertButton.border=new RectOffset(8,8,8,8);
             placementHint=new GUIStyle(label){fontSize=12,padding=new RectOffset(9,9,6,6),normal={background=panel}};
         }
         void Rule()
@@ -87,27 +94,27 @@ namespace FrostMaze
             GUI.matrix=Matrix4x4.Scale(new Vector3(scale,scale,1));
             Frame(new Rect(18,18,324,Screen.height/scale-36));
             GUILayout.BeginArea(new Rect(32,28,296,Screen.height/scale-52));
-            if(!game.SetupOpen&&GUILayout.Button("CLOSE DETAILS [TAB]",button))game.DetailsOpen=false;
+            if(!game.SetupOpen&&HudButton("CLOSE DETAILS [TAB]",button))game.DetailsOpen=false;
             if(game.SetupOpen)BrandHeading(130);else GUILayout.Label("HOWL FOR MAUL",title);
             GUILayout.Label(w.Config.Name.ToUpperInvariant()+"  /  "+(game.SetupOpen?"MATCH SETUP":w.FactionName.ToUpperInvariant()),small);
             if(game.SetupOpen) {
                 scroll=GUILayout.BeginScrollView(scroll);DrawSetup();GUILayout.Space(12);DrawOnlineEntry();GUILayout.EndScrollView();
-                if(game.CanReturnToMatch&&GUILayout.Button("RETURN TO MATCH",button))game.ReturnToMatch();
-                if(GUILayout.Button(game.SetupOptions.PlayerCount==1?"PLAY SOLO":"START LOCAL SLOT TEST",primary)){if(game.SetupOptions.PlayerCount==1)game.BeginSolo();else game.StartMatch();}
-                if(GUILayout.Button("MAIN MENU",button))game.OpenMainMenu();
+                if(game.CanReturnToMatch&&HudButton("RETURN TO MATCH",button))game.ReturnToMatch();
+                if(HudButton(game.SetupOptions.PlayerCount==1?"PLAY SOLO":"START LOCAL SLOT TEST",primary)){if(game.SetupOptions.PlayerCount==1)game.BeginSolo();else game.StartMatch();}
+                if(HudButton("MAIN MENU",button))game.OpenMainMenu();
                 GUILayout.EndArea();GUI.matrix=previousMatrix;DrawMapLabels();return;
             }
             GUILayout.BeginHorizontal();Resource("YOUR GOLD",w.Gold.ToString());Resource("WOOD",w.Wood.ToString());Resource("TEAM LIVES",w.Lives.ToString(),w.Lives<=5||(feedback!=null&&feedback.RecentLeaks>0));Resource("WAVE",Mathf.Max(0,w.WaveIndex+1)+" / "+w.Config.Waves.Length);GUILayout.EndHorizontal();
             GUILayout.Label(w.Finished?(w.Won?"VICTORY — all waves cleared":"DEFEAT — the crossing fell"):$"{w.LaneCount} lanes active  ·  {w.Difficulty}  ·  {w.Enemies.Count} enemies",section);
             GUI.enabled=!w.Finished&&!w.WaveActive&&w.WaveIndex+1<w.Config.Waves.Length;
-            if(GUILayout.Button(w.Finished?"MATCH COMPLETE":w.WaveActive?"WAVE IN PROGRESS":w.CountingDown?"SEND NOW [ENTER] · "+w.NextWaveSeconds+"s":"START WAVE 1     [ENTER]",primary))game.Launch();
+            if(HudButton(w.Finished?"MATCH COMPLETE":w.WaveActive?"WAVE IN PROGRESS":w.CountingDown?"SEND NOW [ENTER] · "+w.NextWaveSeconds+"s":"START WAVE 1     [ENTER]",primary))game.Launch();
             GUI.enabled=true;
             if(w.CountingDown)GUILayout.Label("Next wave starts automatically · "+w.NextWaveSeconds+"s · countdown follows game speed",small);
-            GUILayout.BeginHorizontal();if(GUILayout.Button(game.Paused?"Resume [P]":"Pause [P]",button))game.VotePause();
-            if(GUILayout.Button(w.Finished?"New match":"Setup",button))game.OpenSetup();GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal();if(HudButton(game.Paused?"Resume [P]":"Pause [P]",button))game.VotePause();
+            if(HudButton(w.Finished?"New match":"Setup",button))game.OpenSetup();GUILayout.EndHorizontal();
             GUILayout.BeginHorizontal();DrawSpeedControls();GUILayout.EndHorizontal();
             if(feedback!=null&&feedback.RecentLeaks>0) {
-                if(GUILayout.Button($"EXIT BREACHED · {feedback.RecentLeaks} leaked\nView exit",alertButton))game.FocusExit();
+                if(HudButton($"EXIT BREACHED · {feedback.RecentLeaks} leaked\nView exit",alertButton))game.FocusExit();
             } else GUILayout.Label(game.Notice,small);
             if(w.LastWaveSummary!=null) {
                 var result=w.LastWaveSummary;
@@ -122,13 +129,13 @@ namespace FrostMaze
             }
             Rule();
             scroll=GUILayout.BeginScrollView(scroll);
-            if(!game.NetworkMatch&&w.Players.Length>1){GUILayout.Label("LOCAL PLAYER",section);GUILayout.BeginHorizontal();for(int i=0;i<w.Players.Length;i++)if(GUILayout.Button($"{(i==w.ActivePlayer?"• ":"")}P{i+1}  {w.Players[i].Gold}g",button))w.SelectPlayer(i);GUILayout.EndHorizontal();}
+            if(!game.NetworkMatch&&w.Players.Length>1){GUILayout.Label("LOCAL PLAYER",section);GUILayout.BeginHorizontal();for(int i=0;i<w.Players.Length;i++)if(HudButton($"{(i==w.ActivePlayer?"• ":"")}P{i+1}  {w.Players[i].Gold}g",button))w.SelectPlayer(i);GUILayout.EndHorizontal();}
             if(!w.Finished) {
                 int index=Mathf.Clamp(w.WaveIndex+(w.WaveActive?0:1),0,w.Config.Waves.Length-1);var preview=w.PreviewWave(index);
                 GUILayout.Label((w.WaveActive?"CURRENT: ":"NEXT: ")+preview.Name,section);
                 GUILayout.Label($"{(preview.Flying?"AIR · ignores mazes":"GROUND")}  /  {preview.Count*w.LaneCount} enemies  /  {preview.Health:0.#} HP",label);
                 for(int i=index;i<w.Config.Waves.Length;i++)if(w.Config.Waves[i].Flying){GUILayout.Label(i==index?"Prepare towers that can hit air.":$"Next flying attack: wave {i+1}",small);break;}
-                if(GUILayout.Button(showForecast?"Hide wave details":"Wave details",button))showForecast=!showForecast;
+                if(HudButton(showForecast?"Hide wave details":"Wave details",button))showForecast=!showForecast;
                 int defenses=w.DefensesFor(preview);
                 GUILayout.Label(defenses==0?$"NO TEAM TOWERS CAN HIT {(preview.Flying?"AIR":"GROUND")}":$"Team defense: {defenses} towers can hit {(preview.Flying?"air":"ground")}",defenses==0?section:small);
                 if(showForecast)GUILayout.Label(w.WaveActive?w.WaveAdvice(preview):w.WaveAdvice(index),label);
@@ -145,34 +152,34 @@ namespace FrostMaze
                     int price=w.UpgradeCost(selected);
                     bool affordable=!w.Config.Economy||w.Gold>=price;
                     GUI.enabled=own&&affordable&&!w.Finished;
-                    if(GUILayout.Button($"UPGRADE [U]   /   {price} GOLD",primary))game.UpgradeTower(selected.Id);
+                    if(HudButton($"UPGRADE [U]   /   {price} GOLD",primary))game.UpgradeTower(selected.Id);
                     GUI.enabled=true;
                     if(own&&!affordable)GUILayout.Label($"Need {price-w.Gold} more gold to upgrade.",small);
                 } else GUILayout.Label("MAXIMUM LEVEL",section);
                 GUILayout.BeginHorizontal();GUI.enabled=!w.Finished&&(own||owner<0);
-                if(GUILayout.Button(w.Config.Economy?$"Sell / {w.SaleRefund(selected.Id)} gold":"Remove tower",button))game.Notice=game.SellTower(selected.CellX,selected.CellY)?"Sold.":"Select one of your own towers.";
+                if(HudButton(w.Config.Economy?$"Sell / {w.SaleRefund(selected.Id)} gold":"Remove tower",button))game.Notice=game.SellTower(selected.CellX,selected.CellY)?"Sold.":"Select one of your own towers.";
                 GUI.enabled=true;
-                if(GUILayout.Button("Deselect",button))game.SelectedTowerId=0;GUILayout.EndHorizontal();
+                if(HudButton("Deselect",button))game.SelectedTowerId=0;GUILayout.EndHorizontal();
             }
             Rule();GUILayout.Label("WOOD / FACTIONS",section);
             GUILayout.Label(w.Config.FactionWoodUnlocks?"Clear wave 9: wood unlocks another faction. Switching between unlocked rosters is free.":"Clear wave 14: wood buys champions. Each needs 750g, 1 wood and six owned prerequisites. Selling returns its wood.",small);
             if(w.Config.FactionWoodUnlocks)for(int f=0;f<w.Config.Factions.Length;f++) {
                 GUI.enabled=!w.Finished&&(w.FactionUnlocked(f)||w.Wood>0||!w.Config.Economy);
-                if(GUILayout.Button(w.Config.Factions[f].Name+(w.Players[w.ActivePlayer].Faction==f?" · ACTIVE":w.FactionUnlocked(f)?" · SWITCH":" · 1 WOOD"),button))game.ChooseFaction(f);
+                if(HudButton(w.Config.Factions[f].Name+(w.Players[w.ActivePlayer].Faction==f?" · ACTIVE":w.FactionUnlocked(f)?" · SWITCH":" · 1 WOOD"),button))game.ChooseFaction(f);
             }
             GUI.enabled=true;
             Rule();GUILayout.Label("BUILD  /  "+w.FactionName.ToUpperInvariant(),section);
             GUILayout.BeginHorizontal();
-            if(GUILayout.Button(!game.SellMode&&!game.MoveMode?"• Build [B]":"Build [B]",button)){game.SellMode=false;game.MoveMode=false;}
-            if(GUILayout.Button(game.SellMode?"• Sell [X]":"Sell [X]",button)){game.SellMode=true;game.MoveMode=false;}
-            if(w.Config.BuilderEnabled&&GUILayout.Button(game.MoveMode?"• Move [M]":"Move [M]",button)){game.MoveMode=true;game.SellMode=false;}
+            if(HudButton(!game.SellMode&&!game.MoveMode?"• Build [B]":"Build [B]",button)){game.SellMode=false;game.MoveMode=false;}
+            if(HudButton(game.SellMode?"• Sell [X]":"Sell [X]",button)){game.SellMode=true;game.MoveMode=false;}
+            if(w.Config.BuilderEnabled&&HudButton(game.MoveMode?"• Move [M]":"Move [M]",button)){game.MoveMode=true;game.SellMode=false;}
             GUILayout.EndHorizontal();
             if(w.Config.Catalog.Length>0) {
                 int shortcut=0;for(int i=0;i<w.Config.Catalog.Length;i++) {
                     if(!w.RosterVisible(i))continue;shortcut++;var design=w.Config.Catalog[i];bool ready=w.RequirementsMet(i);
                     string availability=!ready?" · LOCKED":w.Config.Economy&&w.Gold<design.Cost?" · NEED GOLD":w.Config.Economy&&w.Wood<design.WoodCost?" · NEED WOOD":"";
                     string text=$"<b>{shortcut}  {design.Name}</b>    {design.Cost}g{(design.WoodCost>0?" + 1 wood":"")}\n<size=10>{Role(design.Spec)}{availability}</size>";
-                    if(GUILayout.Button(text,w.SelectedDesign==i?selectedCard:card)){w.SelectedDesign=i;game.SellMode=false;game.MoveMode=false;}
+                    if(HudButton(text,w.SelectedDesign==i?selectedCard:card)){w.SelectedDesign=i;game.SellMode=false;game.MoveMode=false;}
                 }
                 GUILayout.Space(5);GUILayout.Label(w.Config.Catalog[w.SelectedDesign].Description,small);DrawTowerStats(w.BuildSpec);
                 foreach(int missing in w.MissingPrerequisites(w.SelectedDesign))GUILayout.Label("Requires: "+w.Config.Catalog[missing].Name,small);
@@ -193,9 +200,9 @@ namespace FrostMaze
                 var e=w.Enemies.Find(enemy=>enemy.Id==game.SelectedId);
                 GUILayout.Label(e==null?"Ctrl + click an enemy to inspect it.":$"Enemy #{e.Id} · {(e.Spec.Flying?"AIR":"GROUND")} · HP {e.Health:0}\n{(e.Blocked?"SIEGE":"ROUTE OPEN")} · speed {e.Velocity.Length:0.00}",small);
                 GUILayout.Label($"Tick {w.Tick} · fields {w.Navigation.Rebuilds} · 30 Hz simulation",small);
-                if(!w.Config.Economy&&GUILayout.Button("Load zig-zag maze",button))game.DemoMaze();
-                if(!game.NetworkMatch&&GUILayout.Button("Reset map + waves",button))game.ResetSimulation();
-                if(!w.Config.Economy&&GUILayout.Button("Play Howl for Maul",button))game.SwitchMap(true);
+                if(!w.Config.Economy&&HudButton("Load zig-zag maze",button))game.DemoMaze();
+                if(!game.NetworkMatch&&HudButton("Reset map + waves",button))game.ResetSimulation();
+                if(!w.Config.Economy&&HudButton("Play Howl for Maul",button))game.SwitchMap(true);
             }
             GUILayout.EndScrollView();GUILayout.EndArea();GUI.matrix=previousMatrix;DrawHealth();DrawMapLabels();DrawMinimap();DrawBuildFeedback();DrawPlacementHint();if(game.MenuOpen)DrawPauseMenu();
         }
@@ -217,7 +224,7 @@ namespace FrostMaze
             GUILayout.Label($"{game.World.LaneCount} upper lanes. One bottom exit. Every lane stays active at every player count.",label);
             if(game.AvailableMaps.Length>1) {
                 GUILayout.Label("MAP",section);
-                foreach(var map in game.AvailableMaps)if(GUILayout.Button((map==game.Map?"✓ ":"")+map.Settings.Name+"\n"+(map.Settings.Theme=="iron"?"Four lanes · reclaimed foundry":"Three lanes · frozen sanctuary"),map==game.Map?selectedCard:card)&&map!=game.Map)game.ChooseMap(map);
+                foreach(var map in game.AvailableMaps)if(HudButton((map==game.Map?"✓ ":"")+map.Settings.Name+"\n"+(map.Settings.Theme=="iron"?"Four lanes · reclaimed foundry":"Three lanes · frozen sanctuary"),map==game.Map?selectedCard:card)&&map!=game.Map)game.ChooseMap(map);
                 if(game.CanReturnToMatch)GUILayout.Label("Changing maps closes the current match. Other choices apply when you start a new match.",small);
             }
             GUILayout.Space(10);
@@ -278,7 +285,7 @@ namespace FrostMaze
             MiniDot(r,new V2(focus.x,focus.z),Color.yellow,3);
             GUI.color=Color.white;
             }
-            if(GUI.Button(new Rect(r.xMax-50*game.UiScale,r.y-25*game.UiScale,50*game.UiScale,22*game.UiScale),"N [R]",button))game.ResetView();
+            if(HudButton(new Rect(r.xMax-50*game.UiScale,r.y-25*game.UiScale,50*game.UiScale,22*game.UiScale),"N [R]",button))game.ResetView();
         }
         void DrawMinimapEdge(Vector2 a,Vector2 b,Rect rect)
         {
@@ -346,6 +353,7 @@ namespace FrostMaze
             portraits.Dispose();
             minimapTerrain.Dispose();
             foreach(var texture in textures)if(texture!=null)Destroy(texture);
+            if(uiClick!=null)Destroy(uiClick);
         }
     }
 }

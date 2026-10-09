@@ -18,7 +18,7 @@ namespace FrostMaze
             var game=FindFirstObjectByType<Prototype>();
             if(game==null||!game.MainMenuOpen){Fail("Missing title screen");yield break;}
             long tick=game.World.Tick;
-            yield return Capture("Title-Rimewatch");
+            yield return Capture("Title-Default");
             var page=typeof(PrototypeHud).GetField("titlePage",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic);
             page.SetValue(game.GetComponent<PrototypeHud>(),1);yield return Capture("Title-Settings");
             page.SetValue(game.GetComponent<PrototypeHud>(),2);yield return Capture("Title-Credits");
@@ -31,7 +31,9 @@ namespace FrostMaze
             game.OpenMainMenu();yield return Capture("Title-Ironfold");
             game.OpenSetup();game.BeginSolo();yield return new WaitForSecondsRealtime(1);yield return Capture("Solo-Factions");
             if(!game.LobbyOpen){Fail("Play Solo failed to enter faction selection");yield break;}
-            game.LeaveOnline();game.OpenMainMenu();yield return null;
+            game.LeaveOnline();game.StartMatch();game.Paused=true;yield return Capture("Classic-HUD-Small");
+            Screen.SetResolution(1440,900,false);yield return new WaitForSecondsRealtime(1);yield return Capture("Classic-HUD");
+            game.OpenMainMenu();yield return null;
             Debug.Log("HOWL_MENU_CHECK_PASS title/settings/credits/resize/map-change/solo-entry; world frozen");game.QuitGame();
         }
         IEnumerator Capture(string name){yield return new WaitForSecondsRealtime(.3f);yield return new WaitForEndOfFrame();

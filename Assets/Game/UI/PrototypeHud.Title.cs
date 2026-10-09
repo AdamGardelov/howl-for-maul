@@ -5,7 +5,7 @@ namespace FrostMaze
     {
         int titlePage;
         Texture2D titleShade;
-        GUIStyle titleAction,titleCaption;
+        GUIStyle titleAction,titlePlay,titleCaption;
         Vector2 titleScroll;
         void DrawTitleScreen()
         {
@@ -14,6 +14,7 @@ namespace FrostMaze
                 for(int x=0;x<128;x++)titleShade.SetPixel(x,0,new Color(.018f,.029f,.033f,Mathf.Lerp(.96f,0,Mathf.SmoothStep(0,1,x/127f))));
                 titleShade.Apply();textures.Add(titleShade);
                 titleAction=new GUIStyle(button){fixedHeight=46,fontSize=17,alignment=TextAnchor.MiddleLeft,padding=new RectOffset(20,16,10,10),margin=new RectOffset(0,0,4,4)};
+                titlePlay=new GUIStyle(titleAction);titlePlay.normal.background=primary.normal.background;titlePlay.normal.textColor=primary.normal.textColor;titlePlay.fontStyle=FontStyle.Bold;
                 titleCaption=new GUIStyle(section){fontSize=12,alignment=TextAnchor.MiddleCenter};
             }
             var matrix=GUI.matrix;float scale=game.UiScale;
@@ -24,13 +25,13 @@ namespace FrostMaze
             GUI.Label(new Rect(46,293,350,24),"BUILD TOGETHER. HOLD THE LAST STAND.",titleCaption);
             GUILayout.BeginArea(new Rect(68,340,306,h-407));
             if(titlePage==0){
-                if(GUILayout.Button("PLAY",titleAction)){game.OpenSetup();onlineForm=false;}
-                if(game.CanReturnToMatch&&GUILayout.Button("RESUME MATCH",titleAction))game.ReturnToMatch();
-                if(GUILayout.Button("SETTINGS",titleAction))titlePage=1;
-                if(GUILayout.Button("CREDITS",titleAction))titlePage=2;
-                if(GUILayout.Button("QUIT",titleAction))game.QuitGame();
+                if(HudButton("◆  PLAY",titlePlay)){game.OpenSetup();onlineForm=false;}
+                if(game.CanReturnToMatch&&HudButton("RESUME MATCH",titleAction))game.ReturnToMatch();
+                if(HudButton("SETTINGS",titleAction))titlePage=1;
+                if(HudButton("CREDITS",titleAction))titlePage=2;
+                if(HudButton("QUIT",titleAction))game.QuitGame();
             }else{
-                if(GUILayout.Button("‹  BACK",button))titlePage=0;
+                if(HudButton("‹  BACK",button))titlePage=0;
                 titleScroll=GUILayout.BeginScrollView(titleScroll);
                 if(titlePage==1){
                     GUILayout.Label("SETTINGS",title);
@@ -43,8 +44,8 @@ namespace FrostMaze
                     GUILayout.Label("An independent cooperative maze defense game. Inspired by the community spirit of classic mauls.",label);
                     GUILayout.Space(16);GUILayout.Label("MUSIC · SCOTT BUCKLEY",section);
                     GUILayout.Label("Snowfall — Rimewatch\nSignal to Noise — Ironfold\nLicensed under CC BY 4.0.\nRecordings unmodified; runtime volume and looping.",label);
-                    if(GUILayout.Button("COMPOSER & MUSIC",button))Application.OpenURL("https://www.scottbuckley.com.au/library/");
-                    if(GUILayout.Button("CC BY 4.0 LICENSE",button))Application.OpenURL("https://creativecommons.org/licenses/by/4.0/");
+                    if(HudButton("COMPOSER & MUSIC",button))Application.OpenURL("https://www.scottbuckley.com.au/library/");
+                    if(HudButton("CC BY 4.0 LICENSE",button))Application.OpenURL("https://creativecommons.org/licenses/by/4.0/");
                     GUILayout.Space(12);GUILayout.Label("Full notices are included with your download in THIRD-PARTY-NOTICES.md.",small);
                 }
                 GUILayout.EndScrollView();

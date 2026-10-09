@@ -64,7 +64,7 @@ namespace FrostMaze
                 var faction=config.Factions[i];float tileWidth=(leftWidth-8)/2;
                 var tile=new Rect(area.x+(i%2)*(tileWidth+8),area.y+(i/2)*116,tileWidth,108);
                 GUI.SetNextControlName("Faction "+i);
-                if(GUI.Button(tile,GUIContent.none,me.Faction==i?factionChosen:previewFaction==i?factionPreview:factionTile)){
+                if(HudButton(tile,GUIContent.none,me.Faction==i?factionChosen:previewFaction==i?factionPreview:factionTile)){
                     PreviewFaction(net,i);net.Send(new Packet{Kind=Kind.Faction,A=i});
                 }
                 if(tile.Contains(Event.current.mousePosition))PreviewFaction(net,i);
@@ -83,7 +83,7 @@ namespace FrostMaze
             for(int i=0;i<selected.Designs.Length;i++){
                 int design=selected.Designs[i];var tower=config.Catalog[design];float tileWidth=(w-18)/4;
                 var tile=new Rect(x+(i%4)*(tileWidth+6),pane.y+148+(i/4)*88,tileWidth,82);
-                if(GUI.Button(tile,GUIContent.none,previewTower==design?factionChosen:factionTile)||tile.Contains(Event.current.mousePosition))previewTower=design;
+                if(HudButton(tile,GUIContent.none,previewTower==design?factionChosen:factionTile)||tile.Contains(Event.current.mousePosition))previewTower=design;
                 Portrait(new Rect(tile.x+3,tile.y+3,tile.width-6,58),design);
                 GUI.Label(new Rect(tile.x,tile.y+61,tile.width,18),tower.Cost+"g"+(tower.WoodCost>0?" + "+tower.WoodCost+"w":""),rosterPrice);
             }
@@ -92,7 +92,7 @@ namespace FrostMaze
             GUI.Label(new Rect(x,pane.y+330,w,24),shown.Name+" · "+shown.Cost+" gold"+(shown.WoodCost>0?" + "+shown.WoodCost+" wood":""),factionName);
             GUI.Label(new Rect(x,pane.y+361,w,168),FactionTowerPreview(config,previewTower),label);
             if(me.Faction==previewFaction)GUI.Label(new Rect(x,pane.y+543,w,30),"CHOSEN · confirm below when ready",rosterPrice);
-            else if(GUI.Button(new Rect(x,pane.y+541,w,32),"CHOOSE "+selected.Name.ToUpperInvariant(),primary))net.Send(new Packet{Kind=Kind.Faction,A=previewFaction});
+            else if(HudButton(new Rect(x,pane.y+541,w,32),"CHOOSE "+selected.Name.ToUpperInvariant(),primary))net.Send(new Packet{Kind=Kind.Faction,A=previewFaction});
         }
     }
 }
