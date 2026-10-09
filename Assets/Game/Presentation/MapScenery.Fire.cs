@@ -61,7 +61,7 @@ namespace FrostMaze
                 var embers=new GameObject("Rising embers");embers.transform.SetParent(root.transform,false);embers.transform.localPosition=Vector3.up*.25f;
                 var particles=embers.AddComponent<ParticleSystem>();particles.Stop(true,ParticleSystemStopBehavior.StopEmittingAndClear);
                 particles.useAutoRandomSeed=false;particles.randomSeed=(uint)(103+i*71);
-                var main=particles.main;main.startLifetime=new ParticleSystem.MinMaxCurve(.65f,1.3f);main.startSpeed=0;main.startSize=new ParticleSystem.MinMaxCurve(.045f,.09f);main.maxParticles=10;main.useUnscaledTime=true;main.simulationSpace=ParticleSystemSimulationSpace.Local;main.startColor=Color.Lerp(color,Color.white,.45f);
+                var main=particles.main;main.startLifetime=new ParticleSystem.MinMaxCurve(.65f,1.3f);main.startSpeed=0;main.startSize=new ParticleSystem.MinMaxCurve(.045f,.09f);main.maxParticles=10;main.useUnscaledTime=true;main.cullingMode=ParticleSystemCullingMode.AlwaysSimulate;main.simulationSpace=ParticleSystemSimulationSpace.Local;main.startColor=Color.Lerp(color,Color.white,.45f);
                 var shape=particles.shape;shape.shapeType=ParticleSystemShapeType.Sphere;shape.radius=.13f;
                 var emission=particles.emission;emission.rateOverTime=5;
                 var velocity=particles.velocityOverLifetime;velocity.enabled=true;velocity.space=ParticleSystemSimulationSpace.Local;

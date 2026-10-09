@@ -1,6 +1,6 @@
 # Adding maps
 
-Map geometry and gameplay data are authored in `MapDefinition` ScriptableObjects. The default map is `Assets/Game/Maps/Resources/Frostfall.asset`. The original `TestMap.asset` remains the unrestricted lab; `SharedDefense.asset` is a historical prototype and is not offered in the multi-lane selector.
+Map geometry and gameplay data are authored in `MapDefinition` ScriptableObjects. The default map is `Assets/Game/Maps/Resources/Ironfold.asset`. The original `TestMap.asset` remains the unrestricted lab; `SharedDefense.asset` is a historical prototype and is not offered in the multi-lane selector.
 
 1. Duplicate Frostfall.asset into a Resources directory and give the asset a unique name.
 2. Set Settings.Name, Width and Height. Grid coordinates use X/Y; simulation Y becomes Unity Z, so high Y appears toward the top of the map.
@@ -22,7 +22,7 @@ The internal C# namespace/assembly names retain FrostMaze to preserve serialized
 
 ## Reference layout maps
 
-`Assets/Game/Maps/LayoutSources/Rimewatch.txt` and `Ironfold.txt` preserve the supplied ASCII masks. `ReferenceMaps` interprets rows from top to bottom and maps them to increasing world Y toward the top. Rimewatch cells are one unit; Ironfold cells are half a unit. Blocked horizontal runs are merged without deleting cells. Terrain blocks use floating point bounds and a spatial index; towers keep integer world-grid footprints.
+`Assets/Game/Maps/LayoutSources/Rimewatch.txt` and `Ironfold.txt` contain the current authored, mirrored layouts. The untouched supplied ASCII masks are archived in `Docs/ReferenceLayouts/`. See `MIRRORED-MAPS.md` for the deliberate base cleanup and symmetry change. `ReferenceMaps` interprets rows from top to bottom and maps them to increasing world Y toward the top. Rimewatch cells are one unit; Ironfold cells are half a unit. Blocked horizontal runs are merged without deleting cells. Terrain blocks use floating point bounds and a spatial index; towers keep integer world-grid footprints.
 
 `ProjectSetup` creates missing Rimewatch/Ironfold assets. It does not overwrite authored assets on every compilation. After deliberately changing a layout or its factory, regenerate the corresponding asset explicitly and re-run mask and route tests. `SelectableMap` controls whether it appears in the match menu. `Theme` controls original procedural scenery independently of collision.
 

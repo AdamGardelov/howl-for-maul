@@ -58,134 +58,134 @@ MonoBehaviour:
     WalkableSymbols: .,G
     LayoutCellSize: 0.5
     LayoutRows:
-    - pppppppppppp####,,,,,,,,,,,,,,####pppppp###,,,,,,,,,,,,,,,#SSSSSSSSSSSS#,,,,,,,,,,,,,,,###pppppp####,,,,,,,,,,,,,,####pppppppppp
-    - pppppppppppp####,,,,,,,,,,,,,,####pppppp###,,,,,,,,,,,,,,,#SSSSSSSSSSSS#,,,,,,,,,,,,,,####pppppp####,,,,,,,,,,,,,,####pppppppppp
-    - pppppppppppp####,,,,,,,,,,,,,,####pppppp###,,,,,,,,,,,,,,,#SSSSSSSSSSSS#,,,,,,,,,,,,,,,###pppppp####,,,,,,,,,,,,,,####pppppppppp
-    - pppppppppppp####,,,,,,,,,,,,,,####pppppp###,,,,,,,,,,,,,,,#SSSSSSSSSSSS#,,,,,,,,,,,,,,,###pppppp####,,,,,,,,,,,,,,####pppppppppp
-    - pppppppppppp####,,,,,,,,,,,,,,####pppppp###,,,,,,,,,,,,,,##SSSSSSSSSSSS#,,,,,,,,,,,,,,####pppppp####,,,,,,,,,,,,,,####pppppppppp
-    - pppppppppppp####,,,,,,,,,,,,,,####pppppp###,,,,,,,,,,,,,,##SSSSSSSSSSSS#,,,,,,,,,,,,,,####pppppp####,,,,,,,,,,,,,,####pppppppppp
-    - pppppppppppp####,,,,,,,,,,,,,,####pppppp###,,,,,,,,,,,,,,##SSSSSSSSSSSS#,,,,,,,,,,,,,,####pppppp####,,,,,,,,,,,,,,####pppppppppp
-    - pppppppppppp####,,,,,,,,,,,,,,####pppppp###,,,,,,,,,,,,,,##SSSSSSSSSSSS#,,,,,,,,,,,,,,,###pppppp####,,,,,,,,,,,,,,####pppppppppp
-    - pppppppppppp####,,,,,,,,,,,,,,#####ppppp###,,,,,,,,,,,,,,##SSSSSSSSSSSS#,,,,,,,,,,,,,,#####ppppp####,,,,,,,,,,,,,,####pppppppppp
-    - pppppppppppp####,,,,,,,,,,,,,,#####ppppp####,,,,,,,,,,,,,,#SSSpppppSSSS#,,,,,,,,,,,,,,#####ppppp####,,,,,,,,,,,,,,####pppppppppp
-    - pppppppppppp####,,,,,,,,,,,,,,#####ppppp###,,,,,,,,,,,,,,,####pppppp####,,,,,,,,,,,,,,#####ppppp####,,,,,,,,,,,,,,####pppppppppp
-    - pppppppppppp####,,,,,,,,,,,,,,#####ppppp###,,,,,,,,,,,,,,,####pppppp####,,,,,,,,,,,,,,#####ppppp####,,,,,,,,,,,,,,####pppppppppp
-    - pppppppppppp####,,,,,,,,,,,,,,####pppppp####,,,,,,,,,,,,,,####ppppppp###,,,,,,,,,,,,,,,###pppppp####,,,,,,,,,,,,,,####pppppppppp
-    - pppppppppppp####,,,,,,,,,,,,,,####pppppp####,,,,,,,,,,,,,#####ppppppp###,,,,,,,,,,,,,,,####ppppp####,,,,,,,,,,,,,,####pppppppppp
-    - pppppppppppp####,,,,,,,,,,,,,,####pppppp####,,,,,,,,,,,,,#####ppppppp###,,,,,,,,,,,,,,,###pppppp####,,,,,,,,,,,,,,####pppppppppp
-    - pppppppppppp####,,,,,,,,,,,,,,####pppppp####,,,,,,,,,,,,,#####ppppppp###,,,,,,,,,,,,,,,###pppppp####,,,,,,,,,,,,,,####pppppppppp
-    - pppppppppppp####..............####pppppp####.............####pppppppp###,............,####pppppp####..............####pppppppppp
-    - pppppppppppp####..............####pppppp####.............####pppppppp###..............####pppppp####..............####pppppppppp
-    - pppppppppppp####..............####pppppp####.............####pppppppp###..............#####ppppp####..............####pppppppppp
-    - pppppppppppp####..............####pppppp####.............####pppppppp###..............####pppppp####..............####pppppppppp
-    - pppppppppppp####..............#####ppppp###..............#####ppppppp###..............####pppppp####..............####pppppppppp
-    - pppppppppppp####..............####pppppp###..............#####ppppppp###..............####pppppp####..............####pppppppppp
-    - pppppppppppp####..............####pppppp###..............#####ppppppp###..............####pppppp####..............####pppppppppp
-    - pppppppppppp####..............####pppppp###..............#####ppppppp###..............####pppppp####..............####pppppppppp
-    - pppppppppppp####..............####pppppp###...............###pppppppp###..............####pppppp####..............####pppppppppp
-    - pppppppppppp####..............####pppppp###...............####pppppp####..............####pppppp####..............####pppppppppp
-    - pppppppppppp####..............####pppppp###...............###ppppppp####..............#####ppppp####..............####pppppppppp
-    - pppppppppppp####..............####pppppp###...............###ppppppp####...............###pppppp####..............####pppppppppp
-    - pppppppppppp####..............#####ppppp###...............####pppppp####..............####pppppp####..............####pppppppppp
-    - pppppppppppp####..............#####ppppp###...............####pppppp####..............####pppppp####..............####pppppppppp
-    - pppppppppppp####..............#####ppppp###...............####pppppp####..............####pppppp####..............####pppppppppp
-    - pppppppppppp####..............#####ppppp###...............####pppppp####..............####pppppp####..............####pppppppppp
-    - pppppppppppp####..............####pppppp####.............###############..............#####ppppp####..............####pppppppppp
-    - pppppppppppp####..............####pppppp####..............##############..............####pppppp####..............####pppppppppp
-    - pppppppppppp####..............####pppppp####..............##############..............####pppppp####..............####pppppppppp
-    - pppppppppppp####..............####pppppp####...............###########................#####ppppp####..............####pppppppppp
-    - pppppppppppp####..............#####ppppp####..........................................####pppppp####..............####pppppppppp
-    - pppppppppppp####..............####pppppp####..........................................####pppppp####..............####pppppppppp
-    - pppppppppppp####..............#####ppppp#####........................................#####ppppp#####..............####pppppppppp
-    - pppppppppppp####..............#####ppppp######......................................######ppppp#####..............####pppppppppp
-    - pppppppppppp####..............#######ppp#######....................................#######pppp######..............####pppppppppp
-    - pppppppppppp####..............#######pppp#######..................................#######pppp#######..............####pppppppppp
-    - pppppppppppp####...............#######pppp#######................................#######pppp#######...............####pppppppppp
-    - pppppppppppp####................#######pppp#######..............................#######pppp#######................####pppppppppp
-    - pppppppppppp####.................#######pppp#######............................#######pppp#######................#####pppppppppp
-    - pppppppppppp#####.................#######pppp#######..........................#######pppp#######.................#####pppppppppp
-    - pppppppppppp######.................#######pppp#######........................#######pppp#######.................######pppppppppp
-    - pppppppppppp#######.................#######pppp#######......................#######pp#p#######.................#######pppppppppp
-    - ppppppppppppp#######.................#######pppp#######....................#######pppp######..................#######ppppppppppp
-    - pppppppppppppp#######.................#######pppp#######..................#######pppp#######.................#######pppppppppppp
-    - ppppppppppppppp#######.................#######pppp#######................#######pppp#######.................#######ppppppppppppp
-    - pppppppppppppppp#######.................#######pppp#######..............#######pppp#######.................#######pppppppppppppp
-    - pppppppppppppppp########.................#######pppp#######............#######pppp#######...........#.....#######ppppppppppppppp
-    - pppppppppppppppppp#######.................#######pppp#######..........#######pppp#######.................#######pppppppppppppppp
-    - ppppppppppppppppppp#######.................#######pppp######..........#######ppp#######.................#######ppppppppppppppppp
-    - pppppppppppppppppppp#######.................#######pppp#####..........#####pppp#######.................#######pppppppppppppppppp
-    - ppppppppppppppppppppp#######.................#######pppp####..........#####ppp#######.................#######ppppppppppppppppppp
-    - pppppppppppppppppppppp#######.................#######ppp####..........####ppp#######.................#######pppppppppppppppppppp
-    - ppppppppppppppppppppppp#######.................#######pp####..........####p########.................#######ppppppppppppppppppppp
-    - pppppppppppppppppppppppp#######.................#######p####..........####p#######.................#######pppppppppppppppppppppp
-    - ppppppppppppppppppppppppp#######.................######p####..........###########.................#######ppppppppppppppppppppppp
-    - pppppppppppppppppppppppppp#######.................#####p####..........##########.................#######pppppppppppppppppppppppp
-    - ppppppppppppppppppppppppppp#######.................####p####..........####p####.................########pppppppppppppppppppppppp
-    - ppppppppppppppppppppppppppp########.................###p####..........####p####................########ppppppppppppppppppppppppp
-    - pppppppppppppppppppppppppppp########................###p####..........####p###................########pppppppppppppppppppppppppp
-    - ppppppppppppppppppppppppppppp########...............###p####..........####p####..............########ppppppppppppppppppppppppppp
-    - pppppppppppppppppppppppppppppp########..............###p####..........####p####.............########pppppppppppppppppppppppppppp
-    - ppppppppppppppppppppppppppppppp########.............###p####..........####p####............#########pppppppppppppppppppppppppppp
-    - ppppppppppppppppppppppppp###############............###p####..........########............###############ppppppppppppppppppppppp
-    - '#ppp#####p###ppppppppppp################............###p####..........########...........#################ppppp#p##pppppppppp###'
-    - '##################pppppp################............###p####..........####p###...........#################pppp##################'
-    - '###LLLLLL#LLLLLL###ppppp################............###p####..........####p###...........#################ppp####LL#LLLLLLLLL###'
-    - '###LLLLLLLLLLLLLL##ppppp####pppppp######............########..........####p###............######pppppp####pppp#LLLLLLLLLLLLLLL##'
-    - '##LLLLLLLLLLLLLLL##ppppp####pppppppp#p##............########..........####p###.............####ppppppp####pppp#LLLLLLLLLLLLLLL##'
-    - '##LLLLLLLLLLLLLLL##ppppp####ppppppp#####............########..........####p####...........#####ppppppp####pppp#LLLLLLLLLLLLLLL##'
-    - '##LLLLLLLLLLLLLLL##ppppp####pppppp######............########..........####p####..........#######pppppp####pppp#LLLLLLLLLLLLLLL##'
-    - '##LLLLLLLLLLLLLLL##ppppp####ppppp#######............###p####..........####p###...........########ppppp####ppp###LLLLLLLLLLLLLL##'
-    - '##LLLLLLLLLLLLLLL##ppppp################............###p####..........####p###...........#################pppp#LLLLLLLLLLLLLLL##'
-    - '###LLLLLLLLL#LLL###ppppp################............###p####..........####p###............################pppp##LLLLLLLLLLLLLL##'
-    - '###################ppppp###############.............###p####..........####p###.............###############pppp##################'
-    - '##################ppppppp#############..............########..........####p####.............#############pppppp#################'
-    - ppppppppppppppppppppppppppppp########...............###p####..........####p####..............########ppppppppppppppppppppppppppp
-    - pppppppppppppppppppppppppppp########...............####p####..........####p####...............#######ppppppppppppppppppppppppppp
-    - pppppppppppppppppppppppppppp########...............#########..........####p#####...............#######pppppppppppppppppppppppppp
-    - pppppppppppppppppppppppppp########................##########..........####p#####................#######ppppppppppppppppppppppppp
-    - pppppppppppppppppppppppppp#######................###########..........###########................#######pppppppppppppppppppppppp
-    - pppppppppppppppppppppppp########................############..........############................#######ppppppppppppppppppppppp
-    - pppppppppppppppppppppppp#######................#############..........#############................#######pppppppppppppppppppppp
-    - ppppppppppp###################................##############..........###############...............#######ppppppppppppppppppppp
-    - pppppppppp###################................##############............##############................#######pp##########pppppppp
-    - pppppppppp##################................##############..............##############................###################ppppppp
-    - pppppppppp#####,###########...............###############................###############.............#.##################ppppppp
-    - ppppppppppp####,,,########................##############..................###############...............#################ppppppp
-    - ppppppppppp####,,,,######...............###############....................##############................#########,,,####ppppppp
-    - ppppppppppp####,,,,,,##.................###############.....................##############................########,,,####ppppppp
-    - ppppppppppp####,,,,,,..................###############......................###############................######,,,,####ppppppp
-    - ppppppppppp#######,,..................###############........................###############.................##,,,,,,####ppppppp
-    - pppppppppp#########..................###############..######################..###############...................,,#######ppppppp
-    - ppppppppppp########.................###############..########################..###############..................,########ppppppp
-    - pppppppppppp#######................###############...########################...###############.................#########ppppppp
-    - ppppppppppp#######............###################....########################....####################...........########pppppppp
-    - pppppppppp#######...........####################.....#######p#pp#############.....###################............#######pppppppp
-    - ppppppppp#######............###################......########################......###################............#######ppppppp
-    - pppppppp########............##################.......########################.......##################............########pppppp
-    - ppppppp#######...............####ppp#########........#######################.........##########pp####...............#######ppppp
-    - pppppp#######................###pp##########..........#####################...........##########p####................#######pppp
-    - ppppp#######.................####p#########............................................#########p####.................#######ppp
-    - ppppp#######.................###p#########..............................................########pp###..................######ppp
-    - ppppp#####..................##########......................................................##########..................######pp
-    - ppppp####...................##########......................................................##########...................#####pp
-    - ppppp####...................#########.......................................................#########....................#####pp
-    - ppppp###.....................########........................................................########....................####ppp
-    - ppppp###.....................#######.........................................................#######.....................#####pp
-    - ppppp###.......................................................#.........................................................#####pp
-    - ppppp###.....................................................GGGGGGG#....................................................#####pp
-    - ppppp###....................................................GGGGGGGGG....................................................#####pp
-    - ppppp###....................................................GGGGGGGGG....................................................#####pp
-    - ppppp####..................................................#GGGGGGGGG....................................................#####pp
-    - ppppp#######################################################.GGGGGGGG#########################################################pp
-    - ppppp########################################################GGGGGGGG#########################################################pp
-    - ppppp########################################################GGGGGGGG##.#####################################################ppp
-    - pppppp#######################################################GGGGGGG.#######################################################pppp
-    - pppppppppppppppppppppppppppppppppppppppppppppppppppppp#######GGGGGGG########pppppppppppppppppppppppppppppppppppppppppppppppppppp
-    - pppppppppppppppppppppppppppppppppppppppppppppppppppppp######GGGGGGGG.#######pppppppppppppppppppppppppppppppppppppppppppppppppppp
-    - ppppppppppppppppppppppppppppppppppppppppppppppppppppppp####.GGGGGGGGG######ppppppppppppppppppppppppppppppppppppppppppppppppppppp
-    - ppppppppppppppppppppppppppppppppppppppppppppppppppppppp####.GGGGGGGGG######ppppppppppppppppppppppppppppppppppppppppppppppppppppp
-    - ppppppppppppppppppppppppppppppppppppppppppppppppppppppp####GGGGGGGGGG######ppppppppppppppppppppppppppppppppppppppppppppppppppppp
-    - ppppppppppppppppppppppppppppppppppppppppppppppppppppppp####GGGGGGGGGG.#####ppppppppppppppppppppppppppppppppppppppppppppppppppppp
+    - pppppppppppp####,,,,,,,,,,,,,,####pppppp###,,,,,,,,,,,,,,,#SSSSSSSSSS#,,,,,,,,,,,,,,,###pppppp####,,,,,,,,,,,,,,####pppppppppppp
+    - pppppppppppp####,,,,,,,,,,,,,,####pppppp###,,,,,,,,,,,,,,,#SSSSSSSSSS#,,,,,,,,,,,,,,,###pppppp####,,,,,,,,,,,,,,####pppppppppppp
+    - pppppppppppp####,,,,,,,,,,,,,,####pppppp###,,,,,,,,,,,,,,,#SSSSSSSSSS#,,,,,,,,,,,,,,,###pppppp####,,,,,,,,,,,,,,####pppppppppppp
+    - pppppppppppp####,,,,,,,,,,,,,,####pppppp###,,,,,,,,,,,,,,,#SSSSSSSSSS#,,,,,,,,,,,,,,,###pppppp####,,,,,,,,,,,,,,####pppppppppppp
+    - pppppppppppp####,,,,,,,,,,,,,,####pppppp###,,,,,,,,,,,,,,##SSSSSSSSSS##,,,,,,,,,,,,,,###pppppp####,,,,,,,,,,,,,,####pppppppppppp
+    - pppppppppppp####,,,,,,,,,,,,,,####pppppp###,,,,,,,,,,,,,,##SSSSSSSSSS##,,,,,,,,,,,,,,###pppppp####,,,,,,,,,,,,,,####pppppppppppp
+    - pppppppppppp####,,,,,,,,,,,,,,####pppppp###,,,,,,,,,,,,,,##SSSSSSSSSS##,,,,,,,,,,,,,,###pppppp####,,,,,,,,,,,,,,####pppppppppppp
+    - pppppppppppp####,,,,,,,,,,,,,,####pppppp###,,,,,,,,,,,,,,##SSSSSSSSSS##,,,,,,,,,,,,,,###pppppp####,,,,,,,,,,,,,,####pppppppppppp
+    - pppppppppppp####,,,,,,,,,,,,,,#####ppppp###,,,,,,,,,,,,,,##SSSSSSSSSS##,,,,,,,,,,,,,,###ppppp#####,,,,,,,,,,,,,,####pppppppppppp
+    - pppppppppppp####,,,,,,,,,,,,,,#####ppppp####,,,,,,,,,,,,,,#SSSppppSSS#,,,,,,,,,,,,,,####ppppp#####,,,,,,,,,,,,,,####pppppppppppp
+    - pppppppppppp####,,,,,,,,,,,,,,#####ppppp###,,,,,,,,,,,,,,,####pppp####,,,,,,,,,,,,,,,###ppppp#####,,,,,,,,,,,,,,####pppppppppppp
+    - pppppppppppp####,,,,,,,,,,,,,,#####ppppp###,,,,,,,,,,,,,,,####pppp####,,,,,,,,,,,,,,,###ppppp#####,,,,,,,,,,,,,,####pppppppppppp
+    - pppppppppppp####,,,,,,,,,,,,,,####pppppp####,,,,,,,,,,,,,,####pppp####,,,,,,,,,,,,,,####pppppp####,,,,,,,,,,,,,,####pppppppppppp
+    - pppppppppppp####,,,,,,,,,,,,,,####pppppp####,,,,,,,,,,,,,#####pppp#####,,,,,,,,,,,,,####pppppp####,,,,,,,,,,,,,,####pppppppppppp
+    - pppppppppppp####,,,,,,,,,,,,,,####pppppp####,,,,,,,,,,,,,#####pppp#####,,,,,,,,,,,,,####pppppp####,,,,,,,,,,,,,,####pppppppppppp
+    - pppppppppppp####,,,,,,,,,,,,,,####pppppp####,,,,,,,,,,,,,#####pppp#####,,,,,,,,,,,,,####pppppp####,,,,,,,,,,,,,,####pppppppppppp
+    - pppppppppppp####..............####pppppp####.............####pppppp####.............####pppppp####..............####pppppppppppp
+    - pppppppppppp####..............####pppppp####.............####pppppp####.............####pppppp####..............####pppppppppppp
+    - pppppppppppp####..............####pppppp####.............####pppppp####.............####pppppp####..............####pppppppppppp
+    - pppppppppppp####..............####pppppp####.............####pppppp####.............####pppppp####..............####pppppppppppp
+    - pppppppppppp####..............#####ppppp###..............#####pppp#####..............###ppppp#####..............####pppppppppppp
+    - pppppppppppp####..............####pppppp###..............#####pppp#####..............###pppppp####..............####pppppppppppp
+    - pppppppppppp####..............####pppppp###..............#####pppp#####..............###pppppp####..............####pppppppppppp
+    - pppppppppppp####..............####pppppp###..............#####pppp#####..............###pppppp####..............####pppppppppppp
+    - pppppppppppp####..............####pppppp###...............###pppppp###...............###pppppp####..............####pppppppppppp
+    - pppppppppppp####..............####pppppp###...............####pppp####...............###pppppp####..............####pppppppppppp
+    - pppppppppppp####..............####pppppp###...............###pppppp###...............###pppppp####..............####pppppppppppp
+    - pppppppppppp####..............####pppppp###...............###pppppp###...............###pppppp####..............####pppppppppppp
+    - pppppppppppp####..............#####ppppp###...............####pppp####...............###ppppp#####..............####pppppppppppp
+    - pppppppppppp####..............#####ppppp###...............####pppp####...............###ppppp#####..............####pppppppppppp
+    - pppppppppppp####..............#####ppppp###...............####pppp####...............###ppppp#####..............####pppppppppppp
+    - pppppppppppp####..............#####ppppp###...............####pppp####...............###ppppp#####..............####pppppppppppp
+    - pppppppppppp####..............####pppppp####.............##############.............####pppppp####..............####pppppppppppp
+    - pppppppppppp####..............####pppppp####..............############..............####pppppp####..............####pppppppppppp
+    - pppppppppppp####..............####pppppp####..............############..............####pppppp####..............####pppppppppppp
+    - pppppppppppp####..............####pppppp####...............##########...............####pppppp####..............####pppppppppppp
+    - pppppppppppp####..............#####ppppp####........................................####ppppp#####..............####pppppppppppp
+    - pppppppppppp####..............####pppppp####........................................####pppppp####..............####pppppppppppp
+    - pppppppppppp####..............#####ppppp#####......................................#####ppppp#####..............####pppppppppppp
+    - pppppppppppp####..............#####ppppp######....................................######ppppp#####..............####pppppppppppp
+    - pppppppppppp####..............#######ppp#######..................................#######ppp#######..............####pppppppppppp
+    - pppppppppppp####..............#######pppp#######................................#######pppp#######..............####pppppppppppp
+    - pppppppppppp####...............#######pppp#######..............................#######pppp#######...............####pppppppppppp
+    - pppppppppppp####................#######pppp#######............................#######pppp#######................####pppppppppppp
+    - pppppppppppp####.................#######pppp#######..........................#######pppp#######.................####pppppppppppp
+    - pppppppppppp#####.................#######pppp#######........................#######pppp#######.................#####pppppppppppp
+    - pppppppppppp######.................#######pppp#######......................#######pppp#######.................######pppppppppppp
+    - pppppppppppp#######.................#######pppp#######....................#######pppp#######.................#######pppppppppppp
+    - ppppppppppppp#######.................#######pppp#######..................#######pppp#######.................#######ppppppppppppp
+    - pppppppppppppp#######.................#######pppp#######................#######pppp#######.................#######pppppppppppppp
+    - ppppppppppppppp#######.................#######pppp#######..............#######pppp#######.................#######ppppppppppppppp
+    - pppppppppppppppp#######.................#######pppp#######............#######pppp#######.................#######pppppppppppppppp
+    - pppppppppppppppp########.................#######pppp#######..........#######pppp#######.................########pppppppppppppppp
+    - pppppppppppppppppp#######.................#######pppp#######........#######pppp#######.................#######pppppppppppppppppp
+    - ppppppppppppppppppp#######.................#######pppp######........######pppp#######.................#######ppppppppppppppppppp
+    - pppppppppppppppppppp#######.................#######pppp#####........#####pppp#######.................#######pppppppppppppppppppp
+    - ppppppppppppppppppppp#######.................#######pppp####........####pppp#######.................#######ppppppppppppppppppppp
+    - pppppppppppppppppppppp#######.................#######ppp####........####ppp#######.................#######pppppppppppppppppppppp
+    - ppppppppppppppppppppppp#######.................#######pp####........####pp#######.................#######ppppppppppppppppppppppp
+    - pppppppppppppppppppppppp#######.................#######p####........####p#######.................#######pppppppppppppppppppppppp
+    - ppppppppppppppppppppppppp#######.................######p####........####p######.................#######ppppppppppppppppppppppppp
+    - pppppppppppppppppppppppppp#######.................#####p####........####p#####.................#######pppppppppppppppppppppppppp
+    - ppppppppppppppppppppppppppp#######.................####p####........####p####.................#######ppppppppppppppppppppppppppp
+    - ppppppppppppppppppppppppppp########.................###p####........####p###.................########ppppppppppppppppppppppppppp
+    - pppppppppppppppppppppppppppp########................###p####........####p###................########pppppppppppppppppppppppppppp
+    - ppppppppppppppppppppppppppppp########...............###p####........####p###...............########ppppppppppppppppppppppppppppp
+    - pppppppppppppppppppppppppppppp########..............###p####........####p###..............########pppppppppppppppppppppppppppppp
+    - ppppppppppppppppppppppppppppppp########.............###p####........####p###.............########ppppppppppppppppppppppppppppppp
+    - ppppppppppppppppppppppppp###############............###p####........####p###............###############ppppppppppppppppppppppppp
+    - '#ppp#####p###ppppppppppp################............###p####........####p###............################ppppppppppp###p#####ppp#'
+    - '##################pppppp################............###p####........####p###............################pppppp##################'
+    - '###LLLLLL#LLLLLL###ppppp################............###p####........####p###............################ppppp###LLLLLL#LLLLLL###'
+    - '###LLLLLLLLLLLLLL##ppppp####pppppp######............########........########............######pppppp####ppppp##LLLLLLLLLLLLLL###'
+    - '##LLLLLLLLLLLLLLL##ppppp####pppppppp#p##............########........########............##p#pppppppp####ppppp##LLLLLLLLLLLLLLL##'
+    - '##LLLLLLLLLLLLLLL##ppppp####ppppppp#####............########........########............#####ppppppp####ppppp##LLLLLLLLLLLLLLL##'
+    - '##LLLLLLLLLLLLLLL##ppppp####pppppp######............########........########............######pppppp####ppppp##LLLLLLLLLLLLLLL##'
+    - '##LLLLLLLLLLLLLLL##ppppp####ppppp#######............###p####........####p###............#######ppppp####ppppp##LLLLLLLLLLLLLLL##'
+    - '##LLLLLLLLLLLLLLL##ppppp################............###p####........####p###............################ppppp##LLLLLLLLLLLLLLL##'
+    - '###LLLLLLLLL#LLL###ppppp################............###p####........####p###............################ppppp###LLL#LLLLLLLLL###'
+    - '###################ppppp###############.............###p####........####p###.............###############ppppp###################'
+    - '##################ppppppp#############..............########........########..............#############ppppppp##################'
+    - ppppppppppppppppppppppppppppp########...............###p####........####p###...............########ppppppppppppppppppppppppppppp
+    - pppppppppppppppppppppppppppp########...............####p####........####p####...............########pppppppppppppppppppppppppppp
+    - pppppppppppppppppppppppppppp########...............#########........#########...............########pppppppppppppppppppppppppppp
+    - pppppppppppppppppppppppppp########................##########........##########................########pppppppppppppppppppppppppp
+    - pppppppppppppppppppppppppp#######................###########........###########................#######pppppppppppppppppppppppppp
+    - pppppppppppppppppppppppp########................############........############................########pppppppppppppppppppppppp
+    - pppppppppppppppppppppppp#######................#############........#############................#######pppppppppppppppppppppppp
+    - ppppppppppp###################................##############........##############................###################ppppppppppp
+    - pppppppppp###################................##############..........##############................###################pppppppppp
+    - pppppppppp##################................##############............##############................##################pppppppppp
+    - pppppppppp#####,###########...............###############..............###############...............###########,#####pppppppppp
+    - ppppppppppp####,,,########................##############................##############................########,,,####ppppppppppp
+    - ppppppppppp####,,,,######...............###############..................###############...............######,,,,####ppppppppppp
+    - ppppppppppp####,,,,,,##.................###############..................###############.................##,,,,,,####ppppppppppp
+    - ppppppppppp####,,,,,,..................###############....................###############..................,,,,,,####ppppppppppp
+    - ppppppppppp#######,,..................###############......................###############..................,,#######ppppppppppp
+    - pppppppppp#########..................###############..####################..###############..................#########pppppppppp
+    - ppppppppppp########.................###############..######################..###############.................########ppppppppppp
+    - pppppppppppp#######................###############...######################...###############................#######pppppppppppp
+    - ppppppppppp#######............###################....######################....###################............#######ppppppppppp
+    - pppppppppp#######...........####################.....#######p#pppp#p#######.....####################...........#######pppppppppp
+    - ppppppppp#######............###################......######################......###################............#######ppppppppp
+    - pppppppp########............##################.......######################.......##################............########pppppppp
+    - ppppppp#######...............####ppp#########........######################........#########ppp####...............#######ppppppp
+    - pppppp#######................###pp##########..........####################..........##########pp###................#######pppppp
+    - ppppp#######.................####p#########..........................................#########p####.................#######ppppp
+    - ppppp#######.................###p#########............................................#########p###.................#######ppppp
+    - ppppp#####..................##########....................................................##########..................#####ppppp
+    - ppppp####...................##########....................................................##########...................####ppppp
+    - ppppp####...................#########......................................................#########...................####ppppp
+    - ppppp###.....................########......................................................########.....................###ppppp
+    - ppppp###.....................#######........................................................#######.....................###ppppp
+    - ppppp###................................................................................................................###ppppp
+    - ppppp###................................................................................................................###ppppp
+    - ppppp###................................................................................................................###ppppp
+    - ppppp###................................................................................................................###ppppp
+    - ppppp###................................................................................................................###ppppp
+    - ppppp#######################################################GGGGGGGG#######################################################ppppp
+    - ppppp#######################################################GGGGGGGG#######################################################ppppp
+    - ppppp#######################################################GGGGGGGG#######################################################ppppp
+    - pppppp######################################################GGGGGGGG######################################################pppppp
+    - pppppppppppppppppppppppppppppppppppppppppppppppppppppp######GGGGGGGG######pppppppppppppppppppppppppppppppppppppppppppppppppppppp
+    - pppppppppppppppppppppppppppppppppppppppppppppppppppppp######GGGGGGGG######pppppppppppppppppppppppppppppppppppppppppppppppppppppp
+    - ppppppppppppppppppppppppppppppppppppppppppppppppppppppp####.GGGGGGGG.####ppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+    - ppppppppppppppppppppppppppppppppppppppppppppppppppppppp####.GGGGGGGG.####ppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+    - ppppppppppppppppppppppppppppppppppppppppppppppppppppppp####GGGGGGGGGG####ppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+    - ppppppppppppppppppppppppppppppppppppppppppppppppppppppp####GGGGGGGGGG####ppppppppppppppppppppppppppppppppppppppppppppppppppppppp
     StartNames:
     - Upper west
     - Inner west
@@ -200,20 +200,20 @@ MonoBehaviour:
       Y: 56.25
     - X: 24.75
       Y: 56.25
-    - X: 39.75
+    - X: 39.25
       Y: 56.25
-    - X: 53.25
+    - X: 52.75
       Y: 56.25
     - X: 22.75
       Y: 24.75
-    - X: 32.25
+    - X: 32
       Y: 24.75
-    - X: 42.25
+    - X: 41.25
       Y: 24.75
-    - X: 32.25
+    - X: 32
       Y: 5.75
     SoloBuilderStart:
-      X: 31.75
+      X: 32
       Y: 8.75
     Lanes:
     - Spawn:
@@ -226,12 +226,12 @@ MonoBehaviour:
         Y: 24.75
       - X: 15.25
         Y: 5.75
-      - X: 31.75
+      - X: 32
         Y: 1.25
       FlightRoute:
       - X: 11.25
         Y: 43.75
-      - X: 31.75
+      - X: 32
         Y: 1.25
     - Spawn:
         X: 24.75
@@ -243,46 +243,46 @@ MonoBehaviour:
         Y: 24.75
       - X: 31.75
         Y: 8.75
-      - X: 31.75
+      - X: 32
         Y: 1.25
       FlightRoute:
       - X: 28.25
         Y: 43.75
-      - X: 31.75
+      - X: 32
         Y: 1.25
     - Spawn:
-        X: 39.75
+        X: 39.25
         Y: 62.75
       GroundRoute:
-      - X: 37.25
+      - X: 35.75
         Y: 43.75
-      - X: 32.75
+      - X: 31.75
         Y: 24.75
-      - X: 33.25
+      - X: 32.25
         Y: 8.75
-      - X: 31.75
+      - X: 32
         Y: 1.25
       FlightRoute:
-      - X: 37.25
+      - X: 35.75
         Y: 43.75
-      - X: 31.75
+      - X: 32
         Y: 1.25
     - Spawn:
-        X: 53.25
+        X: 52.75
         Y: 62.75
       GroundRoute:
-      - X: 53.25
+      - X: 52.75
         Y: 43.75
-      - X: 42.25
+      - X: 41.25
         Y: 24.75
-      - X: 48.25
+      - X: 48.75
         Y: 5.75
-      - X: 31.75
+      - X: 32
         Y: 1.25
       FlightRoute:
-      - X: 53.25
+      - X: 52.75
         Y: 43.75
-      - X: 31.75
+      - X: 32
         Y: 1.25
     Terrain:
     - X: 0
@@ -317,63 +317,48 @@ MonoBehaviour:
       Kind: '#'
     - X: 29.5
       Y: 59.5
-      Width: 6
+      Width: 5
       Height: 4.5
       Kind: S
-    - X: 35.5
-      Y: 59
+    - X: 34.5
+      Y: 62
       Width: 0.5
-      Height: 5
+      Height: 2
       Kind: '#'
-    - X: 43.5
-      Y: 63.5
+    - X: 42.5
+      Y: 59.5
       Width: 1.5
-      Height: 0.5
+      Height: 4.5
       Kind: '#'
-    - X: 45
+    - X: 44
       Y: 60
       Width: 3
       Height: 4
       Kind: p
-    - X: 48
-      Y: 45
+    - X: 47
+      Y: 60
       Width: 2
-      Height: 19
+      Height: 4
       Kind: '#'
-    - X: 57
-      Y: 42
+    - X: 56
+      Y: 41.5
       Width: 2
-      Height: 22
+      Height: 22.5
       Kind: '#'
-    - X: 59
+    - X: 58
       Y: 40
-      Width: 5
+      Width: 6
       Height: 24
       Kind: p
-    - X: 43
-      Y: 63
-      Width: 2
-      Height: 0.5
-      Kind: '#'
-    - X: 43.5
-      Y: 62
-      Width: 1.5
-      Height: 1
-      Kind: '#'
     - X: 28.5
       Y: 59.5
       Width: 1
       Height: 2.5
       Kind: '#'
-    - X: 43
-      Y: 60.5
-      Width: 2
-      Height: 1.5
-      Kind: '#'
-    - X: 43.5
-      Y: 60
-      Width: 1.5
-      Height: 0.5
+    - X: 34.5
+      Y: 59.5
+      Width: 1
+      Height: 2.5
       Kind: '#'
     - X: 15
       Y: 58
@@ -385,16 +370,16 @@ MonoBehaviour:
       Width: 2.5
       Height: 2
       Kind: p
-    - X: 43
-      Y: 58
-      Width: 2.5
-      Height: 2
-      Kind: '#'
-    - X: 45.5
+    - X: 44
       Y: 58
       Width: 2.5
       Height: 2
       Kind: p
+    - X: 46.5
+      Y: 58
+      Width: 2.5
+      Height: 2
+      Kind: '#'
     - X: 20
       Y: 59
       Width: 2
@@ -411,15 +396,25 @@ MonoBehaviour:
       Height: 0.5
       Kind: S
     - X: 31
-      Y: 59
-      Width: 2.5
-      Height: 0.5
+      Y: 56
+      Width: 2
+      Height: 3.5
       Kind: p
-    - X: 33.5
+    - X: 33
+      Y: 59
+      Width: 1.5
+      Height: 0.5
+      Kind: S
+    - X: 34.5
+      Y: 59
+      Width: 0.5
+      Height: 0.5
+      Kind: '#'
+    - X: 42
       Y: 59
       Width: 2
       Height: 0.5
-      Kind: S
+      Kind: '#'
     - X: 20
       Y: 58
       Width: 1.5
@@ -430,14 +425,14 @@ MonoBehaviour:
       Width: 2
       Height: 1.5
       Kind: '#'
-    - X: 31
-      Y: 58
-      Width: 3
-      Height: 1
-      Kind: p
-    - X: 34
-      Y: 58
+    - X: 33
+      Y: 57.5
       Width: 2
+      Height: 1.5
+      Kind: '#'
+    - X: 42.5
+      Y: 58
+      Width: 1.5
       Height: 1
       Kind: '#'
     - X: 15
@@ -455,51 +450,31 @@ MonoBehaviour:
       Width: 2
       Height: 4
       Kind: '#'
-    - X: 31
-      Y: 56
-      Width: 3.5
-      Height: 2
-      Kind: p
-    - X: 34.5
-      Y: 51.5
-      Width: 1.5
-      Height: 6.5
+    - X: 42
+      Y: 54
+      Width: 2
+      Height: 4
       Kind: '#'
-    - X: 43.5
-      Y: 57.5
-      Width: 1.5
-      Height: 0.5
-      Kind: '#'
-    - X: 45
-      Y: 57.5
+    - X: 44
+      Y: 54
       Width: 3
-      Height: 0.5
+      Height: 4
       Kind: p
+    - X: 47
+      Y: 54
+      Width: 2
+      Height: 4
+      Kind: '#'
     - X: 28.5
       Y: 56
       Width: 2.5
       Height: 1.5
       Kind: '#'
-    - X: 43.5
-      Y: 57
-      Width: 2
-      Height: 0.5
-      Kind: '#'
-    - X: 45.5
-      Y: 57
-      Width: 2.5
-      Height: 0.5
-      Kind: p
-    - X: 43.5
+    - X: 33
       Y: 56
-      Width: 1.5
-      Height: 1
+      Width: 2.5
+      Height: 1.5
       Kind: '#'
-    - X: 45
-      Y: 55
-      Width: 3
-      Height: 2
-      Kind: p
     - X: 28.5
       Y: 54
       Width: 2
@@ -507,34 +482,14 @@ MonoBehaviour:
       Kind: '#'
     - X: 30.5
       Y: 54
-      Width: 4
+      Width: 3
       Height: 2
       Kind: p
-    - X: 43
-      Y: 55
+    - X: 33.5
+      Y: 54
       Width: 2
-      Height: 1
+      Height: 2
       Kind: '#'
-    - X: 43
-      Y: 54.5
-      Width: 2.5
-      Height: 0.5
-      Kind: '#'
-    - X: 45.5
-      Y: 54.5
-      Width: 2.5
-      Height: 0.5
-      Kind: p
-    - X: 43
-      Y: 51
-      Width: 2
-      Height: 3.5
-      Kind: '#'
-    - X: 45
-      Y: 51
-      Width: 3
-      Height: 3.5
-      Kind: p
     - X: 15
       Y: 53.5
       Width: 2.5
@@ -557,9 +512,29 @@ MonoBehaviour:
       Kind: '#'
     - X: 31
       Y: 52
-      Width: 3.5
+      Width: 2
       Height: 2
       Kind: p
+    - X: 33
+      Y: 52
+      Width: 2.5
+      Height: 2
+      Kind: '#'
+    - X: 42.5
+      Y: 48
+      Width: 1.5
+      Height: 6
+      Kind: '#'
+    - X: 44
+      Y: 53.5
+      Width: 2.5
+      Height: 0.5
+      Kind: p
+    - X: 46.5
+      Y: 53.5
+      Width: 2.5
+      Height: 0.5
+      Kind: '#'
     - X: 15
       Y: 50
       Width: 2
@@ -570,6 +545,16 @@ MonoBehaviour:
       Width: 3
       Height: 3.5
       Kind: p
+    - X: 44
+      Y: 50
+      Width: 3
+      Height: 3.5
+      Kind: p
+    - X: 47
+      Y: 50
+      Width: 2
+      Height: 3.5
+      Kind: '#'
     - X: 29
       Y: 51.5
       Width: 1.5
@@ -577,9 +562,14 @@ MonoBehaviour:
       Kind: '#'
     - X: 30.5
       Y: 51.5
-      Width: 4
+      Width: 3
       Height: 0.5
       Kind: p
+    - X: 33.5
+      Y: 51.5
+      Width: 1.5
+      Height: 0.5
+      Kind: '#'
     - X: 29
       Y: 51
       Width: 2
@@ -587,13 +577,13 @@ MonoBehaviour:
       Kind: '#'
     - X: 31
       Y: 51
-      Width: 3
+      Width: 2
       Height: 0.5
       Kind: p
-    - X: 34
-      Y: 48
+    - X: 33
+      Y: 51
       Width: 2
-      Height: 3.5
+      Height: 0.5
       Kind: '#'
     - X: 29
       Y: 50
@@ -602,29 +592,14 @@ MonoBehaviour:
       Kind: '#'
     - X: 30.5
       Y: 50
-      Width: 3.5
+      Width: 3
       Height: 1
       Kind: p
-    - X: 43
-      Y: 50.5
-      Width: 2.5
-      Height: 0.5
-      Kind: '#'
-    - X: 45.5
-      Y: 50.5
-      Width: 2.5
-      Height: 0.5
-      Kind: p
-    - X: 43.5
+    - X: 33.5
       Y: 50
       Width: 1.5
-      Height: 0.5
+      Height: 1
       Kind: '#'
-    - X: 45
-      Y: 48
-      Width: 3
-      Height: 2.5
-      Kind: p
     - X: 15
       Y: 48
       Width: 2.5
@@ -642,12 +617,22 @@ MonoBehaviour:
       Kind: '#'
     - X: 31
       Y: 48
-      Width: 3
+      Width: 2
       Height: 2
       Kind: p
-    - X: 43
+    - X: 33
       Y: 48
       Width: 2
+      Height: 2
+      Kind: '#'
+    - X: 44
+      Y: 48
+      Width: 2.5
+      Height: 2
+      Kind: p
+    - X: 46.5
+      Y: 48
+      Width: 2.5
       Height: 2
       Kind: '#'
     - X: 15
@@ -667,49 +652,34 @@ MonoBehaviour:
       Kind: '#'
     - X: 28.5
       Y: 47.5
-      Width: 7.5
+      Width: 7
       Height: 0.5
       Kind: '#'
-    - X: 43
-      Y: 47.5
-      Width: 2.5
-      Height: 0.5
+    - X: 42
+      Y: 45
+      Width: 2
+      Height: 3
       Kind: '#'
-    - X: 45.5
-      Y: 47.5
-      Width: 2.5
-      Height: 0.5
+    - X: 44
+      Y: 46
+      Width: 3
+      Height: 2
       Kind: p
+    - X: 47
+      Y: 46
+      Width: 2
+      Height: 2
+      Kind: '#'
     - X: 29
       Y: 46.5
-      Width: 7
+      Width: 6
       Height: 1
       Kind: '#'
-    - X: 43
-      Y: 46.5
-      Width: 2
-      Height: 1
-      Kind: '#'
-    - X: 45
-      Y: 46.5
-      Width: 3
-      Height: 1
-      Kind: p
     - X: 29.5
       Y: 46
-      Width: 5.5
+      Width: 5
       Height: 0.5
       Kind: '#'
-    - X: 43
-      Y: 46
-      Width: 2.5
-      Height: 0.5
-      Kind: '#'
-    - X: 45.5
-      Y: 46
-      Width: 2.5
-      Height: 0.5
-      Kind: p
     - X: 15
       Y: 45.5
       Width: 2.5
@@ -720,16 +690,16 @@ MonoBehaviour:
       Width: 2.5
       Height: 0.5
       Kind: p
-    - X: 43
-      Y: 45
-      Width: 2
-      Height: 1
-      Kind: '#'
-    - X: 45
-      Y: 45
-      Width: 3
-      Height: 1
+    - X: 44
+      Y: 45.5
+      Width: 2.5
+      Height: 0.5
       Kind: p
+    - X: 46.5
+      Y: 45.5
+      Width: 2.5
+      Height: 0.5
+      Kind: '#'
     - X: 15
       Y: 45
       Width: 2
@@ -740,6 +710,16 @@ MonoBehaviour:
       Width: 3
       Height: 0.5
       Kind: p
+    - X: 44
+      Y: 45
+      Width: 3
+      Height: 0.5
+      Kind: p
+    - X: 47
+      Y: 45
+      Width: 2
+      Height: 0.5
+      Kind: '#'
     - X: 15
       Y: 44
       Width: 2.5
@@ -755,17 +735,17 @@ MonoBehaviour:
       Width: 2.5
       Height: 0.5
       Kind: '#'
-    - X: 42.5
+    - X: 41.5
       Y: 44.5
       Width: 2.5
       Height: 0.5
       Kind: '#'
-    - X: 45
+    - X: 44
       Y: 44
       Width: 2.5
       Height: 1
       Kind: p
-    - X: 47.5
+    - X: 46.5
       Y: 44
       Width: 2.5
       Height: 1
@@ -775,7 +755,7 @@ MonoBehaviour:
       Width: 3
       Height: 0.5
       Kind: '#'
-    - X: 42
+    - X: 41
       Y: 44
       Width: 3
       Height: 0.5
@@ -795,20 +775,20 @@ MonoBehaviour:
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 41.5
+    - X: 40.5
       Y: 43.5
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 45
+    - X: 44
       Y: 43.5
-      Width: 2
+      Width: 1.5
       Height: 0.5
       Kind: p
-    - X: 47
-      Y: 43.5
-      Width: 3
-      Height: 0.5
+    - X: 45.5
+      Y: 43
+      Width: 3.5
+      Height: 1
       Kind: '#'
     - X: 18.5
       Y: 43
@@ -820,21 +800,16 @@ MonoBehaviour:
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 41
+    - X: 40
       Y: 43
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 44.5
+    - X: 43.5
       Y: 43
       Width: 2
       Height: 0.5
       Kind: p
-    - X: 46.5
-      Y: 43
-      Width: 3.5
-      Height: 0.5
-      Kind: '#'
     - X: 15.5
       Y: 42.5
       Width: 3.5
@@ -850,17 +825,17 @@ MonoBehaviour:
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 40.5
+    - X: 39.5
       Y: 42.5
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 44
+    - X: 43
       Y: 42.5
       Width: 2
       Height: 0.5
       Kind: p
-    - X: 46
+    - X: 45
       Y: 42.5
       Width: 3.5
       Height: 0.5
@@ -880,17 +855,17 @@ MonoBehaviour:
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 40
+    - X: 39
       Y: 42
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 43.5
+    - X: 42.5
       Y: 42
       Width: 2
       Height: 0.5
       Kind: p
-    - X: 45.5
+    - X: 44.5
       Y: 42
       Width: 3.5
       Height: 0.5
@@ -910,25 +885,20 @@ MonoBehaviour:
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 39.5
+    - X: 38.5
       Y: 41.5
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 43
+    - X: 42
       Y: 41.5
       Width: 2
       Height: 0.5
       Kind: p
-    - X: 45
+    - X: 44
       Y: 41.5
       Width: 3.5
       Height: 0.5
-      Kind: '#'
-    - X: 56.5
-      Y: 41
-      Width: 2.5
-      Height: 1
       Kind: '#'
     - X: 6
       Y: 41
@@ -950,19 +920,24 @@ MonoBehaviour:
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 39
+    - X: 38
       Y: 41
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 42.5
+    - X: 41.5
       Y: 41
       Width: 2
       Height: 0.5
       Kind: p
-    - X: 44.5
+    - X: 43.5
       Y: 41
       Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 55.5
+      Y: 41
+      Width: 2.5
       Height: 0.5
       Kind: '#'
     - X: 6
@@ -985,22 +960,22 @@ MonoBehaviour:
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 38.5
+    - X: 37.5
       Y: 40.5
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 42
+    - X: 41
       Y: 40.5
       Width: 2
       Height: 0.5
       Kind: p
-    - X: 44
+    - X: 43
       Y: 40.5
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 56
+    - X: 55
       Y: 40.5
       Width: 3
       Height: 0.5
@@ -1025,32 +1000,22 @@ MonoBehaviour:
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 38
+    - X: 37
       Y: 40
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 41.5
+    - X: 40.5
       Y: 40
-      Width: 1
+      Width: 2
       Height: 0.5
       Kind: p
     - X: 42.5
       Y: 40
-      Width: 0.5
-      Height: 0.5
-      Kind: '#'
-    - X: 43
-      Y: 40
-      Width: 0.5
-      Height: 0.5
-      Kind: p
-    - X: 43.5
-      Y: 40
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 55.5
+    - X: 54.5
       Y: 40
       Width: 3.5
       Height: 0.5
@@ -1080,29 +1045,29 @@ MonoBehaviour:
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 37.5
+    - X: 36.5
       Y: 39.5
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 41
+    - X: 40
       Y: 39.5
       Width: 2
       Height: 0.5
       Kind: p
-    - X: 43
-      Y: 39.5
-      Width: 3
-      Height: 0.5
-      Kind: '#'
-    - X: 55
+    - X: 42
       Y: 39.5
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 58.5
+    - X: 54
       Y: 39.5
-      Width: 5.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 57.5
+      Y: 39.5
+      Width: 6.5
       Height: 0.5
       Kind: p
     - X: 0
@@ -1130,29 +1095,29 @@ MonoBehaviour:
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 37
+    - X: 36
       Y: 39
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 40.5
+    - X: 39.5
       Y: 39
       Width: 2
       Height: 0.5
       Kind: p
-    - X: 42.5
+    - X: 41.5
       Y: 39
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 54.5
+    - X: 53.5
       Y: 39
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 58
+    - X: 57
       Y: 39
-      Width: 6
+      Width: 7
       Height: 0.5
       Kind: p
     - X: 0
@@ -1180,29 +1145,29 @@ MonoBehaviour:
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 36.5
+    - X: 35.5
       Y: 38.5
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 40
+    - X: 39
       Y: 38.5
       Width: 2
       Height: 0.5
       Kind: p
-    - X: 42
+    - X: 41
       Y: 38.5
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 54
+    - X: 53
       Y: 38.5
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 57.5
+    - X: 56.5
       Y: 38.5
-      Width: 6.5
+      Width: 7.5
       Height: 0.5
       Kind: p
     - X: 0
@@ -1230,30 +1195,30 @@ MonoBehaviour:
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 36
+    - X: 35
       Y: 38
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 39.5
+    - X: 38.5
       Y: 38
       Width: 2
       Height: 0.5
       Kind: p
-    - X: 41.5
+    - X: 40.5
       Y: 38
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 53.5
+    - X: 52.5
       Y: 38
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 57
-      Y: 38
-      Width: 7
-      Height: 0.5
+    - X: 56
+      Y: 37.5
+      Width: 8
+      Height: 1
       Kind: p
     - X: 8
       Y: 37.5
@@ -1275,36 +1240,26 @@ MonoBehaviour:
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 35.5
+    - X: 34.5
       Y: 37.5
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 39
+    - X: 38
       Y: 37.5
       Width: 2
       Height: 0.5
       Kind: p
-    - X: 41
+    - X: 40
       Y: 37.5
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 50
+    - X: 52
       Y: 37.5
-      Width: 0.5
+      Width: 4
       Height: 0.5
       Kind: '#'
-    - X: 53
-      Y: 37.5
-      Width: 3.5
-      Height: 0.5
-      Kind: '#'
-    - X: 56.5
-      Y: 37.5
-      Width: 7.5
-      Height: 0.5
-      Kind: p
     - X: 0
       Y: 37
       Width: 9
@@ -1330,29 +1285,29 @@ MonoBehaviour:
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 35
-      Y: 36.5
+    - X: 34
+      Y: 37
       Width: 3.5
-      Height: 1
+      Height: 0.5
       Kind: '#'
-    - X: 38.5
+    - X: 37.5
       Y: 37
       Width: 2
       Height: 0.5
       Kind: p
-    - X: 40.5
+    - X: 39.5
       Y: 37
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 52.5
+    - X: 51.5
       Y: 37
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 56
+    - X: 55
       Y: 37
-      Width: 8
+      Width: 9
       Height: 0.5
       Kind: p
     - X: 0
@@ -1380,24 +1335,29 @@ MonoBehaviour:
       Width: 3
       Height: 0.5
       Kind: '#'
-    - X: 38.5
+    - X: 34
       Y: 36.5
-      Width: 1.5
+      Width: 3
+      Height: 0.5
+      Kind: '#'
+    - X: 37
+      Y: 36.5
+      Width: 2
       Height: 0.5
       Kind: p
-    - X: 40
+    - X: 39
       Y: 36.5
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 52
+    - X: 51
       Y: 36.5
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 55.5
+    - X: 54.5
       Y: 36.5
-      Width: 8.5
+      Width: 9.5
       Height: 0.5
       Kind: p
     - X: 0
@@ -1425,29 +1385,29 @@ MonoBehaviour:
       Width: 2.5
       Height: 0.5
       Kind: '#'
-    - X: 35
-      Y: 35.5
+    - X: 34
+      Y: 36
       Width: 2.5
-      Height: 1
+      Height: 0.5
       Kind: '#'
-    - X: 37.5
+    - X: 36.5
       Y: 36
       Width: 2
       Height: 0.5
       Kind: p
-    - X: 39.5
+    - X: 38.5
       Y: 36
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 51.5
+    - X: 50.5
       Y: 36
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 55
+    - X: 54
       Y: 36
-      Width: 9
+      Width: 10
       Height: 0.5
       Kind: p
     - X: 0
@@ -1475,24 +1435,29 @@ MonoBehaviour:
       Width: 2
       Height: 8
       Kind: '#'
-    - X: 37.5
+    - X: 34
+      Y: 28
+      Width: 2
+      Height: 8
+      Kind: '#'
+    - X: 36
       Y: 35.5
-      Width: 1.5
+      Width: 2
       Height: 0.5
       Kind: p
-    - X: 39
+    - X: 38
       Y: 35.5
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 51
+    - X: 50
       Y: 35.5
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 54.5
+    - X: 53.5
       Y: 35.5
-      Width: 9.5
+      Width: 10.5
       Height: 0.5
       Kind: p
     - X: 0
@@ -1515,29 +1480,24 @@ MonoBehaviour:
       Width: 1.5
       Height: 0.5
       Kind: p
-    - X: 35
-      Y: 34
-      Width: 2
-      Height: 1.5
-      Kind: '#'
-    - X: 37
+    - X: 36
       Y: 35
       Width: 1.5
       Height: 0.5
       Kind: p
-    - X: 38.5
+    - X: 37.5
       Y: 35
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 50.5
+    - X: 49.5
       Y: 35
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 54
+    - X: 53
       Y: 35
-      Width: 10
+      Width: 11
       Height: 0.5
       Kind: p
     - X: 0
@@ -1560,24 +1520,24 @@ MonoBehaviour:
       Width: 1
       Height: 0.5
       Kind: p
-    - X: 37
-      Y: 34
-      Width: 0.5
-      Height: 1
-      Kind: p
-    - X: 37.5
+    - X: 36
       Y: 34.5
-      Width: 4
+      Width: 1
       Height: 0.5
-      Kind: '#'
-    - X: 50
+      Kind: p
+    - X: 37
       Y: 34.5
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 53.5
+    - X: 49
       Y: 34.5
-      Width: 10.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 52.5
+      Y: 34.5
+      Width: 11.5
       Height: 0.5
       Kind: p
     - X: 0
@@ -1600,19 +1560,24 @@ MonoBehaviour:
       Width: 0.5
       Height: 6.5
       Kind: p
-    - X: 37.5
+    - X: 36
+      Y: 28
+      Width: 0.5
+      Height: 6.5
+      Kind: p
+    - X: 36.5
       Y: 34
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 49.5
+    - X: 48.5
       Y: 34
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 53
+    - X: 52
       Y: 34
-      Width: 11
+      Width: 12
       Height: 0.5
       Kind: p
     - X: 0
@@ -1630,19 +1595,19 @@ MonoBehaviour:
       Width: 3
       Height: 0.5
       Kind: '#'
-    - X: 35
+    - X: 36.5
       Y: 33.5
-      Width: 5.5
+      Width: 3
       Height: 0.5
       Kind: '#'
-    - X: 49
+    - X: 48
       Y: 33.5
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 52.5
+    - X: 51.5
       Y: 33.5
-      Width: 11.5
+      Width: 12.5
       Height: 0.5
       Kind: p
     - X: 0
@@ -1660,20 +1625,20 @@ MonoBehaviour:
       Width: 2.5
       Height: 0.5
       Kind: '#'
-    - X: 35
+    - X: 36.5
       Y: 33
-      Width: 5
+      Width: 2.5
       Height: 0.5
       Kind: '#'
-    - X: 48.5
+    - X: 47.5
       Y: 33
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 52
-      Y: 32.5
-      Width: 12
-      Height: 1
+    - X: 51
+      Y: 33
+      Width: 13
+      Height: 0.5
       Kind: p
     - X: 0
       Y: 32
@@ -1690,26 +1655,21 @@ MonoBehaviour:
       Width: 2
       Height: 0.5
       Kind: '#'
-    - X: 35
-      Y: 30
-      Width: 2
-      Height: 3
-      Kind: '#'
-    - X: 37
-      Y: 30
-      Width: 0.5
-      Height: 3
-      Kind: p
-    - X: 37.5
-      Y: 32
-      Width: 2
-      Height: 1
-      Kind: '#'
-    - X: 48
+    - X: 36.5
       Y: 32.5
-      Width: 4
+      Width: 2
       Height: 0.5
       Kind: '#'
+    - X: 47
+      Y: 32.5
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 50.5
+      Y: 32
+      Width: 13.5
+      Height: 1
+      Kind: p
     - X: 13.5
       Y: 32
       Width: 4
@@ -1720,16 +1680,16 @@ MonoBehaviour:
       Width: 1.5
       Height: 4.5
       Kind: '#'
-    - X: 47.5
+    - X: 36.5
+      Y: 28
+      Width: 1.5
+      Height: 4.5
+      Kind: '#'
+    - X: 46.5
       Y: 32
       Width: 4
       Height: 0.5
       Kind: '#'
-    - X: 51.5
-      Y: 32
-      Width: 12.5
-      Height: 0.5
-      Kind: p
     - X: 0
       Y: 31.5
       Width: 14
@@ -1740,19 +1700,14 @@ MonoBehaviour:
       Width: 4
       Height: 0.5
       Kind: '#'
-    - X: 37.5
-      Y: 31.5
-      Width: 1.5
-      Height: 0.5
-      Kind: '#'
-    - X: 47
+    - X: 46
       Y: 31.5
       Width: 4
       Height: 0.5
       Kind: '#'
-    - X: 51
+    - X: 50
       Y: 31.5
-      Width: 13
+      Width: 14
       Height: 0.5
       Kind: p
     - X: 0
@@ -1765,19 +1720,14 @@ MonoBehaviour:
       Width: 4
       Height: 0.5
       Kind: '#'
-    - X: 37.5
-      Y: 30
-      Width: 2
-      Height: 1.5
-      Kind: '#'
-    - X: 46.5
+    - X: 45.5
       Y: 31
       Width: 4
       Height: 0.5
       Kind: '#'
-    - X: 50.5
+    - X: 49.5
       Y: 31
-      Width: 13.5
+      Width: 14.5
       Height: 0.5
       Kind: p
     - X: 0
@@ -1790,15 +1740,15 @@ MonoBehaviour:
       Width: 4
       Height: 0.5
       Kind: '#'
-    - X: 46
+    - X: 45
       Y: 30.5
       Width: 4
       Height: 0.5
       Kind: '#'
-    - X: 50
-      Y: 30
-      Width: 14
-      Height: 1
+    - X: 49
+      Y: 30.5
+      Width: 15
+      Height: 0.5
       Kind: p
     - X: 0
       Y: 30
@@ -1810,11 +1760,16 @@ MonoBehaviour:
       Width: 4
       Height: 0.5
       Kind: '#'
-    - X: 45.5
+    - X: 44.5
       Y: 30
-      Width: 4.5
+      Width: 4
       Height: 0.5
       Kind: '#'
+    - X: 48.5
+      Y: 30
+      Width: 15.5
+      Height: 0.5
+      Kind: p
     - X: 0
       Y: 29.5
       Width: 12.5
@@ -1825,19 +1780,14 @@ MonoBehaviour:
       Width: 7.5
       Height: 0.5
       Kind: '#'
-    - X: 35
-      Y: 29
-      Width: 4
-      Height: 1
-      Kind: '#'
-    - X: 45
+    - X: 44
       Y: 29.5
       Width: 7.5
       Height: 0.5
       Kind: '#'
-    - X: 52.5
+    - X: 51.5
       Y: 29.5
-      Width: 11.5
+      Width: 12.5
       Height: 0.5
       Kind: p
     - X: 0
@@ -1875,39 +1825,39 @@ MonoBehaviour:
       Width: 8
       Height: 1.5
       Kind: '#'
-    - X: 44.5
+    - X: 44
       Y: 28
-      Width: 8.5
+      Width: 8
       Height: 1.5
       Kind: '#'
-    - X: 53
+    - X: 52
+      Y: 29
+      Width: 5.5
+      Height: 0.5
+      Kind: p
+    - X: 57.5
+      Y: 29
+      Width: 1.5
+      Height: 0.5
+      Kind: '#'
+    - X: 59
+      Y: 29
+      Width: 0.5
+      Height: 0.5
+      Kind: p
+    - X: 59.5
       Y: 29
       Width: 2.5
       Height: 0.5
-      Kind: p
-    - X: 55.5
-      Y: 29
-      Width: 0.5
-      Height: 0.5
       Kind: '#'
-    - X: 56
-      Y: 29
-      Width: 0.5
-      Height: 0.5
-      Kind: p
-    - X: 56.5
-      Y: 29
-      Width: 1
-      Height: 0.5
-      Kind: '#'
-    - X: 57.5
-      Y: 29
-      Width: 5
-      Height: 0.5
-      Kind: p
-    - X: 62.5
+    - X: 62
       Y: 29
       Width: 1.5
+      Height: 0.5
+      Kind: p
+    - X: 63.5
+      Y: 29
+      Width: 0.5
       Height: 0.5
       Kind: '#'
     - X: 0
@@ -1920,24 +1870,9 @@ MonoBehaviour:
       Width: 3
       Height: 0.5
       Kind: p
-    - X: 35
-      Y: 21.5
-      Width: 2
-      Height: 7.5
-      Kind: '#'
-    - X: 37
-      Y: 21.5
-      Width: 0.5
-      Height: 7.5
-      Kind: p
-    - X: 37.5
-      Y: 27
-      Width: 1.5
-      Height: 2
-      Kind: '#'
-    - X: 53
+    - X: 52
       Y: 28.5
-      Width: 2
+      Width: 3
       Height: 0.5
       Kind: p
     - X: 55
@@ -1975,35 +1910,35 @@ MonoBehaviour:
       Width: 2.5
       Height: 4.5
       Kind: p
-    - X: 53
-      Y: 28
-      Width: 1.5
-      Height: 0.5
+    - X: 52
+      Y: 24
+      Width: 2.5
+      Height: 4.5
       Kind: p
     - X: 54.5
       Y: 28
-      Width: 2
+      Width: 1.5
       Height: 0.5
       Kind: '#'
-    - X: 56.5
+    - X: 56
       Y: 28
-      Width: 1
+      Width: 3
       Height: 0.5
       Kind: L
-    - X: 57.5
+    - X: 59
       Y: 28
       Width: 0.5
       Height: 0.5
       Kind: '#'
-    - X: 58
+    - X: 59.5
       Y: 28
-      Width: 4.5
+      Width: 3
       Height: 0.5
       Kind: L
     - X: 62.5
-      Y: 28
+      Y: 27.5
       Width: 1.5
-      Height: 0.5
+      Height: 1
       Kind: '#'
     - X: 1.5
       Y: 27.5
@@ -2035,41 +1970,36 @@ MonoBehaviour:
       Width: 4
       Height: 2
       Kind: '#'
-    - X: 45
+    - X: 34
+      Y: 26
+      Width: 4
+      Height: 2
+      Kind: '#'
+    - X: 44
       Y: 27.5
       Width: 3
       Height: 0.5
       Kind: '#'
-    - X: 48
+    - X: 47
       Y: 27.5
       Width: 3
       Height: 0.5
       Kind: p
-    - X: 51
+    - X: 50
       Y: 25.5
       Width: 2
       Height: 2.5
       Kind: '#'
-    - X: 53
-      Y: 26
-      Width: 2
-      Height: 2
-      Kind: p
-    - X: 55
-      Y: 26
-      Width: 0.5
-      Height: 2
+    - X: 54.5
+      Y: 25
+      Width: 1
+      Height: 3
       Kind: '#'
     - X: 55.5
-      Y: 26
-      Width: 7.5
-      Height: 2
+      Y: 27.5
+      Width: 7
+      Height: 0.5
       Kind: L
-    - X: 63
-      Y: 24.5
-      Width: 1
-      Height: 3.5
-      Kind: '#'
     - X: 0
       Y: 25
       Width: 1
@@ -2100,16 +2030,36 @@ MonoBehaviour:
       Width: 1
       Height: 0.5
       Kind: '#'
-    - X: 45.5
+    - X: 44
       Y: 27
-      Width: 2
+      Width: 1
       Height: 0.5
       Kind: '#'
-    - X: 47.5
-      Y: 26.5
-      Width: 3.5
-      Height: 1
+    - X: 45
+      Y: 27
+      Width: 0.5
+      Height: 0.5
       Kind: p
+    - X: 45.5
+      Y: 27
+      Width: 0.5
+      Height: 0.5
+      Kind: '#'
+    - X: 46
+      Y: 27
+      Width: 4
+      Height: 0.5
+      Kind: p
+    - X: 55.5
+      Y: 25
+      Width: 7.5
+      Height: 2.5
+      Kind: L
+    - X: 63
+      Y: 25
+      Width: 1
+      Height: 2.5
+      Kind: '#'
     - X: 14
       Y: 26.5
       Width: 3.5
@@ -2120,16 +2070,16 @@ MonoBehaviour:
       Width: 2.5
       Height: 0.5
       Kind: '#'
-    - X: 37.5
-      Y: 26
-      Width: 2
-      Height: 1
-      Kind: '#'
-    - X: 45
+    - X: 44
       Y: 26.5
       Width: 2.5
       Height: 0.5
       Kind: '#'
+    - X: 46.5
+      Y: 26.5
+      Width: 3.5
+      Height: 0.5
+      Kind: p
     - X: 14
       Y: 26
       Width: 3
@@ -2140,12 +2090,12 @@ MonoBehaviour:
       Width: 3
       Height: 0.5
       Kind: '#'
-    - X: 44.5
+    - X: 44
       Y: 26
-      Width: 3.5
+      Width: 3
       Height: 0.5
       Kind: '#'
-    - X: 48
+    - X: 47
       Y: 26
       Width: 3
       Height: 0.5
@@ -2175,61 +2125,41 @@ MonoBehaviour:
       Width: 2
       Height: 2
       Kind: '#'
-    - X: 37.5
+    - X: 34
+      Y: 24
+      Width: 2
+      Height: 2
+      Kind: '#'
+    - X: 36
+      Y: 24
+      Width: 0.5
+      Height: 2
+      Kind: p
+    - X: 36.5
       Y: 24
       Width: 1.5
       Height: 2
       Kind: '#'
-    - X: 44.5
+    - X: 44
       Y: 25.5
-      Width: 4
+      Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 48.5
+    - X: 47.5
       Y: 25.5
       Width: 2.5
       Height: 0.5
       Kind: p
-    - X: 53
-      Y: 25.5
-      Width: 1.5
-      Height: 0.5
-      Kind: p
-    - X: 54.5
-      Y: 25.5
-      Width: 1.5
-      Height: 0.5
-      Kind: '#'
-    - X: 56
-      Y: 25.5
-      Width: 7
-      Height: 0.5
-      Kind: L
     - X: 12
       Y: 24.5
       Width: 8
       Height: 1
       Kind: '#'
-    - X: 44.5
-      Y: 25
-      Width: 8.5
-      Height: 0.5
+    - X: 44
+      Y: 24.5
+      Width: 8
+      Height: 1
       Kind: '#'
-    - X: 53
-      Y: 24
-      Width: 2
-      Height: 1.5
-      Kind: p
-    - X: 55
-      Y: 25
-      Width: 0.5
-      Height: 0.5
-      Kind: '#'
-    - X: 55.5
-      Y: 25
-      Width: 7.5
-      Height: 0.5
-      Kind: L
     - X: 0
       Y: 24.5
       Width: 1.5
@@ -2255,21 +2185,31 @@ MonoBehaviour:
       Width: 1.5
       Height: 0.5
       Kind: '#'
-    - X: 45
+    - X: 54.5
       Y: 24.5
-      Width: 8
-      Height: 0.5
-      Kind: '#'
-    - X: 55
-      Y: 24.5
-      Width: 1
+      Width: 1.5
       Height: 0.5
       Kind: '#'
     - X: 56
       Y: 24.5
-      Width: 7
+      Width: 1.5
       Height: 0.5
       Kind: L
+    - X: 57.5
+      Y: 24.5
+      Width: 0.5
+      Height: 0.5
+      Kind: '#'
+    - X: 58
+      Y: 24.5
+      Width: 4.5
+      Height: 0.5
+      Kind: L
+    - X: 62.5
+      Y: 24.5
+      Width: 1.5
+      Height: 0.5
+      Kind: '#'
     - X: 0
       Y: 24
       Width: 9.5
@@ -2280,14 +2220,14 @@ MonoBehaviour:
       Width: 7.5
       Height: 0.5
       Kind: '#'
-    - X: 45.5
+    - X: 44.5
       Y: 24
       Width: 7.5
       Height: 0.5
       Kind: '#'
-    - X: 55
+    - X: 54.5
       Y: 24
-      Width: 9
+      Width: 9.5
       Height: 0.5
       Kind: '#'
     - X: 0
@@ -2310,24 +2250,24 @@ MonoBehaviour:
       Width: 4
       Height: 0.5
       Kind: '#'
-    - X: 37.5
-      Y: 22.5
-      Width: 2
-      Height: 1.5
+    - X: 34
+      Y: 23.5
+      Width: 4
+      Height: 0.5
       Kind: '#'
-    - X: 46
+    - X: 45
       Y: 23.5
       Width: 6.5
       Height: 0.5
       Kind: '#'
-    - X: 52.5
+    - X: 51.5
       Y: 23.5
-      Width: 3
+      Width: 3.5
       Height: 0.5
       Kind: p
-    - X: 55.5
+    - X: 55
       Y: 23.5
-      Width: 8.5
+      Width: 9
       Height: 0.5
       Kind: '#'
     - X: 0
@@ -2355,15 +2295,30 @@ MonoBehaviour:
       Width: 2
       Height: 1
       Kind: '#'
-    - X: 46.5
+    - X: 34
+      Y: 22.5
+      Width: 2
+      Height: 1
+      Kind: '#'
+    - X: 36
+      Y: 22.5
+      Width: 0.5
+      Height: 1
+      Kind: p
+    - X: 36.5
+      Y: 23
+      Width: 1.5
+      Height: 0.5
+      Kind: '#'
+    - X: 45.5
       Y: 23
       Width: 4
       Height: 0.5
       Kind: '#'
-    - X: 50.5
-      Y: 22.5
-      Width: 13.5
-      Height: 1
+    - X: 49.5
+      Y: 23
+      Width: 14.5
+      Height: 0.5
       Kind: p
     - X: 0
       Y: 22
@@ -2380,31 +2335,31 @@ MonoBehaviour:
       Width: 2
       Height: 0.5
       Kind: '#'
-    - X: 47
+    - X: 36.5
       Y: 22.5
-      Width: 3.5
+      Width: 2
       Height: 0.5
       Kind: '#'
+    - X: 46
+      Y: 22
+      Width: 4
+      Height: 1
+      Kind: '#'
+    - X: 50
+      Y: 22
+      Width: 14
+      Height: 1
+      Kind: p
     - X: 25.5
       Y: 22
       Width: 4.5
       Height: 0.5
       Kind: '#'
-    - X: 37.5
-      Y: 21.5
-      Width: 2.5
-      Height: 1
-      Kind: '#'
-    - X: 47.5
+    - X: 34
       Y: 22
-      Width: 3.5
+      Width: 4.5
       Height: 0.5
       Kind: '#'
-    - X: 51
-      Y: 22
-      Width: 13
-      Height: 0.5
-      Kind: p
     - X: 0
       Y: 21
       Width: 13
@@ -2420,15 +2375,20 @@ MonoBehaviour:
       Width: 5
       Height: 0.5
       Kind: '#'
-    - X: 48
+    - X: 34
       Y: 21.5
-      Width: 3.5
+      Width: 5
       Height: 0.5
       Kind: '#'
-    - X: 51.5
+    - X: 47
       Y: 21.5
-      Width: 12.5
+      Width: 4
       Height: 0.5
+      Kind: '#'
+    - X: 51
+      Y: 21
+      Width: 13
+      Height: 1
       Kind: p
     - X: 13
       Y: 21
@@ -2440,21 +2400,16 @@ MonoBehaviour:
       Width: 5.5
       Height: 0.5
       Kind: '#'
-    - X: 35
+    - X: 34
       Y: 21
       Width: 5.5
       Height: 0.5
       Kind: '#'
-    - X: 48.5
+    - X: 47.5
       Y: 21
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 52
-      Y: 21
-      Width: 12
-      Height: 0.5
-      Kind: p
     - X: 0
       Y: 20
       Width: 12
@@ -2470,20 +2425,20 @@ MonoBehaviour:
       Width: 6
       Height: 0.5
       Kind: '#'
-    - X: 35
+    - X: 34
       Y: 20.5
       Width: 6
       Height: 0.5
       Kind: '#'
-    - X: 49
+    - X: 48
       Y: 20.5
-      Width: 3.5
+      Width: 4
       Height: 0.5
       Kind: '#'
-    - X: 52.5
-      Y: 20.5
-      Width: 11.5
-      Height: 0.5
+    - X: 52
+      Y: 20
+      Width: 12
+      Height: 1
       Kind: p
     - X: 12
       Y: 20
@@ -2495,21 +2450,16 @@ MonoBehaviour:
       Width: 6.5
       Height: 0.5
       Kind: '#'
-    - X: 35
+    - X: 34
       Y: 20
       Width: 6.5
       Height: 0.5
       Kind: '#'
-    - X: 49.5
+    - X: 48.5
       Y: 20
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 53
-      Y: 20
-      Width: 11
-      Height: 0.5
-      Kind: p
     - X: 0
       Y: 19.5
       Width: 5.5
@@ -2525,19 +2475,19 @@ MonoBehaviour:
       Width: 7
       Height: 0.5
       Kind: '#'
-    - X: 35
+    - X: 34
       Y: 19.5
-      Width: 7.5
+      Width: 7
       Height: 0.5
       Kind: '#'
-    - X: 50
+    - X: 49
       Y: 19.5
-      Width: 3.5
+      Width: 9.5
       Height: 0.5
       Kind: '#'
-    - X: 53.5
+    - X: 58.5
       Y: 19.5
-      Width: 10.5
+      Width: 5.5
       Height: 0.5
       Kind: p
     - X: 0
@@ -2555,30 +2505,20 @@ MonoBehaviour:
       Width: 7
       Height: 0.5
       Kind: '#'
-    - X: 35.5
+    - X: 34.5
       Y: 19
       Width: 7
       Height: 0.5
       Kind: '#'
-    - X: 50.5
+    - X: 49.5
       Y: 19
-      Width: 3.5
+      Width: 9.5
       Height: 0.5
       Kind: '#'
-    - X: 54
-      Y: 19
-      Width: 1
-      Height: 0.5
-      Kind: p
-    - X: 55
-      Y: 19
+    - X: 59
+      Y: 18
       Width: 5
-      Height: 0.5
-      Kind: '#'
-    - X: 60
-      Y: 19
-      Width: 4
-      Height: 0.5
+      Height: 1.5
       Kind: p
     - X: 5
       Y: 18.5
@@ -2590,21 +2530,16 @@ MonoBehaviour:
       Width: 7
       Height: 0.5
       Kind: '#'
-    - X: 36
+    - X: 35
       Y: 18.5
       Width: 7
       Height: 0.5
       Kind: '#'
-    - X: 51
+    - X: 50
       Y: 18.5
-      Width: 9.5
+      Width: 9
       Height: 0.5
       Kind: '#'
-    - X: 60.5
-      Y: 14
-      Width: 3.5
-      Height: 5
-      Kind: p
     - X: 5
       Y: 18
       Width: 2.5
@@ -2620,19 +2555,19 @@ MonoBehaviour:
       Width: 7.5
       Height: 0.5
       Kind: '#'
-    - X: 36.5
+    - X: 35.5
       Y: 18
       Width: 7.5
       Height: 0.5
       Kind: '#'
     - X: 50.5
       Y: 18
-      Width: 0.5
+      Width: 5.5
       Height: 0.5
       Kind: '#'
-    - X: 51.5
+    - X: 56.5
       Y: 18
-      Width: 9
+      Width: 2.5
       Height: 0.5
       Kind: '#'
     - X: 0
@@ -2655,16 +2590,26 @@ MonoBehaviour:
       Width: 7
       Height: 0.5
       Kind: '#'
-    - X: 37
+    - X: 36
       Y: 17.5
-      Width: 7.5
+      Width: 7
       Height: 0.5
       Kind: '#'
-    - X: 52
+    - X: 51
       Y: 17.5
-      Width: 8.5
+      Width: 4
       Height: 0.5
       Kind: '#'
+    - X: 56.5
+      Y: 16
+      Width: 2
+      Height: 2
+      Kind: '#'
+    - X: 58.5
+      Y: 15.5
+      Width: 5.5
+      Height: 2.5
+      Kind: p
     - X: 9.5
       Y: 17
       Width: 3
@@ -2675,34 +2620,24 @@ MonoBehaviour:
       Width: 7.5
       Height: 1
       Kind: '#'
-    - X: 37.5
-      Y: 17
-      Width: 7
-      Height: 0.5
+    - X: 36.5
+      Y: 16.5
+      Width: 7.5
+      Height: 1
       Kind: '#'
-    - X: 52.5
+    - X: 51.5
       Y: 17
-      Width: 4.5
+      Width: 3
       Height: 0.5
-      Kind: '#'
-    - X: 58.5
-      Y: 15.5
-      Width: 2
-      Height: 2
       Kind: '#'
     - X: 10.5
       Y: 16.5
       Width: 1
       Height: 0.5
       Kind: '#'
-    - X: 38
+    - X: 52.5
       Y: 16.5
-      Width: 7
-      Height: 0.5
-      Kind: '#'
-    - X: 53
-      Y: 16.5
-      Width: 4
+      Width: 1
       Height: 0.5
       Kind: '#'
     - X: 19.5
@@ -2710,14 +2645,9 @@ MonoBehaviour:
       Width: 7.5
       Height: 0.5
       Kind: '#'
-    - X: 38
+    - X: 37
       Y: 16
       Width: 7.5
-      Height: 0.5
-      Kind: '#'
-    - X: 53.5
-      Y: 16
-      Width: 3
       Height: 0.5
       Kind: '#'
     - X: 5.5
@@ -2730,14 +2660,14 @@ MonoBehaviour:
       Width: 7.5
       Height: 0.5
       Kind: '#'
-    - X: 38.5
+    - X: 37.5
       Y: 15.5
       Width: 7.5
       Height: 0.5
       Kind: '#'
-    - X: 54.5
+    - X: 55
       Y: 15.5
-      Width: 1
+      Width: 3.5
       Height: 0.5
       Kind: '#'
     - X: 0
@@ -2757,19 +2687,24 @@ MonoBehaviour:
       Kind: '#'
     - X: 27
       Y: 15
-      Width: 11
+      Width: 10
       Height: 0.5
       Kind: '#'
-    - X: 39
+    - X: 38
       Y: 15
       Width: 7.5
       Height: 0.5
       Kind: '#'
-    - X: 57
+    - X: 54.5
       Y: 15
-      Width: 3.5
+      Width: 4.5
       Height: 0.5
       Kind: '#'
+    - X: 59
+      Y: 15
+      Width: 5
+      Height: 0.5
+      Kind: p
     - X: 0
       Y: 14.5
       Width: 5.5
@@ -2787,19 +2722,24 @@ MonoBehaviour:
       Kind: '#'
     - X: 26.5
       Y: 13.5
-      Width: 12
+      Width: 11
       Height: 1.5
       Kind: '#'
-    - X: 39.5
+    - X: 38.5
       Y: 14.5
       Width: 7.5
       Height: 0.5
       Kind: '#'
-    - X: 56.5
+    - X: 54.5
       Y: 14.5
       Width: 4
       Height: 0.5
       Kind: '#'
+    - X: 58.5
+      Y: 14.5
+      Width: 5.5
+      Height: 0.5
+      Kind: p
     - X: 0
       Y: 14
       Width: 6
@@ -2815,16 +2755,21 @@ MonoBehaviour:
       Width: 7.5
       Height: 0.5
       Kind: '#'
-    - X: 40
+    - X: 39
       Y: 14
       Width: 7.5
       Height: 0.5
       Kind: '#'
-    - X: 56
+    - X: 54.5
       Y: 14
-      Width: 4.5
+      Width: 3.5
       Height: 0.5
       Kind: '#'
+    - X: 58
+      Y: 14
+      Width: 6
+      Height: 0.5
+      Kind: p
     - X: 0
       Y: 13.5
       Width: 5.5
@@ -2840,20 +2785,20 @@ MonoBehaviour:
       Width: 9.5
       Height: 0.5
       Kind: '#'
-    - X: 40.5
+    - X: 39.5
       Y: 13.5
-      Width: 10
+      Width: 9.5
       Height: 0.5
       Kind: '#'
-    - X: 56
+    - X: 55
       Y: 13.5
-      Width: 4
+      Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 60
-      Y: 13
-      Width: 4
-      Height: 1
+    - X: 58.5
+      Y: 13.5
+      Width: 5.5
+      Height: 0.5
       Kind: p
     - X: 0
       Y: 13
@@ -2887,24 +2832,39 @@ MonoBehaviour:
       Kind: '#'
     - X: 31
       Y: 13
-      Width: 1
+      Width: 2
       Height: 0.5
       Kind: p
-    - X: 32
+    - X: 33
       Y: 13
-      Width: 6.5
+      Width: 0.5
       Height: 0.5
       Kind: '#'
-    - X: 41
+    - X: 33.5
       Y: 13
-      Width: 9.5
+      Width: 0.5
       Height: 0.5
-      Kind: '#'
-    - X: 56.5
+      Kind: p
+    - X: 34
       Y: 13
       Width: 3.5
       Height: 0.5
       Kind: '#'
+    - X: 40
+      Y: 13
+      Width: 10
+      Height: 0.5
+      Kind: '#'
+    - X: 55.5
+      Y: 13
+      Width: 3.5
+      Height: 0.5
+      Kind: '#'
+    - X: 59
+      Y: 13
+      Width: 5
+      Height: 0.5
+      Kind: p
     - X: 0
       Y: 12.5
       Width: 4.5
@@ -2921,23 +2881,23 @@ MonoBehaviour:
       Height: 0.5
       Kind: '#'
     - X: 26.5
-      Y: 12
-      Width: 12
-      Height: 1
+      Y: 11.5
+      Width: 11
+      Height: 1.5
       Kind: '#'
-    - X: 41.5
+    - X: 40.5
       Y: 12.5
       Width: 9.5
       Height: 0.5
       Kind: '#'
-    - X: 57
+    - X: 56
       Y: 12.5
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 60.5
+    - X: 59.5
       Y: 12.5
-      Width: 3.5
+      Width: 4.5
       Height: 0.5
       Kind: p
     - X: 0
@@ -2955,19 +2915,19 @@ MonoBehaviour:
       Width: 9
       Height: 0.5
       Kind: '#'
-    - X: 42
+    - X: 41
       Y: 12
       Width: 9
       Height: 0.5
       Kind: '#'
-    - X: 57
+    - X: 56
       Y: 12
       Width: 4
       Height: 0.5
       Kind: '#'
-    - X: 61
+    - X: 60
       Y: 12
-      Width: 3
+      Width: 4
       Height: 0.5
       Kind: p
     - X: 0
@@ -2995,34 +2955,29 @@ MonoBehaviour:
       Width: 4.5
       Height: 0.5
       Kind: '#'
-    - X: 26.5
+    - X: 41.5
       Y: 11.5
-      Width: 11.5
+      Width: 4.5
       Height: 0.5
       Kind: '#'
-    - X: 42.5
+    - X: 46
       Y: 11.5
-      Width: 5
-      Height: 0.5
-      Kind: '#'
-    - X: 47.5
-      Y: 11.5
-      Width: 1
+      Width: 1.5
       Height: 0.5
       Kind: p
-    - X: 48.5
-      Y: 10.5
+    - X: 47.5
+      Y: 11.5
       Width: 2
-      Height: 1.5
+      Height: 0.5
       Kind: '#'
-    - X: 58
+    - X: 57
       Y: 11.5
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 61.5
+    - X: 60.5
       Y: 11.5
-      Width: 2.5
+      Width: 3.5
       Height: 0.5
       Kind: p
     - X: 0
@@ -3052,27 +3007,32 @@ MonoBehaviour:
       Kind: '#'
     - X: 27
       Y: 11
-      Width: 10.5
+      Width: 10
       Height: 0.5
       Kind: '#'
-    - X: 43
+    - X: 42
       Y: 11
       Width: 5
       Height: 0.5
       Kind: '#'
-    - X: 48
-      Y: 10.5
-      Width: 0.5
-      Height: 1
+    - X: 47
+      Y: 11
+      Width: 1
+      Height: 0.5
       Kind: p
-    - X: 58.5
+    - X: 48
+      Y: 11
+      Width: 1.5
+      Height: 0.5
+      Kind: '#'
+    - X: 57.5
       Y: 11
       Width: 3.5
       Height: 0.5
       Kind: '#'
-    - X: 62
+    - X: 61
       Y: 11
-      Width: 2
+      Width: 3
       Height: 0.5
       Kind: p
     - X: 0
@@ -3100,20 +3060,30 @@ MonoBehaviour:
       Width: 4.5
       Height: 0.5
       Kind: '#'
-    - X: 43.5
+    - X: 42.5
       Y: 10.5
       Width: 4.5
       Height: 0.5
       Kind: '#'
-    - X: 59
+    - X: 47
       Y: 10.5
-      Width: 3.5
+      Width: 0.5
+      Height: 0.5
+      Kind: p
+    - X: 47.5
+      Y: 10.5
+      Width: 2
       Height: 0.5
       Kind: '#'
-    - X: 62.5
+    - X: 58
       Y: 10
-      Width: 1.5
+      Width: 3.5
       Height: 1
+      Kind: '#'
+    - X: 61.5
+      Y: 3.5
+      Width: 2.5
+      Height: 7.5
       Kind: p
     - X: 14.5
       Y: 10
@@ -3130,166 +3100,101 @@ MonoBehaviour:
       Width: 4.5
       Height: 0.5
       Kind: '#'
-    - X: 44
+    - X: 43
       Y: 10
-      Width: 4
+      Width: 4.5
       Height: 0.5
       Kind: '#'
+    - X: 47.5
+      Y: 10
+      Width: 0.5
+      Height: 0.5
+      Kind: p
     - X: 48
       Y: 10
-      Width: 1
-      Height: 0.5
-      Kind: p
-    - X: 49
-      Y: 10
       Width: 1.5
       Height: 0.5
+      Kind: '#'
+    - X: 2.5
+      Y: 9.5
+      Width: 2.5
+      Height: 0.5
+      Kind: '#'
+    - X: 14
+      Y: 9
+      Width: 5
+      Height: 1
+      Kind: '#'
+    - X: 45
+      Y: 9
+      Width: 5
+      Height: 1
+      Kind: '#'
+    - X: 59
+      Y: 9.5
+      Width: 2.5
+      Height: 0.5
+      Kind: '#'
+    - X: 2.5
+      Y: 8.5
+      Width: 2
+      Height: 1
       Kind: '#'
     - X: 59.5
-      Y: 10
-      Width: 3
+      Y: 8.5
+      Width: 2
+      Height: 1
+      Kind: '#'
+    - X: 14
+      Y: 8.5
+      Width: 4.5
+      Height: 0.5
+      Kind: '#'
+    - X: 45.5
+      Y: 8.5
+      Width: 4.5
       Height: 0.5
       Kind: '#'
     - X: 2.5
-      Y: 9.5
-      Width: 2.5
+      Y: 5
+      Width: 1.5
+      Height: 3.5
+      Kind: '#'
+    - X: 14.5
+      Y: 8
+      Width: 4
       Height: 0.5
       Kind: '#'
-    - X: 14
-      Y: 9
-      Width: 5
-      Height: 1
-      Kind: '#'
-    - X: 46
-      Y: 9
-      Width: 5
-      Height: 1
+    - X: 45.5
+      Y: 8
+      Width: 4
+      Height: 0.5
       Kind: '#'
     - X: 60
-      Y: 9.5
-      Width: 3
-      Height: 0.5
+      Y: 5
+      Width: 1.5
+      Height: 3.5
       Kind: '#'
-    - X: 63
-      Y: 8.5
-      Width: 1
-      Height: 1.5
-      Kind: p
-    - X: 2.5
-      Y: 8.5
-      Width: 2
-      Height: 1
-      Kind: '#'
-    - X: 60.5
-      Y: 8.5
-      Width: 2.5
-      Height: 1
-      Kind: '#'
-    - X: 14
-      Y: 8.5
-      Width: 4.5
+    - X: 14.5
+      Y: 7.5
+      Width: 3.5
       Height: 0.5
       Kind: '#'
     - X: 46
-      Y: 8.5
-      Width: 4.5
+      Y: 7.5
+      Width: 3.5
       Height: 0.5
       Kind: '#'
     - X: 2.5
-      Y: 5.5
-      Width: 1.5
-      Height: 3
-      Kind: '#'
-    - X: 14.5
-      Y: 8
-      Width: 4
-      Height: 0.5
-      Kind: '#'
-    - X: 46.5
-      Y: 8
-      Width: 4
-      Height: 0.5
-      Kind: '#'
-    - X: 60.5
-      Y: 8
-      Width: 2
-      Height: 0.5
-      Kind: '#'
-    - X: 62.5
-      Y: 8
-      Width: 1.5
-      Height: 0.5
-      Kind: p
-    - X: 14.5
-      Y: 7.5
-      Width: 3.5
-      Height: 0.5
-      Kind: '#'
-    - X: 46.5
-      Y: 7.5
-      Width: 3.5
-      Height: 0.5
-      Kind: '#'
-    - X: 60.5
-      Y: 5
-      Width: 2.5
-      Height: 3
-      Kind: '#'
-    - X: 63
-      Y: 4
-      Width: 1
-      Height: 4
-      Kind: p
-    - X: 31.5
-      Y: 7
-      Width: 0.5
-      Height: 0.5
+      Y: 3.5
+      Width: 27.5
+      Height: 1.5
       Kind: '#'
     - X: 34
-      Y: 6.5
-      Width: 0.5
-      Height: 0.5
-      Kind: '#'
-    - X: 2.5
-      Y: 5
-      Width: 2
-      Height: 0.5
-      Kind: '#'
-    - X: 29.5
-      Y: 5
-      Width: 0.5
-      Height: 0.5
-      Kind: '#'
-    - X: 2.5
-      Y: 4.5
+      Y: 3.5
       Width: 27.5
-      Height: 0.5
+      Height: 1.5
       Kind: '#'
-    - X: 34.5
-      Y: 4
-      Width: 28.5
-      Height: 1
-      Kind: '#'
-    - X: 2.5
-      Y: 3.5
-      Width: 28
-      Height: 1
-      Kind: '#'
-    - X: 34.5
-      Y: 3.5
-      Width: 1
-      Height: 0.5
-      Kind: '#'
-    - X: 36
-      Y: 3.5
-      Width: 26.5
-      Height: 0.5
-      Kind: '#'
-    - X: 62.5
-      Y: 3.5
-      Width: 1.5
-      Height: 0.5
-      Kind: p
     - X: 0
       Y: 3
       Width: 3
@@ -3297,17 +3202,17 @@ MonoBehaviour:
       Kind: p
     - X: 3
       Y: 3
-      Width: 27.5
+      Width: 27
       Height: 0.5
       Kind: '#'
-    - X: 34.5
+    - X: 34
       Y: 3
-      Width: 27.5
+      Width: 27
       Height: 0.5
       Kind: '#'
-    - X: 62
+    - X: 61
       Y: 3
-      Width: 2
+      Width: 3
       Height: 0.5
       Kind: p
     - X: 0
@@ -3316,30 +3221,20 @@ MonoBehaviour:
       Height: 1
       Kind: p
     - X: 27
-      Y: 2.5
-      Width: 3.5
-      Height: 0.5
-      Kind: '#'
-    - X: 34
-      Y: 2.5
-      Width: 4
-      Height: 0.5
-      Kind: '#'
-    - X: 38
-      Y: 2
-      Width: 26
-      Height: 1
-      Kind: p
-    - X: 27
       Y: 2
       Width: 3
-      Height: 0.5
+      Height: 1
       Kind: '#'
-    - X: 34.5
+    - X: 34
       Y: 2
-      Width: 3.5
-      Height: 0.5
+      Width: 3
+      Height: 1
       Kind: '#'
+    - X: 37
+      Y: 2
+      Width: 27
+      Height: 1
+      Kind: p
     - X: 0
       Y: 0
       Width: 27.5
@@ -3351,20 +3246,15 @@ MonoBehaviour:
       Height: 2
       Kind: '#'
     - X: 34.5
-      Y: 0.5
-      Width: 3
-      Height: 1.5
-      Kind: '#'
-    - X: 37.5
       Y: 0
-      Width: 26.5
+      Width: 2
+      Height: 2
+      Kind: '#'
+    - X: 36.5
+      Y: 0
+      Width: 27.5
       Height: 2
       Kind: p
-    - X: 35
-      Y: 0
-      Width: 2.5
-      Height: 0.5
-      Kind: '#'
     Name: Ironfold
     Economy: 1
     BuilderEnabled: 1
@@ -3389,10 +3279,10 @@ MonoBehaviour:
       X: 11.25
       Y: 62.75
     GroundRoute:
-    - X: 31.75
+    - X: 32
       Y: 1.25
     FlightRoute:
-    - X: 31.75
+    - X: 32
       Y: 1.25
     Catalog:
     - Name: Fuse Cadet

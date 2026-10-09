@@ -91,12 +91,14 @@ namespace FrostMaze
             palette.Add(ice?new Color(.12f,.25f,.23f):new Color(.17f,.29f,.18f)); // canopy
             palette.Add(ice?new Color(.60f,.68f,.67f):new Color(.34f,.42f,.27f)); // crowns
             palette.Add(ice?new Color(.34f,.59f,.64f):new Color(.85f,.34f,.06f)); // landmark heart
+            foreach(var batch in batches)MirroredGeometry.Apply(batch.V,batch.T,c.Width);
+            MirroredGeometry.Points(fireAnchors,c.Width);MirroredGeometry.Points(landmarks,c.Width);Braziers=fireAnchors.Count;
             PaintTerrain(c,ice);
             for(int i=0;i<batches.Length;i++) {
                 var b=batches[i];if(b.V.Count==0)continue;var mesh=new Mesh{name="Original terrain batch "+i,indexFormat=UnityEngine.Rendering.IndexFormat.UInt32};mesh.SetVertices(b.V);mesh.SetTriangles(b.T,0);mesh.RecalculateNormals();mesh.RecalculateBounds();meshes.Add(mesh);
-                if(i>=24&&i<=28){var uv=new List<Vector2>();foreach(var vertex in b.V)uv.Add(new Vector2((vertex.x+vertex.z)/4,vertex.y/3));mesh.SetUVs(0,uv);}
-                if(i==0){var uv=new List<Vector2>();foreach(var vertex in b.V)uv.Add(new Vector2((vertex.x+vertex.z)/4,vertex.y/(ice?.72f:.6f)));mesh.SetUVs(0,uv);}
-                if(i==6||i==1||i==2){var uv=new List<Vector2>();foreach(var vertex in b.V)uv.Add(new Vector2(vertex.x/c.Width,vertex.z/c.Height));mesh.SetUVs(0,uv);}
+                if(i>=24&&i<=28){var uv=new List<Vector2>();foreach(var vertex in b.V)uv.Add(new Vector2((Mathf.Min(vertex.x,c.Width-vertex.x)+vertex.z)/4,vertex.y/3));mesh.SetUVs(0,uv);}
+                if(i==0){var uv=new List<Vector2>();foreach(var vertex in b.V)uv.Add(new Vector2((Mathf.Min(vertex.x,c.Width-vertex.x)+vertex.z)/4,vertex.y/(ice?.72f:.6f)));mesh.SetUVs(0,uv);}
+                if(i==6||i==1||i==2){var uv=new List<Vector2>();foreach(var vertex in b.V)uv.Add(new Vector2(Mathf.Min(vertex.x,c.Width-vertex.x)/c.Width,vertex.z/c.Height));mesh.SetUVs(0,uv);}
                 var obj=new GameObject("Scenery "+i);obj.layer=30;obj.transform.SetParent(transform,false);obj.AddComponent<MeshFilter>().sharedMesh=mesh;var renderer=obj.AddComponent<MeshRenderer>();renderer.sharedMaterial=game.MakeMaterial(i==0||i==1||i==6?Color.white:palette[i],i==13||i==17||i==18);
                 if(i==17||i==18)RememberFlame(mesh);
                 if(i==27)RememberCanopy(mesh);

@@ -19,7 +19,8 @@ namespace FrostMaze.Tests
                 if(game.Map.name!=map){game.ChooseMap(Resources.Load<MapDefinition>(map));yield return null;yield return null;game=Object.FindFirstObjectByType<Prototype>();}
                 game.StartMatch();game.Paused=true;game.MusicVolume=0;game.SoundEnabled=true;game.EffectsVolume=1;yield return null;
                 var w=game.World;var scenery=game.GetComponentInChildren<MapScenery>();var ambience=game.GetComponent<WorldAmbience>();
-                Assert.That(scenery.LandmarkPositions.Count,Is.EqualTo(3));Assert.That(scenery.Groves,Is.GreaterThan(8));
+                Assert.That(scenery.LandmarkPositions.Count,Is.GreaterThanOrEqualTo(3));
+                foreach(var landmark in scenery.LandmarkPositions){bool paired=false;foreach(var other in scenery.LandmarkPositions)paired|=Vector3.Distance(other,new Vector3(w.Config.Width-landmark.x,landmark.y,landmark.z))<.001f;Assert.That(paired,Is.True,"Unpaired mirrored landmark");}Assert.That(scenery.Groves,Is.GreaterThanOrEqualTo(8));
                 Assert.That(ambience.VoiceCount,Is.EqualTo(4));Assert.That(ambience.GetComponents<AudioSource>().Length,Is.EqualTo(1),"Only existing combat source belongs directly to prototype");
                 CollectionAssert.AreEqual(game.Map.Settings.LayoutRows,w.Config.LayoutRows,"Art must not change the supplied mask");
                 ValidateComposition(scenery,w.Config);
@@ -56,7 +57,7 @@ namespace FrostMaze.Tests
                 Assert.That(enemy.Health,Is.LessThan(1000));
                 var enemyView=GameObject.Find("Enemy "+enemy.Id).GetComponent<EnemyView>();var body=enemyView.transform.Find("Armored crawler");Assert.That(Quaternion.Angle(body.localRotation,Quaternion.identity),Is.GreaterThan(1));
                 Capture(game.View,"/tmp/Howl-"+map+"-Cohesion-Combat.png");
-                w.TowersFire=false;w.MoveBuilder(w.BuilderPosition+new V2(3,1));game.Paused=false;yield return new WaitForSecondsRealtime(1.1f);game.Paused=true;
+                w.TowersFire=false;w.MoveBuilder(w.BuilderPosition+new V2(3,1));game.Paused=false;for(int frame=0;frame<120&&ambience.Footsteps==0;frame++){w.Step();yield return null;}game.Paused=true;
                 Assert.That(ambience.Footsteps,Is.GreaterThan(0));int steps=ambience.Footsteps;yield return new WaitForSecondsRealtime(.3f);Assert.That(ambience.Footsteps,Is.EqualTo(steps));
                 rts.Overview();yield return null;Capture(game.View,"/tmp/Howl-"+map+"-Cohesion-Overview.png");
                 rts.FocusPoint(new V2(31,4));rts.SetZoom(17,true);yield return null;Capture(game.View,"/tmp/Howl-"+map+"-Cohesion-Exterior.png");

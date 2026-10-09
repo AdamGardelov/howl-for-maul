@@ -1,3 +1,5 @@
+Latest: [mirrored maps and clear base approaches](MIRRORED-MAPS.md). Original masks archived; current collision, lanes and scenery mirrored. Older balance ledgers predate this geometry.
+
 Latest: [stone-and-brass buttons/HUD and warm Ironfold default](BRASS-HUD.md). Linux-Title rebuilt and standalone render check passed.
 
 Latest: [dedicated title screen](TITLE-SCREEN.md), Linux-Title build verified. Publishing held for [relay online work](RELAY-NEXT.md).

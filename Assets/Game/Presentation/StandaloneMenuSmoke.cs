@@ -7,13 +7,14 @@ namespace FrostMaze
     // Explicit release QA fixture. Ordinary players never enter this path.
     public sealed class StandaloneMenuSmoke : MonoBehaviour
     {
-        string output;
+        string output;bool mapCheck;
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-        static void Run(){var args=Environment.GetCommandLineArgs();int i=Array.IndexOf(args,"--howl-menu-check");if(i<0||i+1>=args.Length)return;
-            var go=new GameObject("Standalone menu verification");DontDestroyOnLoad(go);go.AddComponent<StandaloneMenuSmoke>().output=args[i+1];}
+        static void Run(){var args=Environment.GetCommandLineArgs();int i=Array.IndexOf(args,"--howl-menu-check");bool maps=false;if(i<0){i=Array.IndexOf(args,"--howl-map-check");maps=true;}if(i<0||i+1>=args.Length)return;
+            var go=new GameObject("Standalone menu verification");DontDestroyOnLoad(go);var check=go.AddComponent<StandaloneMenuSmoke>();check.output=args[i+1];check.mapCheck=maps;}
         IEnumerator Start()
         {
             Directory.CreateDirectory(output);
+            if(mapCheck){yield return MapCheck();yield break;}
             yield return new WaitForSecondsRealtime(3);
             var game=FindFirstObjectByType<Prototype>();
             if(game==null||!game.MainMenuOpen){Fail("Missing title screen");yield break;}
@@ -35,6 +36,19 @@ namespace FrostMaze
             Screen.SetResolution(1440,900,false);yield return new WaitForSecondsRealtime(1);yield return Capture("Classic-HUD");
             game.OpenMainMenu();yield return null;
             Debug.Log("HOWL_MENU_CHECK_PASS title/settings/credits/resize/map-change/solo-entry; world frozen");game.QuitGame();
+        }
+        IEnumerator MapCheck()
+        {
+            yield return new WaitForSecondsRealtime(3);
+            foreach(string map in new[]{"Ironfold","Rimewatch"}){
+                var game=FindFirstObjectByType<Prototype>();game.ChooseMap(Resources.Load<MapDefinition>(map));yield return new WaitForSecondsRealtime(3);
+                game=FindFirstObjectByType<Prototype>();game.OpenSetup();yield return Capture(map+"-Mirrored-Overview");
+                foreach(var row in game.World.Config.LayoutRows)for(int x=0;x<row.Length/2;x++)if(row[x]!=row[row.Length-1-x]){Fail("Packaged map is asymmetric");yield break;}
+                game.StartMatch();game.Paused=true;
+                var camera=game.View.GetComponent<RtsCamera>();camera.ResetRotation();camera.FocusPoint(new Simulation.V2(32,map=="Ironfold"?6:13));camera.SetZoom(7,true);
+                yield return Capture(map+"-Mirrored-Exit");
+            }
+            Debug.Log("HOWL_MAP_CHECK_PASS both packaged masks symmetric; overview and exit captures");Application.Quit(0);
         }
         IEnumerator Capture(string name){yield return new WaitForSecondsRealtime(.3f);yield return new WaitForEndOfFrame();
             var image=ScreenCapture.CaptureScreenshotAsTexture();File.WriteAllBytes(Path.Combine(output,"Howl-"+name+".png"),image.EncodeToPNG());Destroy(image);}

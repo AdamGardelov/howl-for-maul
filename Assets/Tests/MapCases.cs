@@ -95,7 +95,12 @@ namespace FrostMaze.Tests
   public static void DenseIronfoldCorners() {
    // Captured live positions from the wave-13 Prism/Horizon paid campaign stall.
    // Recreate geometry and surviving units, with weapons disabled to isolate movement.
-   var c=Load(true);c.Economy=false;var w=new World(c);w.TowersFire=false;
+   #if UNITY_EDITOR
+   string original=UnityEngine.Application.dataPath+"/../Docs/ReferenceLayouts/Ironfold-original.txt";
+#else
+   string original=AppContext.BaseDirectory+"Layouts/Ironfold-original.txt";
+#endif
+   var c=ReferenceMaps.Ironfold(File.ReadAllText(original),false);c.Economy=false;var w=new World(c);w.TowersFire=false;
    w.Grid.Build(31,5,c.Catalog[14].Spec.Copy());
    w.Grid.Build(33,5,c.Catalog[15].Spec.Copy());
    w.Grid.Build(33,3,c.Catalog[16].Spec.Copy());
@@ -190,12 +195,12 @@ namespace FrostMaze.Tests
    }
    return cells;
   }
-  // Shared six-cell exit neck: two alternating arms, with one-cell openings.
+  // Shared mirrored eight-cell exit neck: two alternating arms, with one-cell openings.
   // Test/planner fixture only; never a terrain change or a player building restriction.
   public static int[,] SharedExitMazeCells() {
-   var cells=new int[10,2];int at=0;
-   for(int row=0;row<2;row++)for(int x=28;x<=33;x++) {
-    if(x==(row==0?33:28))continue;
+   var cells=new int[14,2];int at=0;
+   for(int row=0;row<2;row++)for(int x=28;x<=35;x++) {
+    if(x==(row==0?35:28))continue;
     cells[at,0]=x;cells[at++,1]=12-row*2;
    }
    return cells;
@@ -292,22 +297,21 @@ namespace FrostMaze.Tests
    }
   }
   static int[] Traverse(World w) {
-   w.TowersFire=false;var units=new Enemy[w.LaneCount*2];var ticks=new int[units.Length];
+   // Measure each route independently: simultaneous arrivals at the now-symmetric
+   // merge can nudge each other, which is not a change to the lane's maze path.
+   w.TowersFire=false;var ticks=new int[w.LaneCount*2];
    for(int lane=0;lane<w.LaneCount;lane++)for(int air=0;air<2;air++) {
-    int index=lane*2+air;units[index]=w.Spawn(new WaveSpec{Flying=air==1},w.LaneSpawn(lane),lane);Check(units[index]!=null,"test spawn blocked");
+    int index=lane*2+air;var unit=w.Spawn(new WaveSpec{Flying=air==1},w.LaneSpawn(lane),lane);Check(unit!=null,"test spawn blocked");
+    for(int tick=1;tick<=9000&&!unit.Exited;tick++) {w.Step();Check(!unit.Blocked,"open zig-zag triggered siege");if(unit.Exited)ticks[index]=tick;}
+    Check(ticks[index]>0,"maze traversal stalled");
    }
-   for(int tick=1;tick<=9000&&w.Enemies.Count>0;tick++) {
-    w.Step();
-    for(int i=0;i<units.Length;i++) {
-     Check(!units[i].Blocked,"open zig-zag triggered siege");
-     if(units[i].Exited&&ticks[i]==0)ticks[i]=tick;
-    }
-   }
-   foreach(int tick in ticks)Check(tick>0,"maze traversal stalled");
    return ticks;
   }
   public static void Masks() {
    foreach(bool iron in new[]{false,true}) {var c=Load(iron);var w=new World(c);Check(w.LaneCount==(iron?4:3),"lane count");
+    Check(c.GroundRoute[0].X==c.Width*.5f,"exit is not on mirror axis");
+    foreach(var line in c.LayoutRows)for(int x=0;x<line.Length/2;x++)Check(line[x]==line[line.Length-1-x],"asymmetric layout symbol");
+    if(iron)for(int row=113;row<118;row++)for(int col=8;col<120;col++)Check(c.WalkableSymbols.IndexOf(c.LayoutRows[row][col])>=0,"exit approach contains terrain stub");
     for(int y=0;y<c.LayoutRows.Length;y++)for(int x=0;x<c.LayoutRows[y].Length;x++) {
      var p=new V2((x+.5f)*c.LayoutCellSize,(c.LayoutRows.Length-y-.5f)*c.LayoutCellSize);
      Check(w.Grid.TerrainClear(p,p,.01f)==(c.WalkableSymbols.IndexOf(c.LayoutRows[y][x])>=0),$"mask mismatch {c.Name} {x},{y}");

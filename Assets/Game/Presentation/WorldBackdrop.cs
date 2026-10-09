@@ -17,9 +17,10 @@ namespace FrostMaze
             }
             public void Peak(float x,float z,float radius,float y,float height){for(int i=0;i<7;i++){float a=i*Mathf.PI*2/7,b=(i+1)*Mathf.PI*2/7;Triangle(new Vector3(x,y+height,z),new Vector3(x+Mathf.Cos(b)*radius,y,z+Mathf.Sin(b)*radius),new Vector3(x+Mathf.Cos(a)*radius,y,z+Mathf.Sin(a)*radius));}}
         }
+        float mirrorWidth;
         public void Build(Prototype game)
         {
-            float w=game.World.Config.Width,h=game.World.Config.Height;bool ice=game.World.Config.Theme!="iron";
+            float w=game.World.Config.Width,h=game.World.Config.Height;mirrorWidth=w;bool ice=game.World.Config.Theme!="iron";
             var ground=new Batch();var rock=new Batch();var leaves=new Batch();var snow=new Batch();
             float Distance(float x,float z)=>Mathf.Max(Mathf.Max(-x,x-w),Mathf.Max(-z,z-h));
             float Height(float x,float z)=>-.16f+Mathf.SmoothStep(0,1,Mathf.Clamp01((Distance(x,z)-5)/35))*Mathf.PerlinNoise((x+321)*.021f,(z+157)*.021f)*5;
@@ -48,7 +49,7 @@ namespace FrostMaze
             Save(ice?"Frost pines":"Copper outcrops",leaves,game.MakeMaterial(ice?new Color(.12f,.27f,.28f):new Color(.16f,.27f,.19f)));
             Save(ice?"Snow crowns":"Foundry peaks",snow,game.MakeMaterial(ice?new Color(.69f,.81f,.81f):new Color(.36f,.31f,.29f)));
         }
-        void Save(string name,Batch b,Material material){var mesh=new Mesh{name=name,indexFormat=UnityEngine.Rendering.IndexFormat.UInt32};mesh.SetVertices(b.V);mesh.SetTriangles(b.T,0);var uv=new List<Vector2>();foreach(var vertex in b.V)uv.Add(name=="Distant ridges"?new Vector2((vertex.x+vertex.z)/8,vertex.y/8):new Vector2(vertex.x/64,vertex.z/64));mesh.SetUVs(0,uv);mesh.RecalculateNormals();mesh.RecalculateBounds();meshes.Add(mesh);var go=new GameObject(name);go.transform.SetParent(transform,false);go.AddComponent<MeshFilter>().sharedMesh=mesh;var renderer=go.AddComponent<MeshRenderer>();renderer.sharedMaterial=material;renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;}
+        void Save(string name,Batch b,Material material){MirroredGeometry.Apply(b.V,b.T,mirrorWidth);var mesh=new Mesh{name=name,indexFormat=UnityEngine.Rendering.IndexFormat.UInt32};mesh.SetVertices(b.V);mesh.SetTriangles(b.T,0);var uv=new List<Vector2>();foreach(var vertex in b.V)uv.Add(name=="Distant ridges"?new Vector2((Mathf.Min(vertex.x,mirrorWidth-vertex.x)+vertex.z)/8,vertex.y/8):new Vector2(Mathf.Min(vertex.x,mirrorWidth-vertex.x)/64,vertex.z/64));mesh.SetUVs(0,uv);mesh.RecalculateNormals();mesh.RecalculateBounds();meshes.Add(mesh);var go=new GameObject(name);go.transform.SetParent(transform,false);go.AddComponent<MeshFilter>().sharedMesh=mesh;var renderer=go.AddComponent<MeshRenderer>();renderer.sharedMaterial=material;renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;}
         Texture2D Paint(bool ice){const int size=512;var pixels=new Color[size*size];for(int y=0;y<size;y++)for(int x=0;x<size;x++){float wx=x*64f/size,wz=y*64f/size;pixels[y*size+x]=MapScenery.RaisedSurfaceColor(wx,wz,ice);}var texture=new Texture2D(size,size,TextureFormat.RGB24,true){name="Original exterior terrain wash",wrapMode=TextureWrapMode.Repeat,filterMode=FilterMode.Trilinear,anisoLevel=4};texture.SetPixels(pixels);texture.Apply(true,true);return texture;}
         Texture2D PaintRidges(bool ice)
         {

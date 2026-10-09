@@ -549,7 +549,7 @@ namespace FrostMaze.Tests
             foreach(string map in new[]{"Rimewatch","Ironfold"}) {
                 var game=Object.FindFirstObjectByType<Prototype>();
                 if(game.Map.name!=map){game.ChooseMap(Resources.Load<MapDefinition>(map));yield return null;yield return null;game=Object.FindFirstObjectByType<Prototype>();}
-                game.Paused=true;
+                game.StartMatch();game.Paused=true;
                 var scenery=Object.FindFirstObjectByType<MapScenery>();Assert.That(scenery,Is.Not.Null);
                 Assert.That(scenery.GetComponentsInChildren<Collider>().Length,Is.Zero,"Scenery cannot add physical blockers");
                 Assert.That(scenery.PlantClusters,Is.InRange(1,90));Assert.That(scenery.Braziers,Is.InRange(1,24));
