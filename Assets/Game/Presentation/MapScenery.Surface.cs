@@ -28,16 +28,24 @@ namespace FrostMaze
         // near-white so lane silhouettes, frost plants and tower effects remain readable.
         internal static Color RaisedSurfaceColor(float wx,float wz,bool ice)
         {
-            float detail=Mathf.PerlinNoise(wx*1.2f+5,wz*1.2f+23);
             if(ice) {
-                float drift=Mathf.PerlinNoise(wx*.075f+41,wz*.075f+7);
-                float grain=Mathf.PerlinNoise(wx*3.5f+9,wz*3.5f+3);
+                float drift=SnowNoise(wx,wz,.075f,41,7);
+                float detail=SnowNoise(wx,wz,1.2f,5,23);
+                float grain=SnowNoise(wx,wz,3.5f,9,3);
                 var snow=Color.Lerp(new Color(.40f,.51f,.55f),new Color(.55f,.63f,.65f),drift);
                 return snow*(.98f+detail*.025f+grain*.015f);
             }
-            float wash=Mathf.PerlinNoise(wx*.22f+41,wz*.22f+7);
-            var rock=Color.Lerp(new Color(.27f,.245f,.35f),new Color(.44f,.4f,.5f),wash*.8f+detail*.2f);
-            return Color.Lerp(rock,new Color(.33f,.31f,.25f),PaintMask(.6f,.8f,detail)*.4f);
+            float wash=Mathf.PerlinNoise(wx*.22f+41,wz*.22f+7),ironDetail=Mathf.PerlinNoise(wx*1.2f+5,wz*1.2f+23);
+            var rock=Color.Lerp(new Color(.27f,.245f,.35f),new Color(.44f,.4f,.5f),wash*.8f+ironDetail*.2f);
+            return Color.Lerp(rock,new Color(.33f,.31f,.25f),PaintMask(.6f,.8f,ironDetail)*.4f);
+        }
+        // Match the exterior texture's 64-unit repeat without a visible tile boundary.
+        static float SnowNoise(float wx,float wz,float frequency,float ox,float oz)
+        {
+            float x=Mathf.Repeat(wx,64),z=Mathf.Repeat(wz,64);
+            float u=Mathf.SmoothStep(0,1,x/64),v=Mathf.SmoothStep(0,1,z/64);
+            float Noise(float dx,float dz)=>Mathf.PerlinNoise(dx*frequency+ox,dz*frequency+oz);
+            return Mathf.Lerp(Mathf.Lerp(Noise(x,z),Noise(x-64,z),u),Mathf.Lerp(Noise(x,z-64),Noise(x-64,z-64),u),v);
         }
         void PaintTerrain(Scenario c,bool ice)
         {
