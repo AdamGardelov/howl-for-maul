@@ -7,13 +7,14 @@ namespace FrostMaze
     // Explicit release QA fixture. Ordinary players never enter this path.
     public sealed class StandaloneMenuSmoke : MonoBehaviour
     {
-        string output;bool mapCheck;
+        string output;bool mapCheck,onlineCheck;
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-        static void Run(){var args=Environment.GetCommandLineArgs();int i=Array.IndexOf(args,"--howl-menu-check");bool maps=false;if(i<0){i=Array.IndexOf(args,"--howl-map-check");maps=true;}if(i<0||i+1>=args.Length)return;
-            var go=new GameObject("Standalone menu verification");DontDestroyOnLoad(go);var check=go.AddComponent<StandaloneMenuSmoke>();check.output=args[i+1];check.mapCheck=maps;}
+        static void Run(){var args=Environment.GetCommandLineArgs();int i=Array.IndexOf(args,"--howl-menu-check");bool maps=false;if(i<0){i=Array.IndexOf(args,"--howl-map-check");maps=true;}bool online=false;if(i<0){i=Array.IndexOf(args,"--howl-online-menu-check");maps=false;online=true;}if(i<0||i+1>=args.Length)return;
+            var go=new GameObject("Standalone menu verification");DontDestroyOnLoad(go);var check=go.AddComponent<StandaloneMenuSmoke>();check.output=args[i+1];check.mapCheck=maps;check.onlineCheck=online;}
         IEnumerator Start()
         {
             Directory.CreateDirectory(output);
+            if(onlineCheck){yield return OnlineCheck();yield break;}
             if(mapCheck){yield return MapCheck();yield break;}
             yield return new WaitForSecondsRealtime(3);
             var game=FindFirstObjectByType<Prototype>();
@@ -36,6 +37,25 @@ namespace FrostMaze
             Screen.SetResolution(1440,900,false);yield return new WaitForSecondsRealtime(1);yield return Capture("Classic-HUD");
             game.OpenMainMenu();yield return null;
             Debug.Log("HOWL_MENU_CHECK_PASS title/settings/credits/resize/map-change/solo-entry; world frozen");game.QuitGame();
+        }
+        sealed class PendingGateway : IRelayGateway {
+            public readonly System.Threading.Tasks.TaskCompletionSource<RelayTicket> Result=new System.Threading.Tasks.TaskCompletionSource<RelayTicket>();
+            public System.Threading.Tasks.Task<RelayTicket> Connect(bool host,string code,System.Threading.CancellationToken cancel,Action<string> status){status("Creating a private online lobby…");return Result.Task;}
+        }
+        IEnumerator OnlineCheck(){
+            yield return new WaitForSecondsRealtime(3);var game=FindFirstObjectByType<Prototype>();game.OpenSetup();
+            typeof(PrototypeHud).GetField("onlineForm",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic).SetValue(game.GetComponent<PrototypeHud>(),true);
+            yield return Capture("Online-Entry");
+            var online=OnlineGame.Create();var gateway=new PendingGateway();var task=online.ConnectRelay(true,game.Map.name,"Host","","",gateway);
+            yield return Capture("Online-Connecting");
+            gateway.Result.SetException(new InvalidOperationException("Connection timed out. Check your internet connection and retry."));
+            while(!task.IsCompleted)yield return null;
+            if(online.Pending||online.Error.Length==0){Fail("Missing online failure state");yield break;}
+            yield return Capture("Online-Retry");game.LeaveOnline();yield return null;
+            Screen.SetResolution(960,600,false);yield return new WaitForSecondsRealtime(1);yield return Capture("Online-Entry-Small");
+            game.BeginSolo();yield return Capture("Online-Offline-Solo");
+            if(game.Net==null||game.Net.Stage!=Simulation.Online.Stage.Factions){Fail("Offline solo broken");yield break;}
+            game.LeaveOnline();Debug.Log("HOWL_ONLINE_MENU_PASS entry/pending/retry/resize/offline; gateway fixture, no cloud allocation");Application.Quit(0);
         }
         IEnumerator MapCheck()
         {

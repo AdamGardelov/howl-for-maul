@@ -1,3 +1,5 @@
+Latest: [Relay adapter and online join-code UI](RELAY-IMPLEMENTATION.md). Local four-player, delay/loss, cancellation and packaged two-process checks pass. Cloud project/sign-in and separate-network verification still needed.
+
 Latest: [mirrored maps and clear base approaches](MIRRORED-MAPS.md). Original masks archived; current collision, lanes and scenery mirrored. Older balance ledgers predate this geometry.
 
 Latest: [stone-and-brass buttons/HUD and warm Ironfold default](BRASS-HUD.md). Linux-Title rebuilt and standalone render check passed.

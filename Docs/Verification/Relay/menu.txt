@@ -1,0 +1,1 @@
+HOWL_ONLINE_MENU_PASS entry/pending/retry/resize/offline; gateway fixture, no cloud allocation

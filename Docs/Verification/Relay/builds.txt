@@ -1,0 +1,4 @@
+Linux: Build Finished, Result: Success.
+Windows: Build Finished, Result: Success.
+Windows runtime untested.
+Cloud linkage missing; no live Relay allocation tested.

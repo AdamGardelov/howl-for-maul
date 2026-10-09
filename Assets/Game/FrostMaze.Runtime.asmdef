@@ -1,1 +1,12 @@
-{"name":"FrostMaze.Runtime","rootNamespace":"FrostMaze","references":["FrostMaze.Simulation"]}
+{
+  "name": "FrostMaze.Runtime",
+  "rootNamespace": "FrostMaze",
+  "references": [
+    "FrostMaze.Simulation",
+    "Unity.Networking.Transport",
+    "Unity.Collections",
+    "Unity.Services.Core",
+    "Unity.Services.Authentication",
+    "Unity.Services.Multiplayer"
+  ]
+}

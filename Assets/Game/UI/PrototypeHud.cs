@@ -98,10 +98,10 @@ namespace FrostMaze
             if(game.SetupOpen)BrandHeading(130);else GUILayout.Label("HOWL FOR MAUL",title);
             GUILayout.Label(w.Config.Name.ToUpperInvariant()+"  /  "+(game.SetupOpen?"MATCH SETUP":w.FactionName.ToUpperInvariant()),small);
             if(game.SetupOpen) {
-                scroll=GUILayout.BeginScrollView(scroll);DrawSetup();GUILayout.Space(12);DrawOnlineEntry();GUILayout.EndScrollView();
+                scroll=GUILayout.BeginScrollView(scroll);if(!onlineForm)DrawSetup();GUILayout.Space(12);DrawOnlineEntry();GUILayout.EndScrollView();
                 if(game.CanReturnToMatch&&HudButton("RETURN TO MATCH",button))game.ReturnToMatch();
-                if(HudButton(game.SetupOptions.PlayerCount==1?"PLAY SOLO":"START LOCAL SLOT TEST",primary)){if(game.SetupOptions.PlayerCount==1)game.BeginSolo();else game.StartMatch();}
-                if(HudButton("MAIN MENU",button))game.OpenMainMenu();
+                if(!onlineForm&&HudButton(game.SetupOptions.PlayerCount==1?"PLAY SOLO":"START LOCAL SLOT TEST",primary)){if(game.SetupOptions.PlayerCount==1)game.BeginSolo();else game.StartMatch();}
+                if(HudButton("MAIN MENU",button)){onlineForm=false;game.OpenMainMenu();}
                 GUILayout.EndArea();GUI.matrix=previousMatrix;DrawMapLabels();return;
             }
             GUILayout.BeginHorizontal();Resource("YOUR GOLD",w.Gold.ToString());Resource("WOOD",w.Wood.ToString());Resource("TEAM LIVES",w.Lives.ToString(),w.Lives<=5||(feedback!=null&&feedback.RecentLeaks>0));Resource("WAVE",Mathf.Max(0,w.WaveIndex+1)+" / "+w.Config.Waves.Length);GUILayout.EndHorizontal();

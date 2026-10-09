@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="4" result="Passed" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-09 18:26:48Z" end-time="2026-10-09 18:26:54Z" duration="6.4430577">
+  <test-suite type="TestSuite" id="1000" name="Howl for Maul" fullname="Howl for Maul" runstate="Runnable" testcasecount="111" result="Passed" start-time="2026-10-09 18:26:48Z" end-time="2026-10-09 18:26:54Z" duration="6.443058" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1121" name="FrostMaze.Tests.dll" fullname="/home/adam/Documents/Codex/2026-10-06/cre/work/howl-logo-build/Library/ScriptAssemblies/FrostMaze.Tests.dll" runstate="Runnable" testcasecount="111" result="Passed" start-time="2026-10-09 18:26:48Z" end-time="2026-10-09 18:26:54Z" duration="6.362372" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="126141" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1122" name="FrostMaze" fullname="FrostMaze" runstate="Runnable" testcasecount="111" result="Passed" start-time="2026-10-09 18:26:48Z" end-time="2026-10-09 18:26:54Z" duration="6.353849" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1123" name="Tests" fullname="FrostMaze.Tests" runstate="Runnable" testcasecount="111" result="Passed" start-time="2026-10-09 18:26:48Z" end-time="2026-10-09 18:26:54Z" duration="6.346140" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1033" name="RelayTransportTests" fullname="FrostMaze.Tests.RelayTransportTests" classname="FrostMaze.Tests.RelayTransportTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-09 18:26:48Z" end-time="2026-10-09 18:26:54Z" duration="6.335937" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1037" name="CancelledConnectionCannotAttachLateAndOfflineStaysAvailable" fullname="FrostMaze.Tests.RelayTransportTests.CancelledConnectionCannotAttachLateAndOfflineStaysAvailable" methodname="CancelledConnectionCannotAttachLateAndOfflineStaysAvailable" classname="FrostMaze.Tests.RelayTransportTests" runstate="Runnable" seed="1767587775" result="Passed" start-time="2026-10-09 18:26:39Z" end-time="2026-10-09 18:26:48Z" duration="9.277966" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="Relay" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1035" name="FourPlayersShareSetupPaidCommandsSpeedAndPause" fullname="FrostMaze.Tests.RelayTransportTests.FourPlayersShareSetupPaidCommandsSpeedAndPause" methodname="FourPlayersShareSetupPaidCommandsSpeedAndPause" classname="FrostMaze.Tests.RelayTransportTests" runstate="Runnable" seed="950257923" result="Passed" start-time="2026-10-09 18:26:48Z" end-time="2026-10-09 18:26:52Z" duration="3.873173" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="Relay" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1036" name="RefusesWrongPasswordAndMismatchedMaps" fullname="FrostMaze.Tests.RelayTransportTests.RefusesWrongPasswordAndMismatchedMaps" methodname="RefusesWrongPasswordAndMismatchedMaps" classname="FrostMaze.Tests.RelayTransportTests" runstate="Runnable" seed="1011732255" result="Passed" start-time="2026-10-09 18:26:52Z" end-time="2026-10-09 18:26:52Z" duration="0.233471" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="Relay" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1034" name="ReliableFragmentsSurviveDelayLossAndBackpressure" fullname="FrostMaze.Tests.RelayTransportTests.ReliableFragmentsSurviveDelayLossAndBackpressure" methodname="ReliableFragmentsSurviveDelayLossAndBackpressure" classname="FrostMaze.Tests.RelayTransportTests" runstate="Runnable" seed="1869767404" result="Passed" start-time="2026-10-09 18:26:52Z" end-time="2026-10-09 18:26:54Z" duration="1.766812" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="Relay" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: /home/adam/.config/unity3d/Howl for Maul/Howl for Maul/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

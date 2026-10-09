@@ -1,3 +1,5 @@
+Latest: [Relay join-code implementation](RELAY-IMPLEMENTATION.md). The new Online buttons require Unity Cloud linkage; the direct connection instructions below remain available under **Advanced: direct LAN / IP**.
+
 # Direct online play
 
 The latest user request explicitly supersedes the original networking deferral. Direct IPv4/TCP host/join is implemented, without third-party networking packages or a service account.

@@ -15,10 +15,10 @@ namespace FrostMaze.Simulation.Online
         readonly List<Peer> peers=new List<Peer>();
         readonly ConcurrentQueue<TcpClient> accepted=new ConcurrentQueue<TcpClient>();
         readonly List<Order> orders=new List<Order>();
-        Connection server;TcpListener listener;volatile bool disposed;volatile string connectError;volatile TcpClient connected;
+        IPacketConnection server;IPacketTransport transport;TcpListener listener;volatile bool disposed;volatile string connectError;volatile TcpClient connected;
         string password="",playerName="",fingerprint="";double clock,accumulator,voteUntil;long frame;
         int nextId=1;double lastServerMessage;readonly List<Member> members=new List<Member>();
-        sealed class Peer {public Connection Link;public int Id=-1;public string Nonce;public double Accepted,LastMessage;public int Rate;public double RateReset;}
+        sealed class Peer {public IPacketConnection Link;public int Id=-1;public string Nonce;public double Accepted,LastMessage;public int Rate;public double RateReset;}
         public bool IsHost {get;private set;} public bool IsConnected {get;private set;}
         public int LocalId {get;private set;}=-1;
         public string Map {get;private set;}="";public Stage Stage {get;private set;}=Stage.Lobby;
@@ -44,14 +44,24 @@ namespace FrostMaze.Simulation.Online
         }
         public void Join(string address,int port,string name,string secret){playerName=Clean(name);password=secret??"";Notice="Connecting…";
             new Thread(()=>{TcpClient socket=null;try{socket=new TcpClient();var task=socket.ConnectAsync(address,port);if(!task.Wait(8000))throw new TimeoutException();if(disposed)socket.Close();else connected=socket;}catch(Exception){socket?.Close();connectError="Could not connect. Check the address, port and host reachability.";}}){IsBackground=true,Name="Howl connect"}.Start();}
+        public void HostOver(string map,string name,string secret,IPacketTransport link){
+            transport=link;Map=map;fingerprint=signature(resolve(map));password=secret??"";playerName=Clean(name);
+            IsHost=IsConnected=true;LocalId=0;members.Add(new Member{Id=0,Name=playerName});Notice="Lobby open. Share your join code.";
+        }
+        public void JoinOver(string name,string secret,IPacketTransport link){transport=link;playerName=Clean(name);password=secret??"";Notice="Connecting to host…";}
+        void Accept(IPacketConnection link){if(peers.Count>=8){link.Dispose();return;}var peer=new Peer{Link=link,Nonce=Protocol.Nonce(),Accepted=clock,LastMessage=clock};peers.Add(peer);link.Send(new Packet{Kind=Kind.Challenge,Text=peer.Nonce,Extra=Protocol.Version});}
         static string Clean(string name){var chars=(name??"").Where(c=>!char.IsControl(c)&&c!='<'&&c!='>').Take(24).ToArray();var clean=new string(chars).Trim();return clean.Length==0?"Player":clean;}
         public void Send(Packet packet){if(disposed)return;if(IsHost)Handle(LocalId,packet);else server?.Send(packet);}
         public void Submit(Order order){Send(new Packet{Kind=Kind.Command,Orders=new[]{order}});}
         public void Update(double delta){if(disposed)return;clock+=Math.Max(0,delta);
+            if(transport!=null){transport.Update();if(transport.Failure.Length>0){Fail(transport.Failure);return;}
+                if(!IsHost&&server==null&&transport.Server!=null){server=transport.Server;lastServerMessage=clock;}
+                if(IsHost)while(transport.TryAccept(out var link))Accept(link);
+            }
             if(connectError!=null){Fail(connectError);return;}
             if(connected!=null){server=new Connection(connected);connected=null;lastServerMessage=clock;}
             if(IsHost){
-                while(accepted.TryDequeue(out var socket)){if(peers.Count>=8){socket.Close();continue;}var peer=new Peer{Link=new Connection(socket),Nonce=Protocol.Nonce(),Accepted=clock,LastMessage=clock};peers.Add(peer);peer.Link.Send(new Packet{Kind=Kind.Challenge,Text=peer.Nonce,Extra=Protocol.Version});}
+                while(accepted.TryDequeue(out var socket))Accept(new Connection(socket));
                 foreach(var peer in peers.ToArray()){
                     if(clock-peer.RateReset>=1){peer.Rate=0;peer.RateReset=clock;}
                     int received=0;while(received++<64&&peer.Link.TryRead(out var packet)){
@@ -72,7 +82,7 @@ namespace FrostMaze.Simulation.Online
         }
         double lastPing;
         void Authenticate(Peer peer,Packet packet){
-            if(packet.Extra!=Protocol.Version||!Protocol.Equal(packet.Text,Protocol.Proof(password,peer.Nonce))||Stage!=Stage.Lobby||members.Count>=4){peer.Link.Send(new Packet{Kind=Kind.Notice,Flag=true,Text="Join refused: password, game version, capacity or match already started."});peer.Link.Dispose();return;}
+            if(packet.Extra!=Protocol.Version||!Protocol.Equal(packet.Text,Protocol.Proof(password,peer.Nonce))||Stage!=Stage.Lobby||members.Count>=4){peer.Link.Send(new Packet{Kind=Kind.Notice,Flag=true,Text="Join refused: password, game version, capacity or match already started."});peer.Link.CloseAfterFlush();return;}
             peer.Id=nextId++;members.Add(new Member{Id=peer.Id,Name=Clean(packet.Members.Length==1?packet.Members[0].Name:"")});peer.Link.Send(new Packet{Kind=Kind.Welcome,A=peer.Id,Text=Map,Extra=fingerprint});Notice="Player joined.";BroadcastLobby();
         }
         void Receive(Packet p){
@@ -145,6 +155,6 @@ namespace FrostMaze.Simulation.Online
         void BroadcastLobby(){Broadcast(new Packet{Kind=Kind.Lobby,A=(int)Stage,B=(int)(VoteRemaining*1000),C=World==null?1:(int)World.Difficulty,Flag=Paused,Text=Notice,Members=members.ToArray()});if(World!=null)Broadcast(new Packet{Kind=Kind.Speed,A=SpeedIndex});}
         void Broadcast(Packet p){foreach(var peer in peers)if(peer.Id>=0&&!peer.Link.Closed)peer.Link.Send(p);}
         void Fail(string message){Paused=true;Failure=Notice=message;Dispose();}
-        public void Dispose(){if(disposed)return;disposed=true;IsConnected=false;server?.Dispose();connected?.Close();listener?.Stop();foreach(var p in peers)p.Link.Dispose();while(accepted.TryDequeue(out var s))s.Close();}
+        public void Dispose(){if(disposed)return;disposed=true;IsConnected=false;server?.Dispose();transport?.Dispose();connected?.Close();listener?.Stop();foreach(var p in peers)p.Link.Dispose();while(accepted.TryDequeue(out var s))s.Close();}
     }
 }

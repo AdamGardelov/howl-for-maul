@@ -8,16 +8,29 @@ namespace FrostMaze
     // Explicit opt-in process integration probe: actual packaged maps, transport and simulation.
     public sealed class StandaloneNetworkSmoke : MonoBehaviour
     {
-        public static bool Requested=>Array.IndexOf(Environment.GetCommandLineArgs(),"--howl-network-host")>=0||Array.IndexOf(Environment.GetCommandLineArgs(),"--howl-network-client")>=0;
+        static bool Flag(string name)=>Array.IndexOf(Environment.GetCommandLineArgs(),name)>=0;
+        public static bool Requested=>Flag("--howl-network-host")||Flag("--howl-network-client")||Flag("--howl-utp-host")||Flag("--howl-utp-client")||Flag("--howl-relay-host")||Flag("--howl-relay-client");
+        readonly System.Threading.CancellationTokenSource cancellation=new System.Threading.CancellationTokenSource();
+
         Session session;Stage lastStage=(Stage)(-1);float started;bool built,launched,voted,resumed,seenPause;int held;long pausedTick;bool finished;
         static string Argument(string key,string fallback){var args=Environment.GetCommandLineArgs();int i=Array.IndexOf(args,key);return i>=0&&i+1<args.Length?args[i+1]:fallback;}
         static Scenario Resolve(string name){var asset=Resources.Load<MapDefinition>(name);return JsonUtility.FromJson<Scenario>(JsonUtility.ToJson(asset.Settings));}
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void Run(){if(Requested)new GameObject("Packaged network smoke").AddComponent<StandaloneNetworkSmoke>();}
-        void Start(){try{
+        async void Start(){try{
             if(FindFirstObjectByType<Prototype>()!=null||FindFirstObjectByType<AudioSource>()!=null)throw new Exception("Unexpected presentation in data-only network probe");
             Application.targetFrameRate=60;started=Time.realtimeSinceStartup;session=new Session(Resolve,StateDigest.Scenario);
-            if(Array.IndexOf(Environment.GetCommandLineArgs(),"--howl-network-host")>=0){session.Host(Argument("--howl-network-map","Rimewatch"),"Packaged host","smoke",int.Parse(Argument("--howl-network-port","0")));Debug.Log("HOWL_NETWORK_LISTEN "+session.Port);}
+            bool host=Flag("--howl-network-host")||Flag("--howl-utp-host")||Flag("--howl-relay-host");string map=Argument("--howl-network-map","Rimewatch");
+            if(Flag("--howl-relay-host")||Flag("--howl-relay-client")){
+                var ticket=await new RelayGateway().Connect(host,Argument("--howl-relay-code",""),cancellation.Token,s=>Debug.Log("HOWL_RELAY_PROGRESS "+s));
+                if(finished){ticket.Dispose();return;}
+                if(host){session.HostOver(map,"Relay host","smoke",ticket.Transport);Debug.Log("HOWL_RELAY_INVITE "+ticket.Code);}
+                else session.JoinOver("Relay client","smoke",ticket.Transport);
+            }else if(Flag("--howl-utp-host")||Flag("--howl-utp-client")){
+                var transport=UtpPacketTransport.Local(host,ushort.Parse(Argument("--howl-network-port",host?"0":"27888")));
+                if(host){session.HostOver(map,"UTP host","smoke",transport);Debug.Log("HOWL_NETWORK_LISTEN "+transport.Port);}
+                else session.JoinOver("UTP client","smoke",transport);
+            }else if(host){session.Host(map,"Packaged host","smoke",int.Parse(Argument("--howl-network-port","0")));Debug.Log("HOWL_NETWORK_LISTEN "+session.Port);}
             else session.Join("127.0.0.1",int.Parse(Argument("--howl-network-port","27888")),"Packaged client","smoke");
         }catch(Exception e){Fail(e);}}
         void Update(){if(finished||session==null)return;try{
@@ -44,8 +57,8 @@ namespace FrostMaze
             if(!session.IsHost&&w.Tick>=420){if(!seenPause||!resumed)throw new Exception("Missing pause cycle");Debug.Log("HOWL_NETWORK_CLIENT_PASS "+w.Config.Name+" tick="+w.Tick+" hash="+StateDigest.Of(w));Finish();}
             if(session.IsHost&&seenPause&&resumed&&session.Members.Count(m=>m.Connected)==1){if(!session.Paused)throw new Exception("Disconnect failed to pause");session.Send(new Packet{Kind=Kind.PauseVote});if(session.Paused)throw new Exception("Remaining player cannot resume");Debug.Log("HOWL_NETWORK_HOST_PASS "+w.Config.Name+" lanes="+w.LaneCount+" paid=2");Finish();}
         }catch(Exception e){Fail(e);}}
-        void Finish(){finished=true;session?.Dispose();Application.Quit(0);}
-        void Fail(Exception error){finished=true;Debug.LogException(error);session?.Dispose();Application.Quit(1);}
-        void OnDestroy(){session?.Dispose();}
+        void Finish(){finished=true;cancellation.Cancel();session?.Dispose();Application.Quit(0);}
+        void Fail(Exception error){finished=true;cancellation.Cancel();Debug.LogError("HOWL_NETWORK_FAILURE "+error.GetType().Name+": "+(error is Unity.Services.Core.RequestFailedException?"Online service request failed":error.Message));session?.Dispose();Application.Quit(1);}
+        void OnDestroy(){cancellation.Cancel();session?.Dispose();}
     }
 }
