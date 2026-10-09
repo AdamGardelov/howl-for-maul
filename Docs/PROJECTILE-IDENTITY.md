@@ -13,3 +13,11 @@ The existing shared 64-effect budget, leak priority and offscreen-event consumpt
 Compilation passes with zero errors/warnings. `ProjectileRosterRetainsIdentityFlightPauseAndBounds` passes (143.66 seconds including Play Mode transitions; CLI aggregate 13.48 seconds). It checks unique shape/color signatures for all 72 armed designs, one renderer/no colliders per preview projectile, valid geometry, and captures all twelve faction lineups. The lineups were visually inspected. Those staged shots are cosmetic fixtures, not campaign evidence.
 
 On each actual map, the test separately orders paid construction, starts a wave, confirms a real hit damages a flying enemy and produces the expected design/color/height, checks frozen projectile geometry in pause, checks colored chain endpoints from air to ground, then checks expiry at 3× speed. An offscreen burst consumes no effect slots, an on-screen 100-shot burst remains capped at 64 renderers, and starting a new match removes old effects without changing gold/ticks through the cosmetic fixtures. This focused test is not a new networking, campaign-balance or frame-rate benchmark.
+
+## Linux package
+
+`Builds/Linux-Projectiles/HowlForMaul` contains runtime source `450c9ff`, including the previous actor/terrain/fire work. Build succeeded with zero errors and one Pipeline-runtime-disabled warning. Both packaged map/resource/route smoke checks passed with a clean exit on Xvfb/OpenGL. This smoke mode skips presentation/audio; projectile rendering was verified by the separate editor test/captures above. Windows was not rebuilt or runtime-tested for this pass.
+
+```sh
+/home/adam/Documents/Dev/howl-for-maul/Builds/Linux-Projectiles/HowlForMaul -force-wayland
+```
