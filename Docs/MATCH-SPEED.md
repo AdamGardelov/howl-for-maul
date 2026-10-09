@@ -12,6 +12,8 @@ Guests now see only a read-only `SPEED … · HOST` indicator in the compact bar
 
 Unity recompilation passed with zero errors or warnings. The existing network runner passed again, including both-map two-process checks rejecting guest speed changes and synchronizing host speed changes. Its .NET build reports the existing obsolete PBKDF2 constructor warning. No new graphical multiplayer or internet test is claimed.
 
+The Linux-Speed package was refreshed from `f9f5b0c`: build succeeded with zero errors and one existing Pipeline runtime-config warning. Windows-Speed remains the earlier `81824fe` package and still shows disabled guest controls. The refreshed Linux guest UI has not received a new graphical multiplayer test.
+
 ## Verification
 
 All 70 pure simulation cases pass. The network runner checks all four solo rates against expected tick counts, rejects invalid rates, verifies pause, and compares the same paid build/combat state at tick 300 across every rate. Both-map separate-process TCP checks verify shared 3× / 0.5× pacing, unauthorized client rejection, paid wallets, ownership, ordered state digests, majority pause/resume and disconnect recovery through 620 frames. Existing password/content refusal, three/four-player and real-time vote-expiry checks also pass. Raw evidence: Howl-Speed-Pure-Tests.txt and Howl-Speed-Network-Tests.txt.
