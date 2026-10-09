@@ -6,7 +6,7 @@ Built with Unity 6.3 LTS, C# and URP for Windows and Ubuntu Linux. Game code, pr
 
 **Current status:** playable offline solo prototype with direct host/join multiplayer for LAN or reachable internet hosts. Same-computer multi-slot control is a testing mode. Online players share a lobby, choose factions and unique starts, vote difficulty, and vote pause/resume. Direct connections need a reachable host; relay/public matchmaking is not configured. See [online play](Docs/ONLINE-PLAY.md) for setup and tested scope.
 
-Latest checkpoint: [progressive gold, milestone wood and inhabited map borders](Docs/MAUL-ECONOMY-IMPLEMENTED.md). Visible 0.5× / 1× / 2× / 3× match speed controls; see [verification](Docs/MATCH-SPEED.md). Latest local packages are `Builds/Linux-Speed/HowlForMaul` and `Builds/Windows-Speed/HowlForMaul.exe`. Tower portraits include [weapon stats and owned champion requirements](Docs/TOWER-TOOLTIPS.md). Rimewatch retains the softer seamless snow from the [visual checkpoint](Docs/SNOW-READABILITY.md).
+Latest checkpoint: [progressive gold, milestone wood and inhabited map borders](Docs/MAUL-ECONOMY-IMPLEMENTED.md). Visible 0.5× / 1× / 2× / 3× match speed controls; see [verification](Docs/MATCH-SPEED.md). Latest local packages are `Builds/Linux-Maul/HowlForMaul` and `Builds/Windows-Maul/HowlForMaul.exe`. Tower portraits include [weapon stats and owned champion requirements](Docs/TOWER-TOOLTIPS.md). Rimewatch retains the softer seamless snow from the [visual checkpoint](Docs/SNOW-READABILITY.md).
 
 Mobile development is on hold; Android/iOS remain future targets. Touch controls, phone UI and device builds are not implemented or verified; see [mobile status](Docs/MOBILE-STATUS.md).
 
@@ -100,14 +100,16 @@ The headless runner executes pure simulation cases. Its optional `--balance` mod
 
 Use **Howl for Maul → Build Linux** or **Build Windows** for standard output directories. Windows requires the Windows Mono build module. The verified direct-online packages were built with explicit separate paths to preserve the running older player:
 
-- `Builds/Linux-Speed/HowlForMaul` (latest runtime: shared match speed controls)
+- `Builds/Linux-Maul/HowlForMaul` (latest: gold/wood progression and inhabited borders)
+- `Builds/Linux-Speed/HowlForMaul` (preserved speed-control checkpoint)
 - `Builds/Linux-Menu/HowlForMaul` (preserved solo/LAN menu checkpoint)
 - `Builds/Linux-TowerInfo/HowlForMaul` (preserved tower information checkpoint)
 - `Builds/Linux-Snow/HowlForMaul` (preserved snow readability checkpoint)
 - `Builds/Linux-WavePreview/HowlForMaul` (preserved pre-wave forecast checkpoint)
 - `Builds/Linux-Online/HowlForMaul` (preserved direct-online checkpoint)
 - `Builds/Linux/HowlForMaul` (older preserved package)
-- `Builds/Windows-Speed/HowlForMaul.exe` (latest runtime: shared match speed controls)
+- `Builds/Windows-Maul/HowlForMaul.exe` (latest: gold/wood progression and inhabited borders; build-only verification)
+- `Builds/Windows-Speed/HowlForMaul.exe` (preserved speed-control checkpoint)
 - `Builds/Windows-Menu/HowlForMaul.exe` (preserved solo/LAN menu checkpoint)
 - `Builds/Windows-TowerInfo/HowlForMaul.exe` (preserved tower information checkpoint)
 - `Builds/Windows-Snow/HowlForMaul.exe` (preserved snow readability checkpoint)
@@ -115,7 +117,7 @@ Use **Howl for Maul → Build Linux** or **Build Windows** for standard output d
 - `Builds/Windows-Online/HowlForMaul.exe` (preserved direct-online checkpoint)
 - `Builds/Windows/HowlForMaul.exe` (older preserved package)
 
-After building Linux, run `./Tools/smoke-linux.sh` to check both packaged maps without a display server. The explicit smoke mode skips presentation/audio startup; the script requires that isolation marker, both route/data checks and a clean exit. It is not a graphics or audio test. See [platform evidence](Docs/Platform/README.md).
+After building Linux, run `./Tools/smoke-linux.sh` to check both packaged maps. Set `HOWL_PLAYER` to select a different package. The default uses null graphics without a display server; this host now crashes inside Unity before managed startup in that mode. The verified alternative is `DISPLAY=:98 HOWL_SMOKE_GRAPHICS=1 HOWL_PLAYER="$PWD/Builds/Linux-Maul/HowlForMaul" ./Tools/smoke-linux.sh`, using the existing isolated Xvfb test display. On another machine, provide its working X display. The explicit smoke mode skips presentation/audio startup; the script requires that isolation marker, both route/data checks and a clean exit. It is not a graphics or audio test. See [platform evidence](Docs/Platform/README.md).
 
 Keep each executable with its accompanying data and runtime files. Do not run a second Unity editor against the same project. Stop and restart Play after changing scripts; simulation state does not survive a domain reload.
 

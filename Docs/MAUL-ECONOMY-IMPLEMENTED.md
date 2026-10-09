@@ -44,3 +44,17 @@ Pennants move with ambient wind and capped chimney particles drift above the roo
 The built-in Unity particle-system module is enabled. The particle shader is retained through a Resources material so player builds can render it. An initial compile failure before package resolution was fixed; final compilation passes with zero errors/warnings. The final both-map Unity atmosphere regression passes (124.80 seconds including Play Mode transitions; CLI aggregate 8.87 seconds). It checks exterior triangle clearance, absent colliders/minimap contamination, roof/path face directions, six buildings/smoke emitters per map, current map economy values and all 76 distinct sound cues. The rendered captures were inspected; inward-facing roofs and intersecting paths found in earlier passes were corrected. A full Unity-suite rerun and new crowded-scene performance measurement are not claimed.
 
 Scheduler stays paused. Mobile remains on hold. No copyright reference art was imported.
+
+## Fresh playable packages
+
+Both local packages contain runtime source `254004c`: `Builds/Linux-Maul/HowlForMaul` and `Builds/Windows-Maul/HowlForMaul.exe`. Each includes source-checkpoint and music/license notices. Linux built with zero errors/two warnings; Windows built with zero errors/nineteen warnings. The compact build reports retain every warning. Linux reported disabled Pipeline runtime API and uncompiled editor importing/postprocessing code; the new runtime DLL and packaged resource assertions were verified. Windows reported disabled Pipeline runtime API and unsupported ray-tracing shader compilation. Windows runtime has not been tested.
+
+The Linux player exits cleanly after both updated map/resource/route checks, using OpenGL on isolated Xvfb with llvmpipe. It verifies the 240/2200 starting team wallets, progressive gold, wave 9/14 wood, final champion values and retained smoke shader. This smoke mode skips game presentation/audio. The first null-graphics invocation crashed in native Unity startup with signal 11 before managed test execution; that mode is not marked passed. `Tools/smoke-linux.sh` now supports explicit `HOWL_PLAYER` and `HOWL_SMOKE_GRAPHICS=1` overrides, and its graphics-backed execution passes. Gameplay renders were inspected through the separate Unity atmosphere test described above.
+
+Launch on this desktop:
+
+```sh
+/home/adam/Documents/Dev/howl-for-maul/Builds/Linux-Maul/HowlForMaul -force-wayland
+```
+
+Both peers need the new protocol-3 package for multiplayer. Recorded evidence: Howl-Economy-World-Packages.json and Howl-Economy-World-Smoke.txt.
