@@ -1,6 +1,6 @@
 # Mobile status and future work
 
-Status checked 2026-10-09. The initial brief names Windows and Ubuntu as primary platforms and Android/iOS as future targets, and explicitly says not to implement mobile controls yet. Desktop work has followed that scope. No Android or iOS package or device test is verified.
+Status checked 2026-10-09. Mobile development is explicitly on hold at the user's request; prioritize desktop until the user resumes mobile work. The initial brief names Windows and Ubuntu as primary platforms and Android/iOS as future targets, and explicitly says not to implement mobile controls yet. Desktop work has followed that scope. No Android or iOS package or device test is verified.
 
 The pure C# simulation is separate from presentation and consumes game actions independently of desktop input. CameraIntent / ICameraInput separate camera intent from its motor; DesktopInput is the only implemented provider. This is useful groundwork, not a finished cross-platform input layer. Building, queuing, selection, inspection and shortcuts in Prototype still directly read mouse and keyboard input. The IMGUI HUD is designed and checked on desktop displays.
 

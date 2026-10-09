@@ -4,15 +4,22 @@ using System.Text;
 using System.Security.Cryptography;
 namespace FrostMaze.Simulation.Online
 {
+    public static class MatchSpeeds
+    {
+        public const int Count=4,Normal=1;
+        public static bool Valid(int index)=>index>=0&&index<Count;
+        public static float At(int index){switch(index){case 0:return .5f;case 1:return 1;case 2:return 2;case 3:return 3;default:throw new ArgumentOutOfRangeException(nameof(index));}}
+        public static string Label(int index)=>index==0?"0.5×":((int)At(index))+"×";
+    }
     public enum Stage { Lobby, Factions, Lanes, Difficulty, Match }
-    public enum Kind { Challenge, Hello, Welcome, Lobby, Ready, Begin, Faction, Lane, Difficulty, Command, Frame, PauseVote, Notice, Leave, Kick, Ping }
+    public enum Kind { Challenge, Hello, Welcome, Lobby, Ready, Begin, Faction, Lane, Difficulty, Command, Frame, PauseVote, Notice, Leave, Kick, Ping, Speed }
     public enum ActionKind { Build, Move, Sell, Upgrade, Launch, Cancel }
     public sealed class Member { public int Id,Faction=-1,Lane=-1,Vote=-1;public string Name="";public bool Ready,Connected=true,PauseVote; }
     public sealed class Order { public ActionKind Kind;public int Player,Design,Target;public float X,Y;public bool Append; }
     public sealed class Packet { public Kind Kind;public int A,B,C;public long Tick;public bool Flag;public string Text="",Extra="";public Member[] Members=Array.Empty<Member>();public Order[] Orders=Array.Empty<Order>(); }
     public static class Protocol
     {
-        public const string Version="howl-direct-1";
+        public const string Version="howl-direct-2";
         public const int MaxBytes=16384;
         public static byte[] Encode(Packet p){using(var m=new MemoryStream()){using(var w=new BinaryWriter(m,Encoding.UTF8,true)){
             w.Write((byte)p.Kind);w.Write(p.A);w.Write(p.B);w.Write(p.C);w.Write(p.Tick);w.Write(p.Flag);w.Write(p.Text??"");w.Write(p.Extra??"");w.Write(p.Members.Length);

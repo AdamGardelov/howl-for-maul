@@ -24,7 +24,7 @@ namespace FrostMaze
             if(GUILayout.Button(game.Paused?"RESUME [P]":"PAUSE [P]",button,GUILayout.Width(100)))game.VotePause();
             GUI.enabled=!w.Finished&&!w.WaveActive;
             if(GUILayout.Button(w.Finished?(w.Won?"VICTORY":"DEFEAT"):w.WaveActive?"WAVE ACTIVE":"NEXT WAVE [ENTER]",button,GUILayout.Width(148)))game.Launch();
-            GUI.enabled=true;GUILayout.FlexibleSpace();
+            GUI.enabled=true;DrawSpeedControls();GUILayout.FlexibleSpace();
             if(!game.NetworkMatch&&w.Players.Length>1&&GUILayout.Button($"P{w.ActivePlayer+1}",button,GUILayout.Width(40)))w.SelectPlayer((w.ActivePlayer+1)%w.Players.Length);
             GUILayout.Label($"{w.Gold} GOLD    ·    {w.Lives} LIVES    ·    WAVE {Mathf.Max(0,w.WaveIndex+1)}/{w.Config.Waves.Length}",section,GUILayout.Width(310));
             GUILayout.EndHorizontal();GUILayout.EndArea();
@@ -63,6 +63,16 @@ namespace FrostMaze
             if(GUI.Button(new Rect(box.x+18+width,box.y+56,width,28),$"REMOVE · +{w.SaleRefund(tower.Id)}g",button))game.SellTower(tower.CellX,tower.CellY);
             GUI.enabled=true;if(GUI.Button(new Rect(box.xMax-30,box.y+7,22,22),"×",button))game.SelectedTowerId=0;
         }
+        void DrawSpeedControls()
+        {
+            GUI.enabled=game.CanChangeSpeed&&game.SpeedIndex>0;
+            if(GUILayout.Button("−",button,GUILayout.Width(28)))game.ChangeSpeed(-1);
+            GUI.enabled=true;
+            GUILayout.Label(FrostMaze.Simulation.Online.MatchSpeeds.Label(game.SpeedIndex),section,GUILayout.Width(42));
+            GUI.enabled=game.CanChangeSpeed&&game.SpeedIndex<FrostMaze.Simulation.Online.MatchSpeeds.Count-1;
+            if(GUILayout.Button("+",button,GUILayout.Width(28)))game.ChangeSpeed(1);
+            GUI.enabled=true;
+        }
         void DrawPauseMenu()
         {
             var matrix=GUI.matrix;float scale=game.UiScale;
@@ -84,9 +94,10 @@ namespace FrostMaze
             GUILayout.Label("Snowfall / Signal to Noise\nScott Buckley · CC BY 4.0 · scottbuckley.com.au",small);
             if(GUILayout.Button("MUSIC CREDITS",button))Application.OpenURL("https://www.scottbuckley.com.au/library/");
             game.ShowGrid=GUILayout.Toggle(game.ShowGrid,"Placement grid",button);
-            if(!game.NetworkMatch&&GUILayout.Button(game.Speed==1?"Game speed: 1×":"Game speed: 2×",button))game.Speed=game.Speed==1?2:1;
+            GUILayout.BeginHorizontal();DrawSpeedControls();GUILayout.EndHorizontal();
+            if(game.NetworkMatch&&!game.Net.IsHost)GUILayout.Label("The host controls the shared game speed.",small);
             if(!Application.isEditor)Screen.fullScreen=GUILayout.Toggle(Screen.fullScreen,"Fullscreen window",button);
-            GUILayout.Space(8);GUILayout.Label("Details [Tab]: wave advice, tower stats and inspection tools.\nEdges / WASD: pan · Space + drag: pan · wheel: zoom\nQ / E: rotate · R: reset angle · Home: builder\nHold Alt: reveal all health bars",small);
+            GUILayout.Space(8);GUILayout.Label("Speed [− / +]: 0.5× / 1× / 2× / 3× (host controls multiplayer).\nDetails [Tab]: wave advice, tower stats and inspection tools.\nEdges / WASD: pan · Space + drag: pan · wheel: zoom\nQ / E: rotate · R: reset angle · Home: builder\nHold Alt: reveal all health bars",small);
             GUILayout.EndArea();GUI.matrix=matrix;
         }
     }

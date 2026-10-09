@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using FrostMaze.Simulation;
+using FrostMaze.Simulation.Online;
 namespace FrostMaze
 {
     public sealed partial class Prototype : MonoBehaviour
@@ -65,7 +66,7 @@ namespace FrostMaze
         {
             ClearUnitViews();
             World=new World(JsonUtility.FromJson<Scenario>(JsonUtility.ToJson(Map.Settings)),SetupOptions);
-            SetupOpen=false;MenuOpen=false;DetailsOpen=false; matchStarted=true; Paused=false; accumulator=0; ClearInteraction();
+            SetupOpen=false;MenuOpen=false;DetailsOpen=false; matchStarted=true; Paused=false; localSpeedIndex=MatchSpeeds.Normal; accumulator=0; ClearInteraction();
             View.GetComponent<RtsCamera>().FocusPoint(World.BuilderPosition);
             Notice="All lanes active. Build your maze, then launch the first wave.";
         }
@@ -97,7 +98,15 @@ namespace FrostMaze
         }
         public bool ShowGrid, ShowNavigation, ShowDirections, ShowRoutes, Paused, ShowValues;
         public string Notice = "Build a maze, then launch a wave. Blocking every route is allowed.";
-        public float Speed = 1;
+        int localSpeedIndex=MatchSpeeds.Normal;
+        public int SpeedIndex=>NetworkMatch?Net.SpeedIndex:localSpeedIndex;
+        public float Speed {
+            get=>MatchSpeeds.At(SpeedIndex);
+            set {for(int i=0;i<MatchSpeeds.Count;i++)if(Mathf.Approximately(value,MatchSpeeds.At(i))){SetSpeedIndex(i);return;}throw new System.ArgumentOutOfRangeException(nameof(value));}
+        }
+        public bool CanChangeSpeed=>World!=null&&!World.Finished&&!SetupOpen&&(!NetworkMatch||Net.IsHost);
+        public void SetSpeedIndex(int index){if(!CanChangeSpeed||!MatchSpeeds.Valid(index))return;if(NetworkMatch)Net.Send(new Packet{Kind=Kind.Speed,A=index});else localSpeedIndex=index;}
+        public void ChangeSpeed(int direction)=>SetSpeedIndex(Mathf.Clamp(SpeedIndex+direction,0,MatchSpeeds.Count-1));
         public int SelectedId, SelectedTowerId;
         public bool SoundEnabled=true;
         public float EffectsVolume=1, MusicVolume=.35f;
@@ -268,7 +277,7 @@ namespace FrostMaze
             }
             SetViewport();
             if(LobbyOpen){SetupOpen=true;HasHover=false;ghost.SetActive(false);return;}
-            if(NetworkMatch){Paused=Net.Paused;Notice=Net.Notice;Speed=1;if(MenuOpen&&UnityEngine.Input.GetKeyDown(KeyCode.P))VotePause();}
+            if(NetworkMatch){Paused=Net.Paused;Notice=Net.Notice;if(MenuOpen&&UnityEngine.Input.GetKeyDown(KeyCode.P))VotePause();}
             if(UnityEngine.Input.GetKeyDown(KeyCode.Escape)) {
                 if(SetupOpen)ReturnToMatch();else ToggleMenu();
             }
@@ -293,6 +302,8 @@ namespace FrostMaze
         void ReadBuildInputProfiled()
         {
             int shortcut=0;for(int i=0;i<World.Config.Catalog.Length;i++)if(World.DesignAvailable(i)){if(UnityEngine.Input.GetKeyDown(KeyCode.Alpha1+shortcut)){World.SelectedDesign=i;SellMode=false;MoveMode=false;}shortcut++;}
+            if(UnityEngine.Input.GetKeyDown(KeyCode.Minus)||UnityEngine.Input.GetKeyDown(KeyCode.KeypadMinus))ChangeSpeed(-1);
+            if(UnityEngine.Input.GetKeyDown(KeyCode.Equals)||UnityEngine.Input.GetKeyDown(KeyCode.KeypadPlus))ChangeSpeed(1);
             if(UnityEngine.Input.GetKeyDown(KeyCode.U)&&SelectedTowerId>0)UpgradeTower(SelectedTowerId);
             if(UnityEngine.Input.GetKeyDown(KeyCode.R))ResetView();
             if(UnityEngine.Input.GetKeyDown(KeyCode.Home)){var camera=View.GetComponent<RtsCamera>();camera.ResetRotation();camera.FocusPoint(World.BuilderPosition);}

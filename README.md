@@ -8,7 +8,7 @@ Built with Unity 6.3 LTS, C# and URP for Windows and Ubuntu Linux. Game code, pr
 
 Latest checkpoint: clearer Play Solo and Multiplayer / LAN menus; see [verification](Docs/MENU-CLARITY.md). Latest local packages are `Builds/Linux-Menu/HowlForMaul` and `Builds/Windows-Menu/HowlForMaul.exe`. Tower portraits include [weapon stats and owned champion requirements](Docs/TOWER-TOOLTIPS.md). Rimewatch retains the softer seamless snow from the [visual checkpoint](Docs/SNOW-READABILITY.md).
 
-Android/iOS remain future targets. Touch controls, phone UI and device builds are not implemented or verified; see [mobile status](Docs/MOBILE-STATUS.md).
+Mobile development is on hold; Android/iOS remain future targets. Touch controls, phone UI and device builds are not implemented or verified; see [mobile status](Docs/MOBILE-STATUS.md).
 
 ## Play
 
@@ -17,6 +17,8 @@ Open this project with **Unity 6000.3.25f1**, choose **Howl for Maul → Open ga
 Choose **Rimewatch** (three upper lanes) or **Ironfold** (four upper lanes), both reconstructed from the supplied map layouts. Every lane stays active at every player count. Choose **Play Solo** for offline play or **Multiplayer / LAN** to create/join a lobby, then choose factions, starting positions and difficulty before spawning. The maps retain downstream defense areas and one bottom exit. Rimewatch is dressed with frost ferns and blue-flame lanterns; Ironfold has copper scrub and warm braziers. Decorative props stay on blocked terrain so the buildable map remains clear.
 
 Solo starts with the full **1,200 gold** team budget. Two players receive 600 each, three receive 400 each, four receive 300 each. Kill income and wave rewards are split without losing integer remainders. Every enemy reaching the final exit removes one of 30 shared lives. Finish twenty waves with lives remaining to win. Waves 5, 10, 15 and 20 fly. Later waves alternate fast rushes, dense swarms and tough siege units. Before launching, a compact forecast shows AIR/GROUND, scaled health, enemy count and targeting counts. Click it for expanded faction-specific advice. The team defense count distinguishes air and ground targeting; it does not measure whether towers cover the route.
+
+Match speed offers **0.5×, 1×, 2× and 3×**, with visible − / + controls during play and in settings. Solo can change it immediately; multiplayer uses one host-controlled speed. Enemies, towers and builders advance together, with unchanged rules and rewards. Camera controls and music retain their normal pace. New matches start at 1×.
 
 Gameplay uses the full map viewport with a compact top status strip and bottom-right tower grid. Esc opens the game menu for settings, New Game/Leave and Quit; solo pauses, while an online match uses the team pause vote. Tab opens the optional detailed panel. The standalone menu also offers a fullscreen-window toggle.
 
@@ -40,6 +42,7 @@ Gameplay uses the full map viewport with a compact top status strip and bottom-r
 | Launch next wave | Enter |
 | Open expanded wave advice | Click the pre-wave forecast |
 | Pause / resume (majority vote online) | P |
+| Decrease / increase match speed | − / + buttons, minus / equals keys or keypad − / + |
 | Pan | Screen edges / Space + left drag / middle drag / WASD / arrows |
 | Faster keyboard / edge pan | Hold Shift |
 | Rotate camera left / right | Hold Q / E |

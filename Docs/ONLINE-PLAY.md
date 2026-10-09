@@ -10,6 +10,8 @@ The latest user request explicitly supersedes the original networking deferral. 
 4. Everyone votes difficulty. Most votes wins; Normal wins a tied Normal vote, otherwise Relaxed wins the tie. The match starts automatically after all votes.
 5. P starts or joins a pause/resume vote. A strict majority of connected players is required. Votes expire after 20 seconds. One player can pause/resume immediately.
 
+During a match the host controls shared speed with the visible − / + buttons or keyboard shortcuts: 0.5×, 1×, 2× and 3×. Everyone sees the selected speed; other players cannot change it. Pause/resume still uses the majority vote, and its 20-second timeout uses real time. New matches start at 1×. All participants must use the same updated build (protocol howl-direct-2); older packages are incompatible.
+
 Play Solo uses the same faction → start → difficulty sequence without opening a network listener. Multiple local slots remain a development/testing option, clearly labelled.
 
 Internet play requires the host address and TCP port to be reachable. A copied LAN address works only on that network. For remote friends use a reachable public endpoint with router/firewall configuration, or a private network/VPN. No router or firewall settings are changed automatically. There is no public lobby browser, relay, Steam invite integration, automatic NAT traversal, reconnect or host migration. These need a separate service/UX pass. Do not describe same-machine tests as verified internet play.

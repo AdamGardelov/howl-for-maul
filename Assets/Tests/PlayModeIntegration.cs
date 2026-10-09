@@ -221,8 +221,14 @@ namespace FrostMaze.Tests
             Assert.That(game.World,Is.SameAs(net.World));Assert.That(game.World.Players[0].Faction,Is.EqualTo(2));
             Assert.That(game.World.BuilderPosition,Is.EqualTo(game.World.Config.BuilderStarts[4]));Assert.That(game.World.Gold,Is.EqualTo(1200));
             Assert.That(game.World.LaneCount,Is.EqualTo(3));Assert.That(game.SetupOpen,Is.False);
+            Assert.That(game.Speed,Is.EqualTo(1));game.SetSpeedIndex(3);Assert.That(game.Speed,Is.EqualTo(3));
+            long fastStart=game.World.Tick;yield return new WaitForSecondsRealtime(.25f);Assert.That(game.World.Tick-fastStart,Is.GreaterThan(8));
+            game.VotePause();long stopped=game.World.Tick;game.SetSpeedIndex(0);yield return new WaitForSecondsRealtime(.15f);
+            Assert.That(game.World.Tick,Is.EqualTo(stopped));Assert.That(game.Speed,Is.EqualTo(.5f));game.VotePause();
+            game.ChangeSpeed(1);Assert.That(game.Speed,Is.EqualTo(1));Assert.That(Time.timeScale,Is.EqualTo(1));
+
             var music=Object.FindFirstObjectByType<MapMusic>();var source=music.GetComponent<AudioSource>();
-            Assert.That(source.clip,Is.Not.Null);Assert.That(source.clip.length,Is.GreaterThan(60));Assert.That(source.clip.loadType,Is.EqualTo(AudioClipLoadType.Streaming));
+            Assert.That(source.pitch,Is.EqualTo(1));Assert.That(source.clip,Is.Not.Null);Assert.That(source.clip.length,Is.GreaterThan(60));Assert.That(source.clip.loadType,Is.EqualTo(AudioClipLoadType.Streaming));
             game.MusicVolume=0;yield return new WaitForSecondsRealtime(1);Assert.That(source.volume,Is.Zero);game.MusicVolume=.5f;yield return new WaitForSecondsRealtime(.3f);Assert.That(source.volume,Is.GreaterThan(0));
             game.VotePause();yield return null;long tick=game.World.Tick;yield return new WaitForSecondsRealtime(.15f);Assert.That(game.World.Tick,Is.EqualTo(tick));
             game.VotePause();yield return new WaitForSecondsRealtime(.15f);Assert.That(game.World.Tick,Is.GreaterThan(tick));

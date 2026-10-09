@@ -102,7 +102,7 @@ namespace FrostMaze
             if(GUILayout.Button(w.Finished?"MATCH COMPLETE":w.WaveActive?"WAVE IN PROGRESS":"LAUNCH WAVE "+(w.WaveIndex+2)+"     [ENTER]",primary))game.Launch();
             GUI.enabled=true;
             GUILayout.BeginHorizontal();if(GUILayout.Button(game.Paused?"Resume [P]":"Pause [P]",button))game.VotePause();
-            if(!game.NetworkMatch&&GUILayout.Button(game.Speed==1?"Speed 1×":"Speed 2×",button))game.Speed=game.Speed==1?2:1;
+            DrawSpeedControls();
             if(GUILayout.Button(w.Finished?"New match":"Setup",button))game.OpenSetup();GUILayout.EndHorizontal();
             if(feedback!=null&&feedback.RecentLeaks>0) {
                 if(GUILayout.Button($"EXIT BREACHED · {feedback.RecentLeaks} leaked\nView exit",alertButton))game.FocusExit();

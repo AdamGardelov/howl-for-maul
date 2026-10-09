@@ -24,6 +24,8 @@ namespace FrostMaze.Simulation.Online
         public string Map {get;private set;}="";public Stage Stage {get;private set;}=Stage.Lobby;
         public IReadOnlyList<Member> Members=>members;public World World {get;private set;}
         public bool Paused {get;private set;}
+        public int SpeedIndex {get;private set;}=MatchSpeeds.Normal;
+        public float Speed=>MatchSpeeds.At(SpeedIndex);
         public string Notice {get;private set;}="";public string Failure {get;private set;}="";
         public int Port {get;private set;}
         public int LocalSlot=>members.FindIndex(m=>m.Id==LocalId);
@@ -59,7 +61,7 @@ namespace FrostMaze.Simulation.Online
                     if(peer.Link.Closed||peer.Id<0&&clock-peer.Accepted>10||clock-peer.LastMessage>20){peer.Link.Dispose();peers.Remove(peer);Disconnected(peer.Id);}
                 }
                 if(voteUntil>0&&clock>=voteUntil){ClearVotes();Notice="Pause vote expired.";BroadcastLobby();}
-                if(Stage==Stage.Match){accumulator+=Math.Min(delta,.25);int steps=0;while(accumulator>=FrostMaze.Simulation.World.FixedDelta&&steps++<8){accumulator-=FrostMaze.Simulation.World.FixedDelta;var batch=orders.ToArray();orders.Clear();foreach(var order in batch)Apply(order);if(!Paused)World.Step();frame++;var message=new Packet{Kind=Kind.Frame,Tick=frame,Flag=!Paused,Orders=batch,Extra=frame%60==0?StateDigest.Of(World):""};Broadcast(message);}}
+                if(Stage==Stage.Match){accumulator+=Math.Max(0,Math.Min(delta,.25))*(Paused?1:Speed);int steps=0;while(accumulator>=FrostMaze.Simulation.World.FixedDelta&&steps++<24){accumulator-=FrostMaze.Simulation.World.FixedDelta;var batch=orders.ToArray();orders.Clear();foreach(var order in batch)Apply(order);if(!Paused)World.Step();frame++;var message=new Packet{Kind=Kind.Frame,A=SpeedIndex,Tick=frame,Flag=!Paused,Orders=batch,Extra=frame%60==0?StateDigest.Of(World):""};Broadcast(message);}}
                 else if(clock-lastServerMessage>=1){lastServerMessage=clock;BroadcastLobby();}
             }else if(server!=null){
                 int received=0;while(received++<128&&server.TryRead(out var p)){lastServerMessage=clock;Receive(p);if(disposed)return;}
@@ -81,7 +83,9 @@ namespace FrostMaze.Simulation.Online
                 case Kind.Lobby:
                     if(!IsConnected)return;members.Clear();members.AddRange(p.Members);Stage=(Stage)p.A;Paused=p.Flag;voteUntil=p.B>0?clock+p.B/1000.0:0;Notice=p.Text;
                     if(Stage==Stage.Match&&World==null)CreateWorld((Difficulty)p.C);break;
+                case Kind.Speed:if(World!=null&&MatchSpeeds.Valid(p.A))SpeedIndex=p.A;break;
                 case Kind.Frame:
+                    if(!MatchSpeeds.Valid(p.A)){Fail("Invalid shared game speed.");return;}SpeedIndex=p.A;
                     if(World==null||p.Tick!=frame+1){Fail("Network tick mismatch. Match stopped to protect game state.");return;}
                     foreach(var order in p.Orders)Apply(order);if(p.Flag)World.Step();frame=p.Tick;Paused=!p.Flag;
                     if(p.Extra.Length>0&&p.Extra!=StateDigest.Of(World))Fail("Simulation mismatch. Match stopped; reconnect requires a new lobby.");break;
@@ -94,6 +98,9 @@ namespace FrostMaze.Simulation.Online
             if(p.Kind==Kind.Leave){var peer=peers.Find(q=>q.Id==id);peer?.Link.Dispose();Disconnected(id);return;}
             if(p.Kind==Kind.Kick&&id==0&&p.A!=0){var peer=peers.Find(q=>q.Id==p.A);peer?.Link.Dispose();Disconnected(p.A);return;}
             if(Stage==Stage.Match){
+                if(p.Kind==Kind.Speed&&id==0&&!World.Finished&&MatchSpeeds.Valid(p.A)){
+                    SpeedIndex=p.A;Notice="Game speed: "+MatchSpeeds.Label(SpeedIndex)+".";BroadcastLobby();
+                }
                 if(p.Kind==Kind.PauseVote){member.PauseVote=!member.PauseVote;if(Votes==0)voteUntil=0;else if(voteUntil==0)voteUntil=clock+20;
                     if(Votes>=RequiredVotes){Paused=!Paused;ClearVotes();Notice=Paused?"Match paused by vote.":"Match resumed by vote.";}BroadcastLobby();}
                 if(p.Kind==Kind.Command&&p.Orders.Length==1&&orders.Count<64){var order=p.Orders[0];order.Player=members.IndexOf(member);if(Valid(order))orders.Add(order);}
@@ -121,7 +128,7 @@ namespace FrostMaze.Simulation.Online
             }
             World.SelectedDesign=selected;World.SelectPlayer(active);if(o.Player==LocalSlot&&message.Length>0)Notice=message;
         }
-        void CreateWorld(Difficulty difficulty){var options=new MatchOptions{PlayerCount=members.Count,UseSelectedSoloStart=true,Difficulty=difficulty,Factions=members.Select(m=>m.Faction).ToArray(),StartingPositions=members.Select(m=>m.Lane).ToArray()};World=new World(resolve(Map),options);World.SelectPlayer(LocalSlot);frame=0;accumulator=0;Notice="All lanes active. Build, then launch a wave.";}
+        void CreateWorld(Difficulty difficulty){var options=new MatchOptions{PlayerCount=members.Count,UseSelectedSoloStart=true,Difficulty=difficulty,Factions=members.Select(m=>m.Faction).ToArray(),StartingPositions=members.Select(m=>m.Lane).ToArray()};World=new World(resolve(Map),options);World.SelectPlayer(LocalSlot);frame=0;accumulator=0;SpeedIndex=MatchSpeeds.Normal;Notice="All lanes active. Build, then launch a wave.";}
         void Disconnected(int id){var member=members.Find(m=>m.Id==id);if(member==null||!member.Connected)return;
             if(Stage==Stage.Match){member.Connected=false;Paused=true;ClearVotes();Notice=member.Name+" disconnected. Vote to resume with the remaining players.";}
             else {members.Remove(member);Stage=Stage.Lobby;foreach(var m in members){m.Faction=m.Lane=m.Vote=-1;m.Ready=false;}Notice="Player left. Lobby setup reset.";}
@@ -129,7 +136,7 @@ namespace FrostMaze.Simulation.Online
         }
         void ResetReady(){foreach(var m in members)m.Ready=false;}
         void ClearVotes(){foreach(var m in members)m.PauseVote=false;voteUntil=0;}
-        void BroadcastLobby(){Broadcast(new Packet{Kind=Kind.Lobby,A=(int)Stage,B=(int)(VoteRemaining*1000),C=World==null?1:(int)World.Difficulty,Flag=Paused,Text=Notice,Members=members.ToArray()});}
+        void BroadcastLobby(){Broadcast(new Packet{Kind=Kind.Lobby,A=(int)Stage,B=(int)(VoteRemaining*1000),C=World==null?1:(int)World.Difficulty,Flag=Paused,Text=Notice,Members=members.ToArray()});if(World!=null)Broadcast(new Packet{Kind=Kind.Speed,A=SpeedIndex});}
         void Broadcast(Packet p){foreach(var peer in peers)if(peer.Id>=0&&!peer.Link.Closed)peer.Link.Send(p);}
         void Fail(string message){Paused=true;Failure=Notice=message;Dispose();}
         public void Dispose(){if(disposed)return;disposed=true;IsConnected=false;server?.Dispose();connected?.Close();listener?.Stop();foreach(var p in peers)p.Link.Dispose();while(accepted.TryDequeue(out var s))s.Close();}

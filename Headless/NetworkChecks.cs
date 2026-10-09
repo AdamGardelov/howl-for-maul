@@ -21,13 +21,13 @@ static class NetworkChecks
     }
     static void Build(Session session){var w=session.World;int design=w.Config.Factions[w.Players[w.ActivePlayer].Faction].Designs[0];w.SelectedDesign=design;
         var start=w.SnapBuildOrigin(w.BuilderPosition);for(float y=Math.Max(0,start.Y-3);y<Math.Min(w.Config.Height,start.Y+3);y+=w.PlacementStep)for(float x=Math.Max(0,start.X-3);x<Math.Min(w.Config.Width,start.X+3);x+=w.PlacementStep)if(w.CanBuild(x,y,out _)){session.Submit(new Order{Kind=ActionKind.Build,Player=0,Design=design,X=x,Y=y});return;}throw new Exception("No legal paid test footprint");}
-    public static int Peer(int port){using(var client=New()){client.Join("127.0.0.1",port,"Remote tester","test-password");var timeout=Stopwatch.StartNew();bool built=false,spoof=false,pauseVoted=false,resumeVoted=false;int held=0;long frozen=-1;
+    public static int Peer(int port){using(var client=New()){client.Join("127.0.0.1",port,"Remote tester","test-password");var timeout=Stopwatch.StartNew();bool built=false,spoof=false,pauseVoted=false,resumeVoted=false;bool sawFast=false,sawSlow=false;int held=0;long frozen=-1;
         while(timeout.Elapsed.TotalSeconds<35){client.Update(.01);Check(client.Failure.Length==0,client.Failure);Setup(client,1,1);
-            if(client.World!=null){var w=client.World;if(!built){Build(client);built=true;}
-                if(w.Tick>180&&!spoof){var foreign=w.Grid.Towers.FirstOrDefault(t=>w.TowerOwner(t.Id)==0);if(foreign!=null){client.Submit(new Order{Kind=ActionKind.Upgrade,Player=0,Target=foreign.Id});spoof=true;}}
+            if(client.World!=null){sawFast|=client.Speed==3;sawSlow|=client.Speed==.5f;var w=client.World;if(!built){Build(client);built=true;}
+                if(w.Tick>180&&!spoof){var foreign=w.Grid.Towers.FirstOrDefault(t=>w.TowerOwner(t.Id)==0);if(foreign!=null){client.Submit(new Order{Kind=ActionKind.Upgrade,Player=0,Target=foreign.Id});client.Send(new Packet{Kind=Kind.Speed,A=0});spoof=true;}}
                 if(!pauseVoted&&client.Votes>0&&!client.Paused){client.Send(new Packet{Kind=Kind.PauseVote});pauseVoted=true;}
                 if(client.Paused){if(frozen<0)frozen=w.Tick;Check(w.Tick==frozen,"Paused client tick advanced");if(++held>30&&!resumeVoted){client.Send(new Packet{Kind=Kind.PauseVote});resumeVoted=true;}}
-                if(w.Tick>=620){Check(spoof&&pauseVoted&&resumeVoted,"Missing peer phases");Console.WriteLine("PASS remote paid build, owner isolation, pause/resume and 620 ordered ticks; "+StateDigest.Of(w));return 0;}
+                if(w.Tick>=620){Check(spoof&&pauseVoted&&resumeVoted&&sawFast&&sawSlow,"Missing peer/synchronized speed phases");Console.WriteLine("PASS remote paid build, owner isolation, shared 3x/0.5x, pause/resume and 620 ordered ticks; "+StateDigest.Of(w));return 0;}
             }Thread.Sleep(2);
         }throw new Exception("Remote process timed out");}}
     static void Pair(string map){using(var host=New()){host.Host(map,"Host tester","test-password",0);
@@ -35,10 +35,10 @@ static class NetworkChecks
             var timeout=Stopwatch.StartNew();bool built=false,launched=false,voted=false,resumed=false,walletChecked=false,sawPause=false;long pauseTick=-1;
             try{while(timeout.Elapsed.TotalSeconds<35){host.Update(.01);Setup(host,0,0);Check(host.Failure.Length==0,host.Failure);
                 if(host.World!=null){var w=host.World;if(!built){Build(host);built=true;}
-                    if(w.Tick>230&&!walletChecked){Check(w.Grid.Towers.Count==2,"Both paid towers missing");Check(w.Grid.Towers.All(t=>t.Level==1),"Foreign upgrade accepted");foreach(int owner in new[]{0,1}){var tower=w.Grid.Towers.Single(t=>w.TowerOwner(t.Id)==owner);Check(w.Players[owner].Gold==600-w.Config.Catalog[tower.Design].Cost,"Separate wallet mismatch");}walletChecked=true;}
-                    if(w.Tick>240&&!launched){host.Submit(new Order{Kind=ActionKind.Launch});launched=true;}
+                    if(w.Tick>230&&!walletChecked){Check(host.Speed==1,"Remote client changed shared speed");Check(w.Grid.Towers.Count==2,"Both paid towers missing");Check(w.Grid.Towers.All(t=>t.Level==1),"Foreign upgrade accepted");foreach(int owner in new[]{0,1}){var tower=w.Grid.Towers.Single(t=>w.TowerOwner(t.Id)==owner);Check(w.Players[owner].Gold==600-w.Config.Catalog[tower.Design].Cost,"Separate wallet mismatch");}walletChecked=true;}
+                    if(w.Tick>240&&!launched){host.Submit(new Order{Kind=ActionKind.Launch});host.Send(new Packet{Kind=Kind.Speed,A=3});launched=true;}
                     if(w.Tick>300&&!voted){host.Send(new Packet{Kind=Kind.PauseVote});Check(!host.Paused,"One of two votes paused the match");voted=true;}
-                    if(host.Paused){if(!sawPause){pauseTick=w.Tick;sawPause=true;}if(!resumed){Check(w.Tick==pauseTick,"Paused host tick advanced");if(host.Votes>0){host.Send(new Packet{Kind=Kind.PauseVote});Check(!host.Paused,"Majority failed to resume");resumed=true;}}}
+                    if(host.Paused){if(!sawPause){pauseTick=w.Tick;sawPause=true;}if(!resumed){Check(w.Tick==pauseTick,"Paused host tick advanced");if(host.Votes>0){host.Send(new Packet{Kind=Kind.Speed,A=0});host.Send(new Packet{Kind=Kind.PauseVote});Check(!host.Paused,"Majority failed to resume");resumed=true;}}}
                     if(peer.HasExited){var output=peer.StandardOutput.ReadToEnd();var errors=peer.StandardError.ReadToEnd();Check(peer.ExitCode==0,errors+output);for(int i=0;i<20;i++){host.Update(.01);Thread.Sleep(2);}Check(host.Members.Count(m=>m.Connected)==1&&host.Paused,"Disconnect failed to pause");host.Send(new Packet{Kind=Kind.PauseVote});Check(!host.Paused,"Remaining player cannot resume");Check(walletChecked&&sawPause&&resumed,"Missing host checks");Console.WriteLine("PASS "+map+" two-process session, all "+w.LaneCount+" lanes, paid wallets, authority and disconnect recovery");Console.WriteLine(output);return;}
                 }Thread.Sleep(2);
             }throw new Exception("Host process timed out");}finally{if(!peer.HasExited)peer.Kill();}
@@ -76,5 +76,25 @@ static class NetworkChecks
             Console.WriteLine("PASS capacity four, late join rejection, 300-gold wallets, malformed coordinates and three-of-four vote");
         }finally{foreach(var c in clients)c.Dispose();}
     }}
-    public static int Run(){try{Refusals();VotesAndLanes();CapacityAndValidation();Pair("Rimewatch");Pair("Ironfold");return 0;}catch(Exception e){Console.Error.WriteLine(e);return 1;}}
+    static void SoloSpeedClocks(){
+        string expected=null;
+        for(int index=0;index<MatchSpeeds.Count;index++)using(var session=New()) {
+            session.Solo("Rimewatch","Solo");session.Send(new Packet{Kind=Kind.Faction,A=0});session.Send(new Packet{Kind=Kind.Ready});
+            session.Send(new Packet{Kind=Kind.Lane,A=7});session.Send(new Packet{Kind=Kind.Ready});session.Send(new Packet{Kind=Kind.Difficulty,A=1});
+            Check(session.World!=null&&session.Speed==1,"New match did not reset to normal speed");
+            session.Send(new Packet{Kind=Kind.Speed,A=index});Check(session.Speed==MatchSpeeds.At(index),"Valid solo speed rejected");
+            session.Send(new Packet{Kind=Kind.Speed,A=-1});session.Send(new Packet{Kind=Kind.Speed,A=99});Check(session.SpeedIndex==index,"Invalid speed accepted");
+            Build(session);session.Submit(new Order{Kind=ActionKind.Launch});
+            for(int i=0;i<1000;i++)session.Update(.001);
+            Check(Math.Abs(session.World.Tick-30*session.Speed)<=1,"Clock multiplier did not change fixed-step pacing");
+            session.Send(new Packet{Kind=Kind.PauseVote});long tick=session.World.Tick;
+            for(int i=0;i<1000;i++)session.Update(.001);
+            Check(session.World.Tick==tick&&session.Paused,"Speed bypassed pause");session.Send(new Packet{Kind=Kind.PauseVote});
+            for(int i=0;i<30000&&session.World.Tick<300;i++)session.Update(.001);
+            Check(session.World.Tick==300,"Speed overshot controlled replay");
+            string digest=StateDigest.Of(session.World);if(expected==null)expected=digest;else Check(digest==expected,"Speed changed paid build/combat outcome at equal tick");
+        }
+        Console.WriteLine("PASS all four solo speeds: pacing, invalid requests, pause and identical paid combat at tick 300");
+    }
+    public static int Run(){try{SoloSpeedClocks();Refusals();VotesAndLanes();CapacityAndValidation();Pair("Rimewatch");Pair("Ironfold");return 0;}catch(Exception e){Console.Error.WriteLine(e);return 1;}}
 }
