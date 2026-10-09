@@ -18,9 +18,7 @@ namespace FrostMaze
         {
             var tower=world.Config.Catalog[design];
             var text=new System.Text.StringBuilder();
-            text.Append(tower.Name).Append(" · ").Append(tower.Cost).Append("g\n").Append(Role(tower.Spec));
-            text.Append("\n").Append(TowerStatsText(tower.Spec));
-            if(!string.IsNullOrEmpty(tower.Description))text.Append("\n").Append(tower.Description);
+            text.Append(tower.Name).Append(" · ").Append(tower.Cost).Append("g\n").Append(TowerStatsText(tower.Spec));
             bool missing=false;
             foreach(int required in world.MissingPrerequisites(design)) {
                 if(!missing)text.Append("\nMissing owned towers:");
