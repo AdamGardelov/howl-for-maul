@@ -1,1 +1,1 @@
-PASS: both packaged maps; clean player exit. Log: /tmp/howl-cohesion-smoke.log
+PASS: both packaged maps; clean player exit. Log: /tmp/howl-cohesion-air-smoke.log
