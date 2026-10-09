@@ -2,6 +2,8 @@
 
 ## Latest state
 
+- Menu clarity source 1aad187: Play Solo, Multiplayer / LAN, map selection first, and explicit same-keyboard local-slot test wording. Both desktop builds and Linux menu/form/staged solo/Quit plus both-map data smoke pass; Windows runtime untested. New packages Linux-Menu / Windows-Menu, editor restored to Linux. Read MENU-CLARITY.md. MOBILE-STATUS.md records Android/iOS as unimplemented future scope, including input/UI/device-test gaps.
+
 - Paid shared Rimewatch exit maze: ten owner-paid pieces delay all three ground lanes, leave flyers unchanged and reopen exactly after owner sales. All 70 pure cases and the focused Unity case pass. Ten new paid campaigns plus two retained controls show Rime/Stonebound/Ember can win compact Hard with three lives after a final-air rebuild; Volt/Rime/Stonebound still loses on 19. All four maze/rebuild pairs match before the finale; 702 wallets/incomes audited. Read Balance/SHARED-EXIT-MAZE.md for losses and limits. Tests/harness only; packages remain db0369c.
 
 - Three-player Hard coverage: five mixed teams cover all twelve factions with 400 gold each and starts 7/0/4. Compact-invest wins 3/5 (both Rimewatch teams lose on wave 18); unrestricted adaptive wins 5/5 with 30 lives. New headless summary checks and independent saved-ledger auditor verify 588 wallets and 588 incomes, including 62 unequal reward splits. A paid refund control brings totals to 608 each. All 69 pure cases and eight auditor corruption/acceptance tests pass. Read Balance/HARD-THREE-PLAYER.md. Harness/tests/docs only; player packages remain runtime db0369c.
@@ -52,7 +54,7 @@
 
 ## Next priorities
 
-1. Preserve user Play sessions and unsaved scenes. Use the new TowerInfo package directories for current source; do not overwrite the older running player.
+1. Preserve user Play sessions and unsaved scenes. Use the new Menu package directories for current source; do not overwrite the older running player.
 2. Continue faction/maze progression and meaningful paid-defense testing; use human sessions to judge beginner difficulty; compact limits are diagnostics only.
 3. Continue the original minimalistic art direction while keeping silhouettes readable and every scenic footprint on blocked mask cells. No final-art or performance promise is implied by the procedural pass.
 

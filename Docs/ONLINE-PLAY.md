@@ -4,13 +4,13 @@ The latest user request explicitly supersedes the original networking deferral. 
 
 ## Join a game
 
-1. Host chooses Rimewatch or Ironfold in the main setup screen, opens Play Online, enters a name and optional password, then Host. Default TCP port: 27888.
+1. Host chooses Rimewatch or Ironfold in the main setup screen, opens Multiplayer / LAN, enters a name and optional password, then Host. Default TCP port: 27888.
 2. Copy LAN Invite copies the host's local address and port. Send it to friends yourself. A joiner can paste `address:port` in Host address, enter the same password, and Join.
 3. Everyone marks Ready; host begins setup. Everyone chooses a faction and confirms, then chooses a unique starting position and confirms. All choices are visible.
 4. Everyone votes difficulty. Most votes wins; Normal wins a tied Normal vote, otherwise Relaxed wins the tie. The match starts automatically after all votes.
 5. P starts or joins a pause/resume vote. A strict majority of connected players is required. Votes expire after 20 seconds. One player can pause/resume immediately.
 
-Solo Start Match uses the same faction → start → difficulty sequence without opening a network listener. Multiple local slots remain a development/testing option, clearly labelled.
+Play Solo uses the same faction → start → difficulty sequence without opening a network listener. Multiple local slots remain a development/testing option, clearly labelled.
 
 Internet play requires the host address and TCP port to be reachable. A copied LAN address works only on that network. For remote friends use a reachable public endpoint with router/firewall configuration, or a private network/VPN. No router or firewall settings are changed automatically. There is no public lobby browser, relay, Steam invite integration, automatic NAT traversal, reconnect or host migration. These need a separate service/UX pass. Do not describe same-machine tests as verified internet play.
 

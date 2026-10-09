@@ -4,15 +4,17 @@ An original maze tower-defense prototype inspired by the cooperative mauls playe
 
 Built with Unity 6.3 LTS, C# and URP for Windows and Ubuntu Linux. Game code, procedural visuals and synthesized effects are original; no Warcraft III or Mega Man assets are included. The soundtrack uses attributed Scott Buckley tracks under CC BY 4.0; see THIRD-PARTY-NOTICES.md.
 
-**Current status:** playable solo/local prototype with direct host/join multiplayer. Online players share a lobby, choose factions and unique starts, vote difficulty, and vote pause/resume. Direct connections need a reachable host; relay/public matchmaking is not configured. See [online play](Docs/ONLINE-PLAY.md) for setup and tested scope.
+**Current status:** playable offline solo prototype with direct host/join multiplayer for LAN or reachable internet hosts. Same-computer multi-slot control is a testing mode. Online players share a lobby, choose factions and unique starts, vote difficulty, and vote pause/resume. Direct connections need a reachable host; relay/public matchmaking is not configured. See [online play](Docs/ONLINE-PLAY.md) for setup and tested scope.
 
-Latest checkpoint: tower portraits show weapon stats, missing owned champion requirements and exact gold shortfalls on hover; see [verification](Docs/TOWER-TOOLTIPS.md). Latest local packages are `Builds/Linux-TowerInfo/HowlForMaul` and `Builds/Windows-TowerInfo/HowlForMaul.exe`. Rimewatch retains the softer seamless snow from the [visual checkpoint](Docs/SNOW-READABILITY.md).
+Latest checkpoint: clearer Play Solo and Multiplayer / LAN menus; see [verification](Docs/MENU-CLARITY.md). Latest local packages are `Builds/Linux-Menu/HowlForMaul` and `Builds/Windows-Menu/HowlForMaul.exe`. Tower portraits include [weapon stats and owned champion requirements](Docs/TOWER-TOOLTIPS.md). Rimewatch retains the softer seamless snow from the [visual checkpoint](Docs/SNOW-READABILITY.md).
+
+Android/iOS remain future targets. Touch controls, phone UI and device builds are not implemented or verified; see [mobile status](Docs/MOBILE-STATUS.md).
 
 ## Play
 
 Open this project with **Unity 6000.3.25f1**, choose **Howl for Maul → Open game**, then press Play. The scene generates the selected map at runtime.
 
-Choose **Rimewatch** (three upper lanes) or **Ironfold** (four upper lanes), both reconstructed from the supplied map layouts. Every lane stays active at every player count. Start solo or create/join a lobby, then choose factions, starting positions and difficulty before spawning. The maps retain downstream defense areas and one bottom exit. Rimewatch is dressed with frost ferns and blue-flame lanterns; Ironfold has copper scrub and warm braziers. Decorative props stay on blocked terrain so the buildable map remains clear.
+Choose **Rimewatch** (three upper lanes) or **Ironfold** (four upper lanes), both reconstructed from the supplied map layouts. Every lane stays active at every player count. Choose **Play Solo** for offline play or **Multiplayer / LAN** to create/join a lobby, then choose factions, starting positions and difficulty before spawning. The maps retain downstream defense areas and one bottom exit. Rimewatch is dressed with frost ferns and blue-flame lanterns; Ironfold has copper scrub and warm braziers. Decorative props stay on blocked terrain so the buildable map remains clear.
 
 Solo starts with the full **1,200 gold** team budget. Two players receive 600 each, three receive 400 each, four receive 300 each. Kill income and wave rewards are split without losing integer remainders. Every enemy reaching the final exit removes one of 30 shared lives. Finish twenty waves with lives remaining to win. Waves 5, 10, 15 and 20 fly. Later waves alternate fast rushes, dense swarms and tough siege units. Before launching, a compact forecast shows AIR/GROUND, scaled health, enemy count and targeting counts. Click it for expanded faction-specific advice. The team defense count distinguishes air and ground targeting; it does not measure whether towers cover the route.
 
@@ -95,12 +97,14 @@ The headless runner executes pure simulation cases. Its optional `--balance` mod
 
 Use **Howl for Maul → Build Linux** or **Build Windows** for standard output directories. Windows requires the Windows Mono build module. The verified direct-online packages were built with explicit separate paths to preserve the running older player:
 
-- `Builds/Linux-TowerInfo/HowlForMaul` (latest runtime: compact tower information)
+- `Builds/Linux-Menu/HowlForMaul` (latest runtime: solo/LAN menu clarity)
+- `Builds/Linux-TowerInfo/HowlForMaul` (preserved tower information checkpoint)
 - `Builds/Linux-Snow/HowlForMaul` (preserved snow readability checkpoint)
 - `Builds/Linux-WavePreview/HowlForMaul` (preserved pre-wave forecast checkpoint)
 - `Builds/Linux-Online/HowlForMaul` (preserved direct-online checkpoint)
 - `Builds/Linux/HowlForMaul` (older preserved package)
-- `Builds/Windows-TowerInfo/HowlForMaul.exe` (latest runtime: compact tower information)
+- `Builds/Windows-Menu/HowlForMaul.exe` (latest runtime: solo/LAN menu clarity)
+- `Builds/Windows-TowerInfo/HowlForMaul.exe` (preserved tower information checkpoint)
 - `Builds/Windows-Snow/HowlForMaul.exe` (preserved snow readability checkpoint)
 - `Builds/Windows-WavePreview/HowlForMaul.exe` (preserved pre-wave forecast checkpoint)
 - `Builds/Windows-Online/HowlForMaul.exe` (preserved direct-online checkpoint)

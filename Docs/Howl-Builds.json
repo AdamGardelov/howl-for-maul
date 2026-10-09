@@ -1015,5 +1015,129 @@
       "Focused Unity tooltip test only; no new full-suite or performance claim",
       "Ownership regression disables builder travel for its paid prerequisite fixture; actual Linux purchase uses normal travel"
     ]
+  },
+  "menuClarityCheckpoint": {
+    "source": "1aad1870bb662c8d3144dab1e7b1faf7a22d44a2",
+    "builds": [
+      {
+        "status": "completed",
+        "buildId": "build_618800b852ea",
+        "result": "Succeeded",
+        "platform": "StandaloneLinux64",
+        "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Linux-Menu/HowlForMaul",
+        "totalSizeBytes": 105239664,
+        "buildTimeMs": 33596,
+        "buildStartedAt": "2026-10-09T04:28:43.4785190Z",
+        "buildEndedAt": "2026-10-09T04:29:17.0748570Z",
+        "totalWarnings": 1,
+        "totalErrors": 0,
+        "errors": [],
+        "warnings": [
+          {
+            "message": "Pipeline: No RuntimePipelineConfig asset found (Project Settings > Pipeline > Runtime). Pipeline will be disabled in Player builds."
+          }
+        ]
+      },
+      {
+        "status": "completed",
+        "buildId": "build_d8d9402a63bc",
+        "result": "Succeeded",
+        "platform": "StandaloneWindows64",
+        "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Windows-Menu/HowlForMaul.exe",
+        "totalSizeBytes": 108883320,
+        "buildTimeMs": 61970,
+        "buildStartedAt": "2026-10-09T04:30:03.2955410Z",
+        "buildEndedAt": "2026-10-09T04:31:05.2657510Z",
+        "totalWarnings": 19,
+        "totalErrors": 0,
+        "errors": [],
+        "warnings": [
+          {
+            "message": "Pipeline: No RuntimePipelineConfig asset found (Project Settings > Pipeline > Runtime). Pipeline will be disabled in Player builds."
+          },
+          {
+            "message": "Shader warning in 'TraceRays': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'RisEstimation': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceRenderingLayerMask': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'UniformEstimation': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceTransparentRays': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'DynamicGISkyOcclusion': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceRaysAndFetchAttributes': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'RestirCandidateTemporal': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceVirtualOffset': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'RestirCandidateTemporal': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceTransparentRays': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceRenderingLayerMask': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceRaysAndFetchAttributes': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'DynamicGISkyOcclusion': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceVirtualOffset': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceRays': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'RisEstimation': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'UniformEstimation': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          }
+        ]
+      }
+    ],
+    "linuxInput": {
+      "display": ":98",
+      "renderer": "llvmpipe OpenGL",
+      "resolution": [
+        1440,
+        900
+      ],
+      "exitCode": 0,
+      "checks": [
+        "Play Solo visible with map choice first",
+        "Multiplayer / LAN reveals complete Host/Join form",
+        "Two offline slots explicitly labeled local test; primary action updates",
+        "Return to Solo and complete faction/start/Normal setup",
+        "Solo starts with 1200 gold and all three Rimewatch lanes",
+        "Game-menu Quit exits zero"
+      ]
+    },
+    "dataSmoke": {
+      "bothMaps": true,
+      "exitCode": 0
+    },
+    "limits": [
+      "Windows runtime untested",
+      "Host/Join form inspected but no new connection or networking test",
+      "No new full Unity suite; UI wording/layout change checked by compilation and native input",
+      "No Android/iOS build, touch controls or real-device test"
+    ]
   }
 }
