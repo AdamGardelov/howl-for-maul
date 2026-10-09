@@ -79,8 +79,8 @@ namespace FrostMaze
             GUI.matrix=Matrix4x4.Scale(new Vector3(scale,scale,1));
             float width=Screen.width/scale,height=Screen.height/scale;
             var old=GUI.color;GUI.color=new Color(0,0,0,.65f);GUI.DrawTexture(new Rect(0,0,width,height),Texture2D.whiteTexture);GUI.color=old;
-            var box=new Rect((width-380)/2,(height-640)/2,380,640);Frame(box);
-            GUILayout.BeginArea(new Rect(box.x+24,box.y+18,332,604));
+            var box=new Rect((width-380)/2,(height-680)/2,380,680);Frame(box);
+            GUILayout.BeginArea(new Rect(box.x+24,box.y+18,332,644));
             GUILayout.Label("HOWL FOR MAUL",title);GUILayout.Label(game.NetworkMatch&&!OnlineGame.Current.LocalOnly?"GAME MENU · [P] votes to pause":"GAME MENU · match paused",section);GUILayout.Space(12);
             if(GUILayout.Button("RETURN TO GAME [ESC]",primary))game.ToggleMenu();
             if(game.NetworkMatch&&GUILayout.Button(game.Paused?"VOTE TO RESUME":"VOTE TO PAUSE",button))game.VotePause();
