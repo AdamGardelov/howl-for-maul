@@ -22,6 +22,7 @@ namespace FrostMaze.Tests
                 Assert.That(scenery.LandmarkPositions.Count,Is.EqualTo(3));Assert.That(scenery.Groves,Is.GreaterThan(8));
                 Assert.That(ambience.VoiceCount,Is.EqualTo(4));Assert.That(ambience.GetComponents<AudioSource>().Length,Is.EqualTo(1),"Only existing combat source belongs directly to prototype");
                 CollectionAssert.AreEqual(game.Map.Settings.LayoutRows,w.Config.LayoutRows,"Art must not change the supplied mask");
+                ValidateComposition(scenery,w.Config);
                 var rts=game.View.GetComponent<RtsCamera>();rts.SetInput(new StillCameraInput());
                 var anchor=scenery.LandmarkPositions[0];rts.FocusPoint(new V2(anchor.x,anchor.z));rts.SetZoom(8,true);
                 long frozen=w.Tick;yield return new WaitForSecondsRealtime(1);
@@ -63,6 +64,36 @@ namespace FrostMaze.Tests
                 foreach(var clip in owned)Assert.That(clip==null,Is.True,"Changing maps leaked ambient audio");
             }
             yield return new ExitPlayMode();
+        }
+        static bool SegmentHitsRect(Vector2 a,Vector2 b,Vector2 min,Vector2 max) {
+            float enter=0,exit=1;var delta=b-a;
+            for(int axis=0;axis<2;axis++) {
+                float at=axis==0?a.x:a.y,d=axis==0?delta.x:delta.y,lo=axis==0?min.x:min.y,hi=axis==0?max.x:max.y;
+                if(Mathf.Abs(d)<.00001f){if(at<lo||at>hi)return false;continue;}
+                float first=(lo-at)/d,last=(hi-at)/d;if(first>last){float swap=first;first=last;last=swap;}
+                enter=Mathf.Max(enter,first);exit=Mathf.Min(exit,last);if(enter>exit)return false;
+            }
+            return true;
+        }
+        static void ValidateComposition(MapScenery scenery,Scenario config) {
+            for(int batch=24;batch<=29;batch++) {
+                var prop=scenery.transform.Find("Scenery "+batch);if(prop==null)continue;
+                var mesh=prop.GetComponent<MeshFilter>().sharedMesh;var vertices=mesh.vertices;var triangles=mesh.triangles;
+                for(int i=0;i<triangles.Length;i+=3) {
+                    var a=vertices[triangles[i]];var b=vertices[triangles[i+1]];var c=vertices[triangles[i+2]];
+                    var min=new Vector2(Mathf.Min(a.x,b.x,c.x),Mathf.Min(a.z,b.z,c.z));var max=new Vector2(Mathf.Max(a.x,b.x,c.x),Mathf.Max(a.z,b.z,c.z));
+                    float cell=config.LayoutCellSize;
+                    for(int z=Mathf.FloorToInt(min.y/cell);z<=Mathf.FloorToInt(max.y/cell);z++)for(int x=Mathf.FloorToInt(min.x/cell);x<=Mathf.FloorToInt(max.x/cell);x++) {
+                        int row=config.LayoutRows.Length-1-z;Assert.That(row,Is.InRange(0,config.LayoutRows.Length-1));Assert.That(x,Is.InRange(0,config.LayoutRows[row].Length-1));
+                        Assert.That(config.WalkableSymbols.IndexOf(config.LayoutRows[row][x]),Is.LessThan(0),"Composed prop covers buildable terrain");
+                    }
+                    if(Mathf.Max(a.y,b.y,c.y)<1.35f)continue;
+                    foreach(var lane in config.Lanes) {
+                        var from=new Vector2(lane.Spawn.X,lane.Spawn.Y);
+                        foreach(var point in lane.FlightRoute){var to=new Vector2(point.X,point.Y);Assert.That(SegmentHitsRect(from,to,min-Vector2.one*.4f,max+Vector2.one*.4f),Is.False,"Tall composition intersects a flying unit corridor");from=to;}
+                    }
+                }
+            }
         }
         static void Capture(Camera camera,string path) {
             var rt=new RenderTexture(1440,900,24);var old=RenderTexture.active;var image=new Texture2D(1440,900,TextureFormat.RGB24,false);

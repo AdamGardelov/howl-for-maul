@@ -14,6 +14,20 @@ namespace FrostMaze
             foreach(var s in scenerySpaces)if(new Vector2(s.x-x,s.z-z).magnitude<radius+s.w+.3f)return false;
             return true;
         }
+        static bool FlightClear(Scenario c,float x,float z,float radius) {
+            // Tall props stay outside the swept flight corridor. Low plants can sit underneath it.
+            float clearance=radius*1.415f+.75f;
+            foreach(var lane in c.Lanes) {
+                var from=lane.Spawn;
+                foreach(var to in lane.FlightRoute) {
+                    float dx=to.X-from.X,dz=to.Y-from.Y;
+                    float t=Mathf.Clamp01(((x-from.X)*dx+(z-from.Y)*dz)/Mathf.Max(.0001f,dx*dx+dz*dz));
+                    if(new Vector2(x-from.X-dx*t,z-from.Y-dz*t).magnitude<clearance)return false;
+                    from=to;
+                }
+            }
+            return true;
+        }
         static void Beam(Batch b,Vector3 a,Vector3 end,float width) {
             var d=(end-a).normalized;var s=Vector3.Cross(d,Vector3.forward).normalized*width;var t=Vector3.Cross(d,s).normalized*width;
             b.Quad(a-s-t,a+s-t,end+s-t,end-s-t);b.Quad(a+s+t,a-s+t,end-s+t,end+s+t);
@@ -41,7 +55,7 @@ namespace FrostMaze
             foreach(var target in targets) {
                 Vector3 best=default;float score=float.MaxValue;
                 for(float z=3;z<c.Height-3;z+=c.LayoutCellSize)for(float x=3;x<c.Width-3;x+=c.LayoutCellSize) {
-                    if(!ScenicFootprint(c,x,z,2.25f*landmarkScale)||!SpaceFree(x,z,3*landmarkScale))continue;
+                    if(!ScenicFootprint(c,x,z,2.25f*landmarkScale)||!SpaceFree(x,z,3*landmarkScale)||!FlightClear(c,x,z,2.25f*landmarkScale))continue;
                     float distance=(new Vector2(x/c.Width,z/c.Height)-target).sqrMagnitude;
                     if(distance<score){score=distance;best=new Vector3(x,y,z);}
                 }
@@ -90,13 +104,29 @@ namespace FrostMaze
                 fireAnchors.Add(new Vector3(x0+(hx-x0)*landmarkScale,y+.45f,z0+(hz-z0)*landmarkScale));Braziers++;
                 Fit(starts,x0,z0,landmarkScale);
             }
-            float spacing=ice?4:2.5f;
+            float spacing=ice?4:2.25f;
             for(int iz=0;iz<Mathf.CeilToInt((c.Height-4)/spacing);iz++)for(int ix=0;ix<Mathf.CeilToInt((c.Width-4)/spacing);ix++) {
                 int seed=ix*37+iz*71;float x=2+ix*spacing+Mathf.Sin(seed)*.8f,z=2+iz*spacing+Mathf.Cos(seed)*.8f;
                 if(!ScenicFootprint(c,x,z,1.8f*groveScale)||!SpaceFree(x,z,1.8f*groveScale))continue;
                 bool border=!ScenicFootprint(c,x,z,3.6f);if(!border&&seed%3!=0)continue;
                 scenerySpaces.Add(new Vector4(x,y,z,1.8f*groveScale));Groves++;
                 var starts=Starts();
+                if(!FlightClear(c,x,z,1.8f*groveScale)) {
+                    // Groundcover and stones beneath air routes, with no compressed tree silhouettes.
+                    Mound(b[24],x,z,y+.01f,1.43f,.06f,seed);
+                    Mound(b[25],x+.55f,z-.35f,y+.02f,.5f,.28f,seed);
+                    if(ice)Mound(b[28],x+.55f,z-.35f,y+.22f,.35f,.08f,seed);
+                    for(int shrub=0;shrub<3;shrub++) {
+                        float a=seed+shrub*2.1f,sx=x+Mathf.Cos(a)*.7f,sz=z+Mathf.Sin(a)*.7f;
+                        Mound(b[27],sx,sz,y+.04f,.4f,.18f,seed+shrub);
+                        for(int leaf=0;leaf<5;leaf++) {
+                            float angle=a+leaf*1.25f;
+                            var root=new Vector3(sx,y+.08f,sz);
+                            Leaf(b[27],root,root+new Vector3(Mathf.Cos(angle)*.42f,.3f,Mathf.Sin(angle)*.42f),.11f);
+                        }
+                    }
+                    Fit(starts,x,z,groveScale);continue;
+                }
                 Mound(b[24],x,z,y+.01f,1.43f,.35f,seed);
                 Mound(b[25],x+.5f,z-.35f,y+.05f,.62f,.78f,seed);
                 if(ice)Mound(b[28],x+.5f,z-.35f,y+.62f,.46f,.26f,seed);
