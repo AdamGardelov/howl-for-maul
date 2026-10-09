@@ -23,7 +23,7 @@ namespace FrostMaze
                     bool iron=name=="Ironfold";
                     if(asset.Settings.StartingGold!=(iron?2200:240)||asset.Settings.Waves[0].KillGold!=1||asset.Settings.Waves[19].KillGold!=5||asset.Settings.Waves[0].ClearGold!=56||asset.Settings.Waves[iron?13:8].WoodReward!=4)
                         throw new Exception("Stale packaged gold/wood progression: "+name);
-                    if(iron&&(asset.Settings.Catalog[6].Cost!=750||asset.Settings.Catalog[6].WoodCost!=1))throw new Exception("Stale champion costs");
+                    if(iron&&(asset.Settings.Catalog[6].Cost!=750||asset.Settings.Catalog[6].WoodCost!=1||asset.Settings.Catalog[6].Spec.Damage<300||asset.Settings.Catalog[6].Spec.Health!=480))throw new Exception("Stale champion costs");
                     if(!iron&&!asset.Settings.FactionWoodUnlocks)throw new Exception("Missing faction wood unlocks");
                     var smoke=Resources.Load<Material>("HearthSmoke");if(smoke==null||smoke.shader==null)throw new Exception("Missing packaged hearth shader");
                     var world=new World(JsonUtility.FromJson<Scenario>(JsonUtility.ToJson(asset.Settings)));world.TowersFire=false;
@@ -33,7 +33,7 @@ namespace FrostMaze
                     }
                     for(int i=0;i<9000&&world.Enemies.Count>0;i++)world.Step();
                     if(world.Leaked!=world.LaneCount*2)throw new Exception("Packaged map route stalled: "+name);
-                    Debug.Log("HOWL_SMOKE_PASS "+name+" lanes="+world.LaneCount+" factions="+world.Config.Factions.Length+" towers="+world.Config.Catalog.Length+" waves="+world.Config.Waves.Length);
+                    Debug.Log("HOWL_SMOKE_PASS "+name+" lanes="+world.LaneCount+" factions="+world.Config.Factions.Length+" towers="+world.Config.Catalog.Length+" waves="+world.Config.Waves.Length+" startingGold="+world.Config.StartingGold+" woodAfterWave="+(iron?14:9));
                 }
                 Debug.Log("HOWL_SMOKE_COMPLETE");Application.Quit(0);
             }catch(Exception e){Debug.LogException(e);Application.Quit(1);}

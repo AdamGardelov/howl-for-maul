@@ -39,9 +39,9 @@ MonoBehaviour:
         champion.
       Designs: 1c0000001d0000001e0000001f000000200000002100000022000000
     - Name: Scrap Frontier
-      Description: Seven-gold armed walls and 90% regular-tower refunds. Rebuild flexible
-        mazes; modest damage needs investment. Build all six regular designs to unlock
-        the champion.
+      Description: Seven-gold armed walls and 90% regular-tower refunds. Rebuild
+        flexible mazes; modest damage needs investment. Build all six regular designs
+        to unlock the champion.
       Designs: 23000000240000002500000026000000270000002800000029000000
     - Name: Overdrive Order
       Description: Heavy short-range hits and a freezing opener. Fold the route close
@@ -3533,8 +3533,8 @@ MonoBehaviour:
         Width: 1
         Height: 1
         Fill: 0.86
-        Health: 240
-        Damage: 112
+        Health: 480
+        Damage: 336
         Interval: 0.55
         Range: 4
         SplashRadius: 0
@@ -3681,8 +3681,8 @@ MonoBehaviour:
         Width: 1
         Height: 1
         Fill: 0.86
-        Health: 240
-        Damage: 154
+        Health: 480
+        Damage: 462
         Interval: 1
         Range: 4
         SplashRadius: 0
@@ -3829,8 +3829,8 @@ MonoBehaviour:
         Width: 1
         Height: 1
         Fill: 0.86
-        Health: 240
-        Damage: 140
+        Health: 480
+        Damage: 420
         Interval: 0.8
         Range: 4
         SplashRadius: 0
@@ -3977,8 +3977,8 @@ MonoBehaviour:
         Width: 1
         Height: 1
         Fill: 0.86
-        Health: 240
-        Damage: 140
+        Health: 480
+        Damage: 420
         Interval: 0.8
         Range: 5.5
         SplashRadius: 0
@@ -4125,8 +4125,8 @@ MonoBehaviour:
         Width: 1
         Height: 1
         Fill: 0.86
-        Health: 240
-        Damage: 168
+        Health: 480
+        Damage: 504
         Interval: 1
         Range: 4
         SplashRadius: 0
@@ -4273,8 +4273,8 @@ MonoBehaviour:
         Width: 1
         Height: 1
         Fill: 0.86
-        Health: 240
-        Damage: 140
+        Health: 480
+        Damage: 420
         Interval: 0.8
         Range: 4
         SplashRadius: 0
@@ -4421,8 +4421,8 @@ MonoBehaviour:
         Width: 1
         Height: 1
         Fill: 0.86
-        Health: 240
-        Damage: 231
+        Health: 480
+        Damage: 693
         Interval: 1.2
         Range: 3.5
         SplashRadius: 0
@@ -4569,8 +4569,8 @@ MonoBehaviour:
         Width: 1
         Height: 1
         Fill: 0.86
-        Health: 240
-        Damage: 140
+        Health: 480
+        Damage: 420
         Interval: 0.8
         Range: 4
         SplashRadius: 0

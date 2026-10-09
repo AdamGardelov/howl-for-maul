@@ -16,6 +16,7 @@ namespace FrostMaze.Simulation
             }
             if(iron)for(int f=0;f<c.Factions.Length;f++) {
                 var champion=c.Catalog[f*7+6];champion.Cost=750;champion.Refund=562;champion.WoodCost=1;
+                champion.Spec.Damage*=3;champion.Spec.Health*=2;
                 champion.Description+=" · 1 wood, earned after wave 14";
             }
             else for(int f=0;f<c.Factions.Length;f++) {

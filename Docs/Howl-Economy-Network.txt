@@ -1,11 +1,10 @@
-/home/adam/Documents/Dev/howl-for-maul/Assets/Game/Simulation/Online/Protocol.cs(38,78): warning SYSLIB0060: 'Rfc2898DeriveBytes.Rfc2898DeriveBytes(string, byte[], int, HashAlgorithmName)' is obsolete: 'The constructors on Rfc2898DeriveBytes are obsolete. Use the static Pbkdf2 method instead.' (https://aka.ms/dotnet-warnings/SYSLIB0060) [/home/adam/Documents/Dev/howl-for-maul/Headless/HowlForMaul.Headless.csproj]
 PASS synchronized wood reward, locked faction refusal, authenticated ownership and free roster switching
 PASS all four solo speeds: pacing, invalid requests, pause and identical paid combat at tick 300
 PASS wrong password and mismatched game data refused
 PASS unique lane reservation, tied difficulty, 80-gold wallets, majority and expiring pause votes
 PASS capacity four, late join rejection, 60-gold wallets, malformed coordinates and three-of-four vote
 PASS Rimewatch two-process session, all 3 lanes, paid wallets, authority and disconnect recovery
-PASS remote paid build, owner isolation, shared 3x/0.5x, pause/resume and 620 ordered ticks; BEj6BqTr9dVq09JPPCT/zF2p28n9SPYHQw65+fcRZ5w=
+PASS remote paid build, owner isolation, shared 3x/0.5x, pause/resume and 620 ordered ticks; R18czd+7Eajb5uGJvksyy3eVuWcRq0NutmTSRV4Wb5M=
 
 PASS Ironfold two-process session, all 4 lanes, paid wallets, authority and disconnect recovery
 PASS remote paid build, owner isolation, shared 3x/0.5x, pause/resume and 620 ordered ticks; tMxPGSOPUxrkNXjffEQK0Jsql3FyQ9X9alF4diLsdF4=

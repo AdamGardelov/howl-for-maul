@@ -50,6 +50,7 @@ namespace FrostMaze.Tests
                 Check(built,"Prerequisite placement");
             }
             paid.SelectedDesign=6;Check(paid.BuildWoodCost==1&&paid.BuildCost==750,"Reference champion cost");
+            Check(paid.BuildSpec.Damage>300&&paid.BuildSpec.Health==480,"Wood champion lost its increased combat value");
             Check(!paid.OrderBuild(30,6,out reason)&&reason.Contains("wood"),"Wood gate missing");
             paid.Players[0].Wood=1;int gold=paid.Gold;int orders=0;
             for(int y=3;y<20&&orders<2;y++)for(int x=10;x<55&&orders<2;x++)if(paid.OrderBuild(x,y,out reason,orders>0))orders++;
