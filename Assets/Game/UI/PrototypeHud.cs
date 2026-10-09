@@ -102,8 +102,8 @@ namespace FrostMaze
             if(GUILayout.Button(w.Finished?"MATCH COMPLETE":w.WaveActive?"WAVE IN PROGRESS":"LAUNCH WAVE "+(w.WaveIndex+2)+"     [ENTER]",primary))game.Launch();
             GUI.enabled=true;
             GUILayout.BeginHorizontal();if(GUILayout.Button(game.Paused?"Resume [P]":"Pause [P]",button))game.VotePause();
-            DrawSpeedControls();
             if(GUILayout.Button(w.Finished?"New match":"Setup",button))game.OpenSetup();GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal();DrawSpeedControls();GUILayout.EndHorizontal();
             if(feedback!=null&&feedback.RecentLeaks>0) {
                 if(GUILayout.Button($"EXIT BREACHED · {feedback.RecentLeaks} leaked\nView exit",alertButton))game.FocusExit();
             } else GUILayout.Label(game.Notice,small);
@@ -223,7 +223,7 @@ namespace FrostMaze
             game.SetupOptions.PlayerCount=GUILayout.SelectionGrid(game.SetupOptions.PlayerCount-1,new[]{"Solo","2","3","4"},4,button)+1;
             GUILayout.Label("Solo works offline. For friends on separate computers, choose Multiplayer / LAN below.",small);
             GUILayout.Space(10);
-            if(game.SetupOptions.PlayerCount==1){GUILayout.Label("Play Solo to choose your faction, starting position and difficulty. You receive the full team gold budget; every lane stays active.",label);return;}
+            if(game.SetupOptions.PlayerCount==1){GUILayout.Label("Play Solo to choose your faction and difficulty. You start at Last Stand with the full team gold budget; every lane stays active.",label);return;}
             GUILayout.Label("LOCAL SLOT TEST · one keyboard and mouse. Switch control with P1–P4; these slots are not separate players joining your game.",small);
             GUILayout.Label("DIFFICULTY",section);
             game.SetupOptions.Difficulty=(Difficulty)GUILayout.SelectionGrid((int)game.SetupOptions.Difficulty,new[]{"Relaxed","Normal","Hard"},1,button);

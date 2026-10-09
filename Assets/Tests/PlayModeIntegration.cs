@@ -208,18 +208,16 @@ namespace FrostMaze.Tests
             yield return new ExitPlayMode();
         }
         [UnityTest, Category("OnlineSetup")]
-        public IEnumerator SoloStagedSetupUsesChosenStartMusicAndAuthoritativeTicks()
+        public IEnumerator SoloStagedSetupUsesLastStandMusicAndAuthoritativeTicks()
         {
             EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");yield return new EnterPlayMode();yield return null;
             var game=Object.FindFirstObjectByType<Prototype>();game.BeginSolo();var net=OnlineGame.Current.Session;
             Assert.That(net.Stage,Is.EqualTo(FrostMaze.Simulation.Online.Stage.Factions));
             net.Send(new FrostMaze.Simulation.Online.Packet{Kind=FrostMaze.Simulation.Online.Kind.Faction,A=2});net.Send(new FrostMaze.Simulation.Online.Packet{Kind=FrostMaze.Simulation.Online.Kind.Ready});
-            Assert.That(net.Stage,Is.EqualTo(FrostMaze.Simulation.Online.Stage.Lanes));
-            net.Send(new FrostMaze.Simulation.Online.Packet{Kind=FrostMaze.Simulation.Online.Kind.Lane,A=4});net.Send(new FrostMaze.Simulation.Online.Packet{Kind=FrostMaze.Simulation.Online.Kind.Ready});
             Assert.That(net.Stage,Is.EqualTo(FrostMaze.Simulation.Online.Stage.Difficulty));
             net.Send(new FrostMaze.Simulation.Online.Packet{Kind=FrostMaze.Simulation.Online.Kind.Difficulty,A=1});yield return null;yield return null;
             Assert.That(game.World,Is.SameAs(net.World));Assert.That(game.World.Players[0].Faction,Is.EqualTo(2));
-            Assert.That(game.World.BuilderPosition,Is.EqualTo(game.World.Config.BuilderStarts[4]));Assert.That(game.World.Gold,Is.EqualTo(game.World.Config.StartingGold));
+            Assert.That(game.World.BuilderPosition,Is.EqualTo(game.World.Config.BuilderStarts[7]));Assert.That(game.World.Gold,Is.EqualTo(game.World.Config.StartingGold));
             Assert.That(game.World.LaneCount,Is.EqualTo(3));Assert.That(game.SetupOpen,Is.False);
             Assert.That(game.Speed,Is.EqualTo(1));game.SetSpeedIndex(3);Assert.That(game.Speed,Is.EqualTo(3));
             long fastStart=game.World.Tick;yield return new WaitForSecondsRealtime(.25f);Assert.That(game.World.Tick-fastStart,Is.GreaterThan(8));

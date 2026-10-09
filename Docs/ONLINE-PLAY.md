@@ -10,9 +10,9 @@ The latest user request explicitly supersedes the original networking deferral. 
 4. Everyone votes difficulty. Most votes wins; Normal wins a tied Normal vote, otherwise Relaxed wins the tie. The match starts automatically after all votes.
 5. P starts or joins a pause/resume vote. A strict majority of connected players is required. Votes expire after 20 seconds. One player can pause/resume immediately.
 
-During a match the host controls shared speed with the visible − / + buttons or keyboard shortcuts: 0.5×, 1×, 2× and 3×. Everyone sees the selected speed; other players cannot change it. Pause/resume still uses the majority vote, and its 20-second timeout uses real time. New matches start at 1×. All participants must use the same updated build (protocol howl-direct-2); older packages are incompatible.
+During a match the host controls shared speed with the visible − / + buttons or keyboard shortcuts: 0.5×, 1×, 2× and 3×. Everyone sees the selected speed; other players cannot change it. Pause/resume still uses the majority vote, and its 20-second timeout uses real time. New matches start at 1×. All participants must use the same updated build (protocol howl-direct-3); older packages are incompatible.
 
-Play Solo uses the same faction → start → difficulty sequence without opening a network listener. Multiple local slots remain a development/testing option, clearly labelled.
+Play Solo uses faction → difficulty without opening a network listener. It automatically assigns Last Stand. A one-person hosted session also skips lane selection; two or more players still choose unique starts. Multiple local slots remain a development/testing option, clearly labelled.
 
 Internet play requires the host address and TCP port to be reachable. A copied LAN address works only on that network. For remote friends use a reachable public endpoint with router/firewall configuration, or a private network/VPN. No router or firewall settings are changed automatically. There is no public lobby browser, relay, Steam invite integration, automatic NAT traversal, reconnect or host migration. These need a separate service/UX pass. Do not describe same-machine tests as verified internet play.
 
@@ -20,7 +20,7 @@ Internet play requires the host address and TCP port to be reachable. A copied L
 
 The host orders actions and fixed simulation ticks. Clients apply that stream, never their own simulation clock. Commands use the authenticated peer's player slot; client-supplied player numbers are ignored. Existing World validation protects faction rosters, gold, build legality and tower ownership. Local toolbar selection remains local; build orders carry their chosen design. Map/rules fingerprints reject mismatches before play. Periodic state digests stop a desynchronized client rather than silently continuing.
 
-All lanes remain active. 1,200 starting gold is split over one to four players. Choosing a solo starting position now takes effect. Camera, menus, sound settings and tower selection stay local. An online settings menu does not pause everyone; use the vote button. The solo menu freezes the solo simulation.
+All lanes remain active. Rimewatch splits 240 starting team gold and Ironfold splits 2,200 over one to four players, preserving integer remainders. Solo receives the full budget and starts at Last Stand. Camera, menus, sound settings and tower selection stay local. An online settings menu does not pause everyone; use the vote button. The solo menu freezes the solo simulation.
 
 A disconnected participant is marked absent and the match pauses. The remaining connected players can vote to resume. Existing towers and wallets stay assigned to their original slots; there is no leaver redistribution or replacement joining. If the host exits, clients stop and return through Leave Match. During setup, a departure resets the group to the lobby. Host can kick; late joins are refused after setup begins.
 
@@ -38,7 +38,7 @@ Four-player follow-up passes capacity/late-join rejection, 300-gold wallets, non
 
 Initial packaged probe failed because its artificial fixed increment advanced connection timeouts faster than wall time in an uncapped player. The opt-in probe now uses actual unscaled elapsed time and a 60 FPS target. This was a probe-only correction; the normal game already used unscaled elapsed time. The corrected rerun is recorded below.
 
-## Packaged source 0ca580c
+## Historical packaged source 0ca580c
 
 Linux-Online and Windows-Online builds succeeded with zero errors. Corrected packaged multiplayer probes passed on both maps: two actual Unity processes per map, authenticated lobby/setup, two paid purchases from separate wallets, active waves and ordered state digests, majority pause/resume, departure pause and remaining-player recovery. Both clients and both hosts exited zero. Both-map data/route smoke passed on isolated display :98, exit zero. The earlier failed probe is recorded in ONLINE-PLAY.md and is not counted as a pass.
 

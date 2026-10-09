@@ -16,17 +16,17 @@ namespace FrostMaze
         {
             var w=game.World;var matrix=GUI.matrix;float scale=game.UiScale;
             GUI.matrix=Matrix4x4.Scale(new Vector3(scale,scale,1));
-            var top=Logical(game.TopHud);Frame(top);
+            var top=Logical(game.TopHud);Frame(top);bool narrow=top.width<1260;
             GUILayout.BeginArea(new Rect(top.x+10,top.y+8,top.width-20,top.height-12));GUILayout.BeginHorizontal();
-            GUILayout.Label("HOWL FOR MAUL",section,GUILayout.Width(138));
-            if(GUILayout.Button("MENU [ESC]",button,GUILayout.Width(104)))game.ToggleMenu();
-            if(GUILayout.Button("DETAILS [TAB]",button,GUILayout.Width(108)))game.DetailsOpen=true;
+            GUILayout.Label(narrow?"HOWL":"HOWL FOR MAUL",section,GUILayout.Width(narrow?66:138));
+            if(GUILayout.Button("MENU [ESC]",button,GUILayout.Width(narrow?88:104)))game.ToggleMenu();
+            if(GUILayout.Button("DETAILS [TAB]",button,GUILayout.Width(narrow?94:108)))game.DetailsOpen=true;
             if(GUILayout.Button(game.Paused?"RESUME [P]":"PAUSE [P]",button,GUILayout.Width(100)))game.VotePause();
             GUI.enabled=!w.Finished&&!w.WaveActive;
-            if(GUILayout.Button(w.Finished?(w.Won?"VICTORY":"DEFEAT"):w.WaveActive?"WAVE ACTIVE":"NEXT WAVE [ENTER]",button,GUILayout.Width(148)))game.Launch();
+            if(GUILayout.Button(w.Finished?(w.Won?"VICTORY":"DEFEAT"):w.WaveActive?"WAVE ACTIVE":"NEXT WAVE [ENTER]",button,GUILayout.Width(narrow?134:148)))game.Launch();
             GUI.enabled=true;DrawSpeedControls();GUILayout.FlexibleSpace();
             if(!game.NetworkMatch&&w.Players.Length>1&&GUILayout.Button($"P{w.ActivePlayer+1}",button,GUILayout.Width(40)))w.SelectPlayer((w.ActivePlayer+1)%w.Players.Length);
-            GUILayout.Label($"{w.Gold}g · {w.Wood} WOOD · {w.Lives} LIVES · WAVE {Mathf.Max(0,w.WaveIndex+1)}/{w.Config.Waves.Length}",section,GUILayout.Width(310));
+            DrawResourceCounters(w,narrow);
             GUILayout.EndHorizontal();GUILayout.EndArea();
             DrawForecast();
             Frame(Logical(game.MinimapPanel));
@@ -63,20 +63,29 @@ namespace FrostMaze
             if(GUI.Button(new Rect(box.x+18+width,box.y+56,width,28),$"REMOVE · +{w.SaleRefund(tower.Id)}g",button))game.SellTower(tower.CellX,tower.CellY);
             GUI.enabled=true;if(GUI.Button(new Rect(box.xMax-30,box.y+7,22,22),"×",button))game.SelectedTowerId=0;
         }
+        GUIStyle speedChoice,speedActive,speedCaption;
         void DrawSpeedControls()
         {
-            if(game.NetworkMatch&&!game.Net.IsHost)
-            {
-                GUILayout.Label("SPEED "+FrostMaze.Simulation.Online.MatchSpeeds.Label(game.SpeedIndex)+" · HOST",section,GUILayout.Width(120));
-                return;
+            if(speedChoice==null){
+                speedChoice=new GUIStyle(button){fixedHeight=0,margin=new RectOffset(),padding=new RectOffset(),alignment=TextAnchor.MiddleCenter,fontSize=12};
+                speedActive=new GUIStyle(speedChoice){fontStyle=FontStyle.Bold};speedActive.normal.background=selectedCard.normal.background;speedActive.normal.textColor=new Color(1,.9f,.62f);
+                speedCaption=new GUIStyle(small){alignment=TextAnchor.MiddleCenter,wordWrap=false,padding=new RectOffset()};
             }
-            GUI.enabled=game.CanChangeSpeed&&game.SpeedIndex>0;
-            if(GUILayout.Button("−",button,GUILayout.Width(28)))game.ChangeSpeed(-1);
-            GUI.enabled=true;
-            GUILayout.Label(FrostMaze.Simulation.Online.MatchSpeeds.Label(game.SpeedIndex),section,GUILayout.Width(42));
-            GUI.enabled=game.CanChangeSpeed&&game.SpeedIndex<FrostMaze.Simulation.Online.MatchSpeeds.Count-1;
-            if(GUILayout.Button("+",button,GUILayout.Width(28)))game.ChangeSpeed(1);
-            GUI.enabled=true;
+            var box=GUILayoutUtility.GetRect(204,30,GUILayout.Width(204),GUILayout.Height(30));
+            GUI.Box(box,GUIContent.none,card);
+            bool guest=game.NetworkMatch&&!game.Net.IsHost;
+            GUI.Label(new Rect(box.x+2,box.y+1,42,28),guest?"HOST":"SPEED",speedCaption);
+            bool enabled=GUI.enabled;
+            for(int i=0;i<FrostMaze.Simulation.Online.MatchSpeeds.Count;i++){
+                var tile=new Rect(box.x+45+i*39,box.y+3,38,24);bool selected=i==game.SpeedIndex;
+                string text=FrostMaze.Simulation.Online.MatchSpeeds.Label(i);
+                GUI.enabled=enabled&&game.CanChangeSpeed;
+                if(guest){GUI.enabled=enabled;GUI.Box(tile,new GUIContent(text,"The host controls the shared match speed."),selected?speedActive:speedChoice);}
+                else if(GUI.Button(tile,new GUIContent(text,"Set match speed to "+text+". Keyboard: − / +."),selected?speedActive:speedChoice))game.SetSpeedIndex(i);
+                GUI.enabled=enabled;
+                if(selected){var color=GUI.color;GUI.color=new Color(.86f,.71f,.38f);GUI.DrawTexture(new Rect(tile.x+6,tile.yMax-3,tile.width-12,2),Texture2D.whiteTexture);GUI.color=color;}
+            }
+            GUI.enabled=enabled;
         }
         void DrawPauseMenu()
         {
@@ -96,8 +105,8 @@ namespace FrostMaze
             GUILayout.Label("Effects volume",small);game.EffectsVolume=GUILayout.HorizontalSlider(game.EffectsVolume,0,1);
             GUILayout.Label("Music volume",small);game.MusicVolume=GUILayout.HorizontalSlider(game.MusicVolume,0,1);
             if(GUILayout.Button("RESET CAMERA ANGLE [R]",button))game.ResetView();
-            GUILayout.Label("Snowfall / Signal to Noise\nScott Buckley · CC BY 4.0 · scottbuckley.com.au",small);
-            if(GUILayout.Button("MUSIC CREDITS",button))Application.OpenURL("https://www.scottbuckley.com.au/library/");
+            GUILayout.Label("\""+(game.World.Config.Theme=="iron"?"Signal to Noise":"Snowfall")+"\" by Scott Buckley\nCC BY 4.0 · scottbuckley.com.au",small);
+            if(GUILayout.Button("MUSIC & LICENSE CREDITS",button))Application.OpenURL("https://www.scottbuckley.com.au/library/"+(game.World.Config.Theme=="iron"?"signal-to-noise/":"snowfall/"));
             game.ShowGrid=GUILayout.Toggle(game.ShowGrid,"Placement grid",button);
             GUILayout.BeginHorizontal();DrawSpeedControls();GUILayout.EndHorizontal();
             if(game.NetworkMatch&&!game.Net.IsHost)GUILayout.Label("The host controls the shared game speed.",small);

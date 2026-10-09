@@ -76,11 +76,35 @@ static class NetworkChecks
             Console.WriteLine("PASS capacity four, late join rejection, 60-gold wallets, malformed coordinates and three-of-four vote");
         }finally{foreach(var c in clients)c.Dispose();}
     }}
+    static void SoloLastStand(){
+        foreach(string map in new[]{"Rimewatch","Ironfold"}){
+            var config=Map(map);
+            for(int faction=0;faction<config.Factions.Length;faction++)using(var session=New()){
+                session.Solo(map,"Solo");
+                session.Send(new Packet{Kind=Kind.Lane,A=0});
+                session.Send(new Packet{Kind=Kind.Ready});Check(session.Stage==Stage.Factions,"Ready advanced without a faction");
+                session.Send(new Packet{Kind=Kind.Faction,A=faction});session.Send(new Packet{Kind=Kind.Ready});
+                Check(session.Stage==Stage.Difficulty,"Solo did not skip lane selection");
+                session.Send(new Packet{Kind=Kind.Lane,A=0});session.Send(new Packet{Kind=Kind.Difficulty,A=2});
+                Check(session.World.BuilderPosition.Equals(config.BuilderStarts[7]),"Solo did not start at Last Stand");
+                Check(session.World.Gold==config.StartingGold&&session.World.LaneCount==config.Lanes.Length,"Solo lost team budget or active lanes");
+                Check(session.World.Players[0].Faction==faction&&session.World.Difficulty==Difficulty.Hard,"Solo lost chosen faction/difficulty");
+                Check(session.Port==0,"Offline solo opened a network listener");
+            }
+            using(var host=New()){
+                host.Host(map,"Alone","",0);host.Send(new Packet{Kind=Kind.Ready});host.Send(new Packet{Kind=Kind.Begin});
+                host.Send(new Packet{Kind=Kind.Faction,A=0});host.Send(new Packet{Kind=Kind.Ready});
+                Check(host.Stage==Stage.Difficulty,"One-person hosted game did not skip lanes");
+                host.Send(new Packet{Kind=Kind.Difficulty,A=1});Check(host.World.BuilderPosition.Equals(config.BuilderStarts[7]),"One-person host did not use Last Stand");
+            }
+        }
+        Console.WriteLine("PASS all twelve solo factions: no lane step, Last Stand, full wallet, all lanes; one-person hosts too");
+    }
     static void SoloSpeedClocks(){
         string expected=null;
         for(int index=0;index<MatchSpeeds.Count;index++)using(var session=New()) {
             session.Solo("Rimewatch","Solo");session.Send(new Packet{Kind=Kind.Faction,A=0});session.Send(new Packet{Kind=Kind.Ready});
-            session.Send(new Packet{Kind=Kind.Lane,A=7});session.Send(new Packet{Kind=Kind.Ready});session.Send(new Packet{Kind=Kind.Difficulty,A=1});
+            session.Send(new Packet{Kind=Kind.Difficulty,A=1});
             Check(session.World!=null&&session.Speed==1,"New match did not reset to normal speed");
             session.Send(new Packet{Kind=Kind.Speed,A=index});Check(session.Speed==MatchSpeeds.At(index),"Valid solo speed rejected");
             session.Send(new Packet{Kind=Kind.Speed,A=-1});session.Send(new Packet{Kind=Kind.Speed,A=99});Check(session.SpeedIndex==index,"Invalid speed accepted");
@@ -117,5 +141,5 @@ static class NetworkChecks
             Console.WriteLine("PASS synchronized wood reward, locked faction refusal, authenticated ownership and free roster switching");
         }
     }
-    public static int Run(){try{WoodFactionCommands();SoloSpeedClocks();Refusals();VotesAndLanes();CapacityAndValidation();Pair("Rimewatch");Pair("Ironfold");return 0;}catch(Exception e){Console.Error.WriteLine(e);return 1;}}
+    public static int Run(){try{SoloLastStand();WoodFactionCommands();SoloSpeedClocks();Refusals();VotesAndLanes();CapacityAndValidation();Pair("Rimewatch");Pair("Ironfold");return 0;}catch(Exception e){Console.Error.WriteLine(e);return 1;}}
 }

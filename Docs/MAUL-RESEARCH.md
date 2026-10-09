@@ -14,7 +14,7 @@ Rimewatch offers four original builder factions before spawning. Rime Covenant o
 
 All three Rimewatch lanes and all four Ironfold lanes remain active. One shared team budget is split among the active player slots. Towers can be built on any legal open terrain. Complete blockage triggers enemy siege, while congestion alone does not. Flying waves occur every fifth round.
 
-The current playable campaign is twenty waves, with the original opening ten preserved. Thirty-five-wave progression, late-game lumber/research, armor tables, second-faction unlocks and hero leveling are **not implemented**. They need deliberate balancing and clearer version evidence; no hidden assumptions are presented as historical facts. The latest user request supersedes the original online deferral; see ONLINE-PLAY.md.
+The current playable campaign is twenty waves, with the original opening ten preserved. Thirty-five-wave progression, armor tables and hero leveling are **not implemented**. Milestone wood now unlocks extra Rimewatch rosters or Ironfold champions; see MAUL-ECONOMY-IMPLEMENTED.md. They need deliberate balancing and clearer version evidence; no hidden assumptions are presented as historical facts. The latest user request supersedes the original online deferral; see ONLINE-PLAY.md.
 
 ## Layout interpretation awaiting later user review
 
@@ -22,7 +22,7 @@ The current playable campaign is twenty waves, with the original opening ten pre
 - Rimewatch keeps all blocked cells, including the lower plug. Its exit sits in the last reachable central channel immediately above that plug. Confirm the intended terminal area later.
 - Ironfold uses half-unit source cells, preserving its 128×128 geometry in a 64×64 world. Player tower footprints remain one world unit.
 - Sealed top and side pockets are scenery. Spawns occupy the walkable tops of the three/four lanes, following the user's explicit direction rather than guessed marker meanings.
-- Both maps have eight selectable builder starts. Solo receives the full team wallet and chooses its start during setup. Older local test fixtures retain the legacy downstream default.
+- Both maps have eight selectable builder starts. Solo receives the full team wallet and automatically starts at Last Stand; lane selection is for multiplayer. Some diagnostic fixtures deliberately choose other starts.
 - Character-like technology towers are original silhouettes and names; no Warcraft or Mega Man models, sounds, icons or extracted map data are shipped.
 - Area protection is not imposed: the user authorized building throughout the shared map. Local slot switching remains a testing option; direct host/join sessions now bind players to authenticated slots (see ONLINE-PLAY.md).
 
@@ -34,4 +34,4 @@ Research archive SHA-256: `305e39b0029636b85005cc15ccdfff7ad7012658c52ea29fe350f
 
 ## Economy audit — 2026-10-09
 
-[Historical economy comparison](MAUL-ECONOMY.md) records inspected archive values and per-wave bounty tables: Wintermaul X5 starts at 60 gold per player; the archived Mega Man 3.0 Final file starts at 550. Both use native killer bounty and increasing completion rewards, with extra income for the final defender. Versions differ. Howl currently has a 1,200 team opening, flat 2-gold team kill and 120-gold team wave reward. Those are provisional tuning, not historically verified values. Research did not change gameplay; preserve the user's four-player-equivalent shared economy when testing any future rebalance.
+[Historical economy comparison](MAUL-ECONOMY.md) records inspected archive values and per-wave bounty tables: Wintermaul X5 starts at 60 gold per player; the archived Mega Man 3.0 Final file starts at 550. Both use native killer bounty and increasing completion rewards, with extra income for the final defender. Versions differ. That initial audit preceded the implemented economy pass. Current team openings are 240 for Rimewatch and 2,200 for Ironfold; bounty rises from 1 to 5 and milestone wood is implemented. See MAUL-ECONOMY-IMPLEMENTED.md. Preserve the user's four-player-equivalent shared economy when testing any future rebalance.

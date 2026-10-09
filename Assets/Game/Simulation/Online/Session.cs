@@ -33,7 +33,8 @@ namespace FrostMaze.Simulation.Online
         public int Votes=>members.Count(m=>m.Connected&&m.PauseVote);
         public int RequiredVotes=>members.Count(m=>m.Connected)/2+1;
         public Session(Func<string,Scenario> maps,Func<Scenario,string> hash){resolve=maps;signature=hash;}
-        public void Solo(string map,string name){Map=map;IsHost=IsConnected=true;LocalId=0;members.Add(new Member{Id=0,Name=Clean(name)});Stage=Stage.Factions;}
+        static int LastStand(Scenario config){int named=Array.FindIndex(config.StartNames,n=>string.Equals(n,"Last stand",StringComparison.OrdinalIgnoreCase));return named>=0?named:config.BuilderStarts.Length-1;}
+        public void Solo(string map,string name){Map=map;IsHost=IsConnected=true;LocalId=0;members.Add(new Member{Id=0,Name=Clean(name),Lane=LastStand(resolve(map))});Stage=Stage.Factions;}
         public void Host(string map,string name,string secret,int port){
             Map=map;fingerprint=signature(resolve(map));password=secret??"";playerName=Clean(name);
             listener=new TcpListener(IPAddress.Any,port);listener.Start(8);Port=((IPEndPoint)listener.LocalEndpoint).Port;
@@ -111,7 +112,11 @@ namespace FrostMaze.Simulation.Online
             if(p.Kind==Kind.Difficulty&&Stage==Stage.Difficulty&&p.A>=0&&p.A<=2){member.Vote=p.A;member.Ready=true;}
             if(p.Kind==Kind.Ready&&(Stage==Stage.Lobby||Stage==Stage.Factions&&member.Faction>=0||Stage==Stage.Lanes&&member.Lane>=0))member.Ready=!member.Ready;
             if(p.Kind==Kind.Begin&&id==0&&Stage==Stage.Lobby&&members.All(m=>m.Ready)){Stage=Stage.Factions;ResetReady();}
-            if(Stage==Stage.Factions&&members.All(m=>m.Ready&&m.Faction>=0)){Stage=Stage.Lanes;ResetReady();}
+            if(Stage==Stage.Factions&&members.All(m=>m.Ready&&m.Faction>=0)){
+                if(members.Count==1){members[0].Lane=LastStand(resolve(Map));Stage=Stage.Difficulty;}
+                else Stage=Stage.Lanes;
+                ResetReady();
+            }
             if(Stage==Stage.Lanes&&members.All(m=>m.Ready&&m.Lane>=0)){Stage=Stage.Difficulty;ResetReady();}
             if(Stage==Stage.Difficulty&&members.All(m=>m.Vote>=0)){int[] votes=new int[3];foreach(var m in members)votes[m.Vote]++;int selected=1;foreach(int option in new[]{0,2})if(votes[option]>votes[selected])selected=option;Stage=Stage.Match;CreateWorld((Difficulty)selected);}
             BroadcastLobby();

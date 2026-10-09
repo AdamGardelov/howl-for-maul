@@ -10,6 +10,7 @@ namespace FrostMaze
         {
             if(game==null||game.World==null)return;
             renderedMinimap.Prepare(game);
+            if(WarmFactionPortraits())return;
             // Warm only the current roster, at most one portrait per frame; never render in OnGUI.
             for(int i=0;i<game.World.Config.Catalog.Length;i++)
                 if(game.World.RosterVisible(i)&&portraits.Get(i)==null){portraits.Prepare(game,i);break;}
