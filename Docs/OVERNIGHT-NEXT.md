@@ -2,6 +2,8 @@
 
 ## Latest state
 
+- Three-player Hard coverage: five mixed teams cover all twelve factions with 400 gold each and starts 7/0/4. Compact-invest wins 3/5 (both Rimewatch teams lose on wave 18); unrestricted adaptive wins 5/5 with 30 lives. New headless summary checks and independent saved-ledger auditor verify 588 wallets and 588 incomes, including 62 unequal reward splits. A paid refund control brings totals to 608 each. All 69 pure cases and eight auditor corruption/acceptance tests pass. Read Balance/HARD-THREE-PLAYER.md. Harness/tests/docs only; player packages remain runtime db0369c.
+
 - Compact tower tooltips now show shared weapon stats, named missing owned champion requirements and exact gold shortfalls. All-roster focused Unity regression passes (1.79 s), including teammate exclusion and sale relocking. Final Linux/Windows packages contain db0369c; both builds and Linux normal paid purchase/live tooltip/Quit plus both-map data smoke pass. Windows runtime remains untested. Read TOWER-TOOLTIPS.md. New packages: Linux-TowerInfo / Windows-TowerInfo; editor target restored to Linux.
 
 - Large paid Unity replay passed: both twenty-wave Hard campaigns reproduce saved purchases, builder travel, upgrades, kill/leak totals and wallets. Late-wave captures contain 226 towers / 44 enemies on Rimewatch and 347 / 66 on Ironfold. Warmed stable view sync allocates zero managed bytes; restart clears all unit views. GTX 1080/OpenGL editor captures inspected. Read LARGE-PAID-SCENES.md for exact timing scope and the two resolved harness failures. Tests/docs only; packages remain runtime b70de3c. Full combat/HUD frame-time profiling remains unverified.

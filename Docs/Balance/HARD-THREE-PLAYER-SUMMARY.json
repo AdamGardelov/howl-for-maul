@@ -1,0 +1,161 @@
+{
+  "source": "b18e1e6 plus Headless/BalanceSweep.cs income audit",
+  "scope": "Hard; three players; starts 7,0,4; all lanes; fixed 1200 team gold",
+  "groups": {
+    "compact-invest": {
+      "campaigns": 5,
+      "wins": 3,
+      "wavesAttempted": 96,
+      "wavesCleared": 94,
+      "purchases": 240,
+      "upgrades": 429,
+      "spent": 29071,
+      "playerWalletChecks": 288,
+      "playerIncomeChecks": 288,
+      "unequalIncomeWaves": 32
+    },
+    "adaptive": {
+      "campaigns": 5,
+      "wins": 5,
+      "wavesAttempted": 100,
+      "wavesCleared": 100,
+      "purchases": 1466,
+      "upgrades": 745,
+      "spent": 31986,
+      "playerWalletChecks": 300,
+      "playerIncomeChecks": 300,
+      "unequalIncomeWaves": 30
+    }
+  },
+  "teams": [
+    {
+      "map": "Rimewatch",
+      "factions": [
+        "Rime Covenant",
+        "Stonebound",
+        "Ember Assembly"
+      ],
+      "compactWon": false,
+      "compactLives": 0,
+      "compactWaves": 18,
+      "compactLeaks": [
+        {
+          "wave": 18,
+          "leaked": 30
+        }
+      ],
+      "adaptiveWon": true,
+      "adaptiveLives": 30,
+      "adaptiveWaves": 20,
+      "adaptivePurchases": 218,
+      "adaptiveUpgrades": 0,
+      "adaptiveFinalWallets": [
+        101,
+        106,
+        101
+      ]
+    },
+    {
+      "map": "Rimewatch",
+      "factions": [
+        "Volt Vanguard",
+        "Rime Covenant",
+        "Stonebound"
+      ],
+      "compactWon": false,
+      "compactLives": 0,
+      "compactWaves": 18,
+      "compactLeaks": [
+        {
+          "wave": 18,
+          "leaked": 30
+        }
+      ],
+      "adaptiveWon": true,
+      "adaptiveLives": 30,
+      "adaptiveWaves": 20,
+      "adaptivePurchases": 229,
+      "adaptiveUpgrades": 0,
+      "adaptiveFinalWallets": [
+        116,
+        101,
+        116
+      ]
+    },
+    {
+      "map": "Ironfold",
+      "factions": [
+        "Pulse Foundry",
+        "Blast Circuit",
+        "Prism Division"
+      ],
+      "compactWon": true,
+      "compactLives": 30,
+      "compactWaves": 20,
+      "compactLeaks": [],
+      "adaptiveWon": true,
+      "adaptiveLives": 30,
+      "adaptiveWaves": 20,
+      "adaptivePurchases": 336,
+      "adaptiveUpgrades": 242,
+      "adaptiveFinalWallets": [
+        128,
+        128,
+        128
+      ]
+    },
+    {
+      "map": "Ironfold",
+      "factions": [
+        "Horizon Guild",
+        "Gravity Works",
+        "Scrap Frontier"
+      ],
+      "compactWon": true,
+      "compactLives": 7,
+      "compactWaves": 20,
+      "compactLeaks": [
+        {
+          "wave": 18,
+          "leaked": 14
+        },
+        {
+          "wave": 20,
+          "leaked": 9
+        }
+      ],
+      "adaptiveWon": true,
+      "adaptiveLives": 30,
+      "adaptiveWaves": 20,
+      "adaptivePurchases": 347,
+      "adaptiveUpgrades": 269,
+      "adaptiveFinalWallets": [
+        128,
+        124,
+        121
+      ]
+    },
+    {
+      "map": "Ironfold",
+      "factions": [
+        "Overdrive Order",
+        "Tidal Array",
+        "Pulse Foundry"
+      ],
+      "compactWon": true,
+      "compactLives": 30,
+      "compactWaves": 20,
+      "compactLeaks": [],
+      "adaptiveWon": true,
+      "adaptiveLives": 30,
+      "adaptiveWaves": 20,
+      "adaptivePurchases": 336,
+      "adaptiveUpgrades": 234,
+      "adaptiveFinalWallets": [
+        128,
+        128,
+        128
+      ]
+    }
+  ]
+}

@@ -17,3 +17,6 @@ Headless/obj/
 *.userprefs
 TestResults*.xml
 /*.csproj
+
+# Independent campaign audit tools
+Headless/__pycache__/

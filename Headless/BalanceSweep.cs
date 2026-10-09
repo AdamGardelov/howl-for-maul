@@ -13,8 +13,8 @@ static partial class BalanceSweep
     sealed class Placement { public int TowerId{get;set;} public int TravelTicks{get;set;} public int BeforeWave{get;set;} public int Player{get;set;} public int X{get;set;} public int Y{get;set;} public string Tower{get;set;} public int Cost{get;set;} }
     sealed class SaleResult { public int Player{get;set;} public int TowerId{get;set;} public string Tower{get;set;} public int Level{get;set;} public int Refund{get;set;} public int BeforeWave{get;set;} }
     sealed class UpgradeResult { public int Player{get;set;} public int TowerId{get;set;} public string Tower{get;set;} public int Level{get;set;} public int Cost{get;set;} public int BeforeWave{get;set;} }
-    sealed class WaveResult { public int[] PlayerGold{get;set;} public int Wave{get;set;} public bool Flying{get;set;} public int Killed{get;set;} public int Leaked{get;set;} public int Ticks{get;set;} public int Gold{get;set;} }
-    sealed class Result { public List<SaleResult> Sales{get;set;}=new List<SaleResult>(); public int Refunded{get;set;} public int[] PlayerRefunds{get;set;} public int[] StartingPositions{get;set;} public float[][] InitialBuilderPositions{get;set;} public int ActiveLanes{get;set;} public int[] StartingWallets{get;set;} public int PreparationTicks{get;set;} public int[] FinalWallets{get;set;} public int[] PlayerSpending{get;set;} public string Strategy{get;set;} public string[] Factions{get;set;} public List<UpgradeResult> Upgrades{get;set;}=new List<UpgradeResult>(); public int PlayerCount{get;set;} public string Map{get;set;} public string Faction{get;set;} public string Difficulty{get;set;} public bool Won{get;set;} public bool Stalled{get;set;} public int Lives{get;set;} public int Gold{get;set;} public int Spent{get;set;} public List<Placement> Placements{get;set;}=new List<Placement>(); public List<WaveResult> Waves{get;set;}=new List<WaveResult>(); }
+    sealed class WaveResult { public bool SummaryPresent{get;set;} public bool Cleared{get;set;} public int TeamIncome{get;set;} public int[] PlayerIncome{get;set;} public int[] PlayerGold{get;set;} public int Wave{get;set;} public bool Flying{get;set;} public int Killed{get;set;} public int Leaked{get;set;} public int Ticks{get;set;} public int Gold{get;set;} }
+    sealed class Result { public int StartingTeamGold{get;set;} public int KillReward{get;set;} public int WaveReward{get;set;} public List<SaleResult> Sales{get;set;}=new List<SaleResult>(); public int Refunded{get;set;} public int[] PlayerRefunds{get;set;} public int[] StartingPositions{get;set;} public float[][] InitialBuilderPositions{get;set;} public int ActiveLanes{get;set;} public int[] StartingWallets{get;set;} public int PreparationTicks{get;set;} public int[] FinalWallets{get;set;} public int[] PlayerSpending{get;set;} public string Strategy{get;set;} public string[] Factions{get;set;} public List<UpgradeResult> Upgrades{get;set;}=new List<UpgradeResult>(); public int PlayerCount{get;set;} public string Map{get;set;} public string Faction{get;set;} public string Difficulty{get;set;} public bool Won{get;set;} public bool Stalled{get;set;} public int Lives{get;set;} public int Gold{get;set;} public int Spent{get;set;} public List<Placement> Placements{get;set;}=new List<Placement>(); public List<WaveResult> Waves{get;set;}=new List<WaveResult>(); }
     sealed class Candidate { public int X,Y; public int[] Samples; }
     static readonly Dictionary<TowerSpec,List<Candidate>> influence=new Dictionary<TowerSpec,List<Candidate>>();
     static List<Candidate> Candidates(World w,TowerSpec spec,List<Sample> samples)
@@ -196,7 +196,7 @@ static partial class BalanceSweep
                     if(w.Players[player].Gold!=c.StartingGold/players||w.Players[player].Faction!=factions[player])
                         throw new Exception("Initial wallet or faction mismatch.");
                 }
-                var r=new Result{StartingPositions=players==1&&startingPositions==null?new[]{-1}:options.StartingPositions.Take(players).ToArray(),InitialBuilderPositions=w.Players.Select(p=>new[]{p.Position.X,p.Position.Y}).ToArray(),ActiveLanes=w.LaneCount,StartingWallets=w.Players.Select(p=>p.Gold).ToArray(),Strategy=strategy,Factions=factions.Take(players).Select(f=>c.Factions[f].Name).ToArray(),PlayerCount=players,Map=c.Name,Faction=c.Factions[faction].Name,Difficulty=difficulty.ToString()};
+                var r=new Result{StartingTeamGold=c.StartingGold,KillReward=c.KillReward,WaveReward=c.WaveReward,StartingPositions=players==1&&startingPositions==null?new[]{-1}:options.StartingPositions.Take(players).ToArray(),InitialBuilderPositions=w.Players.Select(p=>new[]{p.Position.X,p.Position.Y}).ToArray(),ActiveLanes=w.LaneCount,StartingWallets=w.Players.Select(p=>p.Gold).ToArray(),Strategy=strategy,Factions=factions.Take(players).Select(f=>c.Factions[f].Name).ToArray(),PlayerCount=players,Map=c.Name,Faction=c.Factions[faction].Name,Difficulty=difficulty.ToString()};
                 if(strategy=="maze") {
                     int design=MapCases.MazeDesign(w);var cells=MapCases.MazeCells(iron);
                     for(int cell=0;cell<cells.GetLength(0);cell++)
@@ -211,13 +211,27 @@ static partial class BalanceSweep
                             if(terminalFlight)SellGroundOnly(w,r);
                             SpendAdaptive(w,waveSamples,r,48/players,true,true);
                         }else if(strategy=="roster")SpendRoster(w,samples,r);else if(strategy=="compact-invest")SpendInvest(w,samples,r,48/players);else if(strategy=="adaptive"||strategy.StartsWith("compact"))SpendAdaptive(w,samples,r,strategy.StartsWith("compact")?48/players:int.MaxValue,strategy=="compact-value"||strategy=="compact-roles"||strategy=="compact-support",strategy=="compact-roles"||strategy=="compact-support",strategy=="compact-support");else Spend(w,samples,r);}
-                    AuditWallets(w,r,wave);int killed=w.Killed,leaked=w.Leaked;
+                    int[] beforeCombat=AuditWallets(w,r,wave);int killed=w.Killed,leaked=w.Leaked;
                     if(!w.StartWave())throw new Exception("Wave failed to start");int ticks=0;
                     while(w.WaveActive&&!w.Finished&&ticks<18000){w.Step();ticks++;}
                     if(!w.Defeated&&!w.WaveActive&&w.Killed-killed+w.Leaked-leaked!=c.Waves[wave].Count*w.LaneCount)
                         throw new Exception("Completed wave did not account for all active lanes.");
                     if(strategy.StartsWith("compact")&&w.Grid.Towers.Count>48)throw new Exception("Compact diagnostic exceeded its 48-tower team limit");
-                    r.Waves.Add(new WaveResult{PlayerGold=AuditWallets(w,r,wave+(!w.Defeated&&!w.WaveActive?1:0)),Wave=wave+1,Flying=c.Waves[wave].Flying,Killed=w.Killed-killed,Leaked=w.Leaked-leaked,Ticks=ticks,Gold=TeamGold(w)});
+                    var afterCombat=AuditWallets(w,r,wave+(!w.Defeated&&!w.WaveActive?1:0));
+                    var summary=w.LastWaveSummary;
+                    bool cleared=!w.Defeated&&!w.WaveActive;
+                    var income=new int[players];for(int player=0;player<players;player++)income[player]=afterCombat[player]-beforeCombat[player];
+                    // The planner finishes its paid orders before combat. Thus wallet deltas here
+                    // independently verify the income presented in the game's end-of-wave summary.
+                    int teamIncome=(w.Killed-killed)*c.KillReward+(cleared?c.WaveReward:0);
+                    if(income.Sum()!=teamIncome)throw new Exception("Wave wallet deltas disagree with earned rewards.");
+                    if(w.Defeated||cleared) {
+                        if(summary==null||summary.WaveNumber!=wave+1||summary.Cleared!=cleared||summary.Killed!=w.Killed-killed||summary.Leaked!=w.Leaked-leaked||summary.TeamGold!=teamIncome)
+                            throw new Exception("Displayed wave summary disagrees with campaign outcome or rewards.");
+                        for(int player=0;player<players;player++)if(summary.GoldForPlayer(player)!=income[player])
+                            throw new Exception("Displayed player income disagrees with paid campaign wallet.");
+                    }else if(summary!=null)throw new Exception("Unfinished wave reported a completed summary.");
+                    r.Waves.Add(new WaveResult{SummaryPresent=summary!=null,Cleared=cleared,TeamIncome=teamIncome,PlayerIncome=income,PlayerGold=afterCombat,Wave=wave+1,Flying=c.Waves[wave].Flying,Killed=w.Killed-killed,Leaked=w.Leaked-leaked,Ticks=ticks,Gold=TeamGold(w)});
                     if(ticks>=18000){
                         r.Stalled=true;
                         var diagnostic=new {Map=c.Name,Faction=faction,Wave=wave+1,Enemies=w.Enemies.Select(e=>new {e.Id,Position=new{e.Position.X,e.Position.Y},Velocity=new{e.Velocity.X,e.Velocity.Y},e.Health,e.Blocked,e.BlockerId,e.Checkpoint,Destination=new{e.Destination.X,e.Destination.Y},e.Lane}).ToArray(),Towers=w.Grid.Towers.Select(t=>new {t.Id,t.CellX,t.CellY,t.Design,t.Health}).ToArray()};

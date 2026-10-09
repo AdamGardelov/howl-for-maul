@@ -1,0 +1,13 @@
+test_defeat_cannot_claim_completion (test_audit_campaigns.CampaignAuditTests.test_defeat_cannot_claim_completion) ... ok
+test_income_transfer_is_detected_even_with_same_team_income (test_audit_campaigns.CampaignAuditTests.test_income_transfer_is_detected_even_with_same_team_income) ... ok
+test_missing_refund_is_detected (test_audit_campaigns.CampaignAuditTests.test_missing_refund_is_detected) ... ok
+test_missing_summary_is_rejected (test_audit_campaigns.CampaignAuditTests.test_missing_summary_is_rejected) ... ok
+test_real_campaigns_include_victory_defeat_unequal_income_and_refunds (test_audit_campaigns.CampaignAuditTests.test_real_campaigns_include_victory_defeat_unequal_income_and_refunds) ... ok
+test_receipt_cannot_be_reassigned_to_another_owner (test_audit_campaigns.CampaignAuditTests.test_receipt_cannot_be_reassigned_to_another_owner) ... ok
+test_refunds_do_not_count_as_income (test_audit_campaigns.CampaignAuditTests.test_refunds_do_not_count_as_income) ... ok
+test_wallet_transfer_is_detected_even_with_same_team_gold (test_audit_campaigns.CampaignAuditTests.test_wallet_transfer_is_detected_even_with_same_team_gold) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.022s
+
+OK
