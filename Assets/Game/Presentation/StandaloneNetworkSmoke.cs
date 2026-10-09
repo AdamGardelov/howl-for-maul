@@ -36,7 +36,7 @@ namespace FrostMaze
                 for(float y=origin.Y-3;y<origin.Y+3&&!found;y+=w.PlacementStep)for(float x=origin.X-3;x<origin.X+3&&!found;x+=w.PlacementStep)if(w.CanBuild(x,y,out _)){session.Submit(new Order{Kind=ActionKind.Build,Design=design,X=x,Y=y});found=true;}
                 if(!found)throw new Exception("No legal paid footprint");built=true;
             }
-            if(w.Tick>180&&!launched){if(w.Grid.Towers.Count!=2)throw new Exception("Missing network purchase");foreach(int owner in new[]{0,1}){var tower=w.Grid.Towers.Single(t=>w.TowerOwner(t.Id)==owner);if(w.Players[owner].Gold!=600-w.Config.Catalog[tower.Design].Cost)throw new Exception("Incorrect paid wallet");}if(session.IsHost)session.Submit(new Order{Kind=ActionKind.Launch});launched=true;}
+            if(w.Tick>180&&!launched){if(w.Grid.Towers.Count!=2)throw new Exception("Missing network purchase");foreach(int owner in new[]{0,1}){var tower=w.Grid.Towers.Single(t=>w.TowerOwner(t.Id)==owner);if(w.Players[owner].Gold!=w.Config.StartingGold/2-w.Config.Catalog[tower.Design].Cost)throw new Exception("Incorrect paid wallet");}if(session.IsHost)session.Submit(new Order{Kind=ActionKind.Launch});launched=true;}
             if(!voted&&(session.IsHost?w.Tick>240:session.Votes>0)){session.Send(new Packet{Kind=Kind.PauseVote});voted=true;}
             if(session.Paused&&!resumed){if(!seenPause){seenPause=true;pausedTick=w.Tick;}if(w.Tick!=pausedTick)throw new Exception("Paused ticks advanced");held++;
                 if(!resumed&&((!session.IsHost&&held>30)||(session.IsHost&&session.Votes>0))){session.Send(new Packet{Kind=Kind.PauseVote});resumed=true;}

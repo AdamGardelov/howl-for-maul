@@ -14,7 +14,7 @@ namespace FrostMaze.Simulation
     [Serializable] public sealed class TowerDesign
     {
         public string Name, Description;
-        public int Cost, Refund, VisualStyle;
+        public int Cost, Refund, VisualStyle, WoodCost;
         public int[] Requires=new int[0];
         public TowerSpec Spec;
     }

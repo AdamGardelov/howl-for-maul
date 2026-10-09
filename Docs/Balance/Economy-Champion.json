@@ -1,0 +1,4121 @@
+[
+  {
+    "KillRewards": [
+      1,
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      2,
+      3,
+      3,
+      3,
+      3,
+      4,
+      4,
+      4,
+      4,
+      5,
+      5,
+      5,
+      5
+    ],
+    "ClearRewards": [
+      56,
+      64,
+      72,
+      80,
+      88,
+      96,
+      104,
+      112,
+      120,
+      128,
+      136,
+      144,
+      152,
+      160,
+      168,
+      176,
+      184,
+      192,
+      200,
+      208
+    ],
+    "WoodPurchases": [],
+    "OpenRouteTicks": null,
+    "PreparedMazeRouteTicks": null,
+    "InitialMazePurchases": 0,
+    "StartingTeamGold": 2200,
+    "KillReward": 2,
+    "WaveReward": 120,
+    "Sales": [],
+    "Refunded": 0,
+    "PlayerRefunds": [
+      0
+    ],
+    "StartingPositions": [
+      -1
+    ],
+    "InitialBuilderPositions": [
+      [
+        31.75,
+        8.75
+      ]
+    ],
+    "ActiveLanes": 4,
+    "StartingWallets": [
+      2200
+    ],
+    "PreparationTicks": 10961,
+    "FinalWallets": [
+      814
+    ],
+    "PlayerSpending": [
+      9890
+    ],
+    "Strategy": "roster",
+    "Factions": [
+      "Pulse Foundry"
+    ],
+    "Upgrades": [
+      {
+        "Player": 1,
+        "TowerId": 6,
+        "Tower": "Rime Runner",
+        "Level": 2,
+        "Cost": 150,
+        "BeforeWave": 1
+      },
+      {
+        "Player": 1,
+        "TowerId": 6,
+        "Tower": "Rime Runner",
+        "Level": 3,
+        "Cost": 300,
+        "BeforeWave": 1
+      },
+      {
+        "Player": 1,
+        "TowerId": 5,
+        "Tower": "Flare Keeper",
+        "Level": 2,
+        "Cost": 110,
+        "BeforeWave": 1
+      },
+      {
+        "Player": 1,
+        "TowerId": 5,
+        "Tower": "Flare Keeper",
+        "Level": 3,
+        "Cost": 220,
+        "BeforeWave": 1
+      },
+      {
+        "Player": 1,
+        "TowerId": 4,
+        "Tower": "Arc Ranger",
+        "Level": 2,
+        "Cost": 80,
+        "BeforeWave": 1
+      },
+      {
+        "Player": 1,
+        "TowerId": 4,
+        "Tower": "Arc Ranger",
+        "Level": 3,
+        "Cost": 160,
+        "BeforeWave": 1
+      },
+      {
+        "Player": 1,
+        "TowerId": 3,
+        "Tower": "Shear Sentinel",
+        "Level": 2,
+        "Cost": 55,
+        "BeforeWave": 1
+      },
+      {
+        "Player": 1,
+        "TowerId": 3,
+        "Tower": "Shear Sentinel",
+        "Level": 3,
+        "Cost": 110,
+        "BeforeWave": 1
+      },
+      {
+        "Player": 1,
+        "TowerId": 2,
+        "Tower": "Ironhand",
+        "Level": 2,
+        "Cost": 30,
+        "BeforeWave": 1
+      },
+      {
+        "Player": 1,
+        "TowerId": 2,
+        "Tower": "Ironhand",
+        "Level": 3,
+        "Cost": 60,
+        "BeforeWave": 1
+      },
+      {
+        "Player": 1,
+        "TowerId": 1,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 1
+      },
+      {
+        "Player": 1,
+        "TowerId": 1,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 1
+      },
+      {
+        "Player": 1,
+        "TowerId": 7,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 2
+      },
+      {
+        "Player": 1,
+        "TowerId": 7,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 2
+      },
+      {
+        "Player": 1,
+        "TowerId": 8,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 2
+      },
+      {
+        "Player": 1,
+        "TowerId": 8,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 2
+      },
+      {
+        "Player": 1,
+        "TowerId": 9,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 2
+      },
+      {
+        "Player": 1,
+        "TowerId": 9,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 3
+      },
+      {
+        "Player": 1,
+        "TowerId": 10,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 3
+      },
+      {
+        "Player": 1,
+        "TowerId": 10,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 3
+      },
+      {
+        "Player": 1,
+        "TowerId": 11,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 3
+      },
+      {
+        "Player": 1,
+        "TowerId": 11,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 3
+      },
+      {
+        "Player": 1,
+        "TowerId": 12,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 3
+      },
+      {
+        "Player": 1,
+        "TowerId": 12,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 3
+      },
+      {
+        "Player": 1,
+        "TowerId": 13,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 3
+      },
+      {
+        "Player": 1,
+        "TowerId": 13,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 4
+      },
+      {
+        "Player": 1,
+        "TowerId": 14,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 4
+      },
+      {
+        "Player": 1,
+        "TowerId": 14,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 4
+      },
+      {
+        "Player": 1,
+        "TowerId": 15,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 4
+      },
+      {
+        "Player": 1,
+        "TowerId": 15,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 4
+      },
+      {
+        "Player": 1,
+        "TowerId": 16,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 4
+      },
+      {
+        "Player": 1,
+        "TowerId": 16,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 4
+      },
+      {
+        "Player": 1,
+        "TowerId": 17,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 4
+      },
+      {
+        "Player": 1,
+        "TowerId": 17,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 5
+      },
+      {
+        "Player": 1,
+        "TowerId": 18,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 5
+      },
+      {
+        "Player": 1,
+        "TowerId": 18,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 5
+      },
+      {
+        "Player": 1,
+        "TowerId": 19,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 5
+      },
+      {
+        "Player": 1,
+        "TowerId": 19,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 5
+      },
+      {
+        "Player": 1,
+        "TowerId": 20,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 5
+      },
+      {
+        "Player": 1,
+        "TowerId": 20,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 5
+      },
+      {
+        "Player": 1,
+        "TowerId": 21,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 5
+      },
+      {
+        "Player": 1,
+        "TowerId": 21,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 1,
+        "TowerId": 22,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 1,
+        "TowerId": 22,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 1,
+        "TowerId": 23,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 1,
+        "TowerId": 23,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 1,
+        "TowerId": 24,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 1,
+        "TowerId": 24,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 1,
+        "TowerId": 25,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 1,
+        "TowerId": 25,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 1,
+        "TowerId": 26,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 1,
+        "TowerId": 26,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 1,
+        "TowerId": 27,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 1,
+        "TowerId": 27,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 1,
+        "TowerId": 28,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 1,
+        "TowerId": 28,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 1,
+        "TowerId": 29,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 29,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 30,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 30,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 31,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 31,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 32,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 32,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 33,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 33,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 34,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 34,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 35,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 35,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 36,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 36,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 37,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 37,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 38,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 38,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 39,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 39,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 40,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 40,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 41,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 41,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 42,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 42,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 43,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 43,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 44,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 44,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 45,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 45,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 46,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 46,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 47,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 47,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 48,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 48,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 49,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 49,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 50,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 50,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 51,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 51,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 52,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 52,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 53,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 53,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 54,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 54,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 55,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 55,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 56,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 56,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 57,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 57,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 58,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 58,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 59,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 59,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 60,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 60,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 61,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 61,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 62,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 62,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 63,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 63,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 64,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 64,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 65,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 65,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 66,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 66,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 67,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 67,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 68,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 68,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 69,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 69,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 70,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 70,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 71,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 71,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 72,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 72,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 73,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 73,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 74,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 74,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 12
+      },
+      {
+        "Player": 1,
+        "TowerId": 75,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 12
+      },
+      {
+        "Player": 1,
+        "TowerId": 75,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 12
+      },
+      {
+        "Player": 1,
+        "TowerId": 76,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 12
+      },
+      {
+        "Player": 1,
+        "TowerId": 76,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 12
+      },
+      {
+        "Player": 1,
+        "TowerId": 77,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 12
+      },
+      {
+        "Player": 1,
+        "TowerId": 77,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 12
+      },
+      {
+        "Player": 1,
+        "TowerId": 78,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 12
+      },
+      {
+        "Player": 1,
+        "TowerId": 78,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 12
+      },
+      {
+        "Player": 1,
+        "TowerId": 79,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 12
+      },
+      {
+        "Player": 1,
+        "TowerId": 79,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 12
+      },
+      {
+        "Player": 1,
+        "TowerId": 80,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 80,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 81,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 81,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 82,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 82,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 83,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 83,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 84,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 84,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 85,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 85,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 86,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 86,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 87,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 87,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 88,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 88,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 89,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 89,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 90,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 90,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 91,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 91,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 92,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 92,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 93,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 93,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 94,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 94,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 95,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 95,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 96,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 96,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 13
+      },
+      {
+        "Player": 1,
+        "TowerId": 97,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 97,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 98,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 98,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 99,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 99,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 100,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 100,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 101,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 101,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 102,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 102,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 103,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 103,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 104,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 104,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 105,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 105,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 14
+      },
+      {
+        "Player": 1,
+        "TowerId": 155,
+        "Tower": "Echo Champion",
+        "Level": 2,
+        "Cost": 750,
+        "BeforeWave": 17
+      },
+      {
+        "Player": 1,
+        "TowerId": 155,
+        "Tower": "Echo Champion",
+        "Level": 3,
+        "Cost": 1500,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 106,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 106,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 107,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 107,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 108,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 108,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 109,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 109,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 110,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 110,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 111,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 111,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 112,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 112,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 113,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 113,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 114,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 19
+      },
+      {
+        "Player": 1,
+        "TowerId": 114,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 115,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 115,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 116,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 116,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 117,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 117,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 118,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 118,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 119,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 119,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 120,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 120,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 121,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 121,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 122,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 122,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 123,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 123,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 124,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 124,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 125,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 125,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 126,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 126,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 127,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 127,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 128,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 128,
+        "Tower": "Fuse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 20
+      },
+      {
+        "Player": 1,
+        "TowerId": 129,
+        "Tower": "Fuse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 20
+      }
+    ],
+    "PlayerCount": 1,
+    "Map": "Ironfold",
+    "Faction": "Pulse Foundry",
+    "Difficulty": "Normal",
+    "Won": true,
+    "Stalled": false,
+    "Lives": 30,
+    "Gold": 814,
+    "Spent": 9890,
+    "Placements": [
+      {
+        "TowerId": 1,
+        "TravelTicks": 1,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 31,
+        "Y": 5,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 2,
+        "TravelTicks": 2,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 33,
+        "Y": 5,
+        "Tower": "Ironhand",
+        "Cost": 30
+      },
+      {
+        "TowerId": 3,
+        "TravelTicks": 6,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 33,
+        "Y": 3,
+        "Tower": "Shear Sentinel",
+        "Cost": 55
+      },
+      {
+        "TowerId": 4,
+        "TravelTicks": 1,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 33,
+        "Y": 7,
+        "Tower": "Arc Ranger",
+        "Cost": 80
+      },
+      {
+        "TowerId": 5,
+        "TravelTicks": 1,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 31,
+        "Y": 9,
+        "Tower": "Flare Keeper",
+        "Cost": 110
+      },
+      {
+        "TowerId": 6,
+        "TravelTicks": 2,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 31,
+        "Y": 3,
+        "Tower": "Rime Runner",
+        "Cost": 150
+      },
+      {
+        "TowerId": 7,
+        "TravelTicks": 35,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 31,
+        "Y": 19,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 8,
+        "TravelTicks": 20,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 31,
+        "Y": 25,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 9,
+        "TravelTicks": 27,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 33,
+        "Y": 33,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 10,
+        "TravelTicks": 53,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 15,
+        "Y": 37,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 11,
+        "TravelTicks": 39,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 11,
+        "Y": 49,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 12,
+        "TravelTicks": 126,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 53,
+        "Y": 49,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 13,
+        "TravelTicks": 125,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 21,
+        "Y": 21,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 14,
+        "TravelTicks": 58,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 43,
+        "Y": 25,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 15,
+        "TravelTicks": 21,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 33,
+        "Y": 19,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 16,
+        "TravelTicks": 19,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 39,
+        "Y": 13,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 17,
+        "TravelTicks": 53,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 45,
+        "Y": 33,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 18,
+        "TravelTicks": 76,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 37,
+        "Y": 55,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 19,
+        "TravelTicks": 46,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 31,
+        "Y": 37,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 20,
+        "TravelTicks": 47,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 49,
+        "Y": 39,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 21,
+        "TravelTicks": 119,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 11,
+        "Y": 55,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 22,
+        "TravelTicks": 121,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 53,
+        "Y": 55,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 23,
+        "TravelTicks": 98,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 31,
+        "Y": 29,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 24,
+        "TravelTicks": 36,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 19,
+        "Y": 31,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 25,
+        "TravelTicks": 50,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 35,
+        "Y": 43,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 26,
+        "TravelTicks": 14,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 27,
+        "Y": 45,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 27,
+        "TravelTicks": 23,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 27,
+        "Y": 53,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 28,
+        "TravelTicks": 24,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 23,
+        "Y": 59,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 29,
+        "TravelTicks": 135,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 25,
+        "Y": 13,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 30,
+        "TravelTicks": 139,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 37,
+        "Y": 59,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 31,
+        "TravelTicks": 101,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 33,
+        "Y": 23,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 32,
+        "TravelTicks": 27,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 33,
+        "Y": 37,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 33,
+        "TravelTicks": 61,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 13,
+        "Y": 41,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 34,
+        "TravelTicks": 65,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 37,
+        "Y": 47,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 35,
+        "TravelTicks": 85,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 9,
+        "Y": 59,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 36,
+        "TravelTicks": 122,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 51,
+        "Y": 59,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 37,
+        "TravelTicks": 141,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 21,
+        "Y": 23,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 38,
+        "TravelTicks": 60,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 43,
+        "Y": 21,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 39,
+        "TravelTicks": 21,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 33,
+        "Y": 27,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 40,
+        "TravelTicks": 69,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 51,
+        "Y": 43,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 41,
+        "TravelTicks": 122,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 11,
+        "Y": 51,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 42,
+        "TravelTicks": 122,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 53,
+        "Y": 51,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 43,
+        "TravelTicks": 72,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 27,
+        "Y": 43,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 44,
+        "TravelTicks": 67,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 31,
+        "Y": 21,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 45,
+        "TravelTicks": 21,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 31,
+        "Y": 33,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 46,
+        "TravelTicks": 37,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 45,
+        "Y": 31,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 47,
+        "TravelTicks": 74,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 27,
+        "Y": 51,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 48,
+        "TravelTicks": 19,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 37,
+        "Y": 51,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 49,
+        "TravelTicks": 29,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 25,
+        "Y": 57,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 50,
+        "TravelTicks": 119,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 31,
+        "Y": 17,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 51,
+        "TravelTicks": 63,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 15,
+        "Y": 35,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 52,
+        "TravelTicks": 30,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 11,
+        "Y": 43,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 53,
+        "TravelTicks": 110,
+        "BeforeWave": 9,
+        "Player": 1,
+        "X": 15,
+        "Y": 5,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 54,
+        "TravelTicks": 107,
+        "BeforeWave": 9,
+        "Player": 1,
+        "X": 49,
+        "Y": 15,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 55,
+        "TravelTicks": 80,
+        "BeforeWave": 9,
+        "Player": 1,
+        "X": 21,
+        "Y": 5,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 56,
+        "TravelTicks": 48,
+        "BeforeWave": 9,
+        "Player": 1,
+        "X": 41,
+        "Y": 5,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 57,
+        "TravelTicks": 27,
+        "BeforeWave": 9,
+        "Player": 1,
+        "X": 49,
+        "Y": 5,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 58,
+        "TravelTicks": 104,
+        "BeforeWave": 9,
+        "Player": 1,
+        "X": 13,
+        "Y": 13,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 59,
+        "TravelTicks": 21,
+        "BeforeWave": 9,
+        "Player": 1,
+        "X": 25,
+        "Y": 11,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 60,
+        "TravelTicks": 47,
+        "BeforeWave": 10,
+        "Player": 1,
+        "X": 39,
+        "Y": 11,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 61,
+        "TravelTicks": 69,
+        "BeforeWave": 10,
+        "Player": 1,
+        "X": 21,
+        "Y": 29,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 62,
+        "TravelTicks": 105,
+        "BeforeWave": 10,
+        "Player": 1,
+        "X": 11,
+        "Y": 59,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 63,
+        "TravelTicks": 81,
+        "BeforeWave": 10,
+        "Player": 1,
+        "X": 39,
+        "Y": 59,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 64,
+        "TravelTicks": 47,
+        "BeforeWave": 10,
+        "Player": 1,
+        "X": 53,
+        "Y": 59,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 65,
+        "TravelTicks": 64,
+        "BeforeWave": 10,
+        "Player": 1,
+        "X": 47,
+        "Y": 37,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 66,
+        "TravelTicks": 32,
+        "BeforeWave": 10,
+        "Player": 1,
+        "X": 35,
+        "Y": 41,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 67,
+        "TravelTicks": 67,
+        "BeforeWave": 10,
+        "Player": 1,
+        "X": 21,
+        "Y": 25,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 68,
+        "TravelTicks": 94,
+        "BeforeWave": 10,
+        "Player": 1,
+        "X": 51,
+        "Y": 41,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 69,
+        "TravelTicks": 62,
+        "BeforeWave": 10,
+        "Player": 1,
+        "X": 27,
+        "Y": 41,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 70,
+        "TravelTicks": 69,
+        "BeforeWave": 10,
+        "Player": 1,
+        "X": 21,
+        "Y": 19,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 71,
+        "TravelTicks": 119,
+        "BeforeWave": 10,
+        "Player": 1,
+        "X": 13,
+        "Y": 59,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 72,
+        "TravelTicks": 82,
+        "BeforeWave": 10,
+        "Player": 1,
+        "X": 41,
+        "Y": 59,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 73,
+        "TravelTicks": 47,
+        "BeforeWave": 10,
+        "Player": 1,
+        "X": 55,
+        "Y": 59,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 74,
+        "TravelTicks": 81,
+        "BeforeWave": 10,
+        "Player": 1,
+        "X": 25,
+        "Y": 59,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 75,
+        "TravelTicks": 124,
+        "BeforeWave": 10,
+        "Player": 1,
+        "X": 41,
+        "Y": 21,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 76,
+        "TravelTicks": 63,
+        "BeforeWave": 10,
+        "Player": 1,
+        "X": 35,
+        "Y": 45,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 77,
+        "TravelTicks": 35,
+        "BeforeWave": 10,
+        "Player": 1,
+        "X": 47,
+        "Y": 35,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 78,
+        "TravelTicks": 26,
+        "BeforeWave": 10,
+        "Player": 1,
+        "X": 53,
+        "Y": 43,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 79,
+        "TravelTicks": 106,
+        "BeforeWave": 10,
+        "Player": 1,
+        "X": 17,
+        "Y": 33,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 80,
+        "TravelTicks": 61,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 33,
+        "Y": 17,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 81,
+        "TravelTicks": 99,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 11,
+        "Y": 45,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 82,
+        "TravelTicks": 104,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 43,
+        "Y": 27,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 83,
+        "TravelTicks": 70,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 51,
+        "Y": 7,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 84,
+        "TravelTicks": 115,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 13,
+        "Y": 15,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 85,
+        "TravelTicks": 58,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 33,
+        "Y": 25,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 86,
+        "TravelTicks": 108,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 11,
+        "Y": 53,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 87,
+        "TravelTicks": 125,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 53,
+        "Y": 53,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 88,
+        "TravelTicks": 73,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 33,
+        "Y": 35,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 89,
+        "TravelTicks": 88,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 27,
+        "Y": 9,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 90,
+        "TravelTicks": 26,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 33,
+        "Y": 21,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 91,
+        "TravelTicks": 94,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 27,
+        "Y": 49,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 92,
+        "TravelTicks": 40,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 13,
+        "Y": 43,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 93,
+        "TravelTicks": 62,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 33,
+        "Y": 31,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 94,
+        "TravelTicks": 61,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 37,
+        "Y": 53,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 95,
+        "TravelTicks": 44,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 31,
+        "Y": 35,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 96,
+        "TravelTicks": 56,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 45,
+        "Y": 23,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 97,
+        "TravelTicks": 3,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 43,
+        "Y": 29,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 98,
+        "TravelTicks": 124,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 9,
+        "Y": 47,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 99,
+        "TravelTicks": 51,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 29,
+        "Y": 41,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 100,
+        "TravelTicks": 34,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 37,
+        "Y": 49,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 101,
+        "TravelTicks": 118,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 51,
+        "Y": 13,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 102,
+        "TravelTicks": 58,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 31,
+        "Y": 23,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 103,
+        "TravelTicks": 22,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 31,
+        "Y": 31,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 104,
+        "TravelTicks": 28,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 35,
+        "Y": 39,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 105,
+        "TravelTicks": 91,
+        "BeforeWave": 12,
+        "Player": 1,
+        "X": 27,
+        "Y": 7,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 106,
+        "TravelTicks": 30,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 17,
+        "Y": 5,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 107,
+        "TravelTicks": 175,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 27,
+        "Y": 61,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 108,
+        "TravelTicks": 78,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 19,
+        "Y": 33,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 109,
+        "TravelTicks": 40,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 19,
+        "Y": 21,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 110,
+        "TravelTicks": 122,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 51,
+        "Y": 47,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 111,
+        "TravelTicks": 126,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 43,
+        "Y": 5,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 112,
+        "TravelTicks": 47,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 29,
+        "Y": 17,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 113,
+        "TravelTicks": 72,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 17,
+        "Y": 35,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 114,
+        "TravelTicks": 70,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 27,
+        "Y": 55,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 115,
+        "TravelTicks": 140,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 37,
+        "Y": 9,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 116,
+        "TravelTicks": 63,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 21,
+        "Y": 27,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 117,
+        "TravelTicks": 60,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 29,
+        "Y": 45,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 118,
+        "TravelTicks": 42,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 13,
+        "Y": 39,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 119,
+        "TravelTicks": 117,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 53,
+        "Y": 47,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 120,
+        "TravelTicks": 85,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 43,
+        "Y": 19,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 121,
+        "TravelTicks": 60,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 23,
+        "Y": 21,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 122,
+        "TravelTicks": 79,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 37,
+        "Y": 45,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 123,
+        "TravelTicks": 76,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 35,
+        "Y": 17,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 124,
+        "TravelTicks": 85,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 27,
+        "Y": 47,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 125,
+        "TravelTicks": 65,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 47,
+        "Y": 33,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 126,
+        "TravelTicks": 17,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 51,
+        "Y": 39,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 127,
+        "TravelTicks": 138,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 9,
+        "Y": 57,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 128,
+        "TravelTicks": 82,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 39,
+        "Y": 57,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 129,
+        "TravelTicks": 40,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 51,
+        "Y": 57,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 130,
+        "TravelTicks": 159,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 41,
+        "Y": 7,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 131,
+        "TravelTicks": 96,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 29,
+        "Y": 39,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 132,
+        "TravelTicks": 76,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 23,
+        "Y": 61,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 133,
+        "TravelTicks": 109,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 19,
+        "Y": 23,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 134,
+        "TravelTicks": 60,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 19,
+        "Y": 5,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 135,
+        "TravelTicks": 122,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 37,
+        "Y": 43,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 136,
+        "TravelTicks": 44,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 51,
+        "Y": 45,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 137,
+        "TravelTicks": 72,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 31,
+        "Y": 27,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 138,
+        "TravelTicks": 56,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 47,
+        "Y": 15,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 139,
+        "TravelTicks": 58,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 49,
+        "Y": 37,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 140,
+        "TravelTicks": 137,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 11,
+        "Y": 57,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 141,
+        "TravelTicks": 123,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 53,
+        "Y": 57,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 142,
+        "TravelTicks": 131,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 13,
+        "Y": 37,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 143,
+        "TravelTicks": 56,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 19,
+        "Y": 19,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 144,
+        "TravelTicks": 69,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 29,
+        "Y": 43,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 145,
+        "TravelTicks": 27,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 25,
+        "Y": 51,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 146,
+        "TravelTicks": 134,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 13,
+        "Y": 7,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 147,
+        "TravelTicks": 61,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 35,
+        "Y": 9,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 148,
+        "TravelTicks": 145,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 39,
+        "Y": 55,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 149,
+        "TravelTicks": 45,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 25,
+        "Y": 61,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 150,
+        "TravelTicks": 60,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 37,
+        "Y": 41,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 151,
+        "TravelTicks": 71,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 23,
+        "Y": 23,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 152,
+        "TravelTicks": 46,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 41,
+        "Y": 23,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 153,
+        "TravelTicks": 78,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 53,
+        "Y": 45,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 154,
+        "TravelTicks": 119,
+        "BeforeWave": 14,
+        "Player": 1,
+        "X": 13,
+        "Y": 45,
+        "Tower": "Fuse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 155,
+        "TravelTicks": 124,
+        "BeforeWave": 16,
+        "Player": 1,
+        "X": 29,
+        "Y": 7,
+        "Tower": "Echo Champion",
+        "Cost": 750
+      }
+    ],
+    "Waves": [
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 88,
+        "PlayerIncome": [
+          88
+        ],
+        "PlayerGold": [
+          88
+        ],
+        "PlayerWood": [
+          0
+        ],
+        "Wave": 1,
+        "Flying": false,
+        "Killed": 32,
+        "Leaked": 0,
+        "Ticks": 446,
+        "Gold": 88
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 104,
+        "PlayerIncome": [
+          104
+        ],
+        "PlayerGold": [
+          122
+        ],
+        "PlayerWood": [
+          0
+        ],
+        "Wave": 2,
+        "Flying": false,
+        "Killed": 40,
+        "Leaked": 0,
+        "Ticks": 597,
+        "Gold": 122
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 120,
+        "PlayerIncome": [
+          120
+        ],
+        "PlayerGold": [
+          122
+        ],
+        "PlayerWood": [
+          0
+        ],
+        "Wave": 3,
+        "Flying": false,
+        "Killed": 48,
+        "Leaked": 0,
+        "Ticks": 750,
+        "Gold": 122
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 136,
+        "PlayerIncome": [
+          136
+        ],
+        "PlayerGold": [
+          138
+        ],
+        "PlayerWood": [
+          0
+        ],
+        "Wave": 4,
+        "Flying": false,
+        "Killed": 56,
+        "Leaked": 0,
+        "Ticks": 878,
+        "Gold": 138
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 216,
+        "PlayerIncome": [
+          216
+        ],
+        "PlayerGold": [
+          234
+        ],
+        "PlayerWood": [
+          0
+        ],
+        "Wave": 5,
+        "Flying": true,
+        "Killed": 64,
+        "Leaked": 0,
+        "Ticks": 867,
+        "Gold": 234
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 240,
+        "PlayerIncome": [
+          240
+        ],
+        "PlayerGold": [
+          244
+        ],
+        "PlayerWood": [
+          0
+        ],
+        "Wave": 6,
+        "Flying": false,
+        "Killed": 72,
+        "Leaked": 0,
+        "Ticks": 926,
+        "Gold": 244
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 264,
+        "PlayerIncome": [
+          264
+        ],
+        "PlayerGold": [
+          268
+        ],
+        "PlayerWood": [
+          0
+        ],
+        "Wave": 7,
+        "Flying": false,
+        "Killed": 80,
+        "Leaked": 0,
+        "Ticks": 1000,
+        "Gold": 268
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 288,
+        "PlayerIncome": [
+          288
+        ],
+        "PlayerGold": [
+          306
+        ],
+        "PlayerWood": [
+          0
+        ],
+        "Wave": 8,
+        "Flying": false,
+        "Killed": 88,
+        "Leaked": 0,
+        "Ticks": 1018,
+        "Gold": 306
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 408,
+        "PlayerIncome": [
+          408
+        ],
+        "PlayerGold": [
+          414
+        ],
+        "PlayerWood": [
+          0
+        ],
+        "Wave": 9,
+        "Flying": false,
+        "Killed": 96,
+        "Leaked": 0,
+        "Ticks": 1041,
+        "Gold": 414
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 440,
+        "PlayerIncome": [
+          440
+        ],
+        "PlayerGold": [
+          444
+        ],
+        "PlayerWood": [
+          0
+        ],
+        "Wave": 10,
+        "Flying": true,
+        "Killed": 104,
+        "Leaked": 0,
+        "Ticks": 982,
+        "Gold": 444
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 424,
+        "PlayerIncome": [
+          424
+        ],
+        "PlayerGold": [
+          438
+        ],
+        "PlayerWood": [
+          0
+        ],
+        "Wave": 11,
+        "Flying": false,
+        "Killed": 96,
+        "Leaked": 0,
+        "Ticks": 815,
+        "Gold": 438
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 504,
+        "PlayerIncome": [
+          504
+        ],
+        "PlayerGold": [
+          512
+        ],
+        "PlayerWood": [
+          0
+        ],
+        "Wave": 12,
+        "Flying": false,
+        "Killed": 120,
+        "Leaked": 0,
+        "Ticks": 676,
+        "Gold": 512
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 760,
+        "PlayerIncome": [
+          760
+        ],
+        "PlayerGold": [
+          762
+        ],
+        "PlayerWood": [
+          0
+        ],
+        "Wave": 13,
+        "Flying": false,
+        "Killed": 152,
+        "Leaked": 0,
+        "Ticks": 778,
+        "Gold": 762
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 416,
+        "PlayerIncome": [
+          416
+        ],
+        "PlayerGold": [
+          418
+        ],
+        "PlayerWood": [
+          4
+        ],
+        "Wave": 14,
+        "Flying": false,
+        "Killed": 64,
+        "Leaked": 0,
+        "Ticks": 778,
+        "Gold": 418
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 616,
+        "PlayerIncome": [
+          616
+        ],
+        "PlayerGold": [
+          1034
+        ],
+        "PlayerWood": [
+          4
+        ],
+        "Wave": 15,
+        "Flying": true,
+        "Killed": 112,
+        "Leaked": 0,
+        "Ticks": 738,
+        "Gold": 1034
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 656,
+        "PlayerIncome": [
+          656
+        ],
+        "PlayerGold": [
+          940
+        ],
+        "PlayerWood": [
+          3
+        ],
+        "Wave": 16,
+        "Flying": false,
+        "Killed": 120,
+        "Leaked": 0,
+        "Ticks": 913,
+        "Gold": 940
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 544,
+        "PlayerIncome": [
+          544
+        ],
+        "PlayerGold": [
+          734
+        ],
+        "PlayerWood": [
+          3
+        ],
+        "Wave": 17,
+        "Flying": false,
+        "Killed": 72,
+        "Leaked": 0,
+        "Ticks": 1031,
+        "Gold": 734
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 1032,
+        "PlayerIncome": [
+          1032
+        ],
+        "PlayerGold": [
+          1766
+        ],
+        "PlayerWood": [
+          3
+        ],
+        "Wave": 18,
+        "Flying": false,
+        "Killed": 168,
+        "Leaked": 0,
+        "Ticks": 965,
+        "Gold": 1766
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 440,
+        "PlayerIncome": [
+          440
+        ],
+        "PlayerGold": [
+          456
+        ],
+        "PlayerWood": [
+          3
+        ],
+        "Wave": 19,
+        "Flying": false,
+        "Killed": 48,
+        "Leaked": 0,
+        "Ticks": 1243,
+        "Gold": 456
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 808,
+        "PlayerIncome": [
+          808
+        ],
+        "PlayerGold": [
+          814
+        ],
+        "PlayerWood": [
+          3
+        ],
+        "Wave": 20,
+        "Flying": true,
+        "Killed": 120,
+        "Leaked": 0,
+        "Ticks": 1003,
+        "Gold": 814
+      }
+    ]
+  }
+]

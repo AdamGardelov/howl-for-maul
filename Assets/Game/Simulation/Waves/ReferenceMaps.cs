@@ -38,7 +38,7 @@ namespace FrostMaze.Simulation
         }
         static void Finish(Scenario c,V2 exit)
         {
-            if(c.Theme=="iron")RobotFactions.Apply(c);else Factions.Apply(c);CampaignProgression.Apply(c);c.Spawn=c.Lanes[0].Spawn;c.GroundRoute=new[]{exit};c.FlightRoute=new[]{exit};c.Validate();
+            if(c.Theme=="iron")RobotFactions.Apply(c);else Factions.Apply(c);CampaignProgression.Apply(c);MaulEconomy.Apply(c);c.Spawn=c.Lanes[0].Spawn;c.GroundRoute=new[]{exit};c.FlightRoute=new[]{exit};c.Validate();
         }
         static Scenario Parse(string name,string text,float cell,string walkable,string theme)
         {

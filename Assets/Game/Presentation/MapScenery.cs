@@ -6,7 +6,7 @@ namespace FrostMaze
     public sealed partial class MapScenery : MonoBehaviour
     {
         readonly List<Mesh> meshes=new List<Mesh>();
-        Texture2D groundTexture,capTexture,wallTexture;
+        Texture2D groundTexture,capTexture,wallTexture,waterTexture;
         sealed class Batch {
             public readonly List<Vector3> V=new List<Vector3>();public readonly List<int> T=new List<int>();
             public void Quad(Vector3 a,Vector3 b,Vector3 c,Vector3 d){int n=V.Count;V.AddRange(new[]{a,b,c,d});T.AddRange(new[]{n,n+1,n+2,n,n+2,n+3});}
@@ -109,10 +109,11 @@ namespace FrostMaze
             for(int i=0;i<batches.Length;i++) {
                 var b=batches[i];if(b.V.Count==0)continue;var mesh=new Mesh{name="Original terrain batch "+i,indexFormat=UnityEngine.Rendering.IndexFormat.UInt32};mesh.SetVertices(b.V);mesh.SetTriangles(b.T,0);mesh.RecalculateNormals();mesh.RecalculateBounds();meshes.Add(mesh);
                 if(i==0){var uv=new List<Vector2>();foreach(var vertex in b.V)uv.Add(new Vector2((vertex.x+vertex.z)/4,vertex.y*2));mesh.SetUVs(0,uv);}
-                if(i==6||i==1){var uv=new List<Vector2>();foreach(var vertex in b.V)uv.Add(new Vector2(vertex.x/c.Width,vertex.z/c.Height));mesh.SetUVs(0,uv);}
+                if(i==6||i==1||i==2){var uv=new List<Vector2>();foreach(var vertex in b.V)uv.Add(new Vector2(vertex.x/c.Width,vertex.z/c.Height));mesh.SetUVs(0,uv);}
                 var obj=new GameObject("Scenery "+i);obj.layer=30;obj.transform.SetParent(transform,false);obj.AddComponent<MeshFilter>().sharedMesh=mesh;var renderer=obj.AddComponent<MeshRenderer>();renderer.sharedMaterial=game.MakeMaterial(i==0||i==1||i==6?Color.white:palette[i],i==13||i==17||i==18);
                 if(i==17){flameMaterial=renderer.sharedMaterial;flameColor=palette[i];}
                 if(i==17||i==18)renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;
+                if(i==2){renderer.sharedMaterial.color=Color.white;renderer.sharedMaterial.mainTexture=waterTexture;}
                 if(i==0)renderer.sharedMaterial.mainTexture=wallTexture;
                 if(i==1)renderer.sharedMaterial.mainTexture=capTexture;
                 if(i==6){renderer.sharedMaterial.mainTexture=groundTexture;renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;}
@@ -132,6 +133,6 @@ namespace FrostMaze
             }
             return found;
         }
-        void OnDestroy(){foreach(var mesh in meshes)Destroy(mesh);if(groundTexture!=null)Destroy(groundTexture);if(capTexture!=null)Destroy(capTexture);if(wallTexture!=null)Destroy(wallTexture);}
+        void OnDestroy(){foreach(var mesh in meshes)Destroy(mesh);if(groundTexture!=null)Destroy(groundTexture);if(capTexture!=null)Destroy(capTexture);if(wallTexture!=null)Destroy(wallTexture);if(waterTexture!=null)Destroy(waterTexture);}
     }
 }

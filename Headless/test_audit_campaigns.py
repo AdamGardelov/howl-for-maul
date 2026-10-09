@@ -26,6 +26,15 @@ class CampaignAuditTests(unittest.TestCase):
         self.assertGreater(self.refund['Refunded'], 0)
         self.assertEqual(audit(self.refund)['walletChecks'], 20)
 
+    def test_per_wave_reward_schedule_is_checked(self):
+        run = copy.deepcopy(self.compact[0])
+        run['KillRewards'] = [run['KillReward']] * len(run['Waves'])
+        run['ClearRewards'] = [run['WaveReward']] * len(run['Waves'])
+        audit(run)
+        run['KillRewards'][0] += 1
+        with self.assertRaisesRegex(ValueError, 'team income'):
+            audit(run)
+
     def test_wallet_transfer_is_detected_even_with_same_team_gold(self):
         run = copy.deepcopy(self.compact[0])
         run['Waves'][0]['PlayerGold'][0] += 1

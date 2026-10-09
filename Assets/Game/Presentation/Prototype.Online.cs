@@ -13,6 +13,7 @@ namespace FrostMaze
         public void LeaveOnline(){OnlineGame.Current?.Leave();SetupOpen=true;MenuOpen=false;Paused=true;matchStarted=false;}
         public void VotePause(){if(NetworkMatch)Net.Send(new Packet{Kind=Kind.PauseVote});else Paused=!Paused;}
         public void Issue(Order order){if(NetworkMatch)Net.Submit(order);}
+        public void ChooseFaction(int faction){if(NetworkMatch){Issue(new Order{Kind=ActionKind.ChooseFaction,Target=faction});return;}World.ChooseFaction(faction,out string message);Notice=message;}
         public void UpgradeTower(int id){if(NetworkMatch){Issue(new Order{Kind=ActionKind.Upgrade,Target=id});return;}World.Upgrade(id,out string message);Notice=message;}
         public bool SellTower(float x,float y){if(NetworkMatch){Issue(new Order{Kind=ActionKind.Sell,X=x,Y=y});return true;}return World.Sell(x,y);}
         public void MoveTo(V2 position){if(NetworkMatch){Issue(new Order{Kind=ActionKind.Move,X=position.X,Y=position.Y});return;}World.MoveBuilder(position);}

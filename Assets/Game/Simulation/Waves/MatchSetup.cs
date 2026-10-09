@@ -37,7 +37,8 @@ namespace FrostMaze.Simulation
     {
         public readonly System.Collections.Generic.Queue<BuildTask> Queue=new System.Collections.Generic.Queue<BuildTask>();
         public int Faction;
-        public int Gold, SelectedDesign, OrderedDesign;
+        public int Gold, Wood, SelectedDesign, OrderedDesign;
+        public int UnlockedFactions;
         public V2 Position,Destination,BuildOrder;
         public bool HasBuildOrder;
         public string Notice="Builder ready.";

@@ -16,7 +16,7 @@ namespace FrostMaze.Simulation.Online
         }
         public static string Of(World world){using(var m=new MemoryStream())using(var w=new BinaryWriter(m)){
             w.Write(world.Tick);w.Write(world.WaveIndex);w.Write(world.Pending);w.Write(world.Killed);w.Write(world.Leaked);
-            foreach(var p in world.Players){w.Write(p.Gold);Value(w,p.Position);Value(w,p.Destination);Value(w,p.BuildOrder);w.Write(p.HasBuildOrder);w.Write(p.OrderedDesign);foreach(var task in p.Queue)Value(w,task);w.Write(-1);}
+            foreach(var p in world.Players){w.Write(p.Gold);w.Write(p.Wood);w.Write(p.Faction);w.Write(p.UnlockedFactions);Value(w,p.Position);Value(w,p.Destination);Value(w,p.BuildOrder);w.Write(p.HasBuildOrder);w.Write(p.OrderedDesign);foreach(var task in p.Queue)Value(w,task);w.Write(-1);}
             foreach(var tower in world.Grid.Towers){Value(w,tower);w.Write(world.TowerOwner(tower.Id));w.Write(world.SaleRefund(tower.Id));}w.Write(-1);
             foreach(var enemy in world.Enemies)Value(w,enemy);return Hash(m);
         }}

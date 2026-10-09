@@ -29,3 +29,7 @@ See Performance/QUALITY-PASS.md for 2× MSAA, medium soft shadows, matched measu
 ## Complete first roster pass
 
 All 76 tower designs now have faction-specific procedural models. Their paid progression, collider absence and silhouettes are verified. This is a foundation for further materials, animation and composition work, not a claim of finished League-quality visuals. See IRON-MODELS.md.
+
+## Inhabited borders
+
+See MAUL-ECONOMY-IMPLEMENTED.md for the original lodge/foundry exterior pass, snow and copper roofs, warm windows, wind pennants, chimney particles and muted water textures. This improves environmental context; a complete authored art library and crowded-scene performance pass remain future work.

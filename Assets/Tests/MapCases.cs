@@ -76,7 +76,7 @@ namespace FrostMaze.Tests
     }
     Check(c.Waves[11].Speed>c.Waves[10].Speed&&c.Waves[12].SpawnInterval<c.Waves[10].SpawnInterval,"rush/swarm variety");
     Check(c.Waves[18].Damage>c.Waves[10].Damage&&c.Waves[18].Health>c.Waves[10].Health,"siege escalation");
-    Check(c.StartingGold==1200&&c.WaveReward==120,"economy changed");
+    Check(c.StartingGold==(iron?2200:240)&&c.Waves[0].ClearGold==56,"economy changed");
    }
   }
   public static void RobotIdentity() {
@@ -212,7 +212,7 @@ namespace FrostMaze.Tests
      var tower=w.Grid.At(cells[cell,0],cells[cell,1]);
      Check(ticks>0&&!w.HasBuildOrder&&tower!=null&&w.TowerOwner(tower.Id)==owner,"shared maze paid travel/owner");
      spent[owner]+=cost;
-     for(int p=0;p<3;p++)Check(w.Players[p].Gold==400-spent[p],"shared maze charged wrong wallet");
+     for(int p=0;p<3;p++)Check(w.Players[p].Gold==c.StartingGold/3-spent[p],"shared maze charged wrong wallet");
     }
     var detour=Traverse(w);
     for(int lane=0;lane<w.LaneCount;lane++) {
@@ -225,7 +225,7 @@ namespace FrostMaze.Tests
      w.SelectPlayer(owner);refunds[owner]+=w.SaleRefund(tower.Id);
      Check(w.Sell(tower.CellX,tower.CellY),"shared maze owner cannot reopen path");
     }
-    for(int p=0;p<3;p++)Check(w.Players[p].Gold==400-spent[p]+refunds[p],"shared maze refund went to wrong wallet");
+    for(int p=0;p<3;p++)Check(w.Players[p].Gold==c.StartingGold/3-spent[p]+refunds[p],"shared maze refund went to wrong wallet");
     var reopened=Traverse(w);for(int i=0;i<baseline.Length;i++)Check(reopened[i]==baseline[i],"shared maze sale left stale navigation");
    }
   }
@@ -351,9 +351,11 @@ namespace FrostMaze.Tests
    }
   }
   public static void PaidChampionQueueRecovery() {
-   // Real Ironfold terrain and the unmodified solo wallet; no grants or free builds.
+   // Late-game queue regression on real terrain with explicit resource fixtures.
+   // Campaign sweeps separately verify resources earned through normal play.
    foreach(bool destroyed in new[]{false,true})for(int faction=0;faction<8;faction++) {
     var c=Load(true);var w=new World(c,new MatchOptions{Factions=new[]{faction,0,0,0}});
+    c.StartingGold=8000;w.Players[0].Gold=8000;w.Players[0].Wood=4;
     var cells=MazeCells(true);int spent=0,refund=0;string context=c.Factions[faction].Name+(destroyed?" destroyed":" sold");
     void Purchase(int design,int cell) {
      w.SelectedDesign=design;int before=w.Gold,cost=w.BuildCost;

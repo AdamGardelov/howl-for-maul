@@ -1,0 +1,1747 @@
+[
+  {
+    "KillRewards": [
+      1,
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      2,
+      3,
+      3,
+      3,
+      3,
+      4,
+      4,
+      4,
+      4,
+      5,
+      5,
+      5,
+      5
+    ],
+    "ClearRewards": [
+      56,
+      64,
+      72,
+      80,
+      88,
+      96,
+      104,
+      112,
+      120,
+      128,
+      136,
+      144,
+      152,
+      160,
+      168,
+      176,
+      184,
+      192,
+      200,
+      208
+    ],
+    "WoodPurchases": [],
+    "OpenRouteTicks": null,
+    "PreparedMazeRouteTicks": null,
+    "InitialMazePurchases": 0,
+    "StartingTeamGold": 240,
+    "KillReward": 2,
+    "WaveReward": 120,
+    "Sales": [],
+    "Refunded": 0,
+    "PlayerRefunds": [
+      0
+    ],
+    "StartingPositions": [
+      -1
+    ],
+    "InitialBuilderPositions": [
+      [
+        31.5,
+        15.5
+      ]
+    ],
+    "ActiveLanes": 3,
+    "StartingWallets": [
+      240
+    ],
+    "PreparationTicks": 3334,
+    "FinalWallets": [
+      4667
+    ],
+    "PlayerSpending": [
+      2476
+    ],
+    "Strategy": "compact-transition",
+    "Factions": [
+      "Stonebound"
+    ],
+    "Upgrades": [
+      {
+        "Player": 1,
+        "TowerId": 18,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 5
+      },
+      {
+        "Player": 1,
+        "TowerId": 1,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 5
+      },
+      {
+        "Player": 1,
+        "TowerId": 18,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 1,
+        "TowerId": 38,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 1,
+        "TowerId": 15,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 1,
+        "TowerId": 38,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 1,
+        "TowerId": 30,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 1,
+        "TowerId": 1,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 1,
+        "TowerId": 15,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 1,
+        "TowerId": 30,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 1,
+        "TowerId": 24,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 1,
+        "TowerId": 2,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 1,
+        "TowerId": 24,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 43,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 43,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 2,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 16,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 20,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 37,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 3,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 4,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 7,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 29,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 31,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 16,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 20,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 5,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 6,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 14,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 41,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 5,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 37,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 7,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 8,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 9,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 10,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 11,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 11,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 12,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 13,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 19,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 21,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 32,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 33,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 34,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 35,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 36,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 44,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 44,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 45,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 45,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 46,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 23,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 40,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 40,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 28,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 3,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 4,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 28,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 29,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 31,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 33,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 6,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 14,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 23,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 32,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 36,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 41,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 42,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 8,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 17,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 9,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 10,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 12,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 13,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 19,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 21,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 34,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 35,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 42,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 46,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 22,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 27,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 47,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 47,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 17,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 22,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 25,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 27,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 12
+      },
+      {
+        "Player": 1,
+        "TowerId": 26,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 12
+      },
+      {
+        "Player": 1,
+        "TowerId": 39,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 12
+      },
+      {
+        "Player": 1,
+        "TowerId": 25,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 12
+      },
+      {
+        "Player": 1,
+        "TowerId": 48,
+        "Tower": "Crag Hurler",
+        "Level": 2,
+        "Cost": 55,
+        "BeforeWave": 12
+      },
+      {
+        "Player": 1,
+        "TowerId": 48,
+        "Tower": "Crag Hurler",
+        "Level": 3,
+        "Cost": 110,
+        "BeforeWave": 12
+      },
+      {
+        "Player": 1,
+        "TowerId": 26,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 12
+      },
+      {
+        "Player": 1,
+        "TowerId": 39,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 12
+      }
+    ],
+    "PlayerCount": 1,
+    "Map": "Rimewatch",
+    "Faction": "Stonebound",
+    "Difficulty": "Normal",
+    "Won": true,
+    "Stalled": false,
+    "Lives": 3,
+    "Gold": 4667,
+    "Spent": 2476,
+    "Placements": [
+      {
+        "TowerId": 1,
+        "TravelTicks": 4,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 31,
+        "Y": 11,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 2,
+        "TravelTicks": 8,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 27,
+        "Y": 17,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 3,
+        "TravelTicks": 85,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 11,
+        "Y": 37,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 4,
+        "TravelTicks": 125,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 53,
+        "Y": 37,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 5,
+        "TravelTicks": 62,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 29,
+        "Y": 33,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 6,
+        "TravelTicks": 57,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 39,
+        "Y": 15,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 7,
+        "TravelTicks": 70,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 17,
+        "Y": 29,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 8,
+        "TravelTicks": 45,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 29,
+        "Y": 41,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 9,
+        "TravelTicks": 62,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 7,
+        "Y": 45,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 10,
+        "TravelTicks": 135,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 53,
+        "Y": 45,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 11,
+        "TravelTicks": 62,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 29,
+        "Y": 49,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 12,
+        "TravelTicks": 68,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 9,
+        "Y": 53,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 13,
+        "TravelTicks": 134,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 55,
+        "Y": 53,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 14,
+        "TravelTicks": 167,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 13,
+        "Y": 17,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 15,
+        "TravelTicks": 44,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 29,
+        "Y": 11,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 16,
+        "TravelTicks": 15,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 21,
+        "Y": 17,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 17,
+        "TravelTicks": 44,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 9,
+        "Y": 23,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 18,
+        "TravelTicks": 61,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 31,
+        "Y": 13,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 19,
+        "TravelTicks": 120,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 29,
+        "Y": 53,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 20,
+        "TravelTicks": 78,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 11,
+        "Y": 31,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 21,
+        "TravelTicks": 124,
+        "BeforeWave": 2,
+        "Player": 1,
+        "X": 53,
+        "Y": 33,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 22,
+        "TravelTicks": 12,
+        "BeforeWave": 2,
+        "Player": 1,
+        "X": 45,
+        "Y": 29,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 23,
+        "TravelTicks": 58,
+        "BeforeWave": 2,
+        "Player": 1,
+        "X": 27,
+        "Y": 31,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 24,
+        "TravelTicks": 45,
+        "BeforeWave": 2,
+        "Player": 1,
+        "X": 27,
+        "Y": 15,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 25,
+        "TravelTicks": 69,
+        "BeforeWave": 2,
+        "Player": 1,
+        "X": 51,
+        "Y": 15,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 26,
+        "TravelTicks": 25,
+        "BeforeWave": 2,
+        "Player": 1,
+        "X": 55,
+        "Y": 23,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 27,
+        "TravelTicks": 38,
+        "BeforeWave": 3,
+        "Player": 1,
+        "X": 39,
+        "Y": 19,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 28,
+        "TravelTicks": 60,
+        "BeforeWave": 3,
+        "Player": 1,
+        "X": 21,
+        "Y": 19,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 29,
+        "TravelTicks": 70,
+        "BeforeWave": 3,
+        "Player": 1,
+        "X": 11,
+        "Y": 39,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 30,
+        "TravelTicks": 100,
+        "BeforeWave": 3,
+        "Player": 1,
+        "X": 33,
+        "Y": 11,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 31,
+        "TravelTicks": 103,
+        "BeforeWave": 3,
+        "Player": 1,
+        "X": 53,
+        "Y": 39,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 32,
+        "TravelTicks": 64,
+        "BeforeWave": 3,
+        "Player": 1,
+        "X": 29,
+        "Y": 37,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 33,
+        "TravelTicks": 19,
+        "BeforeWave": 3,
+        "Player": 1,
+        "X": 29,
+        "Y": 45,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 34,
+        "TravelTicks": 69,
+        "BeforeWave": 3,
+        "Player": 1,
+        "X": 7,
+        "Y": 47,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 35,
+        "TravelTicks": 135,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 53,
+        "Y": 47,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 36,
+        "TravelTicks": 111,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 19,
+        "Y": 29,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 37,
+        "TravelTicks": 42,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 21,
+        "Y": 15,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 38,
+        "TravelTicks": 21,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 29,
+        "Y": 13,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 39,
+        "TravelTicks": 46,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 43,
+        "Y": 13,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 40,
+        "TravelTicks": 95,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 13,
+        "Y": 29,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 41,
+        "TravelTicks": 23,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 11,
+        "Y": 19,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 42,
+        "TravelTicks": 46,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 27,
+        "Y": 29,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 43,
+        "TravelTicks": 41,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 33,
+        "Y": 15,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 44,
+        "TravelTicks": 129,
+        "BeforeWave": 5,
+        "Player": 1,
+        "X": 7,
+        "Y": 51,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 45,
+        "TravelTicks": 139,
+        "BeforeWave": 5,
+        "Player": 1,
+        "X": 53,
+        "Y": 51,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 46,
+        "TravelTicks": 55,
+        "BeforeWave": 5,
+        "Player": 1,
+        "X": 31,
+        "Y": 53,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 47,
+        "TravelTicks": 87,
+        "BeforeWave": 5,
+        "Player": 1,
+        "X": 53,
+        "Y": 31,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 48,
+        "TravelTicks": 62,
+        "BeforeWave": 5,
+        "Player": 1,
+        "X": 35,
+        "Y": 19,
+        "Tower": "Crag Hurler",
+        "Cost": 55
+      }
+    ],
+    "Waves": [
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 80,
+        "PlayerIncome": [
+          80
+        ],
+        "PlayerGold": [
+          80
+        ],
+        "PlayerWood": [
+          0
+        ],
+        "Wave": 1,
+        "Flying": false,
+        "Killed": 24,
+        "Leaked": 0,
+        "Ticks": 438,
+        "Gold": 80
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 94,
+        "PlayerIncome": [
+          94
+        ],
+        "PlayerGold": [
+          102
+        ],
+        "PlayerWood": [
+          0
+        ],
+        "Wave": 2,
+        "Flying": false,
+        "Killed": 30,
+        "Leaked": 0,
+        "Ticks": 492,
+        "Gold": 102
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 108,
+        "PlayerIncome": [
+          108
+        ],
+        "PlayerGold": [
+          114
+        ],
+        "PlayerWood": [
+          0
+        ],
+        "Wave": 3,
+        "Flying": false,
+        "Killed": 36,
+        "Leaked": 0,
+        "Ticks": 547,
+        "Gold": 114
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 122,
+        "PlayerIncome": [
+          122
+        ],
+        "PlayerGold": [
+          128
+        ],
+        "PlayerWood": [
+          0
+        ],
+        "Wave": 4,
+        "Flying": false,
+        "Killed": 42,
+        "Leaked": 0,
+        "Ticks": 627,
+        "Gold": 128
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 184,
+        "PlayerIncome": [
+          184
+        ],
+        "PlayerGold": [
+          185
+        ],
+        "PlayerWood": [
+          0
+        ],
+        "Wave": 5,
+        "Flying": true,
+        "Killed": 48,
+        "Leaked": 0,
+        "Ticks": 683,
+        "Gold": 185
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 204,
+        "PlayerIncome": [
+          204
+        ],
+        "PlayerGold": [
+          209
+        ],
+        "PlayerWood": [
+          0
+        ],
+        "Wave": 6,
+        "Flying": false,
+        "Killed": 54,
+        "Leaked": 0,
+        "Ticks": 732,
+        "Gold": 209
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 224,
+        "PlayerIncome": [
+          224
+        ],
+        "PlayerGold": [
+          229
+        ],
+        "PlayerWood": [
+          0
+        ],
+        "Wave": 7,
+        "Flying": false,
+        "Killed": 60,
+        "Leaked": 0,
+        "Ticks": 814,
+        "Gold": 229
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 244,
+        "PlayerIncome": [
+          244
+        ],
+        "PlayerGold": [
+          245
+        ],
+        "PlayerWood": [
+          0
+        ],
+        "Wave": 8,
+        "Flying": false,
+        "Killed": 66,
+        "Leaked": 0,
+        "Ticks": 835,
+        "Gold": 245
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 336,
+        "PlayerIncome": [
+          336
+        ],
+        "PlayerGold": [
+          341
+        ],
+        "PlayerWood": [
+          4
+        ],
+        "Wave": 9,
+        "Flying": false,
+        "Killed": 72,
+        "Leaked": 0,
+        "Ticks": 786,
+        "Gold": 341
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 362,
+        "PlayerIncome": [
+          362
+        ],
+        "PlayerGold": [
+          367
+        ],
+        "PlayerWood": [
+          4
+        ],
+        "Wave": 10,
+        "Flying": true,
+        "Killed": 78,
+        "Leaked": 0,
+        "Ticks": 792,
+        "Gold": 367
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 352,
+        "PlayerIncome": [
+          352
+        ],
+        "PlayerGold": [
+          359
+        ],
+        "PlayerWood": [
+          4
+        ],
+        "Wave": 11,
+        "Flying": false,
+        "Killed": 72,
+        "Leaked": 0,
+        "Ticks": 766,
+        "Gold": 359
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 414,
+        "PlayerIncome": [
+          414
+        ],
+        "PlayerGold": [
+          488
+        ],
+        "PlayerWood": [
+          4
+        ],
+        "Wave": 12,
+        "Flying": false,
+        "Killed": 90,
+        "Leaked": 0,
+        "Ticks": 679,
+        "Gold": 488
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 608,
+        "PlayerIncome": [
+          608
+        ],
+        "PlayerGold": [
+          1096
+        ],
+        "PlayerWood": [
+          4
+        ],
+        "Wave": 13,
+        "Flying": false,
+        "Killed": 114,
+        "Leaked": 0,
+        "Ticks": 965,
+        "Gold": 1096
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 352,
+        "PlayerIncome": [
+          352
+        ],
+        "PlayerGold": [
+          1448
+        ],
+        "PlayerWood": [
+          4
+        ],
+        "Wave": 14,
+        "Flying": false,
+        "Killed": 48,
+        "Leaked": 0,
+        "Ticks": 968,
+        "Gold": 1448
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 504,
+        "PlayerIncome": [
+          504
+        ],
+        "PlayerGold": [
+          1952
+        ],
+        "PlayerWood": [
+          4
+        ],
+        "Wave": 15,
+        "Flying": true,
+        "Killed": 84,
+        "Leaked": 0,
+        "Ticks": 817,
+        "Gold": 1952
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 536,
+        "PlayerIncome": [
+          536
+        ],
+        "PlayerGold": [
+          2488
+        ],
+        "PlayerWood": [
+          4
+        ],
+        "Wave": 16,
+        "Flying": false,
+        "Killed": 90,
+        "Leaked": 0,
+        "Ticks": 1218,
+        "Gold": 2488
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 454,
+        "PlayerIncome": [
+          454
+        ],
+        "PlayerGold": [
+          2942
+        ],
+        "PlayerWood": [
+          4
+        ],
+        "Wave": 17,
+        "Flying": false,
+        "Killed": 54,
+        "Leaked": 0,
+        "Ticks": 1538,
+        "Gold": 2942
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 757,
+        "PlayerIncome": [
+          757
+        ],
+        "PlayerGold": [
+          3699
+        ],
+        "PlayerWood": [
+          4
+        ],
+        "Wave": 18,
+        "Flying": false,
+        "Killed": 113,
+        "Leaked": 13,
+        "Ticks": 1206,
+        "Gold": 3699
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 380,
+        "PlayerIncome": [
+          380
+        ],
+        "PlayerGold": [
+          4079
+        ],
+        "PlayerWood": [
+          4
+        ],
+        "Wave": 19,
+        "Flying": false,
+        "Killed": 36,
+        "Leaked": 0,
+        "Ticks": 1758,
+        "Gold": 4079
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 588,
+        "PlayerIncome": [
+          588
+        ],
+        "PlayerGold": [
+          4667
+        ],
+        "PlayerWood": [
+          4
+        ],
+        "Wave": 20,
+        "Flying": true,
+        "Killed": 76,
+        "Leaked": 14,
+        "Ticks": 1162,
+        "Gold": 4667
+      }
+    ]
+  }
+]

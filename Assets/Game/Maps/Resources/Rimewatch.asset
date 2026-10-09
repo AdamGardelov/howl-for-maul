@@ -897,7 +897,8 @@ MonoBehaviour:
     Name: Rimewatch
     Economy: 1
     BuilderEnabled: 1
-    StartingGold: 1200
+    FactionWoodUnlocks: 1
+    StartingGold: 240
     TowerCost: 20
     SaleRefund: 15
     KillReward: 2
@@ -925,9 +926,10 @@ MonoBehaviour:
     Catalog:
     - Name: Shard Sentry
       Description: "Ground + air \xB7 dependable opening tower"
-      Cost: 20
-      Refund: 15
+      Cost: 10
+      Refund: 7
       VisualStyle: 0
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -948,6 +950,7 @@ MonoBehaviour:
       Cost: 5
       Refund: 3
       VisualStyle: 0
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -968,6 +971,7 @@ MonoBehaviour:
       Cost: 45
       Refund: 33
       VisualStyle: 0
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -988,6 +992,7 @@ MonoBehaviour:
       Cost: 65
       Refund: 48
       VisualStyle: 0
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -1008,6 +1013,7 @@ MonoBehaviour:
       Cost: 55
       Refund: 41
       VisualStyle: 0
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -1025,9 +1031,10 @@ MonoBehaviour:
         TargetsAir: 1
     - Name: Pebble Warden
       Description: "Ground + air \xB7 small impact splash"
-      Cost: 25
-      Refund: 18
+      Cost: 12
+      Refund: 9
       VisualStyle: 1
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -1048,6 +1055,7 @@ MonoBehaviour:
       Cost: 6
       Refund: 4
       VisualStyle: 1
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -1068,6 +1076,7 @@ MonoBehaviour:
       Cost: 65
       Refund: 48
       VisualStyle: 1
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -1088,6 +1097,7 @@ MonoBehaviour:
       Cost: 55
       Refund: 41
       VisualStyle: 1
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -1108,6 +1118,7 @@ MonoBehaviour:
       Cost: 90
       Refund: 67
       VisualStyle: 1
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -1125,9 +1136,10 @@ MonoBehaviour:
         TargetsAir: 0
     - Name: Cinder Watch
       Description: "Ground + air \xB7 fast single-target attacks"
-      Cost: 25
-      Refund: 18
+      Cost: 12
+      Refund: 9
       VisualStyle: 2
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -1148,6 +1160,7 @@ MonoBehaviour:
       Cost: 5
       Refund: 3
       VisualStyle: 2
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -1168,6 +1181,7 @@ MonoBehaviour:
       Cost: 60
       Refund: 45
       VisualStyle: 2
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -1188,6 +1202,7 @@ MonoBehaviour:
       Cost: 55
       Refund: 41
       VisualStyle: 2
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -1208,6 +1223,7 @@ MonoBehaviour:
       Cost: 100
       Refund: 75
       VisualStyle: 2
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -1225,9 +1241,10 @@ MonoBehaviour:
         TargetsAir: 0
     - Name: Pulse Cadet
       Description: "Ground + air \xB7 arm-cannon sentry"
-      Cost: 20
-      Refund: 15
+      Cost: 10
+      Refund: 7
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -1248,6 +1265,7 @@ MonoBehaviour:
       Cost: 4
       Refund: 3
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -1268,6 +1286,7 @@ MonoBehaviour:
       Cost: 65
       Refund: 48
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -1288,6 +1307,7 @@ MonoBehaviour:
       Cost: 55
       Refund: 41
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -1308,6 +1328,7 @@ MonoBehaviour:
       Cost: 100
       Refund: 75
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -1340,6 +1361,9 @@ MonoBehaviour:
     Waves:
     - Name: Frostbound patrol
       Count: 8
+      KillGold: 1
+      ClearGold: 56
+      WoodReward: 0
       SpawnInterval: 0.8
       Health: 35
       Speed: 1.9
@@ -1349,6 +1373,9 @@ MonoBehaviour:
       Flying: 0
     - Name: Frostbound patrol
       Count: 10
+      KillGold: 1
+      ClearGold: 64
+      WoodReward: 0
       SpawnInterval: 0.8
       Health: 47
       Speed: 1.9
@@ -1358,6 +1385,9 @@ MonoBehaviour:
       Flying: 0
     - Name: Frostbound patrol
       Count: 12
+      KillGold: 1
+      ClearGold: 72
+      WoodReward: 0
       SpawnInterval: 0.8
       Health: 59
       Speed: 1.9
@@ -1367,6 +1397,9 @@ MonoBehaviour:
       Flying: 0
     - Name: Frostbound patrol
       Count: 14
+      KillGold: 1
+      ClearGold: 80
+      WoodReward: 0
       SpawnInterval: 0.8
       Health: 71
       Speed: 1.9
@@ -1376,6 +1409,9 @@ MonoBehaviour:
       Flying: 0
     - Name: Sky drifters
       Count: 16
+      KillGold: 2
+      ClearGold: 88
+      WoodReward: 0
       SpawnInterval: 0.8
       Health: 83
       Speed: 2.2
@@ -1385,6 +1421,9 @@ MonoBehaviour:
       Flying: 1
     - Name: Frostbound patrol
       Count: 18
+      KillGold: 2
+      ClearGold: 96
+      WoodReward: 0
       SpawnInterval: 0.8
       Health: 95
       Speed: 1.9
@@ -1394,6 +1433,9 @@ MonoBehaviour:
       Flying: 0
     - Name: Frostbound patrol
       Count: 20
+      KillGold: 2
+      ClearGold: 104
+      WoodReward: 0
       SpawnInterval: 0.8
       Health: 107
       Speed: 1.9
@@ -1403,6 +1445,9 @@ MonoBehaviour:
       Flying: 0
     - Name: Frostbound patrol
       Count: 22
+      KillGold: 2
+      ClearGold: 112
+      WoodReward: 0
       SpawnInterval: 0.8
       Health: 119
       Speed: 1.9
@@ -1412,6 +1457,9 @@ MonoBehaviour:
       Flying: 0
     - Name: Frostbound patrol
       Count: 24
+      KillGold: 3
+      ClearGold: 120
+      WoodReward: 4
       SpawnInterval: 0.8
       Health: 131
       Speed: 1.9
@@ -1421,6 +1469,9 @@ MonoBehaviour:
       Flying: 0
     - Name: Sky drifters
       Count: 26
+      KillGold: 3
+      ClearGold: 128
+      WoodReward: 0
       SpawnInterval: 0.8
       Health: 143
       Speed: 2.2
@@ -1430,6 +1481,9 @@ MonoBehaviour:
       Flying: 1
     - Name: "II \xB7 Reinforced patrol"
       Count: 24
+      KillGold: 3
+      ClearGold: 136
+      WoodReward: 0
       SpawnInterval: 0.75
       Health: 180
       Speed: 1.9
@@ -1439,6 +1493,9 @@ MonoBehaviour:
       Flying: 0
     - Name: "II \xB7 Skitter rush"
       Count: 30
+      KillGold: 3
+      ClearGold: 144
+      WoodReward: 0
       SpawnInterval: 0.45
       Health: 155
       Speed: 2.7
@@ -1448,6 +1505,9 @@ MonoBehaviour:
       Flying: 0
     - Name: "II \xB7 Swarm column"
       Count: 38
+      KillGold: 4
+      ClearGold: 152
+      WoodReward: 0
       SpawnInterval: 0.3
       Health: 150
       Speed: 2.1
@@ -1457,6 +1517,9 @@ MonoBehaviour:
       Flying: 0
     - Name: "II \xB7 Siege wardens"
       Count: 16
+      KillGold: 4
+      ClearGold: 160
+      WoodReward: 0
       SpawnInterval: 1.05
       Health: 340
       Speed: 1.55
@@ -1466,6 +1529,9 @@ MonoBehaviour:
       Flying: 0
     - Name: "II \xB7 Sky lancers"
       Count: 28
+      KillGold: 4
+      ClearGold: 168
+      WoodReward: 0
       SpawnInterval: 0.65
       Health: 230
       Speed: 2.5
@@ -1475,6 +1541,9 @@ MonoBehaviour:
       Flying: 1
     - Name: "III \xB7 Veteran vanguard"
       Count: 30
+      KillGold: 4
+      ClearGold: 176
+      WoodReward: 0
       SpawnInterval: 0.65
       Health: 310
       Speed: 2.1
@@ -1484,6 +1553,9 @@ MonoBehaviour:
       Flying: 0
     - Name: "III \xB7 Iron procession"
       Count: 18
+      KillGold: 5
+      ClearGold: 184
+      WoodReward: 0
       SpawnInterval: 1
       Health: 560
       Speed: 1.6
@@ -1493,6 +1565,9 @@ MonoBehaviour:
       Flying: 0
     - Name: "III \xB7 Last rush"
       Count: 42
+      KillGold: 5
+      ClearGold: 192
+      WoodReward: 0
       SpawnInterval: 0.35
       Health: 285
       Speed: 2.65
@@ -1502,6 +1577,9 @@ MonoBehaviour:
       Flying: 0
     - Name: "III \xB7 Gatebreakers"
       Count: 12
+      KillGold: 5
+      ClearGold: 200
+      WoodReward: 0
       SpawnInterval: 1.4
       Health: 1000
       Speed: 1.4
@@ -1511,6 +1589,9 @@ MonoBehaviour:
       Flying: 0
     - Name: "Finale \xB7 Storm host"
       Count: 30
+      KillGold: 5
+      ClearGold: 208
+      WoodReward: 0
       SpawnInterval: 0.65
       Health: 480
       Speed: 2.5

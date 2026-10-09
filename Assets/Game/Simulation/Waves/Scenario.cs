@@ -6,6 +6,7 @@ namespace FrostMaze.Simulation
     {
         public string Name = "Ground patrol";
         public int Count = 25;
+        public int KillGold = -1, ClearGold = -1, WoodReward;
         public float SpawnInterval = 0.4f, Health = 50, Speed = 1.9f, Radius = 0.2f, Damage = 12, AttackInterval = 0.6f;
         public bool Flying;
     }
@@ -24,6 +25,7 @@ namespace FrostMaze.Simulation
         public TerrainBlock[] Terrain = new TerrainBlock[0];
         public string Name = "Maze Lab";
         public bool Economy, BuilderEnabled;
+        public bool FactionWoodUnlocks;
         public int StartingGold = 300, TowerCost = 20, SaleRefund = 15, KillReward = 2, WaveReward = 30, StartingLives = 30;
         public float BuilderSpeed = 9, BuildRange = 3;
         public int Width = 30, Height = 20;
@@ -78,7 +80,7 @@ namespace FrostMaze.Simulation
             if (Width < 4 || Height < 4 || NavigationStep <= 0 || NavigationStep > 1 || GroundRoute == null || GroundRoute.Length == 0 || FlightRoute == null || FlightRoute.Length == 0 || Waves == null || Waves.Length == 0)
                 throw new ArgumentException("Invalid map, routes or waves.");
             foreach (var wave in Waves)
-                if (wave.Radius <= 0 || wave.Radius >= 0.5f || wave.Speed <= 0 || wave.SpawnInterval <= 0 || wave.AttackInterval <= 0 || wave.Count < 1 || wave.Health <= 0)
+                if (wave.KillGold < -1 || wave.ClearGold < -1 || wave.WoodReward < 0 || wave.Radius <= 0 || wave.Radius >= 0.5f || wave.Speed <= 0 || wave.SpawnInterval <= 0 || wave.AttackInterval <= 0 || wave.Count < 1 || wave.Health <= 0)
                     throw new ArgumentException("Invalid wave settings.");
             if (StartingGold < 0 || TowerCost <= 0 || SaleRefund < 0 || SaleRefund > TowerCost || KillReward < 0 || WaveReward < 0 || StartingLives < 1 || BuilderSpeed <= 0 || BuildRange <= 0)
                 throw new ArgumentException("Invalid economy or builder settings.");
@@ -93,7 +95,7 @@ namespace FrostMaze.Simulation
             if(Lanes.Length>0&&BuilderStarts.Length<4)throw new ArgumentException("Maps require four selectable builder starts.");
             if(Lanes.Length>0&&StartNames.Length!=BuilderStarts.Length)throw new ArgumentException("Builder starts need matching names.");
             foreach(var start in BuilderStarts)if(!bounds.InBounds(start,.25f))throw new ArgumentException("Builder start outside map.");
-            foreach(var design in Catalog)if(design.Cost<1||design.Refund<0||design.Refund>design.Cost||design.Spec==null)throw new ArgumentException("Invalid tower catalog.");
+            foreach(var design in Catalog)if(design.WoodCost<0||design.Cost<1||design.Refund<0||design.Refund>design.Cost||design.Spec==null)throw new ArgumentException("Invalid tower catalog.");
             foreach(var lane in Lanes) {
                 if(lane.GroundRoute==null||lane.GroundRoute.Length==0||lane.FlightRoute==null||lane.FlightRoute.Length==0||!bounds.TerrainClear(lane.Spawn,lane.Spawn,clearance))throw new ArgumentException("Invalid lane.");
                 foreach(var p in lane.GroundRoute)if(!bounds.TerrainClear(p,p,clearance))throw new ArgumentException("Ground checkpoint intersects terrain.");

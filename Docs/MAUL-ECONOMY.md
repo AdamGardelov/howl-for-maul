@@ -1,5 +1,7 @@
 # Historical maul economy comparison
 
+Implementation follow-up: see [the new economy and its verification](MAUL-ECONOMY-IMPLEMENTED.md). The Howl values below describe the earlier research checkpoint, not the current balance.
+
 Inspected 2026-10-09. This is research, not a balance change or Warcraft III playtest. Values are tied to identifiable archive files; neither file establishes the economy of every Wintermaul/Mega Man revision, or proves it matches the user's remembered copy.
 
 ## Findings

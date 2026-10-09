@@ -36,6 +36,8 @@ namespace FrostMaze.Tests
                 w.Step();
         }
         public static readonly Case[] All ={
+            new Case("Maul gold and wood milestones preserve four-slot budgets",EconomyCases.Milestones),
+            new Case("Wood purchases, queued orders, faction switching and restart",EconomyCases.Purchases),
             new Case("Tower spatial queries match full scans through removal and rebuild",SpatialCases.TowerQueriesMatchFullScan),
             new Case("Reference wall seams accept flush towers and exclude enemies",MapCases.WallSeams),
             new Case("Paid intermediate-checkpoint towers preserve every lane and reopen after sale",MapCases.OccupiedIntermediateCheckpoints),

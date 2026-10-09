@@ -35,7 +35,7 @@ static class NetworkChecks
             var timeout=Stopwatch.StartNew();bool built=false,launched=false,voted=false,resumed=false,walletChecked=false,sawPause=false;long pauseTick=-1;
             try{while(timeout.Elapsed.TotalSeconds<35){host.Update(.01);Setup(host,0,0);Check(host.Failure.Length==0,host.Failure);
                 if(host.World!=null){var w=host.World;if(!built){Build(host);built=true;}
-                    if(w.Tick>230&&!walletChecked){Check(host.Speed==1,"Remote client changed shared speed");Check(w.Grid.Towers.Count==2,"Both paid towers missing");Check(w.Grid.Towers.All(t=>t.Level==1),"Foreign upgrade accepted");foreach(int owner in new[]{0,1}){var tower=w.Grid.Towers.Single(t=>w.TowerOwner(t.Id)==owner);Check(w.Players[owner].Gold==600-w.Config.Catalog[tower.Design].Cost,"Separate wallet mismatch");}walletChecked=true;}
+                    if(w.Tick>230&&!walletChecked){Check(host.Speed==1,"Remote client changed shared speed");Check(w.Grid.Towers.Count==2,"Both paid towers missing");Check(w.Grid.Towers.All(t=>t.Level==1),"Foreign upgrade accepted");foreach(int owner in new[]{0,1}){var tower=w.Grid.Towers.Single(t=>w.TowerOwner(t.Id)==owner);Check(w.Players[owner].Gold==w.Config.StartingGold/2-w.Config.Catalog[tower.Design].Cost,"Separate wallet mismatch");}walletChecked=true;}
                     if(w.Tick>240&&!launched){host.Submit(new Order{Kind=ActionKind.Launch});host.Send(new Packet{Kind=Kind.Speed,A=3});launched=true;}
                     if(w.Tick>300&&!voted){host.Send(new Packet{Kind=Kind.PauseVote});Check(!host.Paused,"One of two votes paused the match");voted=true;}
                     if(host.Paused){if(!sawPause){pauseTick=w.Tick;sawPause=true;}if(!resumed){Check(w.Tick==pauseTick,"Paused host tick advanced");if(host.Votes>0){host.Send(new Packet{Kind=Kind.Speed,A=0});host.Send(new Packet{Kind=Kind.PauseVote});Check(!host.Paused,"Majority failed to resume");resumed=true;}}}
@@ -56,9 +56,9 @@ static class NetworkChecks
         foreach(var s in new[]{host,a,b}){s.Send(new Packet{Kind=Kind.Faction,A=0});s.Send(new Packet{Kind=Kind.Ready});}Pump(20);
         host.Send(new Packet{Kind=Kind.Lane,A=0});a.Send(new Packet{Kind=Kind.Lane,A=0});Pump(20);Check(host.Members.Count(m=>m.Lane==0)==1,"Duplicate lane accepted");
         a.Send(new Packet{Kind=Kind.Lane,A=1});b.Send(new Packet{Kind=Kind.Lane,A=2});Pump(20);foreach(var s in new[]{host,a,b})s.Send(new Packet{Kind=Kind.Ready});Pump(20);
-        host.Send(new Packet{Kind=Kind.Difficulty,A=0});a.Send(new Packet{Kind=Kind.Difficulty,A=1});b.Send(new Packet{Kind=Kind.Difficulty,A=2});Pump(20);Check(host.World.Difficulty==Difficulty.Normal,"Tied votes should choose Normal");Check(host.World.Players.All(p=>p.Gold==400),"Three-player budget mismatch");
+        host.Send(new Packet{Kind=Kind.Difficulty,A=0});a.Send(new Packet{Kind=Kind.Difficulty,A=1});b.Send(new Packet{Kind=Kind.Difficulty,A=2});Pump(20);Check(host.World.Difficulty==Difficulty.Normal,"Tied votes should choose Normal");Check(host.World.Players.All(p=>p.Gold==80),"Three-player budget mismatch");
         host.Send(new Packet{Kind=Kind.PauseVote});Pump(10);Check(!host.Paused&&host.RequiredVotes==2,"Bad three-player majority");Pump(2100);Check(host.Votes==0&&!host.Paused,"Expired vote persisted");
-        a.Send(new Packet{Kind=Kind.PauseVote});b.Send(new Packet{Kind=Kind.PauseVote});Pump(20);Check(host.Paused&&a.Paused&&b.Paused,"Two of three failed to pause");Console.WriteLine("PASS unique lane reservation, tied difficulty, 400-gold wallets, majority and expiring pause votes");
+        a.Send(new Packet{Kind=Kind.PauseVote});b.Send(new Packet{Kind=Kind.PauseVote});Pump(20);Check(host.Paused&&a.Paused&&b.Paused,"Two of three failed to pause");Console.WriteLine("PASS unique lane reservation, tied difficulty, 80-gold wallets, majority and expiring pause votes");
     }}
     static void CapacityAndValidation(){using(var host=New()){
         host.Host("Rimewatch","Host","",0);var clients=new[]{New(),New(),New(),New()};
@@ -69,11 +69,11 @@ static class NetworkChecks
             using(var late=New()){late.Join("127.0.0.1",host.Port,"Late","");for(int i=0;i<250&&late.Failure.Length==0;i++){Pump(1);late.Update(.01);}Check(late.Failure.Length>0,"Late join accepted");}
             var team=new[]{host}.Concat(admitted).ToArray();for(int i=0;i<4;i++){team[i].Send(new Packet{Kind=Kind.Faction,A=i});team[i].Send(new Packet{Kind=Kind.Ready});}Pump(30);
             for(int i=0;i<4;i++)team[i].Send(new Packet{Kind=Kind.Lane,A=i});Pump(30);foreach(var c in team)c.Send(new Packet{Kind=Kind.Ready});Pump(30);foreach(var c in team)c.Send(new Packet{Kind=Kind.Difficulty,A=1});Pump(30);
-            Check(host.World.Players.All(p=>p.Gold==300),"Four-player wallet split incorrect");
+            Check(host.World.Players.All(p=>p.Gold==60),"Four-player wallet split incorrect");
             admitted[0].Submit(new Order{Kind=ActionKind.Build,X=float.NaN,Y=10});admitted[0].Submit(new Order{Kind=ActionKind.Build,X=10000,Y=10});Pump(30);Check(host.World.Grid.Towers.Count==0,"Malformed coordinates mutated world");
             host.Send(new Packet{Kind=Kind.PauseVote});admitted[0].Send(new Packet{Kind=Kind.PauseVote});Pump(20);Check(!host.Paused&&host.RequiredVotes==3,"Two of four is not a majority");admitted[1].Send(new Packet{Kind=Kind.PauseVote});Pump(20);Check(host.Paused,"Three of four failed to pause");
             bool rejected=false;try{Protocol.Decode(new byte[Protocol.MaxBytes+1]);}catch(InvalidDataException){rejected=true;}Check(rejected,"Oversized packet accepted");
-            Console.WriteLine("PASS capacity four, late join rejection, 300-gold wallets, malformed coordinates and three-of-four vote");
+            Console.WriteLine("PASS capacity four, late join rejection, 60-gold wallets, malformed coordinates and three-of-four vote");
         }finally{foreach(var c in clients)c.Dispose();}
     }}
     static void SoloSpeedClocks(){
@@ -96,5 +96,26 @@ static class NetworkChecks
         }
         Console.WriteLine("PASS all four solo speeds: pacing, invalid requests, pause and identical paid combat at tick 300");
     }
-    public static int Run(){try{SoloSpeedClocks();Refusals();VotesAndLanes();CapacityAndValidation();Pair("Rimewatch");Pair("Ironfold");return 0;}catch(Exception e){Console.Error.WriteLine(e);return 1;}}
+    static void WoodFactionCommands(){
+        Scenario Fixture(string name){var c=Map(name);c.Waves[0].Count=1;c.Waves[0].WoodReward=4;
+            foreach(var lane in c.Lanes)lane.GroundRoute=new[]{lane.Spawn};return c;}
+        using(var host=new Session(Fixture,StateDigest.Scenario))using(var client=new Session(Fixture,StateDigest.Scenario)) {
+            host.Host("Rimewatch","Host","",0);client.Join("127.0.0.1",host.Port,"Guest","");
+            void Pump(int count){for(int i=0;i<count;i++){host.Update(.02);client.Update(.02);Setup(host,0,0);Setup(client,0,1);Thread.Sleep(2);}}
+            for(int i=0;i<1000&&(host.World==null||client.World==null);i++)Pump(1);
+            Check(host.World!=null&&client.World!=null,"Wood fixture setup failed");
+            client.Submit(new Order{Kind=ActionKind.ChooseFaction,Target=1});Pump(20);
+            Check(host.World.Players[1].Faction==0,"Faction unlocked before wood reward");
+            host.Submit(new Order{Kind=ActionKind.Launch});Pump(60);
+            Check(host.World.Players.All(p=>p.Wood==2)&&client.World.Players.All(p=>p.Wood==2),"Shared wood milestone mismatch");
+            client.Submit(new Order{Kind=ActionKind.ChooseFaction,Target=1,Player=0});Pump(20);
+            Check(host.World.Players[0].Wood==2&&host.World.Players[0].Faction==0,"Guest spent host wood");
+            Check(host.World.Players[1].Wood==1&&host.World.Players[1].Faction==1&&client.World.Players[1].Faction==1,"Faction unlock did not synchronize");
+            client.Submit(new Order{Kind=ActionKind.ChooseFaction,Target=0});Pump(20);
+            Check(host.World.Players[1].Wood==1&&client.World.Players[1].Wood==1,"Free switch spent wood");
+            Check(host.Failure.Length==0&&client.Failure.Length==0,"Wood command desynchronized");
+            Console.WriteLine("PASS synchronized wood reward, locked faction refusal, authenticated ownership and free roster switching");
+        }
+    }
+    public static int Run(){try{WoodFactionCommands();SoloSpeedClocks();Refusals();VotesAndLanes();CapacityAndValidation();Pair("Rimewatch");Pair("Ironfold");return 0;}catch(Exception e){Console.Error.WriteLine(e);return 1;}}
 }

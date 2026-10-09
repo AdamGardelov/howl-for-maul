@@ -34,14 +34,36 @@ namespace FrostMaze.Simulation
         PlayerState Player => Players[ActivePlayer];
         public void SelectPlayer(int index) { if(index<0||index>=Players.Length)throw new ArgumentOutOfRangeException(nameof(index)); ActivePlayer=index; }
         public int Gold { get=>Player.Gold; private set=>Player.Gold=value; }
+        public int Wood => Player.Wood;
+        public int TotalGoldEarned { get; private set; }
+        public bool FactionUnlocked(int faction) => faction>=0&&faction<Config.Factions.Length&&(Player.UnlockedFactions&(1<<faction))!=0;
+        public bool RosterVisible(int design) => Config.Factions.Length==0||Array.IndexOf(Config.Factions[Player.Faction].Designs,design)>=0;
+        public bool ChooseFaction(int faction,out string reason)
+        {
+            if(Finished||!Config.FactionWoodUnlocks||faction<0||faction>=Config.Factions.Length){reason="Faction choice unavailable.";return false;}
+            if(!FactionUnlocked(faction)) {
+                if(Config.Economy&&Wood<1){reason="Need 1 wood. Clear wave 9 to earn wood.";return false;}
+                if(Config.Economy)Player.Wood--;
+                Player.UnlockedFactions|=1<<faction;
+            }
+            Player.Faction=faction;Player.SelectedDesign=Config.Factions[faction].Designs[0];
+            reason="Builder roster: "+FactionName+". Existing towers and queued orders are retained.";return true;
+        }
+        public int KillGold(int wave) => Config.Waves[wave].KillGold<0?Config.KillReward:Config.Waves[wave].KillGold;
+        public int ClearGold(int wave) => Config.Waves[wave].ClearGold<0?Config.WaveReward:Config.Waves[wave].ClearGold;
         public readonly List<ShotEvent> Shots=new List<ShotEvent>();
         long nextShot;
-        public bool DesignAvailable(int design) => Config.Factions.Length==0 || Array.IndexOf(Config.Factions[Player.Faction].Designs,design)>=0;
+        public bool DesignAvailable(int design) {
+            if(Config.Factions.Length==0)return true;
+            for(int f=0;f<Config.Factions.Length;f++)if(FactionUnlocked(f)&&Array.IndexOf(Config.Factions[f].Designs,design)>=0)return true;
+            return false;
+        }
         public string FactionName => Config.Factions.Length==0?"Free build":Config.Factions[Player.Faction].Name;
         public int SelectedDesign {get=>Player.SelectedDesign;set {if(value<0||value>=Math.Max(1,Config.Catalog.Length)||!DesignAvailable(value))throw new ArgumentOutOfRangeException();Player.SelectedDesign=value;} }
         public TowerSpec BuildSpec => Config.Catalog.Length==0?Config.Tower:Config.Catalog[SelectedDesign].Spec;
         public int BuildCost => Config.Catalog.Length==0?Config.TowerCost:Config.Catalog[SelectedDesign].Cost;
         public string BuildName => Config.Catalog.Length==0?"Bolt Spire":Config.Catalog[SelectedDesign].Name;
+        public int BuildWoodCost => Config.Catalog.Length==0?0:Config.Catalog[SelectedDesign].WoodCost;
         int BuildRefund => Config.Catalog.Length==0?Config.SaleRefund:Config.Catalog[SelectedDesign].Refund;
         public int DefensesFor(WaveSpec wave)
         {
@@ -95,17 +117,18 @@ namespace FrostMaze.Simulation
             reason=tower.Name+" upgraded to level "+tower.Level;return true;
         }
         int rewardCursor;
-        readonly int[] waveGold;
+        readonly int[] waveGold, waveWood;
         int waveKilledStart,waveLeakedStart;
         public WaveSummary LastWaveSummary { get; private set; }
         void Reward(int amount) {
+            if(WaveIndex>=0)TotalGoldEarned+=amount;
             for(int i=0;i<amount;i++) {
                 Players[rewardCursor].Gold++;
                 if(WaveIndex>=0&&LastWaveSummary==null)waveGold[rewardCursor]++;
                 rewardCursor=(rewardCursor+1)%Players.Length;
             }
         }
-        void SummarizeWave(bool cleared) { LastWaveSummary=new WaveSummary(WaveIndex+1,Killed-waveKilledStart,Leaked-waveLeakedStart,cleared,waveGold); }
+        void SummarizeWave(bool cleared) { LastWaveSummary=new WaveSummary(WaveIndex+1,Killed-waveKilledStart,Leaked-waveLeakedStart,cleared,waveGold,waveWood); }
         public int LaneCount => Math.Max(1,Config.Lanes.Length);
         public V2 LaneSpawn(int lane) => Config.Lanes.Length==0?Config.Spawn:Config.Lanes[lane].Spawn;
         public V2[] LaneRoute(int lane,bool flying) => Config.Lanes.Length==0?(flying?Config.FlightRoute:Config.GroundRoute):(flying?Config.Lanes[lane].FlightRoute:Config.Lanes[lane].GroundRoute);
@@ -189,9 +212,9 @@ namespace FrostMaze.Simulation
                 var pos=config.Lanes.Length==0?config.Spawn:Players.Length==1&&!options.UseSelectedSoloStart?config.SoloBuilderStart:config.BuilderStarts[options.StartingPositions[i]];
                 int faction=options.Factions[i];
                 if(config.Factions.Length>0&&(faction<0||faction>=config.Factions.Length))throw new ArgumentException("Invalid faction.");
-                Players[i]=new PlayerState {Position=pos,Destination=pos,Faction=faction,SelectedDesign=config.Factions.Length==0?0:config.Factions[faction].Designs[0]};
+                Players[i]=new PlayerState {Position=pos,Destination=pos,Faction=faction,UnlockedFactions=1<<faction,SelectedDesign=config.Factions.Length==0?0:config.Factions[faction].Designs[0]};
             }
-            waveGold=new int[Players.Length];
+            waveGold=new int[Players.Length];waveWood=new int[Players.Length];
             Reward(config.StartingGold);
             spawnTimers=new float[LaneCount]; lanePending=new int[LaneCount];
             Grid = new MazeGrid(config.Width, config.Height);
@@ -203,7 +226,7 @@ namespace FrostMaze.Simulation
             if (Finished || WaveActive || WaveIndex + 1 >= Config.Waves.Length)
                 return false;
             WaveIndex++;
-            LastWaveSummary=null;Array.Clear(waveGold,0,waveGold.Length);
+            LastWaveSummary=null;Array.Clear(waveGold,0,waveGold.Length);Array.Clear(waveWood,0,waveWood.Length);
             waveKilledStart=Killed;waveLeakedStart=Leaked;
             currentWave=PreviewWave(WaveIndex);
             Pending=currentWave.Count*LaneCount;
@@ -216,7 +239,7 @@ namespace FrostMaze.Simulation
             if(index<0||index>=Config.Waves.Length)throw new ArgumentOutOfRangeException(nameof(index));
             var source=Config.Waves[index];
             float factor=Difficulty==Difficulty.Relaxed?.7f:Difficulty==Difficulty.Hard?1.4f:1f;
-            return new WaveSpec {Name=source.Name,Count=source.Count,Health=source.Health*factor,Damage=source.Damage*factor,Speed=source.Speed,Radius=source.Radius,SpawnInterval=source.SpawnInterval,AttackInterval=source.AttackInterval,Flying=source.Flying};
+            return new WaveSpec {KillGold=source.KillGold,ClearGold=source.ClearGold,WoodReward=source.WoodReward,Name=source.Name,Count=source.Count,Health=source.Health*factor,Damage=source.Damage*factor,Speed=source.Speed,Radius=source.Radius,SpawnInterval=source.SpawnInterval,AttackInterval=source.AttackInterval,Flying=source.Flying};
         }
         public IEnumerable<int> MissingPrerequisites(int design)
         {
@@ -240,6 +263,7 @@ namespace FrostMaze.Simulation
             if(float.IsNaN(x)||float.IsNaN(y)||float.IsInfinity(x)||float.IsInfinity(y)||Math.Abs(x/PlacementStep-Math.Round(x/PlacementStep))>.0001||Math.Abs(y/PlacementStep-Math.Round(y/PlacementStep))>.0001){reason="Align the tower to the placement grid.";return false;}
             if (Finished) { reason = "Match finished. Reset to play again."; return false; }
             if(!RequirementsMet(SelectedDesign)){reason="Build each regular tower in your faction before its champion.";return false;}
+            if(Config.Economy&&Wood<BuildWoodCost){reason="Need "+BuildWoodCost+" wood. Clear wave 14 to earn wood.";return false;}
             if (Config.Economy && Gold < BuildCost) { reason = "Not enough gold."; return false; }
             var spec = BuildSpec;
             var center = new V2(x + spec.Width * 0.5f, y + spec.Height * 0.5f);
@@ -286,7 +310,7 @@ namespace FrostMaze.Simulation
             var tower = Grid.Build(x, y, BuildSpec.Copy());
             if (tower == null) { reason = "Invalid tower footprint."; return false; }
             tower.Design=SelectedDesign;tower.Name=BuildName;owners[tower.Id]=ActivePlayer;
-            if (Config.Economy) { Gold -= BuildCost; paidTowers[tower.Id] = BuildRefund; }
+            if (Config.Economy) { Gold -= BuildCost; Player.Wood-=BuildWoodCost; paidTowers[tower.Id] = BuildRefund; }
             reason = "Tower built. Complete route blockage is allowed.";
             return true;
         }
@@ -295,7 +319,7 @@ namespace FrostMaze.Simulation
             if (Finished) return false;
             var t = Grid.At(x, y);
             if (t == null || owners.TryGetValue(t.Id,out int owner)&&owner!=ActivePlayer || !Grid.Remove(t.Id)) return false;
-            if (paidTowers.TryGetValue(t.Id, out int refund)) { Gold += refund; paidTowers.Remove(t.Id); }
+            if (paidTowers.TryGetValue(t.Id, out int refund)) { Gold += refund; if(Config.Catalog.Length>0)Player.Wood+=Config.Catalog[t.Design].WoodCost; paidTowers.Remove(t.Id); }
             return true;
         }
         public Enemy Spawn(WaveSpec spec, V2 position, int lane=0)
@@ -449,14 +473,17 @@ namespace FrostMaze.Simulation
                     if (!Enemies[i].Exited)
                     {
                         Killed++;
-                        if (Config.Economy) Reward(Config.KillReward);
+                        if (Config.Economy) Reward(WaveIndex>=0?KillGold(WaveIndex):Config.KillReward);
                     }
                     Enemies.RemoveAt(i);
                 }
             if (!WaveActive && WaveIndex > rewardedWave && !Defeated)
             {
                 rewardedWave = WaveIndex;
-                if (Config.Economy) Reward(Config.WaveReward);
+                if (Config.Economy) {
+                    Reward(ClearGold(WaveIndex));
+                    for(int i=0;i<Config.Waves[WaveIndex].WoodReward;i++) {int p=i%Players.Length;Players[p].Wood++;waveWood[p]++;}
+                }
                 SummarizeWave(true);
             }
             if(Defeated&&WaveIndex>=0&&LastWaveSummary==null)SummarizeWave(false);

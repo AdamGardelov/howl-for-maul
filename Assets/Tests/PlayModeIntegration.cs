@@ -155,7 +155,7 @@ namespace FrostMaze.Tests
             game.ReturnToMatch();input.Intent=new CameraIntent{Pointer=world,Dragging=true,DragStarted=true};yield return null;
             input.Intent=new CameraIntent{Pointer=world,Dragging=true,Drag=Vector2.one*100000};for(int i=0;i<20;i++)yield return null;
             Assert.That(camera.Focus.x,Is.EqualTo(camera.BoundsMax.x));Assert.That(camera.Focus.z,Is.EqualTo(camera.BoundsMax.y));
-            Assert.That(game.World.Gold,Is.EqualTo(1200));Assert.That(game.World.Grid.Towers.Count,Is.Zero);
+            Assert.That(game.World.Gold,Is.EqualTo(game.World.Config.StartingGold));Assert.That(game.World.Grid.Towers.Count,Is.Zero);
             input.Intent=new CameraIntent{Pointer=world};yield return null;
             camera.FocusPoint(new FrostMaze.Simulation.V2(32,32));
             float previousPitch=0;var scenery=Object.FindFirstObjectByType<MapScenery>();var terrainPosition=scenery.transform.position;var terrainRotation=scenery.transform.rotation;
@@ -199,7 +199,7 @@ namespace FrostMaze.Tests
                 for(int i=0;i<60;i++){host.Update(Time.unscaledDeltaTime);yield return null;}
                 Send(host,FrostMaze.Simulation.Online.Kind.Difficulty,1);Send(client,FrostMaze.Simulation.Online.Kind.Difficulty,1);
                 for(int i=0;i<120&&client.World==null;i++){host.Update(Time.unscaledDeltaTime);yield return null;}
-                yield return null;Assert.That(game.World,Is.SameAs(client.World));Assert.That(game.World.ActivePlayer,Is.EqualTo(1));Assert.That(game.World.Players[1].Faction,Is.EqualTo(3));Assert.That(game.World.Gold,Is.EqualTo(600));Assert.That(game.World.BuilderPosition,Is.EqualTo(game.World.Config.BuilderStarts[6]));
+                yield return null;Assert.That(game.World,Is.SameAs(client.World));Assert.That(game.World.ActivePlayer,Is.EqualTo(1));Assert.That(game.World.Players[1].Faction,Is.EqualTo(3));Assert.That(game.World.Gold,Is.EqualTo(game.World.Config.StartingGold/2));Assert.That(game.World.BuilderPosition,Is.EqualTo(game.World.Config.BuilderStarts[6]));
                 for(int i=0;i<10;i++)yield return null;long tick=game.World.Tick;yield return new WaitForSecondsRealtime(.1f);Assert.That(game.World.Tick,Is.EqualTo(tick),"Client advanced without host frames");
                 game.ToggleMenu();for(int i=0;i<30;i++){host.Update(Time.unscaledDeltaTime);yield return null;}Assert.That(game.World.Tick,Is.GreaterThan(tick),"Client menu paused the shared match");
                 Send(host,FrostMaze.Simulation.Online.Kind.PauseVote);game.VotePause();for(int i=0;i<30;i++){host.Update(Time.unscaledDeltaTime);yield return null;}Assert.That(host.Paused&&game.Paused,Is.True);Assert.That(client.Failure,Is.Empty);
@@ -219,7 +219,7 @@ namespace FrostMaze.Tests
             Assert.That(net.Stage,Is.EqualTo(FrostMaze.Simulation.Online.Stage.Difficulty));
             net.Send(new FrostMaze.Simulation.Online.Packet{Kind=FrostMaze.Simulation.Online.Kind.Difficulty,A=1});yield return null;yield return null;
             Assert.That(game.World,Is.SameAs(net.World));Assert.That(game.World.Players[0].Faction,Is.EqualTo(2));
-            Assert.That(game.World.BuilderPosition,Is.EqualTo(game.World.Config.BuilderStarts[4]));Assert.That(game.World.Gold,Is.EqualTo(1200));
+            Assert.That(game.World.BuilderPosition,Is.EqualTo(game.World.Config.BuilderStarts[4]));Assert.That(game.World.Gold,Is.EqualTo(game.World.Config.StartingGold));
             Assert.That(game.World.LaneCount,Is.EqualTo(3));Assert.That(game.SetupOpen,Is.False);
             Assert.That(game.Speed,Is.EqualTo(1));game.SetSpeedIndex(3);Assert.That(game.Speed,Is.EqualTo(3));
             long fastStart=game.World.Tick;yield return new WaitForSecondsRealtime(.25f);Assert.That(game.World.Tick-fastStart,Is.GreaterThan(8));
@@ -236,6 +236,13 @@ namespace FrostMaze.Tests
             game.ToggleMenu();game.LeaveOnline();yield return null;Assert.That(OnlineGame.Current,Is.Null);Assert.That(game.SetupOpen,Is.True);
             yield return new ExitPlayMode();
         }
+        static void CaptureWorld(Camera camera,string path)
+        {
+            var target=new RenderTexture(1440,900,24);var prior=camera.targetTexture;var active=RenderTexture.active;
+            var image=new Texture2D(1440,900,TextureFormat.RGB24,false);
+            try {camera.targetTexture=target;camera.Render();RenderTexture.active=target;image.ReadPixels(new Rect(0,0,1440,900),0,0);image.Apply();System.IO.File.WriteAllBytes(path,image.EncodeToPNG());}
+            finally {camera.targetTexture=prior;RenderTexture.active=active;Object.DestroyImmediate(image);Object.DestroyImmediate(target);}
+        }
         [UnityTest, Category("WorldAtmosphere")]
         public IEnumerator ExteriorAndSoundIdentityPreservePlayfield()
         {
@@ -250,9 +257,21 @@ namespace FrostMaze.Tests
                 if(game.Map.name!=name){game.ChooseMap(Resources.Load<MapDefinition>(name));yield return null;yield return null;game=Object.FindFirstObjectByType<Prototype>();}
                 var backdrop=Object.FindFirstObjectByType<WorldBackdrop>();Assert.That(backdrop,Is.Not.Null);
                 Assert.That(backdrop.GetComponentsInChildren<Collider>().Length,Is.Zero);
+                Assert.That(backdrop.Buildings,Is.EqualTo(6));
+                Assert.That(backdrop.GetComponentsInChildren<ParticleSystem>().Length,Is.EqualTo(6));
+                Assert.That(game.World.Config.StartingGold,Is.EqualTo(name=="Rimewatch"?240:2200));
+                Assert.That(game.World.Config.Waves[0].KillGold,Is.EqualTo(1));
+                Assert.That(game.World.Config.Waves[name=="Rimewatch"?8:13].WoodReward,Is.EqualTo(4));
+                var localCamera=game.View.GetComponent<RtsCamera>();localCamera.SetInput(new CameraInputFixture());
+                localCamera.FocusPoint(new FrostMaze.Simulation.V2(31,4));localCamera.SetZoom(17,true);
+                yield return null;yield return null;
+                CaptureWorld(game.View,"/tmp/Howl-"+name+"-Hearths.png");
+                localCamera.FocusPoint(new FrostMaze.Simulation.V2(name=="Rimewatch"?8:12,16));localCamera.SetZoom(8,true);
+                yield return null;CaptureWorld(game.View,"/tmp/Howl-"+name+"-World-Close.png");
                 foreach(var filter in backdrop.GetComponentsInChildren<MeshFilter>()){
                     Assert.That(filter.gameObject.layer,Is.Not.EqualTo(30),"Exterior must not pollute minimap");
                     var mesh=filter.sharedMesh;var vertices=mesh.vertices;var triangles=mesh.triangles;
+                    if(filter.name.Contains("roofs")||filter.name=="Settlement paths")foreach(var normal in mesh.normals)Assert.That(normal.y,Is.GreaterThan(0),"Roof/path faces must point upward");
                     for(int i=0;i<triangles.Length;i+=3){var a=vertices[triangles[i]];var b=vertices[triangles[i+1]];var c=vertices[triangles[i+2]];
                         Assert.That(Mathf.Max(a.x,b.x,c.x)<=0||Mathf.Min(a.x,b.x,c.x)>=game.World.Config.Width||Mathf.Max(a.z,b.z,c.z)<=0||Mathf.Min(a.z,b.z,c.z)>=game.World.Config.Height,Is.True,"Exterior crosses playable rectangle");}
                 }
@@ -280,7 +299,7 @@ namespace FrostMaze.Tests
                 for(int i=0;i<180&&w.Grid.At(x,11)==null;i++)w.Step();
                 Assert.That(w.Grid.At(x,11),Is.Not.Null);
             }
-            Assert.That(w.Gold,Is.EqualTo(1170),"The seal must be paid for");
+            Assert.That(w.Gold,Is.EqualTo(w.Config.StartingGold-30),"The seal must be paid for");
             var enemy=w.Spawn(new FrostMaze.Simulation.WaveSpec{Health=1000,Speed=1.55f,Damage=60,AttackInterval=.6f},new FrostMaze.Simulation.V2(31.5f,12.4f));
             Assert.That(enemy,Is.Not.Null);enemy.Checkpoint=w.LaneRoute(0,false).Length-1;
             yield return null;yield return null;
@@ -531,7 +550,7 @@ namespace FrostMaze.Tests
         {
             EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
             yield return new EnterPlayMode();yield return null;
-            var game=Object.FindFirstObjectByType<Prototype>();game.StartMatch();game.Paused=true;
+            var game=Object.FindFirstObjectByType<Prototype>();game.StartMatch();game.Paused=true;game.World.Players[0].Gold=1200; /* Explicit later-game model fixture. */
             Assert.That(game.View.orthographicSize,Is.EqualTo(11));
             Assert.That(game.View.GetComponent<RtsCamera>().Focus.z,Is.EqualTo(game.World.BuilderPosition.Y));
             string[] roles={"Sentry","Wall","Control","Artillery","Interceptor"};
@@ -584,7 +603,7 @@ namespace FrostMaze.Tests
             Assert.That(game.World.Grid.At(16,14),Is.SameAs(sentry));
             game.View.GetComponent<RtsCamera>().Overview();
             Assert.That(game.View.orthographicSize,Is.GreaterThan(11));
-            game.SetupOptions.Factions[0]=1;game.StartMatch();game.Paused=true;
+            game.SetupOptions.Factions[0]=1;game.StartMatch();game.Paused=true;game.World.Players[0].Gold=1200; /* Explicit later-game model fixture. */
             string[] stoneSignatures={"Artillery weapon/Pebble hopper","Basalt slab","Artillery weapon/Quake monolith","Interceptor weapon/Sky cradle","Control weapon/Worldroot trunk"};
             for(int i=0;i<5;i++) {
                 game.World.SelectedDesign=5+i;
@@ -598,8 +617,8 @@ namespace FrostMaze.Tests
                 Assert.That(view.transform.Find(stoneSignatures[i]),Is.Not.Null,"Missing Stonebound silhouette");
                 Assert.That(view.GetComponentsInChildren<Collider>().Length,Is.Zero,"Scenery must not add physical blockers");
             }
-            Assert.That(game.World.Gold,Is.EqualTo(959),"Models must retain actual paid Stonebound costs");
-            game.SetupOptions.Factions[0]=2;game.StartMatch();game.Paused=true;game.ShowNavigation=false;
+            Assert.That(game.World.Gold,Is.EqualTo(972),"Models must retain actual paid Stonebound costs");
+            game.SetupOptions.Factions[0]=2;game.StartMatch();game.Paused=true;game.World.Players[0].Gold=1200; /* Explicit later-game model fixture. */game.ShowNavigation=false;
             string[] emberSignatures={"Sentry weapon/Cinder drum","Coal bunker","Artillery weapon/Furnace chimney","Interceptor weapon/Flare spear","Artillery weapon/Crucible bowl"};
             for(int i=0;i<5;i++) {
                 game.World.SelectedDesign=10+i;
@@ -621,8 +640,8 @@ namespace FrostMaze.Tests
                 Assert.That(view.VisibleLevel,Is.EqualTo(2));
                 Assert.That(view.transform.Find(emberSignatures[i]),Is.Not.Null,"Upgrade changed the model identity");
             }
-            Assert.That(game.World.Gold,Is.EqualTo(710),"Five paid builds and upgrades must cost 490");
-            game.SetupOptions.Factions[0]=3;game.StartMatch();game.Paused=true;
+            Assert.That(game.World.Gold,Is.EqualTo(736),"Five paid builds and upgrades must cost 464");
+            game.SetupOptions.Factions[0]=3;game.StartMatch();game.Paused=true;game.World.Players[0].Gold=1200; /* Explicit later-game model fixture. */
             string[] voltSignatures={"Sentry weapon/Cadet chest","Scrap barricade","Relay weapon/Induction ring","Interceptor weapon/Skyrail conductor","Sentry weapon/Marshal crest"};
             for(int i=0;i<5;i++) {
                 game.World.SelectedDesign=15+i;
@@ -636,7 +655,7 @@ namespace FrostMaze.Tests
                 Assert.That(view.transform.Find(voltSignatures[i]),Is.Not.Null,"Missing Volt silhouette");
                 Assert.That(view.GetComponentsInChildren<Collider>().Length,Is.Zero);
             }
-            Assert.That(game.World.Gold,Is.EqualTo(956),"Volt paid roster must cost 244");
+            Assert.That(game.World.Gold,Is.EqualTo(966),"Volt paid roster must cost 234");
             Assert.That(firstCombined==null,Is.False,"Restarting the same map should reuse its model cache");
             game.ChooseMap(Resources.Load<MapDefinition>("Ironfold"));
             yield return null;yield return null;
@@ -657,7 +676,7 @@ namespace FrostMaze.Tests
             Assert.That(game.World.OrderBuild(16,14,out _),Is.True);
             for(int i=0;i<120;i++)game.World.Step();
             yield return null;
-            Assert.That(game.World.Gold,Is.EqualTo(1180));
+            Assert.That(game.World.Gold,Is.EqualTo(game.World.Config.StartingGold-game.World.Config.Catalog[0].Cost));
             Assert.That(GameObject.Find("Tower 1"),Is.Not.Null);
             var drone=GameObject.Find("Builder drone");
             Assert.That(drone,Is.Not.Null);
@@ -675,13 +694,13 @@ namespace FrostMaze.Tests
             yield return null; yield return null;
             game=Object.FindFirstObjectByType<Prototype>();
             Assert.That(game.World.Config.Economy,Is.True);
-            Assert.That(game.World.Gold,Is.EqualTo(1200));
+            Assert.That(game.World.Gold,Is.EqualTo(game.World.Config.StartingGold));
             Assert.That(game.World.Grid.Towers.Count,Is.Zero);
             Assert.That(Object.FindObjectsByType<Prototype>(FindObjectsSortMode.None).Length,Is.EqualTo(1));
             game.SetupOptions.PlayerCount=2;game.SetupOptions.Difficulty=FrostMaze.Simulation.Difficulty.Hard;game.ChooseStart(0,3);game.StartMatch();game.Paused=true;
             yield return null;
             Assert.That(game.World.Players.Length,Is.EqualTo(2));
-            Assert.That(game.World.Gold,Is.EqualTo(600));
+            Assert.That(game.World.Gold,Is.EqualTo(game.World.Config.StartingGold/2));
             Assert.That(game.World.BuilderPosition.X,Is.EqualTo(game.World.Config.BuilderStarts[3].X));
             Assert.That(game.World.Config.Catalog.Length,Is.EqualTo(20));
             Assert.That(game.World.Difficulty,Is.EqualTo(FrostMaze.Simulation.Difficulty.Hard));
@@ -721,7 +740,7 @@ namespace FrostMaze.Tests
             var game=Object.FindFirstObjectByType<Prototype>();
             game.ChooseMap(Resources.Load<MapDefinition>("Ironfold"));
             yield return null;yield return null;
-            game=Object.FindFirstObjectByType<Prototype>();game.StartMatch();game.Paused=true;
+            game=Object.FindFirstObjectByType<Prototype>();game.StartMatch();game.Paused=true;game.World.Players[0].Wood=4; /* Milestone fixture; reward timing is tested separately. */
             game.World.SelectedDesign=6;
             Assert.That(game.World.OrderBuild(26,6,out _),Is.False,"Champion must remain locked before its six prerequisites");
             string[] paths={"Sentry weapon/Fuse barrel","Sentry weapon/Iron gauntlet","Artillery weapon/Shear blade","Sentry weapon/Ranger rifle","Interceptor weapon/Flare rocket pod","Control weapon/Cryo reservoir","Champion weapon/Echo crest"};
@@ -735,7 +754,7 @@ namespace FrostMaze.Tests
                 Assert.That(built,Is.True,"No paid placement found");
             }
             yield return null;yield return null;
-            Assert.That(game.World.Gold,Is.EqualTo(505));
+            Assert.That(game.World.Gold,Is.EqualTo(1015));
             for(int i=0;i<7;i++) {
                 var tower=game.World.Grid.Towers[i];var view=GameObject.Find("Tower "+tower.Id).GetComponent<TowerView>();
                 Assert.That(tower.Design,Is.EqualTo(i));
@@ -748,8 +767,8 @@ namespace FrostMaze.Tests
             var championView=GameObject.Find("Tower "+champion.Id).GetComponent<TowerView>();
             Assert.That(championView.VisibleLevel,Is.EqualTo(2));
             Assert.That(championView.transform.Find(paths[6]),Is.Not.Null);
-            Assert.That(game.World.Gold,Is.EqualTo(245));
-            game.SetupOptions.Factions[0]=1;game.StartMatch();game.Paused=true;
+            Assert.That(game.World.Gold,Is.EqualTo(265));
+            game.SetupOptions.Factions[0]=1;game.StartMatch();game.Paused=true;game.World.Players[0].Wood=4; /* Milestone fixture; reward timing is tested separately. */
             string[] blastPaths={"Sentry weapon/Alloy dome","Sentry weapon/Crash hammer","Artillery weapon/Gale vane","Sentry weapon/Heatkeeper boiler","Interceptor weapon/Quicksilver wing","Sentry weapon/Rootguard barrel","Champion weapon/Citadel keep"};
             for(int d=0;d<7;d++) {
                 game.World.SelectedDesign=7+d;bool built=false;
@@ -766,10 +785,10 @@ namespace FrostMaze.Tests
                 Assert.That(view.transform.Find(blastPaths[i]),Is.Not.Null,"Missing Blast model");
                 Assert.That(view.GetComponentsInChildren<Collider>().Length,Is.Zero);
             }
-            Assert.That(game.World.Gold,Is.EqualTo(505));
+            Assert.That(game.World.Gold,Is.EqualTo(1015));
             var air=game.World.Grid.Towers[4];
             Assert.That(air.Spec.TargetsAir&&!air.Spec.TargetsGround&&air.Spec.SplashRadius>0,Is.True,"Quicksilver's aircraft model must retain air-only splash");
-            game.SetupOptions.Factions[0]=2;game.StartMatch();game.Paused=true;
+            game.SetupOptions.Factions[0]=2;game.StartMatch();game.Paused=true;game.World.Players[0].Wood=4; /* Milestone fixture; reward timing is tested separately. */
             string[] prismPaths={"Sentry weapon/Shade hood","Relay weapon/Spark core","Sentry weapon/Magnet bridge","Sentry weapon/Serpent head","Interceptor weapon/Twin sky lance","Sentry weapon/Needle rack","Champion weapon/Champion carapace"};
             for(int d=0;d<7;d++) {
                 game.World.SelectedDesign=14+d;bool built=false;
@@ -786,15 +805,15 @@ namespace FrostMaze.Tests
                 Assert.That(view.transform.Find(prismPaths[i]),Is.Not.Null,"Missing Prism model");
                 Assert.That(view.GetComponentsInChildren<Collider>().Length,Is.Zero);
             }
-            Assert.That(game.World.Gold,Is.EqualTo(505));
+            Assert.That(game.World.Gold,Is.EqualTo(1015));
             Assert.That(game.World.Grid.Towers[1].Spec.ChainTargets,Is.EqualTo(3));
             Assert.That(game.World.Grid.Towers[4].Spec.TargetsGround,Is.False);
             var prismChampion=game.World.Grid.Towers[6];
             Assert.That(game.World.Upgrade(prismChampion.Id,out _),Is.True);
             yield return null;
             Assert.That(GameObject.Find("Tower "+prismChampion.Id).GetComponent<TowerView>().VisibleLevel,Is.EqualTo(2));
-            Assert.That(game.World.Gold,Is.EqualTo(245));
-            game.SetupOptions.Factions[0]=3;game.StartMatch();game.Paused=true;
+            Assert.That(game.World.Gold,Is.EqualTo(265));
+            game.SetupOptions.Factions[0]=3;game.StartMatch();game.Paused=true;game.World.Players[0].Wood=4; /* Milestone fixture; reward timing is tested separately. */
             string[] horizonPaths={"Sentry weapon/Glimmer scope","Sentry weapon/Solar crown","Sentry weapon/Dust intake","Sentry weapon/Boneplate rib","Interceptor weapon/Sky harpoon","Sentry weapon/Warden drill","Champion weapon/Crawler hull"};
             for(int d=0;d<7;d++) {
                 game.World.SelectedDesign=21+d;bool built=false;
@@ -811,14 +830,14 @@ namespace FrostMaze.Tests
                 Assert.That(view.transform.Find(horizonPaths[i]),Is.Not.Null,"Missing Horizon model");
                 Assert.That(view.GetComponentsInChildren<Collider>().Length,Is.Zero);
             }
-            Assert.That(game.World.Gold,Is.EqualTo(505));
+            Assert.That(game.World.Gold,Is.EqualTo(1015));
             Assert.That(game.World.Grid.Towers[0].Spec.Range,Is.EqualTo(5.5f));
             Assert.That(game.World.Grid.Towers[4].Spec.TargetsGround,Is.False);
             var horizonChampion=game.World.Grid.Towers[6];
             Assert.That(game.World.Upgrade(horizonChampion.Id,out _),Is.True);
             yield return null;
             Assert.That(GameObject.Find("Tower "+horizonChampion.Id).GetComponent<TowerView>().VisibleLevel,Is.EqualTo(2));
-            Assert.That(game.World.Gold,Is.EqualTo(245));
+            Assert.That(game.World.Gold,Is.EqualTo(265));
             string[][] remainingPaths={
                 new[]{"Sentry weapon/Gyro blade","Control weapon/Anchor hook","Artillery weapon/Starcaller orb","Sentry weapon/Wave resonator","Interceptor weapon/Sky electrode","Sentry weapon/Granite shoulder","Champion weapon/Eclipse rim"},
                 new[]{"Sentry weapon/Strider backpack","Sentry weapon/Knight lance","Sentry weapon/Windkeeper vane","Sentry weapon/Bloom petal","Interceptor weapon/Whiteout missile","Control weapon/Hatchet blade","Champion weapon/Fossil skull"},
@@ -826,7 +845,7 @@ namespace FrostMaze.Tests
                 new[]{"Sentry weapon/Grenade drum","Relay weapon/Kite sail","Artillery weapon/Jester cap","Control weapon/Aqua reservoir","Interceptor weapon/Keeper sky blade","Sentry weapon/Orbit satellite","Champion weapon/Verdant crown"}
             };
             for(int faction=4;faction<8;faction++) {
-                game.SetupOptions.Factions[0]=faction;game.StartMatch();game.Paused=true;
+                game.SetupOptions.Factions[0]=faction;game.StartMatch();game.Paused=true;game.World.Players[0].Wood=4; /* Milestone fixture; reward timing is tested separately. */
                 int spent=0;
                 game.World.SelectedDesign=faction*7+6;
                 Assert.That(game.World.OrderBuild(26,6,out _),Is.False,"Champion requires the complete faction roster");
@@ -840,7 +859,7 @@ namespace FrostMaze.Tests
                     Assert.That(built,Is.True);spent+=game.World.Config.Catalog[faction*7+d].Cost;
                 }
                 yield return null;yield return null;
-                Assert.That(game.World.Gold,Is.EqualTo(1200-spent));
+                Assert.That(game.World.Gold,Is.EqualTo(game.World.Config.StartingGold-spent));
                 for(int i=0;i<7;i++) {
                     var tower=game.World.Grid.Towers[i];var view=GameObject.Find("Tower "+tower.Id).GetComponent<TowerView>();
                     Assert.That(view.transform.Find(remainingPaths[faction-4][i]),Is.Not.Null,"Missing faction model");
@@ -852,7 +871,7 @@ namespace FrostMaze.Tests
                 Assert.That(game.World.Upgrade(finalTower.Id,out _),Is.True);
                 yield return null;
                 Assert.That(GameObject.Find("Tower "+finalTower.Id).GetComponent<TowerView>().VisibleLevel,Is.EqualTo(2));
-                Assert.That(game.World.Gold,Is.EqualTo(1200-spent-price));
+                Assert.That(game.World.Gold,Is.EqualTo(game.World.Config.StartingGold-spent-price));
             }
             yield return new ExitPlayMode();
         }
@@ -950,7 +969,7 @@ namespace FrostMaze.Tests
             game.StartMatch();game.Paused=true;
             Assert.That(game.World.OrderBuild(16,14,out _),Is.True);
             for(int i=0;i<150;i++)game.World.Step();
-            Assert.That(game.World.Gold,Is.EqualTo(1180));
+            Assert.That(game.World.Gold,Is.EqualTo(game.World.Config.StartingGold-game.World.Config.Catalog[0].Cost));
             Assert.That(game.World.StartWave(),Is.True);game.World.Step();
             var world=game.World;long tick=world.Tick;
             game.Paused=false;game.OpenSetup();game.SetupOptions.Factions[0]=1;
@@ -958,7 +977,7 @@ namespace FrostMaze.Tests
             Assert.That(world.Tick,Is.EqualTo(tick),"Setup allowed hidden combat to continue");
             game.ReturnToMatch();game.Paused=true;yield return null;
             Assert.That(game.SetupOpen,Is.False);Assert.That(game.World,Is.SameAs(world));
-            Assert.That(world.Gold,Is.EqualTo(1180));Assert.That(world.Grid.Towers.Count,Is.EqualTo(1));
+            Assert.That(world.Gold,Is.EqualTo(world.Config.StartingGold-world.Config.Catalog[0].Cost));Assert.That(world.Grid.Towers.Count,Is.EqualTo(1));
             Assert.That(world.Players[0].Faction,Is.Zero,"Unconfirmed setup edits changed current faction");
             game.MoveMode=true;game.SellMode=true;game.SelectedId=42;game.SelectedTowerId=1;game.HasHover=true;
             game.StartMatch();game.Paused=true;

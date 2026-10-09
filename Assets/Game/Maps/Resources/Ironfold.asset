@@ -39,7 +39,7 @@ MonoBehaviour:
         champion.
       Designs: 1c0000001d0000001e0000001f000000200000002100000022000000
     - Name: Scrap Frontier
-      Description: Seven-gold armed walls and 90% base refunds. Rebuild flexible
+      Description: Seven-gold armed walls and 90% regular-tower refunds. Rebuild flexible
         mazes; modest damage needs investment. Build all six regular designs to unlock
         the champion.
       Designs: 23000000240000002500000026000000270000002800000029000000
@@ -3368,7 +3368,8 @@ MonoBehaviour:
     Name: Ironfold
     Economy: 1
     BuilderEnabled: 1
-    StartingGold: 1200
+    FactionWoodUnlocks: 0
+    StartingGold: 2200
     TowerCost: 20
     SaleRefund: 15
     KillReward: 2
@@ -3399,6 +3400,7 @@ MonoBehaviour:
       Cost: 10
       Refund: 7
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -3419,6 +3421,7 @@ MonoBehaviour:
       Cost: 30
       Refund: 22
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -3439,6 +3442,7 @@ MonoBehaviour:
       Cost: 55
       Refund: 41
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -3459,6 +3463,7 @@ MonoBehaviour:
       Cost: 80
       Refund: 60
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -3479,6 +3484,7 @@ MonoBehaviour:
       Cost: 110
       Refund: 82
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -3499,6 +3505,7 @@ MonoBehaviour:
       Cost: 150
       Refund: 112
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -3515,10 +3522,12 @@ MonoBehaviour:
         TargetsGround: 1
         TargetsAir: 1
     - Name: Echo Champion
-      Description: "Ground + air \xB7 requires all six regular designs standing"
-      Cost: 260
-      Refund: 195
+      Description: "Ground + air \xB7 requires all six regular designs standing \xB7
+        1 wood, earned after wave 14"
+      Cost: 750
+      Refund: 562
       VisualStyle: 3
+      WoodCost: 1
       Requires: 000000000100000002000000030000000400000005000000
       Spec:
         Width: 1
@@ -3539,6 +3548,7 @@ MonoBehaviour:
       Cost: 10
       Refund: 7
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -3559,6 +3569,7 @@ MonoBehaviour:
       Cost: 30
       Refund: 22
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -3579,6 +3590,7 @@ MonoBehaviour:
       Cost: 55
       Refund: 41
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -3599,6 +3611,7 @@ MonoBehaviour:
       Cost: 80
       Refund: 60
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -3619,6 +3632,7 @@ MonoBehaviour:
       Cost: 110
       Refund: 82
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -3639,6 +3653,7 @@ MonoBehaviour:
       Cost: 150
       Refund: 112
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -3655,10 +3670,12 @@ MonoBehaviour:
         TargetsGround: 1
         TargetsAir: 1
     - Name: Citadel Champion
-      Description: "Ground + air \xB7 requires all six regular designs standing"
-      Cost: 260
-      Refund: 195
+      Description: "Ground + air \xB7 requires all six regular designs standing \xB7
+        1 wood, earned after wave 14"
+      Cost: 750
+      Refund: 562
       VisualStyle: 3
+      WoodCost: 1
       Requires: 0700000008000000090000000a0000000b0000000c000000
       Spec:
         Width: 1
@@ -3679,6 +3696,7 @@ MonoBehaviour:
       Cost: 10
       Refund: 7
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -3699,6 +3717,7 @@ MonoBehaviour:
       Cost: 30
       Refund: 22
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -3719,6 +3738,7 @@ MonoBehaviour:
       Cost: 55
       Refund: 41
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -3739,6 +3759,7 @@ MonoBehaviour:
       Cost: 80
       Refund: 60
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -3759,6 +3780,7 @@ MonoBehaviour:
       Cost: 110
       Refund: 82
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -3779,6 +3801,7 @@ MonoBehaviour:
       Cost: 150
       Refund: 112
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -3795,10 +3818,12 @@ MonoBehaviour:
         TargetsGround: 1
         TargetsAir: 1
     - Name: Shell Champion
-      Description: "Ground + air \xB7 requires all six regular designs standing"
-      Cost: 260
-      Refund: 195
+      Description: "Ground + air \xB7 requires all six regular designs standing \xB7
+        1 wood, earned after wave 14"
+      Cost: 750
+      Refund: 562
       VisualStyle: 3
+      WoodCost: 1
       Requires: 0e0000000f00000010000000110000001200000013000000
       Spec:
         Width: 1
@@ -3819,6 +3844,7 @@ MonoBehaviour:
       Cost: 10
       Refund: 7
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -3839,6 +3865,7 @@ MonoBehaviour:
       Cost: 30
       Refund: 22
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -3859,6 +3886,7 @@ MonoBehaviour:
       Cost: 55
       Refund: 41
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -3879,6 +3907,7 @@ MonoBehaviour:
       Cost: 80
       Refund: 60
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -3899,6 +3928,7 @@ MonoBehaviour:
       Cost: 110
       Refund: 82
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -3919,6 +3949,7 @@ MonoBehaviour:
       Cost: 150
       Refund: 112
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -3935,10 +3966,12 @@ MonoBehaviour:
         TargetsGround: 1
         TargetsAir: 1
     - Name: Crawler Champion
-      Description: "Ground + air \xB7 requires all six regular designs standing"
-      Cost: 260
-      Refund: 195
+      Description: "Ground + air \xB7 requires all six regular designs standing \xB7
+        1 wood, earned after wave 14"
+      Cost: 750
+      Refund: 562
       VisualStyle: 3
+      WoodCost: 1
       Requires: 15000000160000001700000018000000190000001a000000
       Spec:
         Width: 1
@@ -3959,6 +3992,7 @@ MonoBehaviour:
       Cost: 12
       Refund: 9
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -3979,6 +4013,7 @@ MonoBehaviour:
       Cost: 36
       Refund: 27
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -3999,6 +4034,7 @@ MonoBehaviour:
       Cost: 66
       Refund: 49
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -4019,6 +4055,7 @@ MonoBehaviour:
       Cost: 96
       Refund: 72
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -4039,6 +4076,7 @@ MonoBehaviour:
       Cost: 132
       Refund: 99
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -4059,6 +4097,7 @@ MonoBehaviour:
       Cost: 180
       Refund: 135
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -4075,10 +4114,12 @@ MonoBehaviour:
         TargetsGround: 1
         TargetsAir: 1
     - Name: Eclipse Champion
-      Description: "Ground + air \xB7 requires all six regular designs standing"
-      Cost: 312
-      Refund: 234
+      Description: "Ground + air \xB7 requires all six regular designs standing \xB7
+        1 wood, earned after wave 14"
+      Cost: 750
+      Refund: 562
       VisualStyle: 3
+      WoodCost: 1
       Requires: 1c0000001d0000001e0000001f0000002000000021000000
       Spec:
         Width: 1
@@ -4099,6 +4140,7 @@ MonoBehaviour:
       Cost: 7
       Refund: 6
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -4119,6 +4161,7 @@ MonoBehaviour:
       Cost: 30
       Refund: 27
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -4139,6 +4182,7 @@ MonoBehaviour:
       Cost: 55
       Refund: 49
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -4159,6 +4203,7 @@ MonoBehaviour:
       Cost: 80
       Refund: 72
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -4179,6 +4224,7 @@ MonoBehaviour:
       Cost: 110
       Refund: 99
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -4199,6 +4245,7 @@ MonoBehaviour:
       Cost: 150
       Refund: 135
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -4215,10 +4262,12 @@ MonoBehaviour:
         TargetsGround: 1
         TargetsAir: 1
     - Name: Fossil Champion
-      Description: "Ground + air \xB7 requires all six regular designs standing"
-      Cost: 260
-      Refund: 234
+      Description: "Ground + air \xB7 requires all six regular designs standing \xB7
+        1 wood, earned after wave 14"
+      Cost: 750
+      Refund: 562
       VisualStyle: 3
+      WoodCost: 1
       Requires: 230000002400000025000000260000002700000028000000
       Spec:
         Width: 1
@@ -4239,6 +4288,7 @@ MonoBehaviour:
       Cost: 10
       Refund: 7
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -4259,6 +4309,7 @@ MonoBehaviour:
       Cost: 30
       Refund: 22
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -4279,6 +4330,7 @@ MonoBehaviour:
       Cost: 55
       Refund: 41
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -4299,6 +4351,7 @@ MonoBehaviour:
       Cost: 80
       Refund: 60
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -4319,6 +4372,7 @@ MonoBehaviour:
       Cost: 110
       Refund: 82
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -4339,6 +4393,7 @@ MonoBehaviour:
       Cost: 150
       Refund: 112
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -4355,10 +4410,12 @@ MonoBehaviour:
         TargetsGround: 1
         TargetsAir: 1
     - Name: Mask Champion
-      Description: "Ground + air \xB7 requires all six regular designs standing"
-      Cost: 260
-      Refund: 195
+      Description: "Ground + air \xB7 requires all six regular designs standing \xB7
+        1 wood, earned after wave 14"
+      Cost: 750
+      Refund: 562
       VisualStyle: 3
+      WoodCost: 1
       Requires: 2a0000002b0000002c0000002d0000002e0000002f000000
       Spec:
         Width: 1
@@ -4379,6 +4436,7 @@ MonoBehaviour:
       Cost: 10
       Refund: 7
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -4399,6 +4457,7 @@ MonoBehaviour:
       Cost: 30
       Refund: 22
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -4419,6 +4478,7 @@ MonoBehaviour:
       Cost: 55
       Refund: 41
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -4439,6 +4499,7 @@ MonoBehaviour:
       Cost: 80
       Refund: 60
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -4459,6 +4520,7 @@ MonoBehaviour:
       Cost: 110
       Refund: 82
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -4479,6 +4541,7 @@ MonoBehaviour:
       Cost: 150
       Refund: 112
       VisualStyle: 3
+      WoodCost: 0
       Requires: 
       Spec:
         Width: 1
@@ -4495,10 +4558,12 @@ MonoBehaviour:
         TargetsGround: 1
         TargetsAir: 1
     - Name: Verdant Champion
-      Description: "Ground + air \xB7 requires all six regular designs standing"
-      Cost: 260
-      Refund: 195
+      Description: "Ground + air \xB7 requires all six regular designs standing \xB7
+        1 wood, earned after wave 14"
+      Cost: 750
+      Refund: 562
       VisualStyle: 3
+      WoodCost: 1
       Requires: 310000003200000033000000340000003500000036000000
       Spec:
         Width: 1
@@ -4531,6 +4596,9 @@ MonoBehaviour:
     Waves:
     - Name: Frostbound patrol
       Count: 8
+      KillGold: 1
+      ClearGold: 56
+      WoodReward: 0
       SpawnInterval: 0.8
       Health: 35
       Speed: 1.9
@@ -4540,6 +4608,9 @@ MonoBehaviour:
       Flying: 0
     - Name: Frostbound patrol
       Count: 10
+      KillGold: 1
+      ClearGold: 64
+      WoodReward: 0
       SpawnInterval: 0.8
       Health: 47
       Speed: 1.9
@@ -4549,6 +4620,9 @@ MonoBehaviour:
       Flying: 0
     - Name: Frostbound patrol
       Count: 12
+      KillGold: 1
+      ClearGold: 72
+      WoodReward: 0
       SpawnInterval: 0.8
       Health: 59
       Speed: 1.9
@@ -4558,6 +4632,9 @@ MonoBehaviour:
       Flying: 0
     - Name: Frostbound patrol
       Count: 14
+      KillGold: 1
+      ClearGold: 80
+      WoodReward: 0
       SpawnInterval: 0.8
       Health: 71
       Speed: 1.9
@@ -4567,6 +4644,9 @@ MonoBehaviour:
       Flying: 0
     - Name: Sky drifters
       Count: 16
+      KillGold: 2
+      ClearGold: 88
+      WoodReward: 0
       SpawnInterval: 0.8
       Health: 83
       Speed: 2.2
@@ -4576,6 +4656,9 @@ MonoBehaviour:
       Flying: 1
     - Name: Frostbound patrol
       Count: 18
+      KillGold: 2
+      ClearGold: 96
+      WoodReward: 0
       SpawnInterval: 0.8
       Health: 95
       Speed: 1.9
@@ -4585,6 +4668,9 @@ MonoBehaviour:
       Flying: 0
     - Name: Frostbound patrol
       Count: 20
+      KillGold: 2
+      ClearGold: 104
+      WoodReward: 0
       SpawnInterval: 0.8
       Health: 107
       Speed: 1.9
@@ -4594,6 +4680,9 @@ MonoBehaviour:
       Flying: 0
     - Name: Frostbound patrol
       Count: 22
+      KillGold: 2
+      ClearGold: 112
+      WoodReward: 0
       SpawnInterval: 0.8
       Health: 119
       Speed: 1.9
@@ -4603,6 +4692,9 @@ MonoBehaviour:
       Flying: 0
     - Name: Frostbound patrol
       Count: 24
+      KillGold: 3
+      ClearGold: 120
+      WoodReward: 0
       SpawnInterval: 0.8
       Health: 131
       Speed: 1.9
@@ -4612,6 +4704,9 @@ MonoBehaviour:
       Flying: 0
     - Name: Sky drifters
       Count: 26
+      KillGold: 3
+      ClearGold: 128
+      WoodReward: 0
       SpawnInterval: 0.8
       Health: 143
       Speed: 2.2
@@ -4621,6 +4716,9 @@ MonoBehaviour:
       Flying: 1
     - Name: "II \xB7 Reinforced patrol"
       Count: 24
+      KillGold: 3
+      ClearGold: 136
+      WoodReward: 0
       SpawnInterval: 0.75
       Health: 116.99999
       Speed: 1.9
@@ -4630,6 +4728,9 @@ MonoBehaviour:
       Flying: 0
     - Name: "II \xB7 Skitter rush"
       Count: 30
+      KillGold: 3
+      ClearGold: 144
+      WoodReward: 0
       SpawnInterval: 0.45
       Health: 100.75
       Speed: 2.7
@@ -4639,6 +4740,9 @@ MonoBehaviour:
       Flying: 0
     - Name: "II \xB7 Swarm column"
       Count: 38
+      KillGold: 4
+      ClearGold: 152
+      WoodReward: 0
       SpawnInterval: 0.3
       Health: 97.5
       Speed: 2.1
@@ -4648,6 +4752,9 @@ MonoBehaviour:
       Flying: 0
     - Name: "II \xB7 Siege wardens"
       Count: 16
+      KillGold: 4
+      ClearGold: 160
+      WoodReward: 4
       SpawnInterval: 1.05
       Health: 220.99998
       Speed: 1.55
@@ -4657,6 +4764,9 @@ MonoBehaviour:
       Flying: 0
     - Name: "II \xB7 Sky lancers"
       Count: 28
+      KillGold: 4
+      ClearGold: 168
+      WoodReward: 0
       SpawnInterval: 0.65
       Health: 149.5
       Speed: 2.5
@@ -4666,6 +4776,9 @@ MonoBehaviour:
       Flying: 1
     - Name: "III \xB7 Veteran vanguard"
       Count: 30
+      KillGold: 4
+      ClearGold: 176
+      WoodReward: 0
       SpawnInterval: 0.65
       Health: 201.5
       Speed: 2.1
@@ -4675,6 +4788,9 @@ MonoBehaviour:
       Flying: 0
     - Name: "III \xB7 Iron procession"
       Count: 18
+      KillGold: 5
+      ClearGold: 184
+      WoodReward: 0
       SpawnInterval: 1
       Health: 364
       Speed: 1.6
@@ -4684,6 +4800,9 @@ MonoBehaviour:
       Flying: 0
     - Name: "III \xB7 Last rush"
       Count: 42
+      KillGold: 5
+      ClearGold: 192
+      WoodReward: 0
       SpawnInterval: 0.35
       Health: 185.25
       Speed: 2.65
@@ -4693,6 +4812,9 @@ MonoBehaviour:
       Flying: 0
     - Name: "III \xB7 Gatebreakers"
       Count: 12
+      KillGold: 5
+      ClearGold: 200
+      WoodReward: 0
       SpawnInterval: 1.4
       Health: 650
       Speed: 1.4
@@ -4702,6 +4824,9 @@ MonoBehaviour:
       Flying: 0
     - Name: "Finale \xB7 Storm host"
       Count: 30
+      KillGold: 5
+      ClearGold: 208
+      WoodReward: 0
       SpawnInterval: 0.65
       Health: 312
       Speed: 2.5

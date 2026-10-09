@@ -18,7 +18,7 @@ namespace FrostMaze.Tests
             Check(w.DefensesFor(air)==1&&w.DefensesFor(swarm)==1,"team readiness ignored another owner or air-only targeting");
             w.SelectedDesign=1;Check(w.Build(32,11,out _),"wall fixture");Check(w.DefensesFor(air)==1,"unarmed wall counted as anti-air");
             Check(w.WaveAdvice(w.PreviewWave(13)).Contains("sealed paths"),"siege advice missing");
-            Check(w.Players[0].Gold==535&&w.Players[1].Gold==540,"read-only advice changed wallets");
+            Check(w.Players[0].Gold==map.StartingGold/2-65&&w.Players[1].Gold==map.StartingGold/2-60,"read-only advice changed wallets");
             foreach(bool iron in new[]{false,true}) {
                 var c=MapCases.Load(iron);for(int f=0;f<c.Factions.Length;f++) {
                     var team=new World(c,new MatchOptions{Factions=new[]{f,0,0,0}});
@@ -30,7 +30,7 @@ namespace FrostMaze.Tests
         }
         public static void FinalAirPlanning()
         {
-            var map=MapCases.Load(false);map.BuilderEnabled=false;
+            var map=MapCases.Load(false);map.BuilderEnabled=false;map.StartingGold=600; // Late-game refund fixture, not an opening.
             var w=new World(map,new MatchOptions{PlayerCount=2});
             w.SelectedDesign=3;Check(w.Build(28,11,out _),"paid ground fixture");
             int tower=w.Grid.At(28,11).Id;Check(w.Upgrade(tower,out _),"paid upgraded ground fixture");

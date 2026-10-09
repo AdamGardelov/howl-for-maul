@@ -39,7 +39,10 @@ def audit(run):
         check(wave['Cleared'] == (run['Won'] or number < len(waves)), prefix + 'clear/defeat status')
         check(wave['Killed'] >= 0 and wave['Leaked'] >= 0, prefix + 'negative enemy count')
         before = grant
-        reward = wave['Killed'] * run['KillReward'] + (run['WaveReward'] if wave['Cleared'] else 0)
+        bounty = run['KillRewards'][number - 1] if 'KillRewards' in run else run['KillReward']
+        clear = run['ClearRewards'][number - 1] if 'ClearRewards' in run else run['WaveReward']
+        check(bounty >= 0 and clear >= 0, prefix + 'negative reward')
+        reward = wave['Killed'] * bounty + (clear if wave['Cleared'] else 0)
         grant += reward
         check(wave['TeamIncome'] == reward, prefix + 'team income')
         check(len(wave['PlayerGold']) == players and len(wave['PlayerIncome']) == players, prefix + 'wallet/income count')

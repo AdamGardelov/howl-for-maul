@@ -12,18 +12,19 @@ namespace FrostMaze
             renderedMinimap.Prepare(game);
             // Warm only the current roster, at most one portrait per frame; never render in OnGUI.
             for(int i=0;i<game.World.Config.Catalog.Length;i++)
-                if(game.World.DesignAvailable(i)&&portraits.Get(i)==null){portraits.Prepare(game,i);break;}
+                if(game.World.RosterVisible(i)&&portraits.Get(i)==null){portraits.Prepare(game,i);break;}
         }
         public static string BuildTooltip(FrostMaze.Simulation.World world,int design)
         {
             var tower=world.Config.Catalog[design];
             var text=new System.Text.StringBuilder();
-            text.Append(tower.Name).Append(" · ").Append(tower.Cost).Append("g\n").Append(TowerStatsText(tower.Spec));
+            text.Append(tower.Name).Append(" · ").Append(tower.Cost).Append("g");if(tower.WoodCost>0)text.Append(" + ").Append(tower.WoodCost).Append(" wood");text.Append("\n").Append(TowerStatsText(tower.Spec));
             bool missing=false;
             foreach(int required in world.MissingPrerequisites(design)) {
                 if(!missing)text.Append("\nMissing owned towers:");
                 text.Append("\n• ").Append(world.Config.Catalog[required].Name);missing=true;
             }
+            if(world.Config.Economy&&world.Wood<tower.WoodCost)text.Append("\nNeed wood: earned after wave 14.");
             if(world.Finished)text.Append("\nMatch finished.");
             else if(world.Config.Economy&&world.Gold<tower.Cost)text.Append("\nNeed ").Append(tower.Cost-world.Gold).Append("g more.");
             else if(!missing)text.Append("\nClick to select · Shift + click map to queue");
@@ -39,15 +40,15 @@ namespace FrostMaze
                 portraitPrice=new GUIStyle(small){alignment=TextAnchor.MiddleCenter};
                 portraitPrice.normal.textColor=new Color(.94f,.83f,.55f);
             }
-            GUI.Label(new Rect(box.x+8,box.y+5,box.width-16,18),w.FactionName.ToUpperInvariant(),section);
+            if(GUI.Button(new Rect(box.x+8,box.y+5,box.width-16,18),w.FactionName.ToUpperInvariant()+(w.Config.FactionWoodUnlocks?" ▾":""),section))game.DetailsOpen=true;
             GUI.Label(new Rect(box.x+8,box.y+24,box.width-88,18),$"{w.QueuedBuilds} queued · Shift + click",small);
             if(GUI.Button(new Rect(box.xMax-74,box.y+22,66,20),"CANCEL",button))game.CancelInteraction();
             int slot=0,hovered=-1;
             for(int i=0;i<w.Config.Catalog.Length;i++) {
-                if(!w.DesignAvailable(i))continue;
+                if(!w.RosterVisible(i))continue;
                 var d=w.Config.Catalog[i];int row=slot/game.BuildColumns,col=slot%game.BuildColumns;
                 var tile=new Rect(box.x+8+col*78,box.y+48+row*80,72,76);
-                bool locked=!w.RequirementsMet(i),poor=w.Config.Economy&&w.Gold<d.Cost;
+                bool locked=!w.RequirementsMet(i),poor=w.Config.Economy&&(w.Gold<d.Cost||w.Wood<d.WoodCost);
                 GUI.enabled=!w.Finished;
                 if(GUI.Button(tile,GUIContent.none,!game.SellMode&&!game.MoveMode&&w.SelectedDesign==i?selectedPortraitTile:portraitTile)){
                     w.SelectedDesign=i;game.SellMode=false;game.MoveMode=false;game.SelectedTowerId=0;
@@ -58,7 +59,7 @@ namespace FrostMaze
                 if(portrait!=null)GUI.DrawTexture(new Rect(tile.x+4,tile.y+3,64,56),portrait,ScaleMode.ScaleToFit);
                 GUI.color=color;
                 GUI.Label(new Rect(tile.x,tile.y,20,18),(slot+1).ToString(),portraitKey);
-                GUI.Label(new Rect(tile.x,tile.y+57,tile.width,18),locked?"LOCKED":d.Cost+"g",portraitPrice);
+                GUI.Label(new Rect(tile.x,tile.y+57,tile.width,18),locked?"LOCKED":d.Cost+"g"+(d.WoodCost>0?" +1w":""),portraitPrice);
                 if(tile.Contains(Event.current.mousePosition))hovered=i;
                 slot++;
             }

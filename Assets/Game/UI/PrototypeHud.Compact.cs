@@ -26,7 +26,7 @@ namespace FrostMaze
             if(GUILayout.Button(w.Finished?(w.Won?"VICTORY":"DEFEAT"):w.WaveActive?"WAVE ACTIVE":"NEXT WAVE [ENTER]",button,GUILayout.Width(148)))game.Launch();
             GUI.enabled=true;DrawSpeedControls();GUILayout.FlexibleSpace();
             if(!game.NetworkMatch&&w.Players.Length>1&&GUILayout.Button($"P{w.ActivePlayer+1}",button,GUILayout.Width(40)))w.SelectPlayer((w.ActivePlayer+1)%w.Players.Length);
-            GUILayout.Label($"{w.Gold} GOLD    ·    {w.Lives} LIVES    ·    WAVE {Mathf.Max(0,w.WaveIndex+1)}/{w.Config.Waves.Length}",section,GUILayout.Width(310));
+            GUILayout.Label($"{w.Gold}g · {w.Wood} WOOD · {w.Lives} LIVES · WAVE {Mathf.Max(0,w.WaveIndex+1)}/{w.Config.Waves.Length}",section,GUILayout.Width(310));
             GUILayout.EndHorizontal();GUILayout.EndArea();
             DrawForecast();
             Frame(Logical(game.MinimapPanel));
@@ -34,7 +34,7 @@ namespace FrostMaze
             var alert=new Rect(20,68,330,48);
             if(feedback!=null&&feedback.RecentLeaks>0){if(GUI.Button(alert,$"EXIT BREACHED · {feedback.RecentLeaks} leaked · View exit",alertButton))game.FocusExit();}
             else if(w.Finished)GUI.Label(alert,w.Won?"VICTORY — all waves cleared":"DEFEAT — open Menu for a new game",section);
-            else if(!w.WaveActive&&w.LastWaveSummary!=null)GUI.Label(alert,$"Wave {w.LastWaveSummary.WaveNumber}: {w.LastWaveSummary.Killed} defeated · {w.LastWaveSummary.Leaked} leaked\nIncome: {w.LastWaveSummary.GoldForPlayer(w.ActivePlayer)}g",small);
+            else if(!w.WaveActive&&w.LastWaveSummary!=null)GUI.Label(alert,$"Wave {w.LastWaveSummary.WaveNumber}: {w.LastWaveSummary.Killed} defeated · {w.LastWaveSummary.Leaked} leaked\nIncome: {w.LastWaveSummary.GoldForPlayer(w.ActivePlayer)}g · {w.LastWaveSummary.WoodForPlayer(w.ActivePlayer)} wood",small);
             GUI.matrix=matrix;DrawHealth();DrawMapLabels();DrawMinimap();DrawBuildFeedback();DrawPlacementHint();
         }
         void DrawForecast()

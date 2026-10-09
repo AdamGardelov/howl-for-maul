@@ -1,0 +1,1957 @@
+[
+  {
+    "KillRewards": [
+      1,
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      2,
+      3,
+      3,
+      3,
+      3,
+      4,
+      4,
+      4,
+      4,
+      5,
+      5,
+      5,
+      5
+    ],
+    "ClearRewards": [
+      56,
+      64,
+      72,
+      80,
+      88,
+      96,
+      104,
+      112,
+      120,
+      128,
+      136,
+      144,
+      152,
+      160,
+      168,
+      176,
+      184,
+      192,
+      200,
+      208
+    ],
+    "WoodPurchases": [],
+    "OpenRouteTicks": null,
+    "PreparedMazeRouteTicks": null,
+    "InitialMazePurchases": 0,
+    "StartingTeamGold": 240,
+    "KillReward": 2,
+    "WaveReward": 120,
+    "Sales": [],
+    "Refunded": 0,
+    "PlayerRefunds": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "StartingPositions": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "InitialBuilderPositions": [
+      [
+        9.5,
+        48.5
+      ],
+      [
+        30.5,
+        48.5
+      ],
+      [
+        55.5,
+        48.5
+      ],
+      [
+        10.5,
+        32.5
+      ]
+    ],
+    "ActiveLanes": 3,
+    "StartingWallets": [
+      60,
+      60,
+      60,
+      60
+    ],
+    "PreparationTicks": 3807,
+    "FinalWallets": [
+      1330,
+      1234,
+      1233,
+      1329
+    ],
+    "PlayerSpending": [
+      480,
+      576,
+      576,
+      480
+    ],
+    "Strategy": "compact-transition",
+    "Factions": [
+      "Rime Covenant",
+      "Stonebound",
+      "Ember Assembly",
+      "Volt Vanguard"
+    ],
+    "Upgrades": [
+      {
+        "Player": 1,
+        "TowerId": 1,
+        "Tower": "Shard Sentry",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 4
+      },
+      {
+        "Player": 4,
+        "TowerId": 17,
+        "Tower": "Pulse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 4
+      },
+      {
+        "Player": 1,
+        "TowerId": 6,
+        "Tower": "Shard Sentry",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 5
+      },
+      {
+        "Player": 1,
+        "TowerId": 1,
+        "Tower": "Shard Sentry",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 5
+      },
+      {
+        "Player": 2,
+        "TowerId": 32,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 5
+      },
+      {
+        "Player": 3,
+        "TowerId": 15,
+        "Tower": "Cinder Watch",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 5
+      },
+      {
+        "Player": 4,
+        "TowerId": 17,
+        "Tower": "Pulse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 5
+      },
+      {
+        "Player": 4,
+        "TowerId": 22,
+        "Tower": "Pulse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 5
+      },
+      {
+        "Player": 1,
+        "TowerId": 6,
+        "Tower": "Shard Sentry",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 1,
+        "TowerId": 2,
+        "Tower": "Shard Sentry",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 1,
+        "TowerId": 3,
+        "Tower": "Shard Sentry",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 2,
+        "TowerId": 32,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 2,
+        "TowerId": 25,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 2,
+        "TowerId": 8,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 3,
+        "TowerId": 34,
+        "Tower": "Cinder Watch",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 3,
+        "TowerId": 16,
+        "Tower": "Cinder Watch",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 3,
+        "TowerId": 33,
+        "Tower": "Cinder Watch",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 3,
+        "TowerId": 12,
+        "Tower": "Cinder Watch",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 4,
+        "TowerId": 22,
+        "Tower": "Pulse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 4,
+        "TowerId": 44,
+        "Tower": "Pulse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 4,
+        "TowerId": 19,
+        "Tower": "Pulse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 6
+      },
+      {
+        "Player": 1,
+        "TowerId": 2,
+        "Tower": "Shard Sentry",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 4,
+        "Tower": "Shard Sentry",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 5,
+        "Tower": "Shard Sentry",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 37,
+        "Tower": "Shard Sentry",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 2,
+        "TowerId": 25,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 2,
+        "TowerId": 31,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 2,
+        "TowerId": 7,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 3,
+        "TowerId": 15,
+        "Tower": "Cinder Watch",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 3,
+        "TowerId": 12,
+        "Tower": "Cinder Watch",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 4,
+        "TowerId": 44,
+        "Tower": "Pulse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 4,
+        "TowerId": 35,
+        "Tower": "Pulse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 4,
+        "TowerId": 27,
+        "Tower": "Pulse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 4,
+        "TowerId": 20,
+        "Tower": "Pulse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 7
+      },
+      {
+        "Player": 1,
+        "TowerId": 5,
+        "Tower": "Shard Sentry",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 23,
+        "Tower": "Shard Sentry",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 38,
+        "Tower": "Shard Sentry",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 38,
+        "Tower": "Shard Sentry",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 2,
+        "TowerId": 39,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 2,
+        "TowerId": 8,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 2,
+        "TowerId": 9,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 2,
+        "TowerId": 10,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 3,
+        "TowerId": 13,
+        "Tower": "Cinder Watch",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 3,
+        "TowerId": 14,
+        "Tower": "Cinder Watch",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 3,
+        "TowerId": 34,
+        "Tower": "Cinder Watch",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 3,
+        "TowerId": 41,
+        "Tower": "Cinder Watch",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 4,
+        "TowerId": 19,
+        "Tower": "Pulse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 4,
+        "TowerId": 35,
+        "Tower": "Pulse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 4,
+        "TowerId": 21,
+        "Tower": "Pulse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 4,
+        "TowerId": 36,
+        "Tower": "Pulse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 8
+      },
+      {
+        "Player": 1,
+        "TowerId": 3,
+        "Tower": "Shard Sentry",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 4,
+        "Tower": "Shard Sentry",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 37,
+        "Tower": "Shard Sentry",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 2,
+        "TowerId": 11,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 2,
+        "TowerId": 45,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 2,
+        "TowerId": 46,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 2,
+        "TowerId": 46,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 3,
+        "TowerId": 47,
+        "Tower": "Cinder Watch",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 3,
+        "TowerId": 33,
+        "Tower": "Cinder Watch",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 3,
+        "TowerId": 16,
+        "Tower": "Cinder Watch",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 4,
+        "TowerId": 36,
+        "Tower": "Pulse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 4,
+        "TowerId": 27,
+        "Tower": "Pulse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 4,
+        "TowerId": 20,
+        "Tower": "Pulse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 9
+      },
+      {
+        "Player": 1,
+        "TowerId": 29,
+        "Tower": "Shard Sentry",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 29,
+        "Tower": "Shard Sentry",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 23,
+        "Tower": "Shard Sentry",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 24,
+        "Tower": "Shard Sentry",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 30,
+        "Tower": "Shard Sentry",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 2,
+        "TowerId": 31,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 2,
+        "TowerId": 7,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 2,
+        "TowerId": 39,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 2,
+        "TowerId": 40,
+        "Tower": "Pebble Warden",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 3,
+        "TowerId": 42,
+        "Tower": "Cinder Watch",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 3,
+        "TowerId": 42,
+        "Tower": "Cinder Watch",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 3,
+        "TowerId": 13,
+        "Tower": "Cinder Watch",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 3,
+        "TowerId": 14,
+        "Tower": "Cinder Watch",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 4,
+        "TowerId": 21,
+        "Tower": "Pulse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 4,
+        "TowerId": 18,
+        "Tower": "Pulse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 4,
+        "TowerId": 18,
+        "Tower": "Pulse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 4,
+        "TowerId": 28,
+        "Tower": "Pulse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 4,
+        "TowerId": 43,
+        "Tower": "Pulse Cadet",
+        "Level": 2,
+        "Cost": 10,
+        "BeforeWave": 10
+      },
+      {
+        "Player": 1,
+        "TowerId": 24,
+        "Tower": "Shard Sentry",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 1,
+        "TowerId": 30,
+        "Tower": "Shard Sentry",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 2,
+        "TowerId": 9,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 2,
+        "TowerId": 10,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 2,
+        "TowerId": 11,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 3,
+        "TowerId": 41,
+        "Tower": "Cinder Watch",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 3,
+        "TowerId": 47,
+        "Tower": "Cinder Watch",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 3,
+        "TowerId": 48,
+        "Tower": "Cinder Watch",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 3,
+        "TowerId": 48,
+        "Tower": "Cinder Watch",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 4,
+        "TowerId": 28,
+        "Tower": "Pulse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 4,
+        "TowerId": 43,
+        "Tower": "Pulse Cadet",
+        "Level": 3,
+        "Cost": 20,
+        "BeforeWave": 11
+      },
+      {
+        "Player": 2,
+        "TowerId": 40,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 12
+      },
+      {
+        "Player": 2,
+        "TowerId": 45,
+        "Tower": "Pebble Warden",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 12
+      },
+      {
+        "Player": 3,
+        "TowerId": 26,
+        "Tower": "Cinder Watch",
+        "Level": 2,
+        "Cost": 12,
+        "BeforeWave": 12
+      },
+      {
+        "Player": 3,
+        "TowerId": 26,
+        "Tower": "Cinder Watch",
+        "Level": 3,
+        "Cost": 24,
+        "BeforeWave": 12
+      }
+    ],
+    "PlayerCount": 4,
+    "Map": "Rimewatch",
+    "Faction": "Rime Covenant",
+    "Difficulty": "Normal",
+    "Won": true,
+    "Stalled": false,
+    "Lives": 22,
+    "Gold": 5126,
+    "Spent": 2112,
+    "Placements": [
+      {
+        "TowerId": 1,
+        "TravelTicks": 134,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 31,
+        "Y": 11,
+        "Tower": "Shard Sentry",
+        "Cost": 10
+      },
+      {
+        "TowerId": 2,
+        "TravelTicks": 5,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 27,
+        "Y": 17,
+        "Tower": "Shard Sentry",
+        "Cost": 10
+      },
+      {
+        "TowerId": 3,
+        "TravelTicks": 85,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 11,
+        "Y": 37,
+        "Tower": "Shard Sentry",
+        "Cost": 10
+      },
+      {
+        "TowerId": 4,
+        "TravelTicks": 125,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 53,
+        "Y": 37,
+        "Tower": "Shard Sentry",
+        "Cost": 10
+      },
+      {
+        "TowerId": 5,
+        "TravelTicks": 63,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 29,
+        "Y": 33,
+        "Tower": "Shard Sentry",
+        "Cost": 10
+      },
+      {
+        "TowerId": 6,
+        "TravelTicks": 66,
+        "BeforeWave": 1,
+        "Player": 1,
+        "X": 29,
+        "Y": 11,
+        "Tower": "Shard Sentry",
+        "Cost": 10
+      },
+      {
+        "TowerId": 7,
+        "TravelTicks": 105,
+        "BeforeWave": 1,
+        "Player": 2,
+        "X": 39,
+        "Y": 15,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 8,
+        "TravelTicks": 71,
+        "BeforeWave": 1,
+        "Player": 2,
+        "X": 17,
+        "Y": 29,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 9,
+        "TravelTicks": 45,
+        "BeforeWave": 1,
+        "Player": 2,
+        "X": 29,
+        "Y": 41,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 10,
+        "TravelTicks": 61,
+        "BeforeWave": 1,
+        "Player": 2,
+        "X": 7,
+        "Y": 45,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 11,
+        "TravelTicks": 134,
+        "BeforeWave": 1,
+        "Player": 2,
+        "X": 53,
+        "Y": 45,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 12,
+        "TravelTicks": 77,
+        "BeforeWave": 1,
+        "Player": 3,
+        "X": 29,
+        "Y": 49,
+        "Tower": "Cinder Watch",
+        "Cost": 12
+      },
+      {
+        "TowerId": 13,
+        "TravelTicks": 68,
+        "BeforeWave": 1,
+        "Player": 3,
+        "X": 9,
+        "Y": 53,
+        "Tower": "Cinder Watch",
+        "Cost": 12
+      },
+      {
+        "TowerId": 14,
+        "TravelTicks": 134,
+        "BeforeWave": 1,
+        "Player": 3,
+        "X": 55,
+        "Y": 53,
+        "Tower": "Cinder Watch",
+        "Cost": 12
+      },
+      {
+        "TowerId": 15,
+        "TravelTicks": 149,
+        "BeforeWave": 1,
+        "Player": 3,
+        "X": 21,
+        "Y": 17,
+        "Tower": "Cinder Watch",
+        "Cost": 12
+      },
+      {
+        "TowerId": 16,
+        "TravelTicks": 24,
+        "BeforeWave": 1,
+        "Player": 3,
+        "X": 13,
+        "Y": 17,
+        "Tower": "Cinder Watch",
+        "Cost": 12
+      },
+      {
+        "TowerId": 17,
+        "TravelTicks": 85,
+        "BeforeWave": 1,
+        "Player": 4,
+        "X": 31,
+        "Y": 13,
+        "Tower": "Pulse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 18,
+        "TravelTicks": 62,
+        "BeforeWave": 1,
+        "Player": 4,
+        "X": 9,
+        "Y": 23,
+        "Tower": "Pulse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 19,
+        "TravelTicks": 21,
+        "BeforeWave": 1,
+        "Player": 4,
+        "X": 11,
+        "Y": 31,
+        "Tower": "Pulse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 20,
+        "TravelTicks": 92,
+        "BeforeWave": 1,
+        "Player": 4,
+        "X": 29,
+        "Y": 53,
+        "Tower": "Pulse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 21,
+        "TravelTicks": 94,
+        "BeforeWave": 1,
+        "Player": 4,
+        "X": 53,
+        "Y": 33,
+        "Tower": "Pulse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 22,
+        "TravelTicks": 93,
+        "BeforeWave": 1,
+        "Player": 4,
+        "X": 27,
+        "Y": 15,
+        "Tower": "Pulse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 23,
+        "TravelTicks": 48,
+        "BeforeWave": 2,
+        "Player": 1,
+        "X": 27,
+        "Y": 31,
+        "Tower": "Shard Sentry",
+        "Cost": 10
+      },
+      {
+        "TowerId": 24,
+        "TravelTicks": 49,
+        "BeforeWave": 2,
+        "Player": 1,
+        "X": 45,
+        "Y": 29,
+        "Tower": "Shard Sentry",
+        "Cost": 10
+      },
+      {
+        "TowerId": 25,
+        "TravelTicks": 117,
+        "BeforeWave": 2,
+        "Player": 2,
+        "X": 33,
+        "Y": 11,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 26,
+        "TravelTicks": 108,
+        "BeforeWave": 2,
+        "Player": 3,
+        "X": 51,
+        "Y": 17,
+        "Tower": "Cinder Watch",
+        "Cost": 12
+      },
+      {
+        "TowerId": 27,
+        "TravelTicks": 86,
+        "BeforeWave": 2,
+        "Player": 4,
+        "X": 11,
+        "Y": 39,
+        "Tower": "Pulse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 28,
+        "TravelTicks": 138,
+        "BeforeWave": 2,
+        "Player": 4,
+        "X": 55,
+        "Y": 23,
+        "Tower": "Pulse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 29,
+        "TravelTicks": 68,
+        "BeforeWave": 3,
+        "Player": 1,
+        "X": 21,
+        "Y": 19,
+        "Tower": "Shard Sentry",
+        "Cost": 10
+      },
+      {
+        "TowerId": 30,
+        "TravelTicks": 42,
+        "BeforeWave": 3,
+        "Player": 1,
+        "X": 39,
+        "Y": 19,
+        "Tower": "Shard Sentry",
+        "Cost": 10
+      },
+      {
+        "TowerId": 31,
+        "TravelTicks": 96,
+        "BeforeWave": 3,
+        "Player": 2,
+        "X": 53,
+        "Y": 39,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 32,
+        "TravelTicks": 99,
+        "BeforeWave": 3,
+        "Player": 2,
+        "X": 29,
+        "Y": 13,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 33,
+        "TravelTicks": 78,
+        "BeforeWave": 3,
+        "Player": 3,
+        "X": 29,
+        "Y": 35,
+        "Tower": "Cinder Watch",
+        "Cost": 12
+      },
+      {
+        "TowerId": 34,
+        "TravelTicks": 85,
+        "BeforeWave": 3,
+        "Player": 3,
+        "X": 9,
+        "Y": 51,
+        "Tower": "Cinder Watch",
+        "Cost": 12
+      },
+      {
+        "TowerId": 35,
+        "TravelTicks": 99,
+        "BeforeWave": 3,
+        "Player": 4,
+        "X": 21,
+        "Y": 15,
+        "Tower": "Pulse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 36,
+        "TravelTicks": 143,
+        "BeforeWave": 3,
+        "Player": 4,
+        "X": 53,
+        "Y": 51,
+        "Tower": "Pulse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 37,
+        "TravelTicks": 80,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 29,
+        "Y": 45,
+        "Tower": "Shard Sentry",
+        "Cost": 10
+      },
+      {
+        "TowerId": 38,
+        "TravelTicks": 62,
+        "BeforeWave": 4,
+        "Player": 1,
+        "X": 13,
+        "Y": 29,
+        "Tower": "Shard Sentry",
+        "Cost": 10
+      },
+      {
+        "TowerId": 39,
+        "TravelTicks": 58,
+        "BeforeWave": 4,
+        "Player": 2,
+        "X": 11,
+        "Y": 19,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 40,
+        "TravelTicks": 47,
+        "BeforeWave": 4,
+        "Player": 2,
+        "X": 27,
+        "Y": 29,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 41,
+        "TravelTicks": 57,
+        "BeforeWave": 4,
+        "Player": 3,
+        "X": 31,
+        "Y": 53,
+        "Tower": "Cinder Watch",
+        "Cost": 12
+      },
+      {
+        "TowerId": 42,
+        "TravelTicks": 74,
+        "BeforeWave": 4,
+        "Player": 3,
+        "X": 19,
+        "Y": 29,
+        "Tower": "Cinder Watch",
+        "Cost": 12
+      },
+      {
+        "TowerId": 43,
+        "TravelTicks": 113,
+        "BeforeWave": 4,
+        "Player": 4,
+        "X": 43,
+        "Y": 13,
+        "Tower": "Pulse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 44,
+        "TravelTicks": 26,
+        "BeforeWave": 4,
+        "Player": 4,
+        "X": 33,
+        "Y": 15,
+        "Tower": "Pulse Cadet",
+        "Cost": 10
+      },
+      {
+        "TowerId": 45,
+        "TravelTicks": 70,
+        "BeforeWave": 5,
+        "Player": 2,
+        "X": 7,
+        "Y": 43,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 46,
+        "TravelTicks": 18,
+        "BeforeWave": 5,
+        "Player": 2,
+        "X": 11,
+        "Y": 33,
+        "Tower": "Pebble Warden",
+        "Cost": 12
+      },
+      {
+        "TowerId": 47,
+        "TravelTicks": 112,
+        "BeforeWave": 5,
+        "Player": 3,
+        "X": 53,
+        "Y": 47,
+        "Tower": "Cinder Watch",
+        "Cost": 12
+      },
+      {
+        "TowerId": 48,
+        "TravelTicks": 41,
+        "BeforeWave": 5,
+        "Player": 3,
+        "X": 53,
+        "Y": 31,
+        "Tower": "Cinder Watch",
+        "Cost": 12
+      }
+    ],
+    "Waves": [
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 80,
+        "PlayerIncome": [
+          20,
+          20,
+          20,
+          20
+        ],
+        "PlayerGold": [
+          20,
+          20,
+          20,
+          20
+        ],
+        "PlayerWood": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "Wave": 1,
+        "Flying": false,
+        "Killed": 24,
+        "Leaked": 0,
+        "Ticks": 313,
+        "Gold": 80
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 94,
+        "PlayerIncome": [
+          24,
+          24,
+          23,
+          23
+        ],
+        "PlayerGold": [
+          24,
+          32,
+          31,
+          23
+        ],
+        "PlayerWood": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "Wave": 2,
+        "Flying": false,
+        "Killed": 30,
+        "Leaked": 0,
+        "Ticks": 471,
+        "Gold": 110
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 108,
+        "PlayerIncome": [
+          27,
+          27,
+          27,
+          27
+        ],
+        "PlayerGold": [
+          31,
+          35,
+          34,
+          30
+        ],
+        "PlayerWood": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "Wave": 3,
+        "Flying": false,
+        "Killed": 36,
+        "Leaked": 0,
+        "Ticks": 544,
+        "Gold": 130
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 122,
+        "PlayerIncome": [
+          30,
+          30,
+          31,
+          31
+        ],
+        "PlayerGold": [
+          31,
+          41,
+          41,
+          31
+        ],
+        "PlayerWood": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "Wave": 4,
+        "Flying": false,
+        "Killed": 42,
+        "Leaked": 0,
+        "Ticks": 549,
+        "Gold": 144
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 184,
+        "PlayerIncome": [
+          46,
+          46,
+          46,
+          46
+        ],
+        "PlayerGold": [
+          47,
+          51,
+          51,
+          47
+        ],
+        "PlayerWood": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "Wave": 5,
+        "Flying": true,
+        "Killed": 48,
+        "Leaked": 0,
+        "Ticks": 584,
+        "Gold": 196
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 204,
+        "PlayerIncome": [
+          51,
+          51,
+          51,
+          51
+        ],
+        "PlayerGold": [
+          58,
+          54,
+          54,
+          58
+        ],
+        "PlayerWood": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "Wave": 6,
+        "Flying": false,
+        "Killed": 54,
+        "Leaked": 0,
+        "Ticks": 697,
+        "Gold": 224
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 224,
+        "PlayerIncome": [
+          56,
+          56,
+          56,
+          56
+        ],
+        "PlayerGold": [
+          64,
+          62,
+          62,
+          64
+        ],
+        "PlayerWood": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "Wave": 7,
+        "Flying": false,
+        "Killed": 60,
+        "Leaked": 0,
+        "Ticks": 724,
+        "Gold": 252
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 244,
+        "PlayerIncome": [
+          61,
+          61,
+          61,
+          61
+        ],
+        "PlayerGold": [
+          65,
+          63,
+          63,
+          65
+        ],
+        "PlayerWood": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "Wave": 8,
+        "Flying": false,
+        "Killed": 66,
+        "Leaked": 0,
+        "Ticks": 742,
+        "Gold": 256
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 336,
+        "PlayerIncome": [
+          84,
+          84,
+          84,
+          84
+        ],
+        "PlayerGold": [
+          89,
+          87,
+          87,
+          89
+        ],
+        "PlayerWood": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "Wave": 9,
+        "Flying": false,
+        "Killed": 72,
+        "Leaked": 0,
+        "Ticks": 751,
+        "Gold": 352
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 362,
+        "PlayerIncome": [
+          91,
+          91,
+          90,
+          90
+        ],
+        "PlayerGold": [
+          110,
+          94,
+          93,
+          109
+        ],
+        "PlayerWood": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "Wave": 10,
+        "Flying": true,
+        "Killed": 78,
+        "Leaked": 0,
+        "Ticks": 748,
+        "Gold": 406
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 352,
+        "PlayerIncome": [
+          88,
+          88,
+          88,
+          88
+        ],
+        "PlayerGold": [
+          158,
+          110,
+          97,
+          157
+        ],
+        "PlayerWood": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "Wave": 11,
+        "Flying": false,
+        "Killed": 72,
+        "Leaked": 0,
+        "Ticks": 754,
+        "Gold": 522
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 414,
+        "PlayerIncome": [
+          103,
+          103,
+          104,
+          104
+        ],
+        "PlayerGold": [
+          261,
+          165,
+          165,
+          261
+        ],
+        "PlayerWood": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "Wave": 12,
+        "Flying": false,
+        "Killed": 90,
+        "Leaked": 0,
+        "Ticks": 625,
+        "Gold": 852
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 608,
+        "PlayerIncome": [
+          152,
+          152,
+          152,
+          152
+        ],
+        "PlayerGold": [
+          413,
+          317,
+          317,
+          413
+        ],
+        "PlayerWood": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "Wave": 13,
+        "Flying": false,
+        "Killed": 114,
+        "Leaked": 0,
+        "Ticks": 767,
+        "Gold": 1460
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 352,
+        "PlayerIncome": [
+          88,
+          88,
+          88,
+          88
+        ],
+        "PlayerGold": [
+          501,
+          405,
+          405,
+          501
+        ],
+        "PlayerWood": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "Wave": 14,
+        "Flying": false,
+        "Killed": 48,
+        "Leaked": 0,
+        "Ticks": 831,
+        "Gold": 1812
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 504,
+        "PlayerIncome": [
+          126,
+          126,
+          126,
+          126
+        ],
+        "PlayerGold": [
+          627,
+          531,
+          531,
+          627
+        ],
+        "PlayerWood": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "Wave": 15,
+        "Flying": true,
+        "Killed": 84,
+        "Leaked": 0,
+        "Ticks": 786,
+        "Gold": 2316
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 536,
+        "PlayerIncome": [
+          134,
+          134,
+          134,
+          134
+        ],
+        "PlayerGold": [
+          761,
+          665,
+          665,
+          761
+        ],
+        "PlayerWood": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "Wave": 16,
+        "Flying": false,
+        "Killed": 90,
+        "Leaked": 0,
+        "Ticks": 1017,
+        "Gold": 2852
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 454,
+        "PlayerIncome": [
+          114,
+          114,
+          113,
+          113
+        ],
+        "PlayerGold": [
+          875,
+          779,
+          778,
+          874
+        ],
+        "PlayerWood": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "Wave": 17,
+        "Flying": false,
+        "Killed": 54,
+        "Leaked": 0,
+        "Ticks": 1331,
+        "Gold": 3306
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 822,
+        "PlayerIncome": [
+          205,
+          205,
+          206,
+          206
+        ],
+        "PlayerGold": [
+          1080,
+          984,
+          984,
+          1080
+        ],
+        "PlayerWood": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "Wave": 18,
+        "Flying": false,
+        "Killed": 126,
+        "Leaked": 0,
+        "Ticks": 1170,
+        "Gold": 4128
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 380,
+        "PlayerIncome": [
+          95,
+          95,
+          95,
+          95
+        ],
+        "PlayerGold": [
+          1175,
+          1079,
+          1079,
+          1175
+        ],
+        "PlayerWood": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "Wave": 19,
+        "Flying": false,
+        "Killed": 36,
+        "Leaked": 0,
+        "Ticks": 1703,
+        "Gold": 4508
+      },
+      {
+        "SummaryPresent": true,
+        "Cleared": true,
+        "TeamIncome": 618,
+        "PlayerIncome": [
+          155,
+          155,
+          154,
+          154
+        ],
+        "PlayerGold": [
+          1330,
+          1234,
+          1233,
+          1329
+        ],
+        "PlayerWood": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "Wave": 20,
+        "Flying": true,
+        "Killed": 82,
+        "Leaked": 8,
+        "Ticks": 1160,
+        "Gold": 5126
+      }
+    ]
+  }
+]

@@ -96,7 +96,7 @@ namespace FrostMaze
                 if(GUILayout.Button("QUIT GAME",button))game.QuitGame();
                 GUILayout.EndArea();GUI.matrix=previousMatrix;DrawMapLabels();return;
             }
-            GUILayout.BeginHorizontal();Resource("YOUR GOLD",w.Gold.ToString());Resource("TEAM LIVES",w.Lives.ToString(),w.Lives<=5||(feedback!=null&&feedback.RecentLeaks>0));Resource("WAVE",Mathf.Max(0,w.WaveIndex+1)+" / "+w.Config.Waves.Length);GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal();Resource("YOUR GOLD",w.Gold.ToString());Resource("WOOD",w.Wood.ToString());Resource("TEAM LIVES",w.Lives.ToString(),w.Lives<=5||(feedback!=null&&feedback.RecentLeaks>0));Resource("WAVE",Mathf.Max(0,w.WaveIndex+1)+" / "+w.Config.Waves.Length);GUILayout.EndHorizontal();
             GUILayout.Label(w.Finished?(w.Won?"VICTORY — all waves cleared":"DEFEAT — the crossing fell"):$"{w.LaneCount} lanes active  ·  {w.Difficulty}  ·  {w.Enemies.Count} enemies",section);
             GUI.enabled=!w.Finished&&!w.WaveActive&&w.WaveIndex+1<w.Config.Waves.Length;
             if(GUILayout.Button(w.Finished?"MATCH COMPLETE":w.WaveActive?"WAVE IN PROGRESS":"LAUNCH WAVE "+(w.WaveIndex+2)+"     [ENTER]",primary))game.Launch();
@@ -152,6 +152,13 @@ namespace FrostMaze
                 GUI.enabled=true;
                 if(GUILayout.Button("Deselect",button))game.SelectedTowerId=0;GUILayout.EndHorizontal();
             }
+            Rule();GUILayout.Label("WOOD / FACTIONS",section);
+            GUILayout.Label(w.Config.FactionWoodUnlocks?"Clear wave 9: wood unlocks another faction. Switching between unlocked rosters is free.":"Clear wave 14: wood buys champions. Each needs 750g, 1 wood and six owned prerequisites. Selling returns its wood.",small);
+            if(w.Config.FactionWoodUnlocks)for(int f=0;f<w.Config.Factions.Length;f++) {
+                GUI.enabled=!w.Finished&&(w.FactionUnlocked(f)||w.Wood>0||!w.Config.Economy);
+                if(GUILayout.Button(w.Config.Factions[f].Name+(w.Players[w.ActivePlayer].Faction==f?" · ACTIVE":w.FactionUnlocked(f)?" · SWITCH":" · 1 WOOD"),button))game.ChooseFaction(f);
+            }
+            GUI.enabled=true;
             Rule();GUILayout.Label("BUILD  /  "+w.FactionName.ToUpperInvariant(),section);
             GUILayout.BeginHorizontal();
             if(GUILayout.Button(!game.SellMode&&!game.MoveMode?"• Build [B]":"Build [B]",button)){game.SellMode=false;game.MoveMode=false;}
@@ -160,9 +167,9 @@ namespace FrostMaze
             GUILayout.EndHorizontal();
             if(w.Config.Catalog.Length>0) {
                 int shortcut=0;for(int i=0;i<w.Config.Catalog.Length;i++) {
-                    if(!w.DesignAvailable(i))continue;shortcut++;var design=w.Config.Catalog[i];bool ready=w.RequirementsMet(i);
-                    string availability=!ready?" · LOCKED":w.Config.Economy&&w.Gold<design.Cost?" · NEED GOLD":"";
-                    string text=$"<b>{shortcut}  {design.Name}</b>    {design.Cost}g\n<size=10>{Role(design.Spec)}{availability}</size>";
+                    if(!w.RosterVisible(i))continue;shortcut++;var design=w.Config.Catalog[i];bool ready=w.RequirementsMet(i);
+                    string availability=!ready?" · LOCKED":w.Config.Economy&&w.Gold<design.Cost?" · NEED GOLD":w.Config.Economy&&w.Wood<design.WoodCost?" · NEED WOOD":"";
+                    string text=$"<b>{shortcut}  {design.Name}</b>    {design.Cost}g{(design.WoodCost>0?" + 1 wood":"")}\n<size=10>{Role(design.Spec)}{availability}</size>";
                     if(GUILayout.Button(text,w.SelectedDesign==i?selectedCard:card)){w.SelectedDesign=i;game.SellMode=false;game.MoveMode=false;}
                 }
                 GUILayout.Space(5);GUILayout.Label(w.Config.Catalog[w.SelectedDesign].Description,small);DrawTowerStats(w.BuildSpec);
@@ -216,7 +223,7 @@ namespace FrostMaze
             game.SetupOptions.PlayerCount=GUILayout.SelectionGrid(game.SetupOptions.PlayerCount-1,new[]{"Solo","2","3","4"},4,button)+1;
             GUILayout.Label("Solo works offline. For friends on separate computers, choose Multiplayer / LAN below.",small);
             GUILayout.Space(10);
-            if(game.SetupOptions.PlayerCount==1){GUILayout.Label("Play Solo to choose your faction, starting position and difficulty. You receive all 1,200 gold; every lane stays active.",label);return;}
+            if(game.SetupOptions.PlayerCount==1){GUILayout.Label("Play Solo to choose your faction, starting position and difficulty. You receive the full team gold budget; every lane stays active.",label);return;}
             GUILayout.Label("LOCAL SLOT TEST · one keyboard and mouse. Switch control with P1–P4; these slots are not separate players joining your game.",small);
             GUILayout.Label("DIFFICULTY",section);
             game.SetupOptions.Difficulty=(Difficulty)GUILayout.SelectionGrid((int)game.SetupOptions.Difficulty,new[]{"Relaxed","Normal","Hard"},1,button);

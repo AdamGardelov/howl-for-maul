@@ -123,10 +123,11 @@ namespace FrostMaze.Simulation.Online
                 case ActionKind.Move:World.MoveBuilder(new V2(o.X,o.Y));break;
                 case ActionKind.Cancel:World.MoveBuilder(World.BuilderPosition);break;
                 case ActionKind.Sell:message=World.Sell(o.X,o.Y)?"Tower removed.":"No owned tower here.";break;
+                case ActionKind.ChooseFaction:World.ChooseFaction(o.Target,out message);break;
                 case ActionKind.Upgrade:World.Upgrade(o.Target,out message);break;
                 case ActionKind.Launch:message=World.StartWave()?"Wave launched.":"Wave cannot start yet.";break;
             }
-            World.SelectedDesign=selected;World.SelectPlayer(active);if(o.Player==LocalSlot&&message.Length>0)Notice=message;
+            if(o.Kind!=ActionKind.ChooseFaction)World.SelectedDesign=selected;World.SelectPlayer(active);if(o.Player==LocalSlot&&message.Length>0)Notice=message;
         }
         void CreateWorld(Difficulty difficulty){var options=new MatchOptions{PlayerCount=members.Count,UseSelectedSoloStart=true,Difficulty=difficulty,Factions=members.Select(m=>m.Faction).ToArray(),StartingPositions=members.Select(m=>m.Lane).ToArray()};World=new World(resolve(Map),options);World.SelectPlayer(LocalSlot);frame=0;accumulator=0;SpeedIndex=MatchSpeeds.Normal;Notice="All lanes active. Build, then launch a wave.";}
         void Disconnected(int id){var member=members.Find(m=>m.Id==id);if(member==null||!member.Connected)return;

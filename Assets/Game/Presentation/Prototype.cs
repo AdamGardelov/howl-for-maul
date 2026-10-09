@@ -301,7 +301,7 @@ namespace FrostMaze
         void ReadBuildInput() { using(InputProfile.Auto()) ReadBuildInputProfiled(); }
         void ReadBuildInputProfiled()
         {
-            int shortcut=0;for(int i=0;i<World.Config.Catalog.Length;i++)if(World.DesignAvailable(i)){if(UnityEngine.Input.GetKeyDown(KeyCode.Alpha1+shortcut)){World.SelectedDesign=i;SellMode=false;MoveMode=false;}shortcut++;}
+            int shortcut=0;for(int i=0;i<World.Config.Catalog.Length;i++)if(World.RosterVisible(i)){if(UnityEngine.Input.GetKeyDown(KeyCode.Alpha1+shortcut)){World.SelectedDesign=i;SellMode=false;MoveMode=false;}shortcut++;}
             if(UnityEngine.Input.GetKeyDown(KeyCode.Minus)||UnityEngine.Input.GetKeyDown(KeyCode.KeypadMinus))ChangeSpeed(-1);
             if(UnityEngine.Input.GetKeyDown(KeyCode.Equals)||UnityEngine.Input.GetKeyDown(KeyCode.KeypadPlus))ChangeSpeed(1);
             if(UnityEngine.Input.GetKeyDown(KeyCode.U)&&SelectedTowerId>0)UpgradeTower(SelectedTowerId);

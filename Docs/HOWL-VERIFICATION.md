@@ -1,3 +1,5 @@
+Latest development checkpoint: [gold, wood and world scenery](MAUL-ECONOMY-IMPLEMENTED.md). Older measurements below retain their original configurations and are not new-economy results.
+
 # Howl for Maul verification — complete procedural roster
 
 All twelve factions now have original design-specific models: twenty winter towers and fifty-six Ironfold towers. This is a complete first procedural model pass, not finished League-quality art. Read IRON-MODELS.md and WINTER-MODELS.md.

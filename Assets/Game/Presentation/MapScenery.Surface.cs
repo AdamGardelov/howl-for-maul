@@ -67,7 +67,7 @@ namespace FrostMaze
                 }
                 edges[y*fieldSize+x]=1-Mathf.SmoothStep(0,1,best/2.5f);
             }
-            var ground=new Color[size*size];var cap=new Color[size*size];
+            var ground=new Color[size*size];var cap=new Color[size*size];var water=new Color[size*size];
             for(int y=0;y<size;y++)for(int x=0;x<size;x++) {
                 float wx=x*c.Width/(float)(size-1),wz=y*c.Height/(float)(size-1);
                 float fx=x*(fieldSize-1)/(float)(size-1),fy=y*(fieldSize-1)/(float)(size-1);int ix=Mathf.Min(fieldSize-2,(int)fx),iy=Mathf.Min(fieldSize-2,(int)fy);
@@ -89,9 +89,18 @@ namespace FrostMaze
                 stone=Color.Lerp(stone,ice?new Color(.16f,.29f,.33f):new Color(.12f,.145f,.17f),edge*.42f);
                 float drift=PaintMask(.58f,.79f,wear)*edge;
                 stone=Color.Lerp(stone,ice?new Color(.58f,.72f,.74f):new Color(.25f,.285f,.20f),drift*(ice?.62f:.4f));
+                // Subtle route wear and damp moss break up the uniform tiled floor at play zoom.
+                float travel=PaintMask(.45f,.8f,Mathf.PerlinNoise(wx*.08f+12,wz*.035f+4))*(1-edge*.7f);
+                stone=Color.Lerp(stone,ice?new Color(.36f,.43f,.40f):new Color(.36f,.31f,.23f),travel*.15f);
+                float moss=PaintMask(.58f,.76f,Mathf.PerlinNoise(wx*.38f+8,wz*.38f+20))*edge*(1-drift);
+                stone=Color.Lerp(stone,ice?new Color(.20f,.32f,.27f):new Color(.21f,.30f,.23f),moss*.26f);
                 ground[y*size+x]=stone;
                 cap[y*size+x]=RaisedSurfaceColor(wx,wz,ice);
+                float current=Mathf.Sin(wz*2.4f+Mathf.Sin(wx*.63f)*1.7f)*.5f+.5f;
+                float pool=Mathf.PerlinNoise(wx*.12f+7,wz*.15f+11);
+                water[y*size+x]=Color.Lerp(ice?new Color(.045f,.13f,.18f):new Color(.045f,.085f,.085f),ice?new Color(.10f,.25f,.29f):new Color(.105f,.18f,.15f),pool*.8f+current*.12f);
             }
+            waterTexture=PaintedTexture("Original glacial pools and foundry channels",size,size,water);
             groundTexture=PaintedTexture("Original worn flagstone and edge wash",size,size,ground);
             capTexture=PaintedTexture(ice?"Original snow over blue slate":"Original weathered foundry slate",size,size,cap);
             const int sideW=512,sideH=128;var faces=new Color[sideW*sideH];
