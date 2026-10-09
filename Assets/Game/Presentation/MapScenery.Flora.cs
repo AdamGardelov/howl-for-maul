@@ -4,10 +4,7 @@ namespace FrostMaze
 {
     public sealed partial class MapScenery
     {
-        Material flameMaterial;
-        Color flameColor;
         Prototype sceneryGame;
-        float flameTime;
         public int PlantClusters { get; private set; }
         public int Braziers { get; private set; }
 
@@ -79,9 +76,10 @@ namespace FrostMaze
                     float a=i*Mathf.PI*2/3;
                     b[17].Peak(x+Mathf.Cos(a)*.14f,z+Mathf.Sin(a)*.14f,.095f,surface+.84f,.32f);
                 }
+                fireAnchors.Add(new Vector3(x,surface+.82f,z));
                 Braziers++;
             }
-            // Deterministic sparse dressing. No random state shared with simulation, lights or colliders.
+            // Deterministic sparse dressing. No random state shared with simulation and no physical colliders.
             for(int iz=0;iz<Mathf.CeilToInt((c.Height-4)/3.5f);iz++)for(int ix=0;ix<Mathf.CeilToInt((c.Width-4)/3.5f);ix++) {
                 int seed=(ix*73+iz*139+ix*iz*11)%97;
                 float x=2+ix*3.5f+(seed%7-3)*.3f,z=2+iz*3.5f+(seed%11-5)*.18f;
@@ -97,13 +95,6 @@ namespace FrostMaze
                 if(nearLane&&seed%4==0&&Braziers<24)Brazier(x,z);
                 else if(PlantClusters<90)Plant(x,z,seed);
             }
-        }
-        void Update()
-        {
-            if(flameMaterial==null||sceneryGame==null||sceneryGame.Paused||sceneryGame.MenuOpen)return;
-            flameTime+=Time.deltaTime;
-            float glow=.91f+.06f*Mathf.Sin(flameTime*4.1f)+.03f*Mathf.Sin(flameTime*9.7f);
-            flameMaterial.color=flameColor*glow;
         }
     }
 }

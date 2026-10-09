@@ -486,6 +486,23 @@ namespace FrostMaze.Tests
                 var scenery=Object.FindFirstObjectByType<MapScenery>();Assert.That(scenery,Is.Not.Null);
                 Assert.That(scenery.GetComponentsInChildren<Collider>().Length,Is.Zero,"Scenery cannot add physical blockers");
                 Assert.That(scenery.PlantClusters,Is.InRange(1,90));Assert.That(scenery.Braziers,Is.InRange(1,24));
+                var fire=scenery.transform.Find("Living brazier 0");Assert.That(fire,Is.Not.Null);
+                var rts=game.View.GetComponent<RtsCamera>();rts.SetInput(new CameraInputFixture());
+                rts.FocusPoint(new FrostMaze.Simulation.V2(fire.position.x,fire.position.z));rts.SetZoom(5,true);
+                var flame=scenery.transform.Find("Scenery 17").GetComponent<MeshFilter>().sharedMesh;
+                var beforeFlame=flame.vertices;long beforeTick=game.World.Tick;
+                yield return new WaitForSecondsRealtime(.4f);
+                Assert.That(game.World.Tick,Is.EqualTo(beforeTick),"Ambient fire must not unpause combat");
+                bool changed=false;var afterFlame=flame.vertices;for(int i=0;i<beforeFlame.Length;i++)changed|=(beforeFlame[i]-afterFlame[i]).sqrMagnitude>.000001f;
+                Assert.That(changed,Is.True,"Paused world should retain living ambient fire");
+                Assert.That(scenery.ActiveFireLights,Is.InRange(1,4));
+                int enabledLights=0;
+                foreach(var light in scenery.GetComponentsInChildren<Light>()){if(light.enabled)enabledLights++;Assert.That(light.shadows,Is.EqualTo(UnityEngine.LightShadows.None));}
+                Assert.That(enabledLights,Is.EqualTo(scenery.ActiveFireLights));
+                var emitters=scenery.GetComponentsInChildren<ParticleSystem>();Assert.That(emitters.Length,Is.EqualTo(scenery.Braziers));
+                foreach(var emitter in emitters){Assert.That(emitter.main.maxParticles,Is.LessThanOrEqualTo(10));Assert.That(emitter.main.useUnscaledTime,Is.True);Assert.That(emitter.gameObject.layer,Is.Not.EqualTo(30));}
+                Assert.That(fire.Find("Rising embers").GetComponent<ParticleSystem>().particleCount,Is.GreaterThan(0));
+                CaptureWorld(game.View,"/tmp/Howl-"+map+"-Living-Fire.png");
                 var config=game.World.Config;float cell=config.LayoutCellSize;
                 foreach(string batch in new[]{"Scenery 3","Scenery 4","Scenery 5","Scenery 11","Scenery 12","Scenery 13","Scenery 14","Scenery 15","Scenery 16","Scenery 17","Scenery 18","Scenery 19"}) {
                     var prop=scenery.transform.Find(batch);

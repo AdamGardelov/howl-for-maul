@@ -111,13 +111,14 @@ namespace FrostMaze
                 if(i==0){var uv=new List<Vector2>();foreach(var vertex in b.V)uv.Add(new Vector2((vertex.x+vertex.z)/4,vertex.y*2));mesh.SetUVs(0,uv);}
                 if(i==6||i==1||i==2){var uv=new List<Vector2>();foreach(var vertex in b.V)uv.Add(new Vector2(vertex.x/c.Width,vertex.z/c.Height));mesh.SetUVs(0,uv);}
                 var obj=new GameObject("Scenery "+i);obj.layer=30;obj.transform.SetParent(transform,false);obj.AddComponent<MeshFilter>().sharedMesh=mesh;var renderer=obj.AddComponent<MeshRenderer>();renderer.sharedMaterial=game.MakeMaterial(i==0||i==1||i==6?Color.white:palette[i],i==13||i==17||i==18);
-                if(i==17){flameMaterial=renderer.sharedMaterial;flameColor=palette[i];}
+                if(i==17||i==18)RememberFlame(mesh);
                 if(i==17||i==18)renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;
                 if(i==2){renderer.sharedMaterial.color=Color.white;renderer.sharedMaterial.mainTexture=waterTexture;}
                 if(i==0)renderer.sharedMaterial.mainTexture=wallTexture;
                 if(i==1)renderer.sharedMaterial.mainTexture=capTexture;
                 if(i==6){renderer.sharedMaterial.mainTexture=groundTexture;renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;}
             }
+            BuildLivingFire(game,ice);
         }
         static bool TryLandmarkAnchor(FrostMaze.Simulation.Scenario c,FrostMaze.Simulation.V2 origin,int side,out FrostMaze.Simulation.V2 anchor)
         {
@@ -133,6 +134,6 @@ namespace FrostMaze
             }
             return found;
         }
-        void OnDestroy(){foreach(var mesh in meshes)Destroy(mesh);if(groundTexture!=null)Destroy(groundTexture);if(capTexture!=null)Destroy(capTexture);if(wallTexture!=null)Destroy(wallTexture);if(waterTexture!=null)Destroy(waterTexture);}
+        void OnDestroy(){if(fireTexture!=null)Destroy(fireTexture);foreach(var mesh in meshes)Destroy(mesh);if(groundTexture!=null)Destroy(groundTexture);if(capTexture!=null)Destroy(capTexture);if(wallTexture!=null)Destroy(wallTexture);if(waterTexture!=null)Destroy(waterTexture);}
     }
 }
