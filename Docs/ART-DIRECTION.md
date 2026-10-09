@@ -16,7 +16,7 @@ Rime Covenant now has five distinct stone-and-ice tower models. Builders are war
 
 ## What this pass does not establish
 
-This is an in-engine art-direction prototype, not the final asset quality target. The HUD has a first flat-theme/readability pass (HUD-UPDATE.md); the enemy family has an initial silhouette/animation pass, and every faction now has its first distinct tower set. Richer materials and model detail remain future work. We have not replaced the procedural assets with a finished character/model library or added a new animation rig. Static visual inspection does not establish crowded-battle performance on target hardware.
+This is an in-engine art-direction prototype, not the final asset quality target. The HUD has a first flat-theme/readability pass (HUD-UPDATE.md); the enemy family has an initial silhouette/animation pass, and every faction now has its first distinct tower set. The subsequent terrain and actor material passes add surface detail, while authored sculpting and animation remain future work. We have not replaced the procedural assets with a finished character/model library or added a new animation rig. Static visual inspection does not establish crowded-battle performance on target hardware.
 
 Next visual priorities: clearer combat outcomes, a coordinated enemy silhouette refinement, and further HUD polish after checking smaller viewports. Judge each at normal gameplay zoom before adding more surface detail. Keep silhouettes and ownership colors readable through full waves.
 
@@ -37,3 +37,7 @@ See MAUL-ECONOMY-IMPLEMENTED.md for the original lodge/foundry exterior pass, sn
 ## Material identity
 
 See TERRAIN-MATERIALS.md for snow/slate/ice shelves, mossy foundry stone, weathered cliff faces, grass tufts, slate fragments and textured distant ridges. Large material patches are emphasized over busy small-scale outlines; repeat seams are regression-tested for both palettes.
+
+## Tower and builder detail
+
+See ACTOR-POLISH.md for chamfered tower parts, stone/metal/cloth surfaces, faction foundation markings and twelve equipped, animated builder variants. Rimewatch wardens and Ironfold robotic artisans have separate owner rings, so shared faction colors remain usable in co-op. The original design-specific tower silhouettes and actual aiming/recoil pivots remain. Both close-up in-map rendering and the entire roster were checked; the art remains procedural and no new crowded-scene performance claim is made.

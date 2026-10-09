@@ -11,6 +11,34 @@ namespace FrostMaze
         public Mesh Shell => Profile("Carved shell",8,new[]{-.5f,-.27f,.14f,.36f,.5f},new[]{0f,.4f,.5f,.33f,0f});
         public Mesh Armor => Profile("Beveled armor",8,new[]{-.5f,-.3f,.32f,.5f},new[]{.38f,.5f,.5f,.38f});
         public Mesh Robe => Profile("Warden mantle",7,new[]{-.5f,-.38f,.32f,.5f},new[]{.36f,.5f,.24f,.2f});
+        public Mesh BeveledBox {
+            get {
+                const string name="Chamfered armor block";if(meshes.TryGetValue(name,out var cached))return cached;
+                var outline=new[]{new Vector2(.5f,.39f),new Vector2(.39f,.5f),new Vector2(-.39f,.5f),new Vector2(-.5f,.39f),new Vector2(-.5f,-.39f),new Vector2(-.39f,-.5f),new Vector2(.39f,-.5f),new Vector2(.5f,-.39f)};
+                var v=new List<Vector3>();var t=new List<int>();float[] ys={-.5f,-.43f,.43f,.5f},rs={.85f,1,1,.85f};
+                for(int ring=0;ring<3;ring++)for(int i=0;i<8;i++) {
+                    int n=v.Count;var a=outline[i];var b=outline[(i+1)%8];
+                    v.Add(new Vector3(a.x*rs[ring],ys[ring],a.y*rs[ring]));v.Add(new Vector3(a.x*rs[ring+1],ys[ring+1],a.y*rs[ring+1]));
+                    v.Add(new Vector3(b.x*rs[ring+1],ys[ring+1],b.y*rs[ring+1]));v.Add(new Vector3(b.x*rs[ring],ys[ring],b.y*rs[ring]));
+                    t.AddRange(new[]{n,n+1,n+2,n,n+2,n+3});
+                }
+                for(int end=0;end<2;end++)for(int i=0;i<8;i++) {
+                    int n=v.Count;float y=end==0?-.5f:.5f;var a=outline[i]*.85f;var b=outline[(i+1)%8]*.85f;
+                    v.Add(new Vector3(0,y,0));v.Add(new Vector3(a.x,y,a.y));v.Add(new Vector3(b.x,y,b.y));t.AddRange(end==0?new[]{n,n+1,n+2}:new[]{n,n+2,n+1});
+                }
+                return Save(name,v,t);
+            }
+        }
+        public Mesh OwnerRing {
+            get {
+                const string name="Builder ownership ring";if(meshes.TryGetValue(name,out var cached))return cached;
+                var v=new List<Vector3>();var t=new List<int>();
+                for(int i=0;i<32;i++){float a=i*Mathf.PI/16,b=(i+1)*Mathf.PI/16;int n=v.Count;
+                    v.Add(new Vector3(Mathf.Cos(a)*.44f,0,Mathf.Sin(a)*.44f));v.Add(new Vector3(Mathf.Cos(a)*.49f,0,Mathf.Sin(a)*.49f));
+                    v.Add(new Vector3(Mathf.Cos(b)*.49f,0,Mathf.Sin(b)*.49f));v.Add(new Vector3(Mathf.Cos(b)*.44f,0,Mathf.Sin(b)*.44f));t.AddRange(new[]{n,n+2,n+1,n,n+3,n+2});}
+                return Save(name,v,t);
+            }
+        }
         Mesh Profile(string name,int sides,float[] heights,float[] radii)
         {
             if(meshes.TryGetValue(name,out var mesh))return mesh;
@@ -72,7 +100,10 @@ namespace FrostMaze
                 return Combine(key,pieces);
             }
         }
-        Mesh Save(string name,List<Vector3> vertices,List<int> triangles){var mesh=new Mesh{name="Original "+name};mesh.SetVertices(vertices);mesh.SetTriangles(triangles,0);mesh.RecalculateNormals();mesh.RecalculateBounds();meshes.Add(name,mesh);return mesh;}
+        Mesh Save(string name,List<Vector3> vertices,List<int> triangles){var mesh=new Mesh{name="Original "+name};mesh.SetVertices(vertices);mesh.SetTriangles(triangles,0);mesh.RecalculateNormals();
+            var uv=new List<Vector2>();var normals=mesh.normals;
+            for(int i=0;i<vertices.Count;i++){var p=vertices[i];var n=normals[i];uv.Add(Mathf.Abs(n.y)>.7f?new Vector2(p.x+.5f,p.z+.5f):Mathf.Abs(n.x)>Mathf.Abs(n.z)?new Vector2(p.z+.5f,p.y*.5f+.5f):new Vector2(p.x+.5f,p.y*.5f+.5f));}
+            mesh.SetUVs(0,uv);mesh.RecalculateBounds();meshes.Add(name,mesh);return mesh;}
         public Mesh Combine(string key,List<CombineInstance> pieces)
         {
             key="Combined "+key;

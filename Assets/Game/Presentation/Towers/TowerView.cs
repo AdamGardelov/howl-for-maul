@@ -166,6 +166,7 @@ namespace FrostMaze
         {
             var o=GameObject.CreatePrimitive(kind);o.name=name;o.transform.SetParent(parent==null?transform:parent,false);
             o.transform.localPosition=p;o.transform.localScale=scale;o.GetComponent<Renderer>().sharedMaterial=material;
+            if(kind==PrimitiveType.Cube)o.GetComponent<MeshFilter>().sharedMesh=game.Models.BeveledBox;
             if(kind==PrimitiveType.Cylinder||kind==PrimitiveType.Sphere)o.GetComponent<MeshFilter>().sharedMesh=Faceted(kind);
             var collider=o.GetComponent<Collider>();collider.enabled=false;Destroy(collider);return o;
         }
@@ -232,6 +233,7 @@ namespace FrostMaze
                 }
             }
             }
+            DressFoundation(palette[3],palette[4],faction,robot);
             string modelKey=game.World.Config.Theme+"/"+faction+"/"+tower.Design;
             CombineRigidParts(transform,modelKey+"/base");
             if(weapon!=null)CombineRigidParts(weapon,modelKey+"/weapon");
