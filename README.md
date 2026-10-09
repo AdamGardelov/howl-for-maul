@@ -93,9 +93,11 @@ The headless runner executes pure simulation cases. Its optional `--balance` mod
 
 Use **Howl for Maul → Build Linux** or **Build Windows** for standard output directories. Windows requires the Windows Mono build module. The verified direct-online packages were built with explicit separate paths to preserve the running older player:
 
-- `Builds/Linux-Online/HowlForMaul` (latest direct-online checkpoint)
+- `Builds/Linux-WavePreview/HowlForMaul` (latest pre-wave forecast checkpoint)
+- `Builds/Linux-Online/HowlForMaul` (preserved direct-online checkpoint)
 - `Builds/Linux/HowlForMaul` (older preserved package)
-- `Builds/Windows-Online/HowlForMaul.exe` (latest direct-online checkpoint)
+- `Builds/Windows-WavePreview/HowlForMaul.exe` (latest pre-wave forecast checkpoint)
+- `Builds/Windows-Online/HowlForMaul.exe` (preserved direct-online checkpoint)
 - `Builds/Windows/HowlForMaul.exe` (older preserved package)
 
 After building Linux, run `./Tools/smoke-linux.sh` to check both packaged maps without a display server. The explicit smoke mode skips presentation/audio startup; the script requires that isolation marker, both route/data checks and a clean exit. It is not a graphics or audio test. See [platform evidence](Docs/Platform/README.md).

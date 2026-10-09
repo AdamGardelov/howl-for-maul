@@ -2,6 +2,8 @@
 
 ## Latest state
 
+- Runtime f9a858d adds a compact pre-wave forecast and owned final-air refund advice. 68 pure cases, focused Unity visibility/input test, both platform builds, Linux paid tower/count/click-to-details/combat-hide/Quit and both-map data smoke pass. New packages are Linux-WavePreview / Windows-WavePreview; prior packages preserved. Read WAVE-FORECAST.md for warnings and exact limits. Unity target restored to Linux.
+
 - Final-air rebuild diagnostic: fourteen matched pairs (28 paid campaigns) verify owner-only sale refunds and paid replacements. Stonebound improves from 2 to 16 lives and Ember 5 to 15; every pre-finale wave/transaction stays identical. Rime/Blast losses on wave 18 remain visible. No stat changes. 67 pure tests pass. Read Balance/FINALE-REBUILD.md. Harness/docs only; packages still runtime 0ca580c.
 
 - Selected-start follow-up: twenty Normal paid campaigns cover every start on both maps, all twelve factions, and nondefault two/three/four-player teams. All finish twenty waves, with exact wallets and normal builder travel; Stonebound survives with two lives. Harness now records chosen starts/travel and rejects invalid filters instead of silently completing zero runs. 67 pure cases pass. Read Balance/SELECTED-STARTS.md. Tests/harness/docs only; packages remain runtime 0ca580c.

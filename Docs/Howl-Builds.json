@@ -641,5 +641,133 @@
       ],
       "userPlayerPreserved": true
     }
+  },
+  "waveForecastCheckpoint": {
+    "source": "f9a858d",
+    "builds": [
+      {
+        "status": "completed",
+        "buildId": "build_f5e70fae0a07",
+        "result": "Succeeded",
+        "platform": "StandaloneLinux64",
+        "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Linux-WavePreview/HowlForMaul",
+        "totalSizeBytes": 105238640,
+        "buildTimeMs": 23798,
+        "buildStartedAt": "2026-10-08T22:29:37.8812240Z",
+        "buildEndedAt": "2026-10-08T22:30:01.6799190Z",
+        "totalWarnings": 2,
+        "totalErrors": 0,
+        "warnings": [
+          {
+            "message": "Pipeline: No RuntimePipelineConfig asset found (Project Settings > Pipeline > Runtime). Pipeline will be disabled in Player builds."
+          },
+          {
+            "message": "You are building a player, but you have uncompiled code changes. This means that any post-processing or importing code you may have changed will not affect this player build."
+          }
+        ]
+      },
+      {
+        "status": "completed",
+        "buildId": "build_d63c652482f1",
+        "result": "Succeeded",
+        "platform": "StandaloneWindows64",
+        "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Windows-WavePreview/HowlForMaul.exe",
+        "totalSizeBytes": 108882296,
+        "buildTimeMs": 41286,
+        "buildStartedAt": "2026-10-08T22:30:55.7956800Z",
+        "buildEndedAt": "2026-10-08T22:31:37.0822250Z",
+        "totalWarnings": 19,
+        "totalErrors": 0,
+        "warnings": [
+          {
+            "message": "Pipeline: No RuntimePipelineConfig asset found (Project Settings > Pipeline > Runtime). Pipeline will be disabled in Player builds."
+          },
+          {
+            "message": "Shader warning in 'TraceRays': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'RisEstimation': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceRenderingLayerMask': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'UniformEstimation': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceTransparentRays': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'DynamicGISkyOcclusion': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceRaysAndFetchAttributes': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'RestirCandidateTemporal': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceVirtualOffset': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'RestirCandidateTemporal': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceTransparentRays': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceRenderingLayerMask': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceRaysAndFetchAttributes': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'DynamicGISkyOcclusion': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceVirtualOffset': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceRays': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'RisEstimation': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'UniformEstimation': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          }
+        ]
+      }
+    ],
+    "linuxInput": {
+      "display": ":98",
+      "renderer": "llvmpipe OpenGL",
+      "resolution": [
+        1440,
+        900
+      ],
+      "exitCode": 0,
+      "goldBefore": 1200,
+      "goldAfter": 1175,
+      "checks": [
+        "Staged solo Stonebound setup on Rimewatch",
+        "Compact forecast: 24 enemies, 35 HP, three lanes, zero target-capable team towers",
+        "Click opens expanded wave details without spending or building",
+        "Normal paid Pebble Warden updates target count to one",
+        "Enter launches wave 1 and removes forecast panel",
+        "Esc menu and Quit exit zero"
+      ]
+    },
+    "dataSmoke": {
+      "display": ":98",
+      "bothMaps": true,
+      "exitCode": 0
+    },
+    "limits": [
+      "Windows runtime untested",
+      "No new native-desktop or network compatibility claim",
+      "Final-air refund wording verified by pure regressions, not a final-wave graphical playthrough"
+    ],
+    "linuxWarningNote": "Build also emitted an uncompiled-code-change warning referring to postprocessing/import code. This change modifies no postprocessing/import scripts; actual packaged forecast behavior was exercised. Both raw build warnings are retained."
   }
 }

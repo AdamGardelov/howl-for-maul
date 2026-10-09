@@ -139,3 +139,9 @@ Fourteen matched control/intervention pairs (28 campaigns) verify paid final-wav
 ## Preparation forecast
 
 68 pure cases and the focused Unity forecast case pass (100.90 seconds), with clean Unity compilation. New compact preparation card shows scaled wave stats and target-capable team counts; clicking opens advice. Final-air advice uses owned, paid upgrade refunds without altering the match. Active combat has no leftover forecast hit area. Read WAVE-FORECAST.md. Package results are recorded separately after visual/input checks.
+
+## Packaged source f9a858d
+
+Linux-WavePreview and Windows-WavePreview builds succeeded with zero errors. Linux emitted two warnings (Pipeline disabled, plus an uncompiled-code-change warning about postprocessing/import code); Windows emitted the nineteen recorded Pipeline/ray-tracing warnings. No postprocessing/import code changed. Actual Linux input confirms the new runtime card is present and functional. Exact records are in Howl-Wave-Forecast-Packages.json.
+
+On the owned isolated 1440×900 llvmpipe display, staged solo Stonebound setup showed 24 ground enemies, 35 HP and all three Rimewatch lanes. Clicking the forecast opened expanded advice without building or spending. A paid Pebble Warden changed gold from 1,200 to 1,175 and targeting count from zero to one. Enter launched wave 1 and removed the card; game-menu Quit exited zero with no game exception in the player log. Both-map data smoke also exited zero. Unity target was restored to Linux. Existing player/package directories were preserved. Final-air refund text is verified in the pure regression, not in a manually played final-wave screen. Windows runtime and current native desktop/internet compatibility remain untested.
