@@ -1,0 +1,10 @@
+PASS all four solo speeds: pacing, invalid requests, pause and identical paid combat at tick 300
+PASS wrong password and mismatched game data refused
+PASS unique lane reservation, tied difficulty, 400-gold wallets, majority and expiring pause votes
+PASS capacity four, late join rejection, 300-gold wallets, malformed coordinates and three-of-four vote
+PASS Rimewatch two-process session, all 3 lanes, paid wallets, authority and disconnect recovery
+PASS remote paid build, owner isolation, shared 3x/0.5x, pause/resume and 620 ordered ticks; ZKC05yajdMjIjRnuQks+JXK9nFPFHprZcSP8KMqK+6s=
+
+PASS Ironfold two-process session, all 4 lanes, paid wallets, authority and disconnect recovery
+PASS remote paid build, owner isolation, shared 3x/0.5x, pause/resume and 620 ordered ticks; i3FoPDmIvFNtfuTRGbNaBqucUbRvJdFMB3b5IkYxfHw=
+

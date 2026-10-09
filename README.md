@@ -6,7 +6,7 @@ Built with Unity 6.3 LTS, C# and URP for Windows and Ubuntu Linux. Game code, pr
 
 **Current status:** playable offline solo prototype with direct host/join multiplayer for LAN or reachable internet hosts. Same-computer multi-slot control is a testing mode. Online players share a lobby, choose factions and unique starts, vote difficulty, and vote pause/resume. Direct connections need a reachable host; relay/public matchmaking is not configured. See [online play](Docs/ONLINE-PLAY.md) for setup and tested scope.
 
-Latest checkpoint: clearer Play Solo and Multiplayer / LAN menus; see [verification](Docs/MENU-CLARITY.md). Latest local packages are `Builds/Linux-Menu/HowlForMaul` and `Builds/Windows-Menu/HowlForMaul.exe`. Tower portraits include [weapon stats and owned champion requirements](Docs/TOWER-TOOLTIPS.md). Rimewatch retains the softer seamless snow from the [visual checkpoint](Docs/SNOW-READABILITY.md).
+Latest checkpoint: visible 0.5× / 1× / 2× / 3× match speed controls; see [verification](Docs/MATCH-SPEED.md). Latest local packages are `Builds/Linux-Speed/HowlForMaul` and `Builds/Windows-Speed/HowlForMaul.exe`. Tower portraits include [weapon stats and owned champion requirements](Docs/TOWER-TOOLTIPS.md). Rimewatch retains the softer seamless snow from the [visual checkpoint](Docs/SNOW-READABILITY.md).
 
 Mobile development is on hold; Android/iOS remain future targets. Touch controls, phone UI and device builds are not implemented or verified; see [mobile status](Docs/MOBILE-STATUS.md).
 
@@ -100,13 +100,15 @@ The headless runner executes pure simulation cases. Its optional `--balance` mod
 
 Use **Howl for Maul → Build Linux** or **Build Windows** for standard output directories. Windows requires the Windows Mono build module. The verified direct-online packages were built with explicit separate paths to preserve the running older player:
 
-- `Builds/Linux-Menu/HowlForMaul` (latest runtime: solo/LAN menu clarity)
+- `Builds/Linux-Speed/HowlForMaul` (latest runtime: shared match speed controls)
+- `Builds/Linux-Menu/HowlForMaul` (preserved solo/LAN menu checkpoint)
 - `Builds/Linux-TowerInfo/HowlForMaul` (preserved tower information checkpoint)
 - `Builds/Linux-Snow/HowlForMaul` (preserved snow readability checkpoint)
 - `Builds/Linux-WavePreview/HowlForMaul` (preserved pre-wave forecast checkpoint)
 - `Builds/Linux-Online/HowlForMaul` (preserved direct-online checkpoint)
 - `Builds/Linux/HowlForMaul` (older preserved package)
-- `Builds/Windows-Menu/HowlForMaul.exe` (latest runtime: solo/LAN menu clarity)
+- `Builds/Windows-Speed/HowlForMaul.exe` (latest runtime: shared match speed controls)
+- `Builds/Windows-Menu/HowlForMaul.exe` (preserved solo/LAN menu checkpoint)
 - `Builds/Windows-TowerInfo/HowlForMaul.exe` (preserved tower information checkpoint)
 - `Builds/Windows-Snow/HowlForMaul.exe` (preserved snow readability checkpoint)
 - `Builds/Windows-WavePreview/HowlForMaul.exe` (preserved pre-wave forecast checkpoint)

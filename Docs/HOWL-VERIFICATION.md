@@ -2,6 +2,8 @@
 
 All twelve factions now have original design-specific models: twenty winter towers and fifty-six Ironfold towers. This is a complete first procedural model pass, not finished League-quality art. Read IRON-MODELS.md and WINTER-MODELS.md.
 
+Latest speed checkpoint: [MATCH-SPEED.md](MATCH-SPEED.md) records the four speed settings, unchanged fixed-step results, host authority, focused Unity test and package evidence. Mobile is on hold at the user's request.
+
 ## Automated tests
 
 Historical complete Unity 6000.3.25f1 suite: **74/74 passed**, including twelve Play-mode integration cases, at the siege/audio checkpoint 44b2290. Complete per-case result: Howl-Unity-Tests-Complete.json, extracted from Unity’s NUnit XML. The CLI summary in Howl-Unity-Tests.json agrees, but its detail array retains only 63 entries after domain reloads. All 74 cases are confirmed in XML.
