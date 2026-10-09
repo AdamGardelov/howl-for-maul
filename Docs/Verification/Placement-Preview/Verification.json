@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-10",
+  "baseCommit": "e23790b",
+  "unity": "6000.3.25f1",
+  "tests": {
+    "focusedPassed": 4,
+    "failed": 0,
+    "previewedDesigns": 76,
+    "maps": [
+      "Ironfold",
+      "Rimewatch"
+    ],
+    "warmPreviewUpdatesPerMap": 300,
+    "warmManagedBytes": 0,
+    "fullSuite": false
+  },
+  "linuxBuild": "passed",
+  "windowsBuild": "passed (build only)",
+  "packagedMenuCheck": "passed at 1440x900 and 960x600",
+  "linuxInput": {
+    "result": "passed",
+    "exitCode": 0,
+    "startGold": 2200,
+    "singlePaidTowerGold": 2190,
+    "pausedQueue": 3,
+    "completedTowerCount": 4,
+    "finalGold": 2160,
+    "finalQueue": 0,
+    "isolatedPreferences": true
+  },
+  "interruptedRun": {
+    "wrapperExitCode": 143,
+    "countedAsPass": false,
+    "reason": "Private X display shut down; repeated input session completed normally"
+  },
+  "renderer": "llvmpipe / OpenGL software rendering",
+  "nativeWindows": "not run",
+  "hardwarePerformance": "not measured",
+  "separateNetworkMatch": "not run",
+  "fullCampaignBalance": "not rerun; no simulation changes",
+  "evidence": {
+    "unityXml": "Focused-Tests.xml",
+    "portraits": [
+      "Ironfold-Portraits.png",
+      "Rimewatch-Portraits.png"
+    ]
+  },
+  "isolatedEditorTarget": "restored to Linux",
+  "sourceSha256": {
+    "Presentation/Prototype.cs": "d7869c1423d4cfae3d95ef15ae33c35dae69c6b37461fa2183f8de38752cfdd9",
+    "Presentation/BuildPlacementPreview.cs": "292b164f87397ac271a01f63729a0be927b71674da2d246510fae8943104582e",
+    "Presentation/ModelPreviewMaterials.cs": "d97dcdb6a08f6a3a43c199ad6b1b4f796ae8d4126ff1afd7e357da2dd0b04026",
+    "Presentation/Resources/ModelPreview.shader": "7da1f730e2485411fd71a08cd1259a8d047116ad365ef886643b4060abd9c1c7",
+    "Presentation/Towers/TowerView.cs": "936b89a4cc5ab6c77a69dda0ecd7b2cb23890ef6a71803ce4f70ec1d219c3b0c",
+    "UI/TowerPortraits.cs": "ca8b706526aa36fe7bac330f2a2d389e8db4b5a173d22f450743aba050ff600b"
+  }
+}

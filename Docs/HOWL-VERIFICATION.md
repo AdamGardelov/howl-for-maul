@@ -1,3 +1,21 @@
+## 2026-10-10 — readable portraits and full-model construction previews
+
+[Change note](PLACEMENT-PRESENTATION.md) and [retained evidence](Verification/Placement-Preview/README.md). All 76 actual-model portraits now use consistent studio lighting. Building shows a translucent copy of the selected design on its footprint, mint when valid and red when rejected. Existing text, range and queue markers remain. Copies hide for inspection, Move/Remove and modal/input gates; they never occupy terrain, charge gold or animate from live shots. Meshes and separate preview materials are cached and cleaned up with the map.
+
+Four focused Unity cases pass: both-map/all-design cosmetic and allocation checks, all-roster portrait brightness/cache/world-light invariants, and existing shot/pause plus portrait/minimap lifecycle regressions. Moving a warmed copy allocated zero managed bytes across 300 calls per map. Linux real mouse/keyboard flow passed: 2200 gold at solo start, one paid Fuse Cadet leaves 2190, three numbered Shift-click orders persist during pause, Move hides the model, resume yields four towers/2160 gold/zero queue; normal window close exits 0. The first input run lost its private display (wrapper 143) and is not counted as passed; the bounded repeat passed. No full-suite or new campaign claim.
+
+Linux and Windows builds succeed. Packaged Linux title/settings/credits/map/solo/960×600–1440×900 menu check passes. Windows remains build-only; no new hardware FPS or separate-network match evidence. Source hashes match the isolated build project. Updated candidates are Builds/Linux-World and Builds/Windows-World, with both preceding packages preserved as *-World-e23790b. Music notices remain included. No public release was published.
+
+Use /home/adam/Documents/Codex/2026-10-06/cre/work/howl-logo-build (restored to Linux), private Xvfb :98, and private XDG preferences. All owned players/displays are closed. Logs/scripts begin work/preview-*. The full completed package wrapper and repeated input wrapper both exit 0. Preserve the user's editor/player; do not overlap Unity/display jobs.
+
+### Next useful work
+
+1. The newly readable portraits expose repeated primitive weapons and saturated pastel accents. Improve within-faction role proportions, purposeful material color and champion presence while retaining the twelve silhouette families and exact tower footprints. Avoid another generic pedestal pass.
+2. Translate the new Ironfold concept direction into one coherent in-game area: larger layered landscape masses, quieter ground and purposefully grouped plants/architecture. Current small lime plants are too evenly scattered. The generated concept is not an exact collision layout; preserve mirrored masks, buildable area and flight clearances.
+3. First-play/audio review and hardware profiling remain useful; native Windows and full separate-network matches remain release gates. Continue the previous checkpoint's safeguards.
+
+The user asked whether Unity MCP would help; it was evaluated and recommended, but has not been installed or configured. Do not report it connected. This checkpoint makes no automation changes; keep the existing night's cutoff (08:00 Stockholm), mobile hold, networking/ownership/economy and Scott Buckley attribution.
+
 ## 2026-10-10 — living world, hearth interface and twelve faction families
 
 [Living world](LIVING-WORLD.md), [interface and orders](HEARTH-INTERFACE-AND-ORDERS.md), [verification with screenshots](Verification/Hearth-Orders/README.md). Original painted foliage, moving leaves/water, planted safe shelves, snowy groves and mirrored Last Stand gardens now dress both maps. The title looks into Ironfold's lit settlement. Quieter slate/brass frames, resource symbols, readable controls and descriptive difficulty cards carry the same art direction through the UI. All twelve factions now have different supporting shapes/materials; all 76 upgraded/rotated models retain their cell footprints. Existing shot colors/sounds, combat stats, costs, masks, Relay and chat rules remain intact.

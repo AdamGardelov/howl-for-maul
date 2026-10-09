@@ -9,6 +9,7 @@ namespace FrostMaze
     public sealed class TowerPortraits : System.IDisposable
     {
         readonly Dictionary<int,Texture2D> cache=new Dictionary<int,Texture2D>();
+        readonly ModelPreviewMaterials materials=new ModelPreviewMaterials();
         public Texture2D Get(int design)=>cache.TryGetValue(design,out var image)?image:null;
         public void Prepare(Prototype game,int design)
         {
@@ -23,7 +24,8 @@ namespace FrostMaze
             Texture2D image=null;
             try {
                 var tower=new Tower{Design=design,Spec=definition.Spec,Health=definition.Spec.Health,Name=definition.Name};
-                root.AddComponent<TowerView>().Initialize(game,tower,definition,faction);
+                root.AddComponent<TowerView>().Initialize(game,tower,definition,faction,true);
+                materials.Apply(root);
                 root.transform.position=new Vector3(10000,10000,10000);
                 foreach(var t in root.GetComponentsInChildren<Transform>(true))t.gameObject.layer=31;
                 var bounds=new Bounds(root.transform.position,Vector3.zero);
@@ -59,6 +61,6 @@ namespace FrostMaze
                 if(image!=null)Object.Destroy(image);
             }
         }
-        public void Dispose(){foreach(var image in cache.Values)if(image!=null)Object.Destroy(image);cache.Clear();}
+        public void Dispose(){foreach(var image in cache.Values)if(image!=null)Object.Destroy(image);cache.Clear();materials.Dispose();}
     }
 }

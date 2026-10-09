@@ -255,6 +255,8 @@ namespace FrostMaze
             foreach (var p in World.Config.FlightRoute)
                 Marker(p, new Color(0.63f, 0.5f, 0.91f), "Flight checkpoint", 0.22f);
             ghost = Primitive("Placement preview", PrimitiveType.Cube, Vector3.zero, new Vector3(World.Config.Tower.Width - 0.1f, 0.08f, World.Config.Tower.Height - 0.1f), ghostMaterial);
+            var preview=new GameObject("Construction previews");preview.transform.SetParent(transform,false);
+            preview.AddComponent<BuildPlacementPreview>().Initialize(this);
             gameObject.AddComponent<MazeDebug>().Initialize(this);
             gameObject.AddComponent<BuildQueueView>().Initialize(this);
             gameObject.AddComponent<PrototypeHud>().Initialize(this);

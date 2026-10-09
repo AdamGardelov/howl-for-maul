@@ -174,7 +174,7 @@ namespace FrostMaze
         public Tower Subject {get;private set;}
         float observedHealth;
         CombatFeedback feedback;
-        public void Initialize(Prototype game,Tower tower,TowerDesign design,int faction)
+        public void Initialize(Prototype game,Tower tower,TowerDesign design,int faction,bool presentationOnly=false)
         {
             this.game=game;Subject=tower;observedHealth=tower.Health;feedback=game.GetComponent<CombatFeedback>();
             var shots=game.World.Shots;
@@ -233,17 +233,20 @@ namespace FrostMaze
             if(weapon!=null)CombineRigidParts(weapon,modelKey+"/weapon");
             if(kinetic!=null)CombineRigidParts(kinetic,modelKey+"/kinetic");
             for(int i=0;i<2;i++)tiers[i]=Part("Upgrade tier "+(i+2),PrimitiveType.Cube,new Vector3((i==0?-1:1)*.23f,.20f,-.30f),new Vector3(.10f,.13f,.09f),light);
-            Sync(tower,false);
+            if(presentationOnly)Pose(tower,false);else Sync(tower,false);
+        }
+        void Pose(Tower tower,bool clearance)
+        {
+            transform.position=new Vector3(tower.Center.X,0,tower.Center.Y);
+            transform.localScale=new Vector3(tower.Spec.Width,clearance?.08f:1,tower.Spec.Height);
+            VisibleLevel=tower.Level;for(int i=0;i<2;i++)tiers[i].SetActive(tower.Level>=i+2);
+            if(weapon!=null)weapon.localScale=new Vector3(weaponWidth,1+.08f*(tower.Level-1),weaponWidth);
         }
         public void Sync(Tower tower,bool clearance)
         {
             if(tower.Health<observedHealth)feedback.TowerStruck(tower,false);
-            observedHealth=tower.Health;
-            transform.position=new Vector3(tower.Center.X,0,tower.Center.Y);
-            transform.localScale=new Vector3(tower.Spec.Width,clearance?.08f:1,tower.Spec.Height);
-            VisibleLevel=tower.Level;for(int i=0;i<2;i++)tiers[i].SetActive(tower.Level>=i+2);
+            observedHealth=tower.Health;Pose(tower,clearance);
             if(weapon!=null) {
-                weapon.localScale=new Vector3(weaponWidth,1+.08f*(tower.Level-1),weaponWidth);
                 var shots=game.World.Shots;
                 // Only direct shots from this footprint drive its weapon. Chain origins are enemies.
                 for(int i=shots.Count-1;i>=0&&shots[i].Serial>observedShot;i--) {

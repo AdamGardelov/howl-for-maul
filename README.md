@@ -4,7 +4,7 @@ An original cooperative maze tower-defense game in development, inspired by the 
 
 Built with Unity 6.3 LTS, C# and URP for Windows and Ubuntu Linux. Game code, procedural visuals and synthesized effects are original; no Warcraft III or Mega Man assets are included. The soundtrack uses attributed Scott Buckley tracks under CC BY 4.0; see THIRD-PARTY-NOTICES.md.
 
-Latest presentation: [hearth interface and twelve distinct tower families](Docs/HEARTH-INTERFACE-AND-ORDERS.md).
+Latest presentation: [readable tower portraits and full-model construction previews](Docs/PLACEMENT-PRESENTATION.md), following the [hearth interface and twelve distinct tower families](Docs/HEARTH-INTERFACE-AND-ORDERS.md).
 
 Latest environment: [living refuge, planted lanes and painted foliage across both maps](Docs/LIVING-WORLD.md).
 
