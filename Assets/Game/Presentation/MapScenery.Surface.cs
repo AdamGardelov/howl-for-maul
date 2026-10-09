@@ -24,6 +24,21 @@ namespace FrostMaze
         }
         // Unity SmoothStep interpolates endpoints; threshold masks must normalize their input first.
         static float PaintMask(float low,float high,float value)=>Mathf.SmoothStep(0,1,Mathf.InverseLerp(low,high,value));
+        // The inner ledges and exterior share one restrained wash. Keep the snow below
+        // near-white so lane silhouettes, frost plants and tower effects remain readable.
+        internal static Color RaisedSurfaceColor(float wx,float wz,bool ice)
+        {
+            float detail=Mathf.PerlinNoise(wx*1.2f+5,wz*1.2f+23);
+            if(ice) {
+                float drift=Mathf.PerlinNoise(wx*.075f+41,wz*.075f+7);
+                float grain=Mathf.PerlinNoise(wx*3.5f+9,wz*3.5f+3);
+                var snow=Color.Lerp(new Color(.40f,.51f,.55f),new Color(.55f,.63f,.65f),drift);
+                return snow*(.98f+detail*.025f+grain*.015f);
+            }
+            float wash=Mathf.PerlinNoise(wx*.22f+41,wz*.22f+7);
+            var rock=Color.Lerp(new Color(.27f,.245f,.35f),new Color(.44f,.4f,.5f),wash*.8f+detail*.2f);
+            return Color.Lerp(rock,new Color(.33f,.31f,.25f),PaintMask(.6f,.8f,detail)*.4f);
+        }
         void PaintTerrain(Scenario c,bool ice)
         {
             bool Solid(int row,int col) {
@@ -67,11 +82,7 @@ namespace FrostMaze
                 float drift=PaintMask(.58f,.79f,wear)*edge;
                 stone=Color.Lerp(stone,ice?new Color(.58f,.72f,.74f):new Color(.25f,.285f,.20f),drift*(ice?.62f:.4f));
                 ground[y*size+x]=stone;
-                float wash=Mathf.PerlinNoise(wx*.22f+41,wz*.22f+7),detail=Mathf.PerlinNoise(wx*1.2f+5,wz*1.2f+23);
-                var rock=Color.Lerp(ice?new Color(.25f,.42f,.49f):new Color(.27f,.245f,.35f),ice?new Color(.48f,.65f,.69f):new Color(.44f,.4f,.5f),wash*.8f+detail*.2f);
-                if(ice)rock=Color.Lerp(rock,new Color(.79f,.88f,.9f),PaintMask(.27f,.61f,wash+detail*.14f));
-                else rock=Color.Lerp(rock,new Color(.33f,.31f,.25f),PaintMask(.6f,.8f,detail)*.4f);
-                cap[y*size+x]=rock;
+                cap[y*size+x]=RaisedSurfaceColor(wx,wz,ice);
             }
             groundTexture=PaintedTexture("Original worn flagstone and edge wash",size,size,ground);
             capTexture=PaintedTexture(ice?"Original snow over blue slate":"Original weathered foundry slate",size,size,cap);
