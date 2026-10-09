@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-09",
+  "unity": "6000.3.25f1",
+  "cloud_project": "817071a5-c9d9-43cc-9ade-6f5703df2ecc",
+  "environment": "production",
+  "linux_build": "passed",
+  "windows_build": "passed",
+  "windows_runtime": "not tested",
+  "live_relay": {
+    "maps": [
+      "Rimewatch",
+      "Ironfold"
+    ],
+    "players": 2,
+    "anonymous_profiles": "distinct",
+    "transport": "Unity Relay DTLS",
+    "processes": "separate packaged Linux processes on same machine/network",
+    "checks": [
+      "allocation/code/join",
+      "lobby/factions/unique lanes/difficulty",
+      "two owner-paid builds and exact wallets",
+      "420 synchronized ticks",
+      "pause/resume",
+      "disconnect pause and remaining-player recovery"
+    ],
+    "results": [
+      "HOWL_NETWORK_HOST_PASS Rimewatch lanes=3 paid=2",
+      "HOWL_NETWORK_CLIENT_PASS Rimewatch tick=420 hash=nAU2KEXLD6sUQYatiu2jguBZ2mhM32evqFWm6J+/MH8=",
+      "HOWL_NETWORK_HOST_PASS Ironfold lanes=4 paid=2",
+      "HOWL_NETWORK_CLIENT_PASS Ironfold tick=420 hash=zoS1UsSiXCsbFZDm+/q+b5yxj5Ic7oxkSl2JuDvizMQ="
+    ]
+  },
+  "dialog_render": {
+    "resolutions": [
+      "1440x900",
+      "960x600"
+    ],
+    "gateway": "injected fixture, no cloud allocation",
+    "result": "HOWL_ONLINE_MENU_PASS",
+    "screens": [
+      "connecting",
+      "retry",
+      "retry-small",
+      "entry",
+      "entry-small",
+      "offline-solo"
+    ]
+  },
+  "limits": [
+    "Windows runtime",
+    "different computers/networks",
+    "four-player live Relay",
+    "full twenty-wave live match",
+    "service notification response"
+  ],
+  "build_warnings": [
+    "Existing URP Pipeline-disabled warning",
+    "ServicesCore dashboard linkage warning also requires an editor login; CLI editor lacks a login token. Packaged anonymous auth and live Relay succeeded with saved project ID.",
+    "Windows existing TowerView.light shadowing and unsupported ray-tracing shader warnings"
+  ],
+  "initial_build_attempt": "Stopped before project build because previous isolated display was gone. Restored :98; subsequent Linux/Windows builds passed."
+}

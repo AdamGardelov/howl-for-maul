@@ -4,11 +4,11 @@
 
 Start with a free, restricted itch.io playtest. It supports private download keys and optional page passwords, and restricted pages are absent from browse/search. Ship matched Windows and Linux archives with a short start guide and the music notices. Do not publish the repository or a Unity Editor installation as the playable download. [Official access-control guide](https://itch.io/docs/creators/access-control).
 
-The verified direct connection remains IPv4/TCP host/join on port 27888. A [Relay adapter and join-code UI](RELAY-IMPLEMENTATION.md) are now implemented, awaiting Unity Cloud linkage and separate-network testing. It has password challenges, four-player capacity, shared setup, authoritative orders/ticks, host-controlled speed and pause votes. The direct path does not provide NAT traversal; neither path implements public discovery, reconnect or host migration. A download host distributes the files; it does not make peers reachable.
+The verified direct connection remains IPv4/TCP host/join on port 27888. A [Relay adapter and join-code UI](RELAY-IMPLEMENTATION.md) are now linked to the new Unity Cloud project and pass live Relay checks on both maps, awaiting separate-network testing. It has password challenges, four-player capacity, shared setup, authoritative orders/ticks, host-controlled speed and pause votes. The direct path does not provide NAT traversal; neither path implements public discovery, reconnect or host migration. A download host distributes the files; it does not make peers reachable.
 
-For the first remote test, use a trusted private network such as Tailscale, share only the host machine with the friends, and use its private IPv4 address in the game's Join field. Tailscale documents encrypted private game-server sharing without a public address. Configure access to TCP 27888 as appropriate; the game does not change firewalls. All testers must use the same build. This connection route is a recommendation, not a verified integration in Howl. [Official private-game guide](https://tailscale.com/docs/use-cases/personal-or-at-home-use/share-private-game-server).
+For the first remote test, use **Host online / Join with code** with matching builds. A direct-network fallback is a trusted private network such as Tailscale: share only the host machine with friends and use its private IPv4 address under Advanced LAN/IP. Tailscale documents encrypted private game-server sharing without a public address. Configure access to TCP 27888 as appropriate; the game does not change firewalls. All testers must use the same build. This connection route is a recommendation, not a verified integration in Howl. [Official private-game guide](https://tailscale.com/docs/use-cases/personal-or-at-home-use/share-private-game-server).
 
-Before a consumer release, finish live-service validation of the new relay create/join code flow. Unity's Multiplayer Services SDK integrates sessions/Lobby/Relay. The new adapter preserves the existing host-authoritative protocol; this is not a setting that can simply be enabled. Service/project configuration and a tested relay transport are still required. [Official Unity multiplayer documentation](https://docs.unity.com/en-us/mps-sdk).
+Before a consumer release, finish live-service validation of the new relay create/join code flow. Unity's Multiplayer Services SDK integrates sessions/Lobby/Relay. The new adapter preserves the existing host-authoritative protocol; this is not a setting that can simply be enabled. Service/project configuration and two-process cloud Relay checks are now complete; Windows and separate-network/full-match validation remain. [Official Unity multiplayer documentation](https://docs.unity.com/en-us/mps-sdk).
 
 ## Gates before sending a build widely
 
@@ -18,7 +18,7 @@ Before a consumer release, finish live-service validation of the new relay creat
 - Repeat with three/four participants. Record latency, desyncs, performance and what happens when a connection drops; currently a host departure ends the session and reconnect needs a new lobby.
 - Ship known limitations plus simple instructions to collect the Unity Player.log and the source checkpoint when reporting a problem. Avoid collecting passwords or personal network details in reports.
 
-These are release readiness items; no store upload, account creation, service purchase, firewall change or invitation is performed by this documentation.
+These are release readiness items. The cloud project was created separately with the owner's authorization; no store upload, paid upgrade, firewall change or invitation is performed by this documentation.
 
 ## Selling later
 

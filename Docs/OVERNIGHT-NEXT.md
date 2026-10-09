@@ -1,4 +1,4 @@
-Latest: [Relay adapter and online join-code UI](RELAY-IMPLEMENTATION.md). Local four-player, delay/loss, cancellation and packaged two-process checks pass. Cloud project/sign-in and separate-network verification still needed.
+Latest: [live Relay and compact connection dialog](RELAY-LIVE.md). New cloud project linked/enabled; two packaged Linux identities pass live Relay/DTLS on both maps. Matching local Linux/Windows candidates built. Separate-network, full-match/four-player live Relay and Windows runtime checks remain. Scheduler/mobile stay paused.
 
 Latest: [mirrored maps and clear base approaches](MIRRORED-MAPS.md). Original masks archived; current collision, lanes and scenery mirrored. Older balance ledgers predate this geometry.
 

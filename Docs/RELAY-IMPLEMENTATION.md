@@ -1,6 +1,6 @@
 # Online join codes — implementation checkpoint
 
-Online now has a Relay path in addition to direct LAN. The account/project setup and real-internet checks below are still required before publishing this as an online-ready playtest.
+Online now has a Relay path in addition to direct LAN. Unity Cloud is linked and two packaged Linux players now pass live Relay checks on both maps. Separate-network, four-player live-service and Windows runtime checks remain before calling this online-ready.
 
 ## Player flow
 
@@ -16,31 +16,32 @@ The adapter uses the same fragmentation → reliable sequenced pipeline on both 
 
 Connecting has progress text, Cancel, a 45-second deadline, clear error text and Retry. Cancelled/timed-out async allocations cannot attach late; unused service allocations expire without binding. Passwords are not retained for retries. Service account notices are retrieved and displayed with acknowledgment/copy controls, including restricted-account notices.
 
-## Unity Cloud setup still needed
+## Unity Cloud linked — 2026-10-09
 
-`ProjectSettings/ProjectSettings.asset` has empty cloudProjectId and organizationId. The Unity Cloud browser currently requires sign-in. The project owner must sign in, create/select **Howl for Maul**, and link this Unity project to it through Project Settings → Services. Enable Authentication and Relay for that project, review the service terms/usage plan, then save the project settings. No project ID has been invented and no account credentials have been read from disk.
+The owner authorized a new project after sign-in. Created **Howl for Maul**, project ID `817071a5-c9d9-43cc-9ade-6f5703df2ecc`, in the owner's existing organization. The dashboard confirmed Relay enabled; anonymous Authentication succeeded from both packaged test profiles. Public project linkage is saved in ProjectSettings. No account credentials, service keys or invite codes are committed. Existing disabled analytics/advertising settings remain unchanged. No paid upgrade was selected.
 
-After linkage, rebuild both desktop players so they use the same project and map data. Project ID is public configuration; do not paste secret service credentials into source or chat. Check actual join codes between distinct identities and separate networks before sharing a release.
+Local candidates: `Builds/Linux-Relay/HowlForMaul` and `Builds/Windows-Relay/HowlForMaul.exe`. Both are rebuilt with this project linkage and compact connection dialog, and include Scott Buckley music notices. They are local candidates, not published downloads.
 
-Local candidates: `Builds/Linux-Relay/HowlForMaul` and `Builds/Windows-Relay/HowlForMaul.exe`. Both include the Scott Buckley music notices. These are not published downloads and still require cloud linkage/rebuild before Relay can connect.
+See [the live-service checkpoint](RELAY-LIVE.md) for exact verification and remaining limits.
 
 ## Verification and limits
 
 - Existing headless direct-network checks pass: both maps, automatic wave timing/speeds/pause, paid wallets/ownership, refused passwords/data mismatch, capacities and shared lobby rules.
 - Four focused Unity tests pass: 160 fragmented 4 KiB messages survive 25 ms simulated delay and 3% loss with exact ordering and replies; outgoing overflow closes cleanly; four-player setup/paid purchases/host speed/majority pause/disconnect on both maps; fifth-player/password/data refusal; cancellation and timeout discard late transports while offline solo remains usable.
-- These tests use the actual Unity Transport adapter and pipeline on loopback. They do not establish public Relay service connectivity or DTLS behavior against a live allocation.
+- These tests use the actual Unity Transport adapter and pipeline on loopback. The separate live-service probes below establish Relay/DTLS connectivity; these loss/delay tests themselves remain loopback evidence.
 - Linux and Windows builds succeed (Windows runtime untested). Packaged Linux connection-screen/offline-solo checks pass. Two independent packaged processes pass paid builds, 420 synchronized ticks, pause/resume and disconnect on both maps via the actual adapter (loopback UDP, not cloud Relay).
-- Full twenty-wave multiplayer campaigns, Windows runtime, separate-network joining and service-account notification responses remain unverified.
+- Live Relay/DTLS passed on Rimewatch and Ironfold with two separate packaged Linux processes and distinct anonymous profiles: create allocation/code, join, shared setup, paid purchases, 420 synchronized ticks, pause/resume, departure pause and remaining-player recovery. Both processes ran on the same computer/network; this is cloud-service evidence, not separate-network validation.
+- Full twenty-wave multiplayer campaigns, Windows runtime, separate-network joining, four-player live Relay and service-account notification responses remain unverified.
 
 ## Repeatable probes
 
 `--howl-online-menu-check <output-directory>` captures the packaged connection screens using an injected gateway; it never allocates a cloud session.
 
-Run `DISPLAY=:98 python3 Tools/check-multiplayer.py /absolute/path/to/HowlForMaul --logs /absolute/path/to/logs` on an isolated display for both-map two-process checks.
+Run `DISPLAY=:98 python3 Tools/check-multiplayer.py /absolute/path/to/HowlForMaul --logs /absolute/path/to/logs` on an isolated display for both-map loopback checks. Add `--relay` to deliberately allocate actual Unity Relay sessions with distinct `relayhost` and `relayguest` anonymous profiles. Raw local logs contain temporary invite codes; do not commit them.
 
 `--howl-utp-host --howl-network-map Ironfold --howl-network-port 27888` and `--howl-utp-client --howl-network-port 27888` exercise two packaged processes through the adapter locally. Run with graphics on a supported Linux display. These data-only probes exit automatically after paid purchases, launch, pause/resume and disconnect checks.
 
-Once linked, use `--howl-relay-host --howl-network-map Ironfold --howl-auth-profile relayhost` and read `HOWL_RELAY_INVITE` from its local log. On the other machine run `--howl-relay-client --howl-relay-code CODE --howl-auth-profile relayguest`. Probe password is `smoke`; this is a QA path, not the ordinary lobby. Use distinct auth profiles when testing multiple processes on one computer. Keep invite codes/private player logs out of source commits.
+For live-service probes use `--howl-relay-host --howl-network-map Ironfold --howl-auth-profile relayhost` and read `HOWL_RELAY_INVITE` from its local log. On the other machine run `--howl-relay-client --howl-relay-code CODE --howl-auth-profile relayguest`. Probe password is `smoke`; this is a QA path, not the ordinary lobby. Use distinct auth profiles when testing multiple processes on one computer. Keep invite codes/private player logs out of source commits.
 
 ## Sources
 

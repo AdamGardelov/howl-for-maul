@@ -51,8 +51,9 @@ namespace FrostMaze
             gateway.Result.SetException(new InvalidOperationException("Connection timed out. Check your internet connection and retry."));
             while(!task.IsCompleted)yield return null;
             if(online.Pending||online.Error.Length==0){Fail("Missing online failure state");yield break;}
-            yield return Capture("Online-Retry");game.LeaveOnline();yield return null;
-            Screen.SetResolution(960,600,false);yield return new WaitForSecondsRealtime(1);yield return Capture("Online-Entry-Small");
+            yield return Capture("Online-Retry");
+            Screen.SetResolution(960,600,false);yield return new WaitForSecondsRealtime(1);yield return Capture("Online-Retry-Small");
+            game.LeaveOnline();yield return null;yield return Capture("Online-Entry-Small");
             game.BeginSolo();yield return Capture("Online-Offline-Solo");
             if(game.Net==null||game.Net.Stage!=Simulation.Online.Stage.Factions){Fail("Offline solo broken");yield break;}
             game.LeaveOnline();Debug.Log("HOWL_ONLINE_MENU_PASS entry/pending/retry/resize/offline; gateway fixture, no cloud allocation");Application.Quit(0);

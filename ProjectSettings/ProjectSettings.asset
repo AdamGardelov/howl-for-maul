@@ -690,12 +690,12 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 
+  cloudProjectId: 817071a5-c9d9-43cc-9ade-6f5703df2ecc
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
-  cloudEnabled: 0
+  projectName: Howl for Maul
+  organizationId: adammux6kukm
+  cloudEnabled: 1
   legacyClampBlendShapeWeights: 1
   hmiLoadingImage: {fileID: 0}
   platformRequiresReadableAssets: 0

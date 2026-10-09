@@ -5,7 +5,8 @@ namespace FrostMaze
     public sealed partial class PrototypeHud
     {
         bool onlineForm,advancedLan;string relayCode="",retryPassword="";string playerName="Player",joinAddress="127.0.0.1",portText="27888",lobbyPassword="",lobbyError="";
-        Vector2 lobbyScroll,notificationScroll;
+        Vector2 lobbyScroll,notificationScroll,connectionScroll;
+        GUIStyle connectionHeading,connectionMessage;
         void DrawOnlineEntry(){
             if(HudButton(onlineForm?"CLOSE MULTIPLAYER":"MULTIPLAYER",primary))onlineForm=!onlineForm;
             if(!onlineForm)return;
@@ -33,7 +34,8 @@ namespace FrostMaze
         void DrawLobby(){
             var online=OnlineGame.Current;var net=online.Session;var matrix=GUI.matrix;float scale=game.UiScale;GUI.matrix=Matrix4x4.Scale(new Vector3(scale,scale,1));
             float width=Screen.width/scale,height=Screen.height/scale;
-            bool factions=net!=null&&net.Stage==Stage.Factions;
+            if(online.Pending||net==null||online.Error.Length>0||!net.IsConnected){DrawConnectionDialog(online,width,height);GUI.matrix=matrix;return;}
+            bool factions=net.Stage==Stage.Factions;
             float panelWidth=Mathf.Min(factions?1080:720,width-32);
             var box=new Rect((width-panelWidth)/2,24,panelWidth,height-48);Frame(box);
             GUILayout.BeginArea(new Rect(box.x+24,box.y+18,box.width-48,box.height-36));
@@ -42,11 +44,6 @@ namespace FrostMaze
                 GUILayout.Label("ONLINE ACCOUNT NOTICE",label);GUILayout.Label(RelayNotices.Text,label);GUILayout.EndScrollView();
                 if(HudButton("COPY NOTICE",button))GUIUtility.systemCopyBuffer=RelayNotices.Text;
                 if(HudButton("ACKNOWLEDGE",button))RelayNotices.Acknowledge();
-            }
-            if(online.Pending||net==null||online.Error.Length>0){
-                BrandHeading(130);GUILayout.Space(24);GUILayout.Label(online.Pending?online.Status:online.Error,label);
-                if(!online.Pending&&online.IsRelay){GUILayout.Label("Lobby password (if required)",small);retryPassword=GUILayout.PasswordField(retryPassword,'•',64);if(HudButton("RETRY",primary)){online.RetryRelay(retryPassword);retryPassword="";}}
-                if(HudButton(online.Pending?"CANCEL":"BACK",button))game.LeaveOnline();GUILayout.EndArea();GUI.matrix=matrix;return;
             }
             var config=game.World.Config;Member me=null;foreach(var member in net.Members)if(member.Id==net.LocalId)me=member;
             LobbyBrandHeading(box.width-48,net.Map+" · "+(online.LocalOnly?"SOLO":net.IsHost?"HOST":"CONNECTED PLAYER"),
@@ -79,6 +76,45 @@ namespace FrostMaze
             }
             if(net.Notice.Length>0)GUILayout.Label(net.Notice,small);
             if(HudButton("LEAVE",button))game.LeaveOnline();GUILayout.EndArea();GUI.matrix=matrix;
+        }
+        void DrawConnectionDialog(OnlineGame online,float width,float height)
+        {
+            if(connectionHeading==null){
+                connectionHeading=new GUIStyle(title){fontSize=16,alignment=TextAnchor.MiddleCenter};
+                connectionMessage=new GUIStyle(label){alignment=TextAnchor.UpperCenter};
+            }
+            bool connecting=online.Pending||(online.Session!=null&&!online.Session.IsConnected&&online.Error.Length==0);
+            bool retry=!connecting&&online.IsRelay;
+            string message=connecting?(online.Status.Length>0?online.Status:online.Session?.Notice??"Connecting…"):online.Error;
+            float panelWidth=Mathf.Min(480,width-32),contentWidth=panelWidth-48;
+            float messageHeight=connectionMessage.CalcHeight(new GUIContent(message),contentWidth);
+            float panelHeight=Mathf.Min(height-32,266+Mathf.Min(messageHeight,140)+(retry?58:0)+(RelayNotices.Available?200:0));
+            var box=new Rect((width-panelWidth)*.5f,(height-panelHeight)*.5f,panelWidth,panelHeight);Frame(box);
+            GUILayout.BeginArea(new Rect(box.x+24,box.y+20,contentWidth,box.height-88));
+            connectionScroll=GUILayout.BeginScrollView(connectionScroll);
+            BrandHeading(96);GUILayout.Space(12);
+            GUILayout.Label(connecting?"CONNECTING":"CONNECTION INTERRUPTED",connectionHeading);
+            GUILayout.Space(8);GUILayout.Label(message,connectionMessage);
+            if(retry){
+                GUILayout.Space(12);GUILayout.BeginHorizontal();GUILayout.FlexibleSpace();
+                GUILayout.BeginVertical(GUILayout.Width(Mathf.Min(280,contentWidth-20)));
+                GUILayout.Label("Lobby password (if required)",small);
+                retryPassword=GUILayout.PasswordField(retryPassword,'•',64,GUILayout.Height(26));
+                GUILayout.EndVertical();GUILayout.FlexibleSpace();GUILayout.EndHorizontal();
+            }
+            if(RelayNotices.Available){
+                GUILayout.Space(12);GUILayout.Label("ONLINE ACCOUNT NOTICE",section);GUILayout.Label(RelayNotices.Text,label);
+                if(HudButton("COPY NOTICE",button))GUIUtility.systemCopyBuffer=RelayNotices.Text;
+                if(HudButton("ACKNOWLEDGE",button))RelayNotices.Acknowledge();
+            }
+            GUILayout.EndScrollView();GUILayout.EndArea();
+            // Keep the primary action prominent without stretching it across the dialog.
+            float primaryWidth=Mathf.Min(156,contentWidth*.52f),backWidth=Mathf.Min(112,contentWidth*.38f),gap=12;
+            float rowWidth=retry?primaryWidth+gap+backWidth:primaryWidth;
+            GUILayout.BeginArea(new Rect(box.center.x-rowWidth*.5f,box.yMax-58,rowWidth,38));GUILayout.BeginHorizontal();
+            if(retry){if(HudButton("RETRY",primary,GUILayout.Width(primaryWidth))){online.RetryRelay(retryPassword);retryPassword="";}GUILayout.Space(gap);}
+            if(HudButton(connecting?"CANCEL":"BACK",retry?button:primary,GUILayout.Width(retry?backWidth:primaryWidth)))game.LeaveOnline();
+            GUILayout.EndHorizontal();GUILayout.EndArea();
         }
         void DrawVoteStatus(){if(!game.NetworkMatch)return;var net=game.Net;var r=new Rect(Screen.width*.5f-230,72,460,70);
             if(net.Failure.Length>0){GUI.Label(r,net.Failure,placementHint);return;}
