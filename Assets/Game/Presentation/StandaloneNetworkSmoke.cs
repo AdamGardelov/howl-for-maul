@@ -12,6 +12,7 @@ namespace FrostMaze
         public static bool Requested=>Flag("--howl-network-host")||Flag("--howl-network-client")||Flag("--howl-utp-host")||Flag("--howl-utp-client")||Flag("--howl-relay-host")||Flag("--howl-relay-client");
         readonly System.Threading.CancellationTokenSource cancellation=new System.Threading.CancellationTokenSource();
 
+        bool chatSent;
         Session session;Stage lastStage=(Stage)(-1);float started;bool built,launched,voted,resumed,seenPause;int held;long pausedTick;bool finished;
         static string Argument(string key,string fallback){var args=Environment.GetCommandLineArgs();int i=Array.IndexOf(args,key);return i>=0&&i+1<args.Length?args[i+1]:fallback;}
         static Scenario Resolve(string name){var asset=Resources.Load<MapDefinition>(name);return JsonUtility.FromJson<Scenario>(JsonUtility.ToJson(asset.Settings));}
@@ -45,6 +46,7 @@ namespace FrostMaze
                 if(lastStage==Stage.Difficulty)session.Send(new Packet{Kind=Kind.Difficulty,A=1});
             }
             var w=session.World;if(w==null)return;
+            if(!chatSent){session.SendChat(session.IsHost?"Host holds the hearth.":"Guest is ready to build.");chatSent=true;}
             if(!built){int design=w.Config.Factions[w.Players[w.ActivePlayer].Faction].Designs[0];w.SelectedDesign=design;var origin=w.SnapBuildOrigin(w.BuilderPosition);bool found=false;
                 for(float y=origin.Y-3;y<origin.Y+3&&!found;y+=w.PlacementStep)for(float x=origin.X-3;x<origin.X+3&&!found;x+=w.PlacementStep)if(w.CanBuild(x,y,out _)){session.Submit(new Order{Kind=ActionKind.Build,Design=design,X=x,Y=y});found=true;}
                 if(!found)throw new Exception("No legal paid footprint");built=true;
@@ -54,8 +56,8 @@ namespace FrostMaze
             if(session.Paused&&!resumed){if(!seenPause){seenPause=true;pausedTick=w.Tick;}if(w.Tick!=pausedTick)throw new Exception("Paused ticks advanced");held++;
                 if(!resumed&&((!session.IsHost&&held>30)||(session.IsHost&&session.Votes>0))){session.Send(new Packet{Kind=Kind.PauseVote});resumed=true;}
             }
-            if(!session.IsHost&&w.Tick>=420){if(!seenPause||!resumed)throw new Exception("Missing pause cycle");Debug.Log("HOWL_NETWORK_CLIENT_PASS "+w.Config.Name+" tick="+w.Tick+" hash="+StateDigest.Of(w));Finish();}
-            if(session.IsHost&&seenPause&&resumed&&session.Members.Count(m=>m.Connected)==1){if(!session.Paused)throw new Exception("Disconnect failed to pause");session.Send(new Packet{Kind=Kind.PauseVote});if(session.Paused)throw new Exception("Remaining player cannot resume");Debug.Log("HOWL_NETWORK_HOST_PASS "+w.Config.Name+" lanes="+w.LaneCount+" paid=2");Finish();}
+            if(!session.IsHost&&w.Tick>=420){if(!seenPause||!resumed)throw new Exception("Missing pause cycle");if(session.Chat.Count!=2)throw new Exception("Missing team chat delivery");Debug.Log("HOWL_NETWORK_CLIENT_PASS "+w.Config.Name+" tick="+w.Tick+" hash="+StateDigest.Of(w));Finish();}
+            if(session.IsHost&&seenPause&&resumed&&session.Members.Count(m=>m.Connected)==1){if(!session.Paused)throw new Exception("Disconnect failed to pause");session.Send(new Packet{Kind=Kind.PauseVote});if(session.Paused)throw new Exception("Remaining player cannot resume");if(session.Chat.Count!=2)throw new Exception("Missing team chat delivery");Debug.Log("HOWL_NETWORK_HOST_PASS "+w.Config.Name+" lanes="+w.LaneCount+" paid=2");Finish();}
         }catch(Exception e){Fail(e);}}
         void Finish(){finished=true;cancellation.Cancel();session?.Dispose();Application.Quit(0);}
         void Fail(Exception error){finished=true;cancellation.Cancel();Debug.LogError("HOWL_NETWORK_FAILURE "+error.GetType().Name+": "+(error is Unity.Services.Core.RequestFailedException?"Online service request failed":error.Message));session?.Dispose();Application.Quit(1);}

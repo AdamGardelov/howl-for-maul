@@ -80,7 +80,14 @@ namespace FrostMaze
             return role+" / "+(spec.TargetsGround?(spec.TargetsAir?"GROUND + AIR":"GROUND"):"AIR");
         }
         static readonly Unity.Profiling.ProfilerMarker PhaseProfile=new Unity.Profiling.ProfilerMarker("Howl.HUD");
-        void OnGUI() { using(PhaseProfile.Auto()) DrawHud(); }
+        void OnGUI() { using(PhaseProfile.Auto()) {
+            if(game==null)return;
+            // A full-screen event shield prevents click-through even in legacy draw branches
+            // which locally re-enable controls. Modal controls receive the original event.
+            var e=Event.current;bool shield=(game.ResultOpen||game.ChatOpen)&&(e.isMouse||e.isKey);
+            EventType saved=e.type;if(shield)e.type=EventType.Ignore;
+            DrawHud();if(shield)e.type=saved;DrawResult();DrawChat();
+        } }
         void DrawHud()
         {
             if(game==null||game.World==null)return;
@@ -109,7 +116,7 @@ namespace FrostMaze
             GUILayout.BeginHorizontal();Resource("YOUR GOLD",w.Gold.ToString());Resource("WOOD",w.Wood.ToString());Resource("TEAM LIVES",w.Lives.ToString(),w.Lives<=5||(feedback!=null&&feedback.RecentLeaks>0));Resource("WAVE",Mathf.Max(0,w.WaveIndex+1)+" / "+w.Config.Waves.Length);GUILayout.EndHorizontal();
             GUILayout.Label(w.Finished?(w.Won?"VICTORY — all waves cleared":"DEFEAT — the crossing fell"):$"{w.LaneCount} lanes active  ·  {w.Difficulty}  ·  {w.Enemies.Count} enemies",section);
             GUI.enabled=!w.Finished&&!w.WaveActive&&w.WaveIndex+1<w.Config.Waves.Length;
-            if(HudButton(w.Finished?"MATCH COMPLETE":w.WaveActive?"WAVE IN PROGRESS":w.CountingDown?"SEND NOW [ENTER] · "+w.NextWaveSeconds+"s":"START WAVE 1     [ENTER]",primary))game.Launch();
+            if(HudButton(w.Finished?"MATCH COMPLETE":w.WaveActive?"WAVE IN PROGRESS":w.CountingDown?(game.ChatAvailable?"SEND NOW · ":"SEND NOW [ENTER] · ")+w.NextWaveSeconds+"s":(game.ChatAvailable?"START WAVE 1":"START WAVE 1     [ENTER]"),primary))game.Launch();
             GUI.enabled=true;
             if(w.CountingDown)GUILayout.Label("Next wave starts automatically · "+w.NextWaveSeconds+"s · countdown follows game speed",small);
             GUILayout.BeginHorizontal();if(HudButton(game.Paused?"Resume [P]":"Pause [P]",button))game.VotePause();

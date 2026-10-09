@@ -1,3 +1,7 @@
+## 2026-10-09 — sheltered world, fast switches, team chat and results
+
+See [SHELTER-CHAT-RESULTS.md](SHELTER-CHAT-RESULTS.md). Roof clipping fixed through shared scenery clearances; softer exterior shapes and worn trails; build-time terrain painting; Enter team chat with identity/rate/history safeguards; explicit victory/defeat overlays. 73 simulation regressions, three focused Unity cases, real keyboard/UI checks and both-map Relay game checks pass. Full final menu switches measured about 1.1–1.3 seconds locally. Current packages remain Linux-World / Windows-World; everyone must update for protocol 5. Native Windows and separate-network full matches remain untested. Scheduler/mobile remain paused.
+
 ## 2026-10-09 — world identity and painted environment checkpoint
 
 See [WORLD-IDENTITY-PASS.md](WORLD-IDENTITY-PASS.md), [WORLD-BIBLE.md](WORLD-BIBLE.md) and [verification](Verification/World-Identity.json). Original painted slate, masonry and copper roofs; mirrored Anvilheart/Hearthward refuges; shared-budget hearth lighting; actor seals and batched enemy hide; consistent HUD typography; wardbell and catch-up footstep fix. Current paid Hard ledgers and 73 simulation regressions pass. Scheduler and mobile remain paused. Real friends on separate networks and native Windows execution remain external playtest gates. New packages use `Builds/Linux-World` and `Builds/Windows-World`.

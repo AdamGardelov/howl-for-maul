@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f57b7673310645b3aa13acc9910d3d20, type: 3}
+  m_Name: Rimewatch
+  m_EditorClassIdentifier: FrostMaze.Runtime::FrostMaze.WorldSurfaceSet
+  Fingerprint: A0EC24DDCB7608318EB05FAEC9643595E9FBC598A0640918C3496544DA5F4E92
+  EditorInputs: 1bb5fed2e2cddb2e9d679aa146515f80
+  Ground: {fileID: 2800000, guid: 6dde0e771fb9beccfa1c3ac1410fc613, type: 3}
+  Cap: {fileID: 2800000, guid: 042a609add168a6308f54840ed2eb8db, type: 3}
+  Wall: {fileID: 2800000, guid: d86065bb28f36ee6d8fd666b05c8864b, type: 3}
+  Water: {fileID: 2800000, guid: 9ffb4d8fa6e08ba9ebd4d6411b54ad28, type: 3}
+  Exterior: {fileID: 2800000, guid: 1122cd896af80cba58ae875fff92b789, type: 3}

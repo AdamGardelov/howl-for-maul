@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Passed" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-09 20:52:11Z" end-time="2026-10-09 20:52:13Z" duration="1.6923311">
+  <test-suite type="TestSuite" id="1000" name="Howl for Maul" fullname="Howl for Maul" runstate="Runnable" testcasecount="114" result="Passed" start-time="2026-10-09 20:52:11Z" end-time="2026-10-09 20:52:13Z" duration="1.692331" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1125" name="FrostMaze.Tests.dll" fullname="/home/adam/Documents/Codex/2026-10-06/cre/work/howl-logo-build/Library/ScriptAssemblies/FrostMaze.Tests.dll" runstate="Runnable" testcasecount="114" result="Passed" start-time="2026-10-09 20:52:11Z" end-time="2026-10-09 20:52:13Z" duration="1.456877" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="176644" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1126" name="FrostMaze" fullname="FrostMaze" runstate="Runnable" testcasecount="114" result="Passed" start-time="2026-10-09 20:52:11Z" end-time="2026-10-09 20:52:13Z" duration="1.373573" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1127" name="Tests" fullname="FrostMaze.Tests" runstate="Runnable" testcasecount="114" result="Passed" start-time="2026-10-09 20:52:12Z" end-time="2026-10-09 20:52:13Z" duration="1.290507" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1038" name="ShelteredWorldTests" fullname="FrostMaze.Tests.ShelteredWorldTests" classname="FrostMaze.Tests.ShelteredWorldTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-09 20:52:12Z" end-time="2026-10-09 20:52:13Z" duration="1.205650" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1040" name="ChatCapturesCameraAndTerminalResultsCanBeReviewed" fullname="FrostMaze.Tests.ShelteredWorldTests.ChatCapturesCameraAndTerminalResultsCanBeReviewed" methodname="ChatCapturesCameraAndTerminalResultsCanBeReviewed" classname="FrostMaze.Tests.ShelteredWorldTests" runstate="Runnable" seed="40108577" result="Passed" start-time="2026-10-09 20:52:06Z" end-time="2026-10-09 20:52:13Z" duration="6.558654" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: /home/adam/.config/unity3d/Howl for Maul/Howl for Maul/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

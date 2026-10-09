@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-09",
+  "scope": [
+    "Scenery/building clipping and organic exterior shapes",
+    "Baked surfaces and map switching",
+    "Authenticated lobby/match chat",
+    "Automatic victory/defeat overlays"
+  ],
+  "simulation": "73/73 passed",
+  "unity": [
+    {
+      "name": "FrostMaze.Tests.PlayModeIntegration.ExteriorAndSoundIdentityPreservePlayfield",
+      "result": "Passed",
+      "seconds": 13.239259,
+      "evidence": "shelter-tests.xml"
+    },
+    {
+      "name": "FrostMaze.Tests.ShelteredWorldTests.ChatCapturesCameraAndTerminalResultsCanBeReviewed",
+      "result": "Passed",
+      "seconds": 5.402515,
+      "evidence": "shelter-final-tests.xml"
+    },
+    {
+      "name": "FrostMaze.Tests.ShelteredWorldTests.ExteriorRespectsEveryBuildingAndBakedMapsRemainValid",
+      "result": "Passed",
+      "seconds": 17.816683,
+      "evidence": "shelter-final-tests.xml"
+    }
+  ],
+  "map_switches_ms_960x600": [
+    1327.5,
+    1279.4,
+    1079.3,
+    1286.1
+  ],
+  "keyboard": "Real X11 Enter, qwer123 pgu x, Enter in isolated multiplayer player: delivered exactly once; no camera, design, gold or pause change; simulation continued.",
+  "packaged": "Both maps: 8 ordinarily paid towers each, 80g each, exact masks, mirrored refuge and exterior checks. 1440x900 / 960x600 chat and result screenshots inspected.",
+  "network": "Headless TCP: sender spoof prevention, plain text, Unicode cap, empty message rejection, per-player flood limit, mute, 64-entry history, late-join replay, paused chat and unchanged simulation digest; all existing checks passed.",
+  "relay": "Both maps emitted host/client PASS after new chat-delivery assertion: two local processes, real Relay DTLS, two paid towers, 420 synchronized ticks, pause/resume and disconnect recovery. Rimewatch initial allocation timed out before join; fresh allocation passed. Second harness ended with shell status 143 after both Ironfold game PASS markers; clean harness exit is not claimed.",
+  "failures_fixed": [
+    "First terminal-result fixture attempted overlapping spawns; Spawn correctly returned null. Fixture now advances each real leak before spawning the next.",
+    "First victory UI fixture used Count=0, rejected by scenario validation. Replaced with valid controlled final wave."
+  ],
+  "limits": [
+    "Native Windows execution remains untested; cross-build only.",
+    "Same-computer Relay is not a full friends match across separate networks.",
+    "Loading numbers are local measurements, not guarantees for all hardware.",
+    "Softer original procedural scenery is an iteration toward the desired art direction, not finished League/Dota-quality art."
+  ]
+}

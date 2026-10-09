@@ -115,7 +115,7 @@ namespace FrostMaze
             if(intent.DragStarted)dragAllowed=!overUi;
             if(overUi)intent.Zoom=0;
             if(!dragAllowed||overUi)intent.Drag=Vector2.zero;
-            if(game!=null&&(game.SetupOpen||game.MenuOpen)){dragAllowed=false;return;}
+            if(game!=null&&(game.SetupOpen||game.MenuOpen||game.ChatCapturesInput||game.ResultOpen)){dragAllowed=false;return;}
             if(!Mathf.Approximately(Zoom,lastZoom))targetZoom=Zoom;
             Yaw=Mathf.Repeat(Yaw+intent.Rotate*55*Time.unscaledDeltaTime,360);
             var pan=Vector2.ClampMagnitude(intent.Pan,1);

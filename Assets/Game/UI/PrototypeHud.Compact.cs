@@ -23,7 +23,7 @@ namespace FrostMaze
             if(HudButton("DETAILS [TAB]",button,GUILayout.Width(narrow?94:108)))game.DetailsOpen=true;
             if(HudButton(game.Paused?"RESUME [P]":"PAUSE [P]",button,GUILayout.Width(100)))game.VotePause();
             GUI.enabled=!w.Finished&&!w.WaveActive;
-            if(HudButton(w.Finished?(w.Won?"VICTORY":"DEFEAT"):w.WaveActive?"WAVE ACTIVE":w.CountingDown?"SEND NOW [ENTER]":"START [ENTER]",button,GUILayout.Width(narrow?134:148)))game.Launch();
+            if(HudButton(w.Finished?(w.Won?"VICTORY":"DEFEAT"):w.WaveActive?"WAVE ACTIVE":w.CountingDown?(game.ChatAvailable?"SEND NOW":"SEND NOW [ENTER]"):(game.ChatAvailable?"START WAVE":"START [ENTER]"),button,GUILayout.Width(narrow?134:148)))game.Launch();
             GUI.enabled=true;DrawSpeedControls();GUILayout.FlexibleSpace();
             if(!game.NetworkMatch&&w.Players.Length>1&&HudButton($"P{w.ActivePlayer+1}",button,GUILayout.Width(40)))w.SelectPlayer((w.ActivePlayer+1)%w.Players.Length);
             DrawResourceCounters(w,narrow);
@@ -33,7 +33,7 @@ namespace FrostMaze
             DrawCommandDetails();DrawBuildGrid();
             var alert=new Rect(20,68,330,48);
             if(feedback!=null&&feedback.RecentLeaks>0){if(HudButton(alert,$"EXIT BREACHED · {feedback.RecentLeaks} leaked · View exit",alertButton))game.FocusExit();}
-            else if(w.Finished)GUI.Label(alert,w.Won?"VICTORY — all waves cleared":"DEFEAT — open Menu for a new game",section);
+            else if(w.Finished){if(HudButton(alert,w.Won?"VICTORY · VIEW RESULTS":"THE HOWL PREVAILED · VIEW RESULTS",button))game.ShowResult();}
             else if(!w.WaveActive&&w.LastWaveSummary!=null)GUI.Label(alert,$"Wave {w.LastWaveSummary.WaveNumber}: {w.LastWaveSummary.Killed} defeated · {w.LastWaveSummary.Leaked} leaked\nIncome: {w.LastWaveSummary.GoldForPlayer(w.ActivePlayer)}g · {w.LastWaveSummary.WoodForPlayer(w.ActivePlayer)} wood",small);
             GUI.matrix=matrix;DrawHealth();DrawMapLabels();DrawMinimap();DrawBuildFeedback();DrawPlacementHint();
         }

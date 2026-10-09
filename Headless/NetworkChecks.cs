@@ -172,5 +172,34 @@ static class NetworkChecks
             Console.WriteLine("PASS "+map+" shared automatic waves: first manual, all four speeds, frozen pause, synchronized deadlines, early send and victory");
         }
     }
-    public static int Run(){try{AutomaticWaveClock();SoloLastStand();WoodFactionCommands();SoloSpeedClocks();Refusals();VotesAndLanes();CapacityAndValidation();Pair("Rimewatch");Pair("Ironfold");return 0;}catch(Exception e){Console.Error.WriteLine(e);return 1;}}
+    static void TeamChat(){using(var host=New())using(var guest=New()) {
+        host.Host("Ironfold","Host","chat",0);guest.Join("127.0.0.1",host.Port,"Guest","chat");
+        void Pump(int count){for(int i=0;i<count;i++){host.Update(.01);guest.Update(.01);Thread.Sleep(2);}}
+        for(int i=0;i<500&&!guest.IsConnected;i++)Pump(1);Pump(20);Check(guest.IsConnected,"Chat peer did not join");
+        Check(!guest.SendChat(" \n\t "),"Blank message accepted");
+        guest.Send(new Packet{Kind=Kind.Chat,A=0,B=0,Tick=999,Extra="Host",Text="  Hold\n the exit!  "});Pump(30);
+        Check(host.Chat.Count==1&&guest.Chat.Count==1,"Chat was not broadcast/echoed exactly once");
+        Check(host.Chat[0].PlayerId==guest.LocalId&&host.Chat[0].Name=="Guest"&&host.Chat[0].Text=="Hold the exit!","Chat identity spoof or bad whitespace");
+        host.SendChat("<b>Literal markup</b> \U0001F43A");Pump(30);Check(guest.Chat[1].Text.Contains("<b>"),"Plain text markup lost");
+        Check(Session.CleanChat(new string('x',239)+"\U0001F43A").Length==239,"Truncated surrogate pair");
+        for(int i=0;i<12;i++)guest.SendChat("spam "+i);Pump(30);Check(host.Chat.Count<=5,"Chat rate limit bypassed");
+        guest.MuteChat(0,true);Check(guest.ChatMuted(0),"Mute did not apply");guest.MuteChat(0,false);Check(!guest.ChatMuted(0),"Unmute did not apply");
+        for(int i=0;i<70;i++){host.Update(1.6);host.SendChat("history "+i);guest.Update(1.6);Thread.Sleep(2);}Pump(20);
+        Check(host.Chat.Count==Session.ChatHistoryLimit&&guest.Chat.Count==Session.ChatHistoryLimit,"Unbounded or missing chat history");
+        using(var late=New()) {
+            late.Join("127.0.0.1",host.Port,"Late","chat");
+            for(int i=0;i<500&&(late.Chat.Count<Session.ChatHistoryLimit);i++){Pump(1);late.Update(.01);}
+            Check(late.Chat.Count==Session.ChatHistoryLimit&&late.Chat.Last().Text==host.Chat.Last().Text,"Late join history missing");
+        }
+        Pump(30);
+        for(int i=0;i<1000&&(host.World==null||guest.World==null);i++){Setup(host,0,0);Setup(guest,1,1);Pump(1);}
+        Check(host.World!=null&&guest.World!=null,"Chat fixture match did not start");
+        host.Send(new Packet{Kind=Kind.PauseVote});guest.Send(new Packet{Kind=Kind.PauseVote});Pump(30);
+        Check(host.Paused&&guest.Paused,"Chat pause fixture failed");string before=StateDigest.Of(host.World);
+        host.Update(2);guest.Update(2);guest.SendChat("Build behind me while paused.");Pump(30);
+        Check(host.Chat.Last().Text=="Build behind me while paused."&&guest.Chat.Last().Text==host.Chat.Last().Text,"Paused match chat lost");
+        Check(StateDigest.Of(host.World)==before&&StateDigest.Of(guest.World)==before,"Chat mutated simulation");
+        Console.WriteLine("PASS team chat: authenticated sender, echo, literal text, Unicode length, flood limit, mute, bounded/late-join history and paused match delivery without state mutation");
+    }}
+    public static int Run(){try{TeamChat();AutomaticWaveClock();SoloLastStand();WoodFactionCommands();SoloSpeedClocks();Refusals();VotesAndLanes();CapacityAndValidation();Pair("Rimewatch");Pair("Ironfold");return 0;}catch(Exception e){Console.Error.WriteLine(e);return 1;}}
 }

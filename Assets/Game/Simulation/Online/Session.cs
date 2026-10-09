@@ -8,7 +8,7 @@ using System.Threading;
 namespace FrostMaze.Simulation.Online
 {
     // Host orders all gameplay actions and fixed ticks. Clients never step independently.
-    public sealed class Session : IDisposable
+    public sealed partial class Session : IDisposable
     {
         readonly Func<string,Scenario> resolve;
         readonly Func<Scenario,string> signature;
@@ -83,7 +83,7 @@ namespace FrostMaze.Simulation.Online
         double lastPing;
         void Authenticate(Peer peer,Packet packet){
             if(packet.Extra!=Protocol.Version||!Protocol.Equal(packet.Text,Protocol.Proof(password,peer.Nonce))||Stage!=Stage.Lobby||members.Count>=4){peer.Link.Send(new Packet{Kind=Kind.Notice,Flag=true,Text="Join refused: password, game version, capacity or match already started."});peer.Link.CloseAfterFlush();return;}
-            peer.Id=nextId++;members.Add(new Member{Id=peer.Id,Name=Clean(packet.Members.Length==1?packet.Members[0].Name:"")});peer.Link.Send(new Packet{Kind=Kind.Welcome,A=peer.Id,Text=Map,Extra=fingerprint});Notice="Player joined.";BroadcastLobby();
+            peer.Id=nextId++;members.Add(new Member{Id=peer.Id,Name=Clean(packet.Members.Length==1?packet.Members[0].Name:"")});peer.Link.Send(new Packet{Kind=Kind.Welcome,A=peer.Id,Text=Map,Extra=fingerprint});Notice="Player joined.";BroadcastLobby();foreach(var line in chat)peer.Link.Send(ChatPacket(line));
         }
         void Receive(Packet p){
             switch(p.Kind){
@@ -100,12 +100,14 @@ namespace FrostMaze.Simulation.Online
                     if(World==null||p.Tick!=frame+1){Fail("Network tick mismatch. Match stopped to protect game state.");return;}
                     foreach(var order in p.Orders)Apply(order);if(p.Flag)World.Step();frame=p.Tick;Paused=!p.Flag;
                     if(p.Extra.Length>0&&p.Extra!=StateDigest.Of(World))Fail("Simulation mismatch. Match stopped; reconnect requires a new lobby.");break;
+                case Kind.Chat:if(IsConnected)ReceiveChat(p);break;
                 case Kind.Notice:Notice=p.Text;if(p.Flag)Fail(p.Text);break;
             }
         }
         void Handle(int id,Packet p){
             var member=members.Find(m=>m.Id==id&&m.Connected);if(member==null)return;
             if(p.Kind==Kind.Ping)return;
+            if(p.Kind==Kind.Chat){PublishChat(member,p.Text);return;}
             if(p.Kind==Kind.Leave){var peer=peers.Find(q=>q.Id==id);peer?.Link.Dispose();Disconnected(id);return;}
             if(p.Kind==Kind.Kick&&id==0&&p.A!=0){var peer=peers.Find(q=>q.Id==p.A);peer?.Link.Dispose();Disconnected(p.A);return;}
             if(Stage==Stage.Match){

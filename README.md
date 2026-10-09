@@ -4,11 +4,13 @@ An original maze tower-defense prototype inspired by the cooperative mauls playe
 
 Built with Unity 6.3 LTS, C# and URP for Windows and Ubuntu Linux. Game code, procedural visuals and synthesized effects are original; no Warcraft III or Mega Man assets are included. The soundtrack uses attributed Scott Buckley tracks under CC BY 4.0; see THIRD-PARTY-NOTICES.md.
 
+Latest fixes: [sheltered scenery, faster map switching, team chat and match results](Docs/SHELTER-CHAT-RESULTS.md). All players need the current build: chat uses protocol `howl-direct-5`.
+
 **Current status:** playable offline solo prototype with direct host/join multiplayer for LAN or reachable internet hosts. Same-computer multi-slot control is a testing mode. Online players share a lobby, choose factions and unique starts, vote difficulty, and vote pause/resume. Direct connections need a reachable host; Relay hosting and join codes are linked to Unity Cloud and pass two-process live-service checks on both maps; separate-network and Windows runtime validation remain; public matchmaking is not implemented. See [online play](Docs/ONLINE-PLAY.md) for setup and tested scope.
 
 Both maps now use [mirrored terrain and scenery with clear base approaches](Docs/MIRRORED-MAPS.md).
 
-Latest local Linux player: `Builds/Linux-Relay/HowlForMaul` (cloud-linked Relay, offline and LAN available). `Linux-Title` is preserved as the previous build. The [stone-and-brass UI](Docs/BRASS-HUD.md) unifies menu buttons and the HUD, with Ironfold first/default and its warmer title background. The [dedicated title screen](Docs/TITLE-SCREEN.md) adds a living map background, Play, Settings, Credits and Quit. Play opens map selection. Linux build and targeted menu/camera checks pass. The matching Windows Relay candidate is `Builds/Windows-Relay/HowlForMaul.exe`; Windows runtime remains untested. Older Gallery builds use an older protocol: do not mix them with current builds. Publication is held pending [separate-network and Windows playtesting](Docs/RELAY-NEXT.md). The [live Relay checkpoint](Docs/RELAY-LIVE.md) records cloud connectivity and the compact retry dialog. The [Relay implementation](Docs/RELAY-IMPLEMENTATION.md) adds private join codes; the verified direct path remains available under Advanced LAN/IP.
+Latest local Linux player: `Builds/Linux-World/HowlForMaul` (cloud-linked Relay, offline and LAN available). `Linux-Title` is preserved as the previous build. The [stone-and-brass UI](Docs/BRASS-HUD.md) unifies menu buttons and the HUD, with Ironfold first/default and its warmer title background. The [dedicated title screen](Docs/TITLE-SCREEN.md) adds a living map background, Play, Settings, Credits and Quit. Play opens map selection. Linux build and targeted menu/camera checks pass. The matching Windows candidate is `Builds/Windows-World/HowlForMaul.exe`; Windows runtime remains untested. Older Gallery builds use an older protocol: do not mix them with current builds. Publication is held pending [separate-network and Windows playtesting](Docs/RELAY-NEXT.md). The [live Relay checkpoint](Docs/RELAY-LIVE.md) records cloud connectivity and the compact retry dialog. The [Relay implementation](Docs/RELAY-IMPLEMENTATION.md) adds private join codes; the verified direct path remains available under Advanced LAN/IP.
 
 The preceding [world cohesion](Docs/WORLD-COHESION.md), [layered weapon sounds](Docs/WEAPON-MATERIAL-AUDIO.md), [faction model polish](Docs/ACTOR-POLISH.md), [terrain materials](Docs/TERRAIN-MATERIALS.md) and [living fire](Docs/LIVING-FIRE.md) are included. Economy details: [gold and milestone wood](Docs/MAUL-ECONOMY-IMPLEMENTED.md).
 
@@ -47,7 +49,8 @@ Gameplay uses the full map viewport with a compact top status strip and bottom-r
 | Build mode | B |
 | Inspect an enemy | Ctrl + click |
 | Reveal all health bars | Hold Alt |
-| Launch next wave | Enter |
+| Launch next wave | Enter in solo; Start / Send Now button in multiplayer |
+| Team chat (lobby and multiplayer match) | Enter to type/send; Esc to close; player mute controls in chat |
 | Open expanded wave advice | Click the pre-wave forecast |
 | Pause / resume (majority vote online) | P |
 | Decrease / increase match speed | Speed selector, minus / equals keys or keypad − / + |

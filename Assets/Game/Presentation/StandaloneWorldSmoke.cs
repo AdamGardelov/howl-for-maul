@@ -52,6 +52,7 @@ namespace FrostMaze
                 if(built<3||mask!=string.Join("\n",world.Config.LayoutRows)){Fail("Paid defense / mask invariant failed");yield break;}
                 yield return null;
                 camera.FocusPoint(new V2(32,map=="Ironfold"?6:11));camera.SetZoom(12,true);yield return Capture(map+"-Last-Stand");
+                camera.FocusPoint(new V2(32,0));camera.SetZoom(17,true);yield return Capture(map+"-Settlement");
                 camera.FocusPoint(new V2(25,-2));camera.SetZoom(6,true);yield return Capture(map+"-Refuge-Detail");
                 camera.FocusPoint(start);camera.SetZoom(7,true);
                 var tower=world.Grid.Towers[0];

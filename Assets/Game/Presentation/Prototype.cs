@@ -45,7 +45,7 @@ namespace FrostMaze
         public Rect ForecastHud => World!=null&&!World.Finished&&!World.WaveActive&&!SetupOpen&&!DetailsOpen&&!MenuOpen&&!LobbyOpen
             ?new Rect(Screen.width-342*UiScale,68*UiScale,330*UiScale,76*UiScale):Rect.zero;
         public Rect AlertHud => (feedback!=null&&feedback.RecentLeaks>0)||(World!=null&&(World.Finished||!World.WaveActive&&World.LastWaveSummary!=null))?new Rect(12*UiScale,64*UiScale,340*UiScale,56*UiScale):Rect.zero;
-        public bool PointerOverHud(Vector2 point) => MenuOpen||SetupOpen||Sidebar.Contains(point)||MinimapRect.Contains(point)||(!DetailsOpen&&(TopHud.Contains(point)||ForecastHud.Contains(point)||AlertHud.Contains(point)||(BuildHud.Contains(point)||MinimapPanel.Contains(point)||(World!=null&&World.Grid.Find(SelectedTowerId)!=null&&SelectionHud.Contains(point)))));
+        public bool PointerOverHud(Vector2 point) => ChatOpen||(ChatAvailable&&ChatTriggerRect.Contains(point))||ResultOpen||MenuOpen||SetupOpen||Sidebar.Contains(point)||MinimapRect.Contains(point)||(!DetailsOpen&&(TopHud.Contains(point)||ForecastHud.Contains(point)||AlertHud.Contains(point)||(BuildHud.Contains(point)||MinimapPanel.Contains(point)||(World!=null&&World.Grid.Find(SelectedTowerId)!=null&&SelectionHud.Contains(point)))));
         bool matchStarted;
         public bool CanReturnToMatch => matchStarted;
         public void OpenSetup() { if(NetworkMatch){LeaveOnline();return;}SetupOpen=true;MenuOpen=false;MainMenuOpen=false; }
@@ -63,6 +63,7 @@ namespace FrostMaze
         public MapDefinition[] AvailableMaps;
         public void ChooseMap(MapDefinition map)
         {
+            if(map==null||map==Map&&SetupOpen&&!CanReturnToMatch)return;
             requestedMap=map.name;openingMapSelection=true;
             UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
         }
@@ -169,8 +170,10 @@ namespace FrostMaze
             if (FindFirstObjectByType<Prototype>() == null)
                 new GameObject("Howl for Maul").AddComponent<Prototype>();
         }
+        public double LoadMilliseconds {get;private set;}
         void Awake()
         {
+            var loadClock=System.Diagnostics.Stopwatch.StartNew();
             SoundEnabled=PlayerPrefs.GetInt("Howl.Sound",1)!=0;
             EffectsVolume=Mathf.Clamp01(PlayerPrefs.GetFloat("Howl.Effects",1));
             MusicVolume=Mathf.Clamp01(PlayerPrefs.GetFloat("Howl.Music",.35f));
@@ -252,6 +255,8 @@ namespace FrostMaze
             feedback=gameObject.AddComponent<CombatFeedback>();feedback.Initialize(this);
             gameObject.AddComponent<WorldAmbience>().Initialize(this);
             var music=new GameObject("Map soundtrack");music.transform.SetParent(transform,false);music.AddComponent<MapMusic>().Initialize(this);
+            LoadMilliseconds=loadClock.Elapsed.TotalMilliseconds;
+            Debug.Log("HOWL_MAP_READY "+Map.name+" ms="+LoadMilliseconds.ToString("F1",System.Globalization.CultureInfo.InvariantCulture)+" baked="+(GetComponentInChildren<MapScenery>()?.UsesBakedSurfaces??false));
         }
         void Marker(V2 p, Color color, string name, float radius = 0.55f)
         {
@@ -290,14 +295,14 @@ namespace FrostMaze
                 Debug.LogWarning("Howl for Maul simulation was reset by script reload. Exit and re-enter Play mode.");
                 return;
             }
-            SetViewport();
+            SetViewport();ReadChatInput();
             if(LobbyOpen){SetupOpen=true;HasHover=false;ghost.SetActive(false);return;}
-            if(NetworkMatch){Paused=Net.Paused;Notice=Net.Notice;if(MenuOpen&&UnityEngine.Input.GetKeyDown(KeyCode.P))VotePause();}
-            if(UnityEngine.Input.GetKeyDown(KeyCode.Escape)) {
+            if(NetworkMatch){Paused=Net.Paused;Notice=Net.Notice;if(MenuOpen&&!ChatCapturesInput&&UnityEngine.Input.GetKeyDown(KeyCode.P))VotePause();}
+            if(!ChatCapturesInput&&UnityEngine.Input.GetKeyDown(KeyCode.Escape)) {
                 if(SetupOpen){if(CanReturnToMatch)ReturnToMatch();else OpenMainMenu();}else ToggleMenu();
             }
-            if(!SetupOpen&&!MenuOpen&&UnityEngine.Input.GetKeyDown(KeyCode.Tab))DetailsOpen=!DetailsOpen;
-            if(!SetupOpen&&!MenuOpen)ReadBuildInput();
+            if(!SetupOpen&&!MenuOpen&&!ChatCapturesInput&&!ResultOpen&&UnityEngine.Input.GetKeyDown(KeyCode.Tab))DetailsOpen=!DetailsOpen;
+            if(!SetupOpen&&!MenuOpen&&!ChatCapturesInput&&!ResultOpen)ReadBuildInput();
             else {HasHover=false;ghost.SetActive(false);}
             if (!NetworkMatch && !Paused && !SetupOpen && !MenuOpen)
             {
@@ -323,7 +328,7 @@ namespace FrostMaze
             if(UnityEngine.Input.GetKeyDown(KeyCode.R))ResetView();
             if(UnityEngine.Input.GetKeyDown(KeyCode.Home)){var camera=View.GetComponent<RtsCamera>();camera.ResetRotation();camera.FocusPoint(World.BuilderPosition);}
             if(UnityEngine.Input.GetKeyDown(KeyCode.End))View.GetComponent<RtsCamera>().Overview();
-            if (!UnityEngine.Input.GetKey(KeyCode.Space)&&(UnityEngine.Input.GetKeyDown(KeyCode.Return)||UnityEngine.Input.GetKeyDown(KeyCode.KeypadEnter)))
+            if (!ChatAvailable&&!UnityEngine.Input.GetKey(KeyCode.Space)&&(UnityEngine.Input.GetKeyDown(KeyCode.Return)||UnityEngine.Input.GetKeyDown(KeyCode.KeypadEnter)))
                 Launch();
             if (UnityEngine.Input.GetKeyDown(KeyCode.P))
                 VotePause();

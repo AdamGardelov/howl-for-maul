@@ -17,10 +17,10 @@ namespace FrostMaze
         {
             unchecked {uint h=(uint)(x*374761393+y*668265263);h=(h^(h>>13))*1274126177;return (h&65535)/65535f;}
         }
-        static Texture2D PaintedTexture(string name,int width,int height,Color[] pixels,bool repeat=false)
+        Texture2D PaintedTexture(string name,int width,int height,Color[] pixels,bool repeat=false)
         {
             var texture=new Texture2D(width,height,TextureFormat.RGB24,true){name=name,wrapMode=repeat?TextureWrapMode.Repeat:TextureWrapMode.Clamp,filterMode=FilterMode.Trilinear,anisoLevel=4};
-            texture.SetPixels(pixels);texture.Apply(true,true);return texture;
+            texture.SetPixels(pixels);texture.Apply(true,!paintingForBake);return texture;
         }
         // Unity SmoothStep interpolates endpoints; threshold masks must normalize their input first.
         static float PaintMask(float low,float high,float value)=>Mathf.SmoothStep(0,1,Mathf.InverseLerp(low,high,value));
@@ -98,8 +98,22 @@ namespace FrostMaze
             float Noise(float dx,float dz)=>Mathf.PerlinNoise(dx*frequency+ox,dz*frequency+oz);
             return Mathf.Lerp(Mathf.Lerp(Noise(x,z),Noise(x-64,z),u),Mathf.Lerp(Noise(x,z-64),Noise(x-64,z-64),u),v);
         }
+        bool paintingForBake,usesBakedSurfaces;
+        public bool UsesBakedSurfaces=>usesBakedSurfaces;
+        public Texture2D[] PaintForBake(Scenario c) {
+            paintingForBake=true;
+            var batches=new Batch[30];for(int i=0;i<batches.Length;i++)batches[i]=new Batch();
+            BuildComposition(batches,c,c.Theme!="iron");MirroredGeometry.Points(landmarks,c.Width);
+            PaintTerrain(c,c.Theme!="iron");
+            var result=new[]{groundTexture,capTexture,wallTexture,waterTexture};
+            groundTexture=capTexture=wallTexture=waterTexture=null;return result;
+        }
         void PaintTerrain(Scenario c,bool ice)
         {
+            var baked=paintingForBake?null:WorldSurfaceSet.Find(c);
+            usesBakedSurfaces=baked!=null;
+            if(usesBakedSurfaces){groundTexture=baked.Ground;capTexture=baked.Cap;wallTexture=baked.Wall;waterTexture=baked.Water;return;}
+
             bool Solid(int row,int col) {
                 if(row<0||row>=c.LayoutRows.Length||col<0||col>=c.LayoutRows[row].Length)return false;
                 char k=c.LayoutRows[row][col];return c.WalkableSymbols.IndexOf(k)<0&&k!='D'&&k!='W'&&k!='p';

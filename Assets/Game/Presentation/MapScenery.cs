@@ -124,6 +124,6 @@ namespace FrostMaze
             }
             return found;
         }
-        void OnDestroy(){if(fireTexture!=null)Destroy(fireTexture);foreach(var mesh in meshes)Destroy(mesh);if(groundTexture!=null)Destroy(groundTexture);if(capTexture!=null)Destroy(capTexture);if(wallTexture!=null)Destroy(wallTexture);if(waterTexture!=null)Destroy(waterTexture);}
+        void OnDestroy(){if(fireTexture!=null)Destroy(fireTexture);foreach(var mesh in meshes)Destroy(mesh);if(!usesBakedSurfaces){if(groundTexture!=null)Destroy(groundTexture);if(capTexture!=null)Destroy(capTexture);if(wallTexture!=null)Destroy(wallTexture);if(waterTexture!=null)Destroy(waterTexture);}}
     }
 }
