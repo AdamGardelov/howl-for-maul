@@ -11,3 +11,10 @@ Snowfall: https://www.scottbuckley.com.au/library/snowfall/
 Signal to Noise: https://www.scottbuckley.com.au/library/signal-to-noise/
 
 Original MP3 recordings are unchanged. The game adjusts playback volume and repeats the tracks. No endorsement is implied. Include this notice when distributing the game. Gameplay videos using this music should credit the track and composer in the video description, with the license and composer links. All game code, models and synthesized effects remain separately original to Howl for Maul.
+
+# Dialog fonts
+
+Cinzel Bold — Copyright 2020 The Cinzel Project Authors; Copyright © 2012 Natanael Gama.
+Alegreya Sans Medium — Copyright 2013 The Alegreya Sans Project Authors.
+
+Both bundled font files are unmodified and distributed under the SIL Open Font License 1.1. Full copyright/license notices and the Alegreya Sans font log are included in ThirdParty/Fonts. Original download URLs and SHA-256 hashes are in ThirdParty/Fonts/SOURCES.json. These font licenses apply to the fonts, separately from the game code and artwork.

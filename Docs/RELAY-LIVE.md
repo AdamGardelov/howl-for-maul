@@ -8,6 +8,12 @@ Pending/error screens now use a centered, content-sized panel (maximum 480 UI un
 
 The packaged render fixture passes at 1440×900 and 960×600. Captures of retry at both sizes were visually inspected; the panel no longer stretches down the screen and buttons no longer span its full width. The fixture also returns to the entry screen and starts offline solo. These are scripted render/state checks, not a new manual mouse-input test.
 
+## Dialog typography follow-up
+
+The connection dialog now bundles Cinzel Bold for its heading/actions and Alegreya Sans Medium for status text, captions and password input. The heading/body/input sizes are 18/16/16 UI units, with 14-unit captions and 13-unit action labels; the body remains mixed-case and wraps. Font files are embedded in player data, not resolved from installed OS fonts. Other menus and the HUD retain their existing typefaces in this focused change.
+
+The packaged Linux connection fixture passes again at 1440×900 and 960×600; both retry captures were visually inspected for clipping, wrapping, alignment and text contrast. Linux and matching Windows builds pass; Windows runtime remains untested. This typography-only follow-up does not rerun the earlier live-network tests. The ordinary builder now copies soundtrack credits plus full font licenses/source hashes to both platform outputs. Font binaries are unmodified; see ThirdParty/Fonts/SOURCES.json and its SIL OFL notices.
+
 ## Real cloud checks
 
 `Tools/check-multiplayer.py --relay` explicitly opts into real allocations; without it, the existing loopback checks remain local. Two separate packaged Linux processes use distinct `relayhost` and `relayguest` profiles. On both Rimewatch and Ironfold they pass create/code/join, shared lobby/faction/unique lane/difficulty flow, two owner-paid purchases and exact wallets, 420 synchronized ticks, majority pause/resume, client departure pause and remaining-player recovery. All four processes exit zero. The dashboard records two hosted allocations.

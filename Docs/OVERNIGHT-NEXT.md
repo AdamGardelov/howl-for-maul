@@ -1,3 +1,5 @@
+Latest: [dialog typography refinement](RELAY-LIVE.md#dialog-typography-follow-up): bundled Cinzel/Alegreya Sans, readable small-window dialog, automatically packaged font/music notices. Linux render/state checks and both desktop builds pass; Windows runtime remains untested.
+
 Latest: [live Relay and compact connection dialog](RELAY-LIVE.md). New cloud project linked/enabled; two packaged Linux identities pass live Relay/DTLS on both maps. Matching local Linux/Windows candidates built. Separate-network, full-match/four-player live Relay and Windows runtime checks remain. Scheduler/mobile stay paused.
 
 Latest: [mirrored maps and clear base approaches](MIRRORED-MAPS.md). Original masks archived; current collision, lanes and scenery mirrored. Older balance ledgers predate this geometry.

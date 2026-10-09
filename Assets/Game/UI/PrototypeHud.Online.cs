@@ -6,7 +6,7 @@ namespace FrostMaze
     {
         bool onlineForm,advancedLan;string relayCode="",retryPassword="";string playerName="Player",joinAddress="127.0.0.1",portText="27888",lobbyPassword="",lobbyError="";
         Vector2 lobbyScroll,notificationScroll,connectionScroll;
-        GUIStyle connectionHeading,connectionMessage;
+        GUIStyle connectionHeading,connectionMessage,connectionCaption,connectionInput,connectionAction,connectionPrimary,connectionNotice;
         void DrawOnlineEntry(){
             if(HudButton(onlineForm?"CLOSE MULTIPLAYER":"MULTIPLAYER",primary))onlineForm=!onlineForm;
             if(!onlineForm)return;
@@ -80,8 +80,15 @@ namespace FrostMaze
         void DrawConnectionDialog(OnlineGame online,float width,float height)
         {
             if(connectionHeading==null){
-                connectionHeading=new GUIStyle(title){fontSize=16,alignment=TextAnchor.MiddleCenter};
-                connectionMessage=new GUIStyle(label){alignment=TextAnchor.UpperCenter};
+                var displayFont=Resources.Load<Font>("Fonts/Cinzel-Bold");
+                var readingFont=Resources.Load<Font>("Fonts/AlegreyaSans-Medium");
+                connectionHeading=new GUIStyle(title){font=displayFont,fontSize=18,fontStyle=FontStyle.Normal,alignment=TextAnchor.MiddleCenter,wordWrap=true};
+                connectionMessage=new GUIStyle(label){font=readingFont,fontSize=16,fontStyle=FontStyle.Normal,alignment=TextAnchor.UpperCenter};
+                connectionCaption=new GUIStyle(small){font=readingFont,fontSize=14};
+                connectionInput=new GUIStyle(GUI.skin.textField){font=readingFont,fontSize=16,padding=new RectOffset(8,8,3,3)};
+                connectionAction=new GUIStyle(button){font=displayFont,fontSize=13,fontStyle=FontStyle.Normal};
+                connectionPrimary=new GUIStyle(primary){font=displayFont,fontSize=13,fontStyle=FontStyle.Normal};
+                connectionNotice=new GUIStyle(connectionHeading){fontSize=13};
             }
             bool connecting=online.Pending||(online.Session!=null&&!online.Session.IsConnected&&online.Error.Length==0);
             bool retry=!connecting&&online.IsRelay;
@@ -98,22 +105,22 @@ namespace FrostMaze
             if(retry){
                 GUILayout.Space(12);GUILayout.BeginHorizontal();GUILayout.FlexibleSpace();
                 GUILayout.BeginVertical(GUILayout.Width(Mathf.Min(280,contentWidth-20)));
-                GUILayout.Label("Lobby password (if required)",small);
-                retryPassword=GUILayout.PasswordField(retryPassword,'•',64,GUILayout.Height(26));
+                GUILayout.Label("Lobby password (if required)",connectionCaption);
+                retryPassword=GUILayout.PasswordField(retryPassword,'•',64,connectionInput,GUILayout.Height(28));
                 GUILayout.EndVertical();GUILayout.FlexibleSpace();GUILayout.EndHorizontal();
             }
             if(RelayNotices.Available){
-                GUILayout.Space(12);GUILayout.Label("ONLINE ACCOUNT NOTICE",section);GUILayout.Label(RelayNotices.Text,label);
-                if(HudButton("COPY NOTICE",button))GUIUtility.systemCopyBuffer=RelayNotices.Text;
-                if(HudButton("ACKNOWLEDGE",button))RelayNotices.Acknowledge();
+                GUILayout.Space(12);GUILayout.Label("ONLINE ACCOUNT NOTICE",connectionNotice);GUILayout.Label(RelayNotices.Text,connectionMessage);
+                if(HudButton("COPY NOTICE",connectionAction))GUIUtility.systemCopyBuffer=RelayNotices.Text;
+                if(HudButton("ACKNOWLEDGE",connectionAction))RelayNotices.Acknowledge();
             }
             GUILayout.EndScrollView();GUILayout.EndArea();
             // Keep the primary action prominent without stretching it across the dialog.
             float primaryWidth=Mathf.Min(156,contentWidth*.52f),backWidth=Mathf.Min(112,contentWidth*.38f),gap=12;
             float rowWidth=retry?primaryWidth+gap+backWidth:primaryWidth;
             GUILayout.BeginArea(new Rect(box.center.x-rowWidth*.5f,box.yMax-58,rowWidth,38));GUILayout.BeginHorizontal();
-            if(retry){if(HudButton("RETRY",primary,GUILayout.Width(primaryWidth))){online.RetryRelay(retryPassword);retryPassword="";}GUILayout.Space(gap);}
-            if(HudButton(connecting?"CANCEL":"BACK",retry?button:primary,GUILayout.Width(retry?backWidth:primaryWidth)))game.LeaveOnline();
+            if(retry){if(HudButton("RETRY",connectionPrimary,GUILayout.Width(primaryWidth))){online.RetryRelay(retryPassword);retryPassword="";}GUILayout.Space(gap);}
+            if(HudButton(connecting?"CANCEL":"BACK",retry?connectionAction:connectionPrimary,GUILayout.Width(retry?backWidth:primaryWidth)))game.LeaveOnline();
             GUILayout.EndHorizontal();GUILayout.EndArea();
         }
         void DrawVoteStatus(){if(!game.NetworkMatch)return;var net=game.Net;var r=new Rect(Screen.width*.5f-230,72,460,70);

@@ -98,6 +98,11 @@ namespace FrostMaze.Editor
             var report = BuildPipeline.BuildPlayer(new BuildPlayerOptions { scenes = new[] { "Assets/Game/Maps/MazeLab.unity" }, locationPathName = path, target = target, options = BuildOptions.None });
             if (report.summary.result != BuildResult.Succeeded)
                 throw new System.Exception("Build failed: " + report.summary.result);
+            var output=Path.GetDirectoryName(path);
+            File.Copy("THIRD-PARTY-NOTICES.md",Path.Combine(output,"THIRD-PARTY-NOTICES.md"),true);
+            File.Copy("Docs/MUSIC-SOURCES.json",Path.Combine(output,"MUSIC-SOURCES.json"),true);
+            var fontNotices=Path.Combine(output,"ThirdParty","Fonts");Directory.CreateDirectory(fontNotices);
+            foreach(var notice in Directory.GetFiles("ThirdParty/Fonts"))File.Copy(notice,Path.Combine(fontNotices,Path.GetFileName(notice)),true);
         }
     }
 }
