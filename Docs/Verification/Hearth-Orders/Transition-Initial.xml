@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="3" result="Failed(Child)" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-09 22:31:33Z" end-time="2026-10-09 22:31:33Z" duration="0.4835983">
+  <test-suite type="TestSuite" id="1000" name="Howl for Maul" fullname="Howl for Maul" runstate="Runnable" testcasecount="115" result="Failed" site="Child" start-time="2026-10-09 22:31:33Z" end-time="2026-10-09 22:31:33Z" duration="0.483598" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1127" name="FrostMaze.Tests.dll" fullname="/home/adam/Documents/Codex/2026-10-06/cre/work/howl-logo-build/Library/ScriptAssemblies/FrostMaze.Tests.dll" runstate="Runnable" testcasecount="115" result="Failed" site="Child" start-time="2026-10-09 22:31:33Z" end-time="2026-10-09 22:31:33Z" duration="0.403614" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="209148" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1128" name="FrostMaze" fullname="FrostMaze" runstate="Runnable" testcasecount="115" result="Failed" site="Child" start-time="2026-10-09 22:31:33Z" end-time="2026-10-09 22:31:33Z" duration="0.395199" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1129" name="Tests" fullname="FrostMaze.Tests" runstate="Runnable" testcasecount="115" result="Failed" site="Child" start-time="2026-10-09 22:31:33Z" end-time="2026-10-09 22:31:33Z" duration="0.387549" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1007" name="PlayModeIntegration" fullname="FrostMaze.Tests.PlayModeIntegration" classname="FrostMaze.Tests.PlayModeIntegration" runstate="Runnable" testcasecount="25" result="Failed" site="Child" start-time="2026-10-09 22:31:33Z" end-time="2026-10-09 22:31:33Z" duration="0.374904" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1013" name="CameraDragRejectsUiOriginsAndFreezesInSetup" fullname="FrostMaze.Tests.PlayModeIntegration.CameraDragRejectsUiOriginsAndFreezesInSetup" methodname="CameraDragRejectsUiOriginsAndFreezesInSetup" classname="FrostMaze.Tests.PlayModeIntegration" runstate="Runnable" seed="1048942616" result="Passed" start-time="2026-10-09 22:31:19Z" end-time="2026-10-09 22:31:24Z" duration="5.111483" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="DepthPresentation" />
+                <property name="Category" value="FollowThrough" />
+              </properties>
+            </test-case>
+            <test-case id="1015" name="SoloStagedSetupUsesLastStandMusicAndAuthoritativeTicks" fullname="FrostMaze.Tests.PlayModeIntegration.SoloStagedSetupUsesLastStandMusicAndAuthoritativeTicks" methodname="SoloStagedSetupUsesLastStandMusicAndAuthoritativeTicks" classname="FrostMaze.Tests.PlayModeIntegration" runstate="Runnable" seed="963953822" result="Failed" start-time="2026-10-09 22:31:24Z" end-time="2026-10-09 22:31:28Z" duration="4.601523" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="OnlineSetup" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 3
+  But was:  4
+]]></message>
+                <stack-trace><![CDATA[at FrostMaze.Tests.PlayModeIntegration+<SoloStagedSetupUsesLastStandMusicAndAuthoritativeTicks>d__9.MoveNext () [0x00222] in /home/adam/Documents/Codex/2026-10-06/cre/work/howl-logo-build/Assets/Tests/PlayModeIntegration.cs:276
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@0bd5c5194236/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:44
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1008" name="TitleScreenFreezesWorldAndReturnsToSetup" fullname="FrostMaze.Tests.PlayModeIntegration.TitleScreenFreezesWorldAndReturnsToSetup" methodname="TitleScreenFreezesWorldAndReturnsToSetup" classname="FrostMaze.Tests.PlayModeIntegration" runstate="Runnable" seed="1591500894" result="Passed" start-time="2026-10-09 22:31:28Z" end-time="2026-10-09 22:31:33Z" duration="4.630487" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="TitleScreen" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: /home/adam/Documents/Codex/2026-10-06/cre/work/hearth-test-config/unity3d/Howl for Maul/Howl for Maul/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

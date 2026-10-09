@@ -26,7 +26,7 @@ namespace FrostMaze
             var bodyFont=Resources.Load<Font>("Fonts/AlegreyaSans-Medium");
             title=new GUIStyle(GUI.skin.label){font=displayFont,fontSize=21,fontStyle=FontStyle.Bold};title.normal.textColor=new Color(.9f,.91f,.83f);
             label=new GUIStyle(GUI.skin.label){font=bodyFont,fontSize=15,wordWrap=true};label.normal.textColor=new Color(.8f,.85f,.83f);
-            small=new GUIStyle(label){fontSize=13};small.normal.textColor=new Color(.56f,.67f,.66f);
+            small=new GUIStyle(label){fontSize=13};small.normal.textColor=new Color(.64f,.72f,.64f);
             section=new GUIStyle(label){font=displayFont,fontSize=11,fontStyle=FontStyle.Bold};section.normal.textColor=new Color(.54f,.81f,.71f);
             mapLabel=new GUIStyle(small){fontStyle=FontStyle.Bold,alignment=TextAnchor.MiddleCenter,wordWrap=false,padding=new RectOffset()};mapLabel.normal.textColor=Color.white;
             var surface=Swatch(new Color(.085f,.13f,.15f));var hover=Swatch(new Color(.14f,.22f,.23f));var active=Swatch(new Color(.18f,.32f,.29f));
@@ -48,8 +48,8 @@ namespace FrostMaze
             section.normal.textColor=new Color(.79f,.73f,.55f);
             title.normal.textColor=new Color(.95f,.9f,.75f);
             button.border=primary.border=card.border=selectedCard.border=new RectOffset(8,8,8,8);
-            var idle=Beveled(new Color(.075f,.095f,.10f),new Color(.49f,.40f,.25f));
-            var lit=Beveled(new Color(.15f,.17f,.15f),new Color(.85f,.67f,.36f));
+            var idle=Beveled(new Color(.115f,.145f,.123f),new Color(.42f,.43f,.32f));
+            var lit=Beveled(new Color(.21f,.26f,.19f),new Color(.88f,.71f,.42f));
             var down=Beveled(new Color(.045f,.065f,.066f),new Color(.62f,.48f,.25f),true);
             foreach(var style in new[]{button,primary,card,selectedCard}){
                 style.normal.background=idle;style.hover.background=lit;style.active.background=down;
@@ -57,13 +57,14 @@ namespace FrostMaze
                 style.normal.textColor=new Color(.88f,.85f,.74f);style.hover.textColor=new Color(1,.94f,.75f);
                 style.active.textColor=new Color(.85f,.77f,.57f);style.focused.textColor=new Color(1,.94f,.75f);
             }
-            primary.normal.background=Beveled(new Color(.17f,.19f,.16f),new Color(.83f,.65f,.33f));
+            primary.normal.background=Beveled(new Color(.23f,.27f,.18f),new Color(.83f,.65f,.33f));
             primary.normal.textColor=new Color(1,.92f,.69f);
-            card.normal.background=Beveled(new Color(.045f,.065f,.07f),new Color(.31f,.32f,.27f));
+            card.normal.background=Beveled(new Color(.066f,.095f,.078f),new Color(.28f,.33f,.26f));
             selectedCard.normal.background=lit;selectedCard.normal.textColor=new Color(1,.91f,.64f);
             alertButton.normal.background=Beveled(new Color(.23f,.065f,.05f),new Color(.66f,.32f,.17f));
             alertButton.hover.background=lit;alertButton.active.background=down;alertButton.border=new RectOffset(8,8,8,8);
-            placementHint=new GUIStyle(label){fontSize=12,padding=new RectOffset(9,9,6,6),normal={background=panel}};
+            placementHint=new GUIStyle(label){fontSize=14,border=new RectOffset(8,8,8,8),padding=new RectOffset(12,12,9,9),normal={background=card.normal.background}};
+            HearthControls();
         }
         void Rule()
         {
@@ -82,11 +83,13 @@ namespace FrostMaze
         static readonly Unity.Profiling.ProfilerMarker PhaseProfile=new Unity.Profiling.ProfilerMarker("Howl.HUD");
         void OnGUI() { using(PhaseProfile.Auto()) {
             if(game==null)return;
+            Styles();var previousSkin=GUI.skin;GUI.skin=hearthSkin;
             // A full-screen event shield prevents click-through even in legacy draw branches
             // which locally re-enable controls. Modal controls receive the original event.
             var e=Event.current;bool shield=(game.ResultOpen||game.ChatOpen)&&(e.isMouse||e.isKey);
             EventType saved=e.type;if(shield)e.type=EventType.Ignore;
-            DrawHud();if(shield)e.type=saved;DrawResult();DrawChat();
+            try{DrawHud();if(shield)e.type=saved;DrawResult();DrawChat();}
+            finally{GUI.skin=previousSkin;}
         } }
         void DrawHud()
         {
@@ -270,13 +273,15 @@ namespace FrostMaze
             GUILayout.Space(14);
             GUILayout.Label($"{game.World.Config.Waves.Length} waves · flying attacks every fifth wave. Build during combat; prepare dedicated air defense.",small);
         }
+        GUIStyle minimapCaption,minimapNorth;
         void DrawMinimap()
         {
             var w=game.World;if(w.Config.Lanes.Length==0||game.SetupOpen||game.DetailsOpen)return;
             var r=game.MinimapRect;
+            if(minimapCaption==null){minimapCaption=new GUIStyle(small){wordWrap=false,padding=new RectOffset()};minimapNorth=new GUIStyle(button){padding=new RectOffset(),wordWrap=false};}
+            minimapCaption.fontSize=Mathf.RoundToInt(13*game.UiScale);minimapNorth.fontSize=Mathf.RoundToInt(12*game.UiScale);
             if(Event.current.type==EventType.Repaint){
-            Frame(new Rect(r.x-8*game.UiScale,r.y-24*game.UiScale,r.width+16*game.UiScale,r.height+32*game.UiScale));
-            GUI.color=Color.white;GUI.Label(new Rect(r.x,r.y-21*game.UiScale,r.width,18),"MAP · click to pan",small);
+            GUI.color=Color.white;GUI.Label(new Rect(r.x,r.y-21*game.UiScale,r.width-56*game.UiScale,18*game.UiScale),"Tactical map",minimapCaption);
             GUI.color=Color.white;GUI.DrawTexture(r,renderedMinimap.Texture!=null?renderedMinimap.Texture:minimapTerrain.Get(w.Grid,w.PlacementStep));
             foreach(var tower in w.Grid.Towers)MiniDot(r,tower.Center,new Color(.1f,.95f,.8f),2);
             foreach(var enemy in w.Enemies)MiniDot(r,enemy.Position,enemy.Spec.Flying?new Color(.85f,.4f,1):new Color(1,.48f,.2f),2);
@@ -294,7 +299,8 @@ namespace FrostMaze
             MiniDot(r,new V2(focus.x,focus.z),Color.yellow,3);
             GUI.color=Color.white;
             }
-            if(HudButton(new Rect(r.xMax-50*game.UiScale,r.y-25*game.UiScale,50*game.UiScale,22*game.UiScale),"N [R]",button))game.ResetView();
+            if(HudButton(new Rect(r.xMax-50*game.UiScale,r.y-25*game.UiScale,50*game.UiScale,22*game.UiScale),new GUIContent("N  [R]","Reset camera angle. Click or drag the map to travel."),minimapNorth))game.ResetView();
+            GUI.Label(new Rect(r.x,r.yMax+5*game.UiScale,r.width,18*game.UiScale),"Click or drag to travel",minimapCaption);
         }
         void DrawMinimapEdge(Vector2 a,Vector2 b,Rect rect)
         {
@@ -319,7 +325,7 @@ namespace FrostMaze
             var route=game.World.Config.GroundRoute;
             for(int i=0;i<route.Length;i++) {
                 bool exit=i==route.Length-1;
-                MapTag(new Vector3(route[i].X,.1f,route[i].Y),exit?"EXIT":(i+1).ToString(),exit);
+                if(exit||game.ShowRoutes||game.SetupOpen)MapTag(new Vector3(route[i].X,.1f,route[i].Y),exit?"REFUGE · EXIT":(i+1).ToString(),exit);
             }
         }
         void MapTag(Vector3 position,string text,bool exit)
@@ -362,6 +368,7 @@ namespace FrostMaze
             portraits.Dispose();
             minimapTerrain.Dispose();
             foreach(var texture in textures)if(texture!=null)Destroy(texture);
+            if(hearthSkin!=null)Destroy(hearthSkin);
             if(uiClick!=null)Destroy(uiClick);
         }
     }

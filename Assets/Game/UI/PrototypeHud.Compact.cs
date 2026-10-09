@@ -19,11 +19,11 @@ namespace FrostMaze
             var top=Logical(game.TopHud);Frame(top);bool narrow=top.width<1260;
             GUILayout.BeginArea(new Rect(top.x+10,top.y+8,top.width-20,top.height-12));GUILayout.BeginHorizontal();
             GUILayout.Label(narrow?"HOWL":"HOWL FOR MAUL",section,GUILayout.Width(narrow?66:138));
-            if(HudButton("MENU [ESC]",button,GUILayout.Width(narrow?88:104)))game.ToggleMenu();
-            if(HudButton("DETAILS [TAB]",button,GUILayout.Width(narrow?94:108)))game.DetailsOpen=true;
-            if(HudButton(game.Paused?"RESUME [P]":"PAUSE [P]",button,GUILayout.Width(100)))game.VotePause();
+            if(TopAction("Menu","Esc",narrow?88:104))game.ToggleMenu();
+            if(TopAction("Details","Tab",narrow?94:108))game.DetailsOpen=true;
+            if(TopAction(game.Paused?"Resume":"Pause","P",100))game.VotePause();
             GUI.enabled=!w.Finished&&!w.WaveActive;
-            if(HudButton(w.Finished?(w.Won?"VICTORY":"DEFEAT"):w.WaveActive?"WAVE ACTIVE":w.CountingDown?(game.ChatAvailable?"SEND NOW":"SEND NOW [ENTER]"):(game.ChatAvailable?"START WAVE":"START [ENTER]"),button,GUILayout.Width(narrow?134:148)))game.Launch();
+            if(TopAction(w.Finished?(w.Won?"Victory":"Defeat"):w.WaveActive?"Wave active":w.CountingDown?"Send now":"Start wave",game.ChatAvailable||w.WaveActive||w.Finished?"":"↵",narrow?134:148,!w.WaveActive&&!w.Finished))game.Launch();
             GUI.enabled=true;DrawSpeedControls();GUILayout.FlexibleSpace();
             if(!game.NetworkMatch&&w.Players.Length>1&&HudButton($"P{w.ActivePlayer+1}",button,GUILayout.Width(40)))w.SelectPlayer((w.ActivePlayer+1)%w.Players.Length);
             DrawResourceCounters(w,narrow);
@@ -74,7 +74,6 @@ namespace FrostMaze
                 speedCaption=new GUIStyle(small){alignment=TextAnchor.MiddleCenter,wordWrap=false,padding=new RectOffset()};
             }
             var box=GUILayoutUtility.GetRect(204,30,GUILayout.Width(204),GUILayout.Height(30));
-            GUI.Box(box,GUIContent.none,card);
             bool guest=game.NetworkMatch&&!game.Net.IsHost;
             GUI.Label(new Rect(box.x+2,box.y+1,42,28),guest?"HOST":"SPEED",speedCaption);
             bool enabled=GUI.enabled;
@@ -100,20 +99,20 @@ namespace FrostMaze
             GUILayout.BeginArea(new Rect(box.x+24,box.y+18,box.width-48,box.height-36));
             BrandHeading(130);GUILayout.Label(game.NetworkMatch&&!OnlineGame.Current.LocalOnly?"GAME MENU · [P] votes to pause":"GAME MENU · match paused",section);GUILayout.Space(12);
             if(HudButton("RETURN TO GAME [ESC]",primary))game.ToggleMenu();
-            if(game.NetworkMatch&&HudButton(game.Paused?"VOTE TO RESUME":"VOTE TO PAUSE",button))game.VotePause();
+            if(game.NetworkMatch&&!OnlineGame.Current.LocalOnly&&HudButton(game.Paused?"VOTE TO RESUME":"VOTE TO PAUSE",button))game.VotePause();
             if(HudButton(game.NetworkMatch?"LEAVE MATCH":"NEW GAME",button))game.OpenSetup();
             if(HudButton("QUIT GAME",button))game.QuitGame();
             GUILayout.Space(12);menuSettingsScroll=GUILayout.BeginScrollView(menuSettingsScroll);GUILayout.Label("SETTINGS",section);
-            game.SoundEnabled=GUILayout.Toggle(game.SoundEnabled,"Combat sound",button);
+            game.SoundEnabled=SettingToggle("Combat & world sound",game.SoundEnabled);
             GUILayout.Label("Effects volume",small);game.EffectsVolume=GUILayout.HorizontalSlider(game.EffectsVolume,0,1);
             GUILayout.Label("Music volume",small);game.MusicVolume=GUILayout.HorizontalSlider(game.MusicVolume,0,1);
             if(HudButton("RESET CAMERA ANGLE [R]",button))game.ResetView();
             GUILayout.Label("\""+(game.World.Config.Theme=="iron"?"Signal to Noise":"Snowfall")+"\" by Scott Buckley\nCC BY 4.0 · scottbuckley.com.au",small);
             if(HudButton("MUSIC & LICENSE CREDITS",button))Application.OpenURL("https://www.scottbuckley.com.au/library/"+(game.World.Config.Theme=="iron"?"signal-to-noise/":"snowfall/"));
-            game.ShowGrid=GUILayout.Toggle(game.ShowGrid,"Placement grid",button);
+            game.ShowGrid=SettingToggle("Placement grid",game.ShowGrid);
             GUILayout.BeginHorizontal();DrawSpeedControls();GUILayout.EndHorizontal();
             if(game.NetworkMatch&&!game.Net.IsHost)GUILayout.Label("The host controls the shared game speed.",small);
-            if(!Application.isEditor)Screen.fullScreen=GUILayout.Toggle(Screen.fullScreen,"Fullscreen window",button);
+            if(!Application.isEditor)Screen.fullScreen=SettingToggle("Fullscreen window",Screen.fullScreen);
             GUILayout.Space(8);GUILayout.Label((game.NetworkMatch&&!game.Net.IsHost?"Speed: shared by everyone; controlled by the host.":"Speed [− / +]: 0.5× / 1× / 2× / 3×.")+"\nDetails [Tab]: wave advice, tower stats and inspection tools.\nEdges / WASD: pan · Space + drag: pan · wheel: zoom\nQ / E: rotate · R: reset angle · Home: builder\nHold Alt: reveal all health bars",small);
             GUILayout.EndScrollView();GUILayout.EndArea();GUI.matrix=matrix;
         }

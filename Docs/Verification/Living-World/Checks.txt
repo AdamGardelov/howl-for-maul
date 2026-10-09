@@ -1,0 +1,8 @@
+HOWL_MAP_READY Ironfold ms=896.3 baked=True
+HOWL_WORLD_CHECK_PASS Ironfold refugeVertices=10590 paidTowers=8 spent=80 maskUnchanged=true mirrored=true
+HOWL_MAP_READY Rimewatch ms=602.4 baked=True
+HOWL_WORLD_CHECK_PASS Rimewatch refugeVertices=11022 paidTowers=8 spent=80 maskUnchanged=true mirrored=true
+HOWL_WORLD_CHECK_COMPLETE
+73/73 passed
+cozy-release-linux.log: Build Finished, Result: Success.
+cozy-release-windows.log: Build Finished, Result: Success.

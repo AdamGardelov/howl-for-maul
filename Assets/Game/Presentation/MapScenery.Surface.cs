@@ -26,6 +26,12 @@ namespace FrostMaze
         static float PaintMask(float low,float high,float value)=>Mathf.SmoothStep(0,1,Mathf.InverseLerp(low,high,value));
         // Shared world-space pigments keep inner shelves and the surrounding landscape coherent.
         // Large material patches carry the shape; small grain is restrained at gameplay zoom.
+        static Texture2D meadowPaint;
+        internal static Color MeadowColor(float x,float z)
+        {
+            if(meadowPaint==null)meadowPaint=Resources.Load<Texture2D>("World/HearthMeadow");
+            return meadowPaint!=null?meadowPaint.GetPixelBilinear(Mathf.PingPong(x/7,1),Mathf.PingPong(z/7,1))*new Color(.78f,.96f,.97f):new Color(.35f,.44f,.22f);
+        }
         internal static Color RaisedSurfaceColor(float wx,float wz,bool ice)
         {
             float field=SnowNoise(wx,wz,.16f,41,7),breakup=SnowNoise(wx,wz,.62f,13,29);
@@ -50,14 +56,14 @@ namespace FrostMaze
             }
             var rock=Color.Lerp(new Color(.24f,.27f,.27f),new Color(.40f,.40f,.35f),breakup);
             rock=Color.Lerp(rock,new Color(.15f,.19f,.19f),seam*.12f);
-            var grass=Color.Lerp(new Color(.19f,.27f,.20f),new Color(.35f,.39f,.25f),strata);
+            var grass=Color.Lerp(MeadowColor(wx,wz)*.88f,new Color(.25f,.39f,.26f),.22f);
             float fibers=SnowNoise(wx,wz,5,31,61);
             grass*=.94f+fibers*.12f;
-            var earth=Color.Lerp(rock,grass,exposed*.88f);
+            var earth=Color.Lerp(rock,grass,.62f+exposed*.34f);
             float rust=PaintMask(.57f,.73f,SnowNoise(wx,wz,.38f,63,83))*(1-exposed);
             earth=Color.Lerp(earth,new Color(.40f,.29f,.19f),rust*.32f);
             float ash=PaintMask(.64f,.8f,breakup);
-            return Color.Lerp(earth,new Color(.17f,.20f,.20f),ash*.28f)*(.96f+grain*.08f);
+            return Color.Lerp(earth,new Color(.17f,.20f,.20f),ash*.10f)*(.96f+grain*.08f);
         }
         internal static Color CliffSurfaceColor(float u,float v,bool ice)
         {
@@ -132,7 +138,7 @@ namespace FrostMaze
                 }
                 edges[y*fieldSize+x]=1-Mathf.SmoothStep(0,1,best/2.5f);
             }
-            var paintedSlate=Resources.Load<Texture2D>("World/HearthSlate");
+            var paintedSlate=Resources.Load<Texture2D>("World/HearthWaystone");
             var ground=new Color[size*size];var cap=new Color[size*size];var water=new Color[size*size];
             for(int y=0;y<size;y++)for(int x=0;x<size;x++) {
                 float wx=x*c.Width/(float)(size-1),wz=y*c.Height/(float)(size-1);
@@ -145,11 +151,21 @@ namespace FrostMaze
                 var pigment=paintedSlate!=null?paintedSlate.GetPixelBilinear(Mathf.PingPong(wx/5.6f+(Mathf.PerlinNoise(wx*.14f,wz*.14f)-.5f)*.10f,1),Mathf.PingPong(wz/5.6f+(Mathf.PerlinNoise(wx*.13f+19,wz*.13f)-.5f)*.10f,1)):new Color(.36f,.40f,.39f);
                 pigment=Color.Lerp(pigment,new Color(.37f,.40f,.38f),.18f);
                 float grey=pigment.grayscale;
-                var stone=ice?Color.Lerp(pigment,new Color(grey*.86f,grey*1.13f,grey*1.18f),.78f)*.94f:pigment*.78f;
-                stone*=.91f+broad*.16f;
-                stone=Color.Lerp(stone,ice?new Color(.16f,.29f,.33f):new Color(.12f,.145f,.17f),edge*.42f);
+                var stone=ice?Color.Lerp(pigment,new Color(grey*.86f,grey*1.13f,grey*1.18f),.78f)*.94f:pigment*.96f;
+                stone*=.94f+broad*.12f;
+                if(!ice) {
+                    // Quiet earth between islands of old paving, instead of a wall-to-wall tile rug.
+                    float field=broad*.65f+Mathf.PerlinNoise(wx*.20f+7,wz*.16f+91)*.35f;
+                    float paving=PaintMask(.30f,.70f,field);
+                    float refuge=new Vector2(wx-c.Width*.5f,wz-4).magnitude;
+                    paving=Mathf.Max(paving,(1-PaintMask(4,8,refuge))*.92f);
+                    var meadow=Color.Lerp(MeadowColor(wx,wz)*.84f,new Color(.33f,.40f,.24f),.20f);
+                    var soil=Color.Lerp(new Color(.36f,.33f,.26f),meadow,PaintMask(.34f,.63f,wear)*.82f);
+                    stone=Color.Lerp(soil,stone,paving);
+                }
+                stone=Color.Lerp(stone,ice?new Color(.16f,.29f,.33f):new Color(.12f,.145f,.17f),edge*.23f);
                 float drift=PaintMask(.58f,.79f,wear)*edge;
-                stone=Color.Lerp(stone,ice?new Color(.58f,.72f,.74f):new Color(.25f,.285f,.20f),drift*(ice?.62f:.4f));
+                stone=Color.Lerp(stone,ice?new Color(.58f,.72f,.74f):new Color(.25f,.285f,.20f),drift*(ice?.62f:.65f));
                 // Subtle route wear and damp moss break up the uniform tiled floor at play zoom.
                 float travel=PaintMask(.45f,.8f,Mathf.PerlinNoise(wx*.08f+12,wz*.035f+4))*(1-edge*.7f);
                 stone=Color.Lerp(stone,ice?new Color(.36f,.43f,.40f):new Color(.36f,.31f,.23f),travel*.15f);
@@ -157,7 +173,7 @@ namespace FrostMaze
                 stone=Color.Lerp(stone,ice?new Color(.20f,.32f,.27f):new Color(.21f,.30f,.23f),moss*.26f);
                 var top=RaisedSurfaceColor(wx,wz,ice);
                 float shoulder=PaintMask(.70f,.96f,edge+ (wear-.5f)*.14f);
-                stone=Color.Lerp(stone,top,shoulder*(ice?.62f:.38f));
+                stone=Color.Lerp(stone,top,shoulder*(ice?.62f:.70f));
                 // Weathering follows the new places, not unrelated evenly repeated speckles.
                 foreach(var anchor in landmarks) {
                     float d=new Vector2(wx-anchor.x,wz-anchor.z).magnitude;
@@ -171,7 +187,7 @@ namespace FrostMaze
                 cap[y*size+x]=top;
                 float current=Mathf.Sin(wz*2.4f+Mathf.Sin(wx*.63f)*1.7f)*.5f+.5f;
                 float pool=Mathf.PerlinNoise(wx*.12f+7,wz*.15f+11);
-                water[y*size+x]=Color.Lerp(ice?new Color(.045f,.13f,.18f):new Color(.045f,.085f,.085f),ice?new Color(.10f,.25f,.29f):new Color(.105f,.18f,.15f),pool*.8f+current*.12f);
+                water[y*size+x]=Color.Lerp(ice?new Color(.045f,.13f,.18f):new Color(.065f,.155f,.165f),ice?new Color(.10f,.25f,.29f):new Color(.12f,.255f,.235f),pool*.8f+current*.12f);
             }
             waterTexture=PaintedTexture("Original glacial pools and foundry channels",size,size,water);
             groundTexture=PaintedTexture("Original worn flagstone and edge wash",size,size,ground);

@@ -26,8 +26,8 @@ namespace FrostMaze
             if(view==null)return;
             if(game.SetupOpen&&game.MainMenuOpen&&!game.LobbyOpen){
                 var focus=Focus;float yaw=Yaw,zoom=Zoom,last=lastZoom,pitch=Pitch;
-                Focus=new Vector3(BoundsMax.x*.63f,0,BoundsMax.y*.24f);
-                Yaw=-24+Mathf.Sin(Time.unscaledTime*.035f)*3;view.orthographicSize=10;Apply();
+                Focus=new Vector3(BoundsMax.x*.36f,0,-1.5f);
+                Yaw=-16+Mathf.Sin(Time.unscaledTime*.035f)*2;view.orthographicSize=10;Apply();
                 Focus=focus;Yaw=yaw;view.orthographicSize=zoom;lastZoom=last;Pitch=pitch;
                 titleShown=true;previewShown=false;return;
             }

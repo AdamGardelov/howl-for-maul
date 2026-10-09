@@ -12,12 +12,12 @@ namespace FrostMaze.Editor
         public void OnPreprocessBuild(BuildReport report)=>Bake();
         static string Inputs() {
             var inputs=new System.Text.StringBuilder(WorldSurfaceSet.PaintRevision);
-            foreach(var path in new[]{"Assets/Game/Presentation/MapScenery.Surface.cs","Assets/Game/Presentation/MapScenery.Composition.cs","Assets/Game/Presentation/WorldBackdrop.cs","Assets/Game/Presentation/WorldBackdrop.Layout.cs","Assets/Game/Presentation/Resources/World/HearthSlate.png","Assets/Game/Presentation/Resources/World/HearthMasonry.png"})inputs.Append(AssetDatabase.GetAssetDependencyHash(path));
+            foreach(var path in new[]{"Assets/Game/Presentation/MapScenery.Surface.cs","Assets/Game/Presentation/MapScenery.Composition.cs","Assets/Game/Presentation/WorldBackdrop.cs","Assets/Game/Presentation/WorldBackdrop.Layout.cs","Assets/Game/Presentation/Resources/World/HearthMeadow.png","Assets/Game/Presentation/Resources/World/HearthWaystone.png","Assets/Game/Presentation/Resources/World/HearthSlate.png","Assets/Game/Presentation/Resources/World/HearthMasonry.png"})inputs.Append(AssetDatabase.GetAssetDependencyHash(path));
             return Hash128.Compute(inputs.ToString()).ToString();
         }
         [MenuItem("Howl for Maul/Bake world surfaces")]
         public static void Bake() {
-            Directory.CreateDirectory(Folder);AssetDatabase.Refresh();string inputs=Inputs();
+            Directory.CreateDirectory(Folder);AssetDatabase.Refresh();EnsureMeadowDetail();string inputs=Inputs();
             foreach(var name in new[]{"Ironfold","Rimewatch"}) {
                 var config=Resources.Load<MapDefinition>(name).Settings;
                 string path=Folder+"/"+name+".asset",key=WorldSurfaceSet.Key(config);
@@ -37,6 +37,15 @@ namespace FrostMaze.Editor
                     if(exterior!=null)Object.DestroyImmediate(exterior);Object.DestroyImmediate(root);
                 }
             }
+        }
+        static void EnsureMeadowDetail() {
+            const string path="Assets/Game/Presentation/Resources/World/HearthMeadowDetail.mat";
+            var material=AssetDatabase.LoadAssetAtPath<Material>(path);
+            if(material==null){material=new Material(Resources.Load<Material>("PrototypeMaterial"));AssetDatabase.CreateAsset(material,path);}
+            material.color=Color.white;material.EnableKeyword("_DETAIL_SCALED");
+            material.SetTexture("_DetailAlbedoMap",Resources.Load<Texture2D>("World/HearthMeadow"));
+            material.SetFloat("_DetailAlbedoMapScale",.48f);material.SetFloat("_DetailNormalMapScale",0);
+            material.SetFloat("_Smoothness",.10f);EditorUtility.SetDirty(material);AssetDatabase.SaveAssets();
         }
         static Texture2D Save(string name,Texture2D texture,bool repeat) {
             string path=Folder+"/"+name+".png";File.WriteAllBytes(path,texture.EncodeToPNG());AssetDatabase.ImportAsset(path,ImportAssetOptions.ForceSynchronousImport);

@@ -37,10 +37,12 @@ namespace FrostMaze
             public void Peak(float x,float z,float radius,float y,float height){for(int i=0;i<7;i++){float a=i*Mathf.PI*2/7,b=(i+1)*Mathf.PI*2/7;Triangle(new Vector3(x,y+height,z),new Vector3(x+Mathf.Cos(b)*radius,y,z+Mathf.Sin(b)*radius),new Vector3(x+Mathf.Cos(a)*radius,y,z+Mathf.Sin(a)*radius));}}
         }
         float mirrorWidth;
+        readonly List<Vector4> paintedTrees=new List<Vector4>();
+        public IReadOnlyList<Vector4> PaintedTrees=>paintedTrees;
         public void Build(Prototype game)
         {
             float w=game.World.Config.Width,h=game.World.Config.Height;bool ice=game.World.Config.Theme!="iron";PrepareLayout(w,h,ice);
-            var ground=new Batch();var rock=new Batch();var leaves=new Batch();var snow=new Batch();var trunks=new Batch();var garden=new Batch();
+            var ground=new Batch();var rock=new Batch();
             float Distance(float x,float z)=>Mathf.Max(Mathf.Max(-x,x-w),Mathf.Max(-z,z-h));
             float Height(float x,float z)=>ExteriorHeight(x,z);
             // Four strips extend well beyond all permitted camera ground intersections.
@@ -52,7 +54,7 @@ namespace FrostMaze
                 if(x>=0&&x<w&&z>=0&&z<h)continue;
                 ground.Quad(new Vector3(x,Height(x,z),z),new Vector3(x,Height(x,z+4),z+4),new Vector3(x+4,Height(x+4,z+4),z+4),new Vector3(x+4,Height(x+4,z),z));
             }
-            for(float x=-88;x<w*.5f;x+=7)for(float z=-88;z<h+88;z+=7){
+            for(float x=-88;x<w*.5f;x+=5.4f)for(float z=-88;z<h+88;z+=5.4f){
                 float cx=x+1+Mathf.PerlinNoise(x*.8f+17,z*.6f+41)*4,cz=z+1+Mathf.PerlinNoise(x*.6f+72,z*.7f+33)*4;
                 float distance=Distance(cx,cz),n=Mathf.PerlinNoise(cx*.37f+53,cz*.29f+87);
                 if(distance<5||distance>80||n<.40f)continue;
@@ -61,29 +63,14 @@ namespace FrostMaze
                 float y=GroundY(cx,cz);
                 // Broad shoulders, blunt stone and clustered crowns replace isolated cone peaks.
                 if(n<.52f)rock.Blob(new Vector3(cx,y+.5f,cz),new Vector3(radius,.7f+n,radius*.8f),n*31);
-                else Tree(trunks,leaves,snow,cx,cz,y,1+n*.65f,ice);
-            }
-            // A few deliberately placed low garden clusters soften the settlement's yards.
-            foreach(var p in new[]{new Vector2(6,-10),new Vector2(17,-4.3f),new Vector2(27.5f,-12),new Vector2(6,-19),new Vector2(26,-27)}) {
-                if(!SceneryFits(p.x,p.y,1.25f))continue;
-                float y=GroundY(p.x,p.y);
-                rock.Blob(new Vector3(p.x,y+.025f,p.y),new Vector3(1.10f,.07f,.79f),p.x);
-                for(int lobe=0;lobe<3;lobe++) {
-                    float angle=lobe*2.1f;var centre=new Vector3(p.x+Mathf.Cos(angle)*.35f,y+.33f+lobe*.10f,p.y+Mathf.Sin(angle)*.28f);
-                    garden.Blob(centre,new Vector3(.56f,.40f,.48f),p.x+lobe*7);
-                    snow.Blob(centre+new Vector3(-.07f,.24f,-.05f),new Vector3(.39f,.22f,.34f),p.y+lobe*7);
-                }
+                else paintedTrees.Add(new Vector4(cx,y,cz,radius));
             }
             BuildLandmarks(game,ice,w,h);
             BuildRefuge(game,ice,w);
-            var material=game.MakeMaterial(Color.white);var baked=WorldSurfaceSet.Find(game.World.Config);bakedSurface=baked!=null;surface=bakedSurface?baked.Exterior:Paint(ice);material.mainTexture=surface;Save("Outer terrain",ground,material);
+            var material=game.MakeMaterial(Color.white);var baked=WorldSurfaceSet.Find(game.World.Config);bakedSurface=baked!=null;surface=bakedSurface?baked.Exterior:Paint(ice);material.mainTexture=surface;ApplyMeadowDetail(material,ice);Save("Outer terrain",ground,material);
             var ridgeMaterial=game.MakeMaterial(Color.white);ridgeTexture=PaintRidges(ice);ridgeMaterial.mainTexture=ridgeTexture;
             Save("Distant ridges",rock,ridgeMaterial);
-            Save("Sheltered tree trunks",trunks,game.MakeMaterial(new Color(.25f,.20f,.14f)));
-            Save("Sheltered canopy",leaves,game.MakeMaterial(ice?new Color(.12f,.29f,.27f):new Color(.19f,.35f,.18f)));
-            Save("Sheltered crown",snow,game.MakeMaterial(ice?new Color(.70f,.81f,.80f):new Color(.35f,.45f,.22f)));
-            Save("Sheltered garden",garden,game.MakeMaterial(ice?new Color(.17f,.34f,.30f):new Color(.25f,.39f,.19f)));
-            RememberFoliage(meshes[meshes.Count-1]);
+            LivingWorld.Create(game,transform,true);
         }
         void Save(string name,Batch b,Material material){MirroredGeometry.Apply(b.V,b.T,mirrorWidth);var mesh=new Mesh{name=name,indexFormat=UnityEngine.Rendering.IndexFormat.UInt32};mesh.SetVertices(b.V);mesh.SetTriangles(b.T,0);var uv=new List<Vector2>();foreach(var vertex in b.V) {
                 float mx=Mathf.Min(vertex.x,mirrorWidth-vertex.x);

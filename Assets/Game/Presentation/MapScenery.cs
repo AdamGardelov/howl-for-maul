@@ -103,12 +103,12 @@ namespace FrostMaze
                 if(i==17||i==18)RememberFlame(mesh);
                 if(i==27)RememberCanopy(mesh);
                 if(i==17||i==18)renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;
-                if(i==2){renderer.sharedMaterial.color=Color.white;renderer.sharedMaterial.mainTexture=waterTexture;}
+                if(i==2){renderer.sharedMaterial.shader=Resources.Load<Shader>("World/HearthWater");renderer.sharedMaterial.mainTexture=waterTexture;renderer.sharedMaterial.SetFloat("_MapWidth",c.Width);renderer.sharedMaterial.SetFloat("_Ice",ice?1:0);renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;}
                 if(i==0)renderer.sharedMaterial.mainTexture=wallTexture;
                 if(i==1)renderer.sharedMaterial.mainTexture=capTexture;
                 if(i==6){renderer.sharedMaterial.mainTexture=groundTexture;renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;}
             }
-
+            LivingWorld.Create(game,transform,false);
         }
         static bool TryLandmarkAnchor(FrostMaze.Simulation.Scenario c,FrostMaze.Simulation.V2 origin,int side,out FrostMaze.Simulation.V2 anchor)
         {

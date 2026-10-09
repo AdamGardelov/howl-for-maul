@@ -56,6 +56,8 @@ namespace FrostMaze
             foreach(var r in settlementBounds)y*=Mathf.SmoothStep(0,1,Mathf.Clamp01(DistanceTo(r,x,z)/5));
             return -.16f+y;
         }
+        public bool PlantFits(float x,float z,float radius)=>SceneryFits(x,z,radius);
+        public float SurfaceY(float x,float z)=>GroundY(x,z);
         float GroundY(float x,float z) {
             const float step=4;float x0=Mathf.Floor(x/step)*step,z0=Mathf.Floor(z/step)*step,u=(x-x0)/step,v=(z-z0)/step;
             float a=ExteriorHeight(x0,z0),b=ExteriorHeight(x0,z0+step),c=ExteriorHeight(x0+step,z0+step),d=ExteriorHeight(x0+step,z0);
@@ -64,7 +66,7 @@ namespace FrostMaze
         Color ExteriorPigment(float x,float z,bool ice) {
             var color=MapScenery.RaisedSurfaceColor(x,z,ice);
             float broad=Mathf.PerlinNoise(x*.13f+11,z*.13f+23);
-            color=Color.Lerp(color,ice?new Color(.55f,.65f,.67f):new Color(.25f,.34f,.21f),ice?.12f:.35f);
+            color=Color.Lerp(color,ice?new Color(.55f,.65f,.67f):new Color(.31f,.43f,.24f),ice?.12f:.14f);
             if(z>1||z<-42)return color;
             float distance=100;
             foreach(var path in trails)distance=Mathf.Min(distance,path.Distance(new Vector2(x,z))-path.Width);

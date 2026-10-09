@@ -9,7 +9,7 @@ namespace FrostMaze
         public bool NetworkMatch=>Net!=null&&Net.World!=null;
         public bool LobbyOpen=>OnlineGame.Current!=null&&!NetworkMatch;
         public void BeginSolo(){var lobby=OnlineGame.Create();lobby.Host(Map.name,"Player 1","",0,true);}
-        public void AdoptOnlineWorld(World world){ClearUnitViews();World=world;SetupOpen=MenuOpen=DetailsOpen=false;matchStarted=true;accumulator=0;ClearInteraction();View.GetComponent<RtsCamera>().FocusPoint(World.BuilderPosition);}
+        public void AdoptOnlineWorld(World world){GuardWorldInput();ClearUnitViews();World=world;SetupOpen=MenuOpen=DetailsOpen=false;matchStarted=true;accumulator=0;ClearInteraction();View.GetComponent<RtsCamera>().FocusPoint(World.BuilderPosition);}
         public void LeaveOnline(){OnlineGame.Current?.Leave();SetupOpen=true;MenuOpen=false;Paused=true;matchStarted=false;}
         public void VotePause(){if(NetworkMatch)Net.Send(new Packet{Kind=Kind.PauseVote});else Paused=!Paused;}
         public void Issue(Order order){if(NetworkMatch)Net.Submit(order);}

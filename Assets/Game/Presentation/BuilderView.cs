@@ -113,11 +113,25 @@ namespace FrostMaze
                 if(side<0)leftArm=arm;else rightArm=arm;
             }
             // Each faction has a different readable tool/crest silhouette, not only a recolor.
-            string[] tools={"Signal aerial","Forge exhausts","Prism crown","Survey fins","Gravity halo","Salvage antenna","Drive spoiler","Tide reservoir"};
-            for(int i=0;i<(faction%3)+1;i++) {
-                float x=(i-(faction%3)*.5f)*.16f;
-                var part=Part(tools[faction],faction==2?m.Crystal:faction==4?m.Shell:faction==6?m.Wing(1):m.Column,new Vector3(x,.56f,-.11f),new Vector3(faction==4?.30f:.09f,.20f+(i%2)*.1f,.12f),palette[3]);
-                if(faction==3||faction==6)part.transform.localRotation=Quaternion.Euler(-25,0,0);
+            if(faction==0)Part("Signal aerial",m.Column,new Vector3(-.17f,.61f,-.09f),new Vector3(.055f,.27f,.055f),palette[3]);
+            else if(faction==1)for(int side=-1;side<=1;side+=2){
+                Part("Copper pressure pack",m.Bell,new Vector3(side*.28f,.27f,-.30f),new Vector3(.27f,.73f,.30f),palette[3]);
+                Part("Pressure exhaust",m.Column,new Vector3(side*.28f,.66f,-.30f),new Vector3(.10f,.15f,.10f),palette[4]);
+            }else if(faction==2)for(int side=-1;side<=1;side+=2){
+                var crown=Part("Ivory signal petal",m.Crystal,new Vector3(side*.30f,.49f,-.07f),new Vector3(.18f,.7f,.22f),palette[3]);crown.transform.localRotation=Quaternion.Euler(0,0,-side*22);
+            }else if(faction==3){
+                Part("Survey mast",m.Column,new Vector3(-.27f,.45f,-.34f),new Vector3(.065f,.48f,.065f),palette[3]);
+                var sail=Part("Survey cloth",m.Wing(1),new Vector3(-.25f,.62f,-.34f),new Vector3(.58f,1,.55f),palette[1]);sail.transform.localRotation=Quaternion.Euler(90,0,0);
+            }else if(faction==4){
+                var halo=Part("Gravity artisan halo",m.Halo,new Vector3(0,.40f,-.20f),Vector3.one*.84f,palette[3]);halo.transform.localRotation=Quaternion.Euler(70,0,15);
+            }else if(faction==5){
+                Part("Salvage crate",m.BeveledBox,new Vector3(0,.08f,-.39f),new Vector3(.65f,.72f,.24f),palette[0]);
+                for(int side=-1;side<=1;side+=2){var tool=Part("Carried repair wrench",m.BeveledBox,new Vector3(side*.20f,.53f,-.31f),new Vector3(.12f,.54f,.12f),palette[3]);tool.transform.localRotation=Quaternion.Euler(0,0,side*15);}
+            }else if(faction==6)for(int side=-1;side<=1;side+=2){
+                var crest=Part("Drake horn",m.Crystal,new Vector3(side*.21f,.58f,-.04f),new Vector3(.16f,.52f,.22f),palette[3]);crest.transform.localRotation=Quaternion.Euler(-20,0,-side*23);
+            }else{
+                Part("Tide pearl",m.Shell,new Vector3(0,.56f,-.16f),Vector3.one*.34f,palette[3]);
+                var shell=Part("Pearlkeeper crest",m.Bell,new Vector3(0,.25f,-.19f),new Vector3(.77f,.28f,.75f),palette[3]);shell.transform.localRotation=Quaternion.Euler(65,0,0);
             }
             Part("Faction tool pack",faction==7?m.Column:m.BeveledBox,new Vector3(faction%2==0?-.25f:.25f,-.09f,-.43f),new Vector3(.21f,.40f,.19f),palette[1]);
         }

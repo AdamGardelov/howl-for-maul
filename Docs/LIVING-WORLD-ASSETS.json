@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-09",
+  "usage": "Original generated texture sources, imported into Unity without pixel editing. Branches, bent leaf cards, plants and sanctuary geometry are authored in C#. User-supplied references are mood/composition references only and are not included in the game.",
+  "assets": [
+    {
+      "path": "Assets/Game/Presentation/Resources/World/HearthLeaves.png",
+      "method": "Built-in image_gen tool",
+      "prompt": "Use case: stylized-concept. Asset type: production game foliage cutout texture for a 3D fantasy RTS canopy, original art for Howl for Maul. Create ONE dense leafy bough seen from slightly above: a naturally branching cluster of small broad oak/hornbeam leaves with beautifully hand-painted diffuse shading, subtle veins, soft warm jade/olive/fern greens, pale yellow-green sunlit tips and cooler shaded interiors. Wide irregular organic silhouette with many small leaf-edge notches and small transparent gaps between leaf groups; thin brown branches mostly hidden within foliage. Texture-only isolated cutout on genuine transparent background, no tree trunk, no pot, no ground, no cast shadow outside subject, no scene, no text, no UI, no border. Entire bough within frame with 8 percent transparent padding. Crown shape roughly circular and asymmetric, suitable for layering into tree crowns in 3D. Leaf scale consistent, readable at normal RTS camera size, refined painterly game art, lush and cozy, not photographic, not angular low-poly, not glossy plastic. Soft neutral diffuse illumination without strong directional shadows. Do not include any borrowed game assets or symbols.",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "sha256": "a8fe08a20dc1004481a7f4869c7fda599bde9cc7dda2e5543a64dbcf26fbaa0f"
+    },
+    {
+      "path": "Assets/Game/Presentation/Resources/World/HearthMeadow.png",
+      "method": "Built-in image_gen tool",
+      "prompt": "Use case: stylized-concept. Asset type: square seamless repeating game terrain albedo texture for original fantasy RTS Howl for Maul. Primary request: lush soft meadow ground made of short grass and moss, with subtle broad areas of warm worn earth barely showing through. True orthographic top-down flat material, no perspective, no horizon, no scene, no objects, no stones, no flowers, no trees. Painterly hand-painted fantasy game texture, refined and cozy like a lush storybook garden at normal RTS camera distance; broad quiet shapes and many soft small curved blade strokes, never photographic noise. Restrained fresh sage, olive, fern and jade greens with warm straw tips. Mid-value colors, no very dark patches, no strong shadows or baked highlights. Low contrast so towers and enemies remain legible over it. Whole image material edge to edge, tileable borders with continuous scale, evenly distributed texture, no frame or text. Original art, no borrowed game assets.",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "sha256": "889d8aa0ae6d6a23f8ed8493a565b9a1e46e44629c88f474fbb33f2e8b293f1f"
+    },
+    {
+      "path": "Assets/Game/Presentation/Resources/World/HearthSpruce.png",
+      "method": "Built-in image_gen tool",
+      "prompt": "Use case: stylized-concept. Asset type: production diffuse cutout texture for original 3D fantasy RTS evergreen tree boughs. One isolated dense, roughly circular asymmetrical cluster of spruce branch tips viewed from above. Many finely painted soft evergreen needles form overlapping feathery fans; dark teal spruce green and sage green, with soft pale blue-white patches of snow caught on the upper branches covering about one third. Rich hand-painted fantasy game art, cozy winter refuge feeling, natural irregular lacy silhouette and several small transparent gaps between needle sprays. Genuine transparent background, entire subject inside frame with transparent margin. This is a single leafy branch texture for layering onto 3D crowns, not a whole tree. No trunk, no ground, no pot, no backdrop, no cast shadow outside subject, no UI, no text. Soft diffuse neutral lighting, not photographic, not angular low-poly. Original artwork only, no borrowed game assets.",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "sha256": "eb7f72c34bc120fa6c840ea16c0fd14e87d0a27e5301418384f36156d91e7f6b"
+    },
+    {
+      "path": "Assets/Game/Presentation/Resources/World/HearthWaystone.png",
+      "method": "Built-in image_gen tool",
+      "prompt": "Use case: stylized-concept. Asset type: original seamless repeating albedo ground texture for Howl for Maul, a cozy painterly fantasy RTS. Create a true orthographic top-down texture of an ancient lane paved with LARGE broad weathered irregular rectangular limestone flagstones, around four to six stones across and four to six down. Muted medium-light cool grey with restrained sage green patina, warm grey earth in narrow gaps, occasional tiny soft moss edging. Flat worn stone faces, softly chipped bevels catching gentle ambient light, subtle restrained brushwork and broad low-contrast variations. Paving stones must feel flat and comfortable, not rounded cobblestones or boulders. No large cracks, no deep black grout, no crunchy photographic grit, no exaggerated bump detail, no highlights, no shadows cast from unseen objects. Avoid octagonal or hexagonal repeating pattern; stones are loosely interlocking rectangular/slab shapes with some corners worn away. Texture-only edge to edge without scene or perspective, no trees, flowers, props, text or symbols. Even lighting and scale throughout. Readable and calm at an isometric game camera. Original asset, no copying game textures.",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "alpha_range": null,
+      "sha256": "e56de37915061f9d1d489a31e9b44e49dc97f7912756023162425e56f8646450"
+    }
+  ]
+}

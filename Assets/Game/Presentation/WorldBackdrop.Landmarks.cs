@@ -109,7 +109,7 @@ namespace FrostMaze
         {
             if(pennants==null||landscapeGame==null)return;
             // Ambient wind uses wall time, independent of the combat speed setting.
-            breeze+=Time.unscaledDeltaTime;MoveFoliage();
+            breeze+=Time.unscaledDeltaTime;
             if(refugeGlow!=null)refugeGlow.SetColor("_EmissionColor",Color.white*(.66f+.05f*Mathf.Sin(breeze*2.8f)+.03f*Mathf.Sin(breeze*6.1f)));
             for(int i=0;i<flagRest.Length;i++) {
                 var p=flagRest[i];float sway=.075f*Mathf.Sin(breeze*1.7f+p.x*2.3f+p.y*1.1f);

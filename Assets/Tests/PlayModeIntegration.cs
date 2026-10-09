@@ -266,7 +266,9 @@ namespace FrostMaze.Tests
         public IEnumerator SoloStagedSetupUsesLastStandMusicAndAuthoritativeTicks()
         {
             EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");yield return new EnterPlayMode();yield return null;
-            var game=Object.FindFirstObjectByType<Prototype>();game.BeginSolo();var net=OnlineGame.Current.Session;
+            var game=Object.FindFirstObjectByType<Prototype>();
+            if(game.Map.name!="Rimewatch"){game.ChooseMap(Resources.Load<MapDefinition>("Rimewatch"));yield return null;yield return null;game=Object.FindFirstObjectByType<Prototype>();}
+            game.BeginSolo();var net=OnlineGame.Current.Session;
             Assert.That(net.Stage,Is.EqualTo(FrostMaze.Simulation.Online.Stage.Factions));
             net.Send(new FrostMaze.Simulation.Online.Packet{Kind=FrostMaze.Simulation.Online.Kind.Faction,A=2});net.Send(new FrostMaze.Simulation.Online.Packet{Kind=FrostMaze.Simulation.Online.Kind.Ready});
             Assert.That(net.Stage,Is.EqualTo(FrostMaze.Simulation.Online.Stage.Difficulty));
@@ -600,7 +602,11 @@ namespace FrostMaze.Tests
         {
             EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
             yield return new EnterPlayMode();yield return null;
-            var game=Object.FindFirstObjectByType<Prototype>();game.StartMatch();game.Paused=true;
+            var game=Object.FindFirstObjectByType<Prototype>();
+            // These coordinates and roster signatures belong to Rimewatch, independent of title defaults.
+            if(game.Map.name!="Rimewatch"){game.ChooseMap(Resources.Load<MapDefinition>("Rimewatch"));yield return null;yield return null;game=Object.FindFirstObjectByType<Prototype>();}
+            game.SetupOptions=new FrostMaze.Simulation.MatchOptions();
+            game.StartMatch();game.Paused=true;
             Assert.That(game.World.OrderBuild(16,14,out _),Is.True);
             for(int i=0;i<150;i++)game.World.Step();
             yield return null;yield return null;
@@ -634,7 +640,11 @@ namespace FrostMaze.Tests
         {
             EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
             yield return new EnterPlayMode();yield return null;
-            var game=Object.FindFirstObjectByType<Prototype>();game.StartMatch();game.Paused=true;game.World.Players[0].Gold=1200; /* Explicit later-game model fixture. */
+            var game=Object.FindFirstObjectByType<Prototype>();
+            // These coordinates and roster signatures belong to Rimewatch, independent of title defaults.
+            if(game.Map.name!="Rimewatch"){game.ChooseMap(Resources.Load<MapDefinition>("Rimewatch"));yield return null;yield return null;game=Object.FindFirstObjectByType<Prototype>();}
+            game.SetupOptions=new FrostMaze.Simulation.MatchOptions();
+            game.StartMatch();game.Paused=true;game.World.Players[0].Gold=1200; /* Explicit later-game model fixture. */
             Assert.That(game.View.orthographicSize,Is.EqualTo(11));
             Assert.That(game.View.GetComponent<RtsCamera>().Focus.z,Is.EqualTo(game.World.BuilderPosition.Y));
             string[] roles={"Sentry","Wall","Control","Artillery","Interceptor"};

@@ -7,6 +7,7 @@ namespace FrostMaze
         bool onlineForm,advancedLan;string relayCode="",retryPassword="";string playerName="Player",joinAddress="127.0.0.1",portText="27888",lobbyPassword="",lobbyError="";
         Vector2 lobbyScroll,notificationScroll,connectionScroll;
         GUIStyle connectionHeading,connectionMessage,connectionCaption,connectionInput,connectionAction,connectionPrimary,connectionNotice;
+        GUIStyle difficultyChoice,difficultyChosen;
         void DrawOnlineEntry(){
             if(HudButton(onlineForm?"CLOSE MULTIPLAYER":"MULTIPLAYER",primary))onlineForm=!onlineForm;
             if(!onlineForm)return;
@@ -36,8 +37,10 @@ namespace FrostMaze
             float width=Screen.width/scale,height=Screen.height/scale;
             if(online.Pending||net==null||online.Error.Length>0||!net.IsConnected){DrawConnectionDialog(online,width,height);GUI.matrix=matrix;return;}
             bool factions=net.Stage==Stage.Factions;
-            float panelWidth=Mathf.Min(factions?1080:720,width-32);
-            var box=new Rect((width-panelWidth)/2,24,panelWidth,height-48);Frame(box);
+            bool difficulty=net.Stage==Stage.Difficulty;
+            float panelWidth=Mathf.Min(factions?1080:difficulty?620:720,width-32);
+            float panelHeight=difficulty?Mathf.Min(height-48,556+(net.Members.Count-1)*38+(RelayNotices.Available?260:0)):height-48;
+            var box=new Rect((width-panelWidth)/2,(height-panelHeight)/2,panelWidth,panelHeight);Frame(box);
             GUILayout.BeginArea(new Rect(box.x+24,box.y+18,box.width-48,box.height-36));
             if(RelayNotices.Available){
                 notificationScroll=GUILayout.BeginScrollView(notificationScroll,GUILayout.Height(Mathf.Min(200,box.height*.3f)));
@@ -65,7 +68,17 @@ namespace FrostMaze
                 if(factions)DrawFactionBrowser(net,me,box.width-68);
                 if(net.Stage==Stage.Lanes){GUILayout.Label("Choose a unique start. All enemy lanes remain active.",label);for(int i=0;i<config.BuilderStarts.Length;i++){bool taken=false;foreach(var m in net.Members)if(m.Id!=me.Id&&m.Lane==i)taken=true;GUI.enabled=!taken;
                     if(HudButton((me.Lane==i?"✓ ":"")+"Start "+(i+1)+(i<config.StartNames.Length?" · "+config.StartNames[i]:"")+(taken?" · taken":""),me.Lane==i?primary:button))net.Send(new Packet{Kind=Kind.Lane,A=i});GUI.enabled=true;}}
-                if(net.Stage==Stage.Difficulty){GUILayout.Label(net.Members.Count==1?"Choose your challenge. You defend every lane from Last Stand.":"Most votes wins; a tied Normal vote takes priority, otherwise Relaxed wins the tie.",label);for(int i=0;i<3;i++)if(HudButton((me.Vote==i?"✓ ":"")+((FrostMaze.Simulation.Difficulty)i),button))net.Send(new Packet{Kind=Kind.Difficulty,A=i});}
+                if(difficulty){
+                    GUILayout.Label(net.Members.Count==1?"Choose your challenge. Every lane remains active.":"Most votes wins; a tied Normal vote takes priority, otherwise Relaxed wins the tie.",label);
+                    GUILayout.Space(8);
+                    if(difficultyChoice==null){
+                        difficultyChoice=new GUIStyle(button){fixedHeight=0,fontSize=15,wordWrap=true,alignment=TextAnchor.MiddleLeft,padding=new RectOffset(16,16,8,8)};
+                        difficultyChosen=new GUIStyle(difficultyChoice);difficultyChosen.normal.background=primary.normal.background;
+                    }
+                    string[] choices={"RELAXED\nLearn and experiment · 70% enemy health and siege damage","NORMAL\nThe standard challenge · 100% enemy health and siege damage","HARD\nDemanding defense · 140% enemy health and siege damage"};
+                    for(int i=0;i<3;i++)if(HudButton((me.Vote==i?"✓ ":"")+choices[i],me.Vote==i?difficultyChosen:difficultyChoice,GUILayout.Height(60)))net.Send(new Packet{Kind=Kind.Difficulty,A=i});
+                    GUILayout.Space(6);GUILayout.Label(net.Members.Count==1?"Choosing a difficulty starts preparation. Launch wave 1 when your maze is ready.":"Preparation begins when everyone has voted. All difficulties use the same gold and rewards.",small);
+                }
             }
             GUILayout.EndScrollView();
             if(me!=null){

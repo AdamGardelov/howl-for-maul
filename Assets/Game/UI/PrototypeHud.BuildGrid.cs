@@ -41,7 +41,7 @@ namespace FrostMaze
                 portraitPrice=new GUIStyle(small){alignment=TextAnchor.MiddleCenter};
                 portraitPrice.normal.textColor=new Color(.94f,.83f,.55f);
             }
-            if(HudButton(new Rect(box.x+8,box.y+5,box.width-16,18),w.FactionName.ToUpperInvariant()+(w.Config.FactionWoodUnlocks?" ▾":""),section))game.DetailsOpen=true;
+            if(HudButton(new Rect(box.x+12,box.y+7,box.width-24,18),w.FactionName+(w.Config.FactionWoodUnlocks?" ▾":""),section))game.DetailsOpen=true;
             GUI.Label(new Rect(box.x+8,box.y+24,box.width-88,18),$"{w.QueuedBuilds} queued · Shift + click",small);
             if(HudButton(new Rect(box.xMax-74,box.y+22,66,20),"CANCEL",button))game.CancelInteraction();
             int slot=0,hovered=-1;
@@ -61,6 +61,7 @@ namespace FrostMaze
                 GUI.color=color;
                 GUI.Label(new Rect(tile.x,tile.y,20,18),(slot+1).ToString(),portraitKey);
                 GUI.Label(new Rect(tile.x,tile.y+57,tile.width,18),locked?"LOCKED":d.Cost+"g"+(d.WoodCost>0?" +1w":""),portraitPrice);
+                if(!game.SellMode&&!game.MoveMode&&w.SelectedDesign==i)Fill(new Rect(tile.x+12,tile.yMax-3,tile.width-24,2),new Color(.91f,.75f,.43f));
                 if(tile.Contains(Event.current.mousePosition))hovered=i;
                 slot++;
             }
@@ -69,7 +70,7 @@ namespace FrostMaze
             GUI.enabled=!w.Finished;
             if(HudButton(remove,GUIContent.none,game.SellMode?selectedPortraitTile:portraitTile)){game.SellMode=!game.SellMode;game.MoveMode=false;game.SelectedTowerId=0;}
             GUI.enabled=true;
-            DrawRemoveIcon(new Rect(remove.x+16,remove.y+10,40,40));
+            DrawRemoveIcon(new Rect(remove.x+21,remove.y+13,30,30));
             GUI.Label(new Rect(remove.x,remove.y+56,72,18),"REMOVE [X]",portraitPrice);
             if(remove.Contains(Event.current.mousePosition))GUI.Label(new Rect(box.x-8,box.y-67,box.width+8,60),"Remove tower · [X]\nSelect this command, then click one of your towers. Its sale refund is shown before removal.",placementHint);
             int inspect=hovered>=0?hovered:w.SelectedDesign;

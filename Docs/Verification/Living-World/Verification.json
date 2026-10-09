@@ -1,0 +1,29 @@
+{
+  "scope": "Environment-only checkpoint before the subsequent HUD and faction pass",
+  "unity": "6000.3.25f1",
+  "platform": "Linux x64; isolated Xvfb/OpenGL llvmpipe",
+  "pureSimulationTests": {
+    "passed": 73,
+    "failed": 0
+  },
+  "focusedUnityTests": {
+    "passed": 5,
+    "failed": 0
+  },
+  "afterLegacyShrubCleanup": {
+    "passed": 2,
+    "failed": 0
+  },
+  "linuxBuild": "passed",
+  "windowsCrossBuild": "passed",
+  "windowsNativeRun": "not run",
+  "bothMapPaidWorldSmoke": "passed: 8 towers / 80 gold each; masks unchanged and mirrored",
+  "mapConstructionMs": {
+    "Ironfold": 896.3,
+    "Rimewatch": 602.4
+  },
+  "timingScope": "Map Awake local construction, not a full menu switch or hardware FPS benchmark",
+  "initialFixtureCorrection": "Initial new test expected >3 safe canopy groups per half-map; Ironfold had 3. Corrected to nonempty, retaining geometry, wind, flight and house clearances. Initial run 4/5; rerun 5/5.",
+  "newFullCampaignOrInternetMatch": false,
+  "assetProvenance": "../../LIVING-WORLD-ASSETS.json"
+}

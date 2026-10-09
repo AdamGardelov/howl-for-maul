@@ -13,7 +13,7 @@ namespace FrostMaze
                 titleShade=new Texture2D(128,1,TextureFormat.RGBA32,false){wrapMode=TextureWrapMode.Clamp};
                 for(int x=0;x<128;x++)titleShade.SetPixel(x,0,new Color(.018f,.029f,.033f,Mathf.Lerp(.96f,0,Mathf.SmoothStep(0,1,x/127f))));
                 titleShade.Apply();textures.Add(titleShade);
-                titleAction=new GUIStyle(button){fixedHeight=46,fontSize=17,alignment=TextAnchor.MiddleLeft,padding=new RectOffset(20,16,10,10),margin=new RectOffset(0,0,4,4)};
+                titleAction=new GUIStyle(button){font=title.font,fixedHeight=46,fontSize=15,alignment=TextAnchor.MiddleLeft,padding=new RectOffset(20,16,10,10),margin=new RectOffset(0,0,5,5)};
                 titlePlay=new GUIStyle(titleAction);titlePlay.normal.background=primary.normal.background;titlePlay.normal.textColor=primary.normal.textColor;titlePlay.fontStyle=FontStyle.Bold;
                 titleCaption=new GUIStyle(section){fontSize=12,alignment=TextAnchor.MiddleCenter};
             }
@@ -35,10 +35,10 @@ namespace FrostMaze
                 titleScroll=GUILayout.BeginScrollView(titleScroll);
                 if(titlePage==1){
                     GUILayout.Label("SETTINGS",title);
-                    game.SoundEnabled=GUILayout.Toggle(game.SoundEnabled,"Combat sound",button);
+                    game.SoundEnabled=SettingToggle("Combat & world sound",game.SoundEnabled);
                     GUILayout.Label("Effects volume",label);game.EffectsVolume=GUILayout.HorizontalSlider(game.EffectsVolume,0,1);
                     GUILayout.Label("Music volume",label);game.MusicVolume=GUILayout.HorizontalSlider(game.MusicVolume,0,1);
-                    if(!Application.isEditor)Screen.fullScreen=GUILayout.Toggle(Screen.fullScreen,"Fullscreen",button);
+                    if(!Application.isEditor)Screen.fullScreen=SettingToggle("Fullscreen window",Screen.fullScreen);
                 }else{
                     GUILayout.Label("HOWL FOR MAUL",title);
                     GUILayout.Label("An independent cooperative maze defense game. Inspired by the community spirit of classic mauls.",label);

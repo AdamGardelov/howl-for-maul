@@ -31,10 +31,18 @@ namespace FrostMaze
             game.ChooseMap(Resources.Load<MapDefinition>("Ironfold"));yield return new WaitForSecondsRealtime(3);
             game=FindFirstObjectByType<Prototype>();if(game.MainMenuOpen){Fail("Map choice returned to title");yield break;}
             game.OpenMainMenu();yield return Capture("Title-Ironfold");
-            game.OpenSetup();game.BeginSolo();yield return new WaitForSecondsRealtime(1);yield return Capture("Solo-Factions");
+            game.OpenSetup();game.BeginSolo();for(int frame=0;frame<24;frame++)yield return null;yield return Capture("Solo-Factions");
             if(!game.LobbyOpen){Fail("Play Solo failed to enter faction selection");yield break;}
+            game.Net.Send(new Simulation.Online.Packet{Kind=Simulation.Online.Kind.Faction,A=0});
+            game.Net.Send(new Simulation.Online.Packet{Kind=Simulation.Online.Kind.Ready});
+            for(int frame=0;frame<4;frame++)yield return null;
+            if(game.Net.Stage!=Simulation.Online.Stage.Difficulty){Fail("Missing solo difficulty stage");yield break;}
+            yield return Capture("Solo-Difficulty-Small");
+            Screen.SetResolution(1440,900,false);yield return new WaitForSecondsRealtime(1);yield return Capture("Solo-Difficulty");
+            Screen.SetResolution(960,600,false);yield return new WaitForSecondsRealtime(1);
             game.LeaveOnline();game.StartMatch();game.Paused=true;yield return Capture("Classic-HUD-Small");
             Screen.SetResolution(1440,900,false);yield return new WaitForSecondsRealtime(1);yield return Capture("Classic-HUD");
+            game.ToggleMenu();yield return Capture("Pause-Settings");game.ToggleMenu();
             game.OpenMainMenu();yield return null;
             Debug.Log("HOWL_MENU_CHECK_PASS title/settings/credits/resize/map-change/solo-entry; world frozen");game.QuitGame();
         }

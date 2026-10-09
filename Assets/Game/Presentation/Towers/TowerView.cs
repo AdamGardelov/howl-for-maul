@@ -8,6 +8,7 @@ namespace FrostMaze
         public string Role { get; private set; }
         public int VisibleLevel { get; private set; }
         Transform weapon;
+        float weaponWidth=1;
         Prototype game;
         long observedShot,shotTick=-100;
 
@@ -181,16 +182,7 @@ namespace FrostMaze
             var spec=tower.Spec;bool robot=game.World.Config.Theme=="iron";
             var palette=game.TowerPalette(faction);shell=palette[0];accent=palette[1];light=palette[2];
             Role=spec.Damage<=0?"Wall":design!=null&&design.Requires.Length>0?"Champion":!spec.TargetsGround?"Interceptor":spec.SlowFraction>0?"Control":spec.ChainTargets>0?"Relay":spec.SplashRadius>0?"Artillery":"Sentry";
-            Part("Foundation",PrimitiveType.Cylinder,new Vector3(0,.1f,0),new Vector3(.94f,.13f,.94f),shell);
-            Part("Faction band",PrimitiveType.Cylinder,new Vector3(0,.23f,0),new Vector3(.78f,.035f,.78f),accent);
-            // Small foundation details read at close zoom and reuse the existing two base materials.
-            for(int corner=0;corner<4;corner++) {
-                float angle=(45+corner*90)*Mathf.Deg2Rad;
-                var inset=Part(robot?"Foundation fastener":"Foundation seal",robot?PrimitiveType.Cylinder:PrimitiveType.Cube,
-                    new Vector3(Mathf.Sin(angle)*.375f,.239f,Mathf.Cos(angle)*.375f),
-                    robot?new Vector3(.075f,.018f,.075f):new Vector3(.09f,.023f,.14f),accent);
-                inset.transform.localRotation=Quaternion.Euler(0,45+corner*90,0);
-            }
+            FactionFooting(palette[3],palette[4],faction,robot);
             if(robot&&faction==0)PulseTower(palette[3],palette[4],tower.Design);
             else if(robot&&faction==1)BlastTower(palette[3],palette[4],tower.Design-7);
             else if(robot&&faction==2)PrismTower(palette[3],palette[4],tower.Design-14);
@@ -233,11 +225,14 @@ namespace FrostMaze
                 }
             }
             }
+            FactionArchitecture(palette[3],palette[4],faction,robot);
             DressFoundation(palette[3],palette[4],faction,robot);
+            FitSilhouette();
             string modelKey=game.World.Config.Theme+"/"+faction+"/"+tower.Design;
             CombineRigidParts(transform,modelKey+"/base");
             if(weapon!=null)CombineRigidParts(weapon,modelKey+"/weapon");
-            for(int i=0;i<2;i++)tiers[i]=Part("Upgrade tier "+(i+2),PrimitiveType.Cube,new Vector3((i==0?-1:1)*.31f,.34f,-.35f),new Vector3(.13f,.15f,.1f),light);
+            if(kinetic!=null)CombineRigidParts(kinetic,modelKey+"/kinetic");
+            for(int i=0;i<2;i++)tiers[i]=Part("Upgrade tier "+(i+2),PrimitiveType.Cube,new Vector3((i==0?-1:1)*.23f,.20f,-.30f),new Vector3(.10f,.13f,.09f),light);
             Sync(tower,false);
         }
         public void Sync(Tower tower,bool clearance)
@@ -248,7 +243,7 @@ namespace FrostMaze
             transform.localScale=new Vector3(tower.Spec.Width,clearance?.08f:1,tower.Spec.Height);
             VisibleLevel=tower.Level;for(int i=0;i<2;i++)tiers[i].SetActive(tower.Level>=i+2);
             if(weapon!=null) {
-                weapon.localScale=Vector3.one*(1+.08f*(tower.Level-1));
+                weapon.localScale=new Vector3(weaponWidth,1+.08f*(tower.Level-1),weaponWidth);
                 var shots=game.World.Shots;
                 // Only direct shots from this footprint drive its weapon. Chain origins are enemies.
                 for(int i=shots.Count-1;i>=0&&shots[i].Serial>observedShot;i--) {
@@ -263,6 +258,7 @@ namespace FrostMaze
                 float recoil=Mathf.Clamp01(1-(game.World.Tick-shotTick)/6f)*(Role=="Artillery"?.14f:.09f);
                 weapon.localPosition=-(weapon.localRotation*Vector3.forward)*recoil;
             }
+            if(kinetic!=null)kinetic.localRotation=kineticRest*Quaternion.AngleAxis(game.World.Tick*World.FixedDelta*kineticSpeed,Vector3.up);
         }
     }
 }

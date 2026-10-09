@@ -30,7 +30,7 @@ namespace FrostMaze
             var offset=style.contentOffset;
             if(GUI.enabled&&GUIUtility.hotControl!=0&&rect.Contains(Event.current.mousePosition))style.contentOffset=offset+Vector2.one;
             bool activated=GUI.Button(rect,content,style);style.contentOffset=offset;
-            if(activated)ClickFeedback();return activated;
+            if(activated){game.GuardWorldInput();ClickFeedback();}return activated;
         }
     }
 }

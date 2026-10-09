@@ -1,0 +1,7 @@
+hearth-ready-linux.log: Build Finished, Result: Success.
+hearth-ready-windows.log: Build Finished, Result: Success.
+hearth-ready-menu.log: HOWL_MENU_CHECK_PASS title/settings/credits/resize/map-change/solo-entry; world frozen
+hearth-release-online.log: HOWL_ONLINE_MENU_PASS entry/pending/retry/resize/offline; gateway fixture, no cloud allocation
+hearth-pref-check.log: HOWL_WORLD_CHECK_PASS Ironfold refugeVertices=10590 paidTowers=8 spent=80 maskUnchanged=true mirrored=true
+hearth-pref-check.log: HOWL_WORLD_CHECK_PASS Rimewatch refugeVertices=11022 paidTowers=8 spent=80 maskUnchanged=true mirrored=true
+Final interactive player quit: exit 0. Final preference/world player: exit 0. Windows was cross-built only.

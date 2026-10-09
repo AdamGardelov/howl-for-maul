@@ -1,0 +1,16 @@
+{
+  "store": "work/hearth-test-config/unity3d/unknown/unknown/prefs",
+  "before": {
+    "Howl.Sound": "1",
+    "Howl.Effects": "0.63",
+    "Howl.Music": "0.28"
+  },
+  "after": {
+    "Howl.Effects": "0.63",
+    "Howl.Sound": "1",
+    "Howl.Music": "0.28"
+  },
+  "check": "Actual packaged world smoke explicitly mutes music then switches both maps; normal player separately saves changed music.",
+  "passed": true,
+  "initialProbeCorrection": "Editor and player use different stores in this environment. Repeated the check against the actual player store, not only the editor store."
+}

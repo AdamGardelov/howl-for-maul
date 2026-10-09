@@ -1,0 +1,71 @@
+{
+  "date": "2026-10-10",
+  "baseCommit": "94ed497c3e0348d3c83380fca667829eddf44ac0",
+  "unity": "6000.3.25f1",
+  "scope": "Living world, HUD/menu and all 76 tower models across twelve factions; cosmetic changes only",
+  "integrationInitial": {
+    "total": 11,
+    "passed": 9,
+    "failed": 2
+  },
+  "initialFailures": "Two old tests opened the new Ironfold default while assuming Rimewatch coordinates and roster. Fixtures now explicitly choose Rimewatch and fresh options; no gameplay rule relaxed.",
+  "correctedFixtureRerun": {
+    "total": 2,
+    "passed": 2,
+    "failed": 0
+  },
+  "rosterGeometry": "All 76 designs, upgraded level 3 and turned 45 degrees, fit occupied cell horizontally; caches/cleanup and paid costs preserved.",
+  "paidReplay": "Both saved twenty-wave Hard campaigns reproduce paid purchases, travel, upgrades, kills, leaks and wallets. See Paid-Scenes-Software-Renderer.json.",
+  "environmentChecks": "See ../Living-World/Verification.json for 73 simulation cases and focused environment clearance/wind/flight/house tests.",
+  "rendering": "Isolated Xvfb with llvmpipe OpenGL; screenshot and correctness evidence, not hardware performance acceptance.",
+  "platformLimits": [
+    "Native Windows execution not tested",
+    "No new separate-network full Relay match in this cosmetic pass",
+    "No finished commercial-art claim; procedural models still need further art direction and animation polish"
+  ],
+  "transitionChecks": {
+    "total": 3,
+    "passed": 2,
+    "failed": 1,
+    "failure": "Existing solo fixture assumed three Rimewatch lanes but opened Ironfold. Explicitly selecting Rimewatch fixed the fixture."
+  },
+  "soloFixtureRerun": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0
+  },
+  "builds": {
+    "linux": "Build Finished, Result: Success. (hearth-ready-linux.log)",
+    "windows": "Build Finished, Result: Success. (hearth-ready-windows.log)",
+    "isolatedEditorTarget": "Restored StandaloneLinux64; successful Unity shutdown logged",
+    "wrapperStatus": "An earlier wrapper and final wrapper exited 143 after Unity successful shutdown; individual build logs and separately completed product checks retained."
+  },
+  "packagedChecks": {
+    "menu": "passed; title/settings/credits/map/factions/difficulty/HUD at 960x600 and 1440x900",
+    "world": "both maps passed, paid 8 towers / 80 gold each, masks unchanged and mirrored",
+    "onlineDialogs": "entry/pending/retry/resize/offline passed with fake gateway; no cloud match claimed",
+    "realInput": {
+      "start": "Title \u2192 Play \u2192 Solo \u2192 Blast Circuit \u2192 Normal; Last Stand, all four lanes, 2200 gold, zero queue, no failed-build notification",
+      "paidBuild": "One deliberate Alloy Cadet: 2200 \u2192 2190; one completed tower, zero queue",
+      "pauseMenu": "Escape opens solo paused menu; no redundant vote control",
+      "audio": "Real title toggle/sliders exercised; final normal player saved changed music level in private profile",
+      "quitExitCode": 0
+    }
+  },
+  "audioPreferences": "Final QA-muted both-map packaged world smoke preserves seeded player values; normal interactive player separately saves music=0.497191. See QA-Preferences.json and Normal-Preferences.json.",
+  "installedPackages": {
+    "Linux": {
+      "path": "/home/adam/Documents/Dev/howl-for-maul/Builds/Linux-World",
+      "runtimeSha256": "54e60e6ebd3bfb72860817f69cea618fa86994e5883c731a26896398ffc10235",
+      "simulationSha256": "a8107a5a7c2411405ab245b17355e3bc0798df03b0f55683b1d11a4a480a7631",
+      "priorPackage": "Linux-World-94ed497"
+    },
+    "Windows": {
+      "path": "/home/adam/Documents/Dev/howl-for-maul/Builds/Windows-World",
+      "runtimeSha256": "4360913f9de1e433541df040cc062d707e0ac6e3a4187913769186d8557cc6f4",
+      "simulationSha256": "ce9d77b1185d61131ef003deae2a189c6dfcaca8d20866f159eb8ca53be84b04",
+      "priorPackage": "Windows-World-94ed497"
+    }
+  },
+  "finalSourceAssetCheck": "Every modified/new Assets file matches the isolated build clone byte-for-byte, ignoring only trailing whitespace in .meta files."
+}

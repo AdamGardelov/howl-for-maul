@@ -29,7 +29,7 @@ namespace FrostMaze
                 var bounds=new Bounds(root.transform.position,Vector3.zero);
                 foreach(var renderer in root.GetComponentsInChildren<Renderer>())if(renderer.enabled)bounds.Encapsulate(renderer.bounds);
                 var camera=cameraObject.AddComponent<Camera>();camera.enabled=false;
-                camera.clearFlags=CameraClearFlags.SolidColor;camera.backgroundColor=new Color(.065f,.105f,.12f,1);
+                camera.clearFlags=CameraClearFlags.SolidColor;camera.backgroundColor=new Color(.066f,.095f,.078f,1);
                 camera.cullingMask=1<<31;camera.orthographic=true;camera.aspect=1;
                 camera.nearClipPlane=.01f;camera.farClipPlane=30;camera.allowHDR=false;camera.allowMSAA=false;
                 camera.transform.rotation=Quaternion.Euler(24,155,0);

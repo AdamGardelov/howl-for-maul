@@ -10,6 +10,9 @@ namespace FrostMaze
         public IReadOnlyList<Vector3> LandmarkPositions=>landmarks;
         public IReadOnlyList<Vector3> FirePositions=>fireAnchors;
         public int Groves {get;private set;}
+        readonly List<Vector4> paintedTrees=new List<Vector4>();
+        public IReadOnlyList<Vector4> PaintedTrees=>paintedTrees;
+        public bool PlantSpaceFree(float x,float z,float radius)=>SpaceFree(x,z,radius);
         bool SpaceFree(float x,float z,float radius) {
             foreach(var s in scenerySpaces)if(new Vector2(s.x-x,s.z-z).magnitude<radius+s.w+.3f)return false;
             return true;
@@ -90,10 +93,16 @@ namespace FrostMaze
                     // A banked furnace, broken workbench and riveted flue among reclaimed stone.
                     b[25].Box(x0-.8f,z0-.5f,1.6f,1.0f,y+.38f,y+2.15f);
                     b[26].Box(x0-.98f,z0-.64f,1.96f,1.28f,y+2.15f,y+2.35f);
-                    b[26].Box(x0+.32f,z0-.28f,.56f,.56f,y+2.3f,y+4.1f);
-                    b[25].Box(x0+.22f,z0-.39f,.76f,.78f,y+4.1f,y+4.3f);
-                    b[29].Box(x0-.58f,z0-.52f,1.16f,.035f,y+.55f,y+1.5f);
-                    for(int i=0;i<5;i++)b[26].Box(x0-.58f+i*.28f,z0-.57f,.075f,.07f,y+.55f,y+1.5f);
+                    Ring(b[26],x0+.60f,z0,y+2.3f,1.75f,.30f,.20f);
+                    Ring(b[25],x0+.60f,z0,y+4.05f,.20f,.34f,.29f);
+                    b[29].Box(x0-.51f,z0-.52f,1.02f,.035f,y+.55f,y+1.24f);
+                    for(int arch=0;arch<9;arch++) {
+                        float a=arch*Mathf.PI/9,n=(arch+1)*Mathf.PI/9;
+                        Vector3 P(float t,float r)=>new Vector3(x0+Mathf.Cos(t)*r,y+1.23f+Mathf.Sin(t)*r,z0-.55f);
+                        b[25].Quad(P(a,.51f),P(a,.68f),P(n,.68f),P(n,.51f));
+                        b[29].Quad(new Vector3(x0,y+1.23f,z0-.54f),P(a,.50f),P(n,.50f),new Vector3(x0,y+1.23f,z0-.54f));
+                    }
+                    for(int i=0;i<5;i++)b[26].Box(x0-.43f+i*.215f,z0-.59f,.045f,.07f,y+.55f,y+1.38f+(2-Mathf.Abs(i-2))*.16f);
                     b[26].Box(x0-1.65f,z0-.3f,.48f,1.1f,y+.9f,y+1.08f);
                     for(int i=0;i<2;i++)b[25].Box(x0-1.6f,z0-.25f+i*.75f,.2f,.18f,y+.15f,y+.9f);
                     for(int i=0;i<3;i++)Mound(b[25],x0+1.2f,z0-.4f+i*.5f,y,.28f,.18f+i*.09f,i);
@@ -131,6 +140,7 @@ namespace FrostMaze
                 Mound(b[25],x+.5f,z-.35f,y+.05f,.62f,.78f,seed);
                 if(ice)Mound(b[28],x+.5f,z-.35f,y+.62f,.46f,.26f,seed);
                 // Asymmetric branching, layered crowns, two heights per group.
+                paintedTrees.Add(new Vector4(x,y+(ice?3.5f:3.2f),z,1.6f*groveScale));
                 for(int tree=0;tree<2;tree++) {
                     float tx=x-.35f+tree*.73f,tz=z+.25f+tree*.3f,height=(tree==0?3.1f:2.05f)+(seed%4)*.16f;
                     Beam(b[26],new Vector3(tx,y,tz),new Vector3(tx+.13f,y+height,tz),.08f);
@@ -139,8 +149,8 @@ namespace FrostMaze
                         for(int branch=0;branch<3;branch++) {
                             float a=seed+branch*2.1f+tier*.7f;var end=new Vector3(tx+Mathf.Cos(a)*rad*.35f,h+.12f,tz+Mathf.Sin(a)*rad*.35f);
                             Beam(b[26],new Vector3(tx,h-.15f,tz),end,.034f);
-                            Mound(b[27],end.x,end.z,h,rad*.76f,ice?.28f:.32f,seed+tier+branch);
-                            if(ice)Mound(b[28],end.x,end.z,h+.16f,rad*.62f,.16f,seed+tier+branch);
+                            Mound(b[27],end.x,end.z,h,rad*.47f,ice?.20f:.22f,seed+tier+branch);
+                            if(ice)Mound(b[28],end.x,end.z,h+.16f,rad*.39f,.12f,seed+tier+branch);
                         }
                     }
                     b[27].Peak(tx+.13f,tz,.28f*(tree==0?1:.8f),y+height-.45f,.62f);

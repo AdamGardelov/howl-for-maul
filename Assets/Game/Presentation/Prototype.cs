@@ -35,7 +35,7 @@ namespace FrostMaze
             PlacementFailure=accepted?null:reason;PlacementFailureUntil=Time.unscaledTime+5;
             return accepted;
         }
-        public void ToggleMenu() { MenuOpen=!MenuOpen;HasHover=false;if(ghost!=null)ghost.SetActive(false); }
+        public void ToggleMenu() { MenuOpen=!MenuOpen;if(!MenuOpen)GuardWorldInput();HasHover=false;if(ghost!=null)ghost.SetActive(false); }
         public Rect TopHud => new Rect(12*UiScale,12*UiScale,Screen.width-24*UiScale,48*UiScale);
         public int BuildColumns => World!=null&&World.Config.Theme=="iron"?4:3;
         public Rect DockHud => new Rect(12*UiScale,Screen.height-246*UiScale,Screen.width-24*UiScale,234*UiScale);
@@ -49,7 +49,7 @@ namespace FrostMaze
         bool matchStarted;
         public bool CanReturnToMatch => matchStarted;
         public void OpenSetup() { if(NetworkMatch){LeaveOnline();return;}SetupOpen=true;MenuOpen=false;MainMenuOpen=false; }
-        public void ReturnToMatch() { if(CanReturnToMatch)SetupOpen=false; }
+        public void ReturnToMatch() { if(CanReturnToMatch){SetupOpen=false;GuardWorldInput();} }
         void ClearInteraction()
         {
             MoveMode=false;SellMode=false;SelectedId=0;SelectedTowerId=0;HasHover=false;PlacementFailure=null;
@@ -70,7 +70,7 @@ namespace FrostMaze
         public MatchOptions SetupOptions = new MatchOptions();
         public void StartMatch()
         {
-            ClearUnitViews();
+            GuardWorldInput();ClearUnitViews();
             World=new World(JsonUtility.FromJson<Scenario>(JsonUtility.ToJson(Map.Settings)),SetupOptions);
             SetupOpen=false;MenuOpen=false;DetailsOpen=false; matchStarted=true; Paused=false; localSpeedIndex=MatchSpeeds.Normal; accumulator=0; ClearInteraction();
             View.GetComponent<RtsCamera>().FocusPoint(World.BuilderPosition);
@@ -127,7 +127,10 @@ namespace FrostMaze
         void SetViewport()
         {
             bool showMarkers=!(SetupOpen&&MainMenuOpen&&!LobbyOpen);
-            foreach(var marker in routeMarkers)if(marker!=null&&marker.activeSelf!=showMarkers)marker.SetActive(showMarkers);
+            foreach(var marker in routeMarkers)if(marker!=null){
+                bool visible=showMarkers&&(ShowRoutes||SetupOpen||marker.name.StartsWith("Spawn lane")||marker.name=="Refuge exit");
+                if(marker.activeSelf!=visible)marker.SetActive(visible);
+            }
             View.rect = new Rect(0,0,1,1);
         }
         readonly Dictionary<int, GameObject> towers = new Dictionary<int, GameObject>();
@@ -212,7 +215,10 @@ namespace FrostMaze
                 Notice = "Build near the route or across the flight corridor. The drone travels to your build orders.";
             }
             var exterior=new GameObject("Surrounding world");exterior.transform.SetParent(transform,false);var backdrop=exterior.AddComponent<WorldBackdrop>();backdrop.Build(this);
-            GetComponentInChildren<MapScenery>()?.LightHearths(this,backdrop.RefugeHearths);
+            var hearths=new List<Vector3>(backdrop.RefugeHearths);
+            var refugeGarden=backdrop.GetComponentInChildren<LivingWorld>();
+            if(refugeGarden!=null)hearths.AddRange(refugeGarden.HearthPositions);
+            GetComponentInChildren<MapScenery>()?.LightHearths(this,hearths);
             var oldCamera = Camera.main;
             if (oldCamera != null)
                 Destroy(oldCamera.gameObject);
@@ -229,23 +235,23 @@ namespace FrostMaze
             var lightObject = new GameObject("Winter sun");
             var sun = lightObject.AddComponent<Light>();
             sun.type = LightType.Directional;
-            sun.intensity = 1.0f;
+            sun.intensity = 1.12f;
             bool winter=World.Config.Theme!="iron";
-            sun.color=winter?new Color(1,.94f,.82f):new Color(1,.84f,.65f);
-            sun.shadowStrength=.58f;
+            sun.color=winter?new Color(1,.94f,.82f):new Color(1,.94f,.80f);
+            sun.shadowStrength=.62f;
             sun.shadowBias=.035f;
             sun.shadows = LightShadows.Soft;
             lightObject.transform.rotation = Quaternion.Euler(48, -35, 0);
             RenderSettings.ambientMode=UnityEngine.Rendering.AmbientMode.Trilight;
-            RenderSettings.ambientSkyColor = winter?new Color(.46f,.58f,.66f):new Color(.43f,.49f,.58f);
-            RenderSettings.ambientEquatorColor = winter?new Color(.34f,.43f,.47f):new Color(.38f,.37f,.30f);
+            RenderSettings.ambientSkyColor = winter?new Color(.46f,.58f,.66f):new Color(.53f,.62f,.69f);
+            RenderSettings.ambientEquatorColor = winter?new Color(.34f,.43f,.47f):new Color(.42f,.48f,.37f);
             RenderSettings.ambientGroundColor = new Color(.2f,.23f,.24f);
             for(int lane=0;lane<World.LaneCount;lane++) {
                 Marker(World.LaneSpawn(lane),new Color(.1f,.85f,.68f),"Spawn lane "+(lane+1));
                 if(World.Config.Lanes.Length>0)Marker(World.LaneRoute(lane,false)[0],new Color(.95f,.74f,.25f),"Lane merge");
             }
-            foreach (var p in World.Config.GroundRoute)
-                Marker(p, new Color(0.95f, 0.74f, 0.25f), "Ground checkpoint");
+            for(int checkpoint=0;checkpoint<World.Config.GroundRoute.Length;checkpoint++)
+                Marker(World.Config.GroundRoute[checkpoint],new Color(.76f,.64f,.34f),checkpoint==World.Config.GroundRoute.Length-1?"Refuge exit":"Ground checkpoint");
             foreach (var p in World.Config.FlightRoute)
                 Marker(p, new Color(0.63f, 0.5f, 0.91f), "Flight checkpoint", 0.22f);
             ghost = Primitive("Placement preview", PrimitiveType.Cube, Vector3.zero, new Vector3(World.Config.Tower.Width - 0.1f, 0.08f, World.Config.Tower.Height - 0.1f), ghostMaterial);
@@ -260,7 +266,10 @@ namespace FrostMaze
         }
         void Marker(V2 p, Color color, string name, float radius = 0.55f)
         {
-            routeMarkers.Add(Primitive(name, PrimitiveType.Cylinder, new Vector3(p.X, 0.015f, p.Y), new Vector3(radius, 0.025f, radius), MakeMaterial(color)));
+            var marker=Primitive(name,PrimitiveType.Cylinder,new Vector3(p.X,.015f,p.Y),new Vector3(radius,.025f,radius),MakeMaterial(color));
+            marker.GetComponent<MeshFilter>().sharedMesh=Models.OwnerRing;
+            marker.GetComponent<Renderer>().shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;
+            routeMarkers.Add(marker);
         }
         public Material MakeMaterial(Color color, bool unlit = false)
         {
@@ -318,7 +327,20 @@ namespace FrostMaze
                 accumulator = 0;
             SyncViews();
         }
-        void ReadBuildInput() { using(InputProfile.Auto()) ReadBuildInputProfiled(); }
+        int worldInputGuardFrame=-10;
+        bool worldInputAwaitRelease;
+        public void GuardWorldInput(){worldInputGuardFrame=Time.frameCount;worldInputAwaitRelease=true;}
+        bool TransitionInputBlocked()
+        {
+            if(!worldInputAwaitRelease)return false;
+            // IMGUI, the network session and Update can observe the same press in different
+            // orders. Require a later neutral frame before accepting commands in the world.
+            if(Time.frameCount>worldInputGuardFrame+1&&!UnityEngine.Input.GetMouseButton(0)&&
+                !UnityEngine.Input.GetMouseButton(1)&&!UnityEngine.Input.GetMouseButton(2)&&
+                !UnityEngine.Input.GetKey(KeyCode.Return)&&!UnityEngine.Input.GetKey(KeyCode.KeypadEnter))worldInputAwaitRelease=false;
+            HasHover=false;ghost.SetActive(false);return true;
+        }
+        void ReadBuildInput() { using(InputProfile.Auto()){if(!TransitionInputBlocked())ReadBuildInputProfiled();} }
         void ReadBuildInputProfiled()
         {
             int shortcut=0;for(int i=0;i<World.Config.Catalog.Length;i++)if(World.RosterVisible(i)){if(UnityEngine.Input.GetKeyDown(KeyCode.Alpha1+shortcut)){World.SelectedDesign=i;SellMode=false;MoveMode=false;}shortcut++;}
@@ -546,8 +568,15 @@ namespace FrostMaze
         void TintBuilder(GameObject root,int faction)=>root.GetComponent<BuilderView>().Configure(this,faction);
         void OnDestroy()
         {
-            PlayerPrefs.SetInt("Howl.Sound",SoundEnabled?1:0);
-            PlayerPrefs.SetFloat("Howl.Effects",EffectsVolume);PlayerPrefs.SetFloat("Howl.Music",MusicVolume);PlayerPrefs.Save();
+            // Opt-in QA fixtures temporarily mute/change audio. Never persist their values
+            // into a player's preferences, including during scene reloads inside a check.
+            bool verification=Application.isBatchMode;
+            foreach(var argument in System.Environment.GetCommandLineArgs())
+                if(argument=="-runTests"||argument.StartsWith("--howl-",System.StringComparison.Ordinal))verification=true;
+            if(!verification){
+                PlayerPrefs.SetInt("Howl.Sound",SoundEnabled?1:0);
+                PlayerPrefs.SetFloat("Howl.Effects",EffectsVolume);PlayerPrefs.SetFloat("Howl.Music",MusicVolume);PlayerPrefs.Save();
+            }
             Models.Dispose();
             foreach(var texture in actorTextures.Values)if(texture!=null)Destroy(texture);
             foreach (var material in materials)

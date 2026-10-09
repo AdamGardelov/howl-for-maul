@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f57b7673310645b3aa13acc9910d3d20, type: 3}
   m_Name: Rimewatch
   m_EditorClassIdentifier: FrostMaze.Runtime::FrostMaze.WorldSurfaceSet
-  Fingerprint: A0EC24DDCB7608318EB05FAEC9643595E9FBC598A0640918C3496544DA5F4E92
-  EditorInputs: 1bb5fed2e2cddb2e9d679aa146515f80
+  Fingerprint: 3F11C2BB1670096E1D887E975B481D8DB5CEF6F343E30F520E25FA62FB0DF52E
+  EditorInputs: cc9846b5a37b3366a7b81db7545f3bf1
   Ground: {fileID: 2800000, guid: 6dde0e771fb9beccfa1c3ac1410fc613, type: 3}
   Cap: {fileID: 2800000, guid: 042a609add168a6308f54840ed2eb8db, type: 3}
   Wall: {fileID: 2800000, guid: d86065bb28f36ee6d8fd666b05c8864b, type: 3}

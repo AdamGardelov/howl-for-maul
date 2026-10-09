@@ -51,6 +51,19 @@ namespace FrostMaze.Tests
                         Assert.That(root.transform.Find("Faction crest backing"),Is.Not.Null);Assert.That(root.transform.Find("Footing rim"),Is.Not.Null);
                         foreach(var filter in root.GetComponentsInChildren<MeshFilter>())Assert.That(filter.sharedMesh.uv.Length,Is.EqualTo(filter.sharedMesh.vertexCount),"Missing actor texture coordinates: "+filter.name);
                         Assert.That(game.TowerPalette(faction)[0].mainTexture,Is.Not.Null);
+                        // Each faction can change its shape, but the visible level-three model must
+                        // still fit its placement cell when aimed diagonally. Check actual vertices.
+                        tower.Level=3;view.Sync(tower,false);
+                        var gun=root.transform.Find(view.Role+" weapon");if(gun!=null)gun.localRotation=Quaternion.Euler(0,45,0);
+                        foreach(var filter in root.GetComponentsInChildren<MeshFilter>()){
+                            if(!filter.GetComponent<Renderer>().enabled)continue;
+                            var toTower=root.transform.worldToLocalMatrix*filter.transform.localToWorldMatrix;
+                            foreach(var vertex in filter.sharedMesh.vertices){var point=toTower.MultiplyPoint3x4(vertex);
+                                Assert.That(new Vector2(point.x,point.z).magnitude,Is.LessThanOrEqualTo(.501f),def.Name+" overhangs the occupied cell");
+                            }
+                        }
+                        tower.Level=1;view.Sync(tower,false);if(gun!=null)gun.localRotation=Quaternion.identity;
+                        root.transform.position=origin+new Vector3(-2.1f+((index-1)%4)*2.1f,0,((index-1)/4)*3.6f);
                     }
                     foreach(var t in group.GetComponentsInChildren<Transform>(true))t.gameObject.layer=31;
                     yield return null;yield return null;

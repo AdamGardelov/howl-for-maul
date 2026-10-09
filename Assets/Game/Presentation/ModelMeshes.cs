@@ -8,9 +8,28 @@ namespace FrostMaze
         readonly Dictionary<string,Mesh> meshes=new Dictionary<string,Mesh>();
         public Mesh Column => Profile("Stone column",8,new[]{-1f,-.78f,.78f,1f},new[]{.4f,.5f,.5f,.4f});
         public Mesh Crystal => Profile("Cut ice",5,new[]{-.5f,-.3f,.22f,.5f},new[]{0f,.42f,.31f,0f});
-        public Mesh Shell => Profile("Carved shell",8,new[]{-.5f,-.27f,.14f,.36f,.5f},new[]{0f,.4f,.5f,.33f,0f});
-        public Mesh Armor => Profile("Beveled armor",8,new[]{-.5f,-.3f,.32f,.5f},new[]{.38f,.5f,.5f,.38f});
-        public Mesh Robe => Profile("Warden mantle",7,new[]{-.5f,-.38f,.32f,.5f},new[]{.36f,.5f,.24f,.2f});
+        public Mesh Shell => Profile("Carved shell",16,new[]{-.5f,-.27f,.14f,.36f,.5f},new[]{0f,.4f,.5f,.33f,0f},true);
+        public Mesh Armor => Profile("Beveled armor",12,new[]{-.5f,-.3f,.32f,.5f},new[]{.38f,.5f,.5f,.38f});
+        public Mesh Robe => Profile("Warden mantle",12,new[]{-.5f,-.38f,.32f,.5f},new[]{.36f,.5f,.24f,.2f},true);
+        public Mesh Bell => Profile("Ward bell",16,new[]{-.48f,-.44f,-.12f,.35f,.48f},new[]{.49f,.5f,.31f,.20f,.08f},true);
+        public Mesh Halo {
+            get {
+                const string name="Cast bronze halo";if(meshes.TryGetValue(name,out var cached))return cached;
+                var v=new List<Vector3>();var t=new List<int>();
+                for(int i=0;i<32;i++)for(int j=0;j<6;j++){
+                    int n=v.Count;
+                    for(int c=0;c<4;c++){
+                        float a=(i+(c==1||c==2?1:0))*Mathf.PI/16,b=(j+(c>=2?1:0))*Mathf.PI/3;
+                        float r=.455f+Mathf.Cos(b)*.045f;v.Add(new Vector3(Mathf.Cos(a)*r,Mathf.Sin(b)*.045f,Mathf.Sin(a)*r));
+                    }
+                    t.AddRange(new[]{n,n+2,n+1,n,n+3,n+2});
+                }
+                var mesh=Save(name,v,t);
+                var normals=new Vector3[v.Count];
+                for(int i=0;i<v.Count;i++){var p=v[i];var center=new Vector3(p.x,0,p.z).normalized*.455f;normals[i]=(p-center).normalized;}
+                mesh.normals=normals;return mesh;
+            }
+        }
         public Mesh BeveledBox {
             get {
                 const string name="Chamfered armor block";if(meshes.TryGetValue(name,out var cached))return cached;
@@ -39,7 +58,7 @@ namespace FrostMaze
                 return Save(name,v,t);
             }
         }
-        Mesh Profile(string name,int sides,float[] heights,float[] radii)
+        Mesh Profile(string name,int sides,float[] heights,float[] radii,bool smooth=false)
         {
             if(meshes.TryGetValue(name,out var mesh))return mesh;
             var v=new List<Vector3>();var t=new List<int>();
@@ -58,7 +77,15 @@ namespace FrostMaze
                     t.AddRange(end==0?new[]{n,n+1,n+2}:new[]{n,n+2,n+1});
                 }
             }
-            return Save(name,v,t);
+            mesh=Save(name,v,t);
+            if(smooth){
+                var summed=new Dictionary<Vector3Int,Vector3>();var normals=mesh.normals;
+                Vector3Int Key(Vector3 p)=>new Vector3Int(Mathf.RoundToInt(p.x*10000),Mathf.RoundToInt(p.y*10000),Mathf.RoundToInt(p.z*10000));
+                for(int i=0;i<v.Count;i++){var key=Key(v[i]);summed.TryGetValue(key,out var normal);summed[key]=normal+normals[i];}
+                for(int i=0;i<v.Count;i++)normals[i]=summed[Key(v[i])].normalized;
+                mesh.normals=normals;
+            }
+            return mesh;
         }
         public Mesh Wing(int side)
         {
