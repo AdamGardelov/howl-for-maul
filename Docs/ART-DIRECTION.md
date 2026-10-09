@@ -41,3 +41,7 @@ See TERRAIN-MATERIALS.md for snow/slate/ice shelves, mossy foundry stone, weathe
 ## Tower and builder detail
 
 See ACTOR-POLISH.md for chamfered tower parts, stone/metal/cloth surfaces, faction foundation markings and twelve equipped, animated builder variants. Rimewatch wardens and Ironfold robotic artisans have separate owner rings, so shared faction colors remain usable in co-op. The original design-specific tower silhouettes and actual aiming/recoil pivots remain. Both close-up in-map rendering and the entire roster were checked; the art remains procedural and no new crowded-scene performance claim is made.
+
+## Sheltered lanes and living ambience
+
+See WORLD-COHESION.md for the six-part environment/actor pass: grouped windswept groves, stone banks, wayshrines and foundry landmarks; painted snow/moss shoulders; restrained warm hearth light; smooth builder turns and paid construction gestures; solid projectiles and enemy hit reactions; and quiet local environmental audio. Entire scenery footprints remain off buildable lanes. Six focused integration cases and current-economy paid Hard replays verify the implementation. These remain original procedural assets rather than a finished authored character/environment library.

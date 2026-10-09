@@ -214,13 +214,13 @@ namespace FrostMaze
             sun.type = LightType.Directional;
             sun.intensity = 1.05f;
             bool winter=World.Config.Theme!="iron";
-            sun.color=winter?new Color(.91f,.95f,1):new Color(1,.84f,.65f);
+            sun.color=winter?new Color(1,.94f,.82f):new Color(1,.84f,.65f);
             sun.shadowStrength=.65f;
             sun.shadowBias=.035f;
             sun.shadows = LightShadows.Soft;
             lightObject.transform.rotation = Quaternion.Euler(48, -35, 0);
             RenderSettings.ambientMode=UnityEngine.Rendering.AmbientMode.Trilight;
-            RenderSettings.ambientSkyColor = winter?new Color(.53f,.65f,.73f):new Color(.52f,.56f,.67f);
+            RenderSettings.ambientSkyColor = winter?new Color(.46f,.58f,.66f):new Color(.43f,.49f,.58f);
             RenderSettings.ambientEquatorColor = new Color(.34f,.4f,.43f);
             RenderSettings.ambientGroundColor = new Color(.2f,.23f,.24f);
             for(int lane=0;lane<World.LaneCount;lane++) {
@@ -236,6 +236,7 @@ namespace FrostMaze
             gameObject.AddComponent<BuildQueueView>().Initialize(this);
             gameObject.AddComponent<PrototypeHud>().Initialize(this);
             feedback=gameObject.AddComponent<CombatFeedback>();feedback.Initialize(this);
+            gameObject.AddComponent<WorldAmbience>().Initialize(this);
             var music=new GameObject("Map soundtrack");music.transform.SetParent(transform,false);music.AddComponent<MapMusic>().Initialize(this);
         }
         void Marker(V2 p, Color color, string name, float radius = 0.55f)

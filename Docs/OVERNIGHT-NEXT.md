@@ -2,6 +2,8 @@
 
 ## Latest state
 
+- World cohesion: all six requested atmosphere priorities implemented, six focused integration cases pass, and current-economy Hard replay renders 311/336 paid towers. See WORLD-COHESION.md. Source masks, wall-sealing, economy and online rules unchanged. Scheduler remains paused and mobile remains on hold. Linux package result follows the source checkpoint. Future visual work should focus on authored model/animation quality and feedback at ordinary play zoom; current assets remain procedural.
+
 - Menu clarity source 1aad187: Play Solo, Multiplayer / LAN, map selection first, and explicit same-keyboard local-slot test wording. Both desktop builds and Linux menu/form/staged solo/Quit plus both-map data smoke pass; Windows runtime untested. New packages Linux-Menu / Windows-Menu, editor restored to Linux. Read MENU-CLARITY.md. MOBILE-STATUS.md records Android/iOS as unimplemented future scope, including input/UI/device-test gaps.
 
 - Paid shared Rimewatch exit maze: ten owner-paid pieces delay all three ground lanes, leave flyers unchanged and reopen exactly after owner sales. All 70 pure cases and the focused Unity case pass. Ten new paid campaigns plus two retained controls show Rime/Stonebound/Ember can win compact Hard with three lives after a final-air rebuild; Volt/Rime/Stonebound still loses on 19. All four maze/rebuild pairs match before the finale; 702 wallets/incomes audited. Read Balance/SHARED-EXIT-MAZE.md for losses and limits. Tests/harness only; packages remain db0369c.

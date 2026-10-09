@@ -11,6 +11,11 @@ namespace FrostMaze
         bool robot,positioned;
         long lastTick=-1;
         V2 previous;
+        int observedTowerId;
+        long gestureUntil=-1;
+        V2 workTarget;
+        public bool Constructing=>lastTick<gestureUntil;
+        public bool Walking {get;private set;}
         Transform leftBoot,rightBoot,leftArm,rightArm,staff,ring;
         Renderer ownerBadge;
         Material[] palette;
@@ -133,13 +138,31 @@ namespace FrostMaze
             ring.localPosition=new Vector3(0,.04f-transform.position.y,0);
             if(reset||tick!=lastTick) {
                 bool walking=!reset&&movement.Length>.001f&&movement.Length<3;
-                if(walking)transform.rotation=Quaternion.LookRotation(new Vector3(movement.X,0,movement.Y));
-                else if(reset)transform.rotation=Quaternion.identity;
+                Walking=walking;
+                int newest=reset?0:observedTowerId;
+                foreach(var tower in game.World.Grid.Towers) {
+                    newest=Mathf.Max(newest,tower.Id);
+                    if(!reset&&tower.Id>observedTowerId&&game.World.TowerOwner(tower.Id)==player) {
+                        gestureUntil=tick+14;workTarget=tower.Center;
+                    }
+                }
+                observedTowerId=newest;
+                if(reset){transform.rotation=Quaternion.identity;gestureUntil=-1;}
+                else {
+                    var facing=tick<gestureUntil?workTarget-position:movement;
+                    if(facing.Length>.001f&&(walking||tick<gestureUntil)) {
+                        float elapsed=Mathf.Clamp(tick-lastTick,1,6)*World.FixedDelta;
+                        transform.rotation=Quaternion.RotateTowards(transform.rotation,Quaternion.LookRotation(new Vector3(facing.X,0,facing.Y)),480*elapsed);
+                    }
+                }
                 float step=walking?Mathf.Sin(phase):0;
                 if(leftBoot!=null){leftBoot.localRotation=Quaternion.Euler(step*23,0,0);rightBoot.localRotation=Quaternion.Euler(-step*23,0,0);}
                 leftArm.localRotation=Quaternion.Euler((robot?8:0)-step*12,0,robot?-8:0);
                 rightArm.localRotation=Quaternion.Euler((robot?8:0)+step*8,0,robot?8:0);
-                if(staff!=null)staff.localRotation=Quaternion.Euler(step*4,0,0);
+                float work=tick<gestureUntil?Mathf.Sin(Mathf.Clamp01((gestureUntil-tick)/14f)*Mathf.PI):0;
+                rightArm.localRotation*=Quaternion.Euler(-work*68,0,-work*12);
+                leftArm.localRotation*=Quaternion.Euler(-work*32,0,work*9);
+                if(staff!=null)staff.localRotation=Quaternion.Euler(step*4-work*48,0,0);
                 lastTick=tick;
             }
             // Retain the authoritative position used to determine the next actual movement step.

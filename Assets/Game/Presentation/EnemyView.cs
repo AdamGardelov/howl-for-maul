@@ -95,8 +95,11 @@ namespace FrostMaze
             if (direction.Length > .03f)
                 transform.rotation = Quaternion.LookRotation(new Vector3(direction.X, 0, direction.Y));
             body.localPosition = new Vector3(0, flying ? Mathf.Sin(phase) * .08f : 0, 0);
+            if(enemy.Health<observedHealth)hitUntil=tick+5;
+            float hit=Mathf.Clamp01((hitUntil-tick)/5f);
+            body.localPosition+=Vector3.up*(-hit*.045f);
             // Tilt within the collision disc instead of lunging through the wall.
-            body.localRotation=Quaternion.Euler(strike*18,0,0);
+            body.localRotation=Quaternion.Euler(strike*18-hit*12,0,Mathf.Sin(enemy.Id)*hit*8);
             if (flying)
             {
                 float flap = Mathf.Sin(phase) * 22f;
@@ -104,7 +107,6 @@ namespace FrostMaze
                 rightWing.localRotation = Quaternion.Euler(0, 0, -flap);
             }
             for(int i=0;i<feet.Count;i++)feet[i].localRotation=Quaternion.Euler(Mathf.Sin(phase*1.7f+i*Mathf.PI)*Mathf.Min(1,enemy.Velocity.Length)*24,0,i<2?-22:22);
-            if(enemy.Health<observedHealth)hitUntil=tick+3;
             observedHealth=enemy.Health;
             core.sharedMaterial = tick<hitUntil ? hitMaterial : enemy.Blocked ? siegeMaterial : normalMaterial;
             slowHalo.SetActive(enemy.SlowRemaining > 0);

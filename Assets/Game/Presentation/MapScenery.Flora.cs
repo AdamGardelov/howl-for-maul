@@ -95,7 +95,7 @@ namespace FrostMaze
             for(int iz=0;iz<Mathf.CeilToInt((c.Height-4)/3.5f);iz++)for(int ix=0;ix<Mathf.CeilToInt((c.Width-4)/3.5f);ix++) {
                 int seed=(ix*73+iz*139+ix*iz*11)%97;
                 float x=2+ix*3.5f+(seed%7-3)*.3f,z=2+iz*3.5f+(seed%11-5)*.18f;
-                if(!ScenicFootprint(c,x,z,.76f)||!ClearExisting(x,z))continue;
+                if(!ScenicFootprint(c,x,z,.76f)||!ClearExisting(x,z)||!SpaceFree(x,z,.76f))continue;
                 // Focus clusters near lanes; retain a few deeper plants to break up broad flat caps.
                 bool nearLane=false;
                 for(int j=0;j<8;j++) {

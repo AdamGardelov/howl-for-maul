@@ -187,3 +187,8 @@ Paid shared Rimewatch exit maze: ten owner-paid pieces delay all three ground la
 ## Solo and LAN menu clarity
 
 Menu clarity source 1aad187: Play Solo, Multiplayer / LAN, map selection first, and explicit same-keyboard local-slot test wording. Both desktop builds and Linux menu/form/staged solo/Quit plus both-map data smoke pass; Windows runtime untested. New packages Linux-Menu / Windows-Menu, editor restored to Linux. Read MENU-CLARITY.md. MOBILE-STATUS.md records Android/iOS as unimplemented future scope, including input/UI/device-test gaps.
+
+
+## World cohesion
+
+All six atmosphere priorities have an implementation and focused verification: grouped scenery and landmarks, surface shoulders, warm/cool lighting, actor movement/construction, solid projectiles/hit reactions, and quiet local ambience. The final scenery/ambience cases pass; all 76 towers/twelve builders and 72 armed projectile signatures pass. Current-economy two-player Hard campaigns clear twenty waves on both maps; 80 wallets and 80 incomes independently audited. Corrected Unity paid replay passes with 311/336 towers, exact purchase/travel/upgrade/accounting reproduction and cleanup. The obsolete 600-gold replay fixture and cached harness were corrected, not counted as passes. See WORLD-COHESION.md for timings, failures and scoped performance limits. Linux packaging follows separately; Windows/network/native audio listening were not retested.

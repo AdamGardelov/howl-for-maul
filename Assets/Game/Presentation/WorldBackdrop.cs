@@ -32,17 +32,20 @@ namespace FrostMaze
                 if(x>=0&&x<w&&z>=0&&z<h)continue;
                 ground.Quad(new Vector3(x,Height(x,z),z),new Vector3(x,Height(x,z+8),z+8),new Vector3(x+8,Height(x+8,z+8),z+8),new Vector3(x+8,Height(x+8,z),z));
                 float cx=x+3+Mathf.PerlinNoise(x*.8f+17,z*.6f+41)*2,cz=z+3+Mathf.PerlinNoise(x*.6f+72,z*.7f+33)*2,d=Distance(cx,cz),n=Mathf.PerlinNoise(cx*.37f+53,cz*.29f+87);
-                if(d<12||d>85||n<.43f)continue;
+                if(d<7||d>85||n<.40f)continue;
                 float y=Height(cx,cz),height=2+n*6;
                 rock.Peak(cx,cz,2+n*2,y,height*(ice?.55f:1));
                 if(ice){for(int j=0;j<3;j++){float px=cx+j*1.7f-2,pz=cz-j*1.6f,py=Height(px,pz),size=.9f+n*.7f;for(int tier=0;tier<3;tier++){float radius=(1.25f-tier*.3f)*size,bottom=py+.35f+tier*1.05f*size,tip=(2.2f-tier*.35f)*size;leaves.Peak(px,pz,radius,bottom,tip);snow.Peak(px,pz,radius*.77f,bottom+tip*.28f,tip*.74f);}}}
-                else if(n>.57f){snow.Peak(cx,cz,1.8f,y+height*.65f,height*.35f);leaves.Peak(cx+2,cz-2,.7f,y,2.5f);}
+                else if(n>.50f){snow.Peak(cx,cz,1.8f,y+height*.65f,height*.35f);
+                    // Reclaimed outer foundry: dark leafy canopies among the old mineral ridges.
+                    for(int tier=0;tier<3;tier++)leaves.Peak(cx+1.4f,cz-1.3f,1.1f-tier*.2f,y+1.6f+tier*.55f,1.1f);
+                }
             }
             BuildLandmarks(game,ice,w,h);
             var material=game.MakeMaterial(Color.white);surface=Paint(ice);material.mainTexture=surface;Save("Outer terrain",ground,material);
             var ridgeMaterial=game.MakeMaterial(Color.white);ridgeTexture=PaintRidges(ice);ridgeMaterial.mainTexture=ridgeTexture;
             Save("Distant ridges",rock,ridgeMaterial);
-            Save(ice?"Frost pines":"Copper outcrops",leaves,game.MakeMaterial(ice?new Color(.12f,.27f,.28f):new Color(.52f,.31f,.12f)));
+            Save(ice?"Frost pines":"Copper outcrops",leaves,game.MakeMaterial(ice?new Color(.12f,.27f,.28f):new Color(.16f,.27f,.19f)));
             Save(ice?"Snow crowns":"Foundry peaks",snow,game.MakeMaterial(ice?new Color(.69f,.81f,.81f):new Color(.36f,.31f,.29f)));
         }
         void Save(string name,Batch b,Material material){var mesh=new Mesh{name=name,indexFormat=UnityEngine.Rendering.IndexFormat.UInt32};mesh.SetVertices(b.V);mesh.SetTriangles(b.T,0);var uv=new List<Vector2>();foreach(var vertex in b.V)uv.Add(name=="Distant ridges"?new Vector2((vertex.x+vertex.z)/8,vertex.y/8):new Vector2(vertex.x/64,vertex.z/64));mesh.SetUVs(0,uv);mesh.RecalculateNormals();mesh.RecalculateBounds();meshes.Add(mesh);var go=new GameObject(name);go.transform.SetParent(transform,false);go.AddComponent<MeshFilter>().sharedMesh=mesh;var renderer=go.AddComponent<MeshRenderer>();renderer.sharedMaterial=material;renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;}

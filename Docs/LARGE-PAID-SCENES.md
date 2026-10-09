@@ -1,5 +1,7 @@
 # Large paid defenses in the Unity renderer
 
+Current replay: see WORLD-COHESION.md and Howl-Cohesion-LargeScenes.json. The test now uses COHESION-HARD-CAMPAIGNS.json, with current 120/120 and 1,100/1,100 wallets, guards against stale rewards, and renders 311 / 336 paid towers. The measurements below are retained as the earlier historical checkpoint.
+
 This diagnostic replays two actual Hard two-player campaigns from Balance/HARD-PAIRS-ADAPTIVE.json: Rime Covenant / Stonebound on Rimewatch and Prism Division / Horizon Guild on Ironfold. It reproduces purchases, normal builder travel, upgrades and every wave through the live Unity simulation. Wallets, tower IDs, paid costs, upgrade levels, kill counts and leak counts must agree with the saved .NET campaign; the test also checks the final win/lives and clean tower/enemy view removal on restart.
 
 No money, tower models or completed campaign state is injected. The existing fixed 1,200 team budget, selected starts 7/0, all active lanes and faction rosters remain in force. For the captures the replay pauses on tick 450 of wave 20, after allowing the real views to synchronize. Captures render terrain and units only; the offscreen camera does not draw the IMGUI command HUD.

@@ -1,0 +1,20 @@
+[
+  {
+    "name": "FrostMaze.Tests.LargePaidSceneTests.PaidCampaignsRenderLateDefensesAndReleaseViews",
+    "result": "Failed",
+    "seconds": 149.30355,
+    "failure": "  Expected: 20\n  But was:  10\n"
+  },
+  {
+    "name": "FrostMaze.Tests.PlayModeIntegration.MapLandmarksNeverCoverWalkableCells",
+    "result": "Passed",
+    "seconds": 160.839253,
+    "failure": null
+  },
+  {
+    "name": "FrostMaze.Tests.WorldCohesionTests.LandmarksAmbientVoicesAndConstructionStayCosmetic",
+    "result": "Passed",
+    "seconds": 168.537043,
+    "failure": null
+  }
+]

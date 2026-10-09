@@ -243,7 +243,7 @@ namespace FrostMaze.Tests
             try {camera.targetTexture=target;camera.Render();RenderTexture.active=target;image.ReadPixels(new Rect(0,0,1440,900),0,0);image.Apply();System.IO.File.WriteAllBytes(path,image.EncodeToPNG());}
             finally {camera.targetTexture=prior;RenderTexture.active=active;Object.DestroyImmediate(image);Object.DestroyImmediate(target);}
         }
-        [UnityTest, Category("WorldAtmosphere"), Category("TerrainMaterials")]
+        [UnityTest, Category("WorldCohesion"), Category("WorldAtmosphere"), Category("TerrainMaterials")]
         public IEnumerator ExteriorAndSoundIdentityPreservePlayfield()
         {
             EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");yield return new EnterPlayMode();yield return null;
@@ -488,7 +488,7 @@ namespace FrostMaze.Tests
             Assert.That(names.Count,Is.EqualTo(2),"Artillery monopolized the mixed-weapon sound gate");
             yield return new ExitPlayMode();
         }
-        [UnityTest, Category("DepthPresentation"), Category("FollowThrough"), Category("TerrainMaterials")]
+        [UnityTest, Category("WorldCohesionFinal"), Category("WorldCohesion"), Category("DepthPresentation"), Category("FollowThrough"), Category("TerrainMaterials")]
         public IEnumerator MapLandmarksNeverCoverWalkableCells()
         {
             EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
@@ -518,7 +518,7 @@ namespace FrostMaze.Tests
                 Assert.That(fire.Find("Rising embers").GetComponent<ParticleSystem>().particleCount,Is.GreaterThan(0));
                 CaptureWorld(game.View,"/tmp/Howl-"+map+"-Terrain-Detail.png");
                 var config=game.World.Config;float cell=config.LayoutCellSize;
-                foreach(string batch in new[]{"Scenery 3","Scenery 4","Scenery 5","Scenery 11","Scenery 12","Scenery 13","Scenery 14","Scenery 15","Scenery 16","Scenery 17","Scenery 18","Scenery 19","Scenery 20","Scenery 21","Scenery 22","Scenery 23"}) {
+                foreach(string batch in new[]{"Scenery 3","Scenery 4","Scenery 5","Scenery 11","Scenery 12","Scenery 13","Scenery 14","Scenery 15","Scenery 16","Scenery 17","Scenery 18","Scenery 19","Scenery 20","Scenery 21","Scenery 22","Scenery 23","Scenery 24","Scenery 25","Scenery 26","Scenery 27","Scenery 28","Scenery 29"}) {
                     var prop=scenery.transform.Find(batch);
                     if(batch=="Scenery 12"||batch=="Scenery 13"||(int.Parse(batch.Substring(8))>=14&&int.Parse(batch.Substring(8))<=19))Assert.That(prop,Is.Not.Null,"Map must retain its landmark silhouettes");
                     if(prop==null)continue; // Theme-specific trees/rocks are optional.

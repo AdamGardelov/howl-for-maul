@@ -10,7 +10,7 @@ namespace FrostMaze.Tests
 {
     public sealed class ProjectilePresentationTests
     {
-        [UnityTest]
+        [UnityTest,Category("WorldCohesion")]
         public IEnumerator ProjectileRosterRetainsIdentityFlightPauseAndBounds()
         {
             EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");yield return new EnterPlayMode();yield return null;
@@ -39,8 +39,8 @@ namespace FrostMaze.Tests
                         var from=root.transform.position+Vector3.up*1.3f;var to=origin+new Vector3(4.5f,.3f,row*1.8f);
                         cue.Initialize(design,style,from,to,false,game.MakeMaterial(style.Color,true));cue.Render(.5f);
                         Assert.That(shot.GetComponentsInChildren<Renderer>().Length,Is.EqualTo(1));Assert.That(shot.GetComponentsInChildren<Collider>().Length,Is.Zero);
-                        var line=shot.GetComponent<LineRenderer>();Assert.That(line.positionCount,Is.GreaterThan(5));Assert.That(line.sharedMaterial.color,Is.EqualTo(style.Color));
-                        for(int n=0;n<line.positionCount;n++){var point=line.GetPosition(n);Assert.That(float.IsNaN(point.x)||float.IsNaN(point.y)||float.IsNaN(point.z),Is.False);}
+                        var mesh=shot.GetComponent<MeshFilter>().sharedMesh;Assert.That(mesh.vertexCount,Is.GreaterThan(20));Assert.That(shot.GetComponent<MeshRenderer>().sharedMaterial.color,Is.EqualTo(style.Color));
+                        foreach(var point in mesh.vertices)Assert.That(float.IsNaN(point.x)||float.IsNaN(point.y)||float.IsNaN(point.z),Is.False);
                         row++;
                     }
                     foreach(var t in group.GetComponentsInChildren<Transform>())t.gameObject.layer=31;
@@ -55,8 +55,8 @@ namespace FrostMaze.Tests
                 Assert.That(w.StartWave(),Is.True);var enemy=w.Spawn(new WaveSpec{Health=500,Flying=true},built.Center+new V2(1.8f,0));w.Step();yield return null;yield return null;
                 Assert.That(enemy.Health,Is.LessThan(500));var feedback=game.GetComponent<CombatFeedback>();var live=feedback.GetComponentInChildren<ProjectileCue>();Assert.That(live,Is.Not.Null);
                 Assert.That(live.Design,Is.EqualTo(built.Design));Assert.That(live.Style.Color,Is.EqualTo(ProjectileStyle.For(config,built.Design).Color));Assert.That(live.To.y,Is.EqualTo(1.7f));
-                var visible=live.GetComponent<LineRenderer>();var positions=new Vector3[visible.positionCount];visible.GetPositions(positions);yield return new WaitForSecondsRealtime(.25f);
-                var still=new Vector3[visible.positionCount];visible.GetPositions(still);CollectionAssert.AreEqual(positions,still,"Pause moved a projectile");
+                var visible=live.GetComponent<MeshFilter>().sharedMesh;var positions=visible.vertices;yield return new WaitForSecondsRealtime(.25f);
+                var still=visible.vertices;CollectionAssert.AreEqual(positions,still,"Pause moved a projectile");
                 // Explicit valid-design chain preserves endpoints and receives the source tower's color.
                 w.Shots.Add(new ShotEvent{Serial=1000,Design=built.Design,From=built.Center,To=built.Center+new V2(2,1),Chained=true,FromFlying=true});yield return null;yield return null;
                 var chain=GameObject.Find("Chain arc").GetComponent<LineRenderer>();Assert.That(chain.GetPosition(0).y,Is.EqualTo(1.7f));Assert.That(chain.GetPosition(chain.positionCount-1).y,Is.EqualTo(.3f));Assert.That(chain.sharedMaterial.color,Is.EqualTo(live.Style.Color));

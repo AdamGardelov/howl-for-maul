@@ -11,6 +11,8 @@ namespace FrostMaze
         readonly List<Light> fireLights=new List<Light>();
         readonly List<Transform> fireHalos=new List<Transform>();
         Texture2D fireTexture;
+        Mesh canopy;Vector3[] canopyRest,canopyMoved;
+        void RememberCanopy(Mesh mesh){canopy=mesh;canopyRest=mesh.vertices;canopyMoved=new Vector3[canopyRest.Length];mesh.MarkDynamic();}
         float fireTime,lightRefresh;
         readonly int[] nearestFires=new int[4];
         readonly float[] nearestDistances=new float[4];
@@ -42,7 +44,7 @@ namespace FrostMaze
             material.SetFloat("_Surface",1);material.SetFloat("_SrcBlend",(float)BlendMode.SrcAlpha);
             material.SetFloat("_DstBlend",(float)BlendMode.One);material.SetFloat("_ZWrite",0);
             material.SetFloat("_Cull",0);material.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");material.renderQueue=3000;
-            var color=ice?new Color(.18f,.72f,1):new Color(1,.34f,.045f);
+            var color=ice?new Color(1,.55f,.20f):new Color(1,.34f,.045f);
             var haloMesh=new Mesh{name="Fire halo quad"};
             haloMesh.vertices=new[]{new Vector3(-.5f,-.5f,0),new Vector3(.5f,-.5f,0),new Vector3(.5f,.5f,0),new Vector3(-.5f,.5f,0)};
             haloMesh.uv=new[]{Vector2.zero,Vector2.right,Vector2.one,Vector2.up};
@@ -54,7 +56,7 @@ namespace FrostMaze
                 halo.AddComponent<MeshFilter>().sharedMesh=haloMesh;
                 var haloRenderer=halo.AddComponent<MeshRenderer>();haloRenderer.sharedMaterial=material;haloRenderer.shadowCastingMode=ShadowCastingMode.Off;haloRenderer.receiveShadows=false;
                 fireHalos.Add(halo.transform);
-                var lamp=root.AddComponent<Light>();lamp.type=LightType.Point;lamp.color=color;lamp.range=4.5f;lamp.intensity=2.4f;lamp.shadows=LightShadows.None;lamp.enabled=false;fireLights.Add(lamp);
+                var lamp=root.AddComponent<Light>();lamp.type=LightType.Point;lamp.color=color;lamp.range=3.5f;lamp.intensity=1.15f;lamp.shadows=LightShadows.None;lamp.enabled=false;fireLights.Add(lamp);
                 // Small, bounded particle budget. Seeds are presentation-only and reproducible.
                 var embers=new GameObject("Rising embers");embers.transform.SetParent(root.transform,false);embers.transform.localPosition=Vector3.up*.25f;
                 var particles=embers.AddComponent<ParticleSystem>();particles.Stop(true,ParticleSystemStopBehavior.StopEmittingAndClear);
@@ -74,6 +76,14 @@ namespace FrostMaze
             if(sceneryGame==null||fireAnchors.Count==0)return;
             // Ambient fire stays alive during pause and uses real time at every combat speed.
             fireTime+=Time.unscaledDeltaTime;
+            if(canopy!=null) {
+                for(int i=0;i<canopyRest.Length;i++) {
+                    var p=canopyRest[i];float flex=Mathf.Clamp01((p.y-1.4f)/2.3f);
+                    p.x+=flex*.025f*Mathf.Sin(fireTime*1.25f+p.x*.45f+p.z*.31f);
+                    p.z+=flex*.018f*Mathf.Sin(fireTime*.9f+p.z*.5f);canopyMoved[i]=p;
+                }
+                canopy.vertices=canopyMoved;canopy.RecalculateBounds();
+            }
             foreach(var flame in flames) {
                 for(int i=0;i<flame.Rest.Length;i++) {
                     var p=flame.Rest[i];var origin=fireAnchors[flame.Anchor[i]];float h=Mathf.Max(0,p.y-origin.y),phase=flame.Anchor[i]*2.37f;
@@ -102,8 +112,8 @@ namespace FrostMaze
             }
             for(int i=0;i<fireHalos.Count;i++) {
                 float pulse=1+.1f*Mathf.Sin(fireTime*7.3f+i*2.37f)+.04f*Mathf.Sin(fireTime*13.1f+i);
-                fireHalos[i].rotation=camera.transform.rotation;fireHalos[i].localScale=Vector3.one*(1.45f*pulse);
-                fireLights[i].intensity=2.4f*pulse;
+                fireHalos[i].rotation=camera.transform.rotation;fireHalos[i].localScale=Vector3.one*(.90f*pulse);
+                fireLights[i].intensity=1.15f*pulse;
             }
         }
     }

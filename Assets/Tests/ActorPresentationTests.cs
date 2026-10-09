@@ -9,7 +9,7 @@ namespace FrostMaze.Tests
 {
     public sealed class ActorPresentationTests
     {
-        [UnityTest]
+        [UnityTest,Category("WorldCohesion")]
         public IEnumerator CompleteRosterAndBuildersHaveStableDetailedPresentation()
         {
             EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");yield return new EnterPlayMode();yield return null;
@@ -35,9 +35,11 @@ namespace FrostMaze.Tests
                     Assert.That(hero.transform.Find(map=="Rimewatch"?"Hood":"Chassis"),Is.Not.Null);
                     foreach(var renderer in builder.GetComponentsInChildren<Renderer>())if(renderer.name.StartsWith("Faction"))Assert.That(renderer.sharedMaterial,Is.SameAs(game.TowerPalette(faction)[1]));
                     builder.Sync(new V2(origin.x-4.6f,origin.z+1.0f),21,faction%4);
-                    Assert.That(Vector3.Dot(builder.transform.forward,Vector3.right),Is.GreaterThan(.99f),"Builder must face actual motion");
+                    Assert.That(Vector3.Dot(builder.transform.forward,Vector3.right),Is.InRange(.01f,.99f),"First movement should turn smoothly rather than snap");
+                    for(int t=22;t<=28;t++)builder.Sync(new V2(origin.x-4.6f+(t-21)*.1f,origin.z+1),t,faction%4);
+                    Assert.That(Vector3.Dot(builder.transform.forward,Vector3.right),Is.GreaterThan(.99f),"Builder did not finish turning toward motion");
                     var rotation=hero.transform.Find("Left arm").localRotation;var height=hero.transform.position.y;
-                    builder.Sync(new V2(origin.x-4.6f,origin.z+1.0f),21,faction%4);
+                    builder.Sync(new V2(origin.x-3.9f,origin.z+1.0f),28,faction%4);
                     Assert.That(hero.transform.Find("Left arm").localRotation,Is.EqualTo(rotation),"Frozen tick changed pose");Assert.That(hero.transform.position.y,Is.EqualTo(height),"Paused hovering must not jitter");
                     builder.Sync(new V2(origin.x-4.7f,origin.z+1),0,(faction+1)%4);Assert.That(hero.transform.rotation,Is.EqualTo(Quaternion.identity),"Reset/switch must not preserve another player's heading");
                     Assert.That(hero.transform.Find("Ownership ring").GetComponent<Renderer>().sharedMaterial,Is.SameAs(game.OwnerMaterial((faction+1)%4)));

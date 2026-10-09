@@ -1,0 +1,32 @@
+[
+  {
+    "name": "FrostMaze.Tests.ActorPresentationTests.CompleteRosterAndBuildersHaveStableDetailedPresentation",
+    "result": "Passed",
+    "seconds": 153.946592,
+    "failure": null
+  },
+  {
+    "name": "FrostMaze.Tests.PlayModeIntegration.ExteriorAndSoundIdentityPreservePlayfield",
+    "result": "Passed",
+    "seconds": 156.606108,
+    "failure": null
+  },
+  {
+    "name": "FrostMaze.Tests.PlayModeIntegration.MapLandmarksNeverCoverWalkableCells",
+    "result": "Passed",
+    "seconds": 165.584346,
+    "failure": null
+  },
+  {
+    "name": "FrostMaze.Tests.ProjectilePresentationTests.ProjectileRosterRetainsIdentityFlightPauseAndBounds",
+    "result": "Passed",
+    "seconds": 157.235935,
+    "failure": null
+  },
+  {
+    "name": "FrostMaze.Tests.WorldCohesionTests.LandmarksAmbientVoicesAndConstructionStayCosmetic",
+    "result": "Failed",
+    "seconds": 158.738393,
+    "failure": "  Expected: greater than 8\n  But was:  7\n"
+  }
+]

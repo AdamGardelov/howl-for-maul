@@ -14,7 +14,7 @@ namespace FrostMaze
         public int RecentLeaks => alertTime<leakAlertUntil ? recentLeaks : 0;
         Material bolt,ember,defeat,airDefeat,leak,rubble; AudioSource sound; AudioClip boltClip,emberClip,leakClip;
         readonly Dictionary<int,Material> weaponColors=new Dictionary<int,Material>();
-        Material WeaponColor(ShotEvent shot){if(shot.Design<0||shot.Design>=game.World.Config.Catalog.Length)return shot.Splash>0?ember:bolt;if(weaponColors.TryGetValue(shot.Design,out var color))return color;color=game.MakeMaterial(ProjectileStyle.For(game.World.Config,shot.Design).Color,true);weaponColors[shot.Design]=color;return color;}
+        Material WeaponColor(ShotEvent shot){if(shot.Design<0||shot.Design>=game.World.Config.Catalog.Length)return shot.Splash>0?ember:bolt;if(weaponColors.TryGetValue(shot.Design,out var color))return color;color=game.MakeMaterial(ProjectileStyle.For(game.World.Config,shot.Design).Color);weaponColors[shot.Design]=color;return color;}
         float nextShotSound,nextLeakSound;TowerSoundBank soundBank;
         readonly Dictionary<int,int> soundVariations=new Dictionary<int,int>();
         readonly Dictionary<int,float> lastWeaponHeard=new Dictionary<int,float>();

@@ -145,8 +145,20 @@ namespace FrostMaze
                 stone=Color.Lerp(stone,ice?new Color(.36f,.43f,.40f):new Color(.36f,.31f,.23f),travel*.15f);
                 float moss=PaintMask(.58f,.76f,Mathf.PerlinNoise(wx*.38f+8,wz*.38f+20))*edge*(1-drift);
                 stone=Color.Lerp(stone,ice?new Color(.20f,.32f,.27f):new Color(.21f,.30f,.23f),moss*.26f);
+                var top=RaisedSurfaceColor(wx,wz,ice);
+                float shoulder=PaintMask(.70f,.96f,edge+ (wear-.5f)*.14f);
+                stone=Color.Lerp(stone,top,shoulder*(ice?.62f:.38f));
+                // Weathering follows the new places, not unrelated evenly repeated speckles.
+                foreach(var anchor in landmarks) {
+                    float d=new Vector2(wx-anchor.x,wz-anchor.z).magnitude;
+                    if(d<3)stone=Color.Lerp(stone,ice?new Color(.27f,.34f,.32f):new Color(.13f,.15f,.14f),(1-d/3)*.22f);
+                }
                 ground[y*size+x]=stone;
-                cap[y*size+x]=RaisedSurfaceColor(wx,wz,ice);
+                foreach(var anchor in landmarks) {
+                    float d=new Vector2(wx-anchor.x,wz-anchor.z).magnitude;
+                    if(d<3.1f)top=Color.Lerp(top,ice?new Color(.30f,.38f,.37f):new Color(.13f,.16f,.14f),Mathf.Clamp01(1-d/3.1f)*.72f);
+                }
+                cap[y*size+x]=top;
                 float current=Mathf.Sin(wz*2.4f+Mathf.Sin(wx*.63f)*1.7f)*.5f+.5f;
                 float pool=Mathf.PerlinNoise(wx*.12f+7,wz*.15f+11);
                 water[y*size+x]=Color.Lerp(ice?new Color(.045f,.13f,.18f):new Color(.045f,.085f,.085f),ice?new Color(.10f,.25f,.29f):new Color(.105f,.18f,.15f),pool*.8f+current*.12f);

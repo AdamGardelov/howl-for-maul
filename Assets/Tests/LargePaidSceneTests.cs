@@ -19,7 +19,7 @@ namespace FrostMaze.Tests
         [Serializable] public sealed class Upgrade { public int Player,TowerId,Level,Cost,BeforeWave; }
         // Saved ledgers use Wave as the field name; it cannot match this class's name.
         [Serializable] public sealed class Round { public int Wave,Killed,Leaked,Ticks;public int[] PlayerGold; }
-        [Serializable] public sealed class Campaign { public string Map;public string[] Factions;public int[] StartingPositions;public int Lives;public Purchase[] Placements;public Upgrade[] Upgrades;public Round[] Waves; }
+        [Serializable] public sealed class Campaign { public string Map,Difficulty;public int StartingTeamGold;public int[] StartingWallets,KillRewards,ClearRewards;public string[] Factions;public int[] StartingPositions;public int Lives;public Purchase[] Placements;public Upgrade[] Upgrades;public Round[] Waves; }
         [Serializable] public sealed class Campaigns { public Campaign[] Runs; }
         [Serializable] public sealed class Measurement {
             public string Map,Device,Api;public int Towers,Enemies,ActiveTowerRenderers,UniqueTowerMeshes;
@@ -46,20 +46,23 @@ namespace FrostMaze.Tests
                 report.Capture=report.Map+"-paid.png";File.WriteAllBytes(Path.Combine(Output,report.Capture),image.EncodeToPNG());
             }finally {RenderTexture.active=previous;camera.targetTexture=null;Object.Destroy(go);if(image!=null)Object.Destroy(image);RenderTexture.ReleaseTemporary(target);}
         }
-        [UnityTest,Category("LargePaidScene"),Timeout(600000)]
+        [UnityTest,Category("LargePaidScene"),Category("WorldCohesionFinal"),Timeout(600000)]
         public IEnumerator PaidCampaignsRenderLateDefensesAndReleaseViews()
         {
             EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");yield return new EnterPlayMode();yield return null;
-            var path=Path.Combine(Application.dataPath,"../Docs/Balance/HARD-PAIRS-ADAPTIVE.json");
+            var path=Path.Combine(Application.dataPath,"../Docs/Balance/COHESION-HARD-CAMPAIGNS.json");
             var ledger=JsonUtility.FromJson<Campaigns>("{\"Runs\":"+File.ReadAllText(path)+"}");
             var report=new Report();Directory.CreateDirectory(Output);
-            foreach(int selected in new[]{0,3}) {
+            foreach(int selected in new[]{0,1}) {
                 var saved=ledger.Runs[selected];var game=Object.FindFirstObjectByType<Prototype>();
                 game.ChooseMap(Resources.Load<MapDefinition>(saved.Map));yield return null;yield return null;
                 game=Object.FindFirstObjectByType<Prototype>();game.SetupOptions.PlayerCount=2;game.SetupOptions.Difficulty=Difficulty.Hard;
                 game.SetupOptions.StartingPositions=(int[])saved.StartingPositions.Clone();
                 for(int p=0;p<2;p++)game.SetupOptions.Factions[p]=Array.FindIndex(game.Map.Settings.Factions,f=>f.Name==saved.Factions[p]);
                 game.StartMatch();game.Paused=true;game.SoundEnabled=false;var w=game.World;
+                Assert.That(saved.Difficulty,Is.EqualTo("Hard"));Assert.That(w.Config.StartingGold,Is.EqualTo(saved.StartingTeamGold),"Replay ledger is from a different economy");
+                for(int p=0;p<2;p++)Assert.That(w.Players[p].Gold,Is.EqualTo(saved.StartingWallets[p]),"Stale starting wallet fixture");
+                for(int wave=0;wave<20;wave++){Assert.That(w.KillGold(wave),Is.EqualTo(saved.KillRewards[wave]));Assert.That(w.ClearGold(wave),Is.EqualTo(saved.ClearRewards[wave]));}
                 for(int round=1;round<=20;round++) {
                     for(int player=1;player<=2;player++) {
                         w.SelectPlayer(player-1);

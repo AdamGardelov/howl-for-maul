@@ -19,7 +19,7 @@ namespace FrostMaze
             }
         }
         public void Build(Prototype game) {
-            var c=game.World.Config;bool ice=c.Theme!="iron";var batches=new Batch[24];for(int i=0;i<batches.Length;i++)batches[i]=new Batch();
+            var c=game.World.Config;bool ice=c.Theme!="iron";var batches=new Batch[30];for(int i=0;i<batches.Length;i++)batches[i]=new Batch();
             // Draw the source cells as one continuous surface: only exposed edges receive bevels.
             bool Solid(int row,int col) {
                 if(row<0||row>=c.LayoutRows.Length||col<0||col>=c.LayoutRows[row].Length)return false;
@@ -50,31 +50,7 @@ namespace FrostMaze
                     batches[1].Peak(x+cell*.5f,z+cell*.5f,cell*.27f,h+.2f,.32f);
                 }
             }
-            // Sparse landmarks occupy only the interiors of blocked source cells.
-            for(int row=2;row<c.LayoutRows.Length-2;row+=ice?4:7)for(int col=2;col<c.LayoutRows[row].Length-2;col+=ice?4:7) {
-                char k=c.LayoutRows[row][col];if(k!=(ice?'T':'#'))continue;
-                bool interior=true;for(int y=-1;y<=1;y++)for(int x=-1;x<=1;x++)if(c.LayoutRows[row+y][col+x]!=k)interior=false;if(!interior)continue;
-                float x0=(col+.5f)*c.LayoutCellSize,z=(c.LayoutRows.Length-row-.5f)*c.LayoutCellSize;
-                if(ice){
-                    int seed=(row*31+col*17)%13;if(seed<3)continue;
-                    float size=.8f+seed*.035f;x0+=(seed%3-1)*.14f;z+=(seed%4-1)*.1f;
-                    batches[3].Box(x0-.08f,z-.08f,.16f,.16f,.7f,1.35f);
-                    for(int tier=0;tier<3;tier++) {
-                        float baseY=.95f+tier*.43f*size,radius=(.68f-tier*.15f)*size,height=(.92f-tier*.12f)*size;
-                        batches[4].Peak(x0,z,radius,baseY,height);
-                        batches[1].Peak(x0,z,radius*.78f,baseY+height*.28f,height*.76f);
-                    }
-                }
-                else {
-                    // Octagonal forge buttresses replace plain rectangular posts.
-                    Ring(batches[3],x0,z,.6f,.18f,.34f,.27f);
-                    Ring(batches[3],x0,z,.78f,.96f,.25f,.21f);
-                    Ring(batches[5],x0,z,1.54f,.055f,.24f,.24f);
-                    Ring(batches[3],x0,z,1.74f,.12f,.21f,.28f);
-                    batches[3].Peak(x0,z,.28f,1.86f,.18f);
-                    for(int side=-1;side<=1;side+=2)batches[5].Box(x0+side*.215f-.018f,z-.035f,.036f,.07f,.85f,1.29f);
-                }
-            }
+            BuildComposition(batches,c,ice);
             // Tall landmarks sit wholly on blocked source cells. Never reserve or cover a build cell.
             // Keep a small gap to the source-cell edge even on Ironfold's half-unit mask.
             void Beacon(FrostMaze.Simulation.V2 origin,int side,bool exit) {
@@ -102,20 +78,28 @@ namespace FrostMaze
             palette.Add(ice?new Color(.12f,.34f,.32f):new Color(.3f,.22f,.16f));
             palette.Add(ice?new Color(.56f,.69f,.79f):new Color(.69f,.4f,.17f));
             palette.Add(ice?new Color(.24f,.34f,.38f):new Color(.22f,.23f,.25f));
-            palette.Add(ice?new Color(.25f,.8f,.95f):new Color(1,.39f,.075f));
-            palette.Add(ice?new Color(.8f,.97f,1):new Color(1,.85f,.36f));
+            palette.Add(ice?new Color(.95f,.43f,.13f):new Color(1,.39f,.075f));
+            palette.Add(ice?new Color(1,.82f,.43f):new Color(1,.85f,.36f));
             palette.Add(ice?new Color(.54f,.74f,.79f):new Color(.43f,.3f,.19f));
             palette.Add(ice?new Color(.30f,.34f,.24f):new Color(.22f,.32f,.18f));
             palette.Add(ice?new Color(.54f,.59f,.46f):new Color(.46f,.48f,.28f));
             palette.Add(ice?new Color(.23f,.32f,.35f):new Color(.28f,.30f,.27f));
             palette.Add(ice?new Color(.49f,.62f,.66f):new Color(.46f,.36f,.23f));
+            palette.Add(ice?new Color(.43f,.53f,.53f):new Color(.24f,.30f,.21f)); // layered banks
+            palette.Add(ice?new Color(.26f,.36f,.39f):new Color(.28f,.29f,.25f)); // weathered stone
+            palette.Add(ice?new Color(.28f,.22f,.17f):new Color(.37f,.25f,.15f)); // timber/copper
+            palette.Add(ice?new Color(.12f,.25f,.23f):new Color(.17f,.29f,.18f)); // canopy
+            palette.Add(ice?new Color(.60f,.68f,.67f):new Color(.34f,.42f,.27f)); // crowns
+            palette.Add(ice?new Color(.34f,.59f,.64f):new Color(.85f,.34f,.06f)); // landmark heart
             PaintTerrain(c,ice);
             for(int i=0;i<batches.Length;i++) {
                 var b=batches[i];if(b.V.Count==0)continue;var mesh=new Mesh{name="Original terrain batch "+i,indexFormat=UnityEngine.Rendering.IndexFormat.UInt32};mesh.SetVertices(b.V);mesh.SetTriangles(b.T,0);mesh.RecalculateNormals();mesh.RecalculateBounds();meshes.Add(mesh);
+                if(i>=24&&i<=28){var uv=new List<Vector2>();foreach(var vertex in b.V)uv.Add(new Vector2((vertex.x+vertex.z)/4,vertex.y/3));mesh.SetUVs(0,uv);}
                 if(i==0){var uv=new List<Vector2>();foreach(var vertex in b.V)uv.Add(new Vector2((vertex.x+vertex.z)/4,vertex.y/(ice?.72f:.6f)));mesh.SetUVs(0,uv);}
                 if(i==6||i==1||i==2){var uv=new List<Vector2>();foreach(var vertex in b.V)uv.Add(new Vector2(vertex.x/c.Width,vertex.z/c.Height));mesh.SetUVs(0,uv);}
                 var obj=new GameObject("Scenery "+i);obj.layer=30;obj.transform.SetParent(transform,false);obj.AddComponent<MeshFilter>().sharedMesh=mesh;var renderer=obj.AddComponent<MeshRenderer>();renderer.sharedMaterial=game.MakeMaterial(i==0||i==1||i==6?Color.white:palette[i],i==13||i==17||i==18);
                 if(i==17||i==18)RememberFlame(mesh);
+                if(i==27)RememberCanopy(mesh);
                 if(i==17||i==18)renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;
                 if(i==2){renderer.sharedMaterial.color=Color.white;renderer.sharedMaterial.mainTexture=waterTexture;}
                 if(i==0)renderer.sharedMaterial.mainTexture=wallTexture;
