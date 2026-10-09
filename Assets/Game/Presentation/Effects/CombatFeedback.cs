@@ -14,13 +14,13 @@ namespace FrostMaze
         public int RecentLeaks => alertTime<leakAlertUntil ? recentLeaks : 0;
         Material bolt,ember,defeat,airDefeat,leak,rubble; AudioSource sound; AudioClip boltClip,emberClip,leakClip;
         readonly Dictionary<int,Material> weaponColors=new Dictionary<int,Material>();
-        Material WeaponColor(ShotEvent shot){if(shot.Design<0||shot.Design>=game.World.Config.Catalog.Length)return shot.Splash>0?ember:bolt;if(weaponColors.TryGetValue(shot.Design,out var color))return color;int faction=0;for(int i=0;i<game.World.Config.Factions.Length;i++)if(System.Array.IndexOf(game.World.Config.Factions[i].Designs,shot.Design)>=0)faction=i;color=game.TowerPalette(faction)[2];weaponColors[shot.Design]=color;return color;}
+        Material WeaponColor(ShotEvent shot){if(shot.Design<0||shot.Design>=game.World.Config.Catalog.Length)return shot.Splash>0?ember:bolt;if(weaponColors.TryGetValue(shot.Design,out var color))return color;color=game.MakeMaterial(ProjectileStyle.For(game.World.Config,shot.Design).Color,true);weaponColors[shot.Design]=color;return color;}
         float nextShotSound,nextLeakSound;TowerSoundBank soundBank;
         public int SoundDispatches {get;private set;}
         public string LastSound {get;private set;}
         readonly List<Flash> flashes=new List<Flash>();
         readonly Plane[] shotFrustum=new Plane[6];
-        sealed class Flash { public GameObject Object; public float Until,Start,Duration,Scale; public Vector3 Origin; public bool Pulse; }
+        sealed class Flash { public GameObject Object; public float Until,Start,Duration,Scale; public Vector3 Origin; public bool Pulse; public ProjectileCue Projectile; }
         public void Initialize(Prototype prototype)
         {
             effectsRoot=new GameObject("Combat cues").transform;effectsRoot.SetParent(transform,false);
@@ -106,7 +106,7 @@ namespace FrostMaze
             if(shot.Splash>0)bounds.Encapsulate(new Bounds(
                 new Vector3(shot.To.X,shot.Flying?1.7f:.12f,shot.To.Y),
                 new Vector3(shot.Splash*2,.05f,shot.Splash*2)));
-            bounds.Expand(.12f); // Include the beam/ring width at the frustum boundary.
+            bounds.Expand(1.6f); // Includes projectile tips, shell arcs and impact width at screen edges.
             return GeometryUtility.TestPlanesAABB(shotFrustum,bounds);
         }
         void DispatchSound(AudioClip clip)
@@ -138,6 +138,7 @@ namespace FrostMaze
             for(int i=flashes.Count-1;i>=0;i--) {
                 var f=flashes[i];
                 if(effectTime>=f.Until){Destroy(f.Object);flashes.RemoveAt(i);continue;}
+                if(f.Projectile!=null)f.Projectile.Render((effectTime-f.Start)/f.Duration);
                 if(f.Pulse) {
                     float t=Mathf.Clamp01((effectTime-f.Start)/f.Duration);
                     f.Object.transform.localScale=Vector3.one*(f.Scale*(1+2*t)*(1-t));
@@ -155,10 +156,18 @@ namespace FrostMaze
                 // Consume unseen events without spending the shared visible-effect budget.
                 if(flashes.Count<64&&ShotInView(shot,from,to)) {
                     var obj=new GameObject(shot.Chained?"Chain arc":"Tower shot");obj.transform.SetParent(effectsRoot,false);
-                    var line=obj.AddComponent<LineRenderer>();line.sharedMaterial=WeaponColor(shot);line.positionCount=2;line.startWidth=.055f;line.endWidth=.02f;
-                    line.SetPosition(0,from);line.SetPosition(1,to);
-                    line.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;line.receiveShadows=false;
-                    flashes.Add(new Flash{Object=obj,Until=effectTime+.12f});
+                    bool styled=shot.Design>=0&&shot.Design<observed.Config.Catalog.Length;
+                    if(styled) {
+                        var style=ProjectileStyle.For(observed.Config,shot.Design);var cue=obj.AddComponent<ProjectileCue>();
+                        cue.Initialize(shot.Design,style,from,to,shot.Chained,WeaponColor(shot));
+                        flashes.Add(new Flash{Object=obj,Start=effectTime,Duration=style.Duration,Until=effectTime+style.Duration,Projectile=cue});
+                    } else {
+                        // Legacy/debug events without a design retain the generic tracer.
+                        var line=obj.AddComponent<LineRenderer>();line.sharedMaterial=WeaponColor(shot);line.positionCount=2;line.startWidth=.055f;line.endWidth=.02f;
+                        line.SetPosition(0,from);line.SetPosition(1,to);
+                        line.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;line.receiveShadows=false;
+                        flashes.Add(new Flash{Object=obj,Until=effectTime+.12f});
+                    }
                     if(shot.Splash>0 && flashes.Count<64) {
                         var ring=new GameObject("Splash impact");ring.transform.SetParent(effectsRoot,false);var r=ring.AddComponent<LineRenderer>();r.sharedMaterial=WeaponColor(shot);r.positionCount=25;r.startWidth=r.endWidth=.05f;
                         r.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;r.receiveShadows=false;
