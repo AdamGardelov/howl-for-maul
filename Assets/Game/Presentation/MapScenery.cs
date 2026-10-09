@@ -19,7 +19,7 @@ namespace FrostMaze
             }
         }
         public void Build(Prototype game) {
-            var c=game.World.Config;bool ice=c.Theme!="iron";var batches=new Batch[20];for(int i=0;i<batches.Length;i++)batches[i]=new Batch();
+            var c=game.World.Config;bool ice=c.Theme!="iron";var batches=new Batch[24];for(int i=0;i<batches.Length;i++)batches[i]=new Batch();
             // Draw the source cells as one continuous surface: only exposed edges receive bevels.
             bool Solid(int row,int col) {
                 if(row<0||row>=c.LayoutRows.Length||col<0||col>=c.LayoutRows[row].Length)return false;
@@ -105,10 +105,14 @@ namespace FrostMaze
             palette.Add(ice?new Color(.25f,.8f,.95f):new Color(1,.39f,.075f));
             palette.Add(ice?new Color(.8f,.97f,1):new Color(1,.85f,.36f));
             palette.Add(ice?new Color(.54f,.74f,.79f):new Color(.43f,.3f,.19f));
+            palette.Add(ice?new Color(.30f,.34f,.24f):new Color(.22f,.32f,.18f));
+            palette.Add(ice?new Color(.54f,.59f,.46f):new Color(.46f,.48f,.28f));
+            palette.Add(ice?new Color(.23f,.32f,.35f):new Color(.28f,.30f,.27f));
+            palette.Add(ice?new Color(.49f,.62f,.66f):new Color(.46f,.36f,.23f));
             PaintTerrain(c,ice);
             for(int i=0;i<batches.Length;i++) {
                 var b=batches[i];if(b.V.Count==0)continue;var mesh=new Mesh{name="Original terrain batch "+i,indexFormat=UnityEngine.Rendering.IndexFormat.UInt32};mesh.SetVertices(b.V);mesh.SetTriangles(b.T,0);mesh.RecalculateNormals();mesh.RecalculateBounds();meshes.Add(mesh);
-                if(i==0){var uv=new List<Vector2>();foreach(var vertex in b.V)uv.Add(new Vector2((vertex.x+vertex.z)/4,vertex.y*2));mesh.SetUVs(0,uv);}
+                if(i==0){var uv=new List<Vector2>();foreach(var vertex in b.V)uv.Add(new Vector2((vertex.x+vertex.z)/4,vertex.y/(ice?.72f:.6f)));mesh.SetUVs(0,uv);}
                 if(i==6||i==1||i==2){var uv=new List<Vector2>();foreach(var vertex in b.V)uv.Add(new Vector2(vertex.x/c.Width,vertex.z/c.Height));mesh.SetUVs(0,uv);}
                 var obj=new GameObject("Scenery "+i);obj.layer=30;obj.transform.SetParent(transform,false);obj.AddComponent<MeshFilter>().sharedMesh=mesh;var renderer=obj.AddComponent<MeshRenderer>();renderer.sharedMaterial=game.MakeMaterial(i==0||i==1||i==6?Color.white:palette[i],i==13||i==17||i==18);
                 if(i==17||i==18)RememberFlame(mesh);

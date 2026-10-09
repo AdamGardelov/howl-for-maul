@@ -49,23 +49,24 @@ namespace FrostMaze.Tests
                 Assert.That(old==null,Is.True,"Replacing a map must release its texture");
             }
         }
-        [Test]
+        [Test, Category("TerrainMaterials")]
         public void SnowSurfaceRepeatsContinuouslyAcrossExteriorTiles()
         {
             var method=typeof(MapScenery).GetMethod("RaisedSurfaceColor",System.Reflection.BindingFlags.NonPublic|System.Reflection.BindingFlags.Static);
             Assert.That(method,Is.Not.Null);
-            UnityEngine.Color Sample(float x,float z)=>(UnityEngine.Color)method.Invoke(null,new object[]{x,z,true});
+            bool ice=true;UnityEngine.Color Sample(float x,float z)=>(UnityEngine.Color)method.Invoke(null,new object[]{x,z,ice});
             void Near(UnityEngine.Color a,UnityEngine.Color b,float tolerance)
             {
                 for(int channel=0;channel<3;channel++)Assert.That(a[channel],Is.EqualTo(b[channel]).Within(tolerance),"Snow tile color discontinuity");
             }
+            foreach(bool theme in new[]{true,false}){ice=theme;
             foreach(float coordinate in new[]{-127.3f,-64f,-.1f,0f,7.5f,31.7f,63.9f,64f,140.2f}) {
                 Near(Sample(0,coordinate),Sample(64,coordinate),.0001f);
                 Near(Sample(coordinate,0),Sample(coordinate,64),.0001f);
                 Near(Sample(coordinate,17),Sample(coordinate+64,17),.0001f);
                 Near(Sample(-.001f,coordinate),Sample(.001f,coordinate),.001f);
                 Near(Sample(coordinate,63.999f),Sample(coordinate,64.001f),.001f);
-            }
+            }}
         }
         [Test]
         public void CompactTowerTooltipsTrackOwnedRequirementsAndExactShortfall()

@@ -5,7 +5,7 @@ namespace FrostMaze
     // Exterior terrain is cosmetic and never enters navigation, picking or the north-up minimap.
     public sealed partial class WorldBackdrop : MonoBehaviour
     {
-        Texture2D surface;
+        Texture2D surface,ridgeTexture;
         readonly List<Mesh> meshes=new List<Mesh>();
         sealed class Batch {
             public readonly List<Vector3> V=new List<Vector3>();public readonly List<int> T=new List<int>();
@@ -40,12 +40,24 @@ namespace FrostMaze
             }
             BuildLandmarks(game,ice,w,h);
             var material=game.MakeMaterial(Color.white);surface=Paint(ice);material.mainTexture=surface;Save("Outer terrain",ground,material);
-            Save("Distant ridges",rock,game.MakeMaterial(ice?new Color(.24f,.36f,.4f):new Color(.20f,.21f,.24f)));
+            var ridgeMaterial=game.MakeMaterial(Color.white);ridgeTexture=PaintRidges(ice);ridgeMaterial.mainTexture=ridgeTexture;
+            Save("Distant ridges",rock,ridgeMaterial);
             Save(ice?"Frost pines":"Copper outcrops",leaves,game.MakeMaterial(ice?new Color(.12f,.27f,.28f):new Color(.52f,.31f,.12f)));
             Save(ice?"Snow crowns":"Foundry peaks",snow,game.MakeMaterial(ice?new Color(.69f,.81f,.81f):new Color(.36f,.31f,.29f)));
         }
-        void Save(string name,Batch b,Material material){var mesh=new Mesh{name=name,indexFormat=UnityEngine.Rendering.IndexFormat.UInt32};mesh.SetVertices(b.V);mesh.SetTriangles(b.T,0);var uv=new List<Vector2>();foreach(var vertex in b.V)uv.Add(new Vector2(vertex.x/64,vertex.z/64));mesh.SetUVs(0,uv);mesh.RecalculateNormals();mesh.RecalculateBounds();meshes.Add(mesh);var go=new GameObject(name);go.transform.SetParent(transform,false);go.AddComponent<MeshFilter>().sharedMesh=mesh;var renderer=go.AddComponent<MeshRenderer>();renderer.sharedMaterial=material;renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;}
+        void Save(string name,Batch b,Material material){var mesh=new Mesh{name=name,indexFormat=UnityEngine.Rendering.IndexFormat.UInt32};mesh.SetVertices(b.V);mesh.SetTriangles(b.T,0);var uv=new List<Vector2>();foreach(var vertex in b.V)uv.Add(name=="Distant ridges"?new Vector2((vertex.x+vertex.z)/8,vertex.y/8):new Vector2(vertex.x/64,vertex.z/64));mesh.SetUVs(0,uv);mesh.RecalculateNormals();mesh.RecalculateBounds();meshes.Add(mesh);var go=new GameObject(name);go.transform.SetParent(transform,false);go.AddComponent<MeshFilter>().sharedMesh=mesh;var renderer=go.AddComponent<MeshRenderer>();renderer.sharedMaterial=material;renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;}
         Texture2D Paint(bool ice){const int size=512;var pixels=new Color[size*size];for(int y=0;y<size;y++)for(int x=0;x<size;x++){float wx=x*64f/size,wz=y*64f/size;pixels[y*size+x]=MapScenery.RaisedSurfaceColor(wx,wz,ice);}var texture=new Texture2D(size,size,TextureFormat.RGB24,true){name="Original exterior terrain wash",wrapMode=TextureWrapMode.Repeat,filterMode=FilterMode.Trilinear,anisoLevel=4};texture.SetPixels(pixels);texture.Apply(true,true);return texture;}
-        void OnDestroy(){if(smokeTexture!=null)Destroy(smokeTexture);if(surface!=null)Destroy(surface);foreach(var mesh in meshes)if(mesh!=null)Destroy(mesh);}
+        Texture2D PaintRidges(bool ice)
+        {
+            const int w=512,h=128;var pixels=new Color[w*h];
+            for(int y=0;y<h;y++)for(int x=0;x<w;x++) {
+                float u=x/(float)w,v=y/(float)(h-1),wash=Mathf.PerlinNoise(u*9+21,v*3+17);
+                float stratum=.93f+.07f*Mathf.Sin(v*24+wash*3);
+                pixels[y*w+x]=Color.Lerp(ice?new Color(.22f,.32f,.36f):new Color(.20f,.23f,.22f),ice?new Color(.36f,.44f,.47f):new Color(.35f,.34f,.28f),wash)*stratum;
+            }
+            var texture=new Texture2D(w,h,TextureFormat.RGB24,true){name="Original weathered mountain strata",wrapModeU=TextureWrapMode.Repeat,wrapModeV=TextureWrapMode.Clamp,filterMode=FilterMode.Trilinear,anisoLevel=4};
+            texture.SetPixels(pixels);texture.Apply(true,true);return texture;
+        }
+        void OnDestroy(){if(ridgeTexture!=null)Destroy(ridgeTexture);if(smokeTexture!=null)Destroy(smokeTexture);if(surface!=null)Destroy(surface);foreach(var mesh in meshes)if(mesh!=null)Destroy(mesh);}
     }
 }

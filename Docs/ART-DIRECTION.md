@@ -33,3 +33,7 @@ All 76 tower designs now have faction-specific procedural models. Their paid pro
 ## Inhabited borders
 
 See MAUL-ECONOMY-IMPLEMENTED.md for the original lodge/foundry exterior pass, snow and copper roofs, warm windows, wind pennants, chimney particles and muted water textures. This improves environmental context; a complete authored art library and crowded-scene performance pass remain future work.
+
+## Material identity
+
+See TERRAIN-MATERIALS.md for snow/slate/ice shelves, mossy foundry stone, weathered cliff faces, grass tufts, slate fragments and textured distant ridges. Large material patches are emphasized over busy small-scale outlines; repeat seams are regression-tested for both palettes.

@@ -243,7 +243,7 @@ namespace FrostMaze.Tests
             try {camera.targetTexture=target;camera.Render();RenderTexture.active=target;image.ReadPixels(new Rect(0,0,1440,900),0,0);image.Apply();System.IO.File.WriteAllBytes(path,image.EncodeToPNG());}
             finally {camera.targetTexture=prior;RenderTexture.active=active;Object.DestroyImmediate(image);Object.DestroyImmediate(target);}
         }
-        [UnityTest, Category("WorldAtmosphere")]
+        [UnityTest, Category("WorldAtmosphere"), Category("TerrainMaterials")]
         public IEnumerator ExteriorAndSoundIdentityPreservePlayfield()
         {
             EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");yield return new EnterPlayMode();yield return null;
@@ -268,6 +268,7 @@ namespace FrostMaze.Tests
                 CaptureWorld(game.View,"/tmp/Howl-"+name+"-Hearths.png");
                 localCamera.FocusPoint(new FrostMaze.Simulation.V2(name=="Rimewatch"?8:12,16));localCamera.SetZoom(8,true);
                 yield return null;CaptureWorld(game.View,"/tmp/Howl-"+name+"-World-Close.png");
+                localCamera.Overview();yield return null;CaptureWorld(game.View,"/tmp/Howl-"+name+"-Terrain-Overview.png");
                 foreach(var filter in backdrop.GetComponentsInChildren<MeshFilter>()){
                     Assert.That(filter.gameObject.layer,Is.Not.EqualTo(30),"Exterior must not pollute minimap");
                     var mesh=filter.sharedMesh;var vertices=mesh.vertices;var triangles=mesh.triangles;
@@ -474,7 +475,7 @@ namespace FrostMaze.Tests
             Assert.That(feedback.SoundDispatches,Is.Zero);Assert.That(feedback.LastSound,Is.Null);Assert.That(source.mute,Is.True);
             yield return new ExitPlayMode();
         }
-        [UnityTest, Category("DepthPresentation"), Category("FollowThrough")]
+        [UnityTest, Category("DepthPresentation"), Category("FollowThrough"), Category("TerrainMaterials")]
         public IEnumerator MapLandmarksNeverCoverWalkableCells()
         {
             EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
@@ -502,11 +503,11 @@ namespace FrostMaze.Tests
                 var emitters=scenery.GetComponentsInChildren<ParticleSystem>();Assert.That(emitters.Length,Is.EqualTo(scenery.Braziers));
                 foreach(var emitter in emitters){Assert.That(emitter.main.maxParticles,Is.LessThanOrEqualTo(10));Assert.That(emitter.main.useUnscaledTime,Is.True);Assert.That(emitter.gameObject.layer,Is.Not.EqualTo(30));}
                 Assert.That(fire.Find("Rising embers").GetComponent<ParticleSystem>().particleCount,Is.GreaterThan(0));
-                CaptureWorld(game.View,"/tmp/Howl-"+map+"-Living-Fire.png");
+                CaptureWorld(game.View,"/tmp/Howl-"+map+"-Terrain-Detail.png");
                 var config=game.World.Config;float cell=config.LayoutCellSize;
-                foreach(string batch in new[]{"Scenery 3","Scenery 4","Scenery 5","Scenery 11","Scenery 12","Scenery 13","Scenery 14","Scenery 15","Scenery 16","Scenery 17","Scenery 18","Scenery 19"}) {
+                foreach(string batch in new[]{"Scenery 3","Scenery 4","Scenery 5","Scenery 11","Scenery 12","Scenery 13","Scenery 14","Scenery 15","Scenery 16","Scenery 17","Scenery 18","Scenery 19","Scenery 20","Scenery 21","Scenery 22","Scenery 23"}) {
                     var prop=scenery.transform.Find(batch);
-                    if(batch=="Scenery 12"||batch=="Scenery 13"||int.Parse(batch.Substring(8))>=14)Assert.That(prop,Is.Not.Null,"Map must retain its landmark silhouettes");
+                    if(batch=="Scenery 12"||batch=="Scenery 13"||(int.Parse(batch.Substring(8))>=14&&int.Parse(batch.Substring(8))<=19))Assert.That(prop,Is.Not.Null,"Map must retain its landmark silhouettes");
                     if(prop==null)continue; // Theme-specific trees/rocks are optional.
                     var mesh=prop.GetComponent<MeshFilter>().sharedMesh;var vertices=mesh.vertices;var triangles=mesh.triangles;
                     // Check the projected triangle bounds, not only endpoints: a bridge can have

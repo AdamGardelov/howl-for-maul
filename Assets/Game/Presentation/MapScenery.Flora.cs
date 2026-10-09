@@ -61,6 +61,18 @@ namespace FrostMaze
                     float a=turn+i*2.1f;
                     b[15].Peak(x+Mathf.Cos(a)*.18f,z+Mathf.Sin(a)*.18f,.09f,surface+.18f,.3f+i*.05f);
                 }
+                // Low hardy grass and broken slate fragments add depth inside the same safe footprint.
+                if(seed%3==0)for(int i=0;i<9;i++) {
+                    float a=turn+i*2.4f;var root=new Vector3(x+Mathf.Cos(a)*.26f,surface+.02f,z+Mathf.Sin(a)*.26f);
+                    var tip=root+new Vector3(Mathf.Cos(a)*.19f,.18f+(i%4)*.055f,Mathf.Sin(a)*.19f);
+                    Leaf(b[20],root,tip,.033f);
+                    Leaf(b[21],Vector3.Lerp(root,tip,.7f),tip,.022f);
+                }
+                if(seed%5==0)for(int i=0;i<3;i++) {
+                    float a=turn+i*2.1f,rx=x+Mathf.Cos(a)*.39f,rz=z+Mathf.Sin(a)*.39f;
+                    b[22].Peak(rx,rz,.17f,surface,.15f+i*.035f);
+                    b[23].Peak(rx,rz,.12f,surface+.055f,.105f+i*.025f);
+                }
                 PlantClusters++;
             }
             void Brazier(float x,float z) {
