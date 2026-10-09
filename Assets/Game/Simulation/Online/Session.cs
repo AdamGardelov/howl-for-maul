@@ -134,7 +134,7 @@ namespace FrostMaze.Simulation.Online
             }
             if(o.Kind!=ActionKind.ChooseFaction)World.SelectedDesign=selected;World.SelectPlayer(active);if(o.Player==LocalSlot&&message.Length>0)Notice=message;
         }
-        void CreateWorld(Difficulty difficulty){var options=new MatchOptions{PlayerCount=members.Count,UseSelectedSoloStart=true,Difficulty=difficulty,Factions=members.Select(m=>m.Faction).ToArray(),StartingPositions=members.Select(m=>m.Lane).ToArray()};World=new World(resolve(Map),options);World.SelectPlayer(LocalSlot);frame=0;accumulator=0;SpeedIndex=MatchSpeeds.Normal;Notice="All lanes active. Build, then launch a wave.";}
+        void CreateWorld(Difficulty difficulty){var options=new MatchOptions{PlayerCount=members.Count,UseSelectedSoloStart=true,Difficulty=difficulty,Factions=members.Select(m=>m.Faction).ToArray(),StartingPositions=members.Select(m=>m.Lane).ToArray()};World=new World(resolve(Map),options);World.SelectPlayer(LocalSlot);frame=0;accumulator=0;SpeedIndex=MatchSpeeds.Normal;Notice="All lanes active. Start wave 1 when ready; later waves follow a 30s countdown.";}
         void Disconnected(int id){var member=members.Find(m=>m.Id==id);if(member==null||!member.Connected)return;
             if(Stage==Stage.Match){member.Connected=false;Paused=true;ClearVotes();Notice=member.Name+" disconnected. Vote to resume with the remaining players.";}
             else {members.Remove(member);Stage=Stage.Lobby;foreach(var m in members){m.Faction=m.Lane=m.Vote=-1;m.Ready=false;}Notice="Player left. Lobby setup reset.";}

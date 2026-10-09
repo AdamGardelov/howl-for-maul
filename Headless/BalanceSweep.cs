@@ -196,7 +196,7 @@ static partial class BalanceSweep
                 keptOpen.Clear();var samples=openSamples;
                 influence.Clear(); // A previous faction may have sampled only the terminal flying route.
                 var factions=new int[4];for(int player=0;player<4;player++)factions[player]=mixed?(faction+player)%c.Factions.Length:faction;
-                var options=new MatchOptions{PlayerCount=players,Difficulty=difficulty,Factions=factions};
+                var options=new MatchOptions{PlayerCount=players,Difficulty=difficulty,Factions=factions,AutomaticWaves=false};
                 if(startingPositions!=null){options.StartingPositions=(int[])startingPositions.Clone();options.UseSelectedSoloStart=true;}
                 var w=new World(c,options);
                 var restarted=w.Restart();

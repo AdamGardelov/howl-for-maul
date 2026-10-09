@@ -36,6 +36,7 @@ namespace FrostMaze.Tests
                 w.Step();
         }
         public static readonly Case[] All ={
+            new Case("Automatic waves wait for first launch and exact intermissions",WaveSummaryCases.AutomaticWaves),
             new Case("Maul gold and wood milestones preserve four-slot budgets",EconomyCases.Milestones),
             new Case("Wood purchases, queued orders, faction switching and restart",EconomyCases.Purchases),
             new Case("Tower spatial queries match full scans through removal and rebuild",SpatialCases.TowerQueriesMatchFullScan),

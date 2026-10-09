@@ -141,5 +141,36 @@ static class NetworkChecks
             Console.WriteLine("PASS synchronized wood reward, locked faction refusal, authenticated ownership and free roster switching");
         }
     }
-    public static int Run(){try{SoloLastStand();WoodFactionCommands();SoloSpeedClocks();Refusals();VotesAndLanes();CapacityAndValidation();Pair("Rimewatch");Pair("Ironfold");return 0;}catch(Exception e){Console.Error.WriteLine(e);return 1;}}
+    static void AutomaticWaveClock(){
+        Scenario Fixture(string name){var c=Map(name);c.Waves=c.Waves.Take(3).ToArray();
+            foreach(var wave in c.Waves){wave.Count=1;wave.Flying=false;}
+            foreach(var lane in c.Lanes)lane.GroundRoute=new[]{lane.Spawn};return c;}
+        foreach(string map in new[]{"Rimewatch","Ironfold"})using(var host=new Session(Fixture,StateDigest.Scenario))using(var client=new Session(Fixture,StateDigest.Scenario)){
+            host.Host(map,"Host","",0);client.Join("127.0.0.1",host.Port,"Guest","");
+            void Pump(int count){for(int i=0;i<count;i++){host.Update(.02);client.Update(.02);Setup(host,0,0);Setup(client,1,1);Thread.Sleep(2);}}
+            for(int i=0;i<1000&&(host.World==null||client.World==null);i++)Pump(1);
+            Check(host.World!=null&&client.World!=null,"Timer fixture setup failed");Pump(1550);
+            Check(host.World.WaveIndex==-1&&client.World.WaveIndex==-1,"Initial ready period auto-launched");
+            host.Submit(new Order{Kind=ActionKind.Launch});Pump(30);
+            Check(host.World.CountingDown&&client.World.CountingDown,"Shared countdown missing");
+            long deadline=host.World.NextWaveTick;Check(client.World.NextWaveTick==deadline,"Different timer deadlines");
+            for(int speed=0;speed<MatchSpeeds.Count;speed++){
+                host.Send(new Packet{Kind=Kind.Speed,A=speed});Pump(5);long before=host.World.Tick;Pump(50);
+                Check(Math.Abs(host.World.Tick-before-30*MatchSpeeds.At(speed))<=1,"Countdown ignored shared speed");
+                Check(host.World.NextWaveTick==deadline&&client.World.NextWaveTick==deadline,"Speed changed the scheduled tick");
+            }
+            host.Send(new Packet{Kind=Kind.PauseVote});client.Send(new Packet{Kind=Kind.PauseVote});Pump(30);
+            Check(host.Paused&&client.Paused,"Timer pause vote failed");long frozen=host.World.Tick;int seconds=host.World.NextWaveSeconds;Pump(200);
+            Check(host.World.Tick==frozen&&host.World.NextWaveSeconds==seconds&&client.World.Tick==frozen,"Paused timer advanced");
+            Check(StateDigest.Of(host.World)==StateDigest.Of(client.World),"Paused timer state desynced");
+            host.Send(new Packet{Kind=Kind.PauseVote});client.Send(new Packet{Kind=Kind.PauseVote});Pump(20);
+            for(int i=0;i<1000&&host.World.WaveIndex==0;i++)Pump(1);Pump(15);
+            Check(host.World.WaveIndex==1&&client.World.WaveIndex==1,"Next wave needed another manual launch");
+            Check(host.World.CountingDown&&host.World.NextWaveTick==client.World.NextWaveTick,"Repeated intermission not synchronized");
+            client.Submit(new Order{Kind=ActionKind.Launch});Pump(30);
+            Check(host.World.Won&&client.World.Won&&!host.World.CountingDown&&!client.World.CountingDown,"Early final send or terminal timer failed");
+            Console.WriteLine("PASS "+map+" shared automatic waves: first manual, all four speeds, frozen pause, synchronized deadlines, early send and victory");
+        }
+    }
+    public static int Run(){try{AutomaticWaveClock();SoloLastStand();WoodFactionCommands();SoloSpeedClocks();Refusals();VotesAndLanes();CapacityAndValidation();Pair("Rimewatch");Pair("Ironfold");return 0;}catch(Exception e){Console.Error.WriteLine(e);return 1;}}
 }

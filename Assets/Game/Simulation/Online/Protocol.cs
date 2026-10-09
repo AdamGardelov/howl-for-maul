@@ -19,7 +19,7 @@ namespace FrostMaze.Simulation.Online
     public sealed class Packet { public Kind Kind;public int A,B,C;public long Tick;public bool Flag;public string Text="",Extra="";public Member[] Members=Array.Empty<Member>();public Order[] Orders=Array.Empty<Order>(); }
     public static class Protocol
     {
-        public const string Version="howl-direct-3";
+        public const string Version="howl-direct-4";
         public const int MaxBytes=16384;
         public static byte[] Encode(Packet p){using(var m=new MemoryStream()){using(var w=new BinaryWriter(m,Encoding.UTF8,true)){
             w.Write((byte)p.Kind);w.Write(p.A);w.Write(p.B);w.Write(p.C);w.Write(p.Tick);w.Write(p.Flag);w.Write(p.Text??"");w.Write(p.Extra??"");w.Write(p.Members.Length);

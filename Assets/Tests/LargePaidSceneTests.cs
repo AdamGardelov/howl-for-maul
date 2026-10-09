@@ -59,6 +59,7 @@ namespace FrostMaze.Tests
                 game=Object.FindFirstObjectByType<Prototype>();game.SetupOptions.PlayerCount=2;game.SetupOptions.Difficulty=Difficulty.Hard;
                 game.SetupOptions.StartingPositions=(int[])saved.StartingPositions.Clone();
                 for(int p=0;p<2;p++)game.SetupOptions.Factions[p]=Array.FindIndex(game.Map.Settings.Factions,f=>f.Name==saved.Factions[p]);
+                game.SetupOptions.AutomaticWaves=false; // Reproduce the saved, manually paced historical ledger.
                 game.StartMatch();game.Paused=true;game.SoundEnabled=false;var w=game.World;
                 Assert.That(saved.Difficulty,Is.EqualTo("Hard"));Assert.That(w.Config.StartingGold,Is.EqualTo(saved.StartingTeamGold),"Replay ledger is from a different economy");
                 for(int p=0;p<2;p++)Assert.That(w.Players[p].Gold,Is.EqualTo(saved.StartingWallets[p]),"Stale starting wallet fixture");

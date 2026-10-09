@@ -27,6 +27,10 @@ namespace FrostMaze.Simulation
             get; private set;
         }
         public bool WaveActive => Pending > 0 || Enemies.Count > 0;
+        public const int IntermissionSeconds=30,IntermissionTicks=30*IntermissionSeconds;
+        public long NextWaveTick { get; private set; } = -1;
+        public bool CountingDown => !Finished&&!WaveActive&&NextWaveTick>=0;
+        public int NextWaveSeconds => CountingDown?(int)Math.Max(0,(NextWaveTick-Tick+29)/30):0;
         public bool TowersFire = true;
         public readonly PlayerState[] Players;
         public int ActivePlayer { get; private set; }
@@ -205,7 +209,7 @@ namespace FrostMaze.Simulation
             config.Validate();
             Config = config;
             var selected=matchOptions??new MatchOptions(); selected.Validate(config.BuilderStarts.Length==0?4:config.BuilderStarts.Length);
-            options=new MatchOptions {PlayerCount=selected.PlayerCount,UseSelectedSoloStart=selected.UseSelectedSoloStart,Difficulty=selected.Difficulty,StartingPositions=(int[])selected.StartingPositions.Clone(),Factions=(int[])selected.Factions.Clone()};
+            options=new MatchOptions {PlayerCount=selected.PlayerCount,AutomaticWaves=selected.AutomaticWaves,UseSelectedSoloStart=selected.UseSelectedSoloStart,Difficulty=selected.Difficulty,StartingPositions=(int[])selected.StartingPositions.Clone(),Factions=(int[])selected.Factions.Clone()};
             Difficulty=options.Difficulty;
             Players=new PlayerState[options.PlayerCount];
             for(int i=0;i<Players.Length;i++) {
@@ -225,6 +229,7 @@ namespace FrostMaze.Simulation
         {
             if (Finished || WaveActive || WaveIndex + 1 >= Config.Waves.Length)
                 return false;
+            NextWaveTick=-1;
             WaveIndex++;
             LastWaveSummary=null;Array.Clear(waveGold,0,waveGold.Length);Array.Clear(waveWood,0,waveWood.Length);
             waveKilledStart=Killed;waveLeakedStart=Leaked;
@@ -345,6 +350,7 @@ namespace FrostMaze.Simulation
         {
             if (Finished) return;
             Tick++;
+            if(CountingDown&&Tick>=NextWaveTick)StartWave();
             int active=ActivePlayer;
             for(int i=0;i<Players.Length;i++){ActivePlayer=i;StepBuilder();}
             ActivePlayer=active;
@@ -485,6 +491,7 @@ namespace FrostMaze.Simulation
                     for(int i=0;i<Config.Waves[WaveIndex].WoodReward;i++) {int p=i%Players.Length;Players[p].Wood++;waveWood[p]++;}
                 }
                 SummarizeWave(true);
+                if(options.AutomaticWaves&&WaveIndex+1<Config.Waves.Length)NextWaveTick=Tick+IntermissionTicks;
             }
             if(Defeated&&WaveIndex>=0&&LastWaveSummary==null)SummarizeWave(false);
             if (Finished) foreach(var player in Players){player.HasBuildOrder=false;player.Queue.Clear();}

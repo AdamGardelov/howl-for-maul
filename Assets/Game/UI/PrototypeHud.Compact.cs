@@ -23,7 +23,7 @@ namespace FrostMaze
             if(GUILayout.Button("DETAILS [TAB]",button,GUILayout.Width(narrow?94:108)))game.DetailsOpen=true;
             if(GUILayout.Button(game.Paused?"RESUME [P]":"PAUSE [P]",button,GUILayout.Width(100)))game.VotePause();
             GUI.enabled=!w.Finished&&!w.WaveActive;
-            if(GUILayout.Button(w.Finished?(w.Won?"VICTORY":"DEFEAT"):w.WaveActive?"WAVE ACTIVE":"NEXT WAVE [ENTER]",button,GUILayout.Width(narrow?134:148)))game.Launch();
+            if(GUILayout.Button(w.Finished?(w.Won?"VICTORY":"DEFEAT"):w.WaveActive?"WAVE ACTIVE":w.CountingDown?"SEND NOW [ENTER]":"START [ENTER]",button,GUILayout.Width(narrow?134:148)))game.Launch();
             GUI.enabled=true;DrawSpeedControls();GUILayout.FlexibleSpace();
             if(!game.NetworkMatch&&w.Players.Length>1&&GUILayout.Button($"P{w.ActivePlayer+1}",button,GUILayout.Width(40)))w.SelectPlayer((w.ActivePlayer+1)%w.Players.Length);
             DrawResourceCounters(w,narrow);
@@ -43,7 +43,8 @@ namespace FrostMaze
             var w=game.World;int index=w.WaveIndex+1;var wave=w.PreviewWave(index);
             var box=Logical(game.ForecastHud);Frame(box);
             string kind=wave.Flying?"AIR":"GROUND";
-            GUI.Label(new Rect(box.x+12,box.y+8,box.width-24,18),$"{(index==w.Config.Waves.Length-1?"FINAL":"NEXT")} {index+1}/{w.Config.Waves.Length} · {kind}",section);
+            string timing=w.CountingDown?$" · IN {w.NextWaveSeconds}s":" · READY WHEN YOU ARE";
+            GUI.Label(new Rect(box.x+12,box.y+8,box.width-24,18),$"{(index==w.Config.Waves.Length-1?"FINAL":"NEXT")} {index+1}/{w.Config.Waves.Length} · {kind}{timing}",section);
             GUI.Label(new Rect(box.x+12,box.y+27,box.width-24,18),$"{wave.Count*w.LaneCount} enemies · {wave.Health:0.#} HP · {w.LaneCount} lanes",label);
             int defenses=w.DefensesFor(wave);
             GUI.Label(new Rect(box.x+12,box.y+47,box.width-24,20),defenses==0?$"No team weapons hit {kind.ToLowerInvariant()} · Details [TAB]":$"{defenses} team {kind.ToLowerInvariant()} weapons · Check coverage [TAB]",defenses==0?section:small);

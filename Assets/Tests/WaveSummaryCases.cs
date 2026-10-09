@@ -62,6 +62,28 @@ namespace FrostMaze.Tests
             Check(w.Defeated&&w.Pending>0&&!w.LastWaveSummary.Cleared,"Defeat must report even while enemies await spawning");
             Check(w.LastWaveSummary.Leaked==w.Leaked&&w.LastWaveSummary.TeamGold==0,"Incomplete wave report wrong");
         }
+        public static void AutomaticWaves()
+        {
+            var c=Config();c.Waves=new[]{new WaveSpec{Count=1,Health=1,Speed=.1f},new WaveSpec{Count=1,Health=1,Speed=.1f},new WaveSpec{Count=1,Health=1,Speed=.1f}};
+            var w=new World(c);Check(w.Build(2,2,out _),"Defense purchase failed");
+            for(int i=0;i<1200;i++)w.Step();
+            Check(w.WaveIndex==-1&&!w.CountingDown,"First wave started without consent");
+            Check(w.StartWave(),"First manual launch failed");Finish(w);
+            Check(w.CountingDown&&w.NextWaveSeconds==30,"Missing full intermission after clear");
+            long due=w.NextWaveTick;int gold=w.Gold;var summary=w.LastWaveSummary;
+            w.TowersFire=false;
+            for(int i=0;i<World.IntermissionTicks-1;i++)w.Step();
+            Check(w.WaveIndex==0&&w.NextWaveSeconds==1&&w.Gold==gold&&w.LastWaveSummary==summary,"Early launch or repeated completion reward");
+            w.Step();Check(w.Tick==due&&w.WaveIndex==1&&w.WaveActive&&!w.CountingDown&&w.NextWaveTick==-1,"Wave did not launch on exact fixed tick");
+            w.TowersFire=true;Finish(w);Check(w.CountingDown&&w.NextWaveSeconds==30,"Second timer missing");
+            Check(w.StartWave()&&!w.CountingDown,"Early send did not cancel timer");Finish(w);
+            Check(w.Won&&!w.CountingDown&&w.NextWaveTick==-1,"Final wave scheduled another wave");
+            var reset=w.Restart();for(int i=0;i<1200;i++)reset.Step();Check(reset.WaveIndex==-1&&!reset.CountingDown,"Restart inherited timer");
+            c=Config();c.StartingLives=1;w=new World(c);w.TowersFire=false;w.StartWave();Finish(w);
+            Check(w.Defeated&&!w.CountingDown,"Defeat scheduled another wave");
+            w=new World(Config(),new MatchOptions{AutomaticWaves=false});w.Build(2,2,out _);w.StartWave();Finish(w);
+            for(int i=0;i<1200;i++)w.Step();Check(w.WaveIndex==0&&!w.CountingDown,"Historical diagnostic mode launched automatically");
+        }
         public static void FreeBuildAwardsNoIncome()
         {
             var c=Config();c.Economy=false;var w=new World(c);w.Build(2,2,out _);w.StartWave();Finish(w);
