@@ -1,0 +1,12 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+/home/adam/Documents/Dev/howl-for-maul/Assets/Game/Simulation/Online/Protocol.cs(31,78): warning SYSLIB0060: 'Rfc2898DeriveBytes.Rfc2898DeriveBytes(string, byte[], int, HashAlgorithmName)' is obsolete: 'The constructors on Rfc2898DeriveBytes are obsolete. Use the static Pbkdf2 method instead.' (https://aka.ms/dotnet-warnings/SYSLIB0060) [/home/adam/Documents/Dev/howl-for-maul/Headless/HowlForMaul.Headless.csproj]
+  HowlForMaul.Headless -> /home/adam/Documents/Dev/howl-for-maul/Headless/bin/Release/net10.0/HowlForMaul.Headless.dll
+
+Build succeeded.
+
+/home/adam/Documents/Dev/howl-for-maul/Assets/Game/Simulation/Online/Protocol.cs(31,78): warning SYSLIB0060: 'Rfc2898DeriveBytes.Rfc2898DeriveBytes(string, byte[], int, HashAlgorithmName)' is obsolete: 'The constructors on Rfc2898DeriveBytes are obsolete. Use the static Pbkdf2 method instead.' (https://aka.ms/dotnet-warnings/SYSLIB0060) [/home/adam/Documents/Dev/howl-for-maul/Headless/HowlForMaul.Headless.csproj]
+    1 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:01.76

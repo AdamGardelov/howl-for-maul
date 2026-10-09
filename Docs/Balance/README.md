@@ -1,6 +1,6 @@
 # Normal-difficulty baseline — 2026-10-08
 
-Latest three-player Hard evidence and reusable ledger checks: [HARD-THREE-PLAYER.md](HARD-THREE-PLAYER.md). The ten-wave results below are historical.
+Latest shared-maze comparison: [SHARED-EXIT-MAZE.md](SHARED-EXIT-MAZE.md). Three-player Hard evidence and reusable ledger checks: [HARD-THREE-PLAYER.md](HARD-THREE-PLAYER.md). The ten-wave results below are historical.
 
 All 24 runs completed ten waves with 30 shared lives remaining: each of the 12 map-specific factions in solo and two-player configurations. All lanes remained active. There were no stalls, no ground leaks and no air leaks. Team gold conserved exactly in every run.
 

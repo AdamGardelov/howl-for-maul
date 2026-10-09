@@ -173,3 +173,8 @@ Compact tower tooltips now show shared weapon stats, named missing owned champio
 ## Three-player Hard and wave-income auditing
 
 Three-player Hard coverage: five mixed teams cover all twelve factions with 400 gold each and starts 7/0/4. Compact-invest wins 3/5 (both Rimewatch teams lose on wave 18); unrestricted adaptive wins 5/5 with 30 lives. New headless summary checks and independent saved-ledger auditor verify 588 wallets and 588 incomes, including 62 unequal reward splits. A paid refund control brings totals to 608 each. All 69 pure cases and eight auditor corruption/acceptance tests pass. Read Balance/HARD-THREE-PLAYER.md. Harness/tests/docs only; player packages remain runtime db0369c.
+
+
+## Shared exit maze and paid air transition
+
+Paid shared Rimewatch exit maze: ten owner-paid pieces delay all three ground lanes, leave flyers unchanged and reopen exactly after owner sales. All 70 pure cases and the focused Unity case pass. Ten new paid campaigns plus two retained controls show Rime/Stonebound/Ember can win compact Hard with three lives after a final-air rebuild; Volt/Rime/Stonebound still loses on 19. All four maze/rebuild pairs match before the finale; 702 wallets/incomes audited. Read Balance/SHARED-EXIT-MAZE.md for losses and limits. Tests/harness only; packages remain db0369c.

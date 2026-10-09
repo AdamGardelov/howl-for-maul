@@ -14,31 +14,38 @@ static partial class BalanceSweep
     sealed class SaleResult { public int Player{get;set;} public int TowerId{get;set;} public string Tower{get;set;} public int Level{get;set;} public int Refund{get;set;} public int BeforeWave{get;set;} }
     sealed class UpgradeResult { public int Player{get;set;} public int TowerId{get;set;} public string Tower{get;set;} public int Level{get;set;} public int Cost{get;set;} public int BeforeWave{get;set;} }
     sealed class WaveResult { public bool SummaryPresent{get;set;} public bool Cleared{get;set;} public int TeamIncome{get;set;} public int[] PlayerIncome{get;set;} public int[] PlayerGold{get;set;} public int Wave{get;set;} public bool Flying{get;set;} public int Killed{get;set;} public int Leaked{get;set;} public int Ticks{get;set;} public int Gold{get;set;} }
-    sealed class Result { public int StartingTeamGold{get;set;} public int KillReward{get;set;} public int WaveReward{get;set;} public List<SaleResult> Sales{get;set;}=new List<SaleResult>(); public int Refunded{get;set;} public int[] PlayerRefunds{get;set;} public int[] StartingPositions{get;set;} public float[][] InitialBuilderPositions{get;set;} public int ActiveLanes{get;set;} public int[] StartingWallets{get;set;} public int PreparationTicks{get;set;} public int[] FinalWallets{get;set;} public int[] PlayerSpending{get;set;} public string Strategy{get;set;} public string[] Factions{get;set;} public List<UpgradeResult> Upgrades{get;set;}=new List<UpgradeResult>(); public int PlayerCount{get;set;} public string Map{get;set;} public string Faction{get;set;} public string Difficulty{get;set;} public bool Won{get;set;} public bool Stalled{get;set;} public int Lives{get;set;} public int Gold{get;set;} public int Spent{get;set;} public List<Placement> Placements{get;set;}=new List<Placement>(); public List<WaveResult> Waves{get;set;}=new List<WaveResult>(); }
+    sealed class Result { public int[] OpenRouteTicks{get;set;} public int[] PreparedMazeRouteTicks{get;set;} public int InitialMazePurchases{get;set;} public int StartingTeamGold{get;set;} public int KillReward{get;set;} public int WaveReward{get;set;} public List<SaleResult> Sales{get;set;}=new List<SaleResult>(); public int Refunded{get;set;} public int[] PlayerRefunds{get;set;} public int[] StartingPositions{get;set;} public float[][] InitialBuilderPositions{get;set;} public int ActiveLanes{get;set;} public int[] StartingWallets{get;set;} public int PreparationTicks{get;set;} public int[] FinalWallets{get;set;} public int[] PlayerSpending{get;set;} public string Strategy{get;set;} public string[] Factions{get;set;} public List<UpgradeResult> Upgrades{get;set;}=new List<UpgradeResult>(); public int PlayerCount{get;set;} public string Map{get;set;} public string Faction{get;set;} public string Difficulty{get;set;} public bool Won{get;set;} public bool Stalled{get;set;} public int Lives{get;set;} public int Gold{get;set;} public int Spent{get;set;} public List<Placement> Placements{get;set;}=new List<Placement>(); public List<WaveResult> Waves{get;set;}=new List<WaveResult>(); }
     sealed class Candidate { public int X,Y; public int[] Samples; }
+    static readonly HashSet<(int x,int y)> keptOpen=new HashSet<(int,int)>();
     static readonly Dictionary<TowerSpec,List<Candidate>> influence=new Dictionary<TowerSpec,List<Candidate>>();
     static List<Candidate> Candidates(World w,TowerSpec spec,List<Sample> samples)
     {
         if(influence.TryGetValue(spec,out var cached))return cached;
         cached=new List<Candidate>();
         for(int y=1;y<w.Config.Height-1;y+=2)for(int x=1;x<w.Config.Width-1;x+=2) {
-            if(w.Grid.TerrainOverlaps(x,y,spec.Width,spec.Height))continue;
+            if(keptOpen.Contains((x,y))||w.Grid.TerrainOverlaps(x,y,spec.Width,spec.Height))continue;
             var affected=new List<int>();var p=new V2(x+.5f,y+.5f);
             for(int i=0;i<samples.Count;i++)if((samples[i].Air?spec.TargetsAir:spec.TargetsGround)&&V2.Distance(p,samples[i].Position)<spec.Range)affected.Add(i);
             cached.Add(new Candidate{X=x,Y=y,Samples=affected.ToArray()});
         }
         influence.Add(spec,cached);return cached;
     }
-    static List<Sample> Samples(Scenario c)
+    static List<Sample> Samples(Scenario c,World defense=null,List<int> travelTicks=null)
     {
         influence.Clear();
         var result=new List<Sample>();
         for(int lane=0;lane<c.Lanes.Length;lane++)foreach(bool air in new[]{false,true}) {
-            var w=new World(c);w.TowersFire=false;w.Spawn(new WaveSpec{Flying=air},w.LaneSpawn(lane),lane);
-            for(int tick=0;tick<9000&&w.Enemies.Count>0;tick++) {
+            var w=new World(c);w.TowersFire=false;
+            // Geometry-only probe copies, never free construction in the paid campaign.
+            if(defense!=null)foreach(var tower in defense.Grid.Towers)w.Grid.Build(tower.CellX,tower.CellY,tower.Spec);
+            w.Spawn(new WaveSpec{Flying=air},w.LaneSpawn(lane),lane);
+            int tick=0;
+            for(;tick<9000&&w.Enemies.Count>0;tick++) {
                 if(tick%30==0)result.Add(new Sample{Position=w.Enemies[0].Position,Air=air});w.Step();
+                if(defense!=null&&w.Enemies.Any(e=>e.Blocked))throw new Exception("Prepared shared maze triggered siege.");
             }
             if(w.Leaked!=1)throw new Exception("Cannot sample route");
+            travelTicks?.Add(tick);
         }
         return result;
     }
@@ -164,7 +171,8 @@ static partial class BalanceSweep
     static int TeamGold(World w) { int total=0;foreach(var p in w.Players)total+=p.Gold;return total; }
     public static int Run(string path,Difficulty difficulty,int players,string strategy="coverage",bool mixed=false,string mapFilter="",int factionFilter=-1,int[] startingPositions=null)
     {
-        if(strategy!="coverage"&&strategy!="roster"&&strategy!="maze"&&strategy!="adaptive"&&strategy!="compact"&&strategy!="compact-value"&&strategy!="compact-roles"&&strategy!="compact-support"&&strategy!="compact-invest"&&strategy!="compact-transition")throw new ArgumentException("Strategy must be coverage, roster, maze, adaptive, compact, compact-value, compact-roles, compact-support, compact-invest or compact-transition.");
+        if(strategy!="compact-shared-transition"&&strategy!="compact-shared-maze"&&strategy!="coverage"&&strategy!="roster"&&strategy!="maze"&&strategy!="adaptive"&&strategy!="compact"&&strategy!="compact-value"&&strategy!="compact-roles"&&strategy!="compact-support"&&strategy!="compact-invest"&&strategy!="compact-transition")throw new ArgumentException("Strategy must be coverage, roster, maze, adaptive, compact, compact-value, compact-roles, compact-support, compact-invest, compact-transition, compact-shared-maze or compact-shared-transition.");
+        if((strategy=="compact-shared-maze"||strategy=="compact-shared-transition")&&mapFilter!="Rimewatch")throw new ArgumentException("The shared exit maze diagnostic requires the Rimewatch map filter.");
         if(players<1||players>4)throw new ArgumentException("Player count must be 1–4.");
         if(!Enum.IsDefined(typeof(Difficulty),difficulty))throw new ArgumentException("Unknown difficulty.");
         if(mapFilter!=""&&mapFilter!="Rimewatch"&&mapFilter!="Ironfold")throw new ArgumentException("Unknown map filter.");
@@ -180,9 +188,10 @@ static partial class BalanceSweep
         }
         var results=new List<Result>();
         foreach(bool iron in new[]{false,true}) {
-            var c=MapCases.Load(iron);if(mapFilter.Length>0&&c.Name!=mapFilter)continue;var samples=Samples(c);
+            var c=MapCases.Load(iron);if(mapFilter.Length>0&&c.Name!=mapFilter)continue;var openTicks=new List<int>();var openSamples=Samples(c,null,openTicks);
             for(int faction=0;faction<c.Factions.Length;faction++) {
                 if(factionFilter>=0&&faction!=factionFilter)continue;
+                keptOpen.Clear();var samples=openSamples;
                 influence.Clear(); // A previous faction may have sampled only the terminal flying route.
                 var factions=new int[4];for(int player=0;player<4;player++)factions[player]=mixed?(faction+player)%c.Factions.Length:faction;
                 var options=new MatchOptions{PlayerCount=players,Difficulty=difficulty,Factions=factions};
@@ -197,20 +206,37 @@ static partial class BalanceSweep
                         throw new Exception("Initial wallet or faction mismatch.");
                 }
                 var r=new Result{StartingTeamGold=c.StartingGold,KillReward=c.KillReward,WaveReward=c.WaveReward,StartingPositions=players==1&&startingPositions==null?new[]{-1}:options.StartingPositions.Take(players).ToArray(),InitialBuilderPositions=w.Players.Select(p=>new[]{p.Position.X,p.Position.Y}).ToArray(),ActiveLanes=w.LaneCount,StartingWallets=w.Players.Select(p=>p.Gold).ToArray(),Strategy=strategy,Factions=factions.Take(players).Select(f=>c.Factions[f].Name).ToArray(),PlayerCount=players,Map=c.Name,Faction=c.Factions[faction].Name,Difficulty=difficulty.ToString()};
+                if(strategy=="compact-shared-maze"||strategy=="compact-shared-transition") {
+                    var cells=MapCases.SharedExitMazeCells();
+                    for(int cell=0;cell<cells.GetLength(0);cell++) {
+                        w.SelectPlayer(cell%players);int design=MapCases.MazeDesign(w);
+                        if(!Purchase(w,cells[cell,0],cells[cell,1],design,r))throw new Exception("Paid shared exit maze could not be built.");
+                    }
+                    // Planner-only keep-out: preserve this fixture's neck and alternating gaps.
+                    // Normal players remain free to build here; game placement rules do not change.
+                    for(int y=8;y<=13;y++)for(int x=28;x<=33;x++)keptOpen.Add((x,y));
+                    var mazeTicks=new List<int>();samples=Samples(c,w,mazeTicks);
+                    r.InitialMazePurchases=cells.GetLength(0);r.OpenRouteTicks=openTicks.ToArray();r.PreparedMazeRouteTicks=mazeTicks.ToArray();
+                    for(int lane=0;lane<w.LaneCount;lane++)
+                        if(mazeTicks[lane*2]<=openTicks[lane*2]+30||mazeTicks[lane*2+1]!=openTicks[lane*2+1])throw new Exception("Shared maze failed ground detour / unchanged flight check.");
+                }
                 if(strategy=="maze") {
                     int design=MapCases.MazeDesign(w);var cells=MapCases.MazeCells(iron);
                     for(int cell=0;cell<cells.GetLength(0);cell++)
                         if(!Purchase(w,cells[cell,0],cells[cell,1],design,r))throw new Exception("Paid maze fixture could not be built");
                 }
                 for(int wave=0;wave<c.Waves.Length&&!w.Finished;wave++) {
-                    bool terminalFlight=strategy=="compact-transition"&&c.Waves.Skip(wave).All(next=>next.Flying);
+                    bool terminalFlight=(strategy=="compact-transition"||strategy=="compact-shared-transition")&&c.Waves.Skip(wave).All(next=>next.Flying);
                     var waveSamples=samples;
                     if(terminalFlight){waveSamples=samples.Where(sample=>sample.Air).ToList();influence.Clear();}
                     for(int player=0;player<players;player++){w.SelectPlayer(player);
-                        if(strategy=="compact-transition") {
+                        if(strategy=="compact-shared-transition") {
+                            if(terminalFlight){SellGroundOnly(w,r);keptOpen.Clear();}
+                            SpendInvest(w,waveSamples,r,48/players);
+                        }else if(strategy=="compact-transition") {
                             if(terminalFlight)SellGroundOnly(w,r);
                             SpendAdaptive(w,waveSamples,r,48/players,true,true);
-                        }else if(strategy=="roster")SpendRoster(w,samples,r);else if(strategy=="compact-invest")SpendInvest(w,samples,r,48/players);else if(strategy=="adaptive"||strategy.StartsWith("compact"))SpendAdaptive(w,samples,r,strategy.StartsWith("compact")?48/players:int.MaxValue,strategy=="compact-value"||strategy=="compact-roles"||strategy=="compact-support",strategy=="compact-roles"||strategy=="compact-support",strategy=="compact-support");else Spend(w,samples,r);}
+                        }else if(strategy=="roster")SpendRoster(w,samples,r);else if(strategy=="compact-invest"||strategy=="compact-shared-maze")SpendInvest(w,samples,r,48/players);else if(strategy=="adaptive"||strategy.StartsWith("compact"))SpendAdaptive(w,samples,r,strategy.StartsWith("compact")?48/players:int.MaxValue,strategy=="compact-value"||strategy=="compact-roles"||strategy=="compact-support",strategy=="compact-roles"||strategy=="compact-support",strategy=="compact-support");else Spend(w,samples,r);}
                     int[] beforeCombat=AuditWallets(w,r,wave);int killed=w.Killed,leaked=w.Leaked;
                     if(!w.StartWave())throw new Exception("Wave failed to start");int ticks=0;
                     while(w.WaveActive&&!w.Finished&&ticks<18000){w.Step();ticks++;}

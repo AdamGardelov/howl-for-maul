@@ -1,0 +1,276 @@
+{
+  "runtime": "db0369c",
+  "newCampaigns": 10,
+  "reusedHardControls": 2,
+  "teams": [
+    {
+      "difficulty": "Hard",
+      "factions": [
+        "Rime Covenant",
+        "Stonebound",
+        "Ember Assembly"
+      ],
+      "openCompact": {
+        "won": false,
+        "lives": 0,
+        "waves": 18,
+        "purchases": 48,
+        "upgrades": 75,
+        "sales": 0,
+        "refunded": 0,
+        "spent": 5220,
+        "leaks": [
+          {
+            "wave": 18,
+            "leaked": 30
+          }
+        ]
+      },
+      "sharedMaze": {
+        "won": false,
+        "lives": 0,
+        "waves": 20,
+        "purchases": 48,
+        "upgrades": 71,
+        "sales": 0,
+        "refunded": 0,
+        "spent": 5413,
+        "leaks": [
+          {
+            "wave": 18,
+            "leaked": 17
+          },
+          {
+            "wave": 19,
+            "leaked": 10
+          },
+          {
+            "wave": 20,
+            "leaked": 3
+          }
+        ]
+      },
+      "sharedMazeFinalAirRebuild": {
+        "won": true,
+        "lives": 3,
+        "waves": 20,
+        "purchases": 66,
+        "upgrades": 83,
+        "sales": 18,
+        "refunded": 1511,
+        "spent": 7328,
+        "leaks": [
+          {
+            "wave": 18,
+            "leaked": 17
+          },
+          {
+            "wave": 19,
+            "leaked": 10
+          }
+        ]
+      }
+    },
+    {
+      "difficulty": "Hard",
+      "factions": [
+        "Volt Vanguard",
+        "Rime Covenant",
+        "Stonebound"
+      ],
+      "openCompact": {
+        "won": false,
+        "lives": 0,
+        "waves": 18,
+        "purchases": 48,
+        "upgrades": 81,
+        "sales": 0,
+        "refunded": 0,
+        "spent": 5195,
+        "leaks": [
+          {
+            "wave": 18,
+            "leaked": 30
+          }
+        ]
+      },
+      "sharedMaze": {
+        "won": false,
+        "lives": 0,
+        "waves": 19,
+        "purchases": 48,
+        "upgrades": 72,
+        "sales": 0,
+        "refunded": 0,
+        "spent": 5219,
+        "leaks": [
+          {
+            "wave": 18,
+            "leaked": 29
+          },
+          {
+            "wave": 19,
+            "leaked": 1
+          }
+        ]
+      },
+      "sharedMazeFinalAirRebuild": {
+        "won": false,
+        "lives": 0,
+        "waves": 19,
+        "purchases": 48,
+        "upgrades": 72,
+        "sales": 0,
+        "refunded": 0,
+        "spent": 5219,
+        "leaks": [
+          {
+            "wave": 18,
+            "leaked": 29
+          },
+          {
+            "wave": 19,
+            "leaked": 1
+          }
+        ]
+      }
+    },
+    {
+      "difficulty": "Normal",
+      "factions": [
+        "Rime Covenant",
+        "Stonebound",
+        "Ember Assembly"
+      ],
+      "openCompact": {
+        "won": true,
+        "lives": 25,
+        "waves": 20,
+        "purchases": 48,
+        "upgrades": 80,
+        "sales": 0,
+        "refunded": 0,
+        "spent": 5730,
+        "leaks": [
+          {
+            "wave": 18,
+            "leaked": 5
+          }
+        ]
+      },
+      "sharedMaze": {
+        "won": false,
+        "lives": 0,
+        "waves": 20,
+        "purchases": 48,
+        "upgrades": 71,
+        "sales": 0,
+        "refunded": 0,
+        "spent": 5413,
+        "leaks": [
+          {
+            "wave": 18,
+            "leaked": 2
+          },
+          {
+            "wave": 20,
+            "leaked": 28
+          }
+        ]
+      },
+      "sharedMazeFinalAirRebuild": {
+        "won": true,
+        "lives": 28,
+        "waves": 20,
+        "purchases": 66,
+        "upgrades": 84,
+        "sales": 18,
+        "refunded": 1511,
+        "spent": 7383,
+        "leaks": [
+          {
+            "wave": 18,
+            "leaked": 2
+          }
+        ]
+      }
+    },
+    {
+      "difficulty": "Normal",
+      "factions": [
+        "Volt Vanguard",
+        "Rime Covenant",
+        "Stonebound"
+      ],
+      "openCompact": {
+        "won": true,
+        "lives": 30,
+        "waves": 20,
+        "purchases": 48,
+        "upgrades": 87,
+        "sales": 0,
+        "refunded": 0,
+        "spent": 5870,
+        "leaks": []
+      },
+      "sharedMaze": {
+        "won": true,
+        "lives": 10,
+        "waves": 20,
+        "purchases": 48,
+        "upgrades": 72,
+        "sales": 0,
+        "refunded": 0,
+        "spent": 5289,
+        "leaks": [
+          {
+            "wave": 18,
+            "leaked": 3
+          },
+          {
+            "wave": 20,
+            "leaked": 17
+          }
+        ]
+      },
+      "sharedMazeFinalAirRebuild": {
+        "won": true,
+        "lives": 27,
+        "waves": 20,
+        "purchases": 60,
+        "upgrades": 84,
+        "sales": 14,
+        "refunded": 957,
+        "spent": 6774,
+        "leaks": [
+          {
+            "wave": 18,
+            "leaked": 3
+          }
+        ]
+      }
+    }
+  ],
+  "audits": {
+    "walletChecks": 702,
+    "incomeChecks": 702,
+    "unequalIncomeWaves": 14
+  },
+  "preFinalWavePairsVerified": 4,
+  "openRouteTicks": [
+    1002,
+    845,
+    1240,
+    740,
+    1050,
+    874
+  ],
+  "mazeRouteTicks": [
+    1142,
+    845,
+    1326,
+    740,
+    1117,
+    874
+  ]
+}

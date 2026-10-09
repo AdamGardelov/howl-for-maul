@@ -190,6 +190,45 @@ namespace FrostMaze.Tests
    }
    return cells;
   }
+  // Shared six-cell exit neck: two alternating arms, with one-cell openings.
+  // Test/planner fixture only; never a terrain change or a player building restriction.
+  public static int[,] SharedExitMazeCells() {
+   var cells=new int[10,2];int at=0;
+   for(int row=0;row<2;row++)for(int x=28;x<=33;x++) {
+    if(x==(row==0?33:28))continue;
+    cells[at,0]=x;cells[at++,1]=12-row*2;
+   }
+   return cells;
+  }
+  public static void PaidSharedExitMaze() {
+   var c=Load(false);var baseline=Traverse(new World(c));
+   foreach(int first in new[]{0,3}) {
+    var w=new World(c,new MatchOptions{PlayerCount=3,Factions=new[]{first,(first+1)%4,(first+2)%4,0},StartingPositions=new[]{7,0,4,1}});
+    var cells=SharedExitMazeCells();var spent=new int[3];var refunds=new int[3];
+    for(int cell=0;cell<cells.GetLength(0);cell++) {
+     int owner=cell%3;w.SelectPlayer(owner);w.SelectedDesign=MazeDesign(w);int cost=w.BuildCost;
+     Check(w.OrderBuild(cells[cell,0],cells[cell,1],out string reason),"shared exit maze rejected: "+reason);
+     int ticks=0;while(w.HasBuildOrder&&ticks++<1000)w.Step();
+     var tower=w.Grid.At(cells[cell,0],cells[cell,1]);
+     Check(ticks>0&&!w.HasBuildOrder&&tower!=null&&w.TowerOwner(tower.Id)==owner,"shared maze paid travel/owner");
+     spent[owner]+=cost;
+     for(int p=0;p<3;p++)Check(w.Players[p].Gold==400-spent[p],"shared maze charged wrong wallet");
+    }
+    var detour=Traverse(w);
+    for(int lane=0;lane<w.LaneCount;lane++) {
+     Check(detour[lane*2]>baseline[lane*2]+30,"shared maze failed to delay lane "+lane);
+     Check(detour[lane*2+1]==baseline[lane*2+1],"shared maze changed flyer route");
+    }
+    foreach(var tower in w.Grid.Towers.ToArray()) {
+     int owner=w.TowerOwner(tower.Id);w.SelectPlayer((owner+1)%3);
+     Check(!w.Sell(tower.CellX,tower.CellY),"teammate removed shared maze piece");
+     w.SelectPlayer(owner);refunds[owner]+=w.SaleRefund(tower.Id);
+     Check(w.Sell(tower.CellX,tower.CellY),"shared maze owner cannot reopen path");
+    }
+    for(int p=0;p<3;p++)Check(w.Players[p].Gold==400-spent[p]+refunds[p],"shared maze refund went to wrong wallet");
+    var reopened=Traverse(w);for(int i=0;i<baseline.Length;i++)Check(reopened[i]==baseline[i],"shared maze sale left stale navigation");
+   }
+  }
   public static int MazeDesign(World w) {
    int best=w.Config.Factions[w.Players[w.ActivePlayer].Faction].Designs[0];
    foreach(int design in w.Config.Factions[w.Players[w.ActivePlayer].Faction].Designs)
