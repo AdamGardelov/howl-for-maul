@@ -18,7 +18,22 @@ namespace FrostMaze
         ICameraInput source = new DesktopInput();
         Camera view;
         Prototype game;
-        bool dragAllowed;
+        bool dragAllowed,previewShown;
+        int previewWidth,previewHeight;
+        bool SetupPreview => game!=null&&game.SetupOpen&&!game.LobbyOpen;
+        void LateUpdate()
+        {
+            if(view==null)return;
+            if(SetupPreview){
+                if(!previewShown||previewWidth!=Screen.width||previewHeight!=Screen.height){
+                    // Preview is a temporary rendered view; returning to play keeps the player's camera.
+                    var focus=Focus;float yaw=Yaw,zoom=Zoom,target=targetZoom,last=lastZoom,pitch=Pitch,max=MaxZoom;
+                    Yaw=0;Overview();
+                    Focus=focus;Yaw=yaw;view.orthographicSize=zoom;targetZoom=target;lastZoom=last;Pitch=pitch;MaxZoom=max;
+                    previewWidth=Screen.width;previewHeight=Screen.height;previewShown=true;
+                }
+            }else if(previewShown){previewShown=false;Apply();}
+        }
         public void Initialize(float width, float height)
         {
             view = GetComponent<Camera>();
@@ -45,13 +60,31 @@ namespace FrostMaze
             float top=game!=null&&!game.SetupOpen?game.TopHud.yMax+8:8;
             float bottom=game!=null&&!game.SetupOpen?(game.World.Grid.Find(game.SelectedTowerId)!=null?Screen.height-game.SelectionHud.yMin+8:24*game.UiScale):8;
             float low=bottom/Mathf.Max(1,Screen.height),high=1-top/Mathf.Max(1,Screen.height);
+            float left=.035f,right=.965f;
+            if(SetupPreview){
+                float pad=24*game.UiScale;
+                left=(game.Sidebar.xMax+pad)/Mathf.Max(1,Screen.width);
+                right=1-pad/Mathf.Max(1,Screen.width);
+                low=pad/Mathf.Max(1,Screen.height);high=1-low;
+            }
             // Fit the actual projected corners, including perspective foreshortening and yaw.
             view.orthographicSize=Mathf.Max(18,Mathf.Max(BoundsMax.x/Mathf.Max(.1f,view.aspect),BoundsMax.y)*.45f);
             for(int i=0;i<60;i++) {
-                Apply();bool fits=true;
+                Apply();
+                if(SetupPreview){
+                    // Center the projected silhouette, not merely the map's ground-space midpoint.
+                    var min=new Vector2(float.PositiveInfinity,float.PositiveInfinity);var max=new Vector2(float.NegativeInfinity,float.NegativeInfinity);
+                    for(int x=0;x<2;x++)for(int z=0;z<2;z++){
+                        Vector2 p=view.WorldToViewportPoint(new Vector3(x*BoundsMax.x,0,z*BoundsMax.y));min=Vector2.Min(min,p);max=Vector2.Max(max,p);
+                    }
+                    var plane=new Plane(Vector3.up,Vector3.zero);
+                    var from=view.ViewportPointToRay((min+max)*.5f);var to=view.ViewportPointToRay(new Vector3((left+right)*.5f,(low+high)*.5f,0));
+                    if(plane.Raycast(from,out float a)&&plane.Raycast(to,out float b)){Focus+=from.GetPoint(a)-to.GetPoint(b);Apply();}
+                }
+                bool fits=true;
                 for(int x=0;x<2;x++)for(int z=0;z<2;z++) {
                     var p=view.WorldToViewportPoint(new Vector3(x*BoundsMax.x,0,z*BoundsMax.y));
-                    if(p.z<=0||p.x<.035f||p.x>.965f||p.y<low||p.y>high)fits=false;
+                    if(p.z<=0||p.x<left||p.x>right||p.y<low||p.y>high)fits=false;
                 }
                 if(fits)break;
                 view.orthographicSize*=1.035f;

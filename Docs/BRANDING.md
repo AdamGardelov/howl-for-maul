@@ -12,3 +12,5 @@ The start/setup screen gets the large mark. Lobby, faction and difficulty stages
 This is presentation only. Game rules, maps, economy, networking and soundtrack attribution are unchanged. The paired Gallery archives are preserved as the preceding friends checkpoint until new builds are explicitly recorded below.
 
 Verification is recorded after the standalone menu check.
+
+Linux-Preview build includes this change. See SETUP-PREVIEW.md for actual standalone checks and remaining verification.

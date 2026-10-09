@@ -1,3 +1,5 @@
+Latest checkpoint: [centred setup preview](SETUP-PREVIEW.md), Linux-Preview build; logo and automatic wave source included. See that note for verification limits.
+
 Latest development checkpoint: [faction gallery, classic HUD and solo Last Stand](FACTION-GALLERY-HUD.md). Older measurements below retain their original configurations and are not new-economy results.
 
 # Howl for Maul verification — complete procedural roster

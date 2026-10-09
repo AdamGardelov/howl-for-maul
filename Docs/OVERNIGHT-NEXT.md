@@ -1,3 +1,5 @@
+Latest checkpoint: [centred setup preview](SETUP-PREVIEW.md), Linux-Preview build; logo and automatic wave source included. See that note for verification limits.
+
 # Next verified work
 
 ## Latest state

@@ -8,6 +8,38 @@ namespace FrostMaze.Tests
 {
     public sealed class PlayModeIntegration
     {
+        [UnityTest, Category("SetupPreview")]
+        public IEnumerator SetupPreviewFitsBesideMenuAndRestoresCamera()
+        {
+            EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
+            yield return new EnterPlayMode();yield return null;
+            foreach(var map in new[]{"Rimewatch","Ironfold"}) {
+                Object.FindFirstObjectByType<Prototype>().ChooseMap(Resources.Load<MapDefinition>(map));
+                yield return null;yield return null;yield return null;
+                var game=Object.FindFirstObjectByType<Prototype>();
+                var min=new Vector2(float.PositiveInfinity,float.PositiveInfinity);var max=new Vector2(float.NegativeInfinity,float.NegativeInfinity);
+                for(int x=0;x<2;x++)for(int z=0;z<2;z++) {
+                    Vector2 point=game.View.WorldToScreenPoint(new Vector3(x*game.World.Config.Width,0,z*game.World.Config.Height));
+                    min=Vector2.Min(min,point);max=Vector2.Max(max,point);
+                }
+                float pad=24*game.UiScale;
+                Assert.That(min.x,Is.GreaterThanOrEqualTo(game.Sidebar.xMax+pad-1),map+" overlaps menu");
+                Assert.That(max.x,Is.LessThanOrEqualTo(Screen.width-pad+1));
+                Assert.That(min.y,Is.GreaterThanOrEqualTo(pad-1));Assert.That(max.y,Is.LessThanOrEqualTo(Screen.height-pad+1));
+                Assert.That((min.x+max.x)*.5f,Is.EqualTo((game.Sidebar.xMax+Screen.width)*.5f).Within(3),map+" horizontal centre");
+                Assert.That((min.y+max.y)*.5f,Is.EqualTo(Screen.height*.5f).Within(3),map+" vertical centre");
+                game.StartMatch();game.Paused=true;yield return null;
+                var camera=game.View.GetComponent<RtsCamera>();camera.SetInput(new CameraInputFixture());
+                camera.FocusPoint(new FrostMaze.Simulation.V2(32,32));yield return null;
+                var position=camera.transform.position;var rotation=camera.transform.rotation;float zoom=camera.Zoom;
+                game.OpenSetup();yield return null;yield return null;
+                Assert.That(camera.Zoom,Is.EqualTo(zoom));
+                game.ReturnToMatch();yield return null;yield return null;
+                Assert.That(Vector3.Distance(camera.transform.position,position),Is.LessThan(.001f));
+                Assert.That(Quaternion.Angle(camera.transform.rotation,rotation),Is.LessThan(.001f));
+            }
+            yield return new ExitPlayMode();
+        }
         [UnityTest, Category("BuildFeedback")]
         public IEnumerator QueuedFootprintsTrackEveryDesignAndClearWithOrders()
         {
