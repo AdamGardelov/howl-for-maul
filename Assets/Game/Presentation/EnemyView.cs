@@ -13,7 +13,7 @@ namespace FrostMaze
         public Enemy Subject { get; private set; }
         float observedHealth;long hitUntil=-1;
         bool flying;
-        float radius;
+        float radius;long visualTick=-1;
         ModelMeshes meshes;
         readonly System.Collections.Generic.List<Transform> feet=new System.Collections.Generic.List<Transform>();
 
@@ -55,8 +55,38 @@ namespace FrostMaze
                     fin.transform.localRotation=Quaternion.Euler(-25,0,side*15);
                 }
             }
+            // Slagbound creatures have a face and layered hide, not only a colored signal block.
+            for(int side=-1;side<=1;side+=2) {
+                Part("Slagbound eye",PrimitiveType.Sphere,body,new Vector3(side*.17f,.25f,.53f),new Vector3(.105f,.09f,.06f),hit);
+                var cheek=Part("Jaw plate",PrimitiveType.Cube,body,new Vector3(side*.22f,.045f,.43f),new Vector3(.21f,.15f,.24f),shell);
+                cheek.GetComponent<MeshFilter>().sharedMesh=meshes.Armor;
+                cheek.transform.localRotation=Quaternion.Euler(-12,side*16,0);
+            }
+            for(int plate=0;plate<3;plate++) {
+                var ridge=Part("Overlapping hide",PrimitiveType.Cube,body,new Vector3(0,.31f-plate*.025f,-.22f-plate*.14f),new Vector3(heavy?.82f:.52f,.13f,.22f),shell);
+                ridge.GetComponent<MeshFilter>().sharedMesh=meshes.Armor;ridge.transform.localRotation=Quaternion.Euler(-18,0,0);
+            }
+            CombineHide((flying?"drifter":heavy?"breaker":runner?"runner":"crawler"));
             slowHalo = Part("Frost status", PrimitiveType.Cylinder, transform, Vector3.zero, new Vector3(radius * 2.4f, .018f, radius * 2.4f), frost);
             slowHalo.SetActive(false);
+        }
+
+        void CombineHide(string archetype) {
+            var materials=new System.Collections.Generic.List<Material>();
+            var pieces=new System.Collections.Generic.List<System.Collections.Generic.List<CombineInstance>>();
+            foreach(Transform part in body) {
+                var filter=part.GetComponent<MeshFilter>();var renderer=part.GetComponent<MeshRenderer>();
+                if(filter==null||renderer==null||renderer==core||feet.Contains(part))continue;
+                int at=materials.IndexOf(renderer.sharedMaterial);
+                if(at<0){at=materials.Count;materials.Add(renderer.sharedMaterial);pieces.Add(new System.Collections.Generic.List<CombineInstance>());}
+                pieces[at].Add(new CombineInstance{mesh=filter.sharedMesh,transform=Matrix4x4.TRS(part.localPosition,part.localRotation,part.localScale)});
+                renderer.enabled=false;
+            }
+            for(int i=0;i<materials.Count;i++) {
+                var part=new GameObject("Slagbound hide batch "+i);part.transform.SetParent(body,false);
+                part.AddComponent<MeshFilter>().sharedMesh=meshes.Combine("Enemy/"+archetype+"/"+i,pieces[i]);
+                part.AddComponent<MeshRenderer>().sharedMaterial=materials[i];
+            }
         }
 
         Transform Wing(int side, Material material)
@@ -92,9 +122,12 @@ namespace FrostMaze
             transform.position = new Vector3(enemy.Position.X, flying ? 1.7f : radius * .65f, enemy.Position.Y);
             float strike=!flying?Mathf.Clamp01(1-(tick-enemy.LastAttackTick)/6f):0;
             var direction = strike>0 ? enemy.AttackDirection : enemy.Velocity.Length > .03f ? enemy.Velocity : enemy.IntendedDirection;
-            if (direction.Length > .03f)
-                transform.rotation = Quaternion.LookRotation(new Vector3(direction.X, 0, direction.Y));
-            body.localPosition = new Vector3(0, flying ? Mathf.Sin(phase) * .08f : 0, 0);
+            if(direction.Length>.03f&&(visualTick!=tick)) {
+                var facing=Quaternion.LookRotation(new Vector3(direction.X,0,direction.Y));
+                transform.rotation=visualTick<0||tick<visualTick?facing:Quaternion.RotateTowards(transform.rotation,facing,Mathf.Clamp(tick-visualTick,1,6)*World.FixedDelta*660);
+            }
+            visualTick=tick;
+            body.localPosition = new Vector3(0, flying ? Mathf.Sin(phase) * .08f : Mathf.Sin(phase*.38f)*.008f, 0);
             if(enemy.Health<observedHealth)hitUntil=tick+5;
             float hit=Mathf.Clamp01((hitUntil-tick)/5f);
             body.localPosition+=Vector3.up*(-hit*.045f);

@@ -85,7 +85,7 @@ namespace FrostMaze
             return Color.Lerp(masonry,new Color(.43f,.25f,.13f),stain*.32f);
         }
         // Match the exterior texture's 64-unit repeat without a visible tile boundary.
-        static float SnowNoise(float wx,float wz,float frequency,float ox,float oz)
+        internal static float SnowNoise(float wx,float wz,float frequency,float ox,float oz)
         {
             // Ease the small join band to zero slope, so fine mineral seams cannot pop at repeats.
             float Wrap(float value) {
@@ -118,25 +118,21 @@ namespace FrostMaze
                 }
                 edges[y*fieldSize+x]=1-Mathf.SmoothStep(0,1,best/2.5f);
             }
+            var paintedSlate=Resources.Load<Texture2D>("World/HearthSlate");
             var ground=new Color[size*size];var cap=new Color[size*size];var water=new Color[size*size];
             for(int y=0;y<size;y++)for(int x=0;x<size;x++) {
                 float wx=x*c.Width/(float)(size-1),wz=y*c.Height/(float)(size-1);
                 float fx=x*(fieldSize-1)/(float)(size-1),fy=y*(fieldSize-1)/(float)(size-1);int ix=Mathf.Min(fieldSize-2,(int)fx),iy=Mathf.Min(fieldSize-2,(int)fy);
                 float edge=Mathf.Lerp(Mathf.Lerp(edges[iy*fieldSize+ix],edges[iy*fieldSize+ix+1],fx-ix),Mathf.Lerp(edges[(iy+1)*fieldSize+ix],edges[(iy+1)*fieldSize+ix+1],fx-ix),fy-iy);
-                float broad=Mathf.PerlinNoise(wx*.13f+17,wz*.13f+31),grain=Mathf.PerlinNoise(wx*3.5f+9,wz*3.5f+3);
-                float warp=(Mathf.PerlinNoise(wx*.55f,wz*.55f)-.5f)*.18f;
-                float row=(wz+warp)/1.65f;int ry=Mathf.FloorToInt(row);
-                float col=(wx+warp)/2.4f+(ry%2)*.47f;int cx=Mathf.FloorToInt(col);
-                float u=Mathf.Repeat(col,1),v=Mathf.Repeat(row,1);
-                float seam=Mathf.Min(Mathf.Min(u,1-u)*2.4f,Mathf.Min(v,1-v)*1.65f);
+                float broad=Mathf.PerlinNoise(wx*.13f+17,wz*.13f+31);
                 float wear=Mathf.PerlinNoise(wx*.9f+61,wz*.9f+43);
-                var stone=Color.Lerp(ice?new Color(.27f,.38f,.39f):new Color(.18f,.24f,.25f),ice?new Color(.43f,.52f,.49f):new Color(.32f,.38f,.36f),broad*.7f+Hash(cx,ry)*.3f);
-                stone*=.94f+grain*.12f;
-                // Broken seams are painted into flat ground, never physical cracks or build blockers.
-                float cracks=(1-PaintMask(.018f,.075f,seam))*PaintMask(.19f,.49f,wear);
-                stone=Color.Lerp(stone,ice?new Color(.13f,.235f,.26f):new Color(.11f,.125f,.14f),cracks*.6f);
-                float lip=(1-PaintMask(.055f,.12f,seam))*(1-cracks);
-                stone=Color.Lerp(stone,ice?new Color(.55f,.65f,.65f):new Color(.46f,.43f,.38f),lip*.16f);
+                // Reflection makes generated edge colors continuous without a visible tile seam.
+                // This is painted albedo on the original flat walkable mesh, never geometry.
+                var pigment=paintedSlate!=null?paintedSlate.GetPixelBilinear(Mathf.PingPong(wx/5.6f+(Mathf.PerlinNoise(wx*.14f,wz*.14f)-.5f)*.10f,1),Mathf.PingPong(wz/5.6f+(Mathf.PerlinNoise(wx*.13f+19,wz*.13f)-.5f)*.10f,1)):new Color(.36f,.40f,.39f);
+                pigment=Color.Lerp(pigment,new Color(.37f,.40f,.38f),.18f);
+                float grey=pigment.grayscale;
+                var stone=ice?Color.Lerp(pigment,new Color(grey*.86f,grey*1.13f,grey*1.18f),.78f)*.94f:pigment*.78f;
+                stone*=.91f+broad*.16f;
                 stone=Color.Lerp(stone,ice?new Color(.16f,.29f,.33f):new Color(.12f,.145f,.17f),edge*.42f);
                 float drift=PaintMask(.58f,.79f,wear)*edge;
                 stone=Color.Lerp(stone,ice?new Color(.58f,.72f,.74f):new Color(.25f,.285f,.20f),drift*(ice?.62f:.4f));
@@ -166,10 +162,19 @@ namespace FrostMaze
             waterTexture=PaintedTexture("Original glacial pools and foundry channels",size,size,water);
             groundTexture=PaintedTexture("Original worn flagstone and edge wash",size,size,ground);
             capTexture=PaintedTexture(ice?"Original snow over blue slate":"Original weathered foundry slate",size,size,cap);
+            var paintedWall=Resources.Load<Texture2D>("World/HearthMasonry");
             const int sideW=512,sideH=128;var faces=new Color[sideW*sideH];
             for(int y=0;y<sideH;y++)for(int x=0;x<sideW;x++) {
                 float u=x/(float)sideW,v=y/(float)(sideH-1);
-                faces[y*sideW+x]=CliffSurfaceColor(u,v,ice);
+                var face=CliffSurfaceColor(u,v,ice);
+                if(paintedWall!=null) {
+                    var paint=paintedWall.GetPixelBilinear(Mathf.PingPong(u*2,1),v*.47f);
+                    float grey=paint.grayscale;
+                    paint=ice?new Color(grey*.70f,grey*.97f,grey*1.09f):paint*.73f;
+                    face=Color.Lerp(face,paint,.86f);
+                    face=Color.Lerp(face,ice?new Color(.64f,.78f,.80f):new Color(.43f,.43f,.32f),PaintMask(.86f,1,v)*(ice?.5f:.22f));
+                }
+                faces[y*sideW+x]=face;
             }
             wallTexture=PaintedTexture(ice?"Original frozen stratified slate":"Original mossed and oxidized masonry",sideW,sideH,faces,true);
             wallTexture.wrapModeV=TextureWrapMode.Clamp;

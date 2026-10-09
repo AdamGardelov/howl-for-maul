@@ -14,6 +14,10 @@ The preceding [world cohesion](Docs/WORLD-COHESION.md), [layered weapon sounds](
 
 Mobile development is on hold; Android/iOS remain future targets. Touch controls, phone UI and device builds are not implemented or verified; see [mobile status](Docs/MOBILE-STATUS.md).
 
+## The world
+
+**Build together. Keep the hearth lit.** Ironfold is a reclaimed foundry town; Rimewatch is a mountain refuge. Wardwrights from rival orders turn their machines and old magic into a shared defense against the Howl. See the [world bible](Docs/WORLD-BIBLE.md) and [world presentation pass](Docs/WORLD-IDENTITY-PASS.md).
+
 ## Play
 
 Open this project with **Unity 6000.3.25f1**, choose **Howl for Maul → Open game**, then press Play. The scene generates the selected map at runtime.
@@ -102,9 +106,11 @@ dotnet run --project Headless/HowlForMaul.Headless.csproj -c Release
 
 The headless runner executes pure simulation cases. Its optional `--balance` mode exercises paid defenses across both maps and every faction; see [the coverage baseline](Docs/Balance/README.md) and [24 roster/upgrade campaigns](Docs/Balance/ROSTER-BASELINE.md) for commands, results and limitations. The latter includes real champion purchases, paid upgrades and mixed-faction teams. The [paid maze baseline](Docs/Balance/MAZE-BASELINE.md) adds deliberate zig-zag construction and route/reopening checks. The [team baseline](Docs/Balance/TEAM-BASELINE.md) covers three/four-player mixed teams with per-player wallet audits. The [compact-defense diagnostics](Docs/Balance/COMPACT-DEFENSE.md) compare 48-tower bots, including wins with all twelve factions across several strategies and mixed teams; the [paid investment follow-up](Docs/Balance/COMPACT-INVESTMENT.md) closes the Rime diagnostic gap without changing game stats. The [large paid Unity replay](Docs/LARGE-PAID-SCENES.md) checks actual late-game tower/enemy rendering and cleanup for two complete Hard campaigns. The [two-player Hard comparison](Docs/Balance/HARD-PAIRS.md) records all twelve factions across six pairs, retaining compact defeats alongside larger paid-defense wins. Unity's **Window → General → Test Runner → EditMode → Run All** additionally checks real Play-mode setup, builder/tower visuals, chosen starts, map switching and difficulty. Stop Play before starting Edit-mode tests.
 
-Use **Howl for Maul → Build Linux** or **Build Windows** for standard output directories. Windows requires the Windows Mono build module. The verified direct-online packages were built with explicit separate paths to preserve the running older player:
+Use **Howl for Maul → Build Linux** or **Build Windows** for standard output directories. Windows requires the Windows Mono build module. Current world-presentation packages use separate paths; older checkpoints are preserved. Linux is exercised locally. Windows is built but still needs native runtime testing:
 
-- `Builds/Linux-Gallery/HowlForMaul` (latest: faction previews, classic HUD and solo Last Stand)
+- `Builds/Linux-World/HowlForMaul` (current: painted world, refuge halls, faction identity, Relay)
+- `Builds/Linux-Relay/HowlForMaul` (preserved Relay/font checkpoint)
+- `Builds/Linux-Gallery/HowlForMaul` (preserved faction gallery checkpoint)
 - `Builds/Linux-Cohesion/HowlForMaul` (preserved world-cohesion checkpoint)
 - `Builds/Linux-MaterialAudio/HowlForMaul` (preserved: layered weapon audio, variations and mixed-volley selection)
 - `Builds/Linux-Projectiles/HowlForMaul` (preserved projectile-signature checkpoint)
@@ -119,7 +125,9 @@ Use **Howl for Maul → Build Linux** or **Build Windows** for standard output d
 - `Builds/Linux-WavePreview/HowlForMaul` (preserved pre-wave forecast checkpoint)
 - `Builds/Linux-Online/HowlForMaul` (preserved direct-online checkpoint)
 - `Builds/Linux/HowlForMaul` (older preserved package)
-- `Builds/Windows-Gallery/HowlForMaul.exe` (latest, matching Linux source; build-only verification)
+- `Builds/Windows-World/HowlForMaul.exe` (current matching source; build-only verification)
+- `Builds/Windows-Relay/HowlForMaul.exe` (preserved Relay/font checkpoint)
+- `Builds/Windows-Gallery/HowlForMaul.exe` (preserved gallery checkpoint)
 - `Builds/Windows-Maul/HowlForMaul.exe` (preserved economy checkpoint)
 - `Builds/Windows-Speed/HowlForMaul.exe` (preserved speed-control checkpoint)
 - `Builds/Windows-Menu/HowlForMaul.exe` (preserved solo/LAN menu checkpoint)

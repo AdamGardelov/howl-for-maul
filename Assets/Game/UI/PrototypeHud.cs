@@ -22,13 +22,15 @@ namespace FrostMaze
         void Styles()
         {
             if(title!=null)return;
-            title=new GUIStyle(GUI.skin.label){fontSize=21,fontStyle=FontStyle.Bold};title.normal.textColor=new Color(.9f,.91f,.83f);
-            label=new GUIStyle(GUI.skin.label){fontSize=13,wordWrap=true};label.normal.textColor=new Color(.8f,.85f,.83f);
-            small=new GUIStyle(label){fontSize=11};small.normal.textColor=new Color(.56f,.67f,.66f);
-            section=new GUIStyle(label){fontSize=11,fontStyle=FontStyle.Bold};section.normal.textColor=new Color(.54f,.81f,.71f);
+            var displayFont=Resources.Load<Font>("Fonts/Cinzel-Bold");
+            var bodyFont=Resources.Load<Font>("Fonts/AlegreyaSans-Medium");
+            title=new GUIStyle(GUI.skin.label){font=displayFont,fontSize=21,fontStyle=FontStyle.Bold};title.normal.textColor=new Color(.9f,.91f,.83f);
+            label=new GUIStyle(GUI.skin.label){font=bodyFont,fontSize=15,wordWrap=true};label.normal.textColor=new Color(.8f,.85f,.83f);
+            small=new GUIStyle(label){fontSize=13};small.normal.textColor=new Color(.56f,.67f,.66f);
+            section=new GUIStyle(label){font=displayFont,fontSize=11,fontStyle=FontStyle.Bold};section.normal.textColor=new Color(.54f,.81f,.71f);
             mapLabel=new GUIStyle(small){fontStyle=FontStyle.Bold,alignment=TextAnchor.MiddleCenter,wordWrap=false,padding=new RectOffset()};mapLabel.normal.textColor=Color.white;
             var surface=Swatch(new Color(.085f,.13f,.15f));var hover=Swatch(new Color(.14f,.22f,.23f));var active=Swatch(new Color(.18f,.32f,.29f));
-            button=new GUIStyle(GUI.skin.button){fontSize=12,fixedHeight=30,border=new RectOffset(),padding=new RectOffset(8,8,5,5),margin=new RectOffset(2,2,3,3)};
+            button=new GUIStyle(GUI.skin.button){font=bodyFont,fontSize=14,fixedHeight=30,border=new RectOffset(),padding=new RectOffset(8,8,5,5),margin=new RectOffset(2,2,3,3)};
             button.normal.background=surface;button.hover.background=hover;button.active.background=active;
             button.onNormal.background=active;button.onHover.background=hover;button.onActive.background=active;
             button.normal.textColor=button.hover.textColor=button.active.textColor=new Color(.86f,.91f,.88f);
@@ -224,7 +226,7 @@ namespace FrostMaze
             GUILayout.Label($"{game.World.LaneCount} upper lanes. One bottom exit. Every lane stays active at every player count.",label);
             if(game.AvailableMaps.Length>1) {
                 GUILayout.Label("MAP",section);
-                foreach(var map in game.AvailableMaps)if(HudButton((map==game.Map?"✓ ":"")+map.Settings.Name+"\n"+(map.Settings.Theme=="iron"?"Four lanes · reclaimed foundry":"Three lanes · frozen sanctuary"),map==game.Map?selectedCard:card)&&map!=game.Map)game.ChooseMap(map);
+                foreach(var map in game.AvailableMaps)if(HudButton((map==game.Map?"✓ ":"")+map.Settings.Name+"\n"+(map.Settings.Theme=="iron"?"Four lanes · defend the Anvilheart":"Three lanes · keep the Hearthward lit"),map==game.Map?selectedCard:card)&&map!=game.Map)game.ChooseMap(map);
                 if(game.CanReturnToMatch)GUILayout.Label("Changing maps closes the current match. Other choices apply when you start a new match.",small);
             }
             GUILayout.Space(10);

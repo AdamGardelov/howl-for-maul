@@ -1,0 +1,131 @@
+{
+  "scope": "World identity and original presentation pass",
+  "date": "2026-10-09",
+  "simulation_cases": {
+    "passed": 73,
+    "total": 73
+  },
+  "unity_cases": [
+    {
+      "name": "FrostMaze.Tests.ActorPresentationTests.CompleteRosterAndBuildersHaveStableDetailedPresentation",
+      "result": "Passed",
+      "seconds": 24.611152,
+      "evidence": "world-pass-tests2.xml"
+    },
+    {
+      "name": "FrostMaze.Tests.PlayModeIntegration.CombatAudioLimitsBurstsFollowsCameraAndPrioritizesLeaks",
+      "result": "Passed",
+      "seconds": 11.905899,
+      "evidence": "world-pass-tests2.xml"
+    },
+    {
+      "name": "FrostMaze.Tests.PlayModeIntegration.EnemyPresentationTracksSimulationAndResets",
+      "result": "Passed",
+      "seconds": 9.844976,
+      "evidence": "world-pass-tests2.xml"
+    },
+    {
+      "name": "FrostMaze.Tests.WeaponAudioTests.WardbellHasSoftEdgesFiniteStereoAndControlledPeak",
+      "result": "Passed",
+      "seconds": 0.084254,
+      "evidence": "world-pass-tests2.xml"
+    },
+    {
+      "name": "FrostMaze.Tests.LargePaidSceneTests.PaidCampaignsRenderLateDefensesAndReleaseViews",
+      "result": "Passed",
+      "seconds": 115.032189,
+      "evidence": "world-pass-tests3.xml"
+    },
+    {
+      "name": "FrostMaze.Tests.PlayModeIntegration.MapLandmarksNeverCoverWalkableCells",
+      "result": "Passed",
+      "seconds": 31.317126,
+      "evidence": "world-pass-tests3.xml"
+    },
+    {
+      "name": "FrostMaze.Tests.WorldCohesionTests.LandmarksAmbientVoicesAndConstructionStayCosmetic",
+      "result": "Passed",
+      "seconds": 37.366938,
+      "evidence": "world-pass-tests3.xml"
+    }
+  ],
+  "campaigns": [
+    {
+      "map": "Rimewatch",
+      "players": 2,
+      "difficulty": "Hard",
+      "waves": 20,
+      "lives": 30,
+      "purchases": 339,
+      "upgrades": 99
+    },
+    {
+      "map": "Ironfold",
+      "players": 2,
+      "difficulty": "Hard",
+      "waves": 20,
+      "lives": 30,
+      "purchases": 336,
+      "upgrades": 375
+    }
+  ],
+  "ledger_audit": {
+    "wallet_checks": 80,
+    "income_checks": 40
+  },
+  "initial_failures": [
+    "Packaged mirror comparison quantized opposite half-millimeter vertices to neighboring bins; fixture now compares within 0.001 world units.",
+    "Internal audio factory was inaccessible directly across the test assembly; use reflection as other internal helper tests do.",
+    "Historical campaign ledger was stale after earlier map updates. Current-source paid ledgers regenerated; strict travel, wallet, income and outcome checks retained.",
+    "Footstep fixture double-stepped rendered frames. Investigation also found a fixed 2-unit audio teleport cutoff that suppressed legitimate catch-up movement; cutoff now follows elapsed simulation travel, with a targeted regression."
+  ],
+  "limits": [
+    "Native Windows execution is not tested on this Linux machine.",
+    "A full twenty-wave match with friends on separate internet connections is still required.",
+    "No subjective audio-device listening claim.",
+    "No overall frame-rate benchmark claimed; full campaign view-sync allocation assertions passed."
+  ],
+  "builds": {
+    "linux": {
+      "result": "Succeeded",
+      "path": "Builds/Linux-World/HowlForMaul",
+      "runtime": "packaged visual check passed"
+    },
+    "windows": {
+      "result": "Succeeded",
+      "path": "Builds/Windows-World/HowlForMaul.exe",
+      "runtime": "Not tested; Linux cross-build only"
+    }
+  },
+  "packaged_checks": {
+    "world": "Both maps: eight paid towers, 80 gold spent, exact mirror and outside-boundary checks; eight screenshots inspected.",
+    "menu": "1440x900 and 960x600 title, settings, credits, map choice, faction entry and HUD passed; captures inspected.",
+    "relay": {
+      "result": "Passed",
+      "maps": [
+        "Rimewatch",
+        "Ironfold"
+      ],
+      "transport": "real Unity Relay DTLS",
+      "processes": 2,
+      "location": "same Linux computer and internet connection",
+      "ticks": 420,
+      "paid_towers_per_map": 2,
+      "checks": [
+        "cloud create and invite-code join",
+        "faction/lane/difficulty setup",
+        "paid ownership and exact wallets",
+        "state synchronization",
+        "pause/resume",
+        "guest disconnect recovery"
+      ]
+    },
+    "data_and_routes": [
+      "HOWL_SMOKE_DATA_ONLY",
+      "HOWL_SMOKE_PASS Rimewatch lanes=3 factions=4 towers=20 waves=20 startingGold=240 woodAfterWave=9",
+      "HOWL_SMOKE_PASS Ironfold lanes=4 factions=8 towers=56 waves=20 startingGold=2200 woodAfterWave=14",
+      "HOWL_SMOKE_COMPLETE"
+    ]
+  },
+  "artifacts": "Matching friends archives: outputs/Friends-Playtest-WorldIdentity in the Codex workspace; include source checkpoint, checksums, music and font notices."
+}

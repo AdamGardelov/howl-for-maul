@@ -208,7 +208,8 @@ namespace FrostMaze
                 orderMarker = Primitive("Builder destination", PrimitiveType.Cylinder, Vector3.zero, new Vector3(.6f,.02f,.6f), MakeMaterial(new Color(.1f,.8f,.65f)));
                 Notice = "Build near the route or across the flight corridor. The drone travels to your build orders.";
             }
-            var exterior=new GameObject("Surrounding world");exterior.transform.SetParent(transform,false);exterior.AddComponent<WorldBackdrop>().Build(this);
+            var exterior=new GameObject("Surrounding world");exterior.transform.SetParent(transform,false);var backdrop=exterior.AddComponent<WorldBackdrop>();backdrop.Build(this);
+            GetComponentInChildren<MapScenery>()?.LightHearths(this,backdrop.RefugeHearths);
             var oldCamera = Camera.main;
             if (oldCamera != null)
                 Destroy(oldCamera.gameObject);
@@ -225,16 +226,16 @@ namespace FrostMaze
             var lightObject = new GameObject("Winter sun");
             var sun = lightObject.AddComponent<Light>();
             sun.type = LightType.Directional;
-            sun.intensity = 1.05f;
+            sun.intensity = 1.0f;
             bool winter=World.Config.Theme!="iron";
             sun.color=winter?new Color(1,.94f,.82f):new Color(1,.84f,.65f);
-            sun.shadowStrength=.65f;
+            sun.shadowStrength=.58f;
             sun.shadowBias=.035f;
             sun.shadows = LightShadows.Soft;
             lightObject.transform.rotation = Quaternion.Euler(48, -35, 0);
             RenderSettings.ambientMode=UnityEngine.Rendering.AmbientMode.Trilight;
             RenderSettings.ambientSkyColor = winter?new Color(.46f,.58f,.66f):new Color(.43f,.49f,.58f);
-            RenderSettings.ambientEquatorColor = new Color(.34f,.4f,.43f);
+            RenderSettings.ambientEquatorColor = winter?new Color(.34f,.43f,.47f):new Color(.38f,.37f,.30f);
             RenderSettings.ambientGroundColor = new Color(.2f,.23f,.24f);
             for(int lane=0;lane<World.LaneCount;lane++) {
                 Marker(World.LaneSpawn(lane),new Color(.1f,.85f,.68f),"Spawn lane "+(lane+1));

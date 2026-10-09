@@ -22,7 +22,7 @@ namespace FrostMaze
             float w=Screen.width/scale,h=Screen.height/scale;
             GUI.DrawTexture(new Rect(0,0,Mathf.Min(w,780),h),titleShade);
             DrawBrand(new Rect(46,42,350,242));
-            GUI.Label(new Rect(46,293,350,24),"BUILD TOGETHER. HOLD THE LAST STAND.",titleCaption);
+            GUI.Label(new Rect(46,293,350,24),"BUILD TOGETHER. KEEP THE HEARTH LIT.",titleCaption);
             GUILayout.BeginArea(new Rect(68,340,306,h-407));
             if(titlePage==0){
                 if(HudButton("◆  PLAY",titlePlay)){game.OpenSetup();onlineForm=false;}

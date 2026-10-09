@@ -27,7 +27,7 @@ namespace FrostMaze.Tests
             public int Width=1280,Height=720;public string Capture;
         }
         [Serializable] public sealed class Report { public List<Measurement> Scenes=new List<Measurement>(); }
-        static string Output=>Path.Combine(Application.dataPath,"../Temp/LargePaidScenes");
+        static string Output=>Path.Combine(Application.dataPath,"../Logs/LargePaidScenes");
         static void Capture(Camera source,Measurement report)
         {
             var go=new GameObject("Paid scene diagnostic camera");var camera=go.AddComponent<Camera>();camera.CopyFrom(source);camera.enabled=false;
@@ -50,7 +50,7 @@ namespace FrostMaze.Tests
         public IEnumerator PaidCampaignsRenderLateDefensesAndReleaseViews()
         {
             EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");yield return new EnterPlayMode();yield return null;
-            var path=Path.Combine(Application.dataPath,"../Docs/Balance/COHESION-HARD-CAMPAIGNS.json");
+            var path=Path.Combine(Application.dataPath,"../Docs/Balance/WORLD-IDENTITY-HARD-CAMPAIGNS.json");
             var ledger=JsonUtility.FromJson<Campaigns>("{\"Runs\":"+File.ReadAllText(path)+"}");
             var report=new Report();Directory.CreateDirectory(Output);
             foreach(int selected in new[]{0,1}) {

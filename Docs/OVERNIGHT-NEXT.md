@@ -1,3 +1,7 @@
+## 2026-10-09 — world identity and painted environment checkpoint
+
+See [WORLD-IDENTITY-PASS.md](WORLD-IDENTITY-PASS.md), [WORLD-BIBLE.md](WORLD-BIBLE.md) and [verification](Verification/World-Identity.json). Original painted slate, masonry and copper roofs; mirrored Anvilheart/Hearthward refuges; shared-budget hearth lighting; actor seals and batched enemy hide; consistent HUD typography; wardbell and catch-up footstep fix. Current paid Hard ledgers and 73 simulation regressions pass. Scheduler and mobile remain paused. Real friends on separate networks and native Windows execution remain external playtest gates. New packages use `Builds/Linux-World` and `Builds/Windows-World`.
+
 Latest: [dialog typography refinement](RELAY-LIVE.md#dialog-typography-follow-up): bundled Cinzel/Alegreya Sans, readable small-window dialog, automatically packaged font/music notices. Linux render/state checks and both desktop builds pass; Windows runtime remains untested.
 
 Latest: [live Relay and compact connection dialog](RELAY-LIVE.md). New cloud project linked/enabled; two packaged Linux identities pass live Relay/DTLS on both maps. Matching local Linux/Windows candidates built. Separate-network, full-match/four-player live Relay and Windows runtime checks remain. Scheduler/mobile stay paused.

@@ -108,7 +108,7 @@ namespace FrostMaze
                 if(i==1)renderer.sharedMaterial.mainTexture=capTexture;
                 if(i==6){renderer.sharedMaterial.mainTexture=groundTexture;renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;}
             }
-            BuildLivingFire(game,ice);
+
         }
         static bool TryLandmarkAnchor(FrostMaze.Simulation.Scenario c,FrostMaze.Simulation.V2 origin,int side,out FrostMaze.Simulation.V2 anchor)
         {

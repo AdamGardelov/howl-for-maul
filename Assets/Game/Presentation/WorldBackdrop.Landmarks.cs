@@ -105,7 +105,8 @@ namespace FrostMaze
             }
             Save(ice?"Village foundations":"Foundry brickwork",masonry,game.MakeMaterial(ice?new Color(.25f,.32f,.34f):new Color(.24f,.20f,.20f)));
             Save(ice?"Timber lodges":"Forge workshops",timber,game.MakeMaterial(ice?new Color(.31f,.23f,.18f):new Color(.29f,.30f,.29f)));
-            Save(ice?"Slate shelter roofs":"Copper workshop roofs",roofs,game.MakeMaterial(ice?new Color(.20f,.31f,.36f):new Color(.39f,.23f,.14f)));
+            var roofMaterial=game.MakeMaterial(ice?new Color(.55f,.76f,.86f):new Color(.95f,1,.9f));roofMaterial.mainTexture=Resources.Load<Texture2D>("World/HearthCopper");
+            Save(ice?"Slate shelter roofs":"Copper workshop roofs",roofs,roofMaterial);
             Save(ice?"Frosted ridges":"Oxidized copper trim",caps,game.MakeMaterial(ice?new Color(.57f,.66f,.68f):new Color(.23f,.40f,.35f)));
             var warm=game.MakeMaterial(new Color(1,.63f,.26f));warm.EnableKeyword("_EMISSION");warm.SetColor("_EmissionColor",new Color(1,.4f,.08f)*.7f);
             Save("Hearth windows",light,warm);
@@ -118,6 +119,7 @@ namespace FrostMaze
             if(pennants==null||landscapeGame==null)return;
             // Ambient wind uses wall time, independent of the combat speed setting.
             breeze+=Time.unscaledDeltaTime;
+            if(refugeGlow!=null)refugeGlow.SetColor("_EmissionColor",Color.white*(.66f+.05f*Mathf.Sin(breeze*2.8f)+.03f*Mathf.Sin(breeze*6.1f)));
             for(int i=0;i<flagRest.Length;i++) {
                 var p=flagRest[i];float sway=.075f*Mathf.Sin(breeze*1.7f+p.x*2.3f+p.y*1.1f);
                 flagMoved[i]=p+new Vector3(0,sway*.25f,sway);

@@ -523,7 +523,7 @@ namespace FrostMaze.Tests
             for(int i=0;i<3;i++){var e=w.Spawn(new FrostMaze.Simulation.WaveSpec{Flying=true},route[route.Length-1]);e.Checkpoint=route.Length-1;w.Step();}
             Shot(new FrostMaze.Simulation.V2(8,50),false,1);yield return null;yield return null;
             Assert.That(w.Leaked,Is.EqualTo(3));Assert.That(feedback.SoundDispatches,Is.EqualTo(before+1));
-            Assert.That(feedback.LastSound,Is.EqualTo("Original breach"),"Breach warning lost priority to weapon sound");
+            Assert.That(feedback.LastSound,Is.EqualTo("Original wardbell breach"),"Breach warning lost priority to weapon sound");
             game.StartMatch();game.Paused=true;yield return null;yield return null;
             Assert.That(feedback.SoundDispatches,Is.Zero);Assert.That(feedback.LastSound,Is.Null);Assert.That(source.mute,Is.True);
             // Actual design IDs rotate variations, and competing tower types take turns in the mix.
@@ -983,6 +983,12 @@ namespace FrostMaze.Tests
             Assert.That(GameObject.Find("Enemy "+heavy.Id).transform.Find("Armored crawler/Siege shield"),Is.Not.Null);
             Assert.That(GameObject.Find("Enemy "+runner.Id).transform.Find("Armored crawler/Runner fin"),Is.Not.Null);
             Assert.That(groundView.transform.Find("Armored crawler"), Is.Not.Null);
+            foreach(var id in new[]{ground.Id,air.Id,heavy.Id,runner.Id}) {
+                var actor=GameObject.Find("Enemy "+id);int batches=0,enabled=0;
+                foreach(var renderer in actor.GetComponentsInChildren<MeshRenderer>()){if(renderer.name.StartsWith("Slagbound hide batch"))batches++;if(renderer.enabled)enabled++;}
+                Assert.That(batches,Is.EqualTo(3),"Rigid hide should batch by its three materials");
+                Assert.That(enabled,Is.LessThanOrEqualTo(9),"Added face detail must not add a renderer per plate");
+            }
             var wings = airView.transform.Find("Winged drifter/Left wing");
             Assert.That(wings, Is.Not.Null);
             Assert.That(groundView.transform.forward.x, Is.EqualTo(1).Within(.001f));

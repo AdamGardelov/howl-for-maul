@@ -10,6 +10,20 @@ namespace FrostMaze.Tests
 {
     public sealed class WeaponAudioTests
     {
+        [Test,Category("HearthAudio")]
+        public void WardbellHasSoftEdgesFiniteStereoAndControlledPeak()
+        {
+            var clip=(AudioClip)typeof(CombatFeedback).GetMethod("CreateWardbell",System.Reflection.BindingFlags.NonPublic|System.Reflection.BindingFlags.Static).Invoke(null,null);
+            try {
+                Assert.That(clip.channels,Is.EqualTo(2));Assert.That(clip.frequency,Is.EqualTo(48000));
+                var data=new float[clip.samples*2];Assert.That(clip.GetData(data,0),Is.True);double energy=0,stereo=0,mean=0;float peak=0;
+                for(int i=0;i<data.Length;i++){Assert.That(float.IsNaN(data[i])||float.IsInfinity(data[i]),Is.False);peak=Mathf.Max(peak,Mathf.Abs(data[i]));energy+=data[i]*data[i];mean+=data[i];if(i%2==0)stereo+=Math.Abs(data[i]-data[i+1]);}
+                Assert.That(peak,Is.InRange(.15f,.7f));Assert.That(Math.Sqrt(energy/data.Length),Is.InRange(.025,.15));
+                Assert.That(Math.Abs(mean/data.Length),Is.LessThan(.001));Assert.That(stereo,Is.GreaterThan(1));
+                Assert.That(data[0],Is.EqualTo(0));Assert.That(Math.Abs(data[data.Length-1]),Is.LessThan(.00001));
+
+            } finally { UnityEngine.Object.DestroyImmediate(clip); }
+        }
         [UnityTest,Category("MaterialAudio")]
         public IEnumerator MaterialWeaponBankIsDistinctBoundedAndReleasesClips()
         {

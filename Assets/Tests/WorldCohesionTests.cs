@@ -24,6 +24,14 @@ namespace FrostMaze.Tests
                 Assert.That(ambience.VoiceCount,Is.EqualTo(4));Assert.That(ambience.GetComponents<AudioSource>().Length,Is.EqualTo(1),"Only existing combat source belongs directly to prototype");
                 CollectionAssert.AreEqual(game.Map.Settings.LayoutRows,w.Config.LayoutRows,"Art must not change the supplied mask");
                 ValidateComposition(scenery,w.Config);
+                var refuge=game.GetComponentInChildren<WorldBackdrop>();Assert.That(refuge,Is.Not.Null);
+                Assert.That(refuge.RefugeVertices,Is.InRange(1000,20000));
+                Assert.That(refuge.RefugeHearths.Count,Is.EqualTo(2));
+                foreach(var filter in refuge.GetComponentsInChildren<MeshFilter>())if(filter.name.Contains(" refuge ")) {
+                    Assert.That(filter.GetComponent<Collider>(),Is.Null);
+                    foreach(var vertex in filter.sharedMesh.vertices)Assert.That(vertex.z,Is.LessThan(0),"Refuge geometry intrudes into the buildable map");
+                }
+                var slate=Resources.Load<Texture2D>("World/HearthSlate");Assert.That(slate,Is.Not.Null);Assert.That(slate.isReadable,Is.True);
                 var rts=game.View.GetComponent<RtsCamera>();rts.SetInput(new StillCameraInput());
                 var anchor=scenery.LandmarkPositions[0];rts.FocusPoint(new V2(anchor.x,anchor.z));rts.SetZoom(8,true);
                 long frozen=w.Tick;yield return new WaitForSecondsRealtime(1);
@@ -57,8 +65,20 @@ namespace FrostMaze.Tests
                 Assert.That(enemy.Health,Is.LessThan(1000));
                 var enemyView=GameObject.Find("Enemy "+enemy.Id).GetComponent<EnemyView>();var body=enemyView.transform.Find("Armored crawler");Assert.That(Quaternion.Angle(body.localRotation,Quaternion.identity),Is.GreaterThan(1));
                 Capture(game.View,"/tmp/Howl-"+map+"-Cohesion-Combat.png");
-                w.TowersFire=false;w.MoveBuilder(w.BuilderPosition+new V2(3,1));game.Paused=false;for(int frame=0;frame<120&&ambience.Footsteps==0;frame++){w.Step();yield return null;}game.Paused=true;
-                Assert.That(ambience.Footsteps,Is.GreaterThan(0));int steps=ambience.Footsteps;yield return new WaitForSecondsRealtime(.3f);Assert.That(ambience.Footsteps,Is.EqualTo(steps));
+                w.TowersFire=false;var walkStart=w.BuilderPosition;w.MoveBuilder(walkStart+new V2(8,1));game.Paused=false;
+                // Let the real update loop advance: stepping manually as well can turn a low-frame-rate
+                // test into a >2-unit apparent teleport, which intentionally suppresses footsteps.
+                float until=Time.realtimeSinceStartup+3;
+                while(ambience.Footsteps==0&&Time.realtimeSinceStartup<until)yield return new WaitForSecondsRealtime(.03f);
+                game.Paused=true;Assert.That((w.BuilderPosition-walkStart).Length,Is.GreaterThan(.8f),"Footstep fixture did not move the builder");
+                Assert.That(ambience.Footsteps,Is.GreaterThan(0));
+                yield return new WaitForSecondsRealtime(.3f);int beforeCatchup=ambience.Footsteps;
+                var catchupStart=w.BuilderPosition;w.MoveBuilder(catchupStart+new V2(5,0));
+                // Reproduce a frame containing several legitimate simulation ticks at high speed.
+                game.Paused=false;int catchupTicks=Mathf.CeilToInt(3/(w.Config.BuilderSpeed*World.FixedDelta));
+                for(int i=0;i<catchupTicks;i++)w.Step();yield return null;yield return null;game.Paused=true;
+                Assert.That(ambience.Footsteps,Is.GreaterThan(beforeCatchup),"Valid catch-up movement was mistaken for a teleport");
+                int steps=ambience.Footsteps;yield return new WaitForSecondsRealtime(.3f);Assert.That(ambience.Footsteps,Is.EqualTo(steps));
                 rts.Overview();yield return null;Capture(game.View,"/tmp/Howl-"+map+"-Cohesion-Overview.png");
                 rts.FocusPoint(new V2(31,4));rts.SetZoom(17,true);yield return null;Capture(game.View,"/tmp/Howl-"+map+"-Cohesion-Exterior.png");
                 game.ChooseMap(Resources.Load<MapDefinition>(map=="Rimewatch"?"Ironfold":"Rimewatch"));yield return null;yield return null;

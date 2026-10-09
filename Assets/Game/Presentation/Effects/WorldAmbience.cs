@@ -8,6 +8,7 @@ namespace FrostMaze
     public sealed class WorldAmbience : MonoBehaviour
     {
         Prototype game;World observed;MapScenery scenery;RtsCamera cameraRig;
+        readonly System.Collections.Generic.List<Vector3> hearths=new System.Collections.Generic.List<Vector3>();
         AudioSource wind,fire,place,feet;AudioClip[] clips;
         V2 previous;long previousTick;int previousPlayer=-1;float distanceWalked,nextStep;
         public int Footsteps {get;private set;}
@@ -16,6 +17,7 @@ namespace FrostMaze
         public int VoiceCount=>clips==null?0:4;
         public void Initialize(Prototype prototype) {
             game=prototype;scenery=game.GetComponentInChildren<MapScenery>();cameraRig=game.View.GetComponent<RtsCamera>();
+            if(scenery!=null)hearths.AddRange(scenery.FirePositions);
             bool ice=game.World.Config.Theme!="iron";clips=new[]{CreateLoop(0,ice),CreateLoop(1,ice),CreateLoop(2,ice),CreateLoop(3,ice)};
             wind=Voice("Sheltered wind",clips[0],true);fire=Voice("Nearby hearth",clips[1],true);
             place=Voice(ice?"Timber and boughs":"Distant foundry",clips[2],true);feet=Voice(ice?"Boots on stone":"Artisan hover movement",clips[3],false);
@@ -70,12 +72,15 @@ namespace FrostMaze
             else {
                 float gain=Mathf.Clamp01(game.EffectsVolume)*(game.MenuOpen||game.SetupOpen?.22f:game.Paused?.65f:1);
                 wind.volume=Mathf.MoveTowards(wind.volume,gain*.055f,dt*.06f);
-                Localize(fire,scenery?.FirePositions,gain*.24f,dt);Localize(place,scenery?.LandmarkPositions,gain*.10f,dt);
+                Localize(fire,hearths,gain*.24f,dt);Localize(place,scenery?.LandmarkPositions,gain*.10f,dt);
             }
             var at=observed.BuilderPosition;
             if(observed.Tick!=previousTick) {
                 float travelled=(at-previous).Length;
-                if(travelled<2&&travelled>.001f)distanceWalked+=travelled;else if(travelled>=2)distanceWalked=0;
+                // Low frame rates and faster match speeds can legitimately move several units
+                // between rendered frames. Compare with elapsed simulation travel, not a fixed cutoff.
+                float allowed=observed.Config.BuilderSpeed*(observed.Tick-previousTick)*World.FixedDelta+.05f;
+                if(travelled>.001f&&travelled<=allowed)distanceWalked+=travelled;else if(travelled>allowed)distanceWalked=0;
                 if(audible&&!game.Paused&&!game.MenuOpen&&!game.SetupOpen&&distanceWalked>=.8f&&Time.unscaledTime>=nextStep) {
                     float near=Mathf.Clamp01(1-new Vector2(at.X-cameraRig.Focus.x,at.Y-cameraRig.Focus.z).magnitude/18);
                     if(near>0){feet.volume=.24f*game.EffectsVolume*near;feet.panStereo=Mathf.Clamp(Vector3.Dot(new Vector3(at.X,0,at.Y)-cameraRig.Focus,game.View.transform.right)/14,-.7f,.7f);feet.Play();Footsteps++;}

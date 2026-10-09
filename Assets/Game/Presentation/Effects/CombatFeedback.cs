@@ -39,7 +39,25 @@ namespace FrostMaze
             defeat=game.MakeMaterial(new Color(1,.73f,.28f),true);airDefeat=game.MakeMaterial(new Color(.8f,.6f,1),true);leak=game.MakeMaterial(new Color(1,.16f,.22f),true);
             rubble=game.MakeMaterial(new Color(.65f,.7f,.75f));
             sound=gameObject.AddComponent<AudioSource>();sound.spatialBlend=0;sound.volume=.12f;sound.playOnAwake=false;
-            boltClip=Tone("Original bolt",900,.055f);emberClip=Tone("Original cannon",130,.14f);leakClip=Tone("Original breach",660,.22f,1000);
+            boltClip=Tone("Original bolt",900,.055f);emberClip=Tone("Original cannon",130,.14f);leakClip=CreateWardbell();
+        }
+        internal static AudioClip CreateWardbell()
+        {
+            // A struck, inharmonic bronze bell; no arcade pitch sweep. Gentle stereo reflections
+            // carry the warning while the existing real-time cooldown prevents a leak cacophony.
+            const int rate=48000;int frames=(int)(rate*1.15f);var data=new float[frames*2];
+            float[] partials={312,626,837,1287,1769};float[] gains={.45f,.22f,.13f,.08f,.04f};
+            for(int i=0;i<frames;i++) {
+                float t=i/(float)rate,attack=Mathf.SmoothStep(0,1,t/.004f),end=Mathf.SmoothStep(0,1,(1.15f-t)/.08f),dry=0,echo=0;
+                for(int n=0;n<partials.Length;n++) {
+                    float decay=3.8f+n*1.2f;
+                    dry+=Mathf.Sin(2*Mathf.PI*partials[n]*t)*gains[n]*Mathf.Exp(-t*decay);
+                    if(t>.053f)echo+=Mathf.Sin(2*Mathf.PI*partials[n]*(t-.053f))*gains[n]*Mathf.Exp(-(t-.053f)*decay)*.13f*Mathf.SmoothStep(0,1,(t-.053f)/.007f);
+                }
+                data[i*2]=(dry+echo*.6f)*attack*end*.65f;
+                data[i*2+1]=(dry*.95f+echo)*attack*end*.65f;
+            }
+            var clip=AudioClip.Create("Original wardbell breach",frames,2,rate,false);clip.SetData(data,0);return clip;
         }
         AudioClip Tone(string name,float frequency,float length,float fall=120)
         {

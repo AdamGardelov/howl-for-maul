@@ -41,6 +41,10 @@ namespace FrostMaze
             ring=Part("Ownership ring",game.Models.OwnerRing,new Vector3(0,-1.06f,0),Vector3.one,game.OwnerMaterial(0)).transform;
             ownerBadge=ring.GetComponent<Renderer>();ownerBadge.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;
             if(robot)BuildArtisan();else BuildWarden();
+            for(int side=-1;side<=1;side+=2) {
+                var seal=Part("Hearthwright seal",game.Models.BeveledBox,new Vector3(side*.052f,-.07f,.325f),new Vector3(.035f,.16f,.025f),palette[3]);
+                seal.transform.localRotation=Quaternion.Euler(0,0,side*27);
+            }
             string key="Builder/"+game.World.Config.Theme+"/"+faction;
             Batch(transform,key+"/body");
             foreach(var joint in new[]{leftArm,rightArm,leftBoot,rightBoot,staff})if(joint!=null)Batch(joint,key+"/"+joint.name);

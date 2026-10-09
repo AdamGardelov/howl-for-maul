@@ -1,0 +1,23 @@
+# Original painted slate
+
+Asset: `Assets/Game/Presentation/Resources/World/HearthSlate.png`.
+Created 2026-10-09 with the built-in image-generation tool; no fallback, no external reference image. The full image is retained as the original asset. Runtime material composition handles repetition, edge washes and the winter palette; the map mask is unchanged.
+
+Prompt:
+
+> Use case: stylized-concept. Asset type: seamless tileable albedo texture for the playable ground of an original 3D fantasy strategy game called Howl for Maul. Create one square 1024x1024 flat orthographic directly overhead material texture, filling the entire image edge to edge: weathered large irregular cut slate flagstones from an old foundry courtyard, muted grey-teal stones with gently warm ochre edge highlights, dark narrow joints with a little desaturated olive moss. Stylized hand-painted game art: broad deliberate brushwork, chunky beveled chipped edges, attractive smooth stone interiors, crisp readable forms, minimal fine grain. Around 5 to 7 big stones across the image, varied size and polygon shape, tightly fitted organically rather than a rectangular brick grid. Subtle cracks in only a few stones. Uniform neutral lighting, very subdued painted occlusion at joints, no directional cast shadows, no perspective. Designed to repeat in both axes with continuous edge pattern and matching edge colors, consistent overall brightness without a central vignette. No text, symbols, border, objects, flames, 3D props, vegetation protruding upwards, characters or game UI. This is production base color texture, not a scene or illustration. Opaque background.
+
+The tool returned 1254×1254 pixels. Import uses a 1024 maximum. The generator does not guarantee seamless edges: the game uses reflected UV repetition to avoid a hard color discontinuity at tile boundaries. Scott Buckley's separate music attribution remains in the game's credits and third-party notices.
+
+
+## HearthMasonry.png
+
+Original built-in image-generation output, 2026-10-09; no fallback or reference image. Stored in the same Resources/World folder. Readable 1024 import; mirrored wrap. Used for painted lane-side walls and refuge masonry, tinted for the two biomes.
+
+> Create a production game material texture, one square opaque image, flat orthographic albedo filling the entire frame. Original hand-painted stylized fantasy stone masonry for Howl for Maul, a cozy reclaimed foundry fortress. About six large long horizontal ash-grey and muted warm-grey stone blocks across and six staggered courses vertically, tightly fitted with narrow dark recessed mortar. Each block has chunky gently chipped beveled edges, broad attractive painted planes with a restrained blue-green undertone, a few warm weathered edges, very occasional small moss in joints. Painterly detail at the level of a premium stylized RTS environment, deliberate broad strokes and clean readable stone shapes, subdued micro-noise, medium-low contrast so units remain readable over the material. Not photo-realistic. Flat uniform neutral lighting; subtle ambient crevice shading only, no cast directional shadows. Make edge colors and staggered block rows match continuously for seamless repetition in both axes. No text, no symbols, no border, no characters, no grass blades or objects, no scene or perspective. This is an original base-color stone wall texture, not a screenshot or illustration.
+
+## HearthCopper.png
+
+Original built-in image-generation output, 2026-10-09; no fallback or reference image. Stored in Resources/World. Readable 1024 import with mirrored wrap. Used by the new refuge halls and the surrounding settlement roofs; Rimewatch retains its snow geometry.
+
+> A single square production base-color texture for the roof of an original cozy fantasy foundry building, filling the entire opaque image edge to edge. Top-down flat orthographic view of overlapping broad handmade patinated copper roof tiles. Muted deep sage/teal grey copper panels with small weathered ochre copper rims, restrained painterly streaks and worn edges. About six rows of six staggered wide rectangular panels, chunky stylized shapes, hand-painted brushwork, smooth broad middle planes, slight variation between panels, subtle fine hammered copper texture but not noisy. Original premium stylized strategy-game material art, warm craftsmanship, sober color so glowing furnaces stand out. Consistent neutral lighting, only shallow painted bevel shading, no dramatic directional shadow or bright reflections. Seamless repeating texture in both axes with matching edges. No text, lettering, symbols, frames, 3D objects, plants or scene perspective. Not photographic. Not a building illustration: an evenly lit flat material texture only.

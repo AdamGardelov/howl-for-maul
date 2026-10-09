@@ -52,13 +52,18 @@ namespace FrostMaze
             if(image!=null)GUI.DrawTexture(rect,image,ScaleMode.ScaleToFit);
             else GUI.Label(rect,"…",rosterPrice);
         }
+        static string OrderMotto(string theme,int faction) {
+            string[] iron={"IRONFOLD'S CLOCKWORK GUARD","WE HOLD WHAT WE ONCE BROKE","KEEPERS OF THE SIGNAL GLASS","WATCHKEEPERS OF THE LONG ROAD","LIFT THE STONE. HOLD THE LINE.","NOTHING WASTED. NO ONE LEFT.","FIRE WITHIN. STEEL WITHOUT.","KEEPERS OF THE COOLING CHANNELS"};
+            string[] winter={"KEEPERS OF THE FROZEN WARDBELLS","WAKE THE MOUNTAIN","KEEP THE HEARTH LIT","COURIERS OF THE STORM"};
+            var mottos=theme=="iron"?iron:winter;return mottos[Mathf.Clamp(faction,0,mottos.Length-1)];
+        }
         void DrawFactionBrowser(Session net,Member me,float width)
         {
             EnsureFactionPreview(net);FactionStyles();var config=game.World.Config;
             GUILayout.Label("Hover to explore · click a faction to choose · confirm when ready",small);
             bool stacked=width<800;float leftWidth=stacked?width:width*.48f,rightWidth=stacked?width:width-leftWidth-18;
             int rows=(config.Factions.Length+1)/2;float leftHeight=rows*116;
-            float previewHeight=588;
+            float previewHeight=618;
             var area=GUILayoutUtility.GetRect(width,stacked?leftHeight+previewHeight+18:Mathf.Max(leftHeight,previewHeight),GUILayout.Width(width));
             for(int i=0;i<config.Factions.Length;i++){
                 var faction=config.Factions[i];float tileWidth=(leftWidth-8)/2;
@@ -78,21 +83,22 @@ namespace FrostMaze
             GUI.Box(pane,GUIContent.none,factionTile);
             var selected=config.Factions[previewFaction];float x=pane.x+14,w=pane.width-28;
             GUI.Label(new Rect(x,pane.y+12,w,28),selected.Name,title);
-            GUI.Label(new Rect(x,pane.y+47,w,72),selected.Description,label);
-            GUI.Label(new Rect(x,pane.y+123,w,18),"TOWER ROSTER · hover or click to inspect",small);
+            GUI.Label(new Rect(x,pane.y+42,w,26),OrderMotto(config.Theme,previewFaction),section);
+            GUI.Label(new Rect(x,pane.y+72,w,72),selected.Description,label);
+            GUI.Label(new Rect(x,pane.y+148,w,18),"TOWER ROSTER · hover or click to inspect",small);
             for(int i=0;i<selected.Designs.Length;i++){
                 int design=selected.Designs[i];var tower=config.Catalog[design];float tileWidth=(w-18)/4;
-                var tile=new Rect(x+(i%4)*(tileWidth+6),pane.y+148+(i/4)*88,tileWidth,82);
+                var tile=new Rect(x+(i%4)*(tileWidth+6),pane.y+173+(i/4)*88,tileWidth,82);
                 if(HudButton(tile,GUIContent.none,previewTower==design?factionChosen:factionTile)||tile.Contains(Event.current.mousePosition))previewTower=design;
                 Portrait(new Rect(tile.x+3,tile.y+3,tile.width-6,58),design);
                 GUI.Label(new Rect(tile.x,tile.y+61,tile.width,18),tower.Cost+"g"+(tower.WoodCost>0?" + "+tower.WoodCost+"w":""),rosterPrice);
             }
             if(System.Array.IndexOf(selected.Designs,previewTower)<0)previewTower=selected.Designs[0];
             var shown=config.Catalog[previewTower];
-            GUI.Label(new Rect(x,pane.y+330,w,24),shown.Name+" · "+shown.Cost+" gold"+(shown.WoodCost>0?" + "+shown.WoodCost+" wood":""),factionName);
-            GUI.Label(new Rect(x,pane.y+361,w,168),FactionTowerPreview(config,previewTower),label);
-            if(me.Faction==previewFaction)GUI.Label(new Rect(x,pane.y+543,w,30),"CHOSEN · confirm below when ready",rosterPrice);
-            else if(HudButton(new Rect(x,pane.y+541,w,32),"CHOOSE "+selected.Name.ToUpperInvariant(),primary))net.Send(new Packet{Kind=Kind.Faction,A=previewFaction});
+            GUI.Label(new Rect(x,pane.y+355,w,24),shown.Name+" · "+shown.Cost+" gold"+(shown.WoodCost>0?" + "+shown.WoodCost+" wood":""),factionName);
+            GUI.Label(new Rect(x,pane.y+386,w,168),FactionTowerPreview(config,previewTower),label);
+            if(me.Faction==previewFaction)GUI.Label(new Rect(x,pane.y+568,w,30),"CHOSEN · confirm below when ready",rosterPrice);
+            else if(HudButton(new Rect(x,pane.y+566,w,32),"CHOOSE "+selected.Name.ToUpperInvariant(),primary))net.Send(new Packet{Kind=Kind.Faction,A=previewFaction});
         }
     }
 }

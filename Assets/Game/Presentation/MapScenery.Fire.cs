@@ -29,6 +29,12 @@ namespace FrostMaze
             }
             mesh.MarkDynamic();flames.Add(new FlameMesh{Mesh=mesh,Rest=rest,Moved=new Vector3[rest.Length],Anchor=owners});
         }
+        public void LightHearths(Prototype game,IReadOnlyList<Vector3> exterior)
+        {
+            if(fireTexture!=null)return;
+            if(exterior!=null)for(int i=0;i<exterior.Count;i++)fireAnchors.Add(exterior[i]);
+            Braziers=fireAnchors.Count;BuildLivingFire(game,game.World.Config.Theme!="iron");
+        }
         void BuildLivingFire(Prototype game,bool ice)
         {
             fireTexture=new Texture2D(32,32,TextureFormat.RGBA32,false){name="Original soft fire glow",wrapMode=TextureWrapMode.Clamp};

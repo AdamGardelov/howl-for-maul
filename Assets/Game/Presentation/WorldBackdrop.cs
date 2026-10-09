@@ -43,13 +43,18 @@ namespace FrostMaze
                 }
             }
             BuildLandmarks(game,ice,w,h);
+            BuildRefuge(game,ice,w);
             var material=game.MakeMaterial(Color.white);surface=Paint(ice);material.mainTexture=surface;Save("Outer terrain",ground,material);
             var ridgeMaterial=game.MakeMaterial(Color.white);ridgeTexture=PaintRidges(ice);ridgeMaterial.mainTexture=ridgeTexture;
             Save("Distant ridges",rock,ridgeMaterial);
             Save(ice?"Frost pines":"Copper outcrops",leaves,game.MakeMaterial(ice?new Color(.12f,.27f,.28f):new Color(.16f,.27f,.19f)));
             Save(ice?"Snow crowns":"Foundry peaks",snow,game.MakeMaterial(ice?new Color(.69f,.81f,.81f):new Color(.36f,.31f,.29f)));
         }
-        void Save(string name,Batch b,Material material){MirroredGeometry.Apply(b.V,b.T,mirrorWidth);var mesh=new Mesh{name=name,indexFormat=UnityEngine.Rendering.IndexFormat.UInt32};mesh.SetVertices(b.V);mesh.SetTriangles(b.T,0);var uv=new List<Vector2>();foreach(var vertex in b.V)uv.Add(name=="Distant ridges"?new Vector2((Mathf.Min(vertex.x,mirrorWidth-vertex.x)+vertex.z)/8,vertex.y/8):new Vector2(Mathf.Min(vertex.x,mirrorWidth-vertex.x)/64,vertex.z/64));mesh.SetUVs(0,uv);mesh.RecalculateNormals();mesh.RecalculateBounds();meshes.Add(mesh);var go=new GameObject(name);go.transform.SetParent(transform,false);go.AddComponent<MeshFilter>().sharedMesh=mesh;var renderer=go.AddComponent<MeshRenderer>();renderer.sharedMaterial=material;renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;}
+        void Save(string name,Batch b,Material material){MirroredGeometry.Apply(b.V,b.T,mirrorWidth);var mesh=new Mesh{name=name,indexFormat=UnityEngine.Rendering.IndexFormat.UInt32};mesh.SetVertices(b.V);mesh.SetTriangles(b.T,0);var uv=new List<Vector2>();foreach(var vertex in b.V) {
+                float mx=Mathf.Min(vertex.x,mirrorWidth-vertex.x);
+                bool roof=name.Contains("roof")||name.Contains(" refuge ")&&name.EndsWith("3");
+                uv.Add(name.Contains(" refuge ")&&name.EndsWith("6")?new Vector2((mx-(mirrorWidth*.5f-6.7f))/1.74f+.5f,vertex.y/2.6f):roof?new Vector2(vertex.z/5.5f,mx/6):name.Contains(" refuge ")?new Vector2((mx+vertex.z)/4,vertex.y/3):name=="Distant ridges"?new Vector2((mx+vertex.z)/8,vertex.y/8):new Vector2(mx/64,vertex.z/64));
+            };mesh.SetUVs(0,uv);mesh.RecalculateNormals();mesh.RecalculateBounds();meshes.Add(mesh);var go=new GameObject(name);go.transform.SetParent(transform,false);go.AddComponent<MeshFilter>().sharedMesh=mesh;var renderer=go.AddComponent<MeshRenderer>();renderer.sharedMaterial=material;renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;}
         Texture2D Paint(bool ice){const int size=512;var pixels=new Color[size*size];for(int y=0;y<size;y++)for(int x=0;x<size;x++){float wx=x*64f/size,wz=y*64f/size;pixels[y*size+x]=MapScenery.RaisedSurfaceColor(wx,wz,ice);}var texture=new Texture2D(size,size,TextureFormat.RGB24,true){name="Original exterior terrain wash",wrapMode=TextureWrapMode.Repeat,filterMode=FilterMode.Trilinear,anisoLevel=4};texture.SetPixels(pixels);texture.Apply(true,true);return texture;}
         Texture2D PaintRidges(bool ice)
         {
@@ -62,6 +67,6 @@ namespace FrostMaze
             var texture=new Texture2D(w,h,TextureFormat.RGB24,true){name="Original weathered mountain strata",wrapModeU=TextureWrapMode.Repeat,wrapModeV=TextureWrapMode.Clamp,filterMode=FilterMode.Trilinear,anisoLevel=4};
             texture.SetPixels(pixels);texture.Apply(true,true);return texture;
         }
-        void OnDestroy(){if(ridgeTexture!=null)Destroy(ridgeTexture);if(smokeTexture!=null)Destroy(smokeTexture);if(surface!=null)Destroy(surface);foreach(var mesh in meshes)if(mesh!=null)Destroy(mesh);}
+        void OnDestroy(){if(refugeEmbers!=null)Destroy(refugeEmbers);if(refugeSurface!=null)Destroy(refugeSurface);if(ridgeTexture!=null)Destroy(ridgeTexture);if(smokeTexture!=null)Destroy(smokeTexture);if(surface!=null)Destroy(surface);foreach(var mesh in meshes)if(mesh!=null)Destroy(mesh);}
     }
 }
