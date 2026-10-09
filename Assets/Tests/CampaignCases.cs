@@ -64,6 +64,46 @@ namespace FrostMaze.Tests
             Check(!w.Build(2,3,out _) && !w.OrderBuild(8,2,out _) && !w.StartWave(),"defeat accepts actions");
             long tick=w.Tick;Run(w,30);Check(w.Tick==tick,"defeat not frozen");
         }
+        public static void FinishedTeamQueues()
+        {
+            foreach(bool victory in new[]{false,true})for(int players=1;players<=4;players++) {
+                var c=new Scenario {
+                    Economy=true,BuilderEnabled=true,StartingGold=1200,StartingLives=1,
+                    Width=64,Height=12,BuildRange=5,KillReward=3,WaveReward=7,
+                    Spawn=new V2(1.5f,4.5f),GroundRoute=new[]{new V2(8.5f,4.5f)},FlightRoute=new[]{new V2(8.5f,4.5f)},
+                    Tower=new TowerSpec{Damage=victory?100:0,Range=20},Waves=new[]{new WaveSpec{Count=1,Health=7,Speed=6}}
+                };
+                var w=new World(c,new MatchOptions{PlayerCount=players});
+                var ids=new int[players];var positions=new V2[players];
+                for(int p=0;p<players;p++) {
+                    w.SelectPlayer(p);int x=2+p%2,y=p<2?2:6;
+                    Check(w.Build(x,y,out _),"paid team tower failed");ids[p]=w.Grid.At(x,y).Id;
+                    Check(w.Upgrade(ids[p],out _),"paid team upgrade failed");
+                    for(int order=0;order<3;order++)Check(w.OrderBuild(50+p*2,2+order*2,out _,order>0),"pending team order failed");
+                    Check(w.QueuedBuilds==3&&w.Gold==1200/players-40,"queue reserved money or lost orders");
+                }
+                Check(w.StartWave(),"terminal wave launch failed");
+                for(int tick=0;tick<300&&!w.Finished;tick++)w.Step();
+                Check(w.Finished&&w.Won==victory&&w.Defeated!=victory,"wrong terminal outcome");
+                Check(w.Grid.Towers.Count==players,"distant order completed before fixture ended");
+                Check(w.LastWaveSummary.Cleared==victory&&w.LastWaveSummary.TeamGold==(victory?10:0),"terminal reward incorrect");
+                long finishedTick=w.Tick;
+                for(int p=0;p<players;p++) {
+                    w.SelectPlayer(p);positions[p]=w.BuilderPosition;
+                    int expected=1200/players-40+(victory?10/players+(p<10%players?1:0):0);
+                    Check(w.Gold==expected&&w.QueuedBuilds==0&&!w.HasBuildOrder,"finished team retained orders or changed wallet");
+                    var t=w.Grid.Find(ids[p]);
+                    Check(!w.Upgrade(ids[p],out _)&&!w.Sell(t.CellX,t.CellY)&&!w.OrderBuild(40,2,out _)&&!w.StartWave(),"terminal match accepted spending or refund");
+                    w.MoveBuilder(new V2(40,2));Check(w.Gold==expected,"rejected terminal action charged");
+                }
+                Run(w,200);
+                Check(w.Tick==finishedTick&&w.Grid.Towers.Count==players,"terminal simulation advanced");
+                for(int p=0;p<players;p++){w.SelectPlayer(p);Check(V2.Distance(w.BuilderPosition,positions[p])==0,"finished builder moved");}
+                var fresh=w.Restart();
+                Check(!fresh.Finished&&fresh.WaveIndex==-1&&fresh.Grid.Towers.Count==0&&fresh.LastWaveSummary==null,"restart retained terminal state");
+                for(int p=0;p<players;p++){fresh.SelectPlayer(p);Check(fresh.Gold==1200/players&&fresh.QueuedBuilds==0,"restart retained queue or spending");}
+            }
+        }
         public static void SharedRoute()
         {
             var c=Scenario.SharedDefense(); c.Economy=false;

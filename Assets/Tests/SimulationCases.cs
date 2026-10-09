@@ -88,6 +88,7 @@ namespace FrostMaze.Tests
             ,new Case("Construction revalidates on arrival", CampaignCases.ArrivalRevalidation)
             ,new Case("Kill and wave rewards paid once with victory", CampaignCases.Rewards)
             ,new Case("Defeat freezes match and prevents new actions", CampaignCases.Defeat)
+            ,new Case("Victory and defeat clear every paid builder queue and freeze transactions", CampaignCases.FinishedTeamQueues)
             ,new Case("Shared map traverses all defense areas", CampaignCases.SharedRoute)
             ,new Case("Complete ten-wave match using paid builder construction", CampaignCases.FullMatch)
             ,new Case("All four lanes active for every player count",LaneCases.AlwaysActive)

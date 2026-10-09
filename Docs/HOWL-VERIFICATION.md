@@ -155,3 +155,7 @@ Final Linux-Snow and Windows-Snow packages built with zero errors. Linux emitted
 Actual Linux input on the owned isolated 1440×900 llvmpipe display verified staged Stonebound setup, a paid Pebble Warden (1,200 → 1,175 gold), overview/close camera views and the rendered minimap. Final captures show subdued snow without the initial exterior repeat seams. Leave Match and map switching showed Ironfold's retained slate/copper palette. Main-menu Quit exited zero, with no game exceptions in the player log. Both-map data smoke also exited zero. Existing user player and older packages were preserved.
 
 Windows runtime, native desktop compatibility and networking were not retested in this texture pass. The 68 pure cases passed before the periodic-noise-only refinement; simulation source did not change. This is not a new full Unity-suite, performance or final-art claim.
+
+## Two-player Hard and terminal queues
+
+Two-player Hard follow-through: six pairs cover all twelve factions with starts 7/0 and independent 600-gold wallets. Compact investment wins 3/6; unrestricted adaptive wins 6/6 using 226–347 purchases. Twelve campaigns, 238 attempted waves and 476 independently recalculated wave-end wallets; no stalls/accounting failures. New terminal-queue regression covers victory/defeat with 1–4 owners; 69 pure cases and focused Unity case pass. Read Balance/HARD-PAIRS.md for failures and exact limits. Tests/docs only; packages remain runtime b70de3c.

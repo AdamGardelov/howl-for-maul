@@ -1,0 +1,176 @@
+{
+  "source": "dc243c4",
+  "scope": "Hard, two players, selected starts 7 and 0, all lanes active, fixed 1200 team gold",
+  "groups": {
+    "compact": {
+      "campaigns": 6,
+      "wins": 3,
+      "wavesAttempted": 118,
+      "wavesCleared": 115,
+      "purchases": 288,
+      "upgrades": 488,
+      "spent": 36576,
+      "waveEndWalletChecks": 236
+    },
+    "adaptive": {
+      "campaigns": 6,
+      "wins": 6,
+      "wavesAttempted": 120,
+      "wavesCleared": 120,
+      "purchases": 1814,
+      "upgrades": 879,
+      "spent": 38777,
+      "waveEndWalletChecks": 240
+    }
+  },
+  "pairs": [
+    {
+      "map": "Rimewatch",
+      "factions": [
+        "Rime Covenant",
+        "Stonebound"
+      ],
+      "compactLives": 0,
+      "compactWon": false,
+      "compactLeaks": [
+        {
+          "wave": 16,
+          "leaked": 2
+        },
+        {
+          "wave": 17,
+          "leaked": 8
+        },
+        {
+          "wave": 18,
+          "leaked": 20
+        }
+      ],
+      "adaptiveLives": 29,
+      "adaptivePurchases": 226,
+      "adaptiveUpgrades": 0,
+      "adaptiveSpent": 5895,
+      "adaptiveFinalWallets": [
+        163,
+        168
+      ]
+    },
+    {
+      "map": "Rimewatch",
+      "factions": [
+        "Ember Assembly",
+        "Volt Vanguard"
+      ],
+      "compactLives": 0,
+      "compactWon": false,
+      "compactLeaks": [
+        {
+          "wave": 18,
+          "leaked": 21
+        },
+        {
+          "wave": 19,
+          "leaked": 3
+        },
+        {
+          "wave": 20,
+          "leaked": 6
+        }
+      ],
+      "adaptiveLives": 30,
+      "adaptivePurchases": 233,
+      "adaptiveUpgrades": 0,
+      "adaptiveSpent": 5920,
+      "adaptiveFinalWallets": [
+        154,
+        154
+      ]
+    },
+    {
+      "map": "Ironfold",
+      "factions": [
+        "Pulse Foundry",
+        "Blast Circuit"
+      ],
+      "compactLives": 2,
+      "compactWon": true,
+      "compactLeaks": [
+        {
+          "wave": 20,
+          "leaked": 28
+        }
+      ],
+      "adaptiveLives": 30,
+      "adaptivePurchases": 336,
+      "adaptiveUpgrades": 205,
+      "adaptiveSpent": 6740,
+      "adaptiveFinalWallets": [
+        182,
+        182
+      ]
+    },
+    {
+      "map": "Ironfold",
+      "factions": [
+        "Prism Division",
+        "Horizon Guild"
+      ],
+      "compactLives": 30,
+      "compactWon": true,
+      "compactLeaks": [],
+      "adaptiveLives": 30,
+      "adaptivePurchases": 347,
+      "adaptiveUpgrades": 237,
+      "adaptiveSpent": 6740,
+      "adaptiveFinalWallets": [
+        182,
+        182
+      ]
+    },
+    {
+      "map": "Ironfold",
+      "factions": [
+        "Gravity Works",
+        "Scrap Frontier"
+      ],
+      "compactLives": 0,
+      "compactWon": false,
+      "compactLeaks": [
+        {
+          "wave": 18,
+          "leaked": 29
+        },
+        {
+          "wave": 20,
+          "leaked": 1
+        }
+      ],
+      "adaptiveLives": 30,
+      "adaptivePurchases": 336,
+      "adaptiveUpgrades": 255,
+      "adaptiveSpent": 6742,
+      "adaptiveFinalWallets": [
+        180,
+        182
+      ]
+    },
+    {
+      "map": "Ironfold",
+      "factions": [
+        "Overdrive Order",
+        "Tidal Array"
+      ],
+      "compactLives": 30,
+      "compactWon": true,
+      "compactLeaks": [],
+      "adaptiveLives": 30,
+      "adaptivePurchases": 336,
+      "adaptiveUpgrades": 182,
+      "adaptiveSpent": 6740,
+      "adaptiveFinalWallets": [
+        182,
+        182
+      ]
+    }
+  ]
+}

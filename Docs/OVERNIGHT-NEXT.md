@@ -2,6 +2,8 @@
 
 ## Latest state
 
+- Two-player Hard follow-through: six pairs cover all twelve factions with starts 7/0 and independent 600-gold wallets. Compact investment wins 3/6; unrestricted adaptive wins 6/6 using 226–347 purchases. Twelve campaigns, 238 attempted waves and 476 independently recalculated wave-end wallets; no stalls/accounting failures. New terminal-queue regression covers victory/defeat with 1–4 owners; 69 pure cases and focused Unity case pass. Read Balance/HARD-PAIRS.md for failures and exact limits. Tests/docs only; packages remain runtime b70de3c.
+
 - Runtime b70de3c softens Rimewatch snow and removes exterior repeat seams. Shared cap/exterior sampling preserves Ironfold colors. 68 pure cases, both-map scenery clearance and new seam regression pass with the exact sequencing in SNOW-READABILITY.md. Final Linux/Windows builds, Linux overview/close/minimap/paid purchase/map switch/Quit and both-map data smoke pass. New packages: Linux-Snow / Windows-Snow. Windows runtime untested; editor target restored to Linux.
 
 - Runtime f9a858d adds a compact pre-wave forecast and owned final-air refund advice. 68 pure cases, focused Unity visibility/input test, both platform builds, Linux paid tower/count/click-to-details/combat-hide/Quit and both-map data smoke pass. New packages are Linux-WavePreview / Windows-WavePreview; prior packages preserved. Read WAVE-FORECAST.md for warnings and exact limits. Unity target restored to Linux.

@@ -91,14 +91,16 @@ With the .NET 10 SDK:
 dotnet run --project Headless/HowlForMaul.Headless.csproj -c Release
 ```
 
-The headless runner executes pure simulation cases. Its optional `--balance` mode exercises paid defenses across both maps and every faction; see [the coverage baseline](Docs/Balance/README.md) and [24 roster/upgrade campaigns](Docs/Balance/ROSTER-BASELINE.md) for commands, results and limitations. The latter includes real champion purchases, paid upgrades and mixed-faction teams. The [paid maze baseline](Docs/Balance/MAZE-BASELINE.md) adds deliberate zig-zag construction and route/reopening checks. The [team baseline](Docs/Balance/TEAM-BASELINE.md) covers three/four-player mixed teams with per-player wallet audits. The [compact-defense diagnostics](Docs/Balance/COMPACT-DEFENSE.md) compare 48-tower bots, including wins with all twelve factions across several strategies and mixed teams; the [paid investment follow-up](Docs/Balance/COMPACT-INVESTMENT.md) closes the Rime diagnostic gap without changing game stats. Unity's **Window → General → Test Runner → EditMode → Run All** additionally checks real Play-mode setup, builder/tower visuals, chosen starts, map switching and difficulty. Stop Play before starting Edit-mode tests.
+The headless runner executes pure simulation cases. Its optional `--balance` mode exercises paid defenses across both maps and every faction; see [the coverage baseline](Docs/Balance/README.md) and [24 roster/upgrade campaigns](Docs/Balance/ROSTER-BASELINE.md) for commands, results and limitations. The latter includes real champion purchases, paid upgrades and mixed-faction teams. The [paid maze baseline](Docs/Balance/MAZE-BASELINE.md) adds deliberate zig-zag construction and route/reopening checks. The [team baseline](Docs/Balance/TEAM-BASELINE.md) covers three/four-player mixed teams with per-player wallet audits. The [compact-defense diagnostics](Docs/Balance/COMPACT-DEFENSE.md) compare 48-tower bots, including wins with all twelve factions across several strategies and mixed teams; the [paid investment follow-up](Docs/Balance/COMPACT-INVESTMENT.md) closes the Rime diagnostic gap without changing game stats. The [two-player Hard comparison](Docs/Balance/HARD-PAIRS.md) records all twelve factions across six pairs, retaining compact defeats alongside larger paid-defense wins. Unity's **Window → General → Test Runner → EditMode → Run All** additionally checks real Play-mode setup, builder/tower visuals, chosen starts, map switching and difficulty. Stop Play before starting Edit-mode tests.
 
 Use **Howl for Maul → Build Linux** or **Build Windows** for standard output directories. Windows requires the Windows Mono build module. The verified direct-online packages were built with explicit separate paths to preserve the running older player:
 
-- `Builds/Linux-WavePreview/HowlForMaul` (latest pre-wave forecast checkpoint)
+- `Builds/Linux-Snow/HowlForMaul` (latest runtime: snow readability and forecast)
+- `Builds/Linux-WavePreview/HowlForMaul` (preserved pre-wave forecast checkpoint)
 - `Builds/Linux-Online/HowlForMaul` (preserved direct-online checkpoint)
 - `Builds/Linux/HowlForMaul` (older preserved package)
-- `Builds/Windows-WavePreview/HowlForMaul.exe` (latest pre-wave forecast checkpoint)
+- `Builds/Windows-Snow/HowlForMaul.exe` (latest runtime: snow readability and forecast)
+- `Builds/Windows-WavePreview/HowlForMaul.exe` (preserved pre-wave forecast checkpoint)
 - `Builds/Windows-Online/HowlForMaul.exe` (preserved direct-online checkpoint)
 - `Builds/Windows/HowlForMaul.exe` (older preserved package)
 
