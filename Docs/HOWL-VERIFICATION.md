@@ -159,3 +159,7 @@ Windows runtime, native desktop compatibility and networking were not retested i
 ## Two-player Hard and terminal queues
 
 Two-player Hard follow-through: six pairs cover all twelve factions with starts 7/0 and independent 600-gold wallets. Compact investment wins 3/6; unrestricted adaptive wins 6/6 using 226–347 purchases. Twelve campaigns, 238 attempted waves and 476 independently recalculated wave-end wallets; no stalls/accounting failures. New terminal-queue regression covers victory/defeat with 1–4 owners; 69 pure cases and focused Unity case pass. Read Balance/HARD-PAIRS.md for failures and exact limits. Tests/docs only; packages remain runtime b70de3c.
+
+## Large paid rendered scenes
+
+Large paid Unity replay passed: both twenty-wave Hard campaigns reproduce saved purchases, builder travel, upgrades, kill/leak totals and wallets. Late-wave captures contain 226 towers / 44 enemies on Rimewatch and 347 / 66 on Ironfold. Warmed stable view sync allocates zero managed bytes; restart clears all unit views. GTX 1080/OpenGL editor captures inspected. Read LARGE-PAID-SCENES.md for exact timing scope and the two resolved harness failures. Tests/docs only; packages remain runtime b70de3c. Full combat/HUD frame-time profiling remains unverified.
