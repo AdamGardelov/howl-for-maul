@@ -2,6 +2,8 @@
 
 ## Latest state
 
+- Faction gallery/classic HUD source 6a4abd9: actual portraits and pre-choice stats, automatic solo Last Stand, compact host speed selector and visible Scott Buckley credits. Focused Unity solo case, headless network checks, both desktop builds, Linux GUI/small-window input, both-map data smoke and packaged two-process checks pass. Windows runtime/real internet play unverified. Matching packages Linux-Gallery / Windows-Gallery include attribution and a friends guide. See FACTION-GALLERY-HUD.md and FRIENDS-RELEASE.md. Editor restored to Linux; scheduler/mobile stay paused.
+
 - World cohesion: all six requested atmosphere priorities implemented, six focused integration cases pass, and current-economy Hard replay renders 311/336 paid towers. See WORLD-COHESION.md. New composition triangles also pass independent ground/flight clearance checks; tall scenery avoids flying routes and low shrubs sit underneath. Source masks, wall-sealing, economy and online rules unchanged. Scheduler remains paused and mobile remains on hold. Linux-Cohesion contains runtime f2eee1f; build and both-map data smoke pass. Current Windows package remains Windows-Maul with build-only verification. Future visual work should focus on authored model/animation quality and feedback at ordinary play zoom; current assets remain procedural.
 
 - Menu clarity source 1aad187: Play Solo, Multiplayer / LAN, map selection first, and explicit same-keyboard local-slot test wording. Both desktop builds and Linux menu/form/staged solo/Quit plus both-map data smoke pass; Windows runtime untested. New packages Linux-Menu / Windows-Menu, editor restored to Linux. Read MENU-CLARITY.md. MOBILE-STATUS.md records Android/iOS as unimplemented future scope, including input/UI/device-test gaps.
@@ -56,7 +58,7 @@
 
 ## Next priorities
 
-1. Preserve user Play sessions and unsaved scenes. Use the new Menu package directories for current source; do not overwrite the older running player.
+1. Preserve user Play sessions and unsaved scenes. Use the new Gallery package directories for current source; do not overwrite the older running player.
 2. Continue faction/maze progression and meaningful paid-defense testing; use human sessions to judge beginner difficulty; compact limits are diagnostics only.
 3. Continue the original minimalistic art direction while keeping silhouettes readable and every scenic footprint on blocked mask cells. No final-art or performance promise is implied by the procedural pass.
 
@@ -68,4 +70,4 @@ The source folder is /home/adam/Documents/Dev/howl-for-maul and is registered in
 
 Native default X11 startup remains unresolved. Older native Wayland/OpenGL smoke reached map markers but crashed at shutdown (139); Wayland/Vulkan exited zero with a protocol warning and is not a graphical-input pass. The initial audio-package headless smoke exited 133 after its map markers. Explicit data-only smoke now skips presentation/audio and passed three repeated checks. Windows is build-tested only. Read Platform/README.md.
 
-Read README.md, HOWL-VERIFICATION.md and MAUL-RESEARCH.md before work. Preserve supplied map masks, all-active top-to-bottom lanes, 1,200 team gold split over 1–4 wallets, independent faction ownership/builders, paid construction/upgrades and freeform mazing. Flush wall seals and half-cell Ironfold placement remain mandatory. Congestion does not trigger siege; a complete blockage does. Online networking is now authorized; the latest user request supersedes the original deferral. See NEXT-PLAYTEST-REQUESTS.md. No copyrighted assets or new automations. Save nonblocking questions in project docs.
+Read README.md, HOWL-VERIFICATION.md and MAUL-RESEARCH.md before work. Preserve supplied map masks, all-active top-to-bottom lanes, 240 Rimewatch / 2,200 Ironfold team gold split over 1–4 wallets, independent faction ownership/builders, paid construction/upgrades and freeform mazing. Flush wall seals and half-cell Ironfold placement remain mandatory. Congestion does not trigger siege; a complete blockage does. Online networking is now authorized; the latest user request supersedes the original deferral. See NEXT-PLAYTEST-REQUESTS.md. No copyrighted assets or new automations. Save nonblocking questions in project docs.

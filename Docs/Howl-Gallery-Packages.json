@@ -1,0 +1,196 @@
+{
+  "linux": {
+    "success": true,
+    "command": "command build_status",
+    "data": {
+      "command": "build_status",
+      "parameters": {},
+      "result": {
+        "status": "completed",
+        "buildId": "build_72f3b3ffe003",
+        "result": "Succeeded",
+        "platform": "StandaloneLinux64",
+        "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Linux-Gallery/HowlForMaul",
+        "totalSizeBytes": 105327248,
+        "buildTimeMs": 36921,
+        "buildStartedAt": "2026-10-09T11:22:33.8566390Z",
+        "buildEndedAt": "2026-10-09T11:23:10.7781050Z",
+        "totalWarnings": 1,
+        "totalErrors": 0,
+        "errors": [],
+        "warnings": [
+          {
+            "message": "Pipeline: No RuntimePipelineConfig asset found (Project Settings > Pipeline > Runtime). Pipeline will be disabled in Player builds."
+          }
+        ]
+      },
+      "target": {
+        "host": "127.0.0.1",
+        "port": 7800,
+        "projectPath": "/home/adam/Documents/Dev/howl-for-maul"
+      }
+    },
+    "errors": [],
+    "warnings": []
+  },
+  "windows": {
+    "success": true,
+    "command": "command build_status",
+    "data": {
+      "command": "build_status",
+      "parameters": {},
+      "result": {
+        "status": "completed",
+        "buildId": "build_41812bc0a670",
+        "result": "Succeeded",
+        "platform": "StandaloneWindows64",
+        "outputPath": "/home/adam/Documents/Dev/howl-for-maul/Builds/Windows-Gallery/HowlForMaul.exe",
+        "totalSizeBytes": 108963432,
+        "buildTimeMs": 68267,
+        "buildStartedAt": "2026-10-09T11:31:36.1865320Z",
+        "buildEndedAt": "2026-10-09T11:32:44.4541670Z",
+        "totalWarnings": 19,
+        "totalErrors": 0,
+        "errors": [],
+        "warnings": [
+          {
+            "message": "Pipeline: No RuntimePipelineConfig asset found (Project Settings > Pipeline > Runtime). Pipeline will be disabled in Player builds."
+          },
+          {
+            "message": "Shader warning in 'TraceRays': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'RisEstimation': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceRenderingLayerMask': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'UniformEstimation': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceTransparentRays': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'DynamicGISkyOcclusion': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceRaysAndFetchAttributes': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'RestirCandidateTemporal': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceVirtualOffset': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'RestirCandidateTemporal': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceTransparentRays': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceRenderingLayerMask': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceRaysAndFetchAttributes': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'DynamicGISkyOcclusion': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceVirtualOffset': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'TraceRays': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'RisEstimation': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          },
+          {
+            "message": "Shader warning in 'UniformEstimation': Compilation failed: Platform doesn't support Ray Tracing Shader compilation."
+          }
+        ]
+      },
+      "target": {
+        "host": "127.0.0.1",
+        "port": 7800,
+        "projectPath": "/home/adam/Documents/Dev/howl-for-maul"
+      }
+    },
+    "errors": [],
+    "warnings": []
+  },
+  "runtimeSource": "6a4abd91415748f831696b80d21954bf0137203c",
+  "packagedNetwork": [
+    {
+      "map": "Rimewatch",
+      "hostExit": 0,
+      "clientExit": 0,
+      "markers": [
+        "HOWL_NETWORK_LISTEN 44811",
+        "HOWL_NETWORK_HOST_PASS Rimewatch lanes=3 paid=2",
+        "HOWL_NETWORK_CLIENT_PASS Rimewatch tick=420 hash=5mDja6loc1OqnsqLc4Y9Pref9wn5am750aIvLrosIAw="
+      ]
+    },
+    {
+      "map": "Ironfold",
+      "hostExit": 0,
+      "clientExit": 0,
+      "markers": [
+        "HOWL_NETWORK_LISTEN 42311",
+        "HOWL_NETWORK_HOST_PASS Ironfold lanes=4 paid=2",
+        "HOWL_NETWORK_CLIENT_PASS Ironfold tick=420 hash=xGVhar7K+PU8Gv+oSVp7GoNzgkM+nEg9eoedsq8Zaz8="
+      ]
+    }
+  ],
+  "linuxDataSmoke": "PASS: both packaged maps; clean player exit. Log: /tmp/howl-gallery-smoke.log",
+  "editorRestore": {
+    "success": true,
+    "command": "command switch_build_target_status",
+    "data": {
+      "command": "switch_build_target_status",
+      "parameters": {},
+      "result": {
+        "status": "completed",
+        "success": true,
+        "activeBuildTarget": "StandaloneLinux64"
+      },
+      "target": {
+        "host": "127.0.0.1",
+        "port": 7800,
+        "projectPath": "/home/adam/Documents/Dev/howl-for-maul"
+      }
+    },
+    "errors": [],
+    "warnings": []
+  },
+  "archives": [
+    {
+      "file": "Howl-for-Maul-Linux-6a4abd9.tar.gz",
+      "bytes": 45722097,
+      "sha256": "455dbac7bcc6298042cbaba3ba90e4a9a9bed9b50341a0022b4f3a71f3916dd5"
+    },
+    {
+      "file": "Howl-for-Maul-Windows-6a4abd9.zip",
+      "bytes": 48436193,
+      "sha256": "29281cc2bb6b486cc5649ef714d82880f45eb601cd05c44aec43b97a3c3e81a3"
+    }
+  ],
+  "archiveVerification": [
+    {
+      "platform": "Linux",
+      "verifiedFiles": 168,
+      "byteForByteMatchesBuild": true,
+      "requiredNoticesPresent": true,
+      "linuxExecutableModePreserved": true
+    },
+    {
+      "platform": "Windows",
+      "verifiedFiles": 170,
+      "byteForByteMatchesBuild": true,
+      "requiredNoticesPresent": true,
+      "linuxExecutableModePreserved": null
+    }
+  ]
+}

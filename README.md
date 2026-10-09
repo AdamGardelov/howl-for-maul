@@ -6,7 +6,9 @@ Built with Unity 6.3 LTS, C# and URP for Windows and Ubuntu Linux. Game code, pr
 
 **Current status:** playable offline solo prototype with direct host/join multiplayer for LAN or reachable internet hosts. Same-computer multi-slot control is a testing mode. Online players share a lobby, choose factions and unique starts, vote difficulty, and vote pause/resume. Direct connections need a reachable host; relay/public matchmaking is not configured. See [online play](Docs/ONLINE-PLAY.md) for setup and tested scope.
 
-Latest atmosphere: [sheltered lanes, landmarks, warm lighting, weightier combat and local ambience](Docs/WORLD-COHESION.md). Latest Linux package is `Builds/Linux-Cohesion/HowlForMaul`, containing runtime source `f2eee1f`. Six focused Unity integration cases pass, including two current-economy twenty-wave Hard replays with 311/336 paid towers. Linux build and both-map data smoke pass. The preceding [layered weapon sounds](Docs/WEAPON-MATERIAL-AUDIO.md), [faction builders/tower polish](Docs/ACTOR-POLISH.md), [terrain materials](Docs/TERRAIN-MATERIALS.md) and [living fire](Docs/LIVING-FIRE.md) are included. `Builds/Windows-Maul/HowlForMaul.exe` retains the earlier economy/world checkpoint and has build-only verification. Economy details: [progressive gold and milestone wood](Docs/MAUL-ECONOMY-IMPLEMENTED.md). Match speed is 0.5× / 1× / 2× / 3×, controlled by solo players or the multiplayer host; see [verification](Docs/MATCH-SPEED.md).
+Latest desktop packages: `Builds/Linux-Gallery/HowlForMaul` and `Builds/Windows-Gallery/HowlForMaul.exe`, both runtime source `6a4abd9`. The [faction gallery and classic HUD](Docs/FACTION-GALLERY-HUD.md) add tower previews and stats before choosing, automatic solo Last Stand, a compact speed selector and clear resource counters. Both builds pass; Linux input checks, both-map data smoke and two-process packaged network checks pass. Windows runtime and different-machine/network play remain unverified. Read the [friends distribution plan](Docs/FRIENDS-RELEASE.md).
+
+The preceding [world cohesion](Docs/WORLD-COHESION.md), [layered weapon sounds](Docs/WEAPON-MATERIAL-AUDIO.md), [faction model polish](Docs/ACTOR-POLISH.md), [terrain materials](Docs/TERRAIN-MATERIALS.md) and [living fire](Docs/LIVING-FIRE.md) are included. Economy details: [gold and milestone wood](Docs/MAUL-ECONOMY-IMPLEMENTED.md).
 
 Mobile development is on hold; Android/iOS remain future targets. Touch controls, phone UI and device builds are not implemented or verified; see [mobile status](Docs/MOBILE-STATUS.md).
 
@@ -14,11 +16,11 @@ Mobile development is on hold; Android/iOS remain future targets. Touch controls
 
 Open this project with **Unity 6000.3.25f1**, choose **Howl for Maul → Open game**, then press Play. The scene generates the selected map at runtime.
 
-Choose **Rimewatch** (three upper lanes) or **Ironfold** (four upper lanes), both reconstructed from the supplied map layouts. Every lane stays active at every player count. Choose **Play Solo** for offline play or **Multiplayer / LAN** to create/join a lobby, then choose factions, starting positions and difficulty before spawning. The maps retain downstream defense areas and one bottom exit. Rimewatch has snowy groves, stone wayshrines, a bell gate and warm hearths; Ironfold has reclaimed greenery, furnace landmarks and copper scrub. Decorative props stay on blocked terrain so the buildable map remains clear.
+Choose **Rimewatch** (three upper lanes) or **Ironfold** (four upper lanes), both reconstructed from the supplied map layouts. Every lane stays active at every player count. Choose **Play Solo** for offline play or **Multiplayer / LAN** to create/join a lobby, then choose a faction and difficulty before spawning. Solo always starts at Last Stand; multiplayer participants also reserve distinct starting positions. The maps retain downstream defense areas and one bottom exit. Rimewatch has snowy groves, stone wayshrines, a bell gate and warm hearths; Ironfold has reclaimed greenery, furnace landmarks and copper scrub. Decorative props stay on blocked terrain so the buildable map remains clear.
 
 Rimewatch starts with **240 team gold** (240 solo, 120 each for two, 80 for three, 60 for four). Ironfold uses the inspected Mega Man reference’s generous **2,200 team gold** (2,200 solo, 1,100 each for two, 734/733/733 for three, 550 for four). Kill bounty increases from 1 to 5; clear rewards rise each wave. All gold is shared without losing integer remainders. Clearing Rimewatch wave 9 or Ironfold wave 14 grants four wood across the team. Rimewatch wood unlocks another faction’s roster; Ironfold champions cost 750 gold + 1 wood and require six owned regular towers. Click the faction heading or open Details to manage Rimewatch rosters. Every enemy reaching the final exit removes one of 30 shared lives. Finish twenty waves with lives remaining to win. Waves 5, 10, 15 and 20 fly. Later waves alternate fast rushes, dense swarms and tough siege units. Before launching, a compact forecast shows AIR/GROUND, scaled health, enemy count and targeting counts. Click it for expanded faction-specific advice. The team defense count distinguishes air and ground targeting; it does not measure whether towers cover the route.
 
-Match speed offers **0.5×, 1×, 2× and 3×**, with − / + controls for solo players and the multiplayer host during play and in settings. Guests see the shared speed as a read-only indicator. Solo can change it immediately; multiplayer uses one host-controlled speed. Enemies, towers and builders advance together, with unchanged rules and rewards. Camera controls and music retain their normal pace. New matches start at 1×.
+Match speed offers **0.5×, 1×, 2× and 3×**, in a compact selector for solo players and the multiplayer host during play and in settings. Guests see the shared speed as a read-only indicator. Solo can change it immediately; multiplayer uses one host-controlled speed. Enemies, towers and builders advance together, with unchanged rules and rewards. Camera controls and music retain their normal pace. New matches start at 1×.
 
 Gameplay uses the full map viewport with a compact top status strip and bottom-right tower grid. Esc opens the game menu for settings, New Game/Leave and Quit; solo pauses, while an online match uses the team pause vote. Tab opens the optional detailed panel. The standalone menu also offers a fullscreen-window toggle.
 
@@ -42,7 +44,7 @@ Gameplay uses the full map viewport with a compact top status strip and bottom-r
 | Launch next wave | Enter |
 | Open expanded wave advice | Click the pre-wave forecast |
 | Pause / resume (majority vote online) | P |
-| Decrease / increase match speed | − / + buttons, minus / equals keys or keypad − / + |
+| Decrease / increase match speed | Speed selector, minus / equals keys or keypad − / + |
 | Pan | Screen edges / Space + left drag / middle drag / WASD / arrows |
 | Faster keyboard / edge pan | Hold Shift |
 | Rotate camera left / right | Hold Q / E |
@@ -100,7 +102,8 @@ The headless runner executes pure simulation cases. Its optional `--balance` mod
 
 Use **Howl for Maul → Build Linux** or **Build Windows** for standard output directories. Windows requires the Windows Mono build module. The verified direct-online packages were built with explicit separate paths to preserve the running older player:
 
-- `Builds/Linux-Cohesion/HowlForMaul` (latest: world cohesion, local ambience and solid combat effects)
+- `Builds/Linux-Gallery/HowlForMaul` (latest: faction previews, classic HUD and solo Last Stand)
+- `Builds/Linux-Cohesion/HowlForMaul` (preserved world-cohesion checkpoint)
 - `Builds/Linux-MaterialAudio/HowlForMaul` (preserved: layered weapon audio, variations and mixed-volley selection)
 - `Builds/Linux-Projectiles/HowlForMaul` (preserved projectile-signature checkpoint)
 - `Builds/Linux-Actors/HowlForMaul` (preserved tower/builder polish checkpoint)
@@ -114,7 +117,8 @@ Use **Howl for Maul → Build Linux** or **Build Windows** for standard output d
 - `Builds/Linux-WavePreview/HowlForMaul` (preserved pre-wave forecast checkpoint)
 - `Builds/Linux-Online/HowlForMaul` (preserved direct-online checkpoint)
 - `Builds/Linux/HowlForMaul` (older preserved package)
-- `Builds/Windows-Maul/HowlForMaul.exe` (latest: gold/wood progression and inhabited borders; build-only verification)
+- `Builds/Windows-Gallery/HowlForMaul.exe` (latest, matching Linux source; build-only verification)
+- `Builds/Windows-Maul/HowlForMaul.exe` (preserved economy checkpoint)
 - `Builds/Windows-Speed/HowlForMaul.exe` (preserved speed-control checkpoint)
 - `Builds/Windows-Menu/HowlForMaul.exe` (preserved solo/LAN menu checkpoint)
 - `Builds/Windows-TowerInfo/HowlForMaul.exe` (preserved tower information checkpoint)

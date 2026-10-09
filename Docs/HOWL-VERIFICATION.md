@@ -1,4 +1,4 @@
-Latest development checkpoint: [gold, wood and world scenery](MAUL-ECONOMY-IMPLEMENTED.md). Older measurements below retain their original configurations and are not new-economy results.
+Latest development checkpoint: [faction gallery, classic HUD and solo Last Stand](FACTION-GALLERY-HUD.md). Older measurements below retain their original configurations and are not new-economy results.
 
 # Howl for Maul verification — complete procedural roster
 
@@ -60,7 +60,7 @@ Native default X11 startup remains unresolved. A native Wayland/OpenGL probe rea
 
 ## Preserved constraints
 
-Both supplied terrain masks remain authoritative. Every lane stays active; enemies move top to bottom. Team start is 1200 gold split across one to four wallets. Faction ownership, paid travel/construction/upgrades, flush wall placement, freeform mazing and blockage/siege are preserved. Online networking is now authorized; see ONLINE-PLAY.md. No copyrighted reference assets were imported.
+Both supplied terrain masks remain authoritative. Every lane stays active; enemies move top to bottom. Current team starts are 240 Rimewatch / 2,200 Ironfold gold split across one to four wallets; old campaign totals below retain their historical budgets. Faction ownership, paid travel/construction/upgrades, flush wall placement, freeform mazing and blockage/siege are preserved. Online networking is now authorized; see ONLINE-PLAY.md. No copyrighted reference assets were imported.
 
 Map-tag follow-up: lane numbers and the exit now use compact dark-backed labels with light text; the exit is gold. Native 1920×884 overviews on both maps inspected. Tags are centered on their markers and clipped away from the sidebar/minimap. Clean compilation; this cosmetic follow-up did not rerun the 65/65 roster suite.
 
@@ -194,3 +194,8 @@ Menu clarity source 1aad187: Play Solo, Multiplayer / LAN, map selection first, 
 All six atmosphere priorities have an implementation and focused verification: grouped scenery and landmarks, surface shoulders, warm/cool lighting, actor movement/construction, solid projectiles/hit reactions, and quiet local ambience. The final scenery/ambience cases pass; all 76 towers/twelve builders and 72 armed projectile signatures pass. Current-economy two-player Hard campaigns clear twenty waves on both maps; 80 wallets and 80 incomes independently audited. Corrected Unity paid replay passes with 311/336 towers, exact purchase/travel/upgrade/accounting reproduction and cleanup. The obsolete 600-gold replay fixture and cached harness were corrected, not counted as passes. See WORLD-COHESION.md for timings, failures and scoped performance limits. Linux-Cohesion contains runtime source f2eee1f. Build passed with zero errors/one Pipeline warning; both packaged data/route checks and clean exit passed. Editor captures are separate evidence from data-only package smoke. Windows/network/native audio listening were not retested.
 
 Final world-cohesion route follow-up: tall landmarks avoid flight corridors; low groundcover replaces trees underneath. Every new composition triangle passes independent blocked-ground and flight-clearance checks on both maps, alongside ambience, paid construction, hit reactions and cleanup. At least nine Ironfold groups remain after safe resampling. The preceding failed density result is retained. See Howl-Cohesion-AirClearance.json.
+
+
+## Faction gallery and classic HUD
+
+Faction gallery/classic HUD source 6a4abd9: actual portraits and pre-choice stats, automatic solo Last Stand, compact host speed selector and visible Scott Buckley credits. Focused Unity solo case, headless network checks, both desktop builds, Linux GUI/small-window input, both-map data smoke and packaged two-process checks pass. Windows runtime/real internet play unverified. Matching packages Linux-Gallery / Windows-Gallery include attribution and a friends guide. See FACTION-GALLERY-HUD.md and FRIENDS-RELEASE.md. Editor restored to Linux; scheduler/mobile stay paused.
