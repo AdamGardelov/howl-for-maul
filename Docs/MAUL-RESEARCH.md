@@ -31,3 +31,7 @@ The current playable campaign is twenty waves, with the original opening ten pre
 Test longer progression and faction combinations before expanding to 30–35 waves. Add clearer upgrade identities, boss waves and enemy armor counterplay only with readable previews. The verified Mega Man reference is 3.0 Final; do not assume it exactly matches the user’s remembered revision. Preserve freeform mazing and downstream recovery as the center of play.
 
 Research archive SHA-256: `305e39b0029636b85005cc15ccdfff7ad7012658c52ea29fe350fbe2662a240b`. Inspected `war3map.wts` and `war3map.w3u` with a scratch-only MPQ reader. Only paraphrased findings and original game data are committed.
+
+## Economy audit — 2026-10-09
+
+[Historical economy comparison](MAUL-ECONOMY.md) records inspected archive values and per-wave bounty tables: Wintermaul X5 starts at 60 gold per player; the archived Mega Man 3.0 Final file starts at 550. Both use native killer bounty and increasing completion rewards, with extra income for the final defender. Versions differ. Howl currently has a 1,200 team opening, flat 2-gold team kill and 120-gold team wave reward. Those are provisional tuning, not historically verified values. Research did not change gameplay; preserve the user's four-player-equivalent shared economy when testing any future rebalance.

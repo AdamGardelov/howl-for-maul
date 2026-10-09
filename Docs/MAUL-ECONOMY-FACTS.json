@@ -1,0 +1,444 @@
+{
+  "inspectionDate": "2026-10-09",
+  "method": "Static map trigger/object inspection, not Warcraft runtime playtest; inherited bounty dice cross-checked in both YDWE English base and Custom_V1 tables.",
+  "references": [
+    {
+      "reference": "Wintermaul X5! / Wintermaul X5M edited.w3x",
+      "source": "https://wc3maps.com/map/11831",
+      "archiveSha256": "0b260f0ec0f6d8059d06d35ab63678aaf155a4c77d4286e4e1645e8dd9228c0d",
+      "startingGoldPerPlayer": 60,
+      "killBountyRecipient": "killer owner (native bounty; no shared-kill gold trigger found)",
+      "waveBounties": [
+        {
+          "wave": 1,
+          "goldMinimum": 1,
+          "goldMaximum": 1,
+          "inheritedFields": []
+        },
+        {
+          "wave": 2,
+          "goldMinimum": 1,
+          "goldMaximum": 1,
+          "inheritedFields": []
+        },
+        {
+          "wave": 3,
+          "goldMinimum": 1,
+          "goldMaximum": 1,
+          "inheritedFields": []
+        },
+        {
+          "wave": 4,
+          "goldMinimum": 1,
+          "goldMaximum": 1,
+          "inheritedFields": []
+        },
+        {
+          "wave": 5,
+          "goldMinimum": 2,
+          "goldMaximum": 2,
+          "inheritedFields": []
+        },
+        {
+          "wave": 6,
+          "goldMinimum": 2,
+          "goldMaximum": 2,
+          "inheritedFields": []
+        },
+        {
+          "wave": 7,
+          "goldMinimum": 2,
+          "goldMaximum": 2,
+          "inheritedFields": []
+        },
+        {
+          "wave": 8,
+          "goldMinimum": 2,
+          "goldMaximum": 2,
+          "inheritedFields": []
+        },
+        {
+          "wave": 9,
+          "goldMinimum": 2,
+          "goldMaximum": 2,
+          "inheritedFields": []
+        },
+        {
+          "wave": 10,
+          "goldMinimum": 2,
+          "goldMaximum": 2,
+          "inheritedFields": []
+        },
+        {
+          "wave": 11,
+          "goldMinimum": 2,
+          "goldMaximum": 2,
+          "inheritedFields": []
+        },
+        {
+          "wave": 12,
+          "goldMinimum": 2,
+          "goldMaximum": 2,
+          "inheritedFields": []
+        },
+        {
+          "wave": 13,
+          "goldMinimum": 2,
+          "goldMaximum": 2,
+          "inheritedFields": []
+        },
+        {
+          "wave": 14,
+          "goldMinimum": 3,
+          "goldMaximum": 3,
+          "inheritedFields": []
+        },
+        {
+          "wave": 15,
+          "goldMinimum": 3,
+          "goldMaximum": 3,
+          "inheritedFields": []
+        },
+        {
+          "wave": 16,
+          "goldMinimum": 3,
+          "goldMaximum": 3,
+          "inheritedFields": []
+        },
+        {
+          "wave": 17,
+          "goldMinimum": 3,
+          "goldMaximum": 3,
+          "inheritedFields": []
+        },
+        {
+          "wave": 18,
+          "goldMinimum": 3,
+          "goldMaximum": 3,
+          "inheritedFields": []
+        },
+        {
+          "wave": 19,
+          "goldMinimum": 4,
+          "goldMaximum": 4,
+          "inheritedFields": []
+        },
+        {
+          "wave": 20,
+          "goldMinimum": 4,
+          "goldMaximum": 4,
+          "inheritedFields": []
+        },
+        {
+          "wave": 21,
+          "goldMinimum": 4,
+          "goldMaximum": 4,
+          "inheritedFields": []
+        },
+        {
+          "wave": 22,
+          "goldMinimum": 4,
+          "goldMaximum": 4,
+          "inheritedFields": []
+        },
+        {
+          "wave": 23,
+          "goldMinimum": 4,
+          "goldMaximum": 4,
+          "inheritedFields": [
+            "ubdi"
+          ]
+        },
+        {
+          "wave": 24,
+          "goldMinimum": 2,
+          "goldMaximum": 2,
+          "inheritedFields": [
+            "ubdi"
+          ]
+        },
+        {
+          "wave": 25,
+          "goldMinimum": 4,
+          "goldMaximum": 4,
+          "inheritedFields": []
+        },
+        {
+          "wave": 26,
+          "goldMinimum": 4,
+          "goldMaximum": 4,
+          "inheritedFields": []
+        },
+        {
+          "wave": 27,
+          "goldMinimum": 4,
+          "goldMaximum": 4,
+          "inheritedFields": []
+        },
+        {
+          "wave": 28,
+          "goldMinimum": 4,
+          "goldMaximum": 4,
+          "inheritedFields": []
+        },
+        {
+          "wave": 29,
+          "goldMinimum": 4,
+          "goldMaximum": 4,
+          "inheritedFields": []
+        },
+        {
+          "wave": 30,
+          "goldMinimum": 100,
+          "goldMaximum": 190,
+          "inheritedFields": []
+        },
+        {
+          "wave": 31,
+          "goldMinimum": 5,
+          "goldMaximum": 5,
+          "inheritedFields": []
+        },
+        {
+          "wave": 32,
+          "goldMinimum": 5,
+          "goldMaximum": 5,
+          "inheritedFields": []
+        },
+        {
+          "wave": 33,
+          "goldMinimum": 100,
+          "goldMaximum": 100,
+          "inheritedFields": []
+        }
+      ]
+    },
+    {
+      "reference": "Mega Man Maul 3.0 Final",
+      "source": "https://wc3maps.com/map/2823",
+      "archiveSha256": "305e39b0029636b85005cc15ccdfff7ad7012658c52ea29fe350fbe2662a240b",
+      "startingGoldPerPlayer": 550,
+      "killBountyRecipient": "killer owner (native bounty; no shared-kill gold trigger found)",
+      "waveBounties": [
+        {
+          "wave": 1,
+          "goldMinimum": 1,
+          "goldMaximum": 1,
+          "inheritedFields": [
+            "ubdi"
+          ]
+        },
+        {
+          "wave": 2,
+          "goldMinimum": 1,
+          "goldMaximum": 1,
+          "inheritedFields": [
+            "ubdi"
+          ]
+        },
+        {
+          "wave": 3,
+          "goldMinimum": 1,
+          "goldMaximum": 1,
+          "inheritedFields": [
+            "ubdi"
+          ]
+        },
+        {
+          "wave": 4,
+          "goldMinimum": 1,
+          "goldMaximum": 1,
+          "inheritedFields": [
+            "ubdi"
+          ]
+        },
+        {
+          "wave": 5,
+          "goldMinimum": 2,
+          "goldMaximum": 2,
+          "inheritedFields": []
+        },
+        {
+          "wave": 6,
+          "goldMinimum": 2,
+          "goldMaximum": 2,
+          "inheritedFields": []
+        },
+        {
+          "wave": 7,
+          "goldMinimum": 2,
+          "goldMaximum": 2,
+          "inheritedFields": []
+        },
+        {
+          "wave": 8,
+          "goldMinimum": 2,
+          "goldMaximum": 2,
+          "inheritedFields": []
+        },
+        {
+          "wave": 9,
+          "goldMinimum": 2,
+          "goldMaximum": 2,
+          "inheritedFields": []
+        },
+        {
+          "wave": 10,
+          "goldMinimum": 3,
+          "goldMaximum": 3,
+          "inheritedFields": []
+        },
+        {
+          "wave": 11,
+          "goldMinimum": 3,
+          "goldMaximum": 3,
+          "inheritedFields": []
+        },
+        {
+          "wave": 12,
+          "goldMinimum": 3,
+          "goldMaximum": 3,
+          "inheritedFields": []
+        },
+        {
+          "wave": 13,
+          "goldMinimum": 3,
+          "goldMaximum": 3,
+          "inheritedFields": []
+        },
+        {
+          "wave": 14,
+          "goldMinimum": 3,
+          "goldMaximum": 3,
+          "inheritedFields": []
+        },
+        {
+          "wave": 15,
+          "goldMinimum": 4,
+          "goldMaximum": 4,
+          "inheritedFields": []
+        },
+        {
+          "wave": 16,
+          "goldMinimum": 4,
+          "goldMaximum": 4,
+          "inheritedFields": []
+        },
+        {
+          "wave": 17,
+          "goldMinimum": 4,
+          "goldMaximum": 4,
+          "inheritedFields": []
+        },
+        {
+          "wave": 18,
+          "goldMinimum": 4,
+          "goldMaximum": 4,
+          "inheritedFields": []
+        },
+        {
+          "wave": 19,
+          "goldMinimum": 4,
+          "goldMaximum": 4,
+          "inheritedFields": []
+        },
+        {
+          "wave": 20,
+          "goldMinimum": 5,
+          "goldMaximum": 5,
+          "inheritedFields": []
+        },
+        {
+          "wave": 21,
+          "goldMinimum": 5,
+          "goldMaximum": 5,
+          "inheritedFields": []
+        },
+        {
+          "wave": 22,
+          "goldMinimum": 5,
+          "goldMaximum": 5,
+          "inheritedFields": []
+        },
+        {
+          "wave": 23,
+          "goldMinimum": 5,
+          "goldMaximum": 5,
+          "inheritedFields": []
+        },
+        {
+          "wave": 24,
+          "goldMinimum": 5,
+          "goldMaximum": 5,
+          "inheritedFields": []
+        },
+        {
+          "wave": 25,
+          "goldMinimum": 5,
+          "goldMaximum": 5,
+          "inheritedFields": []
+        },
+        {
+          "wave": 26,
+          "goldMinimum": 5,
+          "goldMaximum": 5,
+          "inheritedFields": []
+        },
+        {
+          "wave": 27,
+          "goldMinimum": 5,
+          "goldMaximum": 5,
+          "inheritedFields": []
+        },
+        {
+          "wave": 28,
+          "goldMinimum": 5,
+          "goldMaximum": 5,
+          "inheritedFields": []
+        },
+        {
+          "wave": 29,
+          "goldMinimum": 5,
+          "goldMaximum": 5,
+          "inheritedFields": []
+        },
+        {
+          "wave": 30,
+          "goldMinimum": 5,
+          "goldMaximum": 5,
+          "inheritedFields": []
+        },
+        {
+          "wave": 31,
+          "goldMinimum": 5,
+          "goldMaximum": 5,
+          "inheritedFields": []
+        },
+        {
+          "wave": 32,
+          "goldMinimum": 5,
+          "goldMaximum": 5,
+          "inheritedFields": []
+        },
+        {
+          "wave": 33,
+          "goldMinimum": 5,
+          "goldMaximum": 5,
+          "inheritedFields": []
+        },
+        {
+          "wave": 34,
+          "goldMinimum": 5,
+          "goldMaximum": 5,
+          "inheritedFields": []
+        },
+        {
+          "wave": 35,
+          "goldMinimum": 0,
+          "goldMaximum": 0,
+          "inheritedFields": []
+        }
+      ]
+    }
+  ]
+}
