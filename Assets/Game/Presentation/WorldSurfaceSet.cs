@@ -7,7 +7,7 @@ namespace FrostMaze
     {
         public string Fingerprint,EditorInputs;
         public Texture2D Ground,Cap,Wall,Water,Exterior;
-        public const string PaintRevision="living-hearth-1";
+        public const string PaintRevision="woodland-banks-2";
         public static string Key(Scenario c) {
             var text=PaintRevision+"|"+c.Theme+"|"+c.Width+"|"+c.Height+"|"+c.LayoutCellSize.ToString(System.Globalization.CultureInfo.InvariantCulture)+"|"+c.WalkableSymbols+"|"+string.Join("\n",c.LayoutRows);
             foreach(var lane in c.Lanes)text+="|"+JsonUtility.ToJson(lane);

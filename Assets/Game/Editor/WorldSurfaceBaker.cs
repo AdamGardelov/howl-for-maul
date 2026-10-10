@@ -44,7 +44,7 @@ namespace FrostMaze.Editor
             if(material==null){material=new Material(Resources.Load<Material>("PrototypeMaterial"));AssetDatabase.CreateAsset(material,path);}
             material.color=Color.white;material.EnableKeyword("_DETAIL_SCALED");
             material.SetTexture("_DetailAlbedoMap",Resources.Load<Texture2D>("World/HearthMeadow"));
-            material.SetFloat("_DetailAlbedoMapScale",.48f);material.SetFloat("_DetailNormalMapScale",0);
+            material.SetFloat("_DetailAlbedoMapScale",.20f);material.SetFloat("_DetailNormalMapScale",0);
             material.SetFloat("_Smoothness",.10f);EditorUtility.SetDirty(material);AssetDatabase.SaveAssets();
         }
         static Texture2D Save(string name,Texture2D texture,bool repeat) {

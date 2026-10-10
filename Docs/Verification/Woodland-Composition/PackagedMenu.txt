@@ -1,0 +1,2 @@
+HOWL_MAP_READY Ironfold ms=830.1 baked=True
+HOWL_MENU_CHECK_PASS title/settings/credits/resize/map-change/solo-entry; world frozen

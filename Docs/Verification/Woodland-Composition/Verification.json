@@ -1,0 +1,75 @@
+{
+  "date": "2026-10-10",
+  "baseCommit": "53772ae",
+  "unity": "6000.3.25f1",
+  "renderer": "Linux x64 / OpenGL llvmpipe / private Xvfb",
+  "finalUnityTests": {
+    "passed": 2,
+    "failed": 0,
+    "testSourceChanged": false
+  },
+  "initialUnityTests": {
+    "passed": 1,
+    "failed": 1,
+    "reason": "Oversized groups left only 8 garden elements in the narrow Ironfold shelves; compact groups fixed content loss without changing the tests or safety margins."
+  },
+  "linuxBuild": "passed",
+  "windowsBuild": "passed (cross-build only)",
+  "packagedWorld": {
+    "Ironfold": {
+      "paidTowers": 8,
+      "spentGold": 80,
+      "maskUnchanged": true,
+      "mirrored": true
+    },
+    "Rimewatch": {
+      "paidTowers": 8,
+      "spentGold": 80,
+      "maskUnchanged": true,
+      "mirrored": true
+    },
+    "combat": "Three synthetic ground/flying targets per map; short live presentation check, not campaign balance"
+  },
+  "packagedMenu": "passed: title/settings/credits/960x600 and 1440x900 resize/map-change/solo-entry; inspected screenshots",
+  "nativeWindows": "not run",
+  "hardwarePerformance": "not measured",
+  "fullCampaignBalance": "not rerun; simulation unchanged",
+  "separateNetworkMatch": "not rerun; network code unchanged",
+  "newPublicRelease": false,
+  "isolatedEditorTarget": "restored to Linux",
+  "ownedProcessesClosed": true,
+  "previousPackages": [
+    "Builds/Linux-World-53772ae",
+    "Builds/Windows-World-53772ae"
+  ],
+  "sources": {
+    "Assets/Game/Presentation/LivingWorld.cs": "a20841ffd5835a61aa8f1349a00cc398cfb68b67a41cd62263bb83db72988914",
+    "Assets/Game/Presentation/MapScenery.Surface.cs": "d3b2d9de5da4e794476d4680bea98fbc2b03fe31467e81f77c08ddadb5cc62bc",
+    "Assets/Game/Presentation/WorldSurfaceSet.cs": "c3c94167152471831b8de9e72a02f0b6106d694caa16ad9affb7676e06efb68d",
+    "Assets/Game/Editor/WorldSurfaceBaker.cs": "bdb941cbab39db673bfcc21d623358edfa57a6566a52cd0533f3b92778181c4d"
+  },
+  "installedPackageSha256": {
+    "Linux": {
+      "HowlForMaul": "8027f7d1f9ae7dacfc826fb218adcc1ae7464af098a8a59397e7531c0f7ec0bc",
+      "HowlForMaul_Data/Managed/FrostMaze.Runtime.dll": "7309fdd7d54768e920c327edc8724921ecbd8b26c5df5dc33ca71c98ddec43aa",
+      "THIRD-PARTY-NOTICES.md": "96c119336e46c5d4a9b12047041012e47bad686c7e7028e2865db8edf4d800b8",
+      "MUSIC-SOURCES.json": "bb1435367b1c2971efe67b2b0d90415981595fd87561c29e4efa6fba061ac36a"
+    },
+    "Windows": {
+      "HowlForMaul.exe": "3070e580e019576b9afcdeb4fec18d03cebc119f6ae84d597412905c749ad653",
+      "HowlForMaul_Data/Managed/FrostMaze.Runtime.dll": "b2a0dfcd1e29fe5e862b4627ad979247e9af33ff3b03307903a7ad6cd0df66ad",
+      "THIRD-PARTY-NOTICES.md": "96c119336e46c5d4a9b12047041012e47bad686c7e7028e2865db8edf4d800b8",
+      "MUSIC-SOURCES.json": "bb1435367b1c2971efe67b2b0d90415981595fd87561c29e4efa6fba061ac36a"
+    }
+  },
+  "logs": [
+    "work/woodland-bake.log",
+    "work/woodland-tests-initial.log",
+    "work/woodland-tests.log",
+    "work/woodland-linux-build.log",
+    "work/woodland-world.log",
+    "work/woodland-menu.log",
+    "work/woodland-windows-build.log",
+    "work/woodland-restore-linux.log"
+  ]
+}

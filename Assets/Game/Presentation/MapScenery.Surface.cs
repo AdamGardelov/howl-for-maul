@@ -30,7 +30,7 @@ namespace FrostMaze
         internal static Color MeadowColor(float x,float z)
         {
             if(meadowPaint==null)meadowPaint=Resources.Load<Texture2D>("World/HearthMeadow");
-            return meadowPaint!=null?meadowPaint.GetPixelBilinear(Mathf.PingPong(x/7,1),Mathf.PingPong(z/7,1))*new Color(.78f,.96f,.97f):new Color(.35f,.44f,.22f);
+            return meadowPaint!=null?meadowPaint.GetPixelBilinear(Mathf.PingPong(x/7,1),Mathf.PingPong(z/7,1))*new Color(.64f,.80f,.91f):new Color(.35f,.44f,.22f);
         }
         internal static Color RaisedSurfaceColor(float wx,float wz,bool ice)
         {
@@ -56,7 +56,7 @@ namespace FrostMaze
             }
             var rock=Color.Lerp(new Color(.24f,.27f,.27f),new Color(.40f,.40f,.35f),breakup);
             rock=Color.Lerp(rock,new Color(.15f,.19f,.19f),seam*.12f);
-            var grass=Color.Lerp(MeadowColor(wx,wz)*.88f,new Color(.25f,.39f,.26f),.22f);
+            var grass=Color.Lerp(MeadowColor(wx,wz)*.88f,new Color(.23f,.32f,.26f),.32f);
             float fibers=SnowNoise(wx,wz,5,31,61);
             grass*=.94f+fibers*.12f;
             var earth=Color.Lerp(rock,grass,.62f+exposed*.34f);

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f57b7673310645b3aa13acc9910d3d20, type: 3}
   m_Name: Ironfold
   m_EditorClassIdentifier: FrostMaze.Runtime::FrostMaze.WorldSurfaceSet
-  Fingerprint: FC88BDB527E208CCAD54121AF9D527BCEB2AFAB2286C4E273F2083A8673CBD08
-  EditorInputs: cc9846b5a37b3366a7b81db7545f3bf1
+  Fingerprint: 035D1EDD32179800900464075DACD5E22A379B4944934F75CD0D763981B02DEC
+  EditorInputs: 9830d60b15258680c845e14f71b54702
   Ground: {fileID: 2800000, guid: ce7523618077699f5a9f65d4f54bab63, type: 3}
   Cap: {fileID: 2800000, guid: 98cf9b446c6d050bf88a9b3b56817249, type: 3}
   Wall: {fileID: 2800000, guid: 4e477e0ecfe62793e8fa822508626c21, type: 3}

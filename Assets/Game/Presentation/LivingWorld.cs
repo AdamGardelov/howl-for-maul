@@ -87,15 +87,38 @@ namespace FrostMaze
                 if(p.x>width*.5f||!FitsMap(config,p.x,p.z,p.w)||!ClearsFlight(config,p.x,p.z,p.w))continue;
                 Tree(new Vector3(p.x,y,p.z),p.w,p.y,Mathf.RoundToInt(p.x*13+p.z*7),false);Site(p.x,y,p.z,p.w);
             }
-            for(float z=1.2f;z<config.Height-1;z+=1.35f)for(float x=1.2f;x<width*.5f-1;x+=1.35f){
-                float n=Noise(x,z),px=x+(n-.5f)*.65f,pz=z+(Noise(z,x)-.5f)*.6f;
-                float r=.36f+n*.17f;
+            if(!ice)BuildIronfoldBanks(scenery,y);
+            // Broad, separated beds: a rock shoulder anchors each pocket of understory.
+            // The complete group is reserved before generating leaves, including their wind envelope.
+            for(float z=1.5f;z<config.Height-1;z+=2.2f)for(float x=1.5f;x<width*.5f-1;x+=2.2f){
+                float n=Noise(x,z),px=x+(n-.5f)*1.1f,pz=z+(Noise(z,x)-.5f)*1.1f;
+                if(Mathf.PerlinNoise(px*.12f+5,pz*.12f+17)<.46f)continue;
+                float r=.86f+n*.35f;
+                if(!FitsMap(config,px,pz,r)||!Clear(px,pz,r)||!scenery.PlantSpaceFree(px,pz,r))r=.60f+n*.08f;
                 if(!FitsMap(config,px,pz,r)||!Clear(px,pz,r)||!scenery.PlantSpaceFree(px,pz,r))continue;
-                bool edge=!FitsMap(config,px,pz,2.2f);
-                if(Mathf.PerlinNoise(px*.22f+5,pz*.22f+17)<(edge?.32f:.53f))continue;
-                if(n>.65f&&FitsMap(config,px,pz,1.02f)&&scenery.PlantSpaceFree(px,pz,1.14f)&&Clear(px,pz,1.14f)&&ClearsFlight(config,px,pz,1.02f)){
-                    Tree(new Vector3(px,y,pz),.98f,ice?3.1f:2.9f,(int)(px*13+pz*3),false);Site(px,y,pz,.98f);
-                } else {Garden(new Vector3(px,y,pz),r,(int)(px*11+pz*17));Site(px,y,pz,r);}
+                int seed=Mathf.RoundToInt(px*13+pz*17);
+                if(n>.62f&&FitsMap(config,px,pz,1.35f)&&scenery.PlantSpaceFree(px,pz,1.35f)&&Clear(px,pz,1.35f)&&ClearsFlight(config,px,pz,1.35f)){
+                    Tree(new Vector3(px,y,pz),1.30f,ice?3.7f:3.4f,seed,false);Site(px,y,pz,1.30f);
+                } else {Thicket(new Vector3(px,y,pz),r,seed);Site(px,y,pz,r);}
+            }
+        }
+        void BuildIronfoldBanks(MapScenery scenery,float y)
+        {
+            // Shelter the lower bends and frame the approach. Search only near each authored
+            // target so a future mask edit cannot move a tree to an unrelated part of the map.
+            var targets=new[]{new Vector4(16,12,1.22f,3.9f),new Vector4(22,17,1.20f,3.7f),
+                new Vector4(13,3.8f,.66f,2.45f),new Vector4(26,3.8f,.66f,2.45f)};
+            foreach(var target in targets){
+                Vector2 best=default;float score=float.MaxValue;
+                for(float z=target.y-1.5f;z<=target.y+1.5f;z+=.25f)
+                for(float x=target.x-1.5f;x<=target.x+1.5f;x+=.25f){
+                    if(!FitsMap(config,x,z,target.z)||!Clear(x,z,target.z)||!scenery.PlantSpaceFree(x,z,target.z)||!ClearsFlight(config,x,z,target.z))continue;
+                    float distance=(new Vector2(x,z)-new Vector2(target.x,target.y)).sqrMagnitude;
+                    if(distance<score){score=distance;best=new Vector2(x,z);}
+                }
+                if(score==float.MaxValue)continue;
+                Tree(new Vector3(best.x,y,best.y),target.z,target.w,Mathf.RoundToInt(best.x*17+best.y*7),false);
+                Site(best.x,y,best.y,target.z);
             }
         }
         void BuildOutside(WorldBackdrop backdrop)
@@ -112,14 +135,31 @@ namespace FrostMaze
                 if(!backdrop.PlantFits(x,z,r+WindEnvelope)||!Clear(x,z,r))continue;
                 Tree(new Vector3(x,backdrop.SurfaceY(x,z),z),r,ice?5.5f:4.9f,(int)(x*19),!ice);Site(x,0,z,r);
             }
-            // Low gardens follow the paths and foundations, rather than a regular prop grid.
-            for(float z=-35;z<-1;z+=1.25f)for(float x=2;x<width*.5f-1;x+=1.25f){
-                float n=Noise(x,z),px=x+(n-.5f)*.7f,pz=z+(Noise(z,x)-.5f)*.7f;
-                float r=.4f+n*.23f;
-                if(Mathf.PerlinNoise(px*.21f+19,pz*.21f+3)<.43f||!backdrop.PlantFits(px,pz,r+WindEnvelope)||!Clear(px,pz,r))continue;
-                Garden(new Vector3(px,backdrop.SurfaceY(px,pz)+.035f,pz),r,(int)(px*11-pz*17));Site(px,0,pz,r);
+            // Leave open meadow between planted banks; roads and house envelopes stay clear.
+            for(float z=-35;z<-1;z+=2.9f)for(float x=2;x<width*.5f-1;x+=2.9f){
+                float n=Noise(x,z),px=x+(n-.5f)*1.4f,pz=z+(Noise(z,x)-.5f)*1.4f;
+                float r=1.05f+n*.5f;
+                if(Mathf.PerlinNoise(px*.12f+19,pz*.12f+3)<.46f||!backdrop.PlantFits(px,pz,r+WindEnvelope)||!Clear(px,pz,r))continue;
+                Thicket(new Vector3(px,backdrop.SurfaceY(px,pz)+.035f,pz),r,Mathf.RoundToInt(px*11-pz*17));Site(px,0,pz,r);
             }
         }
+        void Thicket(Vector3 root,float radius,int seed)
+        {
+            // Boulders and overlapping low fronds read as one silhouette, with an open side.
+            // Capped heights let a low bed sit beneath a flying lane without hiding its enemies.
+            float turn=seed*.79f;
+            var axis=new Vector3(Mathf.Cos(turn),0,Mathf.Sin(turn));
+            var side=new Vector3(-axis.z,0,axis.x);
+            RockShoulder(root-axis*radius*.25f,Mathf.Min(.62f,radius*.48f),seed);
+            RockShoulder(root-axis*radius*.1f+side*radius*.40f,Mathf.Min(.40f,radius*.30f),seed+3);
+            for(int i=0;i<5;i++){
+                float along=(i%3-1)*radius*.32f,across=(i<3?.27f:-.26f)*radius;
+                var point=root+axis*along+side*across;
+                float r=Mathf.Min(.57f,radius*(i==1?.48f:.36f));
+                Garden(point,r,seed+i*13);
+            }
+        }
+
         void Tree(Vector3 root,float radius,float height,int seed,bool flowering)
         {
             Trees++;var trunk=Tint(.47f,.36f,.23f,0);
@@ -139,7 +179,7 @@ namespace FrostMaze
                     float a=seed+fan*Mathf.PI*2/fans+layer*.8f;
                     var center=root+new Vector3(Mathf.Cos(a)*spread,height*(ice?.28f+layer*.18f:.55f+layer*.15f),Mathf.Sin(a)*spread);
                     float size=radius*(ice?.66f:.70f)*(1-layer/(float)layers*(ice?.45f:.18f));
-                    var tint=ice?Tint(.88f,1.07f,1.09f):Tint(.76f+layer*.13f,.92f+layer*.08f,.78f+layer*.07f);
+                    var tint=ice?Tint(.88f,1.07f,1.09f):Tint(.51f+layer*.075f,.72f+layer*.055f,.69f+layer*.055f);
                     if(flowering)tint=Tint(1.06f+layer*.035f,.82f+layer*.045f,.87f+layer*.035f);
                     LeafCard(target,center,size,a,ice?-.38f:.20f,tint,root,radius);
                 }
@@ -170,16 +210,16 @@ namespace FrostMaze
                 var direction=new Vector3(Mathf.Cos(a),0,Mathf.Sin(a));var side=Vector3.Cross(direction,Vector3.up);
                 float h=radius*(.35f+(i%4)*.16f),wide=radius*.07f;
                 var middle=foot+Vector3.up*h*.64f+direction*radius*.1f;var tip=foot+Vector3.up*h+direction*radius*.3f;
-                var c=ice?Tint(.37f,.55f,.48f,.4f):Tint(.35f+(i%3)*.08f,.51f+(i%3)*.09f,.18f,.4f);
+                var c=ice?Tint(.37f,.55f,.48f,.4f):Tint(.28f+(i%3)*.035f,.42f+(i%3)*.045f,.29f,.4f);
                 grass.Quad(foot-side*wide,middle-side*wide*.7f,middle+side*wide*.7f,foot+side*wide,c,Vector3.up);
                 c.a=1;c*=1.12f;c.a=1;grass.Quad(middle-side*wide*.7f,tip,tip,middle+side*wide*.7f,c,Vector3.up);
             }
             if(seed%4!=0){
-                var c=ice?Tint(.68f,.85f,.82f):Tint(.85f,.98f,.75f);
+                var c=ice?Tint(.68f,.85f,.82f):Tint(.58f,.77f,.73f);
                 LeafCard(canopy,root+Vector3.up*radius*.50f,radius*.92f,turn,.5f,c,root,radius);
                 LeafCard(canopy,root+Vector3.up*radius*.60f,radius*.82f,turn+1.5f,.5f,c,root,radius);
             }
-            if(seed%5==0)for(int f=0;f<3;f++){
+            if(seed%11==0)for(int f=0;f<3;f++){
                 float a=turn+f*2.1f;var p=root+new Vector3(Mathf.Cos(a)*radius*.42f,radius*.62f,Mathf.Sin(a)*radius*.42f);
                 Tube(grass,p-Vector3.up*radius*.6f,p,.011f,.008f,Tint(.28f,.47f,.25f,.6f),4);
                 for(int petal=0;petal<5;petal++){
