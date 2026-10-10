@@ -40,10 +40,18 @@ namespace FrostMaze.Tests
                 Assert.That(w.Tick,Is.EqualTo(frozen));Assert.That(ambience.LandmarkLevel,Is.GreaterThan(.01f));
                 Assert.That(scenery.ActiveFireLights,Is.InRange(1,4));
                 foreach(var light in scenery.GetComponentsInChildren<Light>()){Assert.That(light.intensity,Is.LessThan(1.5f));Assert.That(light.shadows,Is.EqualTo(LightShadows.None));}
-                var canopy=scenery.transform.Find("Scenery 27").GetComponent<MeshFilter>().sharedMesh;
-                var leaves=canopy.vertices;yield return new WaitForSecondsRealtime(.35f);var moved=canopy.vertices;float sway=0;
-                for(int i=0;i<leaves.Length;i++)sway=Mathf.Max(sway,Vector3.Distance(leaves[i],moved[i]));
-                Assert.That(sway,Is.InRange(.0001f,.08f),"Foliage should move gently while combat remains paused");Assert.That(w.Tick,Is.EqualTo(frozen));
+                if(map=="Ironfold") {
+                    // Ironfold no longer draws the old solid CPU-deformed grove cores.
+                    // Verify the replacement painted foliage really moves in the GPU render.
+                    yield return CheckPaintedWind(game,rts);
+                    rts.FocusPoint(new V2(anchor.x,anchor.z));rts.SetZoom(8,true);yield return null;
+                } else {
+                    var canopy=scenery.transform.Find("Scenery 27").GetComponent<MeshFilter>().sharedMesh;
+                    var leaves=canopy.vertices;yield return new WaitForSecondsRealtime(.35f);var moved=canopy.vertices;float sway=0;
+                    for(int i=0;i<leaves.Length;i++)sway=Mathf.Max(sway,Vector3.Distance(leaves[i],moved[i]));
+                    Assert.That(sway,Is.InRange(.0001f,.08f),"Foliage should move gently while combat remains paused");
+                }
+                Assert.That(w.Tick,Is.EqualTo(frozen));
                 Capture(game.View,"/tmp/Howl-"+map+"-Cohesion-Landmark.png");
                 var owned=new System.Collections.Generic.List<AudioClip>();
                 foreach(var source in game.GetComponentsInChildren<AudioSource>())if(source.clip!=null&&source.clip.name.StartsWith("Original environment")) {
@@ -88,6 +96,31 @@ namespace FrostMaze.Tests
                 foreach(var texture in landmarkTextures)Assert.That(texture==null,Is.True,"Changing maps leaked generated landmark paint");
             }
             yield return new ExitPlayMode();
+        }
+        static IEnumerator CheckPaintedWind(Prototype game,RtsCamera rts) {
+            LivingWorld garden=null;
+            foreach(var world in game.GetComponentsInChildren<LivingWorld>())if(!world.Exterior)garden=world;
+            var crowns=garden.transform.Find("Painted crowns");var material=crowns.GetComponent<Renderer>().sharedMaterial;
+            var vertices=crowns.GetComponent<MeshFilter>().sharedMesh.vertices;var point=vertices[0];
+            rts.FocusPoint(new V2(point.x,point.z));rts.SetZoom(5,true);yield return null;
+            var camera=game.View;int oldMask=camera.cullingMask,oldLayer=crowns.gameObject.layer;
+            var oldFlags=camera.clearFlags;var oldColor=camera.backgroundColor;float wind=material.GetFloat("_Wind");
+            try {
+                crowns.gameObject.layer=31;camera.cullingMask=1<<31;camera.clearFlags=CameraClearFlags.SolidColor;camera.backgroundColor=Color.black;
+                Assert.That(wind,Is.InRange(.01f,LivingWorld.WindEnvelope));
+                var first=WindFrame(camera);yield return new WaitForSecondsRealtime(.65f);var second=WindFrame(camera);
+                Assert.That(ChangedPixels(first,second),Is.GreaterThan(5),"Painted canopy should visibly sway while combat is paused");
+                material.SetFloat("_Wind",0);first=WindFrame(camera);yield return new WaitForSecondsRealtime(.35f);second=WindFrame(camera);
+                Assert.That(ChangedPixels(first,second),Is.Zero,"The isolated static control should not change; other effects must not satisfy the wind check");
+            } finally {material.SetFloat("_Wind",wind);crowns.gameObject.layer=oldLayer;camera.cullingMask=oldMask;camera.clearFlags=oldFlags;camera.backgroundColor=oldColor;}
+        }
+        static Color32[] WindFrame(Camera camera) {
+            var rt=new RenderTexture(256,256,24);var old=RenderTexture.active;var oldTarget=camera.targetTexture;var image=new Texture2D(256,256,TextureFormat.RGB24,false);
+            try {camera.targetTexture=rt;camera.Render();RenderTexture.active=rt;image.ReadPixels(new Rect(0,0,256,256),0,0);image.Apply();return image.GetPixels32();}
+            finally {camera.targetTexture=oldTarget;RenderTexture.active=old;Object.DestroyImmediate(image);Object.DestroyImmediate(rt);}
+        }
+        static int ChangedPixels(Color32[] a,Color32[] b) {
+            int changed=0;for(int i=0;i<a.Length;i++)if(Mathf.Abs(a[i].r-b[i].r)+Mathf.Abs(a[i].g-b[i].g)+Mathf.Abs(a[i].b-b[i].b)>12)changed++;return changed;
         }
         static bool SegmentHitsRect(Vector2 a,Vector2 b,Vector2 min,Vector2 max) {
             float enter=0,exit=1;var delta=b-a;

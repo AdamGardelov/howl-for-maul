@@ -51,6 +51,10 @@ Ground attackers are slagbound creatures: armored bodies around a dangerous inne
 - Cinzel for short ceremonial headings; Alegreya Sans for readable instructions and numbers. Keep long gameplay labels legible.
 - Attacks are material sounds (stone, metal, air, glass, heat); UI is a soft mechanical response. Important leaks have a clear wardbell. Music leaves space for play.
 
+## Selected visual target
+
+The [Ironfold blank-canvas concept](Concept-Target/Ironfold-Visual-Target.png) is the user-selected composition and material target. See [the implementation direction](CONCEPT-TO-WORLD.md). Match its sheltering woodland, rooted stone and warm refuge architecture while preserving the supplied lane geometry and every buildable cell. The concept is not a replacement map mask or evidence of implemented quality.
+
 ## First finished-area target
 
 Ironfold Last Stand: painted slate road, readable wall edges, paired Anvilheart halls beyond the exit, warm apertures, layered roof silhouettes and a clear central path. Validate with ordinary paid towers and moving enemies, not only an empty overview. Apply the same construction language to Rimewatch's Hearthward lodges.

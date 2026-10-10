@@ -58,6 +58,7 @@ namespace FrostMaze
         bool Clear(float x,float z,float radius)
         {
             foreach(var p in sites)if(new Vector2(p.x-x,p.z-z).magnitude<p.w+radius+.16f)return false;
+            foreach(var p in shoreSites)if(new Vector2(p.x-x,p.z-z).magnitude<p.w+radius+.16f)return false;
             return true;
         }
         void Site(float x,float y,float z,float r){sites.Add(new Vector4(x,y,z,r+WindEnvelope));}
@@ -82,12 +83,13 @@ namespace FrostMaze
         void BuildInside(MapScenery scenery)
         {
             float y=ice?.74f:.62f;
-            // The large existing grove cores become the shaded interior of painted leaf crowns.
+            // Keep the established grove reservations; Ironfold replaces their solid cores with rock banks.
             foreach(var p in scenery.PaintedTrees){
                 if(p.x>width*.5f||!FitsMap(config,p.x,p.z,p.w)||!ClearsFlight(config,p.x,p.z,p.w))continue;
+                if(!ice)RockBank(new Vector3(p.x,y,p.z),p.w,Mathf.RoundToInt(p.x*13+p.z*7));
                 Tree(new Vector3(p.x,y,p.z),p.w,p.y,Mathf.RoundToInt(p.x*13+p.z*7),false);Site(p.x,y,p.z,p.w);
             }
-            if(!ice)BuildIronfoldBanks(scenery,y);
+            if(!ice){BuildIronfoldBanks(scenery,y);BuildShoreBanks(-.03f);BuildRockShelves(scenery,y);}
             // Broad, separated beds: a rock shoulder anchors each pocket of understory.
             // The complete group is reserved before generating leaves, including their wind envelope.
             for(float z=1.5f;z<config.Height-1;z+=2.2f)for(float x=1.5f;x<width*.5f-1;x+=2.2f){
@@ -117,6 +119,7 @@ namespace FrostMaze
                     if(distance<score){score=distance;best=new Vector2(x,z);}
                 }
                 if(score==float.MaxValue)continue;
+                RockBank(new Vector3(best.x,y,best.y),target.z,Mathf.RoundToInt(best.x*17+best.y*7));
                 Tree(new Vector3(best.x,y,best.y),target.z,target.w,Mathf.RoundToInt(best.x*17+best.y*7),false);
                 Site(best.x,y,best.y,target.z);
             }
@@ -262,6 +265,8 @@ namespace FrostMaze
             Save("Meadow undergrowth",grass,Texture2D.whiteTexture,true);
             Save("Living branches",bark,Texture2D.whiteTexture,false);
             Save("Weathered shoulders",rocks,Texture2D.whiteTexture,false);
+            Save("Ironfold rock banks",rockbanks,Resources.Load<Texture2D>("World/HearthSlate"),false);
+            Save("Rock bank moss",bankMoss,Resources.Load<Texture2D>("World/HearthMeadow"),false);
             Save("Sanctuary stone",stone,Resources.Load<Texture2D>("World/HearthMasonry"),false);
             Save("Sanctuary bronze",brass,Texture2D.whiteTexture,false);
         }

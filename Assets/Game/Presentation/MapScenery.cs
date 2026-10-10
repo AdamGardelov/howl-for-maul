@@ -80,7 +80,7 @@ namespace FrostMaze
             palette.Add(ice?new Color(.24f,.34f,.38f):new Color(.22f,.23f,.25f));
             palette.Add(ice?new Color(.95f,.43f,.13f):new Color(1,.39f,.075f));
             palette.Add(ice?new Color(1,.82f,.43f):new Color(1,.85f,.36f));
-            palette.Add(ice?new Color(.54f,.74f,.79f):new Color(.43f,.3f,.19f));
+            palette.Add(ice?new Color(.54f,.74f,.79f):new Color(.30f,.36f,.28f));
             palette.Add(ice?new Color(.30f,.34f,.24f):new Color(.22f,.32f,.18f));
             palette.Add(ice?new Color(.54f,.59f,.46f):new Color(.46f,.48f,.28f));
             palette.Add(ice?new Color(.23f,.32f,.35f):new Color(.28f,.30f,.27f));

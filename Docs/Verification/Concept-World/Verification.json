@@ -1,0 +1,92 @@
+{
+  "date": "2026-10-10",
+  "baseCommit": "9842fa4",
+  "unity": "6000.3.25f1",
+  "renderer": "Linux OpenGL llvmpipe / private Xvfb :98",
+  "focusedTests": {
+    "passed": 3,
+    "failed": 0,
+    "endUtc": "2026-10-10 05:22:19Z",
+    "fullSuite": false,
+    "cases": [
+      "GardensKeepBuildCellsAirRoutesAndHouseRoofsClear",
+      "ExteriorRespectsEveryBuildingAndBakedMapsRemainValid",
+      "LandmarksAmbientVoicesAndConstructionStayCosmetic"
+    ]
+  },
+  "repairHistory": [
+    "Initial 2/3: hall vertex count 20358 exceeded unchanged 20000 budget; reduced roof/chimney subdivisions.",
+    "Second 2/3: obsolete CPU wind assertion for removed Ironfold solid grove cores; replaced with isolated GPU render comparison and no-wind control.",
+    "Following 3/3 passes before density, after density, and on both shoreline iterations. The first isolated shore design was visually revised into broader banks adjoining stone."
+  ],
+  "scene": {
+    "ironfoldBankGroupsBeforeReflection": 20,
+    "shoreGroupsBeforeReflection": 14,
+    "ironfoldRefugeVertices": 18870,
+    "rimewatchRefugeVertices": 11022,
+    "authoritativeMapsByteIdenticalToBase": true,
+    "bakedSurfacePngBytesUnchanged": true,
+    "bakedDependencyFingerprintsRefreshed": true
+  },
+  "linuxBuild": "passed",
+  "windowsBuild": "passed (cross-build only)",
+  "packagedWorld": {
+    "result": "passed on both maps",
+    "paidTowersPerMap": 8,
+    "spentGoldPerMap": 80,
+    "unchangedMasks": true,
+    "mirroredGeometry": true,
+    "combat": "short simulated-input play with synthetic ground/flying targets",
+    "humanInput": "not rerun in this environment pass",
+    "scope": "Presentation and paid construction, not full campaign balance"
+  },
+  "packagedMenu": "passed: title/settings/credits/map-change/solo-entry/960x600 and 1440x900; small title and HUD inspected",
+  "nativeWindows": "not run",
+  "hardwarePerformance": "not measured",
+  "separateNetworkMatch": "not rerun; networking unchanged",
+  "newPublicRelease": false,
+  "isolatedEditorTarget": "restored to Linux",
+  "ownedProcessesClosed": true,
+  "previousPackages": [
+    "Builds/Linux-World-9842fa4",
+    "Builds/Windows-World-9842fa4"
+  ],
+  "sources": {
+    "Assets/Game/Presentation/LivingWorld.cs": "7d1a394d8a25cc4f28666805c09f85e6e6ef33c1c31de33090b257dc2467560f",
+    "Assets/Game/Presentation/MapScenery.Composition.cs": "0cce26a0d00b0878e59ca0b115d8ad6816da9c2bb6f573953ad1be44f599e871",
+    "Assets/Game/Presentation/MapScenery.cs": "a5eb73fda6054833b41929e8652d47b3517c4ceec9296aab82330029ee6ae02f",
+    "Assets/Game/Presentation/Resources/World/Baked/Ironfold.asset": "eb1898e6ee3c5ee4b157685bbae2439c6cc48183e60a42086954f16286dde8a7",
+    "Assets/Game/Presentation/Resources/World/Baked/Rimewatch.asset": "de5f7646e5bc1771ce06151dd376f15afa9c531341cd0d362137facf4eb5e296",
+    "Assets/Game/Presentation/WorldBackdrop.Refuge.cs": "587639f04a91ad0b8c4fd93e4d8fd12afc3b2ccb98a24bc032c70475525ed45f",
+    "Assets/Game/Presentation/WorldBackdrop.cs": "949e3c2691d9c24d61371550fd89ccb00790def1f3fa6860eaf83aa1b64199d3",
+    "Assets/Tests/LivingWorldTests.cs": "5cee8ad1fffbd4aa98787280d5307dfdbb57196dd1b44c94df22e0aa7b98cf19",
+    "Assets/Tests/WorldCohesionTests.cs": "f42af61c7343b0275a47eed66f6d560c803f73bca50db5f0157098b596cbd998",
+    "Assets/Game/Presentation/LivingWorld.Rockbanks.cs": "78c6427d51f7eb8a7e2086e0519c412de101461e577a3e6d97d7ef8f729a75e0",
+    "Assets/Game/Presentation/LivingWorld.Rockbanks.cs.meta": "bbf03e2b767b4caf11be5d03bd51f259d7a0a45f17e81282ec7d384648e5d6d8",
+    "Assets/Game/Presentation/WorldBackdrop.Anvilheart.cs": "33ba39db0d768cc49beae3d65e6c08d1d04f348016f67a2b240ed859936a69d1",
+    "Assets/Game/Presentation/WorldBackdrop.Anvilheart.cs.meta": "e92b7dd4b171486e7924ee8b7e4ea2913424cca1e968991f2a040186ff1ab5b5"
+  },
+  "installedPackageSha256": {
+    "Linux": {
+      "HowlForMaul": "8027f7d1f9ae7dacfc826fb218adcc1ae7464af098a8a59397e7531c0f7ec0bc",
+      "HowlForMaul_Data/Managed/FrostMaze.Runtime.dll": "d3329523faa1410821c203ae527665572c198a3b445218e0582d338230fdd73b",
+      "THIRD-PARTY-NOTICES.md": "96c119336e46c5d4a9b12047041012e47bad686c7e7028e2865db8edf4d800b8",
+      "MUSIC-SOURCES.json": "bb1435367b1c2971efe67b2b0d90415981595fd87561c29e4efa6fba061ac36a"
+    },
+    "Windows": {
+      "HowlForMaul.exe": "3070e580e019576b9afcdeb4fec18d03cebc119f6ae84d597412905c749ad653",
+      "HowlForMaul_Data/Managed/FrostMaze.Runtime.dll": "ff7dfb5229ff2705d045a2dfeaafb0219feec7046aecb88a8da9017d0891726b",
+      "THIRD-PARTY-NOTICES.md": "96c119336e46c5d4a9b12047041012e47bad686c7e7028e2865db8edf4d800b8",
+      "MUSIC-SOURCES.json": "bb1435367b1c2971efe67b2b0d90415981595fd87561c29e4efa6fba061ac36a"
+    }
+  },
+  "logs": [
+    "work/concept-bake.log",
+    "work/concept-tests.log",
+    "work/concept-linux-build.log",
+    "work/concept-world.log",
+    "work/concept-menu.log",
+    "work/concept-windows-build.log",
+    "work/concept-restore-linux.log"
+  ]
+}

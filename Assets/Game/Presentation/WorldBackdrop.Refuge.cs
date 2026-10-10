@@ -40,7 +40,8 @@ namespace FrostMaze
                 metal.Box(xx-.06f,zz-.05f,.68f,.62f,2.46f,2.6f);
             }
             // Slate/copper shingles overlap down two pitched roof slopes; no flat box roof.
-            for(int side=0;side<2;side++)for(int row=0;row<4;row++) {
+            if(!ice)BuildAnvilheartRoof(stone,metal,roof,timber,glow,x,z,w,d);
+            for(int side=0;ice&&side<2;side++)for(int row=0;row<4;row++) {
                 float u0=row/4f,u1=(row+1)/4f;
                 float xa=x+w*.5f+(side==0?-1:1)*(w*.5f+.4f)*u0;
                 float xb=x+w*.5f+(side==0?-1:1)*(w*.5f+.4f)*u1;
@@ -62,8 +63,10 @@ namespace FrostMaze
             for(int face=0;face<2;face++) {
                 float zz=z+(face==0?-.41f:d+.41f);
                 var a=new Vector3(x-.4f,2.44f,zz);var tip=new Vector3(x+w*.5f,4.12f,zz);var b=new Vector3(x+w+.4f,2.44f,zz);
-                if(face==0)timber.Triangle(a,tip,b);else timber.Triangle(b,tip,a);
-                Beam(metal,a,tip,.18f);Beam(metal,tip,b,.18f);Beam(metal,a,b,.16f);
+                if(ice){
+                    if(face==0)timber.Triangle(a,tip,b);else timber.Triangle(b,tip,a);
+                    Beam(metal,a,tip,.18f);Beam(metal,tip,b,.18f);Beam(metal,a,b,.16f);
+                }
                 // Furnace/ward arch: luminous core recessed behind a many-sided stone ring.
                 float cx=x+w*.5f,baseY=.42f,archY=1.5f,r=.87f;
                 float front=zz+(face==0?-.025f:.025f);
@@ -87,9 +90,12 @@ namespace FrostMaze
             }
             // Tapered chimney, stacked cornices and a dark flue opening.
             float chimneyX=x+.7f,chimneyZ=z+1.4f;
+            if(!ice)BuildAnvilheartChimney(stone,metal,dark,chimneyX+.4f,chimneyZ+.4f);
+            if(ice){
             stone.Box(chimneyX,chimneyZ,.82f,.92f,1.8f,4.65f);
             for(int i=0;i<3;i++)metal.Box(chimneyX-.1f-i*.035f,chimneyZ-.1f-i*.035f,1.02f+i*.07f,1.12f+i*.07f,4.45f+i*.16f,4.55f+i*.16f);
             dark.Box(chimneyX+.12f,chimneyZ+.12f,.58f,.68f,4.88f,4.895f);
+            }
             // A hanging wardbell beside the road, outside the map and outside the exit corridor.
             float bellX=x+w+.65f,bellZ=-3.3f;
             for(int side=-1;side<=1;side+=2)timber.Box(bellX+side*.58f-.07f,bellZ,.14f,.18f,-.1f,2.35f);

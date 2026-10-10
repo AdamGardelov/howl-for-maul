@@ -23,6 +23,14 @@ namespace FrostMaze.Tests
                 foreach(var world in worlds){
                     Assert.That(world.GetComponentsInChildren<Collider>(),Is.Empty);
                     Assert.That(world.Trees,Is.GreaterThan(0),"At least one safe canopy group per half-map");Assert.That(world.Gardens,Is.GreaterThan(20));
+                    if(name=="Ironfold"&&!world.Exterior){
+                        Assert.That(world.RockBanks,Is.GreaterThan(3),"Ironfold needs grouped bank silhouettes");
+                        Assert.That(world.ShoreSites.Count,Is.InRange(1,14));
+                        foreach(var shore in world.ShoreSites)Assert.That(LivingWorld.FitsShore(config,shore.x,shore.z,shore.w-LivingWorld.WindEnvelope),Is.True);
+                        Debug.Log("HOWL_ROCK_BANKS groups="+world.RockBanks+" shoreGroups="+world.ShoreSites.Count);
+                        var banks=world.transform.Find("Ironfold rock banks").GetComponent<MeshFilter>().sharedMesh;
+                        Assert.That(banks.vertexCount,Is.LessThan(30000),"Keep rock-bank rendering bounded");
+                    }
                     foreach(var site in world.Sites)if(!world.Exterior)Assert.That(LivingWorld.FitsMap(config,site.x,site.z,site.w-LivingWorld.WindEnvelope),Is.True);
                     foreach(var filter in world.GetComponentsInChildren<MeshFilter>()){
                         Assert.That(filter.gameObject.layer,Is.EqualTo(world.Exterior?0:30));

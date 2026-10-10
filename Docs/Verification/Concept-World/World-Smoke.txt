@@ -1,0 +1,3 @@
+HOWL_WORLD_CHECK_PASS Ironfold refugeVertices=18870 paidTowers=8 spent=80 maskUnchanged=true mirrored=true
+HOWL_WORLD_CHECK_PASS Rimewatch refugeVertices=11022 paidTowers=8 spent=80 maskUnchanged=true mirrored=true
+HOWL_WORLD_CHECK_COMPLETE

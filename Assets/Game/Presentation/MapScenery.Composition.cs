@@ -103,7 +103,7 @@ namespace FrostMaze
                 if(ice)Mound(b[28],x+.5f,z-.35f,y+.62f,.46f,.26f,seed);
                 // Asymmetric branching, layered crowns, two heights per group.
                 paintedTrees.Add(new Vector4(x,y+(ice?3.5f:3.2f),z,1.6f*groveScale));
-                for(int tree=0;tree<2;tree++) {
+                for(int tree=0;ice&&tree<2;tree++) {
                     float tx=x-.35f+tree*.73f,tz=z+.25f+tree*.3f,height=(tree==0?3.1f:2.05f)+(seed%4)*.16f;
                     Beam(b[26],new Vector3(tx,y,tz),new Vector3(tx+.13f,y+height,tz),.08f);
                     for(int tier=0;tier<3;tier++) {

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ironfold
   m_EditorClassIdentifier: FrostMaze.Runtime::FrostMaze.WorldSurfaceSet
   Fingerprint: 035D1EDD32179800900464075DACD5E22A379B4944934F75CD0D763981B02DEC
-  EditorInputs: 9950e05dbf6dac6d52e5dfdffa166bf7
+  EditorInputs: 6449ca42744b501dcf5d3107681f6823
   Ground: {fileID: 2800000, guid: ce7523618077699f5a9f65d4f54bab63, type: 3}
   Cap: {fileID: 2800000, guid: 98cf9b446c6d050bf88a9b3b56817249, type: 3}
   Wall: {fileID: 2800000, guid: 4e477e0ecfe62793e8fa822508626c21, type: 3}
