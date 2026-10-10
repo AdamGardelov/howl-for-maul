@@ -1,0 +1,1 @@
+HOWL_MENU_CHECK_PASS title/settings/credits/resize/map-change/solo-entry; world frozen

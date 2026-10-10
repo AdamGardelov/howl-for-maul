@@ -4,7 +4,7 @@ using FrostMaze.Simulation;
 namespace FrostMaze
 {
     // Cosmetic bodies follow authoritative builder positions; never add physics or movement rules.
-    public sealed class BuilderView : MonoBehaviour
+    public sealed partial class BuilderView : MonoBehaviour
     {
         Prototype game;
         int faction=-1,owner=-1;
@@ -45,6 +45,7 @@ namespace FrostMaze
                 var seal=Part("Hearthwright seal",game.Models.BeveledBox,new Vector3(side*.052f,-.07f,.325f),new Vector3(.035f,.16f,.025f),palette[3]);
                 seal.transform.localRotation=Quaternion.Euler(0,0,side*27);
             }
+            if(robot)CompactArtisan();
             string key="Builder/"+game.World.Config.Theme+"/"+faction;
             Batch(transform,key+"/body");
             foreach(var joint in new[]{leftArm,rightArm,leftBoot,rightBoot,staff})if(joint!=null)Batch(joint,key+"/"+joint.name);
@@ -93,6 +94,9 @@ namespace FrostMaze
         }
         void BuildArtisan()
         {
+            if(faction==0){BuildPulseMechanic();return;}
+            if(faction==1){BuildBlastSmith();return;}
+            if(faction==3){BuildHorizonSurveyor();return;}
             var m=game.Models;
             Part("Chassis",m.Armor,new Vector3(0,-.20f,0),new Vector3(.66f,.62f,.60f),palette[0]);
             Part("Faction canopy",m.Shell,new Vector3(0,.27f,0),new Vector3(.51f,.44f,.48f),palette[1]);
@@ -113,15 +117,8 @@ namespace FrostMaze
                 if(side<0)leftArm=arm;else rightArm=arm;
             }
             // Each faction has a different readable tool/crest silhouette, not only a recolor.
-            if(faction==0)Part("Signal aerial",m.Column,new Vector3(-.17f,.61f,-.09f),new Vector3(.055f,.27f,.055f),palette[3]);
-            else if(faction==1)for(int side=-1;side<=1;side+=2){
-                Part("Copper pressure pack",m.Bell,new Vector3(side*.28f,.27f,-.30f),new Vector3(.27f,.73f,.30f),palette[3]);
-                Part("Pressure exhaust",m.Column,new Vector3(side*.28f,.66f,-.30f),new Vector3(.10f,.15f,.10f),palette[4]);
-            }else if(faction==2)for(int side=-1;side<=1;side+=2){
+            if(faction==2)for(int side=-1;side<=1;side+=2){
                 var crown=Part("Ivory signal petal",m.Crystal,new Vector3(side*.30f,.49f,-.07f),new Vector3(.18f,.7f,.22f),palette[3]);crown.transform.localRotation=Quaternion.Euler(0,0,-side*22);
-            }else if(faction==3){
-                Part("Survey mast",m.Column,new Vector3(-.27f,.45f,-.34f),new Vector3(.065f,.48f,.065f),palette[3]);
-                var sail=Part("Survey cloth",m.Wing(1),new Vector3(-.25f,.62f,-.34f),new Vector3(.58f,1,.55f),palette[1]);sail.transform.localRotation=Quaternion.Euler(90,0,0);
             }else if(faction==4){
                 var halo=Part("Gravity artisan halo",m.Halo,new Vector3(0,.40f,-.20f),Vector3.one*.84f,palette[3]);halo.transform.localRotation=Quaternion.Euler(70,0,15);
             }else if(faction==5){
@@ -152,7 +149,7 @@ namespace FrostMaze
             if(owner!=player){owner=player;ownerBadge.sharedMaterial=game.OwnerMaterial(player);}
             var movement=reset?default:position-previous;
             float phase=tick*World.FixedDelta*9;
-            transform.position=new Vector3(position.X,1.1f+(robot?Mathf.Sin(phase*.45f)*.035f:0),position.Y);
+            transform.position=new Vector3(position.X,1.1f+(robot&&!GroundedArtisan?Mathf.Sin(phase*.45f)*.035f:0),position.Y);
             ring.localPosition=new Vector3(0,.04f-transform.position.y,0);
             if(reset||tick!=lastTick) {
                 bool walking=!reset&&movement.Length>.001f&&movement.Length<3;

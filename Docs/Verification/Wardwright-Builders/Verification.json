@@ -1,0 +1,74 @@
+{
+  "date": "2026-10-10",
+  "baseCommit": "e0d5679",
+  "unity": "6000.3.25f1",
+  "renderer": "Linux x64 / OpenGL llvmpipe / private Xvfb :98",
+  "finalTests": {
+    "passed": 3,
+    "failed": 0,
+    "cases": [
+      "CompleteRosterAndBuildersHaveStableDetailedPresentation",
+      "GroundedArtisansKeepPaidWorkPosesAndOwnerRings",
+      "LandmarksAmbientVoicesAndConstructionStayCosmetic"
+    ],
+    "testSourceChanged": true,
+    "scope": "All 76 tower models and 12 builders; added compact-envelope checks for 8 Ironfold builders and paid work/movement/pause for 3 new grounded bodies; retained both-map world/audio regression. Not a full-suite run."
+  },
+  "initialTests": "3/3 passed before removing obsolete body branches; final run 3/3 after cleanup",
+  "linuxBuild": "passed",
+  "windowsBuild": "passed (cross-build only)",
+  "packagedInput": {
+    "map": "Ironfold",
+    "faction": "Blast Circuit",
+    "difficulty": "Normal",
+    "startingGold": 2200,
+    "firstPaidTowerGold": 2190,
+    "pausedQueuedOrders": 3,
+    "resumedTowers": 4,
+    "postBuildGold": 2160,
+    "queuedOrders": 0,
+    "moveAndCloseZoomInspected": true,
+    "normalPlayerExit": 0,
+    "scope": "Actual title/setup/mouse/key input; paid construction and presentation, not a combat campaign"
+  },
+  "packagedMenu": "passed: title/settings/credits/map-change/solo-entry/960x600 and 1440x900; small title and HUD inspected",
+  "nativeWindows": "not run",
+  "hardwarePerformance": "not measured",
+  "fullCampaignBalance": "not rerun; simulation unchanged",
+  "separateNetworkMatch": "not rerun; networking unchanged",
+  "newPublicRelease": false,
+  "isolatedEditorTarget": "restored to Linux",
+  "ownedProcessesClosed": true,
+  "previousPackages": [
+    "Builds/Linux-World-e0d5679",
+    "Builds/Windows-World-e0d5679"
+  ],
+  "sources": {
+    "Assets/Game/Presentation/BuilderView.cs": "66d72b0980e62faacb8a149fded668fa22954d876304aa118e0007c28fd4681d",
+    "Assets/Game/Presentation/BuilderView.Artisans.cs": "692eb54ac3fdc217d8318c1521cfac4df24ee24767b9388bf3e5ee99225e0fdf",
+    "Assets/Game/Presentation/BuilderView.Artisans.cs.meta": "a1c4811054940d77142582e3360a59cadde4d544aceac92eef4969480116bff6",
+    "Assets/Tests/ActorPresentationTests.cs": "f8263d7c7b42f7df47020561c36063887d1381d59dbf28187ce6e8ffbd700afd"
+  },
+  "installedPackageSha256": {
+    "Linux": {
+      "HowlForMaul": "8027f7d1f9ae7dacfc826fb218adcc1ae7464af098a8a59397e7531c0f7ec0bc",
+      "HowlForMaul_Data/Managed/FrostMaze.Runtime.dll": "ec47478d91f9eb93760b629de22f364d8496aef330535ca02910c622ef80a379",
+      "THIRD-PARTY-NOTICES.md": "96c119336e46c5d4a9b12047041012e47bad686c7e7028e2865db8edf4d800b8",
+      "MUSIC-SOURCES.json": "bb1435367b1c2971efe67b2b0d90415981595fd87561c29e4efa6fba061ac36a"
+    },
+    "Windows": {
+      "HowlForMaul.exe": "3070e580e019576b9afcdeb4fec18d03cebc119f6ae84d597412905c749ad653",
+      "HowlForMaul_Data/Managed/FrostMaze.Runtime.dll": "cf0ed5aadc7e709ebf23b6a8fac70d942b7802fe22db289ea4cf2af0ea6833fd",
+      "THIRD-PARTY-NOTICES.md": "96c119336e46c5d4a9b12047041012e47bad686c7e7028e2865db8edf4d800b8",
+      "MUSIC-SOURCES.json": "bb1435367b1c2971efe67b2b0d90415981595fd87561c29e4efa6fba061ac36a"
+    }
+  },
+  "logs": [
+    "work/artisan-tests.log",
+    "work/artisan-linux-build.log",
+    "work/artisan-input-flow.log",
+    "work/artisan-menu.log",
+    "work/artisan-windows-build.log",
+    "work/artisan-restore-linux.log"
+  ]
+}

@@ -33,6 +33,15 @@ namespace FrostMaze.Tests
                     builder.Sync(new V2(origin.x-4.7f,origin.z+1.0f),20,faction%4);yield return null;
                     Assert.That(builder.VisibleFaction,Is.EqualTo(faction));Assert.That(builder.GetComponentsInChildren<Collider>().Length,Is.Zero);
                     Assert.That(hero.transform.Find(map=="Rimewatch"?"Hood":"Chassis"),Is.Not.Null);
+                    if(map=="Ironfold")foreach(var filter in hero.GetComponentsInChildren<MeshFilter>()){
+                        if(filter.name=="Ownership ring"||!filter.GetComponent<Renderer>().enabled)continue;
+                        var matrix=hero.transform.worldToLocalMatrix*filter.transform.localToWorldMatrix;
+                        foreach(var vertex in filter.sharedMesh.vertices){var point=matrix.MultiplyPoint3x4(vertex);
+                            Assert.That(new Vector2(point.x,point.z).magnitude,Is.LessThan(.56f),"Builder hides adjacent defenses: "+faction);
+                            Assert.That(point.y+1.1f,Is.LessThan(1.61f),"Builder is taller than the compact art envelope: "+faction);
+                        }
+                    }
+                    Assert.That(hero.transform.Find("Ownership ring").position.y,Is.EqualTo(.04f).Within(.001f));
                     foreach(var renderer in builder.GetComponentsInChildren<Renderer>())if(renderer.name.StartsWith("Faction"))Assert.That(renderer.sharedMaterial,Is.SameAs(game.TowerPalette(faction)[1]));
                     builder.Sync(new V2(origin.x-4.6f,origin.z+1.0f),21,faction%4);
                     Assert.That(Vector3.Dot(builder.transform.forward,Vector3.right),Is.InRange(.01f,.99f),"First movement should turn smoothly rather than snap");
@@ -94,6 +103,38 @@ namespace FrostMaze.Tests
                 Capture(game.View,"/tmp/Howl-"+map+"-Actors-In-Map.png");
             }
             Assert.That(inspected,Is.EqualTo(76));yield return new ExitPlayMode();
+        }
+        [UnityTest,Category("WorldCohesion")]
+        public IEnumerator GroundedArtisansKeepPaidWorkPosesAndOwnerRings()
+        {
+            EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");yield return new EnterPlayMode();yield return null;
+            var game=Object.FindFirstObjectByType<Prototype>();
+            if(game.Map.name!="Ironfold"){game.ChooseMap(Resources.Load<MapDefinition>("Ironfold"));yield return null;yield return null;}
+            foreach(int faction in new[]{0,1,3}){
+                game.SetupOptions.Factions[0]=faction;game.StartMatch();game.Paused=true;game.MoveMode=true;yield return null;yield return null;
+                var world=game.World;var builder=GameObject.Find("Builder drone").GetComponent<BuilderView>();
+                var start=world.BuilderPosition;int gold=world.Gold;bool ordered=false;
+                for(int y=Mathf.FloorToInt(start.Y)-2;y<=Mathf.FloorToInt(start.Y)+2&&!ordered;y++)for(int x=Mathf.FloorToInt(start.X)-2;x<=Mathf.FloorToInt(start.X)+2&&!ordered;x++)
+                    if(world.CanBuild(x,y,out _))ordered=world.OrderBuild(x,y,out _);
+                Assert.That(ordered,Is.True);
+                for(int tick=0;tick<300&&world.Grid.Towers.Count==0;tick++){world.Step();yield return null;}
+                Assert.That(world.Grid.Towers.Count,Is.EqualTo(1));Assert.That(world.Gold,Is.EqualTo(gold-world.BuildCost));
+                Assert.That(builder.Constructing,Is.True);
+                var arm=builder.transform.Find("Right arm");var completed=arm.localRotation;
+                for(int tick=0;tick<6;tick++){world.Step();yield return null;}
+                Assert.That(Quaternion.Angle(completed,arm.localRotation),Is.GreaterThan(10),"Paid completion should animate the working tool");
+                var pose=arm.localRotation;var height=builder.transform.position.y;
+                yield return new WaitForSecondsRealtime(.2f);
+                Assert.That(arm.localRotation,Is.EqualTo(pose));Assert.That(builder.transform.position.y,Is.EqualTo(height));
+                Assert.That(height,Is.EqualTo(1.1f).Within(.001f),"Grounded artisans must not hover");
+                Assert.That(builder.transform.Find("Ownership ring").position.y,Is.EqualTo(.04f).Within(.001f));
+                var rts=game.View.GetComponent<RtsCamera>();rts.FocusPoint(world.BuilderPosition);rts.SetZoom(5,true);yield return null;
+                Capture(game.View,"/tmp/Howl-Artisan-Paid-"+faction+".png");
+                var before=builder.transform.Find("Left stride").localRotation;world.MoveBuilder(start+new V2(3,1));
+                for(int tick=0;tick<6;tick++){world.Step();yield return null;}
+                Assert.That(builder.Walking,Is.True);Assert.That(Quaternion.Angle(before,builder.transform.Find("Left stride").localRotation),Is.GreaterThan(1));
+            }
+            yield return new ExitPlayMode();
         }
         static void Capture(Camera camera,string path)
         {
