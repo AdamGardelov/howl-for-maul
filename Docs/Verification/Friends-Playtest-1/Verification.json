@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-10",
+  "release": "v0.1.0-playtest.1",
+  "gameSourceCommit": "5d342839eff4875bb9a6a299d0350e95bb4aee3a",
+  "state": "archives verified; GitHub publication awaiting authenticated session",
+  "published": false,
+  "archiveMemberHashes": "all verified after writing and again after extraction",
+  "LinuxExecutablePermission": "preserved; bundled launcher used for menu check",
+  "excluded": "Unity DoNotShip directories, PDB/MDB/dSYM debug symbols and local logs",
+  "credits": "Scott Buckley notices, music source manifest and full bundled font licenses retained",
+  "guardChecks": [
+    "stale game source rejected before output",
+    "existing release output cannot be overwritten"
+  ],
+  "extractedLinux": [
+    "both-map data smoke passed",
+    "launcher/title/settings/credits/map/solo/resize passed",
+    "live Relay/DTLS: two processes per map, two owner-paid builds, 420 synchronized ticks, pause/resume and disconnect passed on Ironfold and Rimewatch"
+  ],
+  "platformLimits": "Windows cross-build only; actual Windows, separate-network/four-player/full-match live play and hardware GPU performance remain unverified",
+  "allOwnedProcessesClosed": true,
+  "newAutomation": false
+}

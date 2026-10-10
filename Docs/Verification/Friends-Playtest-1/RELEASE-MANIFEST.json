@@ -1,0 +1,22 @@
+{
+  "release": "v0.1.0-playtest.1",
+  "gameSourceCommit": "5d342839eff4875bb9a6a299d0350e95bb4aee3a",
+  "verification": "Docs/Verification/Rounded-Walls/Verification.json",
+  "verificationSha256": "fbed7dbfa33f8cfa516ead941747a0f7bf295c8053d99519c9f3ae80c158c0fc",
+  "archives": {
+    "Howl-for-Maul-v0.1.0-playtest.1-Linux-x64.tar.gz": {
+      "sha256": "d6a94b06c1e67038d8845bd9a174e0c14e0da7a482f8daeedba0ce75ba6405d0",
+      "bytes": 69809228,
+      "files": 196,
+      "platform": "Linux",
+      "rootFolder": "Howl-for-Maul-v0.1.0-playtest.1-Linux-x64"
+    },
+    "Howl-for-Maul-v0.1.0-playtest.1-Windows-x64.zip": {
+      "sha256": "8605bcdd7c56df683c5c500315934040a483d116b3d9c39210b2037f672c2b5c",
+      "bytes": 72611417,
+      "files": 197,
+      "platform": "Windows",
+      "rootFolder": "Howl-for-Maul-v0.1.0-playtest.1-Windows-x64"
+    }
+  }
+}

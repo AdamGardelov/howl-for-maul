@@ -1,0 +1,11 @@
+# Friends Playtest 1 — packaging verification
+
+2026-10-10. Release `v0.1.0-playtest.1`, game source `5d34283`. Archives are verified and ready to upload. No GitHub release is published yet: the available browser is signed out and no GitHub CLI/API authentication is configured. SSH source pushes work but do not provide release-asset API access. The user has been asked to sign in; publishing is already authorized by their request.
+
+Both source players match the retained Rounded-Walls verification hashes. Both generated archives were reread in full and every member hash checked, then extracted and checked again. Linux executable permissions survive extraction. Unity `DoNotShip` debug output and debug symbols/logs are omitted. Scott Buckley attribution, music sources and full font license notices remain bundled. `BUILD-INFO.json`, `START-HERE.txt` and `FILE-HASHES.json` identify each package and explain launch/online play. Windows has 197 archive members; Linux has 196. Exact sizes/digests: [manifest](RELEASE-MANIFEST.json), [SHA-256 sums](SHA256SUMS.txt).
+
+The extracted Linux player passed both-map data smoke, and its bundled shell launcher passed title/settings/credits/resize/map/solo checks on private Xvfb with a separate preferences directory. Two distinct anonymous Linux profiles then passed actual Unity Relay/DTLS on each map: owner-paid builds, 420 synchronized ticks, pause/resume, client departure and remaining-host recovery. All four online processes and the complete wrapper exit zero. Only sanitized pass markers are retained; temporary join codes/raw service logs stay outside the repository and archives. Both players ran on this same computer/network. No native Windows, separate-network/four-player/full-match or hardware GPU claim.
+
+The packager also rejects an older game source revision before producing files, and refuses to overwrite existing release assets. This makes accidental stale-source labeling or silent asset replacement harder. No new game code or Unity rebuild was required: the previously verified players are the release payload.
+
+The versioned notes are in [Docs/Releases](../../Releases/v0.1.0-playtest.1.md), and the maintainer workflow is [GITHUB-RELEASES.md](../../GITHUB-RELEASES.md). No new automation, cloud plan or service configuration change.

@@ -1,0 +1,82 @@
+HOWL FOR MAUL — FRIENDS PLAYTEST
+Build together. Keep the hearth lit.
+
+You do not need Unity Hub, Unity Editor, or a Unity account to play.
+This is an early free playtest. Everyone in an online match should use the
+same release. Check BUILD-INFO.json for the release and source revision.
+
+INSTALL / START
+Windows x64: Extract the entire ZIP into a folder. Open HowlForMaul.exe.
+Keep HowlForMaul_Data, UnityPlayer.dll, and the other bundled files together.
+Do not run the executable from inside the ZIP. This build is not signed.
+Native Windows play has not yet been verified; report launch problems.
+
+Linux x64: Extract the entire .tar.gz archive, open a terminal in its folder,
+and run:
+  ./Start-Howl-for-Maul.sh
+If your extraction tool removed executable permissions:
+  chmod +x Start-Howl-for-Maul.sh HowlForMaul
+  ./Start-Howl-for-Maul.sh
+Linux runtime checks were performed on Ubuntu using software OpenGL;
+other distributions and actual GPU performance still need testing.
+
+Updating: Extract a new release into a fresh folder rather than mixing files
+from old and new versions. Keep the old folder until the new one launches.
+
+SOLO
+Play -> choose Ironfold or Rimewatch -> Play Solo.
+Choose a faction and difficulty. Solo starts at Last Stand with the whole
+team's starting budget. All lanes remain active. Defend the shared exit:
+you have 30 lives and 20 waves. Launch the first wave when ready; later waves
+have an automatic countdown, and you can send the next wave early.
+
+PLAY WITH FRIENDS ONLINE (UP TO FOUR)
+1. Everyone installs the same release.
+2. Host: Play -> choose map -> Multiplayer -> Host online.
+3. Share the generated join code and your optional lobby password privately.
+4. Friends: Multiplayer -> Join with code, then enter the code/password.
+5. Complete the lobby, choose factions, reserve distinct starting positions,
+   and vote on difficulty together.
+Relay handles the connection: you do not need to forward router ports.
+An internet connection is required for online play. Solo works offline.
+There is no public lobby browser or random matchmaking yet.
+
+Enter opens team chat during a multiplayer lobby or match.
+P votes to pause/resume. Only the host changes shared game speed.
+Keep the host's game open: host migration and reconnect are not available.
+A host departure ends the session. If the lobby fails, create a fresh one.
+Advanced LAN/IP is also available, but needs a directly reachable host.
+
+USEFUL CONTROLS
+Left click: build / select. Shift + left click: queue builds.
+Right click: move builder and cancel its queue. U: upgrade. X: remove mode.
+Space + left drag, middle drag, screen edges, or WASD: pan the camera.
+Mouse wheel: zoom. Q/E: rotate. R: reset angle. Home: return to builder.
+Minimap: click/drag to move around quickly. End: whole-map view.
+Esc: menu/settings/quit. Tab: details. G/F: grid/clearance overlays.
+
+KNOWN PLAYTEST LIMITS
+Windows has been cross-built but not run on a native Windows machine here.
+Earlier online checks used two separate Linux processes through real Unity
+Relay on one computer/network. Separate-network reliability, four-player
+live sessions, and complete online matches are still playtest work.
+Visuals, balance and performance are in development. Mobile is paused.
+This download is not a claim of finished commercial-release quality.
+
+REPORTING A PROBLEM
+Report at https://github.com/AdamGardelov/howl-for-maul/issues or to the host.
+Include release/source from BUILD-INFO.json, operating system, map/faction,
+what happened, and how to repeat it. A screenshot is useful.
+Linux logs are normally in ~/.config/unity3d/Howl for Maul/Howl for Maul/;
+on some existing installs they may be under ~/.config/unity3d/unknown/unknown/.
+Windows logs are normally in %USERPROFILE%\AppData\LocalLow\Howl for Maul\Howl for Maul\.
+Review logs before sharing them. Do not post passwords or live join codes.
+
+MUSIC AND FONTS
+“Snowfall” and “Signal to Noise” by Scott Buckley — https://www.scottbuckley.com.au
+Licensed under Creative Commons Attribution 4.0:
+https://creativecommons.org/licenses/by/4.0/
+Full track credits and source hashes are in THIRD-PARTY-NOTICES.md and
+MUSIC-SOURCES.json. Font licenses are in ThirdParty/Fonts.
+Please retain the bundled credits when sharing the game. Gameplay videos
+using the music should credit the composer, track and license as well.

@@ -1,6 +1,10 @@
 # Friends testing and distribution — 2026-10-09
 
-## Recommendation
+## Current distribution choice — 2026-10-10
+
+The owner has chosen GitHub for the initial friends playtest. Follow [GitHub release packaging](GITHUB-RELEASES.md) and the versioned notes in `Docs/Releases/`. The earlier itch.io/Steam discussion below remains background for later distribution decisions.
+
+## Earlier recommendation
 
 Start with a free, restricted itch.io playtest. It supports private download keys and optional page passwords, and restricted pages are absent from browse/search. Ship matched Windows and Linux archives with a short start guide and the music notices. Do not publish the repository or a Unity Editor installation as the playable download. [Official access-control guide](https://itch.io/docs/creators/access-control).
 

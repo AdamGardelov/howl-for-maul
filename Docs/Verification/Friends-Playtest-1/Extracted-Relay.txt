@@ -1,0 +1,4 @@
+HOWL_NETWORK_HOST_PASS Rimewatch lanes=3 paid=2
+HOWL_NETWORK_CLIENT_PASS Rimewatch tick=420 hash=nAU2KEXLD6sUQYatiu2jguBZ2mhM32evqFWm6J+/MH8=
+HOWL_NETWORK_HOST_PASS Ironfold lanes=4 paid=2
+HOWL_NETWORK_CLIENT_PASS Ironfold tick=420 hash=zoS1UsSiXCsbFZDm+/q+b5yxj5Ic7oxkSl2JuDvizMQ=
