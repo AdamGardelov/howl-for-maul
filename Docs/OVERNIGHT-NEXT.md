@@ -1,3 +1,11 @@
+## 2026-10-10 — Friends Playtest 2 published
+
+The user requested a new GitHub release. [Playtest 2: Living Factions](https://github.com/AdamGardelov/howl-for-maul/releases/tag/v0.1.0-playtest.2) is public at 2026-10-10T12:06:44Z; annotated tag `v0.1.0-playtest.2` points to exact game source `f6ca21f`. Includes twelve themes / 76 designs, 64 creature/spirit bodies, Rootbound trees/Briar thorns, Tech workshop mechanisms, stronger silhouettes and centered R reset. Prior release remains immutable. No game changes in this packaging turn.
+
+[Release evidence](Verification/Friends-Playtest-2/README.md): original player/source hashes checked, both archives re-read and extracted hashes verified (196 Linux / 197 Windows files), extracted Linux data and launcher/menu smoke pass, small faction/HUD screenshots inspected. Sandbox display attempt failed before verification; permitted private-display rerun passed and closed cleanly. Packager supports the two existing final-newline hash formats, rejects wrong bytes/count/hash, and checks deleted sources. Notices and Scott Buckley credits retained. All four anonymous public downloads match local sizes/SHA-256 and GitHub digests. README now points to Playtest 2; everyone must use the same release and a fresh extraction folder. Browser screenshot API failed; public status and download evidence are retained without claiming a screenshot.
+
+Windows remains cross-build only. No new live Relay, separate-network, full online-match, hardware-performance or full Unity-suite claim. Existing live Relay evidence applies to the unchanged networking source. Art remains a first procedural family pass; continue anatomy/keepers/mix refinement from the next checkpoint below when asked. No automation changes.
+
 ## 2026-10-10 — twelve elemental creature families
 
 The user requested Earth, Water, Fire, Air, Tech and Magic plus fitting themes for the remaining factions. The existing 12/76 roster is now **Ice, Nature, Fire, Storm** on Rimewatch and **Tech, Beasts, Magic, Air, Earth, Spirits, Dragons, Water** on Ironfold. [Current roster and all names](ELEMENTAL-FACTIONS.md), [revised charter](FACTION-IDENTITY-CHARTER.md), [verification and real screenshots](Verification/Elemental-Factions/README.md).

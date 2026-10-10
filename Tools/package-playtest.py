@@ -51,8 +51,12 @@ def verify_player(folder, expected):
             raise ValueError(f"Unexpected symlink: {path}")
         if path.is_file():
             entries.append(path.relative_to(folder).as_posix() + "\0" + sha(path))
-    digest = hashlib.sha256("\n".join(entries).encode()).hexdigest()
-    if len(entries) != expected["fileCount"] or digest != expected["treeSha256"]:
+    serialized = "\n".join(entries).encode()
+    # Historical verification records use both final-line conventions. All
+    # paths, bytes and the file count must still match one complete record.
+    digests = {hashlib.sha256(serialized).hexdigest(),
+               hashlib.sha256(serialized + b"\n").hexdigest()}
+    if len(entries) != expected["fileCount"] or expected["treeSha256"] not in digests:
         raise ValueError(f"{folder.name} differs from its verified player; rebuild/reverify before packaging")
     for required in ["THIRD-PARTY-NOTICES.md", "MUSIC-SOURCES.json", "ThirdParty/Fonts/SOURCES.json"]:
         if not (folder / required).is_file():
@@ -117,6 +121,9 @@ def main():
     for name, digest in verification["sources"].items():
         if sha(REPO / name) != digest:
             raise ValueError(f"Source differs from verification: {name}")
+    for name in verification.get("deletedSources", []):
+        if (REPO / name).exists():
+            raise ValueError(f"Deleted source has reappeared since verification: {name}")
     output = args.output.resolve() if args.output else REPO / "Builds/Releases" / args.version
     if output.exists() and any(output.iterdir()):
         raise ValueError(f"Refusing to overwrite existing release files: {output}")

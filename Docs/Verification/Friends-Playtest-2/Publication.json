@@ -1,0 +1,41 @@
+{
+  "id": 408922677,
+  "tag_name": "v0.1.0-playtest.2",
+  "name": "Howl for Maul \u2014 Friends Playtest 2: Living Factions",
+  "html_url": "https://github.com/AdamGardelov/howl-for-maul/releases/tag/v0.1.0-playtest.2",
+  "draft": false,
+  "prerelease": true,
+  "published_at": "2026-10-10T12:06:44Z",
+  "gameSourceCommit": "f6ca21f87e19a60d9fa641051e90657db7392f5a",
+  "anonymousDownloads": {
+    "Howl-for-Maul-v0.1.0-playtest.2-Linux-x64.tar.gz": {
+      "assetId": 627865448,
+      "url": "https://github.com/AdamGardelov/howl-for-maul/releases/download/v0.1.0-playtest.2/Howl-for-Maul-v0.1.0-playtest.2-Linux-x64.tar.gz",
+      "bytes": 69818313,
+      "sha256": "c2a7df0182c5a15fdccf5d8a8c709b177e79210ac3b7a2bc20b66e7b78889c7f",
+      "matchesLocal": true
+    },
+    "Howl-for-Maul-v0.1.0-playtest.2-Windows-x64.zip": {
+      "assetId": 627866017,
+      "url": "https://github.com/AdamGardelov/howl-for-maul/releases/download/v0.1.0-playtest.2/Howl-for-Maul-v0.1.0-playtest.2-Windows-x64.zip",
+      "bytes": 72618061,
+      "sha256": "5c9877f9a7ed00d4df2143372affee2c10e036a641ffa1853f06335cd01ccbf8",
+      "matchesLocal": true
+    },
+    "RELEASE-MANIFEST.json": {
+      "assetId": 627866709,
+      "url": "https://github.com/AdamGardelov/howl-for-maul/releases/download/v0.1.0-playtest.2/RELEASE-MANIFEST.json",
+      "bytes": 864,
+      "sha256": "c9b5bcbecbb2d1f1f8247351b9ce38513efd182173589b8de9d9f89c123fece8",
+      "matchesLocal": true
+    },
+    "SHA256SUMS.txt": {
+      "assetId": 627866717,
+      "url": "https://github.com/AdamGardelov/howl-for-maul/releases/download/v0.1.0-playtest.2/SHA256SUMS.txt",
+      "bytes": 317,
+      "sha256": "a8bbca28f337c4cfa66ce1ddbfa158af4d0a561712a3bf0f952c95bc82ec7e83",
+      "matchesLocal": true
+    }
+  },
+  "verifiedAt": "2026-10-10T12:07:30.119957+00:00"
+}

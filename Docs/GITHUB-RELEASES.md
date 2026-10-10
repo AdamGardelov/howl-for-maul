@@ -2,22 +2,22 @@
 
 The owner requested GitHub downloads on 2026-10-10. Use free, clearly labeled prereleases while Windows, separate-network/full-match multiplayer and hardware performance are still being tested. GitHub source pushes do not publish playable downloads. Release assets are complete desktop archives, not standalone executables or Unity project source archives.
 
-**Published:** [Friends Playtest 1 / v0.1.0-playtest.1](https://github.com/AdamGardelov/howl-for-maul/releases/tag/v0.1.0-playtest.1), 2026-10-10 08:52:47 UTC. Windows/Linux archives, manifest and checksums are publicly downloadable; all four anonymous downloads match the originals byte-for-byte by size and SHA-256. [Publication evidence](Verification/Friends-Playtest-1/Publication.json). The annotated tag remains at game source `5d34283`; later documentation commits do not change these packages.
+**Published:** [Friends Playtest 2 / v0.1.0-playtest.2](https://github.com/AdamGardelov/howl-for-maul/releases/tag/v0.1.0-playtest.2), 2026-10-10T12:06:44Z. All four public downloads (Windows/Linux archives, manifest and checksums) match the verified originals byte-for-byte by size and SHA-256. [Publication evidence](Verification/Friends-Playtest-2/Publication.json). The annotated tag points to game source `f6ca21f`; later packaging/documentation commits do not change these packages. Playtest 1 remains unchanged and available.
 
 ## Package a verified checkpoint
 
-The current game source is `5d342839eff4875bb9a6a299d0350e95bb4aee3a`; its local players and checks are recorded in `Docs/Verification/Rounded-Walls/Verification.json`. The first release is `v0.1.0-playtest.1`.
+The current released game source is `f6ca21f87e19a60d9fa641051e90657db7392f5a`; its local players and checks are recorded in `Docs/Verification/Elemental-Factions/Verification.json`. The example below describes the already packaged release; use a new version/output for subsequent releases.
 
 Run from the repository:
 
 ```sh
 python3 Tools/package-playtest.py \
-  --version v0.1.0-playtest.1 \
-  --source 5d34283 \
-  --verification Docs/Verification/Rounded-Walls/Verification.json
+  --version v0.1.0-playtest.2 \
+  --source f6ca21f \
+  --verification Docs/Verification/Elemental-Factions/Verification.json
 ```
 
-Outputs go under `Builds/Releases/<version>/`, which is ignored by Git. The script refuses changed/untracked game source, changed player trees, missing notices, and overwriting an existing output. Both input packages must match retained verification hashes. It excludes Unity `DoNotShip` folders, debug symbols and logs, preserves Linux executable permissions, and includes the launch guide, build metadata and per-file hashes. It rereads every archive member and compares its bytes. Archives use fixed source timestamps. Update the verification record after a new build rather than bypassing the mismatch guard.
+Outputs go under `Builds/Releases/<version>/`, which is ignored by Git. The script refuses changed/untracked game source, changed player trees, missing notices, and overwriting an existing output. Both input packages must match retained verification hashes. The packager supports both historical final-newline conventions for tree serialization, while still enforcing every file byte and the exact file count; deleted source files may not reappear. It excludes Unity `DoNotShip` folders, debug symbols and logs, preserves Linux executable permissions, and includes the launch guide, build metadata and per-file hashes. It rereads every archive member and compares its bytes. Archives use fixed source timestamps. Update the verification record after a new build rather than bypassing the mismatch guard.
 
 Extract both archives and verify the packaged file manifest. Launch the extracted Linux game/launcher and exercise the menu. Check online play from the actual extracted package when networking changes or when preparing the first online release. Record Windows build-only status separately from native runtime testing. Do not ship test logs, private invitation codes, credentials, or debug-only Unity folders. Retain the music and font notices.
 
