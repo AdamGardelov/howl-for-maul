@@ -4,6 +4,7 @@ class Program
 {
     static int Main(string[] args)
     {
+        if(args.Length>0&&args[0]=="--navigation-benchmark")return NavigationBenchmark.Run();
         if(args.Length>0&&args[0]=="--network-check")return NetworkChecks.Run();
         if(args.Length>0&&args[0]=="--network-peer")return NetworkChecks.Peer(int.Parse(args[1]));
         if(args.Length>0&&args[0]=="--balance") {

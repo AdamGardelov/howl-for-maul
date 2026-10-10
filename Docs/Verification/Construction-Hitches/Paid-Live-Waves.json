@@ -1,0 +1,93 @@
+{
+    "Scope": "Paid live-wave construction, Unity Mono, software render; CPU timings are not hardware FPS",
+    "Samples": [
+        {
+            "Map": "Ironfold",
+            "Towers": 49,
+            "Enemies": 32,
+            "StepMilliseconds": 18.706200000000004,
+            "ViewMilliseconds": 2.0325,
+            "GeometryChecks": 566
+        },
+        {
+            "Map": "Ironfold",
+            "Towers": 50,
+            "Enemies": 32,
+            "StepMilliseconds": 18.024900000000004,
+            "ViewMilliseconds": 1.9426,
+            "GeometryChecks": 534
+        },
+        {
+            "Map": "Ironfold",
+            "Towers": 51,
+            "Enemies": 32,
+            "StepMilliseconds": 18.2303,
+            "ViewMilliseconds": 1.9620000000000002,
+            "GeometryChecks": 423
+        },
+        {
+            "Map": "Ironfold",
+            "Towers": 52,
+            "Enemies": 32,
+            "StepMilliseconds": 18.0918,
+            "ViewMilliseconds": 2.0202,
+            "GeometryChecks": 351
+        },
+        {
+            "Map": "Ironfold",
+            "Towers": 53,
+            "Enemies": 32,
+            "StepMilliseconds": 17.9634,
+            "ViewMilliseconds": 1.9062000000000002,
+            "GeometryChecks": 572
+        },
+        {
+            "Map": "Ironfold",
+            "Towers": 54,
+            "Enemies": 32,
+            "StepMilliseconds": 18.1721,
+            "ViewMilliseconds": 2.0377,
+            "GeometryChecks": 529
+        },
+        {
+            "Map": "Ironfold",
+            "Towers": 55,
+            "Enemies": 32,
+            "StepMilliseconds": 18.910800000000003,
+            "ViewMilliseconds": 2.2264,
+            "GeometryChecks": 608
+        },
+        {
+            "Map": "Ironfold",
+            "Towers": 56,
+            "Enemies": 32,
+            "StepMilliseconds": 18.492800000000004,
+            "ViewMilliseconds": 2.2105,
+            "GeometryChecks": 436
+        },
+        {
+            "Map": "Rimewatch",
+            "Towers": 9,
+            "Enemies": 24,
+            "StepMilliseconds": 6.8209,
+            "ViewMilliseconds": 2.2977000000000005,
+            "GeometryChecks": 626
+        },
+        {
+            "Map": "Rimewatch",
+            "Towers": 10,
+            "Enemies": 24,
+            "StepMilliseconds": 10.4811,
+            "ViewMilliseconds": 2.4058,
+            "GeometryChecks": 435
+        },
+        {
+            "Map": "Rimewatch",
+            "Towers": 11,
+            "Enemies": 24,
+            "StepMilliseconds": 10.285,
+            "ViewMilliseconds": 2.2863,
+            "GeometryChecks": 467
+        }
+    ]
+}

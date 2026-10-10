@@ -1,0 +1,59 @@
+{
+  "date": "2026-10-10T13:11:08.897401+00:00",
+  "baseCommit": "9b9ff1340d6ab61c3ae2e56a4f1c1dd953e53191",
+  "unity": "6000.3.25f1",
+  "renderer": "Linux software OpenGL llvmpipe / private Xvfb :98",
+  "sources": {
+    "Assets/Game/Simulation/Grid/MazeGrid.cs": "3db5374c2e31f5353681003b78b642fb115b9b0cacb45dfad194168ab2a75bd1",
+    "Assets/Game/Simulation/Navigation/FlowNavigation.cs": "378b4293d4ff7da6ed0f40cd7d39734ae6f596be89d6c8b236096a67b522d0ae",
+    "Assets/Tests/SimulationCases.cs": "80331417d61592a40f469fd4395c00f01f689db535407529035e72f8ec761bdf",
+    "Headless/HowlForMaul.Headless.csproj": "c79892bcf2f8d12f6b9eda8a403cd2fe885aba74b708b25005c04fcd4e7ddc73",
+    "Headless/Program.cs": "1082530f05276a9594daba8f027000fe860704d7a2711c889581c16883ea4809",
+    "Assets/Game/Simulation/Navigation/FlowTopology.cs": "1e829a193fd7eab6eef74bf81c0aef211263ca244ec1d755ac52bac7e8a352af",
+    "Assets/Game/Simulation/Navigation/FlowTopology.cs.meta": "74110e179eb0e85008865fc6245cc814759d34bb8b78ec5130ff4f0d81ca7038",
+    "Assets/Tests/ConstructionHitchTests.cs": "50f47ba8e25155ac90ecc5b30bb4618926ac8332114a1a89c15978c1f7b72eed",
+    "Assets/Tests/ConstructionHitchTests.cs.meta": "5877f57d8b61449b97e04f5fa653b7fe2690196b8b90efa9a7629b0d9eafc683",
+    "Assets/Tests/NavigationCases.cs": "55df1f111d5198eb5eb3cd04340c4a0a17aa404f9f5ba917e3d42a69cc15c78b",
+    "Assets/Tests/NavigationCases.cs.meta": "87876a0740401a23ece9ecf92df44959a2cf3dd47ba24cd8804aead44877587b",
+    "Headless/NavigationBenchmark.cs": "7def41305ee427a7027628e5178d08ba592ed5a4ff07faa038d4288d05b64dec",
+    "Assets/Game/Maps/Resources/Ironfold.asset": "a9aff9122f41adc9635f079bcb6b682e658d7bfceaa57dd0605bf51670d1f0a1",
+    "Assets/Game/Maps/Resources/Rimewatch.asset": "daace7b41bef384d13659e253d3e581f07e31c391eb292b301d31d5269ecb24d"
+  },
+  "packages": {
+    "Linux": {
+      "path": "Builds/Linux-World",
+      "previous": "Builds/Linux-World-f6ca21f",
+      "previousTreeSha256": "ac11cca9f2a3530e8ad392819a4ddce9106a0b34fa28fe40064913c8c98c7af9",
+      "fileCount": 193,
+      "treeSha256": "53f38a7b40d47be2b7c142da195b0f3fe0e9915876c187061c0cbbbd9afd41c7",
+      "ScottBuckleyNotices": "96c119336e46c5d4a9b12047041012e47bad686c7e7028e2865db8edf4d800b8",
+      "musicSources": "bb1435367b1c2971efe67b2b0d90415981595fd87561c29e4efa6fba061ac36a"
+    },
+    "Windows": {
+      "path": "Builds/Windows-World",
+      "previous": "Builds/Windows-World-f6ca21f",
+      "previousTreeSha256": "81d1cb0133ce5509e856fc5c4691df16d38ad78a190686bc495506146e235c86",
+      "fileCount": 195,
+      "treeSha256": "5e169b0ecf36785d68c347a4f2bec23fdea7b121913fa12e71d7aa87e735822d",
+      "ScottBuckleyNotices": "96c119336e46c5d4a9b12047041012e47bad686c7e7028e2865db8edf4d800b8",
+      "musicSources": "bb1435367b1c2971efe67b2b0d90415981595fd87561c29e4efa6fba061ac36a"
+    }
+  },
+  "tests": {
+    "total": "77",
+    "passed": "77",
+    "failed": "0",
+    "duration": "84.0241376",
+    "end-time": "2026-10-10 13:05:00Z"
+  },
+  "simulation": "75/75 passed",
+  "paidLiveWaves": "11 paid construction events during first-wave combat on both maps; see Paid-Live-Waves.json",
+  "campaigns": "Exact historical two-player Hard campaign replays on both maps, all 20 waves",
+  "network": "Headless local checks including two processes, both maps, 620 ordered ticks per map; no fresh live Relay or separate-network run",
+  "linuxBuild": "passed; packaged data/world/menu checks passed",
+  "windowsBuild": "cross-build passed; native execution untested",
+  "hardwarePerformance": "CPU samples only; no GPU/FPS guarantee",
+  "unchanged": "Masks, map definitions, baked world textures, faction numeric data, economy, ownership, UI, art, audio and networking protocol",
+  "publicRelease": "Published v0.1.0-playtest.2 remains unchanged; use matching builds online",
+  "isolatedTarget": "Linux"
+}

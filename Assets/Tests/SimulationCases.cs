@@ -36,6 +36,8 @@ namespace FrostMaze.Tests
                 w.Step();
         }
         public static readonly Case[] All ={
+            new Case("Incremental flow fields exactly match full-scan navigation after edits",NavigationCases.IncrementalFieldsMatchFullScan),
+            new Case("Local edits share geometry and warm route queries allocate nothing",NavigationCases.LocalEditsReuseCollisionWork),
             new Case("Automatic waves wait for first launch and exact intermissions",WaveSummaryCases.AutomaticWaves),
             new Case("Maul gold and wood milestones preserve four-slot budgets",EconomyCases.Milestones),
             new Case("Wood purchases, queued orders, faction switching and restart",EconomyCases.Purchases),

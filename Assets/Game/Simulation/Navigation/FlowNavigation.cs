@@ -10,6 +10,7 @@ namespace FrostMaze.Simulation
         public readonly float Step, Radius, GoalRegion;
         public readonly V2 Goal;
         public readonly bool Breach;
+        internal int Version = -1;
         public FlowField(int columns, int rows, float step, float radius, V2 goal, bool breach, float goalRegion = 0)
         {
             Columns = columns;
@@ -35,8 +36,10 @@ namespace FrostMaze.Simulation
     {
         readonly MazeGrid grid;
         public readonly float Step, BreachCost;
-        readonly Dictionary<string, FlowField> cache = new Dictionary<string, FlowField>();
-        int version = -1;
+        readonly Dictionary<(float, float, float, bool, float), FlowField> cache = new Dictionary<(float, float, float, bool, float), FlowField>();
+        readonly Dictionary<float, FlowTopology> topologies = new Dictionary<float, FlowTopology>();
+        readonly MinHeap heap = new MinHeap();
+        public long GeometryChecks { get { long checks=0;foreach(var topology in topologies.Values)checks+=topology.GeometryChecks;return checks; } }
         public int Rebuilds
         {
             get; private set;
@@ -49,29 +52,41 @@ namespace FrostMaze.Simulation
             Step = step;
             BreachCost = breachCost;
         }
+        // Fields are borrowed buffers, refreshed in place after topology edits.
+        // Simulation and debug consumers request the current field before using it.
         public FlowField Get(V2 goal, float radius, bool breach = false, float goalRegion = 0)
         {
-            if (version != grid.Version)
-            {
-                cache.Clear();
-                version = grid.Version;
-            }
-            string key = goal.X.ToString("R", System.Globalization.CultureInfo.InvariantCulture) + "," + goal.Y.ToString("R", System.Globalization.CultureInfo.InvariantCulture) + "," + radius.ToString("R", System.Globalization.CultureInfo.InvariantCulture) + "," + breach + "," + goalRegion.ToString("R", System.Globalization.CultureInfo.InvariantCulture);
+            var key = (goal.X, goal.Y, radius, breach, goalRegion);
             if (!cache.TryGetValue(key, out var field))
             {
-                field = Build(goal, radius, breach, goalRegion);
+                field = new FlowField((int)Math.Ceiling(grid.Width / Step), (int)Math.Ceiling(grid.Height / Step), Step, radius, goal, breach, goalRegion);
                 cache.Add(key, field);
+            }
+            if (field.Version != grid.Version)
+            {
+                Build(field);
+                field.Version = grid.Version;
                 Rebuilds++;
             }
             return field;
         }
-        FlowField Build(V2 goal, float radius, bool breach, float goalRegion)
+        void Build(FlowField f)
         {
-            var f = new FlowField((int)Math.Ceiling(grid.Width / Step), (int)Math.Ceiling(grid.Height / Step), Step, radius, goal, breach, goalRegion);
-            var heap = new MinHeap();
+            var goal=f.Goal;float radius=f.Radius,goalRegion=f.GoalRegion;bool breach=f.Breach;
+            if(!topologies.TryGetValue(radius,out var topology)) {
+                topology=new FlowTopology(grid,Step,radius,f.Columns,f.Rows);
+                topologies.Add(radius,topology);
+            }
+            topology.Refresh();
+            for(int i=0;i<f.Next.Length;i++){f.Distance[i]=float.PositiveInfinity;f.Next[i]=-1;}
+            heap.Clear();
             // Multiple seeds avoid making an otherwise reachable checkpoint depend on one sample.
-            for (int i = 0; i < f.Next.Length; i++)
-                if (V2.Distance(f.Point(i), goal) <= (goalRegion>0?goalRegion:Step*1.5f)
+            float seedRadius=goalRegion>0?goalRegion:Step*1.5f;
+            int minX=Math.Max(0,(int)Math.Floor((goal.X-seedRadius)/Step)-1),maxX=Math.Min(f.Columns-1,(int)Math.Ceiling((goal.X+seedRadius)/Step));
+            int minY=Math.Max(0,(int)Math.Floor((goal.Y-seedRadius)/Step)-1),maxY=Math.Min(f.Rows-1,(int)Math.Ceiling((goal.Y+seedRadius)/Step));
+            for(int y=minY;y<=maxY;y++)for(int x=minX;x<=maxX;x++) {
+                int i=x+y*f.Columns;
+                if (V2.Distance(f.Point(i), goal) <= seedRadius
                     && (goalRegion>0
                         ? grid.TerrainClear(f.Point(i),goal,radius) && (breach||grid.Clear(f.Point(i),f.Point(i),radius))
                         : grid.Clear(f.Point(i),goal,radius)))
@@ -79,50 +94,34 @@ namespace FrostMaze.Simulation
                     f.Distance[i] = V2.Distance(f.Point(i), goal);
                     heap.Push(i, f.Distance[i]);
                 }
+            }
             while (heap.Count > 0)
             {
                 var item = heap.Pop();
                 int at = item.Index;
                 if (item.Cost > f.Distance[at])
                     continue;
-                int x = at % f.Columns, y = at / f.Columns;
-                var a = f.Point(at);
-                for (int dy = -1; dy <= 1; dy++)
-                    for (int dx = -1; dx <= 1; dx++)
+                int end=at*8+8;
+                for(int edgeIndex=at*8;edgeIndex<end;edgeIndex++)
+                {
+                    int n=topology.Neighbors[edgeIndex];
+                    if(n<0)continue;
+                    if (!topology.TerrainEdges[edgeIndex])
+                        continue;
+                    int intersections=topology.TowerCounts[edgeIndex];
+                    if(!breach&&intersections>0)continue;
+                    float cost = topology.EdgeLengths[edgeIndex];
+                    // Keep sequential additions, matching the original floating-point cost.
+                    for(int hit=0;hit<intersections;hit++)cost+=BreachCost;
+                    float candidate = item.Cost + cost;
+                    if (candidate + 0.00001f < f.Distance[n])
                     {
-                        if (dx == 0 && dy == 0)
-                            continue;
-                        int nx = x + dx, ny = y + dy;
-                        if (nx < 0 || ny < 0 || nx >= f.Columns || ny >= f.Rows)
-                            continue;
-                        int n = nx + ny * f.Columns;
-                        var b = f.Point(n);
-                        if (!grid.TerrainClear(a,b,radius))
-                            continue;
-                        float cost = V2.Distance(a, b);
-                        bool blocked = false;
-                        foreach (var t in grid.Towers)
-                            if (Geometry.SweepBox(a, b, t.Center, t.Half, radius))
-                            {
-                                if (!breach)
-                                {
-                                    blocked = true;
-                                    break;
-                                }
-                                cost += BreachCost;
-                            }
-                        if (blocked)
-                            continue;
-                        float candidate = item.Cost + cost;
-                        if (candidate + 0.00001f < f.Distance[n])
-                        {
-                            f.Distance[n] = candidate;
-                            f.Next[n] = at;
-                            heap.Push(n, candidate);
-                        }
+                        f.Distance[n] = candidate;
+                        f.Next[n] = at;
+                        heap.Push(n, candidate);
                     }
+                }
             }
-            return f;
         }
         public int Anchor(FlowField f, V2 position, bool requireClear = true)
         {
@@ -187,6 +186,7 @@ namespace FrostMaze.Simulation
         sealed class MinHeap
         {
             readonly List<Entry> data = new List<Entry>(); public int Count => data.Count;
+            public void Clear()=>data.Clear();
             static bool Less(Entry a, Entry b) => a.Cost < b.Cost || (a.Cost == b.Cost && a.Index < b.Index);
             public void Push(int index, float cost)
             {

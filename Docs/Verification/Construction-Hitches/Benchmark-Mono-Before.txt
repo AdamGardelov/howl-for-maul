@@ -1,0 +1,2 @@
+Ironfold towers=160 fields=13 radius=0.2 medianMs=1856.64 maxMs=1869.88 bytesPerEdit=1730286
+Rimewatch towers=160 fields=9 radius=0.2 medianMs=1240.56 maxMs=2078.41 bytesPerEdit=1201672

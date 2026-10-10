@@ -10,13 +10,15 @@ namespace FrostMaze.Simulation
         {
             get; private set;
         }
+        public int TerrainVersion { get; private set; }
+        internal event Action<Tower> TowerChanged;
         public readonly List<TerrainBlock> Terrain = new List<TerrainBlock>();
         const int TerrainBucketSize=4;
         readonly Dictionary<int,List<TerrainBlock>> terrainBuckets=new Dictionary<int,List<TerrainBlock>>();
         int BucketColumns => (Width+TerrainBucketSize-1)/TerrainBucketSize;
         public void AddTerrain(TerrainBlock block)
         {
-            Terrain.Add(block);Version++;
+            Terrain.Add(block);Version++;TerrainVersion++;
             for(int y=(int)(block.Y/TerrainBucketSize);y<Math.Ceiling((block.Y+block.Height)/TerrainBucketSize);y++)
                 for(int x=(int)(block.X/TerrainBucketSize);x<Math.Ceiling((block.X+block.Width)/TerrainBucketSize);x++) {
                     int key=x+y*BucketColumns;
@@ -87,6 +89,7 @@ namespace FrostMaze.Simulation
             Towers.Add(tower);
             IndexTower(tower,true);
             Version++;
+            TowerChanged?.Invoke(tower);
             return tower;
         }
         public bool Remove(int id)
@@ -94,9 +97,11 @@ namespace FrostMaze.Simulation
             int i = Towers.FindIndex(t => t.Id == id);
             if (i < 0)
                 return false;
-            IndexTower(Towers[i],false);
+            var removed = Towers[i];
+            IndexTower(removed,false);
             Towers.RemoveAt(i);
             Version++;
+            TowerChanged?.Invoke(removed);
             return true;
         }
         public void Damage(int id, float amount)
@@ -120,6 +125,21 @@ namespace FrostMaze.Simulation
                     foreach(var t in bucket)
                         if(Geometry.SweepBox(a,b,t.Center,t.Half,radius))return false;
             return true;
+        }
+        // Count each footprint once even when it occupies several spatial buckets.
+        // Navigation uses the count to retain the original per-tower breach cost.
+        internal int TowerIntersections(V2 a, V2 b, float radius)
+        {
+            TowerBounds(a,b,radius,out int minX,out int maxX,out int minY,out int maxY);
+            int count=0;
+            for(int y=minY;y<=maxY;y++)for(int x=minX;x<=maxX;x++)
+                if(towerBuckets.TryGetValue(x+y*TowerBucketColumns,out var bucket))
+                    foreach(var t in bucket) {
+                        int firstX=Math.Max(minX,Math.Max(0,(int)Math.Floor((t.Center.X-t.Half.X)/TowerBucketSize)));
+                        int firstY=Math.Max(minY,Math.Max(0,(int)Math.Floor((t.Center.Y-t.Half.Y)/TowerBucketSize)));
+                        if(x==firstX&&y==firstY&&Geometry.SweepBox(a,b,t.Center,t.Half,radius))count++;
+                    }
+            return count;
         }
         public Tower FirstHit(V2 a, V2 b, float radius)
         {
