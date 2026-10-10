@@ -1,3 +1,11 @@
+## 2026-10-10 — Friends Playtest 3 published
+
+The user requested push and a new release. [Friends Playtest 3: Smoother Construction](https://github.com/AdamGardelov/howl-for-maul/releases/tag/v0.1.0-playtest.3) is public at 2026-10-10T14:28:42Z. Annotated tag `v0.1.0-playtest.3` points to exact game source `61996b0`, including the construction-time routing fix and all Playtest 2 art. No game or service settings changed in this release turn. Earlier release assets remain immutable.
+
+[Evidence](Verification/Friends-Playtest-3/README.md): source/player hashes match retained verification, archives re-read, extracted payloads all hash correctly (196 Linux / 197 Windows files), extracted Linux data/menu/launcher/resize checks pass, small HUD inspected. Scott Buckley and font notices retained. All four anonymous public downloads match size/SHA-256 and GitHub digests. Notes match after GitHub CRLF normalization; exact source tag confirmed. Public release screenshot saved. README points to Playtest 3; friends should use fresh matching installations.
+
+The old license question was answered late by the user. Clarified that it was already resolved by using the normal Editor configuration; no action is needed from them. Native Windows, new live Relay, separate-network/four-player/full-live-match and hardware GPU checks remain open. No new automation. Owned smoke/display processes exited cleanly. Continue hardware/dense-match profiling from the checkpoint below when asked.
+
 ## 2026-10-10 — construction freezes during waves
 
 The user reported stalls when building during an active wave. Reproduced full-map per-goal tower scans and route-buffer churn: the warmed 160-tower stress case took 1,856.64 ms/edit on Ironfold and 1,240.56 ms on Rimewatch in Unity's bundled Mono. Cached terrain/neighbor graphs, local footprint collision updates, reused route arrays/heap and typed allocation-free lookup reduce those medians to 17.41 / 12.49 ms. Exact deterministic routing remains synchronous. [Implementation and limits](CONSTRUCTION-PERFORMANCE.md), [raw verification](Verification/Construction-Hitches/README.md).

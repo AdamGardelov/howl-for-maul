@@ -1,0 +1,41 @@
+{
+  "id": 408998934,
+  "tag_name": "v0.1.0-playtest.3",
+  "name": "Howl for Maul \u2014 Friends Playtest 3: Smoother Construction",
+  "html_url": "https://github.com/AdamGardelov/howl-for-maul/releases/tag/v0.1.0-playtest.3",
+  "draft": false,
+  "prerelease": true,
+  "published_at": "2026-10-10T14:28:42Z",
+  "gameSourceCommit": "61996b05a402ab8f2800d678a554a665626f0252",
+  "anonymousDownloads": {
+    "Howl-for-Maul-v0.1.0-playtest.3-Linux-x64.tar.gz": {
+      "assetId": 628170295,
+      "url": "https://github.com/AdamGardelov/howl-for-maul/releases/download/v0.1.0-playtest.3/Howl-for-Maul-v0.1.0-playtest.3-Linux-x64.tar.gz",
+      "bytes": 69822652,
+      "sha256": "ba4c8d908a8810b2fc884df5d1b53c0d401cc5de7568801d92b2bb5945b269ca",
+      "matchesLocal": true
+    },
+    "Howl-for-Maul-v0.1.0-playtest.3-Windows-x64.zip": {
+      "assetId": 628171472,
+      "url": "https://github.com/AdamGardelov/howl-for-maul/releases/download/v0.1.0-playtest.3/Howl-for-Maul-v0.1.0-playtest.3-Windows-x64.zip",
+      "bytes": 72619634,
+      "sha256": "1ba032e981c358270b11b61a3b64e4ed4bcd5a54d8bc218c694b031a5591b863",
+      "matchesLocal": true
+    },
+    "RELEASE-MANIFEST.json": {
+      "assetId": 628172084,
+      "url": "https://github.com/AdamGardelov/howl-for-maul/releases/download/v0.1.0-playtest.3/RELEASE-MANIFEST.json",
+      "bytes": 866,
+      "sha256": "7616e9791724dbce4bd07a0cf4710519c7469bfd0310a2b69eddb4ec4a166f46",
+      "matchesLocal": true
+    },
+    "SHA256SUMS.txt": {
+      "assetId": 628172093,
+      "url": "https://github.com/AdamGardelov/howl-for-maul/releases/download/v0.1.0-playtest.3/SHA256SUMS.txt",
+      "bytes": 317,
+      "sha256": "5f8b90fcea735024fe30422bae90d58fefdeb8a0516e51767f69676efbd8738a",
+      "matchesLocal": true
+    }
+  },
+  "verifiedAt": "2026-10-10T14:29:57.263912+00:00"
+}

@@ -31,4 +31,4 @@ dotnet run --project Headless/HowlForMaul.Headless.csproj -c Release -- --naviga
 
 Unity: run `ConstructionHitchTests.PaidConstructionDuringLiveWavesKeepsRoutesAndViewsWorking`. Its JSON CPU samples appear in `Logs/ConstructionHitch/report.json`. The test also checks charged gold including combat income, live enemy clearance, bounded collision work and actual rendered tower identities. It deliberately has no fragile universal millisecond threshold.
 
-[Verification, raw results and limits](Verification/Construction-Hitches/README.md). Local Linux/Windows candidates include this fix; published Friends Playtest 2 is unchanged. Use matching builds for multiplayer.
+[Verification, raw results and limits](Verification/Construction-Hitches/README.md). Local Linux/Windows candidates and [Friends Playtest 3](https://github.com/AdamGardelov/howl-for-maul/releases/tag/v0.1.0-playtest.3) include this fix; earlier releases remain unchanged. Use matching builds for multiplayer.

@@ -1,0 +1,3 @@
+ba4c8d908a8810b2fc884df5d1b53c0d401cc5de7568801d92b2bb5945b269ca  Howl-for-Maul-v0.1.0-playtest.3-Linux-x64.tar.gz
+1ba032e981c358270b11b61a3b64e4ed4bcd5a54d8bc218c694b031a5591b863  Howl-for-Maul-v0.1.0-playtest.3-Windows-x64.zip
+7616e9791724dbce4bd07a0cf4710519c7469bfd0310a2b69eddb4ec4a166f46  RELEASE-MANIFEST.json

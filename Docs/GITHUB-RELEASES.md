@@ -2,19 +2,19 @@
 
 The owner requested GitHub downloads on 2026-10-10. Use free, clearly labeled prereleases while Windows, separate-network/full-match multiplayer and hardware performance are still being tested. GitHub source pushes do not publish playable downloads. Release assets are complete desktop archives, not standalone executables or Unity project source archives.
 
-**Published:** [Friends Playtest 2 / v0.1.0-playtest.2](https://github.com/AdamGardelov/howl-for-maul/releases/tag/v0.1.0-playtest.2), 2026-10-10T12:06:44Z. All four public downloads (Windows/Linux archives, manifest and checksums) match the verified originals byte-for-byte by size and SHA-256. [Publication evidence](Verification/Friends-Playtest-2/Publication.json). The annotated tag points to game source `f6ca21f`; later packaging/documentation commits do not change these packages. Playtest 1 remains unchanged and available.
+**Published:** [Friends Playtest 3 / v0.1.0-playtest.3](https://github.com/AdamGardelov/howl-for-maul/releases/tag/v0.1.0-playtest.3), 2026-10-10T14:28:42Z. All four public downloads match the verified originals by size and SHA-256. [Publication evidence](Verification/Friends-Playtest-3/Publication.json). The annotated tag points to exact game source `61996b0`; later release documentation does not change its binaries. Playtests 1 and 2 remain unchanged and available.
 
 ## Package a verified checkpoint
 
-The current released game source is `f6ca21f87e19a60d9fa641051e90657db7392f5a`; its local players and checks are recorded in `Docs/Verification/Elemental-Factions/Verification.json`. The example below describes the already packaged release; use a new version/output for subsequent releases.
+The current released game source is `61996b05a402ab8f2800d678a554a665626f0252`; its local players and checks are recorded in `Docs/Verification/Construction-Hitches/Verification.json`. The example below describes the already packaged release; use a new version/output for subsequent releases.
 
 Run from the repository:
 
 ```sh
 python3 Tools/package-playtest.py \
-  --version v0.1.0-playtest.2 \
-  --source f6ca21f \
-  --verification Docs/Verification/Elemental-Factions/Verification.json
+  --version v0.1.0-playtest.3 \
+  --source 61996b0 \
+  --verification Docs/Verification/Construction-Hitches/Verification.json
 ```
 
 Outputs go under `Builds/Releases/<version>/`, which is ignored by Git. The script refuses changed/untracked game source, changed player trees, missing notices, and overwriting an existing output. Both input packages must match retained verification hashes. The packager supports both historical final-newline conventions for tree serialization, while still enforcing every file byte and the exact file count; deleted source files may not reappear. It excludes Unity `DoNotShip` folders, debug symbols and logs, preserves Linux executable permissions, and includes the launch guide, build metadata and per-file hashes. It rereads every archive member and compares its bytes. Archives use fixed source timestamps. Update the verification record after a new build rather than bypassing the mismatch guard.

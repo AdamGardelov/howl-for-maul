@@ -1,0 +1,14 @@
+{
+  "Howl-for-Maul-v0.1.0-playtest.3-Linux-x64.tar.gz": {
+    "files": 196,
+    "source": "61996b05a402ab8f2800d678a554a665626f0252",
+    "payloadHashes": "all matched",
+    "executableModes": true
+  },
+  "Howl-for-Maul-v0.1.0-playtest.3-Windows-x64.zip": {
+    "files": 197,
+    "source": "61996b05a402ab8f2800d678a554a665626f0252",
+    "payloadHashes": "all matched",
+    "executableModes": false
+  }
+}
