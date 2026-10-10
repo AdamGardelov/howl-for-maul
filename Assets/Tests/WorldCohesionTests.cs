@@ -73,7 +73,7 @@ namespace FrostMaze.Tests
                 var arm=builder.transform.Find("Right arm");var pose=arm.localRotation;yield return new WaitForSecondsRealtime(.15f);Assert.That(arm.localRotation,Is.EqualTo(pose),"Paused work gesture changed");
                 var tower=w.Grid.Towers[0];Assert.That(w.StartWave(),Is.True);var enemy=w.Spawn(new WaveSpec{Health=1000,Speed=0},tower.Center+new V2(1.8f,0));w.Step();yield return null;
                 Assert.That(enemy.Health,Is.LessThan(1000));
-                var enemyView=GameObject.Find("Enemy "+enemy.Id).GetComponent<EnemyView>();var body=enemyView.transform.Find("Armored crawler");Assert.That(Quaternion.Angle(body.localRotation,Quaternion.identity),Is.GreaterThan(1));
+                var enemyView=GameObject.Find("Enemy "+enemy.Id).GetComponent<EnemyView>();var body=enemyView.Body;Assert.That(Quaternion.Angle(body.localRotation,Quaternion.identity),Is.GreaterThan(1));
                 Capture(game.View,"/tmp/Howl-"+map+"-Cohesion-Combat.png");
                 w.TowersFire=false;var walkStart=w.BuilderPosition;w.MoveBuilder(walkStart+new V2(8,1));game.Paused=false;
                 // Let the real update loop advance: stepping manually as well can turn a low-frame-rate

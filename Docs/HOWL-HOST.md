@@ -25,7 +25,7 @@ All eight models are prepared once per map. Instances share combined meshes, tex
 
 ## What was checked
 
-- 81/81 targeted Unity cases, including every simulation case, both full historical Hard two-player campaign replays, live-wave paid construction, and enemy hit/defeat/leak/siege/pause/reset behavior.
+- 81/81 targeted Unity cases plus the existing world/audio integration case (1/1), including every simulation case, both full historical Hard two-player campaign replays, live-wave paid construction, and enemy hit/defeat/leak/siege/pause/reset behavior.
 - 75/75 pure simulation cases. Campaign ledgers retain the same paid construction, wallet totals, builder travel, upgrades, kills, leaks and results. The captured late-game scenes contain 339 Rimewatch towers / 32 enemies and 336 Ironfold towers / 45 enemies, with zero stable view-sync allocation.
 - Linux full build and packaged data/menu checks. An explicit enemy diagnostic places sixteen actual campaign enemies around four paid defenses, advances ninety real combat ticks, and captures both maps at normal/close zoom and 960×600. This intentionally mixed host is an art/combat fixture, not a naturally occurring wave.
 - Two-process LAN loopback checks on both maps. No network protocol or gameplay source was changed.
