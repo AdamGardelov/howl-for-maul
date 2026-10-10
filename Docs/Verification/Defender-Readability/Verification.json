@@ -1,0 +1,98 @@
+{
+  "date": "2026-10-10",
+  "baseCommit": "e0932fe29b1a8a559a2c99280bc887add03174d7",
+  "unity": "6000.3.25f1",
+  "renderer": "Linux OpenGL llvmpipe / private Xvfb :98",
+  "tests": {
+    "total": "8",
+    "passed": "8",
+    "failed": "0",
+    "end-time": "2026-10-10 10:43:13Z"
+  },
+  "silhouetteAudit": {
+    "before": {
+      "pairs": 208,
+      "nearDuplicates": 38,
+      "highestMeanOverlap": 0.9882
+    },
+    "after": {
+      "pairs": 208,
+      "nearDuplicates": 0,
+      "highestMeanOverlap": 0.8921
+    },
+    "method": "64px, two fixed playing angles, mean intersection-over-union; >=0.90 rejects near duplicates, not proof of human recognition"
+  },
+  "sources": {
+    "Assets/Game/Presentation/Effects/ProjectileStyle.cs": "e3d271e7e0a557b6694e87fe0c7b9aa627cdcd9282377c071b41c998d76310e6",
+    "Assets/Game/Presentation/ModelMeshes.cs": "199e3eec5f5735c361a0922c3409eb5b7c43a87bbd7c65eb21bf2583b7376068",
+    "Assets/Game/Presentation/Towers/TowerReadability.cs": "1d0178f544621eeabe98c32be785919407d09440528637ff6596c56c6dd884c9",
+    "Assets/Game/Presentation/Towers/TowerReadability.cs.meta": "749961ad677d87718ed77849097240278db57a8e8c7e84717572fef328c14e35",
+    "Assets/Game/Presentation/Towers/TowerView.Batching.cs": "cf3fc43a8347d66aecf6e7c7b25da11cba8ef567eca994d9a8d7d11a70bf12d0",
+    "Assets/Game/Presentation/Towers/TowerView.Blast.cs": "8bdecf94fb70e8092a6642e638e1c380ca4ccd5527f053c334b324cba76eabd7",
+    "Assets/Game/Presentation/Towers/TowerView.Identity.cs": "57885162531b624213ce9db0c3215e3e9c22a88cbfd63d126b9caf073e9fa9ed",
+    "Assets/Game/Presentation/Towers/TowerView.IronFactions.cs": "a29d59e38f5ee4b145f8368c7a3fbff0dde711cd883abe4a8eb462941b2e966d",
+    "Assets/Game/Presentation/Towers/TowerView.Rootbound.cs": "ebccbf369d5a2c0b4543981ff2e54d9602b90e31f12acc7741d6bbd7bc85fbde",
+    "Assets/Game/Presentation/Towers/TowerView.cs": "12e2576f48cd5af91da437e62273cd01326f69486f86cc59a35c467b3dfad339",
+    "Assets/Tests/FactionReadabilityTests.cs": "979a0e5cb5416d2632ea0f3b8e33eb0f8d5002ce145f52680db6d18b5ba8d682",
+    "Assets/Tests/FactionReadabilityTests.cs.meta": "696f05e7cd7174fe63989e91007ddb0ad1de19c9c338bd9710fd7d5afaee1cc9",
+    "Assets/Tests/ProjectilePresentationTests.cs": "b9fb66c190703dabc397e7eba0b12eac53c8b7a44b7c4f37e56d402799a3a690"
+  },
+  "packages": {
+    "Linux": {
+      "path": "Builds/Linux-World",
+      "previous": "Builds/Linux-World-e0932fe",
+      "previousTreeSha256": "2670472f111fb12e4ee2e97029fae61e24193cdd70e9b9e1b2221711ed7f575a",
+      "fileCount": 193,
+      "treeSha256": "4fa3b851e310d98709fd4b74afac34506d436ae45e5cd11fa255f809d55c1249",
+      "ScottBuckleyNotices": "96c119336e46c5d4a9b12047041012e47bad686c7e7028e2865db8edf4d800b8",
+      "musicSources": "bb1435367b1c2971efe67b2b0d90415981595fd87561c29e4efa6fba061ac36a"
+    },
+    "Windows": {
+      "path": "Builds/Windows-World",
+      "previous": "Builds/Windows-World-e0932fe",
+      "previousTreeSha256": "e828fccb451836f3aef0c2f7093e36a4e6d86b38a9b1224133e5d28ab0f2961b",
+      "fileCount": 195,
+      "treeSha256": "502704dc0130ff9bb9a5585aa37dbfee8d778757abe4a95bb93fcd09c541be9d",
+      "ScottBuckleyNotices": "96c119336e46c5d4a9b12047041012e47bad686c7e7028e2865db8edf4d800b8",
+      "musicSources": "bb1435367b1c2971efe67b2b0d90415981595fd87561c29e4efa6fba061ac36a"
+    }
+  },
+  "unchangedData": [
+    "Assets/Game/Simulation/Waves/Factions.cs",
+    "Assets/Game/Maps/Resources/Rimewatch.asset",
+    "Assets/Game/Maps/Resources/Ironfold.asset",
+    "Assets/Game/Presentation/Resources/World/Baked/Rimewatch-Cap.png",
+    "Assets/Game/Presentation/Resources/World/Baked/Ironfold-Cap.png",
+    "Assets/Game/Presentation/Resources/World/Baked/Rimewatch-Water.png",
+    "Assets/Game/Presentation/Resources/World/Baked/Ironfold-Water.png",
+    "Assets/Game/Presentation/Resources/World/Baked/Rimewatch-Ground.png",
+    "Assets/Game/Presentation/Resources/World/Baked/Rimewatch-Exterior.png",
+    "Assets/Game/Presentation/Resources/World/Baked/Rimewatch-Wall.png",
+    "Assets/Game/Presentation/Resources/World/Baked/Ironfold-Exterior.png",
+    "Assets/Game/Presentation/Resources/World/Baked/Ironfold-Ground.png",
+    "Assets/Game/Presentation/Resources/World/Baked/Ironfold-Wall.png"
+  ],
+  "testScope": "8/8 focused Unity cases; not the full Unity suite. Includes all 76 upgraded diagonal cell envelopes, portraits/previews, projectile lifecycle and paid Rootbound grove.",
+  "firstIteration": "6/8 passed; fixed static rotated-part width fitting and three remaining near-duplicate pairs, then all eight passed.",
+  "linuxBuild": "passed; packaged both-map world and menu smoke passed",
+  "windowsBuild": "cross-build passed; native execution untested",
+  "paidGrove": "Five designs cost 228 normal gold; explicitly added 1000 gold used only for level-three geometry fixture.",
+  "packagedWorld": {
+    "Ironfold": {
+      "paidTowers": 8,
+      "spent": 80
+    },
+    "Rimewatch": {
+      "paidTowers": 6,
+      "spent": 240
+    }
+  },
+  "humanRecognition": "Small portraits, silhouette sheets and gameplay captures visually inspected; no fresh human recognition study.",
+  "newFullCampaign": "not run",
+  "network": "not rerun for this presentation change",
+  "hardwarePerformance": "not measured; software rendering only",
+  "publicRelease": "v0.1.0-playtest.1 unchanged",
+  "artScope": "Distinct proportions across all 12 factions; selective shared framing, tree species and weapon shapes refined. The remaining creature-family charter is still future work.",
+  "audio": "Existing sounds and soundtrack unchanged",
+  "isolatedTarget": "restored to Linux"
+}

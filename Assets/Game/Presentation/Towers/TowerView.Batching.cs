@@ -15,7 +15,9 @@ namespace FrostMaze
                 if(filter==null||renderer==null||!renderer.enabled)continue;
                 int index=materials.IndexOf(renderer.sharedMaterial);
                 if(index<0){index=materials.Count;materials.Add(renderer.sharedMaterial);pieces.Add(new List<CombineInstance>());}
-                pieces[index].Add(new CombineInstance{mesh=filter.sharedMesh,transform=Matrix4x4.TRS(part.localPosition,part.localRotation,part.localScale)});
+                var matrix=Matrix4x4.TRS(part.localPosition,part.localRotation,part.localScale);
+                if(group==transform)matrix=Matrix4x4.Scale(new Vector3(weaponWidth,1,weaponWidth))*matrix;
+                pieces[index].Add(new CombineInstance{mesh=filter.sharedMesh,transform=matrix});
                 renderer.enabled=false;
             }
             for(int i=0;i<materials.Count;i++) {

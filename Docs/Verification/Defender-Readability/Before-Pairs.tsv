@@ -1,0 +1,209 @@
+map	faction	first	second	mean_silhouette_overlap
+Rimewatch	Rime Covenant	Shard Sentry	Snow Cairn	0.7061
+Rimewatch	Rime Covenant	Shard Sentry	Rime Binder	0.8443
+Rimewatch	Rime Covenant	Shard Sentry	Hail Bell	0.8541
+Rimewatch	Rime Covenant	Shard Sentry	Aurora Needle	0.8502
+Rimewatch	Rime Covenant	Snow Cairn	Rime Binder	0.7630
+Rimewatch	Rime Covenant	Snow Cairn	Hail Bell	0.8150
+Rimewatch	Rime Covenant	Snow Cairn	Aurora Needle	0.7703
+Rimewatch	Rime Covenant	Rime Binder	Hail Bell	0.8225
+Rimewatch	Rime Covenant	Rime Binder	Aurora Needle	0.8123
+Rimewatch	Rime Covenant	Hail Bell	Aurora Needle	0.7997
+Rimewatch	Rootbound	Seedling Warden	Oldbark	0.6856
+Rimewatch	Rootbound	Seedling Warden	Briar Elder	0.5873
+Rimewatch	Rootbound	Seedling Warden	Skybough	0.6322
+Rimewatch	Rootbound	Seedling Warden	Worldroot	0.6496
+Rimewatch	Rootbound	Oldbark	Briar Elder	0.5486
+Rimewatch	Rootbound	Oldbark	Skybough	0.5535
+Rimewatch	Rootbound	Oldbark	Worldroot	0.6229
+Rimewatch	Rootbound	Briar Elder	Skybough	0.7412
+Rimewatch	Rootbound	Briar Elder	Worldroot	0.5264
+Rimewatch	Rootbound	Skybough	Worldroot	0.5776
+Rimewatch	Ember Assembly	Cinder Watch	Coal Bastion	0.7918
+Rimewatch	Ember Assembly	Cinder Watch	Furnace Mouth	0.8817
+Rimewatch	Ember Assembly	Cinder Watch	Flare Lance	0.9339
+Rimewatch	Ember Assembly	Cinder Watch	Meteor Crucible	0.9041
+Rimewatch	Ember Assembly	Coal Bastion	Furnace Mouth	0.7836
+Rimewatch	Ember Assembly	Coal Bastion	Flare Lance	0.7759
+Rimewatch	Ember Assembly	Coal Bastion	Meteor Crucible	0.8175
+Rimewatch	Ember Assembly	Furnace Mouth	Flare Lance	0.8843
+Rimewatch	Ember Assembly	Furnace Mouth	Meteor Crucible	0.8893
+Rimewatch	Ember Assembly	Flare Lance	Meteor Crucible	0.8818
+Rimewatch	Volt Vanguard	Pulse Cadet	Scrap Bulwark	0.6574
+Rimewatch	Volt Vanguard	Pulse Cadet	Arc Relay	0.6497
+Rimewatch	Volt Vanguard	Pulse Cadet	Skyrail	0.6791
+Rimewatch	Volt Vanguard	Pulse Cadet	Nova Marshal	0.8293
+Rimewatch	Volt Vanguard	Scrap Bulwark	Arc Relay	0.7392
+Rimewatch	Volt Vanguard	Scrap Bulwark	Skyrail	0.8195
+Rimewatch	Volt Vanguard	Scrap Bulwark	Nova Marshal	0.6876
+Rimewatch	Volt Vanguard	Arc Relay	Skyrail	0.7799
+Rimewatch	Volt Vanguard	Arc Relay	Nova Marshal	0.7135
+Rimewatch	Volt Vanguard	Skyrail	Nova Marshal	0.6715
+Ironfold	Pulse Foundry	Fuse Cadet	Ironhand	0.7818
+Ironfold	Pulse Foundry	Fuse Cadet	Shear Sentinel	0.7443
+Ironfold	Pulse Foundry	Fuse Cadet	Arc Ranger	0.7870
+Ironfold	Pulse Foundry	Fuse Cadet	Flare Keeper	0.7988
+Ironfold	Pulse Foundry	Fuse Cadet	Rime Runner	0.7566
+Ironfold	Pulse Foundry	Fuse Cadet	Echo Champion	0.6460
+Ironfold	Pulse Foundry	Ironhand	Shear Sentinel	0.7573
+Ironfold	Pulse Foundry	Ironhand	Arc Ranger	0.7527
+Ironfold	Pulse Foundry	Ironhand	Flare Keeper	0.7837
+Ironfold	Pulse Foundry	Ironhand	Rime Runner	0.8866
+Ironfold	Pulse Foundry	Ironhand	Echo Champion	0.7456
+Ironfold	Pulse Foundry	Shear Sentinel	Arc Ranger	0.7437
+Ironfold	Pulse Foundry	Shear Sentinel	Flare Keeper	0.7737
+Ironfold	Pulse Foundry	Shear Sentinel	Rime Runner	0.7700
+Ironfold	Pulse Foundry	Shear Sentinel	Echo Champion	0.7461
+Ironfold	Pulse Foundry	Arc Ranger	Flare Keeper	0.7729
+Ironfold	Pulse Foundry	Arc Ranger	Rime Runner	0.7940
+Ironfold	Pulse Foundry	Arc Ranger	Echo Champion	0.7086
+Ironfold	Pulse Foundry	Flare Keeper	Rime Runner	0.7689
+Ironfold	Pulse Foundry	Flare Keeper	Echo Champion	0.7105
+Ironfold	Pulse Foundry	Rime Runner	Echo Champion	0.7521
+Ironfold	Blast Circuit	Alloy Cadet	Crashbreaker	0.7423
+Ironfold	Blast Circuit	Alloy Cadet	Gale Pilot	0.8701
+Ironfold	Blast Circuit	Alloy Cadet	Heatkeeper	0.7910
+Ironfold	Blast Circuit	Alloy Cadet	Quicksilver	0.7629
+Ironfold	Blast Circuit	Alloy Cadet	Rootguard	0.9107
+Ironfold	Blast Circuit	Alloy Cadet	Citadel Champion	0.6900
+Ironfold	Blast Circuit	Crashbreaker	Gale Pilot	0.8142
+Ironfold	Blast Circuit	Crashbreaker	Heatkeeper	0.9159
+Ironfold	Blast Circuit	Crashbreaker	Quicksilver	0.7647
+Ironfold	Blast Circuit	Crashbreaker	Rootguard	0.7732
+Ironfold	Blast Circuit	Crashbreaker	Citadel Champion	0.7321
+Ironfold	Blast Circuit	Gale Pilot	Heatkeeper	0.8683
+Ironfold	Blast Circuit	Gale Pilot	Quicksilver	0.8153
+Ironfold	Blast Circuit	Gale Pilot	Rootguard	0.8663
+Ironfold	Blast Circuit	Gale Pilot	Citadel Champion	0.7108
+Ironfold	Blast Circuit	Heatkeeper	Quicksilver	0.8158
+Ironfold	Blast Circuit	Heatkeeper	Rootguard	0.8152
+Ironfold	Blast Circuit	Heatkeeper	Citadel Champion	0.7102
+Ironfold	Blast Circuit	Quicksilver	Rootguard	0.7628
+Ironfold	Blast Circuit	Quicksilver	Citadel Champion	0.6639
+Ironfold	Blast Circuit	Rootguard	Citadel Champion	0.7289
+Ironfold	Prism Division	Shade Cadet	Spark Herald	0.7117
+Ironfold	Prism Division	Shade Cadet	Lodestone	0.6728
+Ironfold	Prism Division	Shade Cadet	Coil Serpent	0.7581
+Ironfold	Prism Division	Shade Cadet	Prism Twin	0.7075
+Ironfold	Prism Division	Shade Cadet	Needle Guard	0.7583
+Ironfold	Prism Division	Shade Cadet	Shell Champion	0.5951
+Ironfold	Prism Division	Spark Herald	Lodestone	0.8393
+Ironfold	Prism Division	Spark Herald	Coil Serpent	0.8194
+Ironfold	Prism Division	Spark Herald	Prism Twin	0.8724
+Ironfold	Prism Division	Spark Herald	Needle Guard	0.7859
+Ironfold	Prism Division	Spark Herald	Shell Champion	0.5304
+Ironfold	Prism Division	Lodestone	Coil Serpent	0.8262
+Ironfold	Prism Division	Lodestone	Prism Twin	0.8227
+Ironfold	Prism Division	Lodestone	Needle Guard	0.7867
+Ironfold	Prism Division	Lodestone	Shell Champion	0.5896
+Ironfold	Prism Division	Coil Serpent	Prism Twin	0.8140
+Ironfold	Prism Division	Coil Serpent	Needle Guard	0.8583
+Ironfold	Prism Division	Coil Serpent	Shell Champion	0.6083
+Ironfold	Prism Division	Prism Twin	Needle Guard	0.8041
+Ironfold	Prism Division	Prism Twin	Shell Champion	0.5291
+Ironfold	Prism Division	Needle Guard	Shell Champion	0.5847
+Ironfold	Horizon Guild	Glimmer Cadet	Sun Regent	0.8146
+Ironfold	Horizon Guild	Glimmer Cadet	Dustkeeper	0.8181
+Ironfold	Horizon Guild	Glimmer Cadet	Boneplate	0.7931
+Ironfold	Horizon Guild	Glimmer Cadet	Deepdiver	0.7708
+Ironfold	Horizon Guild	Glimmer Cadet	Drillwarden	0.7884
+Ironfold	Horizon Guild	Glimmer Cadet	Crawler Champion	0.5739
+Ironfold	Horizon Guild	Sun Regent	Dustkeeper	0.7576
+Ironfold	Horizon Guild	Sun Regent	Boneplate	0.7185
+Ironfold	Horizon Guild	Sun Regent	Deepdiver	0.7618
+Ironfold	Horizon Guild	Sun Regent	Drillwarden	0.7503
+Ironfold	Horizon Guild	Sun Regent	Crawler Champion	0.5802
+Ironfold	Horizon Guild	Dustkeeper	Boneplate	0.7984
+Ironfold	Horizon Guild	Dustkeeper	Deepdiver	0.7952
+Ironfold	Horizon Guild	Dustkeeper	Drillwarden	0.8388
+Ironfold	Horizon Guild	Dustkeeper	Crawler Champion	0.6743
+Ironfold	Horizon Guild	Boneplate	Deepdiver	0.7842
+Ironfold	Horizon Guild	Boneplate	Drillwarden	0.8418
+Ironfold	Horizon Guild	Boneplate	Crawler Champion	0.6796
+Ironfold	Horizon Guild	Deepdiver	Drillwarden	0.7988
+Ironfold	Horizon Guild	Deepdiver	Crawler Champion	0.6325
+Ironfold	Horizon Guild	Drillwarden	Crawler Champion	0.6900
+Ironfold	Gravity Works	Gyro Cadet	Gravity Anchor	0.8225
+Ironfold	Gravity Works	Gyro Cadet	Starcaller	0.8655
+Ironfold	Gravity Works	Gyro Cadet	Wavekeeper	0.8379
+Ironfold	Gravity Works	Gyro Cadet	Chargeguard	0.8277
+Ironfold	Gravity Works	Gyro Cadet	Granite Sentinel	0.7692
+Ironfold	Gravity Works	Gyro Cadet	Eclipse Champion	0.6421
+Ironfold	Gravity Works	Gravity Anchor	Starcaller	0.9168
+Ironfold	Gravity Works	Gravity Anchor	Wavekeeper	0.9308
+Ironfold	Gravity Works	Gravity Anchor	Chargeguard	0.8940
+Ironfold	Gravity Works	Gravity Anchor	Granite Sentinel	0.8558
+Ironfold	Gravity Works	Gravity Anchor	Eclipse Champion	0.7326
+Ironfold	Gravity Works	Starcaller	Wavekeeper	0.9296
+Ironfold	Gravity Works	Starcaller	Chargeguard	0.8697
+Ironfold	Gravity Works	Starcaller	Granite Sentinel	0.8144
+Ironfold	Gravity Works	Starcaller	Eclipse Champion	0.7197
+Ironfold	Gravity Works	Wavekeeper	Chargeguard	0.8949
+Ironfold	Gravity Works	Wavekeeper	Granite Sentinel	0.8548
+Ironfold	Gravity Works	Wavekeeper	Eclipse Champion	0.7434
+Ironfold	Gravity Works	Chargeguard	Granite Sentinel	0.8708
+Ironfold	Gravity Works	Chargeguard	Eclipse Champion	0.7208
+Ironfold	Gravity Works	Granite Sentinel	Eclipse Champion	0.7235
+Ironfold	Scrap Frontier	Strider Cadet	Lance Knight	0.8590
+Ironfold	Scrap Frontier	Strider Cadet	Windkeeper	0.9035
+Ironfold	Scrap Frontier	Strider Cadet	Bloomguard	0.9317
+Ironfold	Scrap Frontier	Strider Cadet	Whiteout	0.9227
+Ironfold	Scrap Frontier	Strider Cadet	Hatchet Herald	0.9074
+Ironfold	Scrap Frontier	Strider Cadet	Fossil Champion	0.8844
+Ironfold	Scrap Frontier	Lance Knight	Windkeeper	0.8582
+Ironfold	Scrap Frontier	Lance Knight	Bloomguard	0.8743
+Ironfold	Scrap Frontier	Lance Knight	Whiteout	0.8846
+Ironfold	Scrap Frontier	Lance Knight	Hatchet Herald	0.8562
+Ironfold	Scrap Frontier	Lance Knight	Fossil Champion	0.8673
+Ironfold	Scrap Frontier	Windkeeper	Bloomguard	0.8704
+Ironfold	Scrap Frontier	Windkeeper	Whiteout	0.8833
+Ironfold	Scrap Frontier	Windkeeper	Hatchet Herald	0.9124
+Ironfold	Scrap Frontier	Windkeeper	Fossil Champion	0.8553
+Ironfold	Scrap Frontier	Bloomguard	Whiteout	0.9382
+Ironfold	Scrap Frontier	Bloomguard	Hatchet Herald	0.8954
+Ironfold	Scrap Frontier	Bloomguard	Fossil Champion	0.9078
+Ironfold	Scrap Frontier	Whiteout	Hatchet Herald	0.9083
+Ironfold	Scrap Frontier	Whiteout	Fossil Champion	0.9464
+Ironfold	Scrap Frontier	Hatchet Herald	Fossil Champion	0.8789
+Ironfold	Overdrive Order	Junk Cadet	Freeze Warden	0.9563
+Ironfold	Overdrive Order	Junk Cadet	Splashguard	0.9882
+Ironfold	Overdrive Order	Junk Cadet	Spring Striker	0.9197
+Ironfold	Overdrive Order	Junk Cadet	Duskkeeper	0.9840
+Ironfold	Overdrive Order	Junk Cadet	Turbo Sentinel	0.9562
+Ironfold	Overdrive Order	Junk Cadet	Mask Champion	0.9695
+Ironfold	Overdrive Order	Freeze Warden	Splashguard	0.9552
+Ironfold	Overdrive Order	Freeze Warden	Spring Striker	0.9543
+Ironfold	Overdrive Order	Freeze Warden	Duskkeeper	0.9560
+Ironfold	Overdrive Order	Freeze Warden	Turbo Sentinel	0.9223
+Ironfold	Overdrive Order	Freeze Warden	Mask Champion	0.9319
+Ironfold	Overdrive Order	Splashguard	Spring Striker	0.9212
+Ironfold	Overdrive Order	Splashguard	Duskkeeper	0.9777
+Ironfold	Overdrive Order	Splashguard	Turbo Sentinel	0.9577
+Ironfold	Overdrive Order	Splashguard	Mask Champion	0.9606
+Ironfold	Overdrive Order	Spring Striker	Duskkeeper	0.9192
+Ironfold	Overdrive Order	Spring Striker	Turbo Sentinel	0.8877
+Ironfold	Overdrive Order	Spring Striker	Mask Champion	0.8962
+Ironfold	Overdrive Order	Duskkeeper	Turbo Sentinel	0.9508
+Ironfold	Overdrive Order	Duskkeeper	Mask Champion	0.9692
+Ironfold	Overdrive Order	Turbo Sentinel	Mask Champion	0.9547
+Ironfold	Tidal Array	Grenade Cadet	Kite Ranger	0.8952
+Ironfold	Tidal Array	Grenade Cadet	Jester Coil	0.9037
+Ironfold	Tidal Array	Grenade Cadet	Aquaguard	0.8663
+Ironfold	Tidal Array	Grenade Cadet	Blade Keeper	0.9008
+Ironfold	Tidal Array	Grenade Cadet	Orbit Herald	0.8718
+Ironfold	Tidal Array	Grenade Cadet	Verdant Champion	0.8337
+Ironfold	Tidal Array	Kite Ranger	Jester Coil	0.9040
+Ironfold	Tidal Array	Kite Ranger	Aquaguard	0.8279
+Ironfold	Tidal Array	Kite Ranger	Blade Keeper	0.8655
+Ironfold	Tidal Array	Kite Ranger	Orbit Herald	0.8904
+Ironfold	Tidal Array	Kite Ranger	Verdant Champion	0.8301
+Ironfold	Tidal Array	Jester Coil	Aquaguard	0.8512
+Ironfold	Tidal Array	Jester Coil	Blade Keeper	0.8668
+Ironfold	Tidal Array	Jester Coil	Orbit Herald	0.8829
+Ironfold	Tidal Array	Jester Coil	Verdant Champion	0.8294
+Ironfold	Tidal Array	Aquaguard	Blade Keeper	0.8903
+Ironfold	Tidal Array	Aquaguard	Orbit Herald	0.8609
+Ironfold	Tidal Array	Aquaguard	Verdant Champion	0.8947
+Ironfold	Tidal Array	Blade Keeper	Orbit Herald	0.8692
+Ironfold	Tidal Array	Blade Keeper	Verdant Champion	0.8424
+Ironfold	Tidal Array	Orbit Herald	Verdant Champion	0.8362

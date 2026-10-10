@@ -85,7 +85,9 @@ namespace FrostMaze
                 for(int i=0;i<4;i++){float a=i*Mathf.PI/2;Crystal("Freeze prong",new Vector3(Mathf.Sin(a)*.29f,1.42f,Mathf.Cos(a)*.29f),new Vector3(.16f,.52f,.16f),light,weapon);}
             } else if(slot==2) {
                 Part("Splash pressure tank",PrimitiveType.Sphere,new Vector3(0,1.04f,-.08f),new Vector3(.65f,.6f,.57f),trim,weapon);
-                var nozzle=Part("Pressure nozzle",PrimitiveType.Cylinder,new Vector3(0,1.24f,.22f),new Vector3(.34f,.28f,.34f),accent,weapon);nozzle.transform.localRotation=Quaternion.Euler(45,0,0);
+                // A long, low snout and round back separate the spitter from the square-jawed cadet.
+                var nozzle=Part("Pressure nozzle",PrimitiveType.Cylinder,new Vector3(0,1.04f,.27f),new Vector3(.27f,.42f,.27f),accent,weapon);nozzle.transform.localRotation=Quaternion.Euler(82,0,0);
+                Part("Spitter cheek",PrimitiveType.Sphere,new Vector3(-.23f,1.06f,.12f),new Vector3(.27f,.31f,.32f),shell,weapon);
             } else if(slot==3) {
                 for(int i=0;i<4;i++)Part("Spring winding",PrimitiveType.Cylinder,new Vector3(0,.94f+i*.13f,0),new Vector3(.35f,.025f,.35f),trim,weapon);
                 Part("Striker fist",PrimitiveType.Cube,new Vector3(0,1.51f,0),new Vector3(.54f,.29f,.48f),accent,weapon);

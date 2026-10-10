@@ -8,7 +8,7 @@ namespace FrostMaze
         public string Role { get; private set; }
         public int VisibleLevel { get; private set; }
         Transform weapon;
-        float weaponWidth=1;
+        float weaponWidth=1,weaponHeight=1;
         Prototype game;
         long observedShot,shotTick=-100;
 
@@ -191,6 +191,14 @@ namespace FrostMaze
             }
             FactionArchitecture(palette[3],palette[4],faction,robot);
             DressFoundation(palette[3],palette[4],faction,robot);
+            weaponHeight=TowerReadability.Height(game.World.Config,tower.Design);
+            // Scale the whole authored anatomy, including static supports, around the ground.
+            foreach(Transform part in transform){
+                if(part==weapon)continue;
+                var position=part.localPosition;position.y*=weaponHeight;part.localPosition=position;
+                var size=part.localScale;size.y*=weaponHeight;part.localScale=size;
+            }
+            if(weapon!=null)weapon.localScale=new Vector3(1,weaponHeight,1);
             FitSilhouette();
             string modelKey=game.World.Config.Theme+"/"+faction+"/"+tower.Design;
             CombineRigidParts(transform,modelKey+"/base");
@@ -206,7 +214,7 @@ namespace FrostMaze
             transform.position=new Vector3(tower.Center.X,0,tower.Center.Y);
             transform.localScale=new Vector3(tower.Spec.Width,clearance?.08f:1,tower.Spec.Height);
             VisibleLevel=tower.Level;for(int i=0;i<2;i++)tiers[i].SetActive(tower.Level>=i+2);
-            if(weapon!=null)weapon.localScale=new Vector3(weaponWidth,1+.08f*(tower.Level-1),weaponWidth);
+            if(weapon!=null)weapon.localScale=new Vector3(weaponWidth,weaponHeight*(1+.08f*(tower.Level-1)),weaponWidth);
         }
         public void Sync(Tower tower,bool clearance)
         {

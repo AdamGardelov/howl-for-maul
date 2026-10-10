@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Failed(Child)" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-10 10:37:01Z" end-time="2026-10-10 10:37:06Z" duration="4.1149192">
+  <test-suite type="TestSuite" id="1000" name="Howl for Maul" fullname="Howl for Maul" runstate="Runnable" testcasecount="122" result="Failed" site="Child" start-time="2026-10-10 10:37:01Z" end-time="2026-10-10 10:37:06Z" duration="4.114919" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1138" name="FrostMaze.Tests.dll" fullname="/home/adam/Documents/Codex/2026-10-06/cre/work/howl-logo-build/Library/ScriptAssemblies/FrostMaze.Tests.dll" runstate="Runnable" testcasecount="122" result="Failed" site="Child" start-time="2026-10-10 10:37:02Z" end-time="2026-10-10 10:37:06Z" duration="4.036385" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="309397" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1139" name="FrostMaze" fullname="FrostMaze" runstate="Runnable" testcasecount="122" result="Failed" site="Child" start-time="2026-10-10 10:37:02Z" end-time="2026-10-10 10:37:06Z" duration="4.030462" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1140" name="Tests" fullname="FrostMaze.Tests" runstate="Runnable" testcasecount="122" result="Failed" site="Child" start-time="2026-10-10 10:37:02Z" end-time="2026-10-10 10:37:06Z" duration="4.024686" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1004" name="FactionReadabilityTests" fullname="FrostMaze.Tests.FactionReadabilityTests" classname="FrostMaze.Tests.FactionReadabilityTests" runstate="Runnable" testcasecount="1" result="Failed" site="Child" start-time="2026-10-10 10:37:02Z" end-time="2026-10-10 10:37:06Z" duration="4.016443" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1005" name="EveryFactionHasDistinctSmallOutlinesFromTwoPlayingAngles" fullname="FrostMaze.Tests.FactionReadabilityTests.EveryFactionHasDistinctSmallOutlinesFromTwoPlayingAngles" methodname="EveryFactionHasDistinctSmallOutlinesFromTwoPlayingAngles" classname="FrostMaze.Tests.FactionReadabilityTests" runstate="Runnable" seed="365205388" result="Failed" start-time="2026-10-10 10:36:56Z" end-time="2026-10-10 10:37:06Z" duration="9.426748" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Cinder Watch / Flare Lance overlap 0.9339094
+Cinder Watch / Meteor Crucible overlap 0.9041109
+Alloy Cadet / Rootguard overlap 0.9107143
+Crashbreaker / Heatkeeper overlap 0.9159356
+Gravity Anchor / Starcaller overlap 0.9167523
+Gravity Anchor / Wavekeeper overlap 0.9307644
+Starcaller / Wavekeeper overlap 0.9295561
+Strider Cadet / Windkeeper overlap 0.903457
+Strider Cadet / Bloomguard overlap 0.9316544
+Strider Cadet / Whiteout overlap 0.9227255
+Strider Cadet / Hatchet Herald overlap 0.9074082
+Windkeeper / Hatchet Herald overlap 0.9123958
+Bloomguard / Whiteout overlap 0.9382238
+Bloomguard / Fossil Champion overlap 0.9077983
+Whiteout / Hatchet Herald overlap 0.9083065
+Whiteout / Fossil Champion overlap 0.9463816
+Junk Cadet / Freeze Warden overlap 0.9563141
+Junk Cadet / Splashguard overlap 0.988206
+Junk Cadet / Spring Striker overlap 0.9197256
+Junk Cadet / Duskkeeper overlap 0.9840317
+Junk Cadet / Turbo Sentinel overlap 0.9561986
+Junk Cadet / Mask Champion overlap 0.9695064
+Freeze Warden / Splashguard overlap 0.9552429
+Freeze Warden / Spring Striker overlap 0.9542757
+Freeze Warden / Duskkeeper overlap 0.9559794
+Freeze Warden / Turbo Sentinel overlap 0.9223125
+Freeze Warden / Mask Champion overlap 0.9318682
+Splashguard / Spring Striker overlap 0.9211989
+Splashguard / Duskkeeper overlap 0.9776624
+Splashguard / Turbo Sentinel overlap 0.9576697
+Splashguard / Mask Champion overlap 0.9605862
+Spring Striker / Duskkeeper overlap 0.919246
+Duskkeeper / Turbo Sentinel overlap 0.950779
+Duskkeeper / Mask Champion overlap 0.9692404
+Turbo Sentinel / Mask Champion overlap 0.9547493
+Grenade Cadet / Jester Coil overlap 0.9037382
+Grenade Cadet / Blade Keeper overlap 0.9008143
+Kite Ranger / Jester Coil overlap 0.9039576
+  Expected: <empty>
+  But was:  < "Cinder Watch / Flare Lance overlap 0.9339094", "Cinder Watch / Meteor Crucible overlap 0.9041109", "Alloy Cadet / Rootguard overlap 0.9107143", "Crashbreaker / Heatkeeper overlap 0.9159356", "Gravity Anchor / Starcaller overlap 0.9167523", "Gravity Anchor / Wavekeeper overlap 0.9307644", "Starcaller / Wavekeeper overlap 0.9295561", "Strider Cadet / Windkeeper overlap 0.903457", "Strider Cadet / Bloomguard overlap 0.9316544", "Strider Cadet / Whiteout overlap 0.9227255"... >
+]]></message>
+                <stack-trace><![CDATA[at FrostMaze.Tests.FactionReadabilityTests+<EveryFactionHasDistinctSmallOutlinesFromTwoPlayingAngles>d__0.MoveNext () [0x00b45] in /home/adam/Documents/Codex/2026-10-06/cre/work/howl-logo-build/Assets/Tests/FactionReadabilityTests.cs:83
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@0bd5c5194236/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:44
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[HOWL_MAP_READY Rimewatch ms=601.5 baked=True
+HOWL_MAP_READY Ironfold ms=804.4 baked=True
+Saving results to: /home/adam/Documents/Codex/2026-10-06/cre/work/hearth-test-config/unity3d/Howl for Maul/Howl for Maul/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

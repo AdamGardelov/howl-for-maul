@@ -1,3 +1,13 @@
+## 2026-10-10 — Recognizable members within each faction
+
+The player explicitly wants each defender distinguishable at a quick glance, including within its own faction. [The readability pass](DEFENDER-READABILITY.md) changes all 76 design proportions, removes repeated large frames that hid weapon differences, strengthens tree species cues and refines the few remaining near-identical shapes. Projectile release heights follow the new proportions. A static slanted-part width-fit error exposed by the taller Aurora Needle is fixed in tower axes during batching. Gameplay data, masks, ownership, audio and baked map surfaces are unchanged.
+
+[Evidence](Verification/Defender-Readability/README.md): 8/8 focused Unity cases pass, including level-three diagonal clearance, preview/portrait/projectile behavior and the paid animated grove. All 12 small sheets were inspected; the two-angle 64px near-duplicate guard drops from 38/208 pairs to 0/208. This is not a human instant-recognition guarantee. First iteration 6/8 failures are preserved with the final pass. One packaged run was interrupted by display shutdown; the completed rerun passes both maps and menu/resize. Linux and Windows builds succeed; Windows remains cross-build only.
+
+Installed candidates: Builds/Linux-World and Builds/Windows-World, identical to tested outputs; preceding versions preserved as *-World-e0932fe. Scott Buckley notices retained. Public Playtest 1 unchanged. No new campaign/network/hardware/full-suite claim. Owned jobs closed and isolated target restored to Linux. Scripts/logs begin work/readability-. No automation changes.
+
+Next: continue the living-order charter with a complete creature family (Rime's winter spirits are the next candidate), preserving clear differences between every member and actual small-size/gameplay checks. Most other orders still use their preceding procedural anatomy; do not mistake the proportions pass for completed creature redesigns.
+
 ## 2026-10-10 — Briar Elder throws thorns
 
 The player requested a thorn tree. Rootbound’s Burr Elder becomes **Briar Elder**, a hawthorn with exposed hooked branches, sparse leaves, a winding vine and a loaded throwing hand. A three-thorn barbed cluster and longer impact splinters replace the seed pod. Name/description only in gameplay data; all numbers, design IDs, masks, economy and ownership remain unchanged. Other defenders and audio are unchanged. [Evidence and actual screenshots](Verification/Briar-Elder/README.md).

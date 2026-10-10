@@ -11,6 +11,7 @@ namespace FrostMaze
         public Mesh Shell => Profile("Carved shell",16,new[]{-.5f,-.27f,.14f,.36f,.5f},new[]{0f,.4f,.5f,.33f,0f},true);
         public Mesh Armor => Profile("Beveled armor",12,new[]{-.5f,-.3f,.32f,.5f},new[]{.38f,.5f,.5f,.38f});
         public Mesh Heartwood => Profile("Gnarled heartwood",14,new[]{-.5f,-.35f,-.08f,.16f,.37f,.5f},new[]{.49f,.42f,.38f,.48f,.39f,.32f},true);
+        public Mesh PineCrown => Profile("Tiered pine needles",12,new[]{-.5f,-.43f,-.17f,-.13f,.16f,.20f,.5f},new[]{.43f,.50f,.20f,.38f,.09f,.23f,0f},true);
         public Mesh Thorn {
             get {
                 const string key="Hooked hawthorn";if(meshes.TryGetValue(key,out var cached))return cached;

@@ -15,8 +15,9 @@ namespace FrostMaze
                 foreach(var vertex in vertices){var p=matrix.MultiplyPoint3x4(vertex);radius=Mathf.Max(radius,new Vector2(p.x,p.z).magnitude);}
             }
             float scale=(livingCrown!=null?.43f:.47f)/radius;
-            foreach(Transform child in transform){var p=child.localPosition;p.x*=scale;p.z*=scale;child.localPosition=p;
-                var s=child.localScale;s.x*=scale;s.z*=scale;child.localScale=s;}
+            // Fit the weapon in tower axes. Static pieces receive the same matrix during batching:
+            // scaling a slanted piece's local X/Z leaves its tilted local Y sticking outside the cell.
+            if(weapon!=null)weapon.localScale=new Vector3(scale,weaponHeight,scale);
             weaponWidth=scale;
         }
         void FactionFooting(Material trim,Material dark,int faction,bool iron)
@@ -55,6 +56,7 @@ namespace FrostMaze
         void FactionArchitecture(Material trim,Material dark,int faction,bool iron)
         {
             if(!iron){WinterArchitecture(trim,dark,faction);return;}
+            int slot=Subject.Design%7;
             if(faction==0){ // Pulse instruments carry their own masonry beds and cast frames.
                 return;
             }else if(faction==1){ // Blast: low six-legged siege beetles, not upright soldiers.
@@ -70,13 +72,15 @@ namespace FrostMaze
                 Shape("Prism waist",game.Models.Crystal,new Vector3(.16f,.32f,.16f));
                 Shape("Prism cuirass",game.Models.Crystal,new Vector3(.33f,.54f,.30f));
                 Shape("Champion carapace",game.Models.Crystal,new Vector3(.63f,.83f,.45f));
-                for(int side=-1;side<=1;side+=2){
+                if(slot==4||slot==6)for(int side=-1;side<=1;side+=2){
                     var shard=Crystal("Ivory prism petal",new Vector3(side*.28f,.64f,-.09f),new Vector3(.21f,1.1f,.35f),trim);
                     shard.transform.localRotation=Quaternion.Euler(-12,0,-side*17);
                 }
-                var orbit=Motion("Prism light orbit",new Vector3(0,.83f,0),Quaternion.Euler(16,0,12),14);
-                Loop("Prism orbit",Vector3.zero,.78f,Quaternion.identity,accent,orbit);
-                Crystal("Orbiting lens",new Vector3(.33f,0,0),new Vector3(.12f,.22f,.12f),light,orbit);
+                if(slot==3){
+                    var orbit=Motion("Prism light orbit",new Vector3(0,.83f,0),Quaternion.Euler(16,0,12),14);
+                    Loop("Prism orbit",Vector3.zero,.78f,Quaternion.identity,accent,orbit);
+                    Crystal("Orbiting lens",new Vector3(.33f,0,0),new Vector3(.12f,.22f,.12f),light,orbit);
+                }
             }else if(faction==3){ // Shared joinery; each weapon supplies its own silhouette.
                 if(Role=="Champion") {
                     for(int side=-1;side<=1;side+=2)for(int end=-1;end<=1;end+=2) {
@@ -99,10 +103,12 @@ namespace FrostMaze
                 for(int i=0;i<3;i++){float a=i*Mathf.PI*2/3;
                     Crystal("Floating anchor stone",new Vector3(Mathf.Sin(a)*.29f,.26f,Mathf.Cos(a)*.29f),new Vector3(.25f,.4f,.27f),shell);
                 }
-                var orbit=Motion("Gravity gimbal",new Vector3(0,.92f,0),Quaternion.Euler(63,0,20),22);
-                Loop("Rotating gravity halo",Vector3.zero,.88f,Quaternion.identity,trim,orbit);
-                Loop("Crossed gravity halo",Vector3.zero,.73f,Quaternion.Euler(68,0,30),accent,orbit);
-                Part("Orbital counterweight",PrimitiveType.Sphere,new Vector3(.4f,0,0),Vector3.one*.16f,light,orbit);
+                if(slot==2||slot==6){
+                    var orbit=Motion("Gravity gimbal",new Vector3(0,slot==2?1.27f:.92f,0),Quaternion.Euler(slot==2?15:63,0,20),22);
+                    Loop("Rotating gravity halo",Vector3.zero,.88f,Quaternion.identity,trim,orbit);
+                    if(slot==6)Loop("Crossed gravity halo",Vector3.zero,.73f,Quaternion.Euler(68,0,30),accent,orbit);
+                    Part("Orbital counterweight",PrimitiveType.Sphere,new Vector3(.4f,0,0),Vector3.one*.16f,light,orbit);
+                }
             }else if(faction==5){ // Scrap: improvised wheeled salvage rigs.
                 LowerWeapon(.84f,-.08f);
                 Part("Salvage cart bed",PrimitiveType.Cube,new Vector3(0,.25f,0),new Vector3(.72f,.18f,.70f),shell);
@@ -111,31 +117,37 @@ namespace FrostMaze
                     wheel.transform.localRotation=Quaternion.Euler(0,0,90);
                     var hub=Part("Cart bronze hub",PrimitiveType.Cylinder,new Vector3(side*.405f,.19f,axle*.24f),new Vector3(.13f,.015f,.13f),trim);hub.transform.localRotation=wheel.transform.localRotation;
                 }
-                Strut("Scrap crane",new Vector3(-.28f,.25f,-.24f),new Vector3(-.22f,1.34f,-.16f),.10f,accent);
-                Strut("Crane jib",new Vector3(-.22f,1.34f,-.16f),new Vector3(.12f,1.34f,-.10f),.09f,accent);
-                Strut("Suspended salvage",new Vector3(.12f,1.34f,-.10f),new Vector3(.12f,1.0f,-.10f),.025f,dark);
+                if(slot==5){
+                    Strut("Scrap crane",new Vector3(-.28f,.25f,-.24f),new Vector3(-.22f,1.34f,-.16f),.10f,accent);
+                    Strut("Crane jib",new Vector3(-.22f,1.34f,-.16f),new Vector3(.12f,1.34f,-.10f),.09f,accent);
+                    Strut("Suspended salvage",new Vector3(.12f,1.34f,-.10f),new Vector3(.12f,1.0f,-.10f),.025f,dark);
+                }
             }else if(faction==6){ // Overdrive: squat iron drakes, furnace jaws and folded wings.
                 LowerWeapon(.9f,-.10f);
                 for(int side=-1;side<=1;side+=2){
                     Part("Drake haunch",PrimitiveType.Sphere,new Vector3(side*.26f,.40f,-.09f),new Vector3(.32f,.43f,.36f),shell,weapon);
                     Part("Drake foreclaw",PrimitiveType.Cube,new Vector3(side*.26f,.14f,.22f),new Vector3(.22f,.19f,.33f),trim,weapon);
-                    var wing=Part("Folded furnace wing",PrimitiveType.Sphere,new Vector3(side*.22f,.92f,-.10f),new Vector3(.45f,1.5f,.75f),accent,weapon);
-                    wing.GetComponent<MeshFilter>().sharedMesh=game.Models.Wing(side);wing.transform.localRotation=Quaternion.Euler(25,0,side*67);
+                    if(slot==4||slot==6){
+                        var wing=Part("Folded furnace wing",PrimitiveType.Sphere,new Vector3(side*.22f,.92f,-.10f),new Vector3(.45f,1.5f,.75f),accent,weapon);
+                        wing.GetComponent<MeshFilter>().sharedMesh=game.Models.Wing(side);wing.transform.localRotation=Quaternion.Euler(25,0,side*(slot==4?38:67));
+                    }
                     Crystal("Drake tooth",new Vector3(side*.13f,.77f,.31f),new Vector3(.085f,.23f,.085f),trim,weapon);
                 }
                 for(int i=0;i<3;i++)Crystal("Dorsal furnace spine",new Vector3(0,.62f+i*.12f,-.36f+i*.10f),new Vector3(.13f,.32f,.19f),accent,weapon);
             }else{ // Tidal: shell cradles and slow working waterwheels.
                 Shape("Tidal pressure hull",game.Models.Bell,new Vector3(.63f,.45f,.63f));
                 Shape("Core mounting",game.Models.Shell,new Vector3(.45f,.20f,.45f));
-                for(int side=-1;side<=1;side+=2){
+                if(slot==0||slot==6)for(int side=-1;side<=1;side+=2){
                     var shellPiece=Crystal("Pearl shell petal",new Vector3(side*.27f,.51f,0),new Vector3(.27f,.83f,.62f),trim);
                     shellPiece.transform.localRotation=Quaternion.Euler(0,0,-side*25);
                 }
-                var wheel=Motion("Working tidewheel",new Vector3(0,.57f,-.18f),Quaternion.Euler(90,0,0),-18);
-                Loop("Tidewheel rim",Vector3.zero,.88f,Quaternion.identity,shell,wheel);
-                for(int i=0;i<8;i++){float a=i*Mathf.PI/4;var end=new Vector3(Mathf.Sin(a)*.39f,0,Mathf.Cos(a)*.39f);
-                    Strut("Tidewheel spoke",Vector3.zero,end,.04f,trim,wheel);
-                    var paddle=Part("Copper water scoop",PrimitiveType.Cube,end,new Vector3(.18f,.17f,.10f),accent,wheel);paddle.transform.localRotation=Quaternion.Euler(0,i*45,0);
+                if(slot==3){
+                    var wheel=Motion("Working tidewheel",new Vector3(0,.57f,-.18f),Quaternion.Euler(90,0,0),-18);
+                    Loop("Tidewheel rim",Vector3.zero,.88f,Quaternion.identity,shell,wheel);
+                    for(int i=0;i<8;i++){float a=i*Mathf.PI/4;var end=new Vector3(Mathf.Sin(a)*.39f,0,Mathf.Cos(a)*.39f);
+                        Strut("Tidewheel spoke",Vector3.zero,end,.04f,trim,wheel);
+                        var paddle=Part("Copper water scoop",PrimitiveType.Cube,end,new Vector3(.18f,.17f,.10f),accent,wheel);paddle.transform.localRotation=Quaternion.Euler(0,i*45,0);
+                    }
                 }
             }
         }
@@ -147,7 +159,7 @@ namespace FrostMaze
                     Shape("Basin plinth",game.Models.Bell,new Vector3(.62f,.40f,.62f));
                     Loop("Hail bell yoke",new Vector3(0,.91f,0),.89f,Quaternion.Euler(90,0,0),trim);
                     Strut("Bell suspender",new Vector3(0,1.34f,0),new Vector3(0,1.02f,0),.055f,dark);
-                }else{
+                }else if(Role=="Control"||Role=="Interceptor"){
                     for(int side=-1;side<=1;side+=2){var rib=Crystal("Swept frost petal",new Vector3(side*.31f,.62f,-.12f),new Vector3(.18f,.89f,.32f),trim);rib.transform.localRotation=Quaternion.Euler(-18,0,-side*19);}
                 }
             }else if(faction==1){

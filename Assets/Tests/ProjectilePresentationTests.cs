@@ -36,7 +36,7 @@ namespace FrostMaze.Tests
                         var root=new GameObject(def.Name);root.transform.SetParent(group.transform,false);root.AddComponent<TowerView>().Initialize(game,tower,def,f);
                         root.transform.position=origin+new Vector3(0,0,row*1.8f);
                         var shot=new GameObject(def.Name+" projectile");shot.transform.SetParent(group.transform,false);var cue=shot.AddComponent<ProjectileCue>();
-                        var from=root.transform.position+Vector3.up*1.3f;var to=origin+new Vector3(4.5f,.3f,row*1.8f);
+                        var from=root.transform.position+Vector3.up*ProjectileStyle.LaunchHeight(config,design);var to=origin+new Vector3(4.5f,.3f,row*1.8f);
                         cue.Initialize(design,style,from,to,false,game.MakeMaterial(style.Color,true));cue.Render(.5f);
                         Assert.That(shot.GetComponentsInChildren<Renderer>().Length,Is.EqualTo(1));Assert.That(shot.GetComponentsInChildren<Collider>().Length,Is.Zero);
                         var mesh=shot.GetComponent<MeshFilter>().sharedMesh;Assert.That(mesh.vertexCount,Is.GreaterThan(20));Assert.That(shot.GetComponent<MeshRenderer>().sharedMaterial.color,Is.EqualTo(style.Color));

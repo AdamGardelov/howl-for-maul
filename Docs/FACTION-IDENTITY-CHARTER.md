@@ -39,6 +39,12 @@ The table below is the target for subsequent model work, **not a claim that all 
 
 Crafted defenses remain welcome. Their stone, wood, copper and cloth must visibly belong to the same settlements as the living defenders. Creature factions should not become ordinary cannon barrels with eyes attached.
 
+## Within-faction recognition
+
+Every member must be distinguishable at a glance within its own family. Give it a dominant shape, proportion and posture; neither palette changes nor tiny attachments are enough. Oldbark's broad low canopy, Briar's exposed thorn crown, Skybough's tall pine outline and Worldroot's trailing leaves establish this for the trees. Shared frames must not erase individual anatomy.
+
+The [76-design readability pass](DEFENDER-READABILITY.md) is implemented across the current models, including removal of repetitive wings/rings/cranes and a two-angle small-silhouette audit. This improves existing art; the future creature targets in the table above are still outstanding. The audit rejects near duplicates and complements actual gameplay review; it does not prove human instant recognition.
+
 ## Review each family in the actual game
 
 1. Recognize the family and each role at ordinary camera zoom, in a mixed defense and in small portraits.

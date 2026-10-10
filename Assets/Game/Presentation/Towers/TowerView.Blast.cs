@@ -60,7 +60,7 @@ namespace FrostMaze
                 Part("Pressure gauge face",PrimitiveType.Sphere,new Vector3(0,1.09f,.278f),new Vector3(.19f,.19f,.025f),dark,weapon);
                 Strut("Pressure needle",new Vector3(0,1.09f,.30f),new Vector3(-.055f,1.145f,.30f),.018f,light,weapon);
                 for(int side=-1;side<=1;side+=2){
-                    BlastPipe("Heat exhaust",new Vector3(side*.27f,.53f,-.12f),new Vector3(side*.27f,1.49f,-.12f),.12f,trim,dark);
+                    if(side==1)BlastPipe("Heat exhaust",new Vector3(.27f,.53f,-.12f),new Vector3(.27f,1.72f,-.12f),.17f,trim,dark);
                     BlastPipe("Steam nozzle",new Vector3(side*.16f,.71f,.16f),new Vector3(side*.19f,.77f,.39f),.13f,accent,dark);
                 }
                 Part("Banked furnace",PrimitiveType.Cube,new Vector3(0,.67f,.259f),new Vector3(.20f,.25f,.025f),light,weapon);

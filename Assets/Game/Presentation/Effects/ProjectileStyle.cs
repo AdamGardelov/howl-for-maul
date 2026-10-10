@@ -18,10 +18,11 @@ namespace FrostMaze
         static readonly ProjectileShape[] IronShapes={ProjectileShape.Bolt,ProjectileShape.Orb,ProjectileShape.Shell,ProjectileShape.Shard,ProjectileShape.Spear,ProjectileShape.Ring,ProjectileShape.Star};
         public static float LaunchHeight(Scenario config,int design)
         {
+            float height=TowerReadability.Height(config,design);
             if(config.Theme!="iron"&&design>=5&&design<=9){
-                switch(design){case 5:return .98f;case 7:return 1.20f;case 8:return 1.42f;case 9:return 1.15f;}
+                switch(design){case 5:return .98f*height;case 7:return 1.20f*height;case 8:return 1.42f*height;case 9:return 1.15f*height;}
             }
-            return 1.3f;
+            return 1.3f*height;
         }
         public static ProjectileStyle For(Scenario config,int design)
         {

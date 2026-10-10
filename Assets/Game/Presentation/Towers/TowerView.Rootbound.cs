@@ -71,9 +71,9 @@ namespace FrostMaze
                 TreePart("Seed fist",new Vector3(.035f,.14f,.13f),new Vector3(.22f,.23f,.25f),shell,livingArm);
                 TreePart("Loaded acorn",new Vector3(.035f,.30f,.17f),new Vector3(.14f,.19f,.14f),pale,livingArm);
             }else if(slot==1){ // A sleepy old oak, broad enough to shelter the road; no attack.
-                TreePart("Old oak trunk",new Vector3(0,.51f,0),new Vector3(.74f,.94f,.58f),shell);
+                TreePart("Old oak trunk",new Vector3(0,.51f,0),new Vector3(.93f,.94f,.72f),shell);
                 TreeFace(.67f,.46f,.23f,dark,pale);
-                Foliage(new Vector3(-.25f,-.03f,0),.78f,2,pale);Foliage(new Vector3(.23f,.07f,-.04f),.82f,3,pale);Foliage(new Vector3(0,.26f,0),.79f,4,pale);
+                Foliage(new Vector3(-.28f,-.12f,0),.73f,2,pale);Foliage(new Vector3(.28f,-.08f,-.04f),.74f,3,pale);Foliage(new Vector3(0,.13f,0),.71f,4,pale);
                 for(int side=-1;side<=1;side+=2)Bough("Folded oak arm",new[]{new Vector3(side*.25f,.69f,0),new Vector3(side*.37f,.47f,.13f),new Vector3(side*.16f,.40f,.27f)},.17f,shell);
                 TreePart("Acorn nook",new Vector3(-.19f,.29f,.26f),new Vector3(.12f,.15f,.075f),pale);
             }else if(slot==2){ // An exposed hawthorn crown: hooked wood, sparse leaves and thorn volleys.
@@ -96,6 +96,8 @@ namespace FrostMaze
             }else if(slot==3){ // A narrow, upright pine spirit with raised branch fingers.
                 TreePart("Sky pine trunk",new Vector3(0,.85f,0),new Vector3(.33f,1.53f,.30f),shell);
                 TreeFace(1.12f,.32f,.12f,dark,pale);
+                var needles=TreePart("Pine needle crown",new Vector3(0,.24f,-.10f),new Vector3(.70f,.99f,.55f),accent,livingCrown);
+                needles.GetComponent<MeshFilter>().sharedMesh=game.Models.PineCrown;
                 for(int tier=0;tier<3;tier++)for(int side=-1;side<=1;side+=2){
                     float width=.33f-tier*.085f;float y=.02f+tier*.20f;
                     Bough("Pine bough "+tier,new[]{new Vector3(0,y,-.10f),new Vector3(side*width,y-.11f,-.08f)},.075f,shell,livingCrown);
@@ -114,7 +116,7 @@ namespace FrostMaze
                     // Keep the face open while the willow curtains fall down its back and sides.
                     if(dir.z>.55f)continue;
                     Bough("Hanging willow strand",new[]{dir*.14f+Vector3.up*.41f,dir*.38f+Vector3.up*.25f,dir*.40f-Vector3.up*.30f},.035f,shell,livingCrown);
-                    for(int j=0;j<3;j++)Leaf("Pendant willow leaf",dir*(.33f+j*.026f)+Vector3.up*(.22f-j*.20f),new Vector3(.18f,.46f,.15f),new Vector3(0,i*360f/7,12),j%2==0?accent:pale,livingCrown);
+                    for(int j=0;j<3;j++)Leaf("Pendant willow leaf",dir*(.33f+j*.026f)+Vector3.up*(.22f-j*.23f),new Vector3(.22f,.64f,.18f),new Vector3(0,i*360f/7,12),j%2==0?accent:pale,livingCrown);
                 }
                 for(int i=-1;i<=1;i++)Bough("Root beard",new[]{new Vector3(i*.08f,.85f,.24f),new Vector3(i*.12f,.62f,.26f),new Vector3(i*.09f,.40f,.20f)},.05f,dark);
                 Bough("Binding branch",new[]{Vector3.zero,new Vector3(.10f,.18f,.08f),new Vector3(.02f,.40f,.16f)},.10f,shell,livingArm);
