@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="5" result="Passed" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-10 00:28:19Z" end-time="2026-10-10 00:28:21Z" duration="2.0937767">
+  <test-suite type="TestSuite" id="1000" name="Howl for Maul" fullname="Howl for Maul" runstate="Runnable" testcasecount="117" result="Passed" start-time="2026-10-10 00:28:19Z" end-time="2026-10-10 00:28:21Z" duration="2.093777" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1130" name="FrostMaze.Tests.dll" fullname="/home/adam/Documents/Codex/2026-10-06/cre/work/howl-logo-build/Library/ScriptAssemblies/FrostMaze.Tests.dll" runstate="Runnable" testcasecount="117" result="Passed" start-time="2026-10-10 00:28:19Z" end-time="2026-10-10 00:28:21Z" duration="2.012752" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="223137" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1131" name="FrostMaze" fullname="FrostMaze" runstate="Runnable" testcasecount="117" result="Passed" start-time="2026-10-10 00:28:19Z" end-time="2026-10-10 00:28:21Z" duration="2.006225" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1132" name="Tests" fullname="FrostMaze.Tests" runstate="Runnable" testcasecount="117" result="Passed" start-time="2026-10-10 00:28:19Z" end-time="2026-10-10 00:28:21Z" duration="2.000553" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1001" name="ActorPresentationTests" fullname="FrostMaze.Tests.ActorPresentationTests" classname="FrostMaze.Tests.ActorPresentationTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-10 00:27:47Z" end-time="2026-10-10 00:27:55Z" duration="7.455197" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1002" name="CompleteRosterAndBuildersHaveStableDetailedPresentation" fullname="FrostMaze.Tests.ActorPresentationTests.CompleteRosterAndBuildersHaveStableDetailedPresentation" methodname="CompleteRosterAndBuildersHaveStableDetailedPresentation" classname="FrostMaze.Tests.ActorPresentationTests" runstate="Runnable" seed="1666054911" result="Passed" start-time="2026-10-10 00:27:43Z" end-time="2026-10-10 00:27:55Z" duration="12.153301" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="WorldCohesion" />
+              </properties>
+              <output><![CDATA[HOWL_MAP_READY Rimewatch ms=509.0 baked=True
+HOWL_MAP_READY Ironfold ms=557.3 baked=True
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1007" name="PlayModeIntegration" fullname="FrostMaze.Tests.PlayModeIntegration" classname="FrostMaze.Tests.PlayModeIntegration" runstate="Runnable" testcasecount="25" result="Passed" start-time="2026-10-10 00:28:05Z" end-time="2026-10-10 00:28:09Z" duration="4.007422" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1022" name="TowerFireFeedbackTracksShotsAndPauses" fullname="FrostMaze.Tests.PlayModeIntegration.TowerFireFeedbackTracksShotsAndPauses" methodname="TowerFireFeedbackTracksShotsAndPauses" classname="FrostMaze.Tests.PlayModeIntegration" runstate="Runnable" seed="330330977" result="Passed" start-time="2026-10-10 00:27:55Z" end-time="2026-10-10 00:28:01Z" duration="5.698709" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="CrowdedPresentation" />
+              </properties>
+              <output><![CDATA[HOWL_MAP_READY Rimewatch ms=504.8 baked=True
+]]></output>
+            </test-case>
+            <test-case id="1012" name="TowerPortraitsCacheActualModelsWithoutChangingMatch" fullname="FrostMaze.Tests.PlayModeIntegration.TowerPortraitsCacheActualModelsWithoutChangingMatch" methodname="TowerPortraitsCacheActualModelsWithoutChangingMatch" classname="FrostMaze.Tests.PlayModeIntegration" runstate="Runnable" seed="1400158544" result="Passed" start-time="2026-10-10 00:28:01Z" end-time="2026-10-10 00:28:09Z" duration="8.314312" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="DepthPresentation" />
+                <property name="Category" value="FollowThrough" />
+              </properties>
+              <output><![CDATA[HOWL_MAP_READY Rimewatch ms=498.7 baked=True
+HOWL_MAP_READY Ironfold ms=559.1 baked=True
+HOWL_MAP_READY Rimewatch ms=544.0 baked=True
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1033" name="PreviewPresentationTests" fullname="FrostMaze.Tests.PreviewPresentationTests" classname="FrostMaze.Tests.PreviewPresentationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-10 00:28:19Z" end-time="2026-10-10 00:28:21Z" duration="1.974901" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1034" name="ConstructionCopiesStayCosmeticAndReuseTheirResources" fullname="FrostMaze.Tests.PreviewPresentationTests.ConstructionCopiesStayCosmeticAndReuseTheirResources" methodname="ConstructionCopiesStayCosmeticAndReuseTheirResources" classname="FrostMaze.Tests.PreviewPresentationTests" runstate="Runnable" seed="205049850" result="Passed" start-time="2026-10-10 00:28:09Z" end-time="2026-10-10 00:28:15Z" duration="5.835604" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+              <output><![CDATA[HOWL_MAP_READY Rimewatch ms=503.9 baked=True
+]]></output>
+            </test-case>
+            <test-case id="1035" name="PortraitsStayReadableWithoutChangingWorldLighting" fullname="FrostMaze.Tests.PreviewPresentationTests.PortraitsStayReadableWithoutChangingWorldLighting" methodname="PortraitsStayReadableWithoutChangingWorldLighting" classname="FrostMaze.Tests.PreviewPresentationTests" runstate="Runnable" seed="1845161650" result="Passed" start-time="2026-10-10 00:28:15Z" end-time="2026-10-10 00:28:21Z" duration="6.308861" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[HOWL_MAP_READY Rimewatch ms=505.3 baked=True
+Saving results to: /home/adam/Documents/Codex/2026-10-06/cre/work/hearth-test-config/unity3d/Howl for Maul/Howl for Maul/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

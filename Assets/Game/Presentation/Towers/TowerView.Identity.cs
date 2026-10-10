@@ -82,15 +82,22 @@ namespace FrostMaze
                 var orbit=Motion("Prism light orbit",new Vector3(0,.83f,0),Quaternion.Euler(16,0,12),14);
                 Loop("Prism orbit",Vector3.zero,.78f,Quaternion.identity,accent,orbit);
                 Crystal("Orbiting lens",new Vector3(.33f,0,0),new Vector3(.12f,.22f,.12f),light,orbit);
-            }else if(faction==3){ // Horizon: timber field ballistae and survey rigs.
-                Shape("Horizon column",game.Models.Column,new Vector3(.12f,.40f,.12f));
-                for(int side=-1;side<=1;side+=2){
-                    Strut("Survey tripod",new Vector3(side*.30f,.06f,-.19f),new Vector3(0,.8f,0),.16f,shell);
-                    Strut("Ballista bow",new Vector3(0,.80f,.08f),new Vector3(side*.41f,.91f,.02f),.11f,trim,weapon);
-                    Strut("Bow string",new Vector3(side*.41f,.91f,.02f),new Vector3(0,.83f,-.19f),.015f,dark,weapon);
+            }else if(faction==3){ // Shared joinery; each weapon supplies its own silhouette.
+                if(Role=="Champion") {
+                    for(int side=-1;side<=1;side+=2)for(int end=-1;end<=1;end+=2) {
+                        var knee=new Vector3(side*.30f,.31f,end*.24f);
+                        Strut("Crawler oak thigh",new Vector3(side*.16f,.63f,end*.12f),knee,.17f,shell);
+                        Strut("Crawler brass foot",knee,new Vector3(side*.34f,.07f,end*.31f),.10f,trim);
+                    }
+                } else {
+                    for(int i=0;i<3;i++) {
+                        float a=i*Mathf.PI*2/3;
+                        var foot=new Vector3(Mathf.Sin(a)*.33f,.07f,Mathf.Cos(a)*.33f);
+                        Strut("Survey tripod",foot,new Vector3(0,.71f,0),.12f,shell);
+                        Part("Brass tripod shoe",PrimitiveType.Sphere,foot,new Vector3(.16f,.13f,.16f),trim);
+                    }
                 }
-                Strut("Survey rear leg",new Vector3(0,.06f,.35f),new Vector3(0,.8f,0),.15f,shell);
-                Part("Longbow cradle",PrimitiveType.Cube,new Vector3(0,.80f,.06f),new Vector3(.19f,.14f,.72f),accent,weapon);
+                Part("Survey turntable",PrimitiveType.Cylinder,new Vector3(0,.66f,0),new Vector3(.36f,.045f,.36f),trim);
             }else if(faction==4){ // Gravity: open mechanical orreries with visible empty space.
                 Shape("Gravity housing",game.Models.Crystal,new Vector3(.31f,.40f,.31f));
                 Shape("Core mounting",game.Models.Crystal,new Vector3(.21f,.25f,.21f));

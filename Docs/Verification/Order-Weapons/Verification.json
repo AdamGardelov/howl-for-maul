@@ -1,0 +1,72 @@
+{
+  "date": "2026-10-10",
+  "baseCommit": "c078e9b",
+  "unity": "6000.3.25f1",
+  "tests": {
+    "focusedPassed": 5,
+    "combatProgressionPassed": 2,
+    "failed": 0,
+    "renderedDesigns": 76,
+    "distinctDamagingProjectileSignatures": 72,
+    "levelThreeDiagonalFootprints": "passed for all 76",
+    "warmPreviewManagedBytes": 0,
+    "warmPreviewCallsPerMap": 300,
+    "fullSuite": false
+  },
+  "linuxBuild": "passed",
+  "windowsBuild": "passed (build only)",
+  "packagedMenuCheck": "passed at 960x600 and 1440x900; inspected screenshots",
+  "linuxInput": {
+    "result": "passed",
+    "exitCode": 0,
+    "faction": "Horizon Guild",
+    "startGold": 2200,
+    "regularDesignsBuilt": 6,
+    "spentGold": 435,
+    "finalGoldBeforeWave": 1765,
+    "finalQueue": 0,
+    "waveStarted": 1,
+    "speed": 3,
+    "pause": "passed",
+    "isolatedPreferences": true,
+    "combatCaptureLimit": "Final packaged capture paused before weapon range; final colors verified in Unity projectile renders. Earlier package combat exposed the legacy pink effect, which was then fixed."
+  },
+  "renderer": "llvmpipe / OpenGL software rendering",
+  "nativeWindows": "not run",
+  "hardwarePerformance": "not measured",
+  "separateNetworkMatch": "not run",
+  "fullCampaignBalance": "not rerun; no simulation changes",
+  "isolatedEditorTarget": "restored to Linux",
+  "allOwnedProcessesClosed": true,
+  "previousPackages": "Linux-World-c078e9b / Windows-World-c078e9b",
+  "publicReleasePublished": false,
+  "sourceSha256": {
+    "Prototype.cs": "c568f3822c880495ece71447ff563e85d38d11c89feefcfb685c2671db4f9606",
+    "Prototype.ActorMaterials.cs": "d01a04af08c73e93a9a31d3844a76636029be07ad0febc960464baeb6938dc59",
+    "OrderColors.cs": "470fc4787a9ad31e9da9b4b478b7954698e5075e85e1139c3c7582c318f896ce",
+    "Effects/ProjectileStyle.cs": "1d437e7571dbb77d8858bf09f6920ed59c7a788694c6c80fa0f4ccc904562bc5",
+    "Towers/TowerView.Horizon.cs": "43f9f3ea93528488c8637e351b8750d89439e94db4075036a0f899761d3aa217",
+    "Towers/TowerView.Identity.cs": "d9528b9ae008d16903d614550e398b42c690c9fbda5eeec657154561d469a6c2"
+  },
+  "installedPackageSha256": {
+    "Linux": {
+      "HowlForMaul": "8027f7d1f9ae7dacfc826fb218adcc1ae7464af098a8a59397e7531c0f7ec0bc",
+      "HowlForMaul_Data/Managed/FrostMaze.Runtime.dll": "3a82f7b1e82a30a650ffc3c46ee765c3ef98f79745a6237ffa5673fdb9f57273",
+      "THIRD-PARTY-NOTICES.md": "96c119336e46c5d4a9b12047041012e47bad686c7e7028e2865db8edf4d800b8"
+    },
+    "Windows": {
+      "HowlForMaul.exe": "3070e580e019576b9afcdeb4fec18d03cebc119f6ae84d597412905c749ad653",
+      "HowlForMaul_Data/Managed/FrostMaze.Runtime.dll": "e4c8ed38dfa3c1d8a6b3d23036e1beb2e855d0eb20d75740d95a2d1438633f8b",
+      "THIRD-PARTY-NOTICES.md": "96c119336e46c5d4a9b12047041012e47bad686c7e7028e2865db8edf4d800b8"
+    }
+  },
+  "logs": [
+    "work/roster-tests.log",
+    "work/roster-paid-tests.log",
+    "work/roster-linux-build.log",
+    "work/roster-final-input-flow.log",
+    "work/roster-menu.log",
+    "work/roster-windows-build.log",
+    "work/roster-restore-linux.log"
+  ]
+}

@@ -40,6 +40,10 @@ namespace FrostMaze
             palette[0].SetFloat("_Metallic",metal?.25f:.03f);palette[0].SetFloat("_Smoothness",metal?.30f:.16f);
             palette[1].SetFloat("_Metallic",metal?.28f:0);palette[1].SetFloat("_Smoothness",metal?.32f:.12f);
             palette[3].SetFloat("_Metallic",.6f);palette[3].SetFloat("_Smoothness",.42f);
+            // Pigment stays subdued; light belongs to lenses, embers and power cores.
+            // These are actor materials only. Ownership rings and attack signatures stay separate.
+            palette[1].color=OrderColors.Pigment(metal,faction);
+            palette[2].color=OrderColors.Glow(metal,faction);
             // Material families separate the factions even before their colored weapons are visible.
             Color[] winterShell={new Color(.46f,.53f,.54f),new Color(.43f,.43f,.32f),new Color(.40f,.30f,.24f),new Color(.37f,.39f,.49f)};
             if(!metal){palette[0].color=winterShell[faction%4];palette[3].color=faction==2?new Color(.72f,.52f,.28f):new Color(.66f,.67f,.56f);}

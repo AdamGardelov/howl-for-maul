@@ -1,3 +1,21 @@
+## 2026-10-10 — purposeful order colors and seven Horizon instruments
+
+[Change note](ORDER-WEAPONS.md), [verification and screenshots](Verification/Order-Weapons/README.md). Horizon now has a field scope, open sun mirror, drum crossbow, shielded watchbow, raised twin harpoons, geared auger and double-ballista champion with a standard. Timber tripods and a four-legged champion replace the common bow under unrelated devices. All twelve orders now have deliberate painted pigments and core lights, shared with projectile color families; ownership rings and per-weapon shapes, sizes, flight timing and sounds remain separate. Live combat inspection caught and corrected the old pink Horizon shots.
+
+Seven focused Unity cases pass in two runs: five all-roster/preview/portrait/footprint/combat-pose checks, followed by two projectile/progression cases. All 76 upgraded/diagonally aimed designs fit their cells; all 72 damaging projectile signatures remain unique, with pause, chain, flight endpoints, effect caps and cleanup verified. The eight Ironfold paid champion progressions pass. No new full-suite or campaign claim.
+
+Real final Linux mouse/keyboard flow passes: Ironfold → Solo → Horizon → Normal, six regular designs cost exactly 435 gold (2200 → 1765), zero queue, normal/close zoom, 3× wave start and pause, normal close exit 0. Final packaged capture shows enemies approaching before weapon range; final shot colors are evidenced by the Unity projectile renders. An earlier input run reached combat and exposed the color mismatch. Do not call the final approach capture a live-shot capture.
+
+Linux and Windows builds succeed; packaged Linux menu/settings/credits/map/solo/resize smoke passes at 960×600 and 1440×900. Installed candidates remain Builds/Linux-World and Builds/Windows-World. Preceding c078e9b packages are preserved as *-World-c078e9b. Installed executable/runtime/notices hashes match the isolated builds; Scott Buckley credits remain bundled. Windows is build-only. No public release, native Windows play, new hardware FPS or separate-network match claim.
+
+The isolated project remains /home/adam/Documents/Codex/2026-10-06/cre/work/howl-logo-build, restored to Linux. Runtime sources match the clone. Use private Xvfb :98 and private XDG preferences, one Unity/player/display job at a time. All owned processes are closed; all wrappers exit 0. Scripts/logs begin work/roster-. No automation changes; retain this night's existing cutoff. Mobile remains paused. Unity MCP remains evaluated but not installed.
+
+### Next useful work
+
+1. Translate the new Ironfold concept into one coherent in-game area: darker, less chartreuse foliage; fewer evenly scattered tiny shrubs; larger grouped tree/rock/understory masses and believable refuge architecture. Current surface paint is more developed than landmark forms. Preserve exact mirrored masks, wall-tight building, air clearances and the open refuge approach. Review at ordinary gameplay zoom with paid defenses before copying the treatment elsewhere.
+2. Continue within-faction role recognition beyond Horizon. Blast's hammer/boiler/airborne unit and the champions are useful targets; avoid repeating the same detailed base beneath every weapon. Builders still have a fairly generic robot body despite their order tools. Keep the shared order color vocabulary and per-weapon attack/sound identities.
+3. Listen through a mixed defense and first-play flow; use subtle material/ambient cues rather than constant noise. Native Windows, full separate-network matches, human first-play and actual GPU profiling remain commercial release gates. Do not equate these presentation checks with full balance or release certification.
+
 ## 2026-10-10 — readable portraits and full-model construction previews
 
 [Change note](PLACEMENT-PRESENTATION.md) and [retained evidence](Verification/Placement-Preview/README.md). All 76 actual-model portraits now use consistent studio lighting. Building shows a translucent copy of the selected design on its footprint, mint when valid and red when rejected. Existing text, range and queue markers remain. Copies hide for inspection, Move/Remove and modal/input gates; they never occupy terrain, charge gold or animate from live shots. Meshes and separate preview materials are cached and cleaned up with the map.

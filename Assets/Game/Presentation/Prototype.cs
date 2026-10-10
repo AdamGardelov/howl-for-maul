@@ -144,9 +144,8 @@ namespace FrostMaze
         public Material[] TowerPalette(int faction)
         {
             if(towerPalettes.TryGetValue(faction,out var palette))return palette;
-            Color[] winter={new Color(.3f,.82f,1),new Color(.58f,.72f,.36f),new Color(1,.4f,.12f),new Color(.62f,.47f,1)};
-            Color color=World.Config.Theme=="iron"?Color.HSVToRGB((.54f+faction*.113f)%1,.68f,.95f):winter[faction%4];
-            palette=new[]{MakeMaterial(World.Config.Theme=="iron"?new Color(.23f,.29f,.33f):new Color(.49f,.47f,.37f)),MakeMaterial(Color.Lerp(color,new Color(.4f,.44f,.42f),.23f)),MakeMaterial(Color.Lerp(color,Color.white,.4f),true),MakeMaterial(new Color(.68f,.7f,.64f)),MakeMaterial(new Color(.13f,.22f,.25f))};
+            // Authored order materials below own the palette; no rainbow index colors.
+            palette=new[]{MakeMaterial(Color.white),MakeMaterial(Color.white),MakeMaterial(Color.white,true),MakeMaterial(Color.white),MakeMaterial(new Color(.13f,.22f,.25f))};
             DressActorPalette(palette,World.Config.Theme=="iron",faction);
             towerPalettes.Add(faction,palette);return palette;
         }
