@@ -19,11 +19,18 @@ namespace FrostMaze
         public static float LaunchHeight(Scenario config,int design)
         {
             float height=TowerReadability.Height(config,design);
-            if(config.Theme!="iron"&&design>=5&&design<=9){
-                switch(design){case 5:return .98f*height;case 7:return 1.20f*height;case 8:return 1.42f*height;case 9:return 1.15f*height;}
-            }
-            return 1.3f*height;
+            var origins=config.Theme=="iron"?IronOrigins:WinterOrigins;
+            return (design>=0&&design<origins.Length?origins[design]:1.3f)*height;
         }
+        static readonly float[] WinterOrigins={.76f,.49f,1.02f,.53f,1.28f, .98f,.6f,1.20f,1.42f,1.15f, .68f,.56f,.53f,1.0f,1.28f, .76f,.71f,1.02f,1.28f,1.0f};
+        static readonly float[] IronOrigins={1.3f,1.3f,1.3f,1.3f,1.3f,1.3f,1.3f,
+            .61f,.61f,.84f,1.33f,1.48f,1.11f,.87f,
+            .82f,1.25f,1.25f,1.27f,1.25f,1.28f,.82f,
+            .76f,1.25f,.82f,1.28f,.76f,1.45f,.82f,
+            .56f,1.13f,1.28f,1.25f,1.02f,.71f,.71f,
+            .64f,1.28f,1.03f,1.03f,1.25f,1.28f,1.03f,
+            .95f,.90f,.95f,1.18f,.95f,1.28f,.95f,
+            .56f,.43f,1.27f,.53f,.76f,.91f,.56f};
         public static ProjectileStyle For(Scenario config,int design)
         {
             int faction=0,slot=0;
@@ -34,6 +41,16 @@ namespace FrostMaze
             var spec=config.Catalog[design].Spec;
             bool iron=config.Theme=="iron";
             ProjectileShape shape=iron?IronShapes[slot%7]:WinterShapes[design%WinterShapes.Length];
+            if(iron&&faction!=0){
+                // The same shot pipeline carries shells, spells, gusts and thrown stone; damage stays authoritative.
+                if(faction==1)shape=slot==4?ProjectileShape.Wingseed:slot==2||slot==5?ProjectileShape.ThornCluster:ProjectileShape.Seed;
+                else if(faction==2)shape=slot%3==0?ProjectileShape.Star:slot%3==1?ProjectileShape.Ring:ProjectileShape.Shard;
+                else if(faction==3)shape=slot==1||slot==5?ProjectileShape.Ring:ProjectileShape.Wingseed;
+                else if(faction==4)shape=slot==4?ProjectileShape.Spear:ProjectileShape.Shell;
+                else if(faction==5)shape=slot==4?ProjectileShape.Wingseed:slot%2==0?ProjectileShape.Orb:ProjectileShape.Ring;
+                else if(faction==6)shape=slot==1?ProjectileShape.Shard:ProjectileShape.Ember;
+                else shape=slot==4?ProjectileShape.Spear:slot%2==0?ProjectileShape.Orb:ProjectileShape.Ring;
+            }
             // Vary each weapon within its order's actual core color, not an unrelated rainbow.
             Color.RGBToHSV(OrderColors.Glow(iron,faction),out float hue,out float saturation,out _);
             hue=Mathf.Repeat(hue+(slot-(iron?3:2))*(iron?.01f:.015f),1);

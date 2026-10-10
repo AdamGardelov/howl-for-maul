@@ -46,6 +46,7 @@ namespace FrostMaze.Simulation
                 }
             }
             c.Catalog=catalog.ToArray();
+            FactionIdentity.Apply(c,true);
         }
     }
 }

@@ -14,44 +14,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: FrostMaze.Runtime::FrostMaze.MapDefinition
   Settings:
     Factions:
-    - Name: Pulse Foundry
-      Description: Rapid fire and 30% frost control. Build long firing corridors;
-        individual hits are light. Build all six regular designs to unlock the champion.
+    - Name: Tech
+      Description: "Copper instruments from the refuge workshop. Rapid fire and 30% frost control. Build long firing corridors; individual hits are light. Build all six regular designs to unlock the champion."
       Designs: 00000000010000000200000003000000040000000500000006000000
-    - Name: Blast Circuit
-      Description: Wide ground blasts and an air-splash interceptor. Cluster enemies;
-        slow fire struggles against scattered targets. Build all six regular designs
-        to unlock the champion.
+    - Name: Beasts
+      Description: "Armored insects with powerful jaws and natural weapons. Wide ground blasts and an air-splash interceptor. Cluster enemies; slow fire struggles against scattered targets. Build all six regular designs to unlock the champion."
       Designs: 0700000008000000090000000a0000000b0000000c0000000d000000
-    - Name: Prism Division
-      Description: Three-link chain weapons punish compact groups. Pair them with
-        precision anti-air for isolated flyers. Build all six regular designs to
-        unlock the champion.
+    - Name: Magic
+      Description: "Enchanted familiars and living constellations. Three-link chain weapons punish compact groups. Pair them with precision anti-air for isolated flyers. Build all six regular designs to unlock the champion."
       Designs: 0e0000000f0000001000000011000000120000001300000014000000
-    - Name: Horizon Guild
-      Description: The longest firing lanes and sky coverage. Exploit bends; limited
-        crowd control rewards careful placement. Build all six regular designs to
-        unlock the champion.
+    - Name: Air
+      Description: "Wind birds and creatures of the high passes. The longest firing lanes and sky coverage. Exploit bends; limited crowd control rewards careful placement. Build all six regular designs to unlock the champion."
       Designs: 15000000160000001700000018000000190000001a0000001b000000
-    - Name: Gravity Works
-      Description: 40% gravity control and broad impacts. Expensive towers need time
-        on target; protect their maze. Build all six regular designs to unlock the
-        champion.
+    - Name: Earth
+      Description: "Ancient mountain creatures with moss and mineral hearts. 40% gravity control and broad impacts. Expensive towers need time on target; protect their maze. Build all six regular designs to unlock the champion."
       Designs: 1c0000001d0000001e0000001f000000200000002100000022000000
-    - Name: Scrap Frontier
-      Description: Seven-gold armed walls and 90% regular-tower refunds. Rebuild
-        flexible mazes; modest damage needs investment. Build all six regular designs
-        to unlock the champion.
+    - Name: Spirits
+      Description: "Gentle masked spirits guarding the road home. Seven-gold armed walls and 90% regular-tower refunds. Rebuild flexible mazes; modest damage needs investment. Build all six regular designs to unlock the champion."
       Designs: 23000000240000002500000026000000270000002800000029000000
-    - Name: Overdrive Order
-      Description: Heavy short-range hits and a freezing opener. Fold the route close
-        to weapons; fast enemies punish open layouts. Build all six regular designs
-        to unlock the champion.
+    - Name: Dragons
+      Description: "Young drakes and old wyrms from the warm mountain caves. Heavy short-range hits and a freezing opener. Fold the route close to weapons; fast enemies punish open layouts. Build all six regular designs to unlock the champion."
       Designs: 2a0000002b0000002c0000002d0000002e0000002f00000030000000
-    - Name: Tidal Array
-      Description: Water control, splash and chains. Layer complementary specialists
-        instead of relying on one weapon. Build all six regular designs to unlock
-        the champion.
+    - Name: Water
+      Description: "Spring creatures, shells and living water. Water control, splash and chains. Layer complementary specialists instead of relying on one weapon. Build all six regular designs to unlock the champion."
       Designs: 31000000320000003300000034000000350000003600000037000000
     SelectableMap: 1
     Theme: iron
@@ -3285,7 +3270,7 @@ MonoBehaviour:
     - X: 32
       Y: 1.25
     Catalog:
-    - Name: Fuse Cadet
+    - Name: Copper Lantern
       Description: Ground + air
       Cost: 10
       Refund: 7
@@ -3306,7 +3291,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Ironhand
+    - Name: Ironhand Press
       Description: Ground + air
       Cost: 30
       Refund: 22
@@ -3327,7 +3312,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Shear Sentinel
+    - Name: Shearwheel
       Description: "Ground only \xB7 splash"
       Cost: 55
       Refund: 41
@@ -3348,7 +3333,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 0
-    - Name: Arc Ranger
+    - Name: Surveyor Lens
       Description: Ground + air
       Cost: 80
       Refund: 60
@@ -3369,7 +3354,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Flare Keeper
+    - Name: Flare Beacon
       Description: "Air only \xB7 interceptor"
       Cost: 110
       Refund: 82
@@ -3390,7 +3375,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 0
         TargetsAir: 1
-    - Name: Rime Runner
+    - Name: Cooling Vessel
       Description: "Ground + air \xB7 30% slow"
       Cost: 150
       Refund: 112
@@ -3411,7 +3396,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Echo Champion
+    - Name: Hearthbell
       Description: "Ground + air \xB7 requires all six regular designs standing \xB7
         1 wood, earned after wave 14"
       Cost: 750
@@ -3433,7 +3418,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Alloy Cadet
+    - Name: Pebble Beetle
       Description: Ground + air
       Cost: 10
       Refund: 7
@@ -3454,7 +3439,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Crashbreaker
+    - Name: Staghorn
       Description: Ground + air
       Cost: 30
       Refund: 22
@@ -3475,7 +3460,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Gale Pilot
+    - Name: Burrback
       Description: "Ground only \xB7 splash"
       Cost: 55
       Refund: 41
@@ -3496,7 +3481,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 0
-    - Name: Heatkeeper
+    - Name: Reed Mantis
       Description: Ground + air
       Cost: 80
       Refund: 60
@@ -3517,7 +3502,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Quicksilver
+    - Name: Glasswing
       Description: "Air only \xB7 splash interceptor"
       Cost: 110
       Refund: 82
@@ -3538,7 +3523,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 0
         TargetsAir: 1
-    - Name: Rootguard
+    - Name: Briar Scorpion
       Description: Ground + air
       Cost: 150
       Refund: 112
@@ -3559,7 +3544,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Citadel Champion
+    - Name: Brood Colossus
       Description: "Ground + air \xB7 requires all six regular designs standing \xB7
         1 wood, earned after wave 14"
       Cost: 750
@@ -3581,7 +3566,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Shade Cadet
+    - Name: Runefox
       Description: Ground + air
       Cost: 10
       Refund: 7
@@ -3602,7 +3587,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Spark Herald
+    - Name: Wispkeeper
       Description: "Ground + air \xB7 chains to three enemies"
       Cost: 30
       Refund: 22
@@ -3623,7 +3608,7 @@ MonoBehaviour:
         ChainTargets: 3
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Lodestone
+    - Name: Moonstone
       Description: Ground + air
       Cost: 55
       Refund: 41
@@ -3644,7 +3629,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Coil Serpent
+    - Name: Spellcoil
       Description: Ground + air
       Cost: 80
       Refund: 60
@@ -3665,7 +3650,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Prism Twin
+    - Name: Starmoth
       Description: "Air only \xB7 interceptor"
       Cost: 110
       Refund: 82
@@ -3686,7 +3671,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 0
         TargetsAir: 1
-    - Name: Needle Guard
+    - Name: Wayseer
       Description: Ground + air
       Cost: 150
       Refund: 112
@@ -3707,7 +3692,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Shell Champion
+    - Name: Astral Sphinx
       Description: "Ground + air \xB7 requires all six regular designs standing \xB7
         1 wood, earned after wave 14"
       Cost: 750
@@ -3729,7 +3714,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Glimmer Cadet
+    - Name: Breeze Owl
       Description: Ground + air
       Cost: 10
       Refund: 7
@@ -3750,7 +3735,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Sun Regent
+    - Name: Gust Dancer
       Description: Ground + air
       Cost: 30
       Refund: 22
@@ -3771,7 +3756,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Dustkeeper
+    - Name: Cloudhare
       Description: Ground + air
       Cost: 55
       Refund: 41
@@ -3792,7 +3777,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Boneplate
+    - Name: Reed Crane
       Description: Ground + air
       Cost: 80
       Refund: 60
@@ -3813,7 +3798,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Deepdiver
+    - Name: Gale Hawk
       Description: "Air only \xB7 interceptor"
       Cost: 110
       Refund: 82
@@ -3834,7 +3819,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 0
         TargetsAir: 1
-    - Name: Drillwarden
+    - Name: Windchime
       Description: Ground + air
       Cost: 150
       Refund: 112
@@ -3855,7 +3840,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Crawler Champion
+    - Name: Sky Gryphon
       Description: "Ground + air \xB7 requires all six regular designs standing \xB7
         1 wood, earned after wave 14"
       Cost: 750
@@ -3877,7 +3862,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Gyro Cadet
+    - Name: Pebbleback
       Description: Ground + air
       Cost: 12
       Refund: 9
@@ -3898,7 +3883,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Gravity Anchor
+    - Name: Anchor Ram
       Description: "Ground + air \xB7 40% slow"
       Cost: 36
       Refund: 27
@@ -3919,7 +3904,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Starcaller
+    - Name: Boulderhand
       Description: "Ground only \xB7 splash"
       Cost: 66
       Refund: 49
@@ -3940,7 +3925,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 0
-    - Name: Wavekeeper
+    - Name: Cairn Elder
       Description: Ground + air
       Cost: 96
       Refund: 72
@@ -3961,7 +3946,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Chargeguard
+    - Name: Crag Ibex
       Description: "Air only \xB7 interceptor"
       Cost: 132
       Refund: 99
@@ -3982,7 +3967,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 0
         TargetsAir: 1
-    - Name: Granite Sentinel
+    - Name: Mossbear
       Description: Ground + air
       Cost: 180
       Refund: 135
@@ -4003,7 +3988,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Eclipse Champion
+    - Name: Mountain Ox
       Description: "Ground + air \xB7 requires all six regular designs standing \xB7
         1 wood, earned after wave 14"
       Cost: 750
@@ -4025,7 +4010,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Strider Cadet
+    - Name: Hearth Wisp
       Description: Ground + air
       Cost: 7
       Refund: 6
@@ -4046,7 +4031,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Lance Knight
+    - Name: Lantern Walker
       Description: Ground + air
       Cost: 30
       Refund: 27
@@ -4067,7 +4052,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Windkeeper
+    - Name: Rainkeeper
       Description: Ground + air
       Cost: 55
       Refund: 49
@@ -4088,7 +4073,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Bloomguard
+    - Name: Bell Keeper
       Description: Ground + air
       Cost: 80
       Refund: 72
@@ -4109,7 +4094,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Whiteout
+    - Name: Moon Moth
       Description: "Air only \xB7 interceptor"
       Cost: 110
       Refund: 99
@@ -4130,7 +4115,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 0
         TargetsAir: 1
-    - Name: Hatchet Herald
+    - Name: Antler Guide
       Description: "Ground + air \xB7 25% slow"
       Cost: 150
       Refund: 135
@@ -4151,7 +4136,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Fossil Champion
+    - Name: Elder Lantern
       Description: "Ground + air \xB7 requires all six regular designs standing \xB7
         1 wood, earned after wave 14"
       Cost: 750
@@ -4173,7 +4158,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Junk Cadet
+    - Name: Hatchling
       Description: Ground + air
       Cost: 10
       Refund: 7
@@ -4194,7 +4179,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Freeze Warden
+    - Name: Frostcoil
       Description: "Ground + air \xB7 25% slow"
       Cost: 30
       Refund: 22
@@ -4215,7 +4200,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Splashguard
+    - Name: Kiln Spitter
       Description: "Ground only \xB7 splash"
       Cost: 55
       Refund: 41
@@ -4236,7 +4221,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 0
-    - Name: Spring Striker
+    - Name: Ramjaw
       Description: Ground + air
       Cost: 80
       Refund: 60
@@ -4257,7 +4242,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Duskkeeper
+    - Name: Dusk Wyvern
       Description: "Air only \xB7 interceptor"
       Cost: 110
       Refund: 82
@@ -4278,7 +4263,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 0
         TargetsAir: 1
-    - Name: Turbo Sentinel
+    - Name: Twinflame
       Description: Ground + air
       Cost: 150
       Refund: 112
@@ -4299,7 +4284,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Mask Champion
+    - Name: Hearth Wyrm
       Description: "Ground + air \xB7 requires all six regular designs standing \xB7
         1 wood, earned after wave 14"
       Cost: 750
@@ -4321,7 +4306,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Grenade Cadet
+    - Name: Brook Crab
       Description: Ground + air
       Cost: 10
       Refund: 7
@@ -4342,7 +4327,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Kite Ranger
+    - Name: Pearl Snail
       Description: "Ground + air \xB7 chains to two enemies"
       Cost: 30
       Refund: 22
@@ -4363,7 +4348,7 @@ MonoBehaviour:
         ChainTargets: 2
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Jester Coil
+    - Name: Reed Hydra
       Description: "Ground only \xB7 splash"
       Cost: 55
       Refund: 41
@@ -4384,7 +4369,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 0
-    - Name: Aquaguard
+    - Name: Pool Toad
       Description: "Ground + air \xB7 25% slow"
       Cost: 80
       Refund: 60
@@ -4405,7 +4390,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Blade Keeper
+    - Name: River Skimmer
       Description: "Air only \xB7 interceptor"
       Cost: 110
       Refund: 82
@@ -4426,7 +4411,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 0
         TargetsAir: 1
-    - Name: Orbit Herald
+    - Name: Lantern Jelly
       Description: Ground + air
       Cost: 150
       Refund: 112
@@ -4447,7 +4432,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Verdant Champion
+    - Name: Ancient Shellback
       Description: "Ground + air \xB7 requires all six regular designs standing \xB7
         1 wood, earned after wave 14"
       Cost: 750

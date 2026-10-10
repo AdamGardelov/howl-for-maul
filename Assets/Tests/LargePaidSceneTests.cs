@@ -27,6 +27,21 @@ namespace FrostMaze.Tests
             public int Width=1280,Height=720;public string Capture;
         }
         [Serializable] public sealed class Report { public List<Measurement> Scenes=new List<Measurement>(); }
+        static int SavedFaction(string theme,string name)
+        {
+            string[] legacy=theme=="iron"?new[]{"Pulse Foundry","Blast Circuit","Prism Division","Horizon Guild","Gravity Works","Scrap Frontier","Overdrive Order","Tidal Array"}:new[]{"Rime Covenant","Rootbound","Ember Assembly","Volt Vanguard"};
+            for(int i=0;i<legacy.Length;i++)if(name==legacy[i]||name==FactionIdentity.Theme(theme,i))return i;
+            throw new InvalidDataException("Unknown saved faction: "+name);
+        }
+        static int SavedDesign(Scenario config,string name)
+        {
+            int current=Array.FindIndex(config.Catalog,d=>d.Name==name);if(current>=0)return current;
+            // Historical ledgers identify purchases by display name. Preserve their original design index.
+            string[] legacy=config.Theme=="iron"?new[]{"Fuse Cadet","Ironhand","Shear Sentinel","Arc Ranger","Flare Keeper","Rime Runner","Echo Champion","Alloy Cadet","Crashbreaker","Gale Pilot","Heatkeeper","Quicksilver","Rootguard","Citadel Champion","Shade Cadet","Spark Herald","Lodestone","Coil Serpent","Prism Twin","Needle Guard","Shell Champion","Glimmer Cadet","Sun Regent","Dustkeeper","Boneplate","Deepdiver","Drillwarden","Crawler Champion","Gyro Cadet","Gravity Anchor","Starcaller","Wavekeeper","Chargeguard","Granite Sentinel","Eclipse Champion","Strider Cadet","Lance Knight","Windkeeper","Bloomguard","Whiteout","Hatchet Herald","Fossil Champion","Junk Cadet","Freeze Warden","Splashguard","Spring Striker","Duskkeeper","Turbo Sentinel","Mask Champion","Grenade Cadet","Kite Ranger","Jester Coil","Aquaguard","Blade Keeper","Orbit Herald","Verdant Champion"}:new[]{"Shard Sentry","Snow Cairn","Rime Binder","Hail Bell","Aurora Needle","Seedling Warden","Oldbark","Briar Elder","Skybough","Worldroot","Cinder Watch","Coal Bastion","Furnace Mouth","Flare Lance","Meteor Crucible","Pulse Cadet","Scrap Bulwark","Arc Relay","Skyrail","Nova Marshal"};
+            int index=Array.IndexOf(legacy,name);
+            if(index<0)throw new InvalidDataException("Unknown saved defender: "+name);
+            return index;
+        }
         static string Output=>Path.Combine(Application.dataPath,"../Logs/LargePaidScenes");
         static void Capture(Camera source,Measurement report)
         {
@@ -58,7 +73,7 @@ namespace FrostMaze.Tests
                 game.ChooseMap(Resources.Load<MapDefinition>(saved.Map));yield return null;yield return null;
                 game=Object.FindFirstObjectByType<Prototype>();game.SetupOptions.PlayerCount=2;game.SetupOptions.Difficulty=Difficulty.Hard;
                 game.SetupOptions.StartingPositions=(int[])saved.StartingPositions.Clone();
-                for(int p=0;p<2;p++)game.SetupOptions.Factions[p]=Array.FindIndex(game.Map.Settings.Factions,f=>f.Name==saved.Factions[p]);
+                for(int p=0;p<2;p++)game.SetupOptions.Factions[p]=SavedFaction(game.Map.Settings.Theme,saved.Factions[p]);
                 game.SetupOptions.AutomaticWaves=false; // Reproduce the saved, manually paced historical ledger.
                 game.StartMatch();game.Paused=true;game.SoundEnabled=false;var w=game.World;
                 Assert.That(saved.Difficulty,Is.EqualTo("Hard"));Assert.That(w.Config.StartingGold,Is.EqualTo(saved.StartingTeamGold),"Replay ledger is from a different economy");
@@ -68,7 +83,7 @@ namespace FrostMaze.Tests
                     for(int player=1;player<=2;player++) {
                         w.SelectPlayer(player-1);
                         foreach(var buy in saved.Placements.Where(b=>b.BeforeWave==round&&b.Player==player)) {
-                            w.SelectedDesign=Array.FindIndex(w.Config.Catalog,d=>d.Name==buy.Tower);int before=w.Gold;
+                            w.SelectedDesign=SavedDesign(w.Config,buy.Tower);int before=w.Gold;
                             Assert.That(w.OrderBuild(buy.X,buy.Y,out string reason),Is.True,reason);
                             int travel=0;while(w.HasBuildOrder&&travel<1000){w.Step();travel++;}
                             var tower=w.Grid.At(buy.X,buy.Y);Assert.That(tower,Is.Not.Null);

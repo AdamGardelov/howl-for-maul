@@ -24,6 +24,7 @@ namespace FrostMaze
                     shade*=Mathf.Lerp(.79f,1,Mathf.SmoothStep(0,1,Mathf.Clamp01(seam/.12f)));
                 } else if(kind=="Leaves")shade*=.72f+.28f*Mathf.PerlinNoise(u*9+Mathf.Sin(v*13),v*11);
                 else if(kind=="Cloth")shade*=.96f+(((x+y)&1)==0?.035f:0);
+                else if(kind=="Hide")shade*=.91f+.09f*Mathf.PerlinNoise(u*34,v*29);
                 else if(kind=="Wood")shade*=.77f+.24f*Mathf.PerlinNoise(u*32+Mathf.Sin(v*8),v*2+12);
                 else {
                     shade*=.96f+.035f*Mathf.PerlinNoise(u*2+3,v*75+41);
@@ -74,6 +75,7 @@ namespace FrostMaze
                 }
                 if(faction==2){palette[0].SetFloat("_Metallic",.06f);palette[0].SetFloat("_Smoothness",.4f);}
             }
+            if((metal&&faction!=0)||(!metal&&faction!=1))DressCreaturePalette(palette,metal,faction);
         }
     }
 }

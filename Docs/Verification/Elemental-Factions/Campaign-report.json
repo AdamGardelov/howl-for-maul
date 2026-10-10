@@ -1,0 +1,36 @@
+{
+    "Scenes": [
+        {
+            "Map": "Rimewatch",
+            "Device": "llvmpipe (LLVM 21.1.8, 256 bits)",
+            "Api": "OpenGLCore",
+            "Towers": 339,
+            "Enemies": 32,
+            "ActiveTowerRenderers": 4184,
+            "UniqueTowerMeshes": 83,
+            "SyncAllocatedBytes": 0,
+            "SyncMillisecondsPerCall": 0.414317,
+            "RenderMedianMs": 279.57710000000005,
+            "RenderMaxMs": 3930.3537,
+            "Width": 1280,
+            "Height": 720,
+            "Capture": "Rimewatch-paid.png"
+        },
+        {
+            "Map": "Ironfold",
+            "Device": "llvmpipe (LLVM 21.1.8, 256 bits)",
+            "Api": "OpenGLCore",
+            "Towers": 336,
+            "Enemies": 45,
+            "ActiveTowerRenderers": 3874,
+            "UniqueTowerMeshes": 52,
+            "SyncAllocatedBytes": 0,
+            "SyncMillisecondsPerCall": 0.377558,
+            "RenderMedianMs": 1152.8124,
+            "RenderMaxMs": 1201.4423000000002,
+            "Width": 1280,
+            "Height": 720,
+            "Capture": "Ironfold-paid.png"
+        }
+    ]
+}

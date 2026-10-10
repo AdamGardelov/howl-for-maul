@@ -17,7 +17,7 @@ namespace FrostMaze.Tests
             var game=Object.FindFirstObjectByType<Prototype>();game.ChooseMap(Resources.Load<MapDefinition>("Rimewatch"));yield return null;yield return null;
             game=Object.FindFirstObjectByType<Prototype>();game.SetupOptions.Factions[0]=1;game.StartMatch();game.Paused=true;game.MoveMode=true;
             var world=game.World;int gold=world.Gold;string mask=string.Join("\n",world.Config.LayoutRows);int cost=0;
-            Assert.That(world.Config.Factions[1].Name,Is.EqualTo("Rootbound"));
+            Assert.That(world.Config.Factions[1].Name,Is.EqualTo("Nature"));
             for(int i=0;i<5;i++){
                 world.SelectedDesign=5+i;cost+=world.BuildCost;Assert.That(world.OrderBuild(16+i,14,out _),Is.True);
                 for(int tick=0;tick<240;tick++)world.Step();

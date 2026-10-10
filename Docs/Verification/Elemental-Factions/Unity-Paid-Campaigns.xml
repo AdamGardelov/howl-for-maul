@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Passed" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-10 11:24:34Z" end-time="2026-10-10 11:26:16Z" duration="102.8054516">
+  <test-suite type="TestSuite" id="1000" name="Howl for Maul" fullname="Howl for Maul" runstate="Runnable" testcasecount="124" result="Passed" start-time="2026-10-10 11:24:34Z" end-time="2026-10-10 11:26:16Z" duration="102.805452" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1141" name="FrostMaze.Tests.dll" fullname="/home/adam/Documents/Codex/2026-10-06/cre/work/howl-logo-build/Library/ScriptAssemblies/FrostMaze.Tests.dll" runstate="Runnable" testcasecount="124" result="Passed" start-time="2026-10-10 11:24:34Z" end-time="2026-10-10 11:26:16Z" duration="102.725644" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="321807" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1142" name="FrostMaze" fullname="FrostMaze" runstate="Runnable" testcasecount="124" result="Passed" start-time="2026-10-10 11:24:34Z" end-time="2026-10-10 11:26:16Z" duration="102.719184" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1143" name="Tests" fullname="FrostMaze.Tests" runstate="Runnable" testcasecount="124" result="Passed" start-time="2026-10-10 11:24:34Z" end-time="2026-10-10 11:26:16Z" duration="102.713516" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1009" name="LargePaidSceneTests" fullname="FrostMaze.Tests.LargePaidSceneTests" classname="FrostMaze.Tests.LargePaidSceneTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-10 11:24:34Z" end-time="2026-10-10 11:26:16Z" duration="102.705000" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1010" name="PaidCampaignsRenderLateDefensesAndReleaseViews" fullname="FrostMaze.Tests.LargePaidSceneTests.PaidCampaignsRenderLateDefensesAndReleaseViews" methodname="PaidCampaignsRenderLateDefensesAndReleaseViews" classname="FrostMaze.Tests.LargePaidSceneTests" runstate="Runnable" seed="1297789055" result="Passed" start-time="2026-10-10 11:24:28Z" end-time="2026-10-10 11:26:16Z" duration="108.247872" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="LargePaidScene" />
+                <property name="Category" value="WorldCohesionFinal" />
+                <property name="Timeout" value="600000" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[HOWL_MAP_READY Rimewatch ms=613.5 baked=True
+HOWL_MAP_READY Ironfold ms=831.7 baked=True
+HOWL_MAP_READY Rimewatch ms=638.9 baked=True
+Saving results to: /home/adam/Documents/Codex/2026-10-06/cre/work/hearth-test-config/unity3d/Howl for Maul/Howl for Maul/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

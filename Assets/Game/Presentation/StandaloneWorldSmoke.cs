@@ -9,18 +9,18 @@ namespace FrostMaze
     // Opt-in packaged visual/placement check; never active for normal players.
     public sealed class StandaloneWorldSmoke : MonoBehaviour
     {
-        string output;bool rootbound;
+        string output;bool rootbound,creatures;
         sealed class Still : ICameraInput { public CameraIntent Read()=>default; }
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void Run() {
             var args=Environment.GetCommandLineArgs();int at=Array.IndexOf(args,"--howl-world-check");if(at<0||at+1>=args.Length)return;
-            var go=new GameObject("World art verification");DontDestroyOnLoad(go);var smoke=go.AddComponent<StandaloneWorldSmoke>();smoke.output=args[at+1];smoke.rootbound=Array.IndexOf(args,"--howl-rootbound")>=0;
+            var go=new GameObject("World art verification");DontDestroyOnLoad(go);var smoke=go.AddComponent<StandaloneWorldSmoke>();smoke.output=args[at+1];smoke.rootbound=Array.IndexOf(args,"--howl-rootbound")>=0;smoke.creatures=Array.IndexOf(args,"--howl-creatures")>=0;
         }
         IEnumerator Start() {
             Directory.CreateDirectory(output);yield return new WaitForSecondsRealtime(3);
             foreach(string map in new[]{"Ironfold","Rimewatch"}) {
                 var game=FindFirstObjectByType<Prototype>();game.ChooseMap(Resources.Load<MapDefinition>(map));yield return new WaitForSecondsRealtime(3);
-                game=FindFirstObjectByType<Prototype>();if(rootbound&&map=="Rimewatch")game.SetupOptions.Factions[0]=1;game.StartMatch();game.Paused=true;game.MusicVolume=0;
+                game=FindFirstObjectByType<Prototype>();if(rootbound&&map=="Rimewatch")game.SetupOptions.Factions[0]=1;if(creatures)game.SetupOptions.Factions[0]=map=="Ironfold"?7:0;game.StartMatch();game.Paused=true;game.MusicVolume=0;
                 var world=game.World;var camera=game.View.GetComponent<RtsCamera>();camera.SetInput(new Still());camera.ResetRotation();
                 string mask=string.Join("\n",world.Config.LayoutRows);
                 var backdrop=game.GetComponentInChildren<WorldBackdrop>();
@@ -42,6 +42,7 @@ namespace FrostMaze
                 var start=world.BuilderPosition;
                 for(int row=0;row<5&&built<8;row++)for(int col=-3;col<=3&&built<8;col+=2) {
                     if(rootbound&&map=="Rimewatch")world.SelectedDesign=5+built%5;
+                    if(creatures)world.SelectedDesign=map=="Ironfold"?49+built%6:built%5;
                     int x=Mathf.FloorToInt(start.X)+col,z=Mathf.FloorToInt(start.Y)+row*2;
                     if(!world.CanBuild(x,z,out _))continue;
                     int before=world.Gold,cost=world.BuildCost,count=world.Grid.Towers.Count;
@@ -65,8 +66,8 @@ namespace FrostMaze
                 world.Spawn(new WaveSpec{Health=5000,Speed=3},tower.Center+new V2(2.5f,1.5f));
                 world.Spawn(new WaveSpec{Health=5000,Speed=2,Flying=true},tower.Center+new V2(-1.5f,2));
                 game.Paused=false;yield return new WaitForSecondsRealtime(1.5f);game.Paused=true;yield return Capture(map+"-Paid-Defense");
-                if(rootbound&&map=="Rimewatch"){
-                    Screen.SetResolution(960,600,false);yield return new WaitForSecondsRealtime(.5f);yield return Capture("Rootbound-HUD-Small");
+                if((rootbound||creatures)&&map=="Rimewatch"){
+                    Screen.SetResolution(960,600,false);yield return new WaitForSecondsRealtime(.5f);yield return Capture(creatures?"Ice-HUD-Small":"Rootbound-HUD-Small");
                     Screen.SetResolution(1440,900,false);yield return new WaitForSecondsRealtime(.5f);
                 }
                 camera.Overview();camera.Focus.x+=4;game.ResetView();

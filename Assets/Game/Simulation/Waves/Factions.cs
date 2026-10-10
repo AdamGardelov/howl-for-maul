@@ -41,6 +41,7 @@ namespace FrostMaze.Simulation
                 D("Nova Marshal","Ground + air · heavy arm-cannon champion",100,55,.9f,5)
             };
             for(int i=0;i<c.Catalog.Length;i++)c.Catalog[i].VisualStyle=i/5;
+            FactionIdentity.Apply(c,false);
             for(int f=0;f<4;f++) {
                 var wall=c.Catalog[f*5+1].Spec;wall.TargetsGround=false;wall.Health=f==1?300:180;
                 c.Catalog[f*5+4].Spec.Health=180;

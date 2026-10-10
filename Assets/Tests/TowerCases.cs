@@ -11,7 +11,7 @@ namespace FrostMaze.Tests
             var w=new World(map,new MatchOptions{PlayerCount=2});
             var air=w.PreviewWave(4);var rush=w.PreviewWave(17);var swarm=w.PreviewWave(12);
             Check(w.DefensesFor(air)==0,"empty air coverage");
-            Check(w.WaveAdvice(air).Contains("Aurora Needle")&&w.WaveAdvice(rush).Contains("Rime Binder")&&w.WaveAdvice(swarm).Contains("Hail Bell"),"Rime advice ignored wave roles");
+            Check(w.WaveAdvice(air).Contains(map.Catalog[4].Name)&&w.WaveAdvice(rush).Contains(map.Catalog[2].Name)&&w.WaveAdvice(swarm).Contains(map.Catalog[3].Name),"Rime advice ignored wave roles");
             w.SelectedDesign=3;Check(w.Build(28,11,out _),"ground artillery fixture");
             Check(w.DefensesFor(air)==0&&w.DefensesFor(swarm)==1,"ground-only artillery advertised as anti-air");
             w.SelectPlayer(1);w.SelectedDesign=4;Check(w.Build(30,11,out _),"second-owner anti-air fixture");

@@ -20,7 +20,7 @@ namespace FrostMaze
             if(clips.TryGetValue(key,out var clip))return clip;
             var d=config.Catalog[design];var spec=d.Spec;int family=0,slot=0;
             for(int i=0;i<config.Factions.Length;i++){int at=System.Array.IndexOf(config.Factions[i].Designs,design);if(at>=0){family=i;slot=at;break;}}
-            bool metal=config.Theme=="iron",heavy=spec.SplashRadius>0;
+            bool iron=config.Theme=="iron",metal=iron&&family==0,heavy=spec.SplashRadius>0;
             float length=spec.Damage<=0?.18f:heavy?.42f:spec.SlowFraction>0?.34f:.25f;
             length+=(slot%3)*.027f;int count=Mathf.RoundToInt(SampleRate*length);var mono=new float[count];
             uint random=(uint)(design+1)*747796405u+(uint)(variation+1)*2891336453u+(metal?91u:17u);
@@ -32,6 +32,15 @@ namespace FrostMaze
             float lowMix=metal?.42f:family==1?.85f:family==2?.70f:.12f;
             float gritMix=metal?.65f:family==0?.43f:family==1?.36f:family==2?.74f:.62f;
             float airMix=metal?.16f:family==0?.36f:family==1?.045f:family==2?.10f:.24f;
+            if(iron&&!metal){
+                // Chitin, glass, wind, stone, cloth spirits, drake breath and water have different bodies.
+                float[] frequencies={190,235,1320,740,105,610,92,340};
+                float[] lows={.42f,.55f,.10f,.06f,.94f,.20f,.78f,.48f};
+                float[] grits={.65f,.73f,.28f,.24f,.72f,.24f,.81f,.22f};
+                float[] airs={.16f,.08f,.31f,.68f,.035f,.39f,.16f,.39f};
+                bodyFrequency=frequencies[family]+slot*(family==4?14:27);lowMix=lows[family];gritMix=grits[family];airMix=airs[family];
+                resonanceDecay=family==2?38:family==4?52:65;
+            }
             for(int i=0;i<count;i++) {
                 float t=i/(float)SampleRate,u=t/length,n=Noise(ref random);
                 low+=.025f*(n-low);mid+=(metal?.21f:.13f)*(n-mid);air+=.62f*(n-air);

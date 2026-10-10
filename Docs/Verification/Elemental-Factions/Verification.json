@@ -1,0 +1,122 @@
+{
+  "date": "2026-10-10",
+  "baseCommit": "711469f3746dcf88e770da8f3de2f08f471ac51c",
+  "unity": "6000.3.25f1",
+  "renderer": "Linux OpenGL llvmpipe / private Xvfb :98",
+  "tests": {
+    "total": "13",
+    "passed": "13",
+    "failed": "0",
+    "end-time": "2026-10-10 11:18:25Z"
+  },
+  "simulation": "73/73 passed",
+  "paidCampaignReplay": {
+    "total": "1",
+    "passed": "1",
+    "failed": "0",
+    "end-time": "2026-10-10 11:26:16Z"
+  },
+  "silhouetteAudit": {
+    "pairs": 208,
+    "nearDuplicates": 0,
+    "highestMeanOverlap": 0.8869,
+    "method": "64px, two fixed playing angles, mean intersection-over-union; >=0.90 rejects near duplicates, not proof of human recognition"
+  },
+  "sources": {
+    "Assets/Game/Maps/Resources/Ironfold.asset": "a9aff9122f41adc9635f079bcb6b682e658d7bfceaa57dd0605bf51670d1f0a1",
+    "Assets/Game/Maps/Resources/Rimewatch.asset": "daace7b41bef384d13659e253d3e581f07e31c391eb292b301d31d5269ecb24d",
+    "Assets/Game/Presentation/Effects/ProjectileStyle.cs": "62e0de4713ab77c843e42c1b619f9021d3d41b5bb51db384faee1c03050436d7",
+    "Assets/Game/Presentation/Effects/TowerSoundBank.cs": "38d8982548d2c946710943435ea9557687d0a270d4f9a3b4fddb195dd73b52ee",
+    "Assets/Game/Presentation/OrderColors.cs": "83057d6358726f1bc965d89441f4969cb080377b78ea2bdc4e763885bcc85b5e",
+    "Assets/Game/Presentation/Prototype.ActorMaterials.cs": "db5739f68807626fd43e861001113d7bd1663f46ee796bc0c8eab23c67a18e08",
+    "Assets/Game/Presentation/Prototype.CreatureMaterials.cs": "855c9d2740a8f98651beddab8dde81f0e51de5de25f762947a6fd93309fc234d",
+    "Assets/Game/Presentation/Prototype.CreatureMaterials.cs.meta": "4bb2e0048b0b1fa372be96e93d1957d93ccda14acdf4b985caa98b9118c6c2e5",
+    "Assets/Game/Presentation/StandaloneWorldSmoke.cs": "758ec36530e258be27cff282b91dc5395e7b5bb5ac96895864576932c254a312",
+    "Assets/Game/Presentation/Towers/TowerView.Creatures.cs": "08950609d2bf1990f1ae68502319837b0b1eb55872e97e175f78a2497a0c6ac2",
+    "Assets/Game/Presentation/Towers/TowerView.Creatures.cs.meta": "f85731e08f72a5946a26d028dafe22d149c6370449ce00178978f0378c1a83a1",
+    "Assets/Game/Presentation/Towers/TowerView.Identity.cs": "516c4ac1212fc17392b534e29e7a2fddb211f0dfe5a7d23eab5d0e5a54e45083",
+    "Assets/Game/Presentation/Towers/TowerView.MythicCreatures.cs": "fb0fc4c3666de6129a0ee514b8f153d56def22a08746ae8fcacaa5b847db94a5",
+    "Assets/Game/Presentation/Towers/TowerView.MythicCreatures.cs.meta": "ccf5385a918be7e9a40e5e80d9f8a0ff54b790a1179a10977594d864c5a63564",
+    "Assets/Game/Presentation/Towers/TowerView.cs": "3169af50dd05308d5e68033b69fc0e0466ec40f6e9282c2442e8084d62798e93",
+    "Assets/Game/Simulation/Waves/FactionIdentity.cs": "c8312f1abb9af66476638a03ae0bb75f225aafd37e2544f44a6b7d312ab78758",
+    "Assets/Game/Simulation/Waves/FactionIdentity.cs.meta": "f1cd816cc715fbe52c705c3604010cc31304f1a755a0d0c5836da2e028b987b9",
+    "Assets/Game/Simulation/Waves/Factions.cs": "c22d0185549fe8c9a4c8f79441c5e4cb7e73e2112cb810097b71b7bafab01bdb",
+    "Assets/Game/Simulation/Waves/RobotFactions.cs": "a7f314fe66efced0fef0f22e6f72aa0722e3cc55b3c31ce03e397e42a9b55635",
+    "Assets/Game/UI/PrototypeHud.Factions.cs": "5fb641e36b65dc9d7f08df9482562ade42d6363001a8bb8584470aa18531fce7",
+    "Assets/Tests/ElementalFactionTests.cs": "3be0e92d1e2d318a224ff441fbda13178124312a5bb0cac1626d84b40b91238f",
+    "Assets/Tests/ElementalFactionTests.cs.meta": "59758542c2b77a25c5c5550c30937864c6d19a0fd44d09dc8950c6b42f41b0c3",
+    "Assets/Tests/LargePaidSceneTests.cs": "d5796ac9c8552764679f54f4ce55ae9f9a51b5208bd2e88e67f9953011011433",
+    "Assets/Tests/PlayModeIntegration.cs": "6c20706b9a36cf0e35084604c2d8131caf49a55c81c9cf4fc3247d4e939b5c71",
+    "Assets/Tests/RootboundPresentationTests.cs": "a5ddc42907985fc6166bfbb8ec65826ae8694a08c32db5f05a5616b54a112f6b",
+    "Assets/Tests/TowerCases.cs": "35b32c04419323221b1ecf890b671ce22911d98d26105bfddb0ab97878a13f7b"
+  },
+  "deletedSources": [
+    "Assets/Game/Presentation/Towers/TowerView.Blast.cs",
+    "Assets/Game/Presentation/Towers/TowerView.Blast.cs.meta",
+    "Assets/Game/Presentation/Towers/TowerView.Horizon.cs",
+    "Assets/Game/Presentation/Towers/TowerView.Horizon.cs.meta",
+    "Assets/Game/Presentation/Towers/TowerView.IronFactions.cs",
+    "Assets/Game/Presentation/Towers/TowerView.IronFactions.cs.meta",
+    "Assets/Game/Presentation/Towers/TowerView.Prism.cs",
+    "Assets/Game/Presentation/Towers/TowerView.Prism.cs.meta"
+  ],
+  "packages": {
+    "Linux": {
+      "path": "Builds/Linux-World",
+      "previous": "Builds/Linux-World-711469f",
+      "previousTreeSha256": "4fa3b851e310d98709fd4b74afac34506d436ae45e5cd11fa255f809d55c1249",
+      "fileCount": 193,
+      "treeSha256": "ac11cca9f2a3530e8ad392819a4ddce9106a0b34fa28fe40064913c8c98c7af9",
+      "ScottBuckleyNotices": "96c119336e46c5d4a9b12047041012e47bad686c7e7028e2865db8edf4d800b8",
+      "musicSources": "bb1435367b1c2971efe67b2b0d90415981595fd87561c29e4efa6fba061ac36a"
+    },
+    "Windows": {
+      "path": "Builds/Windows-World",
+      "previous": "Builds/Windows-World-711469f",
+      "previousTreeSha256": "502704dc0130ff9bb9a5585aa37dbfee8d778757abe4a95bb93fcd09c541be9d",
+      "fileCount": 195,
+      "treeSha256": "81d1cb0133ce5509e856fc5c4691df16d38ad78a190686bc495506146e235c86",
+      "ScottBuckleyNotices": "96c119336e46c5d4a9b12047041012e47bad686c7e7028e2865db8edf4d800b8",
+      "musicSources": "bb1435367b1c2971efe67b2b0d90415981595fd87561c29e4efa6fba061ac36a"
+    }
+  },
+  "unchangedData": {
+    "bothMapAssets": "All parsed fields identical after excluding Name and Description; includes masks, roles, numeric stats, costs, waves and routes",
+    "bakedWorldTextures": [
+      "Assets/Game/Presentation/Resources/World/Baked/Rimewatch-Cap.png",
+      "Assets/Game/Presentation/Resources/World/Baked/Ironfold-Cap.png",
+      "Assets/Game/Presentation/Resources/World/Baked/Rimewatch-Water.png",
+      "Assets/Game/Presentation/Resources/World/Baked/Ironfold-Water.png",
+      "Assets/Game/Presentation/Resources/World/Baked/Rimewatch-Ground.png",
+      "Assets/Game/Presentation/Resources/World/Baked/Rimewatch-Exterior.png",
+      "Assets/Game/Presentation/Resources/World/Baked/Rimewatch-Wall.png",
+      "Assets/Game/Presentation/Resources/World/Baked/Ironfold-Exterior.png",
+      "Assets/Game/Presentation/Resources/World/Baked/Ironfold-Ground.png",
+      "Assets/Game/Presentation/Resources/World/Baked/Ironfold-Wall.png"
+    ]
+  },
+  "scope": "12 themes / 76 defenders; 64 replaced creature models, previous five trees and seven workshop instruments retained",
+  "iterations": "First: 11/13 (idle sampling at a sine extremum and bear/toad resemblance); second: 11/13 (Earth resemblance and obsolete foundation mesh expectation); final: 13/13. Pure regression first 69/73 exposed roster identification on a generic fixture plus old name expectation; explicit roster selection fixed it, final 73/73.",
+  "paidCampaigns": "Replayed both historical twenty-wave two-player Hard ledgers with new names resolved to original design IDs; asserts kills/leaks, every wallet and travel count, zero steady-state view allocations and cleanup. Automated replay, not human input.",
+  "packagedWorld": {
+    "Ironfold": {
+      "faction": "Water",
+      "paidTowers": 8,
+      "spent": 475
+    },
+    "Rimewatch": {
+      "faction": "Ice",
+      "paidTowers": 8,
+      "spent": 240
+    }
+  },
+  "audio": "All 228 per-design variations and mixed preview headroom checked; no human listening/mix approval. Scott Buckley soundtrack and credits unchanged.",
+  "linuxBuild": "passed; packaged both-map world and menu smoke passed",
+  "windowsBuild": "cross-build passed; native execution untested",
+  "testScope": "13 focused Unity cases plus one full historical campaign replay; not the full Unity suite",
+  "network": "not rerun for this art/name change",
+  "hardwarePerformance": "not measured; software rendering only",
+  "publicRelease": "v0.1.0-playtest.1 unchanged",
+  "artScope": "First procedural creature-family pass; shared faces and joints remain, builders keep prior anatomy with new palettes; not final sculpted art",
+  "isolatedTarget": "Linux"
+}

@@ -52,11 +52,7 @@ namespace FrostMaze
             if(image!=null)GUI.DrawTexture(rect,image,ScaleMode.ScaleToFit);
             else GUI.Label(rect,"…",rosterPrice);
         }
-        static string OrderMotto(string theme,int faction) {
-            string[] iron={"IRONFOLD'S CLOCKWORK GUARD","WE HOLD WHAT WE ONCE BROKE","KEEPERS OF THE SIGNAL GLASS","WATCHKEEPERS OF THE LONG ROAD","LIFT THE STONE. HOLD THE LINE.","NOTHING WASTED. NO ONE LEFT.","FIRE WITHIN. STEEL WITHOUT.","KEEPERS OF THE COOLING CHANNELS"};
-            string[] winter={"KEEPERS OF THE FROZEN WARDBELLS","WAKE THE MOUNTAIN","KEEP THE HEARTH LIT","COURIERS OF THE STORM"};
-            var mottos=theme=="iron"?iron:winter;return mottos[Mathf.Clamp(faction,0,mottos.Length-1)];
-        }
+        static string OrderMotto(string theme,int faction)=>FactionIdentity.Order(theme,faction).ToUpperInvariant();
         void DrawFactionBrowser(Session net,Member me,float width)
         {
             EnsureFactionPreview(net);FactionStyles();var config=game.World.Config;
@@ -75,7 +71,7 @@ namespace FrostMaze
                 if(tile.Contains(Event.current.mousePosition))PreviewFaction(net,i);
                 Portrait(new Rect(tile.x+5,tile.y+18,64,72),faction.Designs[0]);
                 GUI.Label(new Rect(tile.x+76,tile.y+9,tile.width-82,34),faction.Name,factionName);
-                string theme=faction.Description.Split('.')[0];
+                string theme=FactionIdentity.Brief(config.Theme,i);
                 GUI.Label(new Rect(tile.x+76,tile.y+44,tile.width-82,40),theme,factionNote);
                 GUI.Label(new Rect(tile.x+76,tile.y+87,tile.width-82,18),me.Faction==i?"✓ CHOSEN":config.Catalog[faction.Designs[0]].Cost+"g opening tower",section);
             }

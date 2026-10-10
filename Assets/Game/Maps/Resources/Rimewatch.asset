@@ -14,21 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: FrostMaze.Runtime::FrostMaze.MapDefinition
   Settings:
     Factions:
-    - Name: Rime Covenant
-      Description: Ice sentinels. Slow the front line and shatter clustered ground
-        enemies.
+    - Name: Ice
+      Description: "Snow creatures and aurora spirits. Slow the front line and shatter clustered ground enemies."
       Designs: 0000000001000000020000000300000004000000
-    - Name: Rootbound
-      Description: Ancient tree guardians. Seed volleys, durable oaks and binding roots;
-        Skybough guards the air.
+    - Name: Nature
+      Description: "Ancient tree guardians. Seed volleys, durable oaks and binding roots; Skybough guards the air."
       Designs: 0500000006000000070000000800000009000000
-    - Name: Ember Assembly
-      Description: Fire constructs. Rapid attacks and expensive bombardment reward
-        compact defenses.
+    - Name: Fire
+      Description: "Creatures born around the village hearth. Rapid attacks and expensive bombardment reward compact defenses."
       Designs: 0a0000000b0000000c0000000d0000000e000000
-    - Name: Volt Vanguard
-      Description: Arm-cannon sentries and storm machines. Affordable mazes, precise
-        air defense and chaining bolts.
+    - Name: Storm
+      Description: "Mountain wildlife carrying thunder. Affordable mazes, precise air defense and chaining bolts."
       Designs: 0f00000010000000110000001200000013000000
     SelectableMap: 1
     Theme: winter
@@ -954,7 +950,7 @@ MonoBehaviour:
     - X: 32
       Y: 8.5
     Catalog:
-    - Name: Shard Sentry
+    - Name: Snowcap Owl
       Description: "Ground + air \xB7 dependable opening tower"
       Cost: 10
       Refund: 7
@@ -975,7 +971,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Snow Cairn
+    - Name: Slumberbear
       Description: "Maze piece \xB7 no weapon"
       Cost: 5
       Refund: 3
@@ -996,7 +992,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 0
         TargetsAir: 0
-    - Name: Rime Binder
+    - Name: Rimehart
       Description: "Ground + air \xB7 30% slow for 2 seconds"
       Cost: 45
       Refund: 33
@@ -1017,7 +1013,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Hail Bell
+    - Name: Hailtoad
       Description: "Ground splash \xB7 cannot hit air"
       Cost: 65
       Refund: 48
@@ -1038,7 +1034,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 0
-    - Name: Aurora Needle
+    - Name: Aurora Crane
       Description: "Air only \xB7 long-range interceptor"
       Cost: 55
       Refund: 41
@@ -1164,7 +1160,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 0
-    - Name: Cinder Watch
+    - Name: Cinder Newt
       Description: "Ground + air \xB7 fast single-target attacks"
       Cost: 12
       Refund: 9
@@ -1185,7 +1181,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Coal Bastion
+    - Name: Coalback
       Description: "Maze piece \xB7 no weapon"
       Cost: 5
       Refund: 3
@@ -1206,7 +1202,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 0
         TargetsAir: 0
-    - Name: Furnace Mouth
+    - Name: Furnace Toad
       Description: "Ground splash \xB7 short-range bombardment"
       Cost: 60
       Refund: 45
@@ -1227,7 +1223,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 0
-    - Name: Flare Lance
+    - Name: Flarewing
       Description: "Air only \xB7 rapid interception"
       Cost: 55
       Refund: 41
@@ -1248,7 +1244,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 0
         TargetsAir: 1
-    - Name: Meteor Crucible
+    - Name: Ash Elder
       Description: "Ground splash \xB7 expensive long-range artillery"
       Cost: 100
       Refund: 75
@@ -1269,8 +1265,8 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 0
-    - Name: Pulse Cadet
-      Description: "Ground + air \xB7 arm-cannon sentry"
+    - Name: Spark Jay
+      Description: "Ground + air \xB7 quick spark volleys"
       Cost: 10
       Refund: 7
       VisualStyle: 3
@@ -1290,7 +1286,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Scrap Bulwark
+    - Name: Grounding Ram
       Description: "Cheap maze piece \xB7 no weapon"
       Cost: 4
       Refund: 3
@@ -1311,7 +1307,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 0
         TargetsAir: 0
-    - Name: Arc Relay
+    - Name: Thunderhart
       Description: "Ground + air \xB7 chains to two nearby enemies"
       Cost: 65
       Refund: 48
@@ -1332,7 +1328,7 @@ MonoBehaviour:
         ChainTargets: 2
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Skyrail
+    - Name: Storm Heron
       Description: "Air only \xB7 precise long-range fire"
       Cost: 55
       Refund: 41
@@ -1353,8 +1349,8 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 0
         TargetsAir: 1
-    - Name: Nova Marshal
-      Description: "Ground + air \xB7 heavy arm-cannon champion"
+    - Name: Tempest Roc
+      Description: "Ground + air \xB7 heavy thunder strikes"
       Cost: 100
       Refund: 75
       VisualStyle: 3

@@ -1,0 +1,209 @@
+map	faction	first	second	mean_silhouette_overlap
+Rimewatch	Ice	Snowcap Owl	Slumberbear	0.7266
+Rimewatch	Ice	Snowcap Owl	Rimehart	0.6640
+Rimewatch	Ice	Snowcap Owl	Hailtoad	0.7015
+Rimewatch	Ice	Snowcap Owl	Aurora Crane	0.4181
+Rimewatch	Ice	Slumberbear	Rimehart	0.7012
+Rimewatch	Ice	Slumberbear	Hailtoad	0.7009
+Rimewatch	Ice	Slumberbear	Aurora Crane	0.5133
+Rimewatch	Ice	Rimehart	Hailtoad	0.5940
+Rimewatch	Ice	Rimehart	Aurora Crane	0.5333
+Rimewatch	Ice	Hailtoad	Aurora Crane	0.3864
+Rimewatch	Nature	Seedling Warden	Oldbark	0.5797
+Rimewatch	Nature	Seedling Warden	Briar Elder	0.6457
+Rimewatch	Nature	Seedling Warden	Skybough	0.5649
+Rimewatch	Nature	Seedling Warden	Worldroot	0.5088
+Rimewatch	Nature	Oldbark	Briar Elder	0.5072
+Rimewatch	Nature	Oldbark	Skybough	0.3933
+Rimewatch	Nature	Oldbark	Worldroot	0.3932
+Rimewatch	Nature	Briar Elder	Skybough	0.7320
+Rimewatch	Nature	Briar Elder	Worldroot	0.5343
+Rimewatch	Nature	Skybough	Worldroot	0.6570
+Rimewatch	Fire	Cinder Newt	Coalback	0.6696
+Rimewatch	Fire	Cinder Newt	Furnace Toad	0.6520
+Rimewatch	Fire	Cinder Newt	Flarewing	0.4416
+Rimewatch	Fire	Cinder Newt	Ash Elder	0.4060
+Rimewatch	Fire	Coalback	Furnace Toad	0.7399
+Rimewatch	Fire	Coalback	Flarewing	0.4747
+Rimewatch	Fire	Coalback	Ash Elder	0.5354
+Rimewatch	Fire	Furnace Toad	Flarewing	0.3621
+Rimewatch	Fire	Furnace Toad	Ash Elder	0.4769
+Rimewatch	Fire	Flarewing	Ash Elder	0.4887
+Rimewatch	Storm	Spark Jay	Grounding Ram	0.7285
+Rimewatch	Storm	Spark Jay	Thunderhart	0.6531
+Rimewatch	Storm	Spark Jay	Storm Heron	0.4118
+Rimewatch	Storm	Spark Jay	Tempest Roc	0.3978
+Rimewatch	Storm	Grounding Ram	Thunderhart	0.7060
+Rimewatch	Storm	Grounding Ram	Storm Heron	0.4075
+Rimewatch	Storm	Grounding Ram	Tempest Roc	0.4064
+Rimewatch	Storm	Thunderhart	Storm Heron	0.5311
+Rimewatch	Storm	Thunderhart	Tempest Roc	0.5125
+Rimewatch	Storm	Storm Heron	Tempest Roc	0.6493
+Ironfold	Tech	Copper Lantern	Ironhand Press	0.7731
+Ironfold	Tech	Copper Lantern	Shearwheel	0.7053
+Ironfold	Tech	Copper Lantern	Surveyor Lens	0.8035
+Ironfold	Tech	Copper Lantern	Flare Beacon	0.6993
+Ironfold	Tech	Copper Lantern	Cooling Vessel	0.7276
+Ironfold	Tech	Copper Lantern	Hearthbell	0.5584
+Ironfold	Tech	Ironhand Press	Shearwheel	0.7701
+Ironfold	Tech	Ironhand Press	Surveyor Lens	0.7559
+Ironfold	Tech	Ironhand Press	Flare Beacon	0.7489
+Ironfold	Tech	Ironhand Press	Cooling Vessel	0.8869
+Ironfold	Tech	Ironhand Press	Hearthbell	0.6775
+Ironfold	Tech	Shearwheel	Surveyor Lens	0.7353
+Ironfold	Tech	Shearwheel	Flare Beacon	0.7395
+Ironfold	Tech	Shearwheel	Cooling Vessel	0.7680
+Ironfold	Tech	Shearwheel	Hearthbell	0.6915
+Ironfold	Tech	Surveyor Lens	Flare Beacon	0.7327
+Ironfold	Tech	Surveyor Lens	Cooling Vessel	0.7863
+Ironfold	Tech	Surveyor Lens	Hearthbell	0.6353
+Ironfold	Tech	Flare Beacon	Cooling Vessel	0.7467
+Ironfold	Tech	Flare Beacon	Hearthbell	0.7084
+Ironfold	Tech	Cooling Vessel	Hearthbell	0.7035
+Ironfold	Beasts	Pebble Beetle	Staghorn	0.8750
+Ironfold	Beasts	Pebble Beetle	Burrback	0.8073
+Ironfold	Beasts	Pebble Beetle	Reed Mantis	0.5811
+Ironfold	Beasts	Pebble Beetle	Glasswing	0.3573
+Ironfold	Beasts	Pebble Beetle	Briar Scorpion	0.6742
+Ironfold	Beasts	Pebble Beetle	Brood Colossus	0.6169
+Ironfold	Beasts	Staghorn	Burrback	0.7934
+Ironfold	Beasts	Staghorn	Reed Mantis	0.6025
+Ironfold	Beasts	Staghorn	Glasswing	0.3598
+Ironfold	Beasts	Staghorn	Briar Scorpion	0.6900
+Ironfold	Beasts	Staghorn	Brood Colossus	0.6682
+Ironfold	Beasts	Burrback	Reed Mantis	0.6509
+Ironfold	Beasts	Burrback	Glasswing	0.4356
+Ironfold	Beasts	Burrback	Briar Scorpion	0.6584
+Ironfold	Beasts	Burrback	Brood Colossus	0.7469
+Ironfold	Beasts	Reed Mantis	Glasswing	0.4367
+Ironfold	Beasts	Reed Mantis	Briar Scorpion	0.5404
+Ironfold	Beasts	Reed Mantis	Brood Colossus	0.6747
+Ironfold	Beasts	Glasswing	Briar Scorpion	0.4034
+Ironfold	Beasts	Glasswing	Brood Colossus	0.5001
+Ironfold	Beasts	Briar Scorpion	Brood Colossus	0.5675
+Ironfold	Magic	Runefox	Wispkeeper	0.5854
+Ironfold	Magic	Runefox	Moonstone	0.6693
+Ironfold	Magic	Runefox	Spellcoil	0.5587
+Ironfold	Magic	Runefox	Starmoth	0.4113
+Ironfold	Magic	Runefox	Wayseer	0.5129
+Ironfold	Magic	Runefox	Astral Sphinx	0.5725
+Ironfold	Magic	Wispkeeper	Moonstone	0.7674
+Ironfold	Magic	Wispkeeper	Spellcoil	0.7439
+Ironfold	Magic	Wispkeeper	Starmoth	0.5110
+Ironfold	Magic	Wispkeeper	Wayseer	0.6986
+Ironfold	Magic	Wispkeeper	Astral Sphinx	0.5085
+Ironfold	Magic	Moonstone	Spellcoil	0.7041
+Ironfold	Magic	Moonstone	Starmoth	0.4636
+Ironfold	Magic	Moonstone	Wayseer	0.6832
+Ironfold	Magic	Moonstone	Astral Sphinx	0.5682
+Ironfold	Magic	Spellcoil	Starmoth	0.5485
+Ironfold	Magic	Spellcoil	Wayseer	0.7780
+Ironfold	Magic	Spellcoil	Astral Sphinx	0.5877
+Ironfold	Magic	Starmoth	Wayseer	0.5783
+Ironfold	Magic	Starmoth	Astral Sphinx	0.5886
+Ironfold	Magic	Wayseer	Astral Sphinx	0.5931
+Ironfold	Air	Breeze Owl	Gust Dancer	0.6975
+Ironfold	Air	Breeze Owl	Cloudhare	0.7606
+Ironfold	Air	Breeze Owl	Reed Crane	0.4865
+Ironfold	Air	Breeze Owl	Gale Hawk	0.7020
+Ironfold	Air	Breeze Owl	Windchime	0.5489
+Ironfold	Air	Breeze Owl	Sky Gryphon	0.4970
+Ironfold	Air	Gust Dancer	Cloudhare	0.6906
+Ironfold	Air	Gust Dancer	Reed Crane	0.5485
+Ironfold	Air	Gust Dancer	Gale Hawk	0.6654
+Ironfold	Air	Gust Dancer	Windchime	0.6270
+Ironfold	Air	Gust Dancer	Sky Gryphon	0.4952
+Ironfold	Air	Cloudhare	Reed Crane	0.5529
+Ironfold	Air	Cloudhare	Gale Hawk	0.7610
+Ironfold	Air	Cloudhare	Windchime	0.6088
+Ironfold	Air	Cloudhare	Sky Gryphon	0.5621
+Ironfold	Air	Reed Crane	Gale Hawk	0.6004
+Ironfold	Air	Reed Crane	Windchime	0.5509
+Ironfold	Air	Reed Crane	Sky Gryphon	0.6303
+Ironfold	Air	Gale Hawk	Windchime	0.5892
+Ironfold	Air	Gale Hawk	Sky Gryphon	0.5595
+Ironfold	Air	Windchime	Sky Gryphon	0.5185
+Ironfold	Earth	Pebbleback	Anchor Ram	0.6522
+Ironfold	Earth	Pebbleback	Boulderhand	0.7130
+Ironfold	Earth	Pebbleback	Cairn Elder	0.6617
+Ironfold	Earth	Pebbleback	Crag Ibex	0.6999
+Ironfold	Earth	Pebbleback	Mossbear	0.8848
+Ironfold	Earth	Pebbleback	Mountain Ox	0.8557
+Ironfold	Earth	Anchor Ram	Boulderhand	0.6921
+Ironfold	Earth	Anchor Ram	Cairn Elder	0.6077
+Ironfold	Earth	Anchor Ram	Crag Ibex	0.6804
+Ironfold	Earth	Anchor Ram	Mossbear	0.6309
+Ironfold	Earth	Anchor Ram	Mountain Ox	0.7081
+Ironfold	Earth	Boulderhand	Cairn Elder	0.6510
+Ironfold	Earth	Boulderhand	Crag Ibex	0.6662
+Ironfold	Earth	Boulderhand	Mossbear	0.6720
+Ironfold	Earth	Boulderhand	Mountain Ox	0.7216
+Ironfold	Earth	Cairn Elder	Crag Ibex	0.7659
+Ironfold	Earth	Cairn Elder	Mossbear	0.6626
+Ironfold	Earth	Cairn Elder	Mountain Ox	0.6441
+Ironfold	Earth	Crag Ibex	Mossbear	0.6968
+Ironfold	Earth	Crag Ibex	Mountain Ox	0.7171
+Ironfold	Earth	Mossbear	Mountain Ox	0.8033
+Ironfold	Spirits	Hearth Wisp	Lantern Walker	0.5983
+Ironfold	Spirits	Hearth Wisp	Rainkeeper	0.3864
+Ironfold	Spirits	Hearth Wisp	Bell Keeper	0.7769
+Ironfold	Spirits	Hearth Wisp	Moon Moth	0.3597
+Ironfold	Spirits	Hearth Wisp	Antler Guide	0.6578
+Ironfold	Spirits	Hearth Wisp	Elder Lantern	0.4647
+Ironfold	Spirits	Lantern Walker	Rainkeeper	0.6094
+Ironfold	Spirits	Lantern Walker	Bell Keeper	0.6144
+Ironfold	Spirits	Lantern Walker	Moon Moth	0.5569
+Ironfold	Spirits	Lantern Walker	Antler Guide	0.8099
+Ironfold	Spirits	Lantern Walker	Elder Lantern	0.6036
+Ironfold	Spirits	Rainkeeper	Bell Keeper	0.4626
+Ironfold	Spirits	Rainkeeper	Moon Moth	0.6679
+Ironfold	Spirits	Rainkeeper	Antler Guide	0.5562
+Ironfold	Spirits	Rainkeeper	Elder Lantern	0.5523
+Ironfold	Spirits	Bell Keeper	Moon Moth	0.4209
+Ironfold	Spirits	Bell Keeper	Antler Guide	0.6673
+Ironfold	Spirits	Bell Keeper	Elder Lantern	0.4973
+Ironfold	Spirits	Moon Moth	Antler Guide	0.5272
+Ironfold	Spirits	Moon Moth	Elder Lantern	0.4782
+Ironfold	Spirits	Antler Guide	Elder Lantern	0.6000
+Ironfold	Dragons	Hatchling	Frostcoil	0.7826
+Ironfold	Dragons	Hatchling	Kiln Spitter	0.8471
+Ironfold	Dragons	Hatchling	Ramjaw	0.6311
+Ironfold	Dragons	Hatchling	Dusk Wyvern	0.4937
+Ironfold	Dragons	Hatchling	Twinflame	0.7838
+Ironfold	Dragons	Hatchling	Hearth Wyrm	0.5230
+Ironfold	Dragons	Frostcoil	Kiln Spitter	0.7598
+Ironfold	Dragons	Frostcoil	Ramjaw	0.6395
+Ironfold	Dragons	Frostcoil	Dusk Wyvern	0.5346
+Ironfold	Dragons	Frostcoil	Twinflame	0.6909
+Ironfold	Dragons	Frostcoil	Hearth Wyrm	0.5644
+Ironfold	Dragons	Kiln Spitter	Ramjaw	0.6354
+Ironfold	Dragons	Kiln Spitter	Dusk Wyvern	0.5026
+Ironfold	Dragons	Kiln Spitter	Twinflame	0.6986
+Ironfold	Dragons	Kiln Spitter	Hearth Wyrm	0.5327
+Ironfold	Dragons	Ramjaw	Dusk Wyvern	0.6543
+Ironfold	Dragons	Ramjaw	Twinflame	0.7015
+Ironfold	Dragons	Ramjaw	Hearth Wyrm	0.7175
+Ironfold	Dragons	Dusk Wyvern	Twinflame	0.5142
+Ironfold	Dragons	Dusk Wyvern	Hearth Wyrm	0.7397
+Ironfold	Dragons	Twinflame	Hearth Wyrm	0.5525
+Ironfold	Water	Brook Crab	Pearl Snail	0.6452
+Ironfold	Water	Brook Crab	Reed Hydra	0.6211
+Ironfold	Water	Brook Crab	Pool Toad	0.7869
+Ironfold	Water	Brook Crab	River Skimmer	0.5969
+Ironfold	Water	Brook Crab	Lantern Jelly	0.5698
+Ironfold	Water	Brook Crab	Ancient Shellback	0.5656
+Ironfold	Water	Pearl Snail	Reed Hydra	0.7728
+Ironfold	Water	Pearl Snail	Pool Toad	0.6334
+Ironfold	Water	Pearl Snail	River Skimmer	0.7487
+Ironfold	Water	Pearl Snail	Lantern Jelly	0.8032
+Ironfold	Water	Pearl Snail	Ancient Shellback	0.8285
+Ironfold	Water	Reed Hydra	Pool Toad	0.6269
+Ironfold	Water	Reed Hydra	River Skimmer	0.7217
+Ironfold	Water	Reed Hydra	Lantern Jelly	0.8015
+Ironfold	Water	Reed Hydra	Ancient Shellback	0.7454
+Ironfold	Water	Pool Toad	River Skimmer	0.5778
+Ironfold	Water	Pool Toad	Lantern Jelly	0.5658
+Ironfold	Water	Pool Toad	Ancient Shellback	0.5714
+Ironfold	Water	River Skimmer	Lantern Jelly	0.7473
+Ironfold	Water	River Skimmer	Ancient Shellback	0.7074
+Ironfold	Water	Lantern Jelly	Ancient Shellback	0.8483
