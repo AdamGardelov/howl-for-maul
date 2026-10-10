@@ -115,7 +115,7 @@ namespace FrostMaze
         public int SelectedId, SelectedTowerId;
         public bool SoundEnabled=true;
         public float EffectsVolume=1, MusicVolume=.35f;
-        public void ResetView()=>View.GetComponent<RtsCamera>().ResetRotation();
+        public void ResetView()=>View.GetComponent<RtsCamera>().CenterNorth();
         public bool SellMode;
         public V2 Hover;
         public bool HasHover;

@@ -51,7 +51,8 @@ USEFUL CONTROLS
 Left click: build / select. Shift + left click: queue builds.
 Right click: move builder and cancel its queue. U: upgrade. X: remove mode.
 Space + left drag, middle drag, screen edges, or WASD: pan the camera.
-Mouse wheel: zoom. Q/E: rotate. R: reset angle. Home: return to builder.
+Mouse wheel: zoom. Q/E: rotate. R: face north and center horizontally (keeps zoom).
+Home: return to builder.
 Minimap: click/drag to move around quickly. End: whole-map view.
 Esc: menu/settings/quit. Tab: details. G/F: grid/clearance overlays.
 

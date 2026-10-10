@@ -1,0 +1,98 @@
+{
+  "date": "2026-10-10",
+  "baseCommit": "8e3b1ac1f89022fa11b60779fbaf4616e0547918",
+  "unity": "6000.3.25f1",
+  "renderer": "Linux OpenGL llvmpipe / private Xvfb :98",
+  "tests": {
+    "Unity-Camera-Before.xml": {
+      "total": "1",
+      "passed": "0",
+      "failed": "1",
+      "end-time": "2026-10-10 09:16:38Z"
+    },
+    "Unity-Camera.xml": {
+      "total": "4",
+      "passed": "4",
+      "failed": "0",
+      "end-time": "2026-10-10 09:18:10Z"
+    },
+    "Unity-Towers.xml": {
+      "total": "7",
+      "passed": "7",
+      "failed": "0",
+      "end-time": "2026-10-10 09:26:45Z"
+    },
+    "Unity-Motion.xml": {
+      "total": "1",
+      "passed": "1",
+      "failed": "0",
+      "end-time": "2026-10-10 09:32:12Z"
+    }
+  },
+  "sources": {
+    "Assets/Game/Presentation/Camera/RtsCamera.cs": "e602f6af663061ce81eff414a59810fe4ff4fe74b425aed1e433283d1b820368",
+    "Assets/Game/Presentation/ModelMeshes.cs": "8aa242bd32cd2dd1d9da8dbc826246b4ab203586a3a157d03714be413aa51a3a",
+    "Assets/Game/Presentation/Prototype.ActorMaterials.cs": "b280cda776de1e04658e19c63feacf302384b49d82f36f19489c61fcf85861f2",
+    "Assets/Game/Presentation/Prototype.cs": "c8a0a1415a8ed028283eb9e1153291e5770cec37d9c6ac1cc70694108cc0f300",
+    "Assets/Game/Presentation/StandaloneWorldSmoke.cs": "92514a844bdfb3f9a888ada0c9eef34f59066f8646b989dfc76d53b000ae3b40",
+    "Assets/Game/Presentation/Towers/TowerView.Identity.cs": "9a12aa02c659c27df2fb5853db64e30e6aec51ef6b0fd6e1f72a10ce800056e1",
+    "Assets/Game/Presentation/Towers/TowerView.Pulse.cs": "6f8bcaa1ab7372781b725ac730e2d04bef3fad92d19a9ab6810b9202544cde3c",
+    "Assets/Game/Presentation/Towers/TowerView.cs": "713a5987cfb472b83ac7ce0f1cd3d8212e17bbe31ea264feddb3ee3680c5a5f9",
+    "Assets/Game/UI/PrototypeHud.Compact.cs": "799cfb17660f0fcc777bcd3fd842b7d437e1853b1978439a4b165840d20d87ce",
+    "Assets/Game/UI/PrototypeHud.cs": "80e2b1843bd6f75145234f5c8216de9a954c0933e907d10eda421bfbad2d4e7c",
+    "Assets/Tests/PlayModeIntegration.cs": "0dac9ac87ec899c2c4134a16c9d30cb987c51d2072e28e2b693a669d2060893c"
+  },
+  "packages": {
+    "Linux": {
+      "path": "Builds/Linux-World",
+      "previous": "Builds/Linux-World-5d34283",
+      "previousTreeSha256": "b9b4e5508307ae1039138620a9143cb1347211bfc16b8bf01240d1b32662bf28",
+      "fileCount": 193,
+      "treeSha256": "fb3ecf05fc392c6917e8fef131b35fa2c86a1822ca3ac8aaf92fcea59f83a3b0",
+      "ScottBuckleyNotices": "96c119336e46c5d4a9b12047041012e47bad686c7e7028e2865db8edf4d800b8",
+      "musicSources": "bb1435367b1c2971efe67b2b0d90415981595fd87561c29e4efa6fba061ac36a"
+    },
+    "Windows": {
+      "path": "Builds/Windows-World",
+      "previous": "Builds/Windows-World-5d34283",
+      "previousTreeSha256": "73859e4ecc8c94e6e94bfef5945a549a9143f43a2fbfc297873d4a05d5285be0",
+      "fileCount": 195,
+      "treeSha256": "98f4b836ee09a572f35ef7ee62fef3f94c0ee85ba9123d8f464cf6710dd6f83c",
+      "ScottBuckleyNotices": "96c119336e46c5d4a9b12047041012e47bad686c7e7028e2865db8edf4d800b8",
+      "musicSources": "bb1435367b1c2971efe67b2b0d90415981595fd87561c29e4efa6fba061ac36a"
+    }
+  },
+  "isolatedSerializationWhitespaceOnly": [
+    "Assets/Game/Presentation/Resources/World/HearthMeadow.png.meta",
+    "Assets/Game/Presentation/Resources/World/HearthWaystone.png.meta",
+    "Assets/Game/Presentation/Resources/World/HearthSpruce.png.meta",
+    "Assets/Game/Presentation/Resources/World/HearthLeaves.png.meta",
+    "Assets/Game/Presentation/Resources/World/HearthMeadowDetail.mat",
+    "Assets/Game/Presentation/Resources/World/Baked/Rimewatch-Wall.png.meta",
+    "Assets/Game/Presentation/Resources/World/Baked/Ironfold-Ground.png.meta",
+    "Assets/Game/Presentation/Resources/World/Baked/Ironfold-Water.png.meta",
+    "Assets/Game/Presentation/Resources/World/Baked/Rimewatch-Cap.png.meta",
+    "Assets/Game/Presentation/Resources/World/Baked/Rimewatch-Exterior.png.meta",
+    "Assets/Game/Presentation/Resources/World/Baked/Ironfold-Wall.png.meta",
+    "Assets/Game/Presentation/Resources/World/Baked/Rimewatch-Ground.png.meta",
+    "Assets/Game/Presentation/Resources/World/Baked/Ironfold-Exterior.png.meta",
+    "Assets/Game/Presentation/Resources/World/Baked/Rimewatch-Water.png.meta",
+    "Assets/Game/Presentation/Resources/World/Baked/Ironfold-Cap.png.meta"
+  ],
+  "mapAssetsAndTenBakedPngsUnchanged": true,
+  "redTest": "Expected failure against old camera reset; retained reproduction, not a final failure.",
+  "testScope": "4 camera + 7 presentation cases; paid progression repeated once with added wheel/bell pause/motion assertions. Not 12 unique cases.",
+  "simulationSuite": "not rerun; no simulation changes",
+  "linuxBuild": "passed; packaged world and menu checks passed",
+  "windowsBuild": "cross-build passed; native execution untested",
+  "packagedWorld": "both maps: 8 paid towers / 80 gold each; synthetic ground/flying combat; centered spine and mirrored terrain",
+  "humanInput": "not rerun this pass",
+  "campaignBalance": "not rerun",
+  "hardwarePerformance": "not measured",
+  "separateNetworkMatch": "not rerun; networking unchanged",
+  "fullSuite": false,
+  "publicRelease": "v0.1.0-playtest.1 unchanged; still previous tower/camera behavior",
+  "isolatedTarget": "restored to Linux",
+  "newAssets": "original procedural geometry; no imported reference-game assets",
+  "artScope": "Seven Pulse Foundry weapons and shared material palette; remaining factions unchanged"
+}

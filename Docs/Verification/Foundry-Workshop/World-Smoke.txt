@@ -1,0 +1,7 @@
+HOWL_MAP_READY Ironfold ms=1193.8 baked=True
+HOWL_CAMERA_CENTER_PASS Ironfold north=true centerline=true
+HOWL_WORLD_CHECK_PASS Ironfold refugeVertices=18870 paidTowers=8 spent=80 maskUnchanged=true mirrored=true
+HOWL_MAP_READY Rimewatch ms=747.4 baked=True
+HOWL_CAMERA_CENTER_PASS Rimewatch north=true centerline=true
+HOWL_WORLD_CHECK_PASS Rimewatch refugeVertices=11022 paidTowers=8 spent=80 maskUnchanged=true mirrored=true
+HOWL_WORLD_CHECK_COMPLETE

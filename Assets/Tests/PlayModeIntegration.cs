@@ -114,6 +114,40 @@ namespace FrostMaze.Tests
             public CameraIntent Intent;
             public CameraIntent Read()=>Intent;
         }
+        [UnityTest, Category("CameraCenter")]
+        public IEnumerator NorthResetCentersMirroredMapsWithoutChangingZoomOrDepth()
+        {
+            EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
+            yield return new EnterPlayMode();yield return null;
+            foreach(var map in new[]{"Ironfold","Rimewatch"}) {
+                var game=Object.FindFirstObjectByType<Prototype>();
+                game.ChooseMap(Resources.Load<MapDefinition>(map));yield return null;yield return null;
+                game=Object.FindFirstObjectByType<Prototype>();game.StartMatch();game.Paused=true;
+                var camera=game.View.GetComponent<RtsCamera>();var input=new CameraInputFixture();camera.SetInput(input);
+                var scenery=Object.FindFirstObjectByType<MapScenery>();var position=scenery.transform.position;var rotation=scenery.transform.rotation;
+                int gold=game.World.Gold;
+                foreach(float side in new[]{-1f,1f})foreach(float zoom in new[]{7f,18f,30f}) {
+                    camera.FocusPoint(new FrostMaze.Simulation.V2(game.World.Config.Width*.5f+side*10,game.World.Config.Height*.35f));
+                    camera.SetZoom(zoom,true);float oldZoom=camera.Zoom,depth=camera.Focus.z;
+                    input.Intent=new CameraIntent{Pointer=new Vector2(Screen.width*.5f,Screen.height*.5f),Rotate=side};
+                    yield return null;yield return null;input.Intent=default;
+                    game.ResetView();yield return null;
+                    Assert.That(camera.Yaw,Is.Zero);Assert.That(camera.Zoom,Is.EqualTo(oldZoom));Assert.That(camera.Focus.z,Is.EqualTo(depth));
+                    // Check the real perspective projection, not just the yaw field.
+                    foreach(float z in new[]{0f,game.World.Config.Height*.5f,(float)game.World.Config.Height}) {
+                        var center=game.View.WorldToViewportPoint(new Vector3(game.World.Config.Width*.5f,0,z));
+                        Assert.That(center.x,Is.EqualTo(.5f).Within(.00001f),map+" centerline still leans after R");
+                        var left=game.View.WorldToViewportPoint(new Vector3(2,0,z));
+                        var right=game.View.WorldToViewportPoint(new Vector3(game.World.Config.Width-2,0,z));
+                        Assert.That(left.x+right.x,Is.EqualTo(1).Within(.00001f));
+                        Assert.That(left.y,Is.EqualTo(right.y).Within(.00001f),"Mirrored sides are tilted");
+                    }
+                    Assert.That(scenery.transform.position,Is.EqualTo(position));Assert.That(scenery.transform.rotation,Is.EqualTo(rotation));
+                    Assert.That(game.World.Gold,Is.EqualTo(gold));
+                }
+            }
+            yield return new ExitPlayMode();
+        }
         [UnityTest, Category("DepthPresentation"), Category("FollowThrough")]
         public IEnumerator TowerPortraitsCacheActualModelsWithoutChangingMatch()
         {
@@ -307,7 +341,7 @@ namespace FrostMaze.Tests
             camera.FocusPoint(new FrostMaze.Simulation.V2(22,29));camera.SetZoom(8,true);
             input.Intent=new CameraIntent{Pointer=new Vector2(Screen.width*.5f,Screen.height*.5f),Rotate=1};yield return null;yield return null;
             input.Intent=default;var focus=camera.Focus;float zoom=camera.Zoom;game.ResetView();
-            Assert.That(camera.Yaw,Is.Zero);Assert.That(camera.Focus,Is.EqualTo(focus));Assert.That(camera.Zoom,Is.EqualTo(zoom));
+            Assert.That(camera.Yaw,Is.Zero);Assert.That(camera.Focus,Is.EqualTo(new Vector3(game.World.Config.Width*.5f,focus.y,focus.z)));Assert.That(camera.Zoom,Is.EqualTo(zoom));
             foreach(var name in new[]{"Rimewatch","Ironfold"}){
                 if(game.Map.name!=name){game.ChooseMap(Resources.Load<MapDefinition>(name));yield return null;yield return null;game=Object.FindFirstObjectByType<Prototype>();}
                 var backdrop=Object.FindFirstObjectByType<WorldBackdrop>();Assert.That(backdrop,Is.Not.Null);
@@ -837,7 +871,7 @@ namespace FrostMaze.Tests
             game=Object.FindFirstObjectByType<Prototype>();game.StartMatch();game.Paused=true;game.World.Players[0].Wood=4; /* Milestone fixture; reward timing is tested separately. */
             game.World.SelectedDesign=6;
             Assert.That(game.World.OrderBuild(26,6,out _),Is.False,"Champion must remain locked before its six prerequisites");
-            string[] paths={"Sentry weapon/Fuse barrel","Sentry weapon/Iron gauntlet","Artillery weapon/Shear blade","Sentry weapon/Ranger rifle","Interceptor weapon/Flare rocket pod","Control weapon/Cryo reservoir","Champion weapon/Echo crest"};
+            string[] paths={"Sentry weapon/Lantern copper hood","Sentry weapon/Ironhand ram","Artillery weapon/Foundry cutting wheel","Sentry weapon/Ranger rear chamber","Interceptor weapon/Beacon petal","Control weapon/Rime glass vessel","Champion weapon/Echo wardbell"};
             for(int d=0;d<7;d++) {
                 game.World.SelectedDesign=d;bool built=false;
                 for(int y=6;y<20&&!built;y++)for(int x=26+d;x<45&&!built;x++)if(game.World.CanBuild(x,y,out _)) {
@@ -855,6 +889,21 @@ namespace FrostMaze.Tests
                 Assert.That(view.transform.Find(paths[i]),Is.Not.Null,"Missing distinct Pulse model");
                 Assert.That(view.GetComponentsInChildren<Collider>().Length,Is.Zero);
             }
+            var wheel=GameObject.Find("Tower "+game.World.Grid.Towers[2].Id).transform.Find(paths[2]);
+            var bell=GameObject.Find("Tower "+game.World.Grid.Towers[6].Id).transform.Find(paths[6]);
+            var wheelPose=wheel.localRotation;var bellPose=bell.localRotation;
+            yield return new WaitForSecondsRealtime(.15f);
+            Assert.That(wheel.localRotation,Is.EqualTo(wheelPose),"Paused cutting wheel moved");
+            Assert.That(bell.localRotation,Is.EqualTo(bellPose),"Paused wardbell moved");
+            for(int tick=0;tick<17;tick++)game.World.Step();yield return null;
+            Assert.That(Quaternion.Angle(wheel.localRotation,wheelPose),Is.GreaterThan(.1f),"Cutting wheel did not follow simulation");
+            Assert.That(Quaternion.Angle(bell.localRotation,bellPose),Is.GreaterThan(.05f),"Wardbell did not follow simulation");
+            game.MoveMode=true;game.World.MoveBuilder(new FrostMaze.Simulation.V2(35,10));
+            for(int tick=0;tick<200;tick++)game.World.Step();yield return null;
+            var foundryCamera=game.View.GetComponent<RtsCamera>();foundryCamera.SetInput(new CameraInputFixture());
+            foundryCamera.FocusPoint(new FrostMaze.Simulation.V2(32,9));foundryCamera.SetZoom(11,true);game.ResetView();yield return null;
+            CaptureWorld(game.View,"/tmp/Howl-Pulse-Workshop-Normal.png");
+            foundryCamera.SetZoom(5,true);yield return null;CaptureWorld(game.View,"/tmp/Howl-Pulse-Workshop-Close.png");
             var champion=game.World.Grid.Towers[6];
             Assert.That(game.World.Upgrade(champion.Id,out _),Is.True);
             yield return null;

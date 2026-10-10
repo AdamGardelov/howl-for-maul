@@ -106,14 +106,14 @@ namespace FrostMaze
             game.SoundEnabled=SettingToggle("Combat & world sound",game.SoundEnabled);
             GUILayout.Label("Effects volume",small);game.EffectsVolume=GUILayout.HorizontalSlider(game.EffectsVolume,0,1);
             GUILayout.Label("Music volume",small);game.MusicVolume=GUILayout.HorizontalSlider(game.MusicVolume,0,1);
-            if(HudButton("RESET CAMERA ANGLE [R]",button))game.ResetView();
+            if(HudButton("CENTER CAMERA / NORTH [R]",button))game.ResetView();
             GUILayout.Label("\""+(game.World.Config.Theme=="iron"?"Signal to Noise":"Snowfall")+"\" by Scott Buckley\nCC BY 4.0 · scottbuckley.com.au",small);
             if(HudButton("MUSIC & LICENSE CREDITS",button))Application.OpenURL("https://www.scottbuckley.com.au/library/"+(game.World.Config.Theme=="iron"?"signal-to-noise/":"snowfall/"));
             game.ShowGrid=SettingToggle("Placement grid",game.ShowGrid);
             GUILayout.BeginHorizontal();DrawSpeedControls();GUILayout.EndHorizontal();
             if(game.NetworkMatch&&!game.Net.IsHost)GUILayout.Label("The host controls the shared game speed.",small);
             if(!Application.isEditor)Screen.fullScreen=SettingToggle("Fullscreen window",Screen.fullScreen);
-            GUILayout.Space(8);GUILayout.Label((game.NetworkMatch&&!game.Net.IsHost?"Speed: shared by everyone; controlled by the host.":"Speed [− / +]: 0.5× / 1× / 2× / 3×.")+"\nDetails [Tab]: wave advice, tower stats and inspection tools.\nEdges / WASD: pan · Space + drag: pan · wheel: zoom\nQ / E: rotate · R: reset angle · Home: builder\nHold Alt: reveal all health bars",small);
+            GUILayout.Space(8);GUILayout.Label((game.NetworkMatch&&!game.Net.IsHost?"Speed: shared by everyone; controlled by the host.":"Speed [− / +]: 0.5× / 1× / 2× / 3×.")+"\nDetails [Tab]: wave advice, tower stats and inspection tools.\nEdges / WASD: pan · Space + drag: pan · wheel: zoom\nQ / E: rotate · R: center / north · Home: builder\nHold Alt: reveal all health bars",small);
             GUILayout.EndScrollView();GUILayout.EndArea();GUI.matrix=matrix;
         }
     }

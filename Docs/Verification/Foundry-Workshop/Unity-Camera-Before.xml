@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Failed(Child)" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-10 09:16:37Z" end-time="2026-10-10 09:16:38Z" duration="0.4977662">
+  <test-suite type="TestSuite" id="1000" name="Howl for Maul" fullname="Howl for Maul" runstate="Runnable" testcasecount="120" result="Failed" site="Child" start-time="2026-10-10 09:16:37Z" end-time="2026-10-10 09:16:38Z" duration="0.497766" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1134" name="FrostMaze.Tests.dll" fullname="/home/adam/Documents/Codex/2026-10-06/cre/work/howl-logo-build/Library/ScriptAssemblies/FrostMaze.Tests.dll" runstate="Runnable" testcasecount="120" result="Failed" site="Child" start-time="2026-10-10 09:16:37Z" end-time="2026-10-10 09:16:38Z" duration="0.414258" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="289016" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1135" name="FrostMaze" fullname="FrostMaze" runstate="Runnable" testcasecount="120" result="Failed" site="Child" start-time="2026-10-10 09:16:37Z" end-time="2026-10-10 09:16:38Z" duration="0.407564" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1136" name="Tests" fullname="FrostMaze.Tests" runstate="Runnable" testcasecount="120" result="Failed" site="Child" start-time="2026-10-10 09:16:37Z" end-time="2026-10-10 09:16:38Z" duration="0.402265" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1008" name="PlayModeIntegration" fullname="FrostMaze.Tests.PlayModeIntegration" classname="FrostMaze.Tests.PlayModeIntegration" runstate="Runnable" testcasecount="26" result="Failed" site="Child" start-time="2026-10-10 09:16:37Z" end-time="2026-10-10 09:16:38Z" duration="0.392348" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1013" name="NorthResetCentersMirroredMapsWithoutChangingZoomOrDepth" fullname="FrostMaze.Tests.PlayModeIntegration.NorthResetCentersMirroredMapsWithoutChangingZoomOrDepth" methodname="NorthResetCentersMirroredMapsWithoutChangingZoomOrDepth" classname="FrostMaze.Tests.PlayModeIntegration" runstate="Runnable" seed="786299966" result="Failed" start-time="2026-10-10 09:16:32Z" end-time="2026-10-10 09:16:38Z" duration="6.097373" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="CameraCenter" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Ironfold centerline still leans after R
+  Expected: 0.5f +/- 9.99999975E-06f
+  But was:  -14.5061979f
+]]></message>
+                <stack-trace><![CDATA[at FrostMaze.Tests.PlayModeIntegration+<NorthResetCentersMirroredMapsWithoutChangingZoomOrDepth>d__6.MoveNext () [0x0041d] in /home/adam/Documents/Codex/2026-10-06/cre/work/howl-logo-build/Assets/Tests/PlayModeIntegration.cs:139
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@0bd5c5194236/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:44
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[Saving results to: /home/adam/Documents/Codex/2026-10-06/cre/work/hearth-test-config/unity3d/Howl for Maul/Howl for Maul/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

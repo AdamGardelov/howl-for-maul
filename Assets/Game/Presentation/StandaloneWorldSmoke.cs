@@ -64,7 +64,11 @@ namespace FrostMaze
                 world.Spawn(new WaveSpec{Health=5000,Speed=3},tower.Center+new V2(2.5f,1.5f));
                 world.Spawn(new WaveSpec{Health=5000,Speed=2,Flying=true},tower.Center+new V2(-1.5f,2));
                 game.Paused=false;yield return new WaitForSecondsRealtime(1.5f);game.Paused=true;yield return Capture(map+"-Paid-Defense");
-                camera.Overview();yield return Capture(map+"-Overview");
+                camera.Overview();camera.Focus.x+=4;game.ResetView();
+                foreach(float z in new[]{0f,(float)world.Config.Height})
+                    if(Mathf.Abs(game.View.WorldToViewportPoint(new Vector3(world.Config.Width*.5f,0,z)).x-.5f)>.00001f){Fail("Camera reset is off center");yield break;}
+                yield return Capture(map+"-Overview");
+                Debug.Log("HOWL_CAMERA_CENTER_PASS "+map+" north=true centerline=true");
                 Debug.Log("HOWL_WORLD_CHECK_PASS "+map+" refugeVertices="+total+" paidTowers="+built+" spent="+spent+" maskUnchanged=true mirrored=true");
             }
             Debug.Log("HOWL_WORLD_CHECK_COMPLETE");Application.Quit(0);

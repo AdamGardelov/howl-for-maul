@@ -54,6 +54,14 @@ namespace FrostMaze
                 palette[0].color=bodies[faction];palette[3].color=trims[faction];
                 palette[4].color=Color.Lerp(bodies[faction],new Color(.10f,.13f,.11f),.7f);
                 if(faction==3||faction==5){palette[0].mainTexture=ActorTexture("Wood");palette[0].SetFloat("_Metallic",0);palette[0].SetFloat("_Smoothness",.16f);}
+                if(faction==0){
+                    palette[0].color=new Color(.48f,.29f,.15f); // Worked copper, like Ironfold's roofs.
+                    palette[0].SetFloat("_Metallic",.38f);palette[0].SetFloat("_Smoothness",.24f);
+                    palette[1].color=new Color(.26f,.45f,.39f); // Verdigris and subdued sea-glass.
+                    palette[3].color=new Color(.69f,.53f,.29f);
+                    palette[4].color=new Color(.31f,.34f,.29f);palette[4].mainTexture=ActorTexture("Stone");
+                    palette[4].SetFloat("_Metallic",0);palette[4].SetFloat("_Smoothness",.12f);
+                }
                 if(faction==2){palette[0].SetFloat("_Metallic",.06f);palette[0].SetFloat("_Smoothness",.4f);}
             }
         }

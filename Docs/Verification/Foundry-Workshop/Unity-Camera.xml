@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="4" result="Passed" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-10 09:18:09Z" end-time="2026-10-10 09:18:10Z" duration="0.5999126">
+  <test-suite type="TestSuite" id="1000" name="Howl for Maul" fullname="Howl for Maul" runstate="Runnable" testcasecount="120" result="Passed" start-time="2026-10-10 09:18:09Z" end-time="2026-10-10 09:18:10Z" duration="0.599913" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1134" name="FrostMaze.Tests.dll" fullname="/home/adam/Documents/Codex/2026-10-06/cre/work/howl-logo-build/Library/ScriptAssemblies/FrostMaze.Tests.dll" runstate="Runnable" testcasecount="120" result="Passed" start-time="2026-10-10 09:18:09Z" end-time="2026-10-10 09:18:10Z" duration="0.461151" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="289411" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1135" name="FrostMaze" fullname="FrostMaze" runstate="Runnable" testcasecount="120" result="Passed" start-time="2026-10-10 09:18:09Z" end-time="2026-10-10 09:18:10Z" duration="0.445767" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1136" name="Tests" fullname="FrostMaze.Tests" runstate="Runnable" testcasecount="120" result="Passed" start-time="2026-10-10 09:18:09Z" end-time="2026-10-10 09:18:10Z" duration="0.438770" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1008" name="PlayModeIntegration" fullname="FrostMaze.Tests.PlayModeIntegration" classname="FrostMaze.Tests.PlayModeIntegration" runstate="Runnable" testcasecount="26" result="Passed" start-time="2026-10-10 09:18:09Z" end-time="2026-10-10 09:18:10Z" duration="0.422133" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1015" name="CameraDragRejectsUiOriginsAndFreezesInSetup" fullname="FrostMaze.Tests.PlayModeIntegration.CameraDragRejectsUiOriginsAndFreezesInSetup" methodname="CameraDragRejectsUiOriginsAndFreezesInSetup" classname="FrostMaze.Tests.PlayModeIntegration" runstate="Runnable" seed="589110498" result="Passed" start-time="2026-10-10 09:17:43Z" end-time="2026-10-10 09:17:49Z" duration="6.223776" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="DepthPresentation" />
+                <property name="Category" value="FollowThrough" />
+              </properties>
+            </test-case>
+            <test-case id="1013" name="NorthResetCentersMirroredMapsWithoutChangingZoomOrDepth" fullname="FrostMaze.Tests.PlayModeIntegration.NorthResetCentersMirroredMapsWithoutChangingZoomOrDepth" methodname="NorthResetCentersMirroredMapsWithoutChangingZoomOrDepth" classname="FrostMaze.Tests.PlayModeIntegration" runstate="Runnable" seed="1192644674" result="Passed" start-time="2026-10-10 09:17:49Z" end-time="2026-10-10 09:17:56Z" duration="6.740510" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="CameraCenter" />
+              </properties>
+              <output><![CDATA[HOWL_MAP_READY Rimewatch ms=636.7 baked=True
+]]></output>
+            </test-case>
+            <test-case id="1010" name="SetupPreviewFitsBesideMenuAndRestoresCamera" fullname="FrostMaze.Tests.PlayModeIntegration.SetupPreviewFitsBesideMenuAndRestoresCamera" methodname="SetupPreviewFitsBesideMenuAndRestoresCamera" classname="FrostMaze.Tests.PlayModeIntegration" runstate="Runnable" seed="1224257664" result="Passed" start-time="2026-10-10 09:17:56Z" end-time="2026-10-10 09:18:04Z" duration="8.175766" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="SetupPreview" />
+              </properties>
+              <output><![CDATA[HOWL_MAP_READY Rimewatch ms=634.3 baked=True
+HOWL_MAP_READY Ironfold ms=888.2 baked=True
+]]></output>
+            </test-case>
+            <test-case id="1009" name="TitleScreenFreezesWorldAndReturnsToSetup" fullname="FrostMaze.Tests.PlayModeIntegration.TitleScreenFreezesWorldAndReturnsToSetup" methodname="TitleScreenFreezesWorldAndReturnsToSetup" classname="FrostMaze.Tests.PlayModeIntegration" runstate="Runnable" seed="1925937854" result="Passed" start-time="2026-10-10 09:18:04Z" end-time="2026-10-10 09:18:10Z" duration="5.635863" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="TitleScreen" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: /home/adam/Documents/Codex/2026-10-06/cre/work/hearth-test-config/unity3d/Howl for Maul/Howl for Maul/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

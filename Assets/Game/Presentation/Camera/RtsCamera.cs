@@ -13,6 +13,13 @@ namespace FrostMaze
         public float Zoom => view.orthographicSize;
         float targetZoom,lastZoom;
         public void ResetRotation(){Yaw=0;Apply();}
+        public void CenterNorth()
+        {
+            // An off-axis perspective view still makes the map's spine lean after yaw resets.
+            // Return to its symmetry plane without pulling the player out of the current area.
+            Focus.x=(BoundsMin.x+BoundsMax.x)*.5f;
+            ResetRotation();
+        }
         Vector3 GroundRight => Quaternion.Euler(0,Yaw,0)*Vector3.right;
         Vector3 GroundUp => Quaternion.Euler(0,Yaw,0)*Vector3.forward;
         ICameraInput source = new DesktopInput();

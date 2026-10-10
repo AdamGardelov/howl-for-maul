@@ -261,7 +261,10 @@ namespace FrostMaze
                 float recoil=Mathf.Clamp01(1-(game.World.Tick-shotTick)/6f)*(Role=="Artillery"?.14f:.09f);
                 weapon.localPosition=-(weapon.localRotation*Vector3.forward)*recoil;
             }
-            if(kinetic!=null)kinetic.localRotation=kineticRest*Quaternion.AngleAxis(game.World.Tick*World.FixedDelta*kineticSpeed,Vector3.up);
+            if(kinetic!=null){
+                float phase=game.World.Tick*World.FixedDelta*kineticSpeed;
+                kinetic.localRotation=kineticRest*(kineticSwing?Quaternion.AngleAxis(Mathf.Sin(phase*Mathf.Deg2Rad)*5,Vector3.forward):Quaternion.AngleAxis(phase,Vector3.up));
+            }
         }
     }
 }

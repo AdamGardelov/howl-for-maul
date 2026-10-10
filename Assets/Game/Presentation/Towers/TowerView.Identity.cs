@@ -3,7 +3,7 @@ namespace FrostMaze
 {
     public sealed partial class TowerView
     {
-        Transform kinetic;Quaternion kineticRest;float kineticSpeed;
+        Transform kinetic;Quaternion kineticRest;float kineticSpeed;bool kineticSwing;
         void FitSilhouette()
         {
             // Keep even diagonal weapon turns and upgrades inside the actual occupied cell.
@@ -55,13 +55,8 @@ namespace FrostMaze
         void FactionArchitecture(Material trim,Material dark,int faction,bool iron)
         {
             if(!iron){WinterArchitecture(trim,dark,faction);return;}
-            if(faction==0){ // Pulse: standing armored companions, with clearly separated legs.
-                LowerWeapon(1,-.25f);
-                for(int side=-1;side<=1;side+=2){
-                    var shoulder=Part("Enamel shoulder guard",PrimitiveType.Sphere,new Vector3(side*.25f,.72f,-.025f),new Vector3(.30f,.25f,.38f),shell,weapon);
-                    shoulder.GetComponent<MeshFilter>().sharedMesh=game.Models.Armor;
-                }
-                Part("Foundry breastplate",PrimitiveType.Sphere,new Vector3(0,.5f,.17f),new Vector3(.35f,.37f,.15f),trim,weapon);
+            if(faction==0){ // Pulse instruments carry their own masonry beds and cast frames.
+                return;
             }else if(faction==1){ // Blast: low six-legged siege beetles, not upright soldiers.
                 for(int side=-1;side<=1;side+=2)for(int leg=-1;leg<=1;leg++){
                     var knee=new Vector3(side*.34f,.29f,leg*.22f);

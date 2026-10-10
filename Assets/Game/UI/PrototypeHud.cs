@@ -299,7 +299,7 @@ namespace FrostMaze
             MiniDot(r,new V2(focus.x,focus.z),Color.yellow,3);
             GUI.color=Color.white;
             }
-            if(HudButton(new Rect(r.xMax-50*game.UiScale,r.y-25*game.UiScale,50*game.UiScale,22*game.UiScale),new GUIContent("N  [R]","Reset camera angle. Click or drag the map to travel."),minimapNorth))game.ResetView();
+            if(HudButton(new Rect(r.xMax-50*game.UiScale,r.y-25*game.UiScale,50*game.UiScale,22*game.UiScale),new GUIContent("N  [R]","Face north and center the map horizontally. Keeps your zoom and distance along the map."),minimapNorth))game.ResetView();
             GUI.Label(new Rect(r.x,r.yMax+5*game.UiScale,r.width,18*game.UiScale),"Click or drag to travel",minimapCaption);
         }
         void DrawMinimapEdge(Vector2 a,Vector2 b,Rect rect)

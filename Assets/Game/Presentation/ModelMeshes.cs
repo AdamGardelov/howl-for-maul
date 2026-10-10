@@ -58,6 +58,41 @@ namespace FrostMaze
                 return Save(name,v,t);
             }
         }
+        public Mesh CurvedPipe(string key,Vector3[] points,float width)
+        {
+            key="Cast pipe "+key;if(meshes.TryGetValue(key,out var cached))return cached;
+            const int steps=6,sides=10;
+            var centers=new List<Vector3>();
+            for(int section=0;section<points.Length-1;section++)for(int step=0;step<steps;step++){
+                float t=step/(float)steps;
+                var a=points[Mathf.Max(0,section-1)];var b=points[section];var c=points[section+1];var d=points[Mathf.Min(points.Length-1,section+2)];
+                centers.Add(.5f*((2*b)+(-a+c)*t+(2*a-5*b+4*c-d)*t*t+(-a+3*b-3*c+d)*t*t*t));
+            }
+            centers.Add(points[points.Length-1]);
+            var vertices=new List<Vector3>();var triangles=new List<int>();var normals=new List<Vector3>();
+            for(int ring=0;ring<centers.Count;ring++){
+                var tangent=(centers[Mathf.Min(ring+1,centers.Count-1)]-centers[Mathf.Max(0,ring-1)]).normalized;
+                var frame=Quaternion.FromToRotation(Vector3.up,tangent);
+                for(int side=0;side<sides;side++){
+                    float angle=side*Mathf.PI*2/sides;var normal=frame*new Vector3(Mathf.Cos(angle),0,Mathf.Sin(angle));
+                    vertices.Add(centers[ring]+normal*width*.5f);normals.Add(normal);
+                    if(ring==0)continue;
+                    int a=(ring-1)*sides+side,b=ring*sides+side,c=ring*sides+(side+1)%sides,d=(ring-1)*sides+(side+1)%sides;
+                    triangles.AddRange(new[]{a,b,c,a,c,d});
+                }
+            }
+            // Closed ends prevent an open tube being visible where it meets the cast housing.
+            for(int end=0;end<2;end++){
+                int ring=end==0?0:centers.Count-1,index=vertices.Count;
+                var normal=(centers[ring]-centers[end==0?1:centers.Count-2]).normalized;
+                vertices.Add(centers[ring]);normals.Add(normal);
+                for(int side=0;side<sides;side++){
+                    int a=ring*sides+side,b=ring*sides+(side+1)%sides;
+                    triangles.AddRange(end==0?new[]{index,a,b}:new[]{index,b,a});
+                }
+            }
+            var mesh=Save(key,vertices,triangles);mesh.SetNormals(normals);return mesh;
+        }
         Mesh Profile(string name,int sides,float[] heights,float[] radii,bool smooth=false)
         {
             if(meshes.TryGetValue(name,out var mesh))return mesh;

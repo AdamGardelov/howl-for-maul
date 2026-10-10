@@ -20,7 +20,7 @@ The old common pedestal, rear buttresses, skirt and magazines were making unrela
 
 | Order | Shape and material direction |
 |---|---|
-| Pulse Foundry | Standing enamel-armored companions, separated boots, shoulder guards and arm weapons |
+| Pulse Foundry | Superseded by the [workshop pass](FOUNDRY-WORKSHOP.md): copper instruments, presses and wardbells on slate beds |
 | Blast Circuit | Squat copper siege beetles with six articulated legs and broad bodies |
 | Prism Division | Ivory glass shrines, split petals, suspended crystals and turning orbit rings |
 | Horizon Guild | Timber survey tripods, brass fittings, strung ballista arms and long cradles |

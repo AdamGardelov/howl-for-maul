@@ -25,7 +25,7 @@ Landmarks belong to these places: a forge needs a chimney, fuel and worn stone; 
 | Stonebound | Masons who wake the mountain | Heavy stepped shoulders, earth green, carved bronze |
 | Ember Assembly | Hearth-tenders turned defenders | Furnace mouths, copper and amber |
 | Volt Vanguard | Couriers who harness mountain storms | Forked lightning, bright blue, brass conductors |
-| Pulse Foundry | Ironfold's precise clockwork guard | Twin barrel / pulse mark, cyan, dark steel |
+| Pulse Foundry | Ironfold's workshop keepers turning hearth instruments into defenses | Cast copper, slate beds, verdigris glass, presses and wardbells; small cyan cores |
 | Blast Circuit | Demolition crews holding their own homes | Broad armor, paired charges, violet |
 | Prism Division | Keepers of signal glass | Faceted lenses, teal glass, pale trim |
 | Horizon Guild | Surveyors and watchkeepers | Long sights, sun discs, warm gold |
