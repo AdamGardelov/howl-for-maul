@@ -1,3 +1,11 @@
+## 2026-10-10 — Friends Playtest 4 published
+
+The user requested a new release after the enemy redesign. [Friends Playtest 4: The Howl Host](https://github.com/AdamGardelov/howl-for-maul/releases/tag/v0.1.0-playtest.4) is public at 2026-10-10T17:16:13Z. Annotated tag `v0.1.0-playtest.4` points to exact game source `f18ce85`. Both desktop archives contain the eight-form enemy host, all twelve faction themes/76 defenders and the construction routing fix. No runtime or service settings were changed in this release turn.
+
+[Release evidence](Verification/Friends-Playtest-4/README.md): unmodified package guard, both source/player-tree checks, all archive payload hashes and metadata pass (196 Linux / 197 Windows files). The extracted Linux launcher passes both-map data and menu/settings/credits/map-change/solo/resize checks with clean exits; the small HUD screenshot was inspected. All four anonymous public downloads match size/SHA-256 and GitHub digests. Exact notes and source tag match. Scott Buckley and font notices are included. README now links to Playtest 4; everyone should use fresh matching installations. Previous release assets remain unchanged.
+
+No new Unity rebuild or automation was needed. Private verification player/display processes ended cleanly. Native Windows, hardware GPU/FPS, fresh Relay and separate-network/four-player/full online match validation remain open. Continue the creature vocals/death-motion/forecast-portrait priorities below when asked; this remains a first procedural creature art pass.
+
 ## 2026-10-10 — Eight Howl creatures, tested local builds
 
 The user asked to start the enemy redesign after the defender/faction overhaul. [The Howl host](HOWL-HOST.md) now has eight original creature forms: Hearthgnawer, Thornrunner, Ashling swarm, Cairnback, Hollow Warden, Gloamwing, Gatebreaker and Storm Herald. Both maps have regional materials, with frost details on Rimewatch. Details/inspection show their names. Wave 20 remains thirty flyers; no new boss mechanics or balance edits.

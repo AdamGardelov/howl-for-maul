@@ -1,0 +1,17 @@
+{
+  "sourceCommit": "f18ce85ab18e7615e8463991794a68999a58b0ce",
+  "archives": {
+    "Howl-for-Maul-v0.1.0-playtest.4-Linux-x64.tar.gz": {
+      "files": 196,
+      "allPayloadHashesMatch": true,
+      "buildInfoMatches": true,
+      "creditsPresent": true
+    },
+    "Howl-for-Maul-v0.1.0-playtest.4-Windows-x64.zip": {
+      "files": 197,
+      "allPayloadHashesMatch": true,
+      "buildInfoMatches": true,
+      "creditsPresent": true
+    }
+  }
+}

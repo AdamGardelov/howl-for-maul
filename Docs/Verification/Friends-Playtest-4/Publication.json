@@ -1,0 +1,41 @@
+{
+  "id": 409088098,
+  "tag_name": "v0.1.0-playtest.4",
+  "name": "Howl for Maul \u2014 Friends Playtest 4: The Howl Host",
+  "html_url": "https://github.com/AdamGardelov/howl-for-maul/releases/tag/v0.1.0-playtest.4",
+  "draft": false,
+  "prerelease": true,
+  "published_at": "2026-10-10T17:16:13Z",
+  "gameSourceCommit": "f18ce85ab18e7615e8463991794a68999a58b0ce",
+  "anonymousDownloads": {
+    "Howl-for-Maul-v0.1.0-playtest.4-Linux-x64.tar.gz": {
+      "assetId": 628526350,
+      "url": "https://github.com/AdamGardelov/howl-for-maul/releases/download/v0.1.0-playtest.4/Howl-for-Maul-v0.1.0-playtest.4-Linux-x64.tar.gz",
+      "bytes": 69827085,
+      "sha256": "f4f13df032b4295c0c03578d0b8c7ae1864d5844a264202910be3343ce6edd73",
+      "matchesLocal": true
+    },
+    "Howl-for-Maul-v0.1.0-playtest.4-Windows-x64.zip": {
+      "assetId": 628527517,
+      "url": "https://github.com/AdamGardelov/howl-for-maul/releases/download/v0.1.0-playtest.4/Howl-for-Maul-v0.1.0-playtest.4-Windows-x64.zip",
+      "bytes": 72625637,
+      "sha256": "0a228ce621ac3ae76db9d42e03e888b52863cba743a28ba3093472ef9cf3ee61",
+      "matchesLocal": true
+    },
+    "RELEASE-MANIFEST.json": {
+      "assetId": 628528617,
+      "url": "https://github.com/AdamGardelov/howl-for-maul/releases/download/v0.1.0-playtest.4/RELEASE-MANIFEST.json",
+      "bytes": 855,
+      "sha256": "7862c0eab9c89fd1a3b368fb457ca7ee61268637acafcb4097c1c82d3ce1d3c5",
+      "matchesLocal": true
+    },
+    "SHA256SUMS.txt": {
+      "assetId": 628528630,
+      "url": "https://github.com/AdamGardelov/howl-for-maul/releases/download/v0.1.0-playtest.4/SHA256SUMS.txt",
+      "bytes": 317,
+      "sha256": "73cdbed607b0a79573ae66ef4c27de21f892f0eb30b3c7bac3a9f5c18070d813",
+      "matchesLocal": true
+    }
+  },
+  "verifiedAt": "2026-10-10T17:16:40.000147+00:00"
+}
