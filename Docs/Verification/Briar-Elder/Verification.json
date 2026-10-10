@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-10",
+  "baseCommit": "9ddf813162acda44152112b908a909bda6ce1ef6",
+  "unity": "6000.3.25f1",
+  "renderer": "Linux OpenGL llvmpipe / private Xvfb :98",
+  "tests": {
+    "total": "7",
+    "passed": "7",
+    "failed": "0",
+    "end-time": "2026-10-10 10:23:11Z"
+  },
+  "sources": {
+    "Assets/Game/Maps/Resources/Rimewatch.asset": "b7ea8c09c9de0a759e28c9efc186b335fc7a4382e0ef4f45d9db3b452ab33131",
+    "Assets/Game/Presentation/Effects/ProjectileCue.cs": "d6368633e0e2729ebeb84eac98f23d5808cd50a91e8e5951f5dc27b974b4ab74",
+    "Assets/Game/Presentation/Effects/ProjectileStyle.cs": "a6956ee17e4f4251ec5fd115c405c187b618222b8a587d32f35253a63204ff1c",
+    "Assets/Game/Presentation/ModelMeshes.cs": "43cf53a6848a7441650b794996af445198d69eb0d0a6c92b95beca82015cff23",
+    "Assets/Game/Presentation/Towers/TowerView.Rootbound.cs": "67d9d300416abec72cd581dfdb3b407594a71ce6f648635624ec07b661fbc5fe",
+    "Assets/Game/Simulation/Waves/Factions.cs": "7d57adfa46f6f4ba53084176c3531e47bdac8e840a562d1f709758b8eff4ad41",
+    "Assets/Tests/PlayModeIntegration.cs": "923aaa0b647c8fc1f07f80e5e5d80a7f442d2ced8e56d0b83bf386bf629a4ebf"
+  },
+  "packages": {
+    "Linux": {
+      "path": "Builds/Linux-World",
+      "previous": "Builds/Linux-World-9ddf813",
+      "previousTreeSha256": "dfded3154c1d79194f14a0c93ad3568058dd6a46df30ea1a1ccc8bf69bcf0568",
+      "fileCount": 193,
+      "treeSha256": "2670472f111fb12e4ee2e97029fae61e24193cdd70e9b9e1b2221711ed7f575a",
+      "ScottBuckleyNotices": "96c119336e46c5d4a9b12047041012e47bad686c7e7028e2865db8edf4d800b8",
+      "musicSources": "bb1435367b1c2971efe67b2b0d90415981595fd87561c29e4efa6fba061ac36a"
+    },
+    "Windows": {
+      "path": "Builds/Windows-World",
+      "previous": "Builds/Windows-World-9ddf813",
+      "previousTreeSha256": "a985a1de313d15cebc3733be4f6e564f187b8b3baf46cda0ba4e8ef3ce4b6f0b",
+      "fileCount": 195,
+      "treeSha256": "e828fccb451836f3aef0c2f7093e36a4e6d86b38a9b1224133e5d28ab0f2961b",
+      "ScottBuckleyNotices": "96c119336e46c5d4a9b12047041012e47bad686c7e7028e2865db8edf4d800b8",
+      "musicSources": "bb1435367b1c2971efe67b2b0d90415981595fd87561c29e4efa6fba061ac36a"
+    }
+  },
+  "gameDataChange": "Design name and description only; reversing the two strings reproduces both original data files exactly.",
+  "mapMasksAndTenBakedPngsUnchanged": true,
+  "testScope": "7/7 relevant Unity presentation cases, including all-model cell envelopes, portrait/preview reuse, projectile lifecycle and the paid Rootbound grove. No full suite claim.",
+  "linuxBuild": "passed; both-map world and menu smoke passed",
+  "windowsBuild": "cross-build passed; native execution untested",
+  "packagedWorld": {
+    "Ironfold": {
+      "paidTowers": 8,
+      "spent": 80
+    },
+    "Rimewatch": {
+      "paidTowers": 6,
+      "spent": 240,
+      "fiveDesignRosterSpent": 228
+    }
+  },
+  "paidGroveUpgradeFixture": "1000 gold added after verified normal 228-gold opening construction, solely for all level-three geometry checks",
+  "newFullCampaign": "not run",
+  "humanInput": "not rerun this pass",
+  "hardwarePerformance": "not measured; software rendering only",
+  "network": "not rerun for this presentation change",
+  "publicRelease": "v0.1.0-playtest.1 remains unchanged",
+  "artScope": "Burr Elder becomes Briar Elder, with an exposed hawthorn crown and barbed thorn cluster projectiles. Other designs are unchanged.",
+  "audio": "Existing sounds and soundtrack unchanged",
+  "isolatedTarget": "restored to Linux"
+}

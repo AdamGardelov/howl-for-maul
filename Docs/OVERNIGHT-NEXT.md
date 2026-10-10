@@ -1,3 +1,13 @@
+## 2026-10-10 — Briar Elder throws thorns
+
+The player requested a thorn tree. Rootbound’s Burr Elder becomes **Briar Elder**, a hawthorn with exposed hooked branches, sparse leaves, a winding vine and a loaded throwing hand. A three-thorn barbed cluster and longer impact splinters replace the seed pod. Name/description only in gameplay data; all numbers, design IDs, masks, economy and ownership remain unchanged. Other defenders and audio are unchanged. [Evidence and actual screenshots](Verification/Briar-Elder/README.md).
+
+7/7 relevant Unity cases pass, including all-model level-three/diagonal cell checks, portraits/previews, projectiles and the paid animated grove. Packaged both-map world checks pass (Ironfold 8 / 80 gold; Rimewatch 6 / 240 gold), along with menu/settings/credits/map/solo/resize. Close/normal/gameplay/portrait/projectile and small HUD captures inspected. Linux and Windows builds succeed; Windows remains cross-build only. No new full campaign, network/Relay, hardware or full-suite claim.
+
+Local candidates: Builds/Linux-World and Builds/Windows-World. Previous candidates preserved as *-World-9ddf813. Installed files match tested outputs. Source and exact unchanged numerical data/maps verified; Scott Buckley credits retained. Public Playtest 1 remains unchanged. All owned jobs closed and isolated target restored to Linux. Scripts/logs begin work/thorn-. Use the same isolated project/private display and preferences below. No automation changes.
+
+Continue the creature-family priorities below. The thorn guardian is implemented; the remaining faction charter is still a target, not completed art.
+
 ## 2026-10-10 — Rootbound and the creature-faction direction
 
 The player explicitly wants living creature factions and a faction of ancient trees with different species and seed/sapling attacks. [The identity charter](FACTION-IDENTITY-CHARTER.md) establishes a distinct direction for every order and identifies the still-unimplemented targets. Rootbound replaces former Stonebound on Rimewatch: hazel Seedling Warden, oak Oldbark, chestnut Burr Elder, pine Skybough and willow Worldroot. Original heartwood/leaf meshes, faces, crowns, branch motion and earthy seed projectiles are implemented. Saplings are visual projectiles, not summoned allies. Names/descriptions change in the map and factory; all IDs, stats, costs, roles and masks remain intact. Other factions retain their preceding models. Do not claim the whole charter is already implemented.

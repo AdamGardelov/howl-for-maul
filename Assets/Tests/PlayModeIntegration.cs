@@ -732,7 +732,7 @@ namespace FrostMaze.Tests
             game.View.GetComponent<RtsCamera>().Overview();
             Assert.That(game.View.orthographicSize,Is.GreaterThan(11));
             game.SetupOptions.Factions[0]=1;game.StartMatch();game.Paused=true;game.World.Players[0].Gold=1200; /* Explicit later-game model fixture. */
-            string[] stoneSignatures={"Artillery weapon/Sapling trunk","Wall weapon/Old oak trunk","Artillery weapon/Chestnut elder","Interceptor weapon/Sky pine trunk","Control weapon/Willow heartwood"};
+            string[] stoneSignatures={"Artillery weapon/Sapling trunk","Wall weapon/Old oak trunk","Artillery weapon/Briar heartwood","Interceptor weapon/Sky pine trunk","Control weapon/Willow heartwood"};
             for(int i=0;i<5;i++) {
                 game.World.SelectedDesign=5+i;
                 Assert.That(game.World.OrderBuild(16+i,14,out _),Is.True);

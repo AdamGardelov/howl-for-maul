@@ -12,7 +12,7 @@ Rootbound replaces the former Stonebound presentation on Rimewatch. Its faction/
 |---|---|---|
 | Seedling Warden (formerly Pebble Warden) | Young forked hazel, bright eyes, broad leaf ears | Small acorn volleys, ground and air |
 | Oldbark (formerly Basalt Ward) | Broad old oak with folded arms and a sheltered acorn nook | Durable living maze wall; no attack |
-| Burr Elder (formerly Quake Idol) | Split-crowned chestnut, a heavy throwing bough | Thorny seed pods with ground splash |
+| Briar Elder (formerly Burr Elder / Quake Idol) | Twisted hawthorn, exposed thorn crown and a heavy throwing bough | Barbed thorn clusters with ground splash |
 | Skybough (formerly Crag Hurler) | Narrow upright pine with raised branch fingers | Winged seeds aimed at flying enemies |
 | Worldroot | Old willow, root beard and hanging leaf curtains | Sapling-shaped bursts with the existing slowing ground impact |
 
@@ -24,7 +24,7 @@ The table below is the target for subsequent model work, **not a claim that all 
 
 | Order | Strong identity to build toward | Readable variety inside the family |
 |---|---|---|
-| Rootbound | Ancient living trees | Hazel, sheltering oak, chestnut, pine, willow; different ages and postures |
+| Rootbound | Ancient living trees | Hazel, sheltering oak, hawthorn, pine, willow; different ages and postures |
 | Rime Covenant | Snow and frost spirits | Watchful owl, curled snow beast, antlered binder, round hail creature, tall aurora bird |
 | Ember Assembly | Creatures of the village hearth | Cinder newt, sleeping coal beast, wide-mouthed furnace toad, ember bird, ancient ash-backed guardian |
 | Volt Vanguard | Mountain storm wildlife | Alert storm jay, low grounding ram, branching-antler guardian, long-beaked interceptor, great thunderbird |

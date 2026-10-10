@@ -9,7 +9,7 @@ namespace FrostMaze
         GameObject TreePart(string name,Vector3 p,Vector3 size,Material material,Transform parent=null)
         {
             var part=Part(name,PrimitiveType.Sphere,p,size,material,parent??weapon);
-            if(name=="Sapling trunk"||name=="Old oak trunk"||name=="Chestnut elder"||name=="Sky pine trunk"||name=="Willow heartwood")part.GetComponent<MeshFilter>().sharedMesh=game.Models.Heartwood;
+            if(name=="Sapling trunk"||name=="Old oak trunk"||name=="Briar heartwood"||name=="Sky pine trunk"||name=="Willow heartwood")part.GetComponent<MeshFilter>().sharedMesh=game.Models.Heartwood;
             return part;
         }
         void Bough(string name,Vector3[] points,float width,Material material,Transform parent=null)
@@ -21,6 +21,12 @@ namespace FrostMaze
         {
             var leaf=TreePart(name,p,size,material,parent);leaf.GetComponent<MeshFilter>().sharedMesh=game.Models.Leaf;
             leaf.transform.localRotation=Quaternion.Euler(angles);
+        }
+        void Thorn(Vector3 root,Vector3 direction,float length,float width,Transform parent)
+        {
+            var thorn=TreePart("Woody thorn",root,new Vector3(width,length,width),shell,parent);
+            thorn.GetComponent<MeshFilter>().sharedMesh=game.Models.Thorn;
+            thorn.transform.localRotation=Quaternion.FromToRotation(Vector3.up,direction.normalized);
         }
         void Foliage(Vector3 p,float size,int seed,Material pale)
         {
@@ -70,14 +76,23 @@ namespace FrostMaze
                 Foliage(new Vector3(-.25f,-.03f,0),.78f,2,pale);Foliage(new Vector3(.23f,.07f,-.04f),.82f,3,pale);Foliage(new Vector3(0,.26f,0),.79f,4,pale);
                 for(int side=-1;side<=1;side+=2)Bough("Folded oak arm",new[]{new Vector3(side*.25f,.69f,0),new Vector3(side*.37f,.47f,.13f),new Vector3(side*.16f,.40f,.27f)},.17f,shell);
                 TreePart("Acorn nook",new Vector3(-.19f,.29f,.26f),new Vector3(.12f,.15f,.075f),pale);
-            }else if(slot==2){ // An old chestnut with a heavy throwing arm and split crown.
-                TreePart("Chestnut elder",new Vector3(0,.75f,0),new Vector3(.57f,1.22f,.47f),shell);
+            }else if(slot==2){ // An exposed hawthorn crown: hooked wood, sparse leaves and thorn volleys.
+                TreePart("Briar heartwood",new Vector3(0,.75f,0),new Vector3(.57f,1.22f,.47f),shell);
                 TreeFace(1.07f,.42f,.20f,dark,pale);
-                for(int side=-1;side<=1;side+=2)Bough("Chestnut branch",new[]{new Vector3(side*.14f,.97f,-.08f),new Vector3(side*.29f,1.35f,-.07f),new Vector3(side*.24f,1.60f,-.05f)},.15f,shell);
-                Foliage(new Vector3(-.26f,.40f,-.06f),.65f,5,pale);Foliage(new Vector3(.25f,.46f,-.09f),.63f,6,pale);
+                for(int side=-1;side<=1;side+=2){
+                    Bough("Briar crown",new[]{new Vector3(side*.10f,-.27f,-.07f),new Vector3(side*.29f,.05f,-.10f),new Vector3(side*.21f,.40f,-.05f),new Vector3(side*.28f,.57f,0)},.12f,shell,livingCrown);
+                    Thorn(new Vector3(side*.28f,.56f,0),new Vector3(side*.25f,1,.1f),.29f,.15f,livingCrown);
+                    for(int i=0;i<3;i++){
+                        var root=new Vector3(side*(i==1?.27f:.24f),.04f+i*.16f,-.07f);
+                        Thorn(root,new Vector3(side*.8f,.5f,.15f),.23f-i*.02f,.16f,livingCrown);
+                        Leaf("Briar leaf",root+new Vector3(-side*.06f,.03f,-.02f),new Vector3(.21f,.27f,.21f),new Vector3(35,side*35,side*48),i==1?pale:accent,livingCrown);
+                    }
+                    Thorn(new Vector3(side*.22f,.77f,-.015f),new Vector3(side,.5f,0),.23f,.18f,weapon);
+                }
+                Bough("Twisting briar vine",new[]{new Vector3(-.19f,.32f,.10f),new Vector3(.12f,.48f,.22f),new Vector3(.24f,.71f,.02f),new Vector3(.13f,.94f,-.16f)},.07f,dark);
                 Bough("Heavy throwing forearm",new[]{Vector3.zero,new Vector3(.10f,.08f,.08f),new Vector3(.02f,.33f,.10f)},.18f,shell,livingArm);
-                TreePart("Thorn pod",new Vector3(.02f,.40f,.10f),Vector3.one*.24f,accent,livingArm);
-                for(int i=0;i<5;i++){float a=i*Mathf.PI*2/5;Crystal("Pod thorn",new Vector3(Mathf.Sin(a)*.105f+.02f,.45f,Mathf.Cos(a)*.10f+.10f),new Vector3(.06f,.15f,.06f),pale,livingArm);}
+                TreePart("Thorn grasp",new Vector3(.02f,.35f,.10f),new Vector3(.20f,.16f,.18f),shell,livingArm);
+                for(int i=-1;i<=1;i++)Thorn(new Vector3(.02f+i*.055f,.39f,.10f),new Vector3(i*.30f,1,.1f),i==0?.36f:.27f,.14f,livingArm);
             }else if(slot==3){ // A narrow, upright pine spirit with raised branch fingers.
                 TreePart("Sky pine trunk",new Vector3(0,.85f,0),new Vector3(.33f,1.53f,.30f),shell);
                 TreeFace(1.12f,.32f,.12f,dark,pale);

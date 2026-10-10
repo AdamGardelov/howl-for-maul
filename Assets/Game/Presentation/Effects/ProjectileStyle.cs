@@ -2,7 +2,7 @@ using UnityEngine;
 using FrostMaze.Simulation;
 namespace FrostMaze
 {
-    public enum ProjectileShape { Shard, Orb, Shell, Spear, Ember, Ring, Star, Bolt, Seed, ThornPod, Wingseed, Sprout }
+    public enum ProjectileShape { Shard, Orb, Shell, Spear, Ember, Ring, Star, Bolt, Seed, ThornCluster, Wingseed, Sprout }
     // Cosmetic signatures only. Colors vary by weapon while retaining the faction's hue family.
     public readonly struct ProjectileStyle
     {
@@ -12,7 +12,7 @@ namespace FrostMaze
         public ProjectileStyle(ProjectileShape shape,Color color,float size,float duration,float arc)
         {Shape=shape;Color=color;Size=size;Duration=duration;Arc=arc;}
         static readonly ProjectileShape[] WinterShapes={ProjectileShape.Shard,ProjectileShape.Shard,ProjectileShape.Ring,ProjectileShape.Shell,ProjectileShape.Spear,
-                    ProjectileShape.Seed,ProjectileShape.Seed,ProjectileShape.ThornPod,ProjectileShape.Wingseed,ProjectileShape.Sprout,
+                    ProjectileShape.Seed,ProjectileShape.Seed,ProjectileShape.ThornCluster,ProjectileShape.Wingseed,ProjectileShape.Sprout,
                     ProjectileShape.Ember,ProjectileShape.Ember,ProjectileShape.Shell,ProjectileShape.Spear,ProjectileShape.Star,
                     ProjectileShape.Bolt,ProjectileShape.Bolt,ProjectileShape.Star,ProjectileShape.Spear,ProjectileShape.Orb};
         static readonly ProjectileShape[] IronShapes={ProjectileShape.Bolt,ProjectileShape.Orb,ProjectileShape.Shell,ProjectileShape.Shard,ProjectileShape.Spear,ProjectileShape.Ring,ProjectileShape.Star};
@@ -39,7 +39,7 @@ namespace FrostMaze
             Color color=Color.HSVToRGB(hue,Mathf.Clamp(saturation+.12f-(slot%3)*.06f,.25f,.85f),1);
             if(!iron&&faction==1){
                 // Physical seeds keep earthy surfaces rather than a bright energy-bolt palette.
-                switch(slot){case 0:color=new Color(.64f,.42f,.18f);break;case 2:color=new Color(.48f,.58f,.19f);break;case 3:color=new Color(.73f,.64f,.36f);break;case 4:color=new Color(.36f,.66f,.23f);break;}
+                switch(slot){case 0:color=new Color(.64f,.42f,.18f);break;case 2:color=new Color(.68f,.43f,.23f);break;case 3:color=new Color(.73f,.64f,.36f);break;case 4:color=new Color(.36f,.66f,.23f);break;}
             }
             float size=slot==(iron?6:4)?.24f:.15f+(slot%3)*.025f;
             return new ProjectileStyle(shape,color,size,spec.SplashRadius>0?.24f:.18f,spec.SplashRadius>0?.55f:0);

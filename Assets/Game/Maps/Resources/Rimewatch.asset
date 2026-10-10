@@ -1101,8 +1101,8 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 0
         TargetsAir: 0
-    - Name: Burr Elder
-      Description: "Ground splash \xB7 slow, powerful strikes"
+    - Name: Briar Elder
+      Description: "Ground splash \xB7 thrown thorn clusters"
       Cost: 65
       Refund: 48
       VisualStyle: 1

@@ -11,6 +11,18 @@ namespace FrostMaze
         public Mesh Shell => Profile("Carved shell",16,new[]{-.5f,-.27f,.14f,.36f,.5f},new[]{0f,.4f,.5f,.33f,0f},true);
         public Mesh Armor => Profile("Beveled armor",12,new[]{-.5f,-.3f,.32f,.5f},new[]{.38f,.5f,.5f,.38f});
         public Mesh Heartwood => Profile("Gnarled heartwood",14,new[]{-.5f,-.35f,-.08f,.16f,.37f,.5f},new[]{.49f,.42f,.38f,.48f,.39f,.32f},true);
+        public Mesh Thorn {
+            get {
+                const string key="Hooked hawthorn";if(meshes.TryGetValue(key,out var cached))return cached;
+                var mesh=Profile(key,8,new[]{0f,.2f,.55f,.82f,1f},new[]{.28f,.24f,.13f,.05f,0f},true);
+                var vertices=mesh.vertices;var normals=mesh.normals;
+                for(int i=0;i<vertices.Length;i++){
+                    float y=vertices[i].y;vertices[i].x+=.23f*y*y;
+                    normals[i]=new Vector3(normals[i].x,normals[i].y-.46f*y*normals[i].x,normals[i].z).normalized;
+                }
+                mesh.vertices=vertices;mesh.normals=normals;mesh.RecalculateBounds();return mesh;
+            }
+        }
         public Mesh Robe => Profile("Warden mantle",12,new[]{-.5f,-.38f,.32f,.5f},new[]{.36f,.5f,.24f,.2f},true);
         public Mesh Bell => Profile("Ward bell",16,new[]{-.48f,-.44f,-.12f,.35f,.48f},new[]{.49f,.5f,.31f,.20f,.08f},true);
         public Mesh Halo {

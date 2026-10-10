@@ -40,6 +40,24 @@ namespace FrostMaze
                 Triangle(center+direction*length,w,v);Triangle(center-direction*length,v,w);
             }
         }
+        void ThornDart(Vector3 center,float size,float bend)
+        {
+            // A curved, tapering wooden dart with backward barbs, not a round seed or energy bolt.
+            for(int ring=0;ring<3;ring++)for(int i=0;i<5;i++){
+                float t=ring/3f,u=(ring+1)/3f,a=i*Mathf.PI*2/5,b=(i+1)*Mathf.PI*2/5;
+                var c=center+direction*(t-.35f)*size*2.5f+side*(t*t*bend*size);
+                var d=center+direction*(u-.35f)*size*2.5f+side*(u*u*bend*size);
+                var radialA=side*Mathf.Cos(a)+up*Mathf.Sin(a);var radialB=side*Mathf.Cos(b)+up*Mathf.Sin(b);
+                float r=size*.24f*(1-t)*(1-t),s=size*.24f*(1-u)*(1-u);
+                Triangle(c+radialA*r,d+radialA*s,d+radialB*s);Triangle(c+radialA*r,d+radialB*s,c+radialB*r);
+                if(ring==0)Triangle(c,c+radialA*r,c+radialB*r);
+            }
+            for(int i=0;i<2;i++){
+                var radial=i==0?side:-up;var root=center-direction*size*.15f;
+                var tip=root+radial*size*.55f-direction*size*.45f;
+                Triangle(root,tip,root+direction*size*.38f);Triangle(root,root+direction*size*.38f,tip);
+            }
+        }
         public void Render(float progress)
         {
             Progress=Mathf.Clamp01(progress);
@@ -52,14 +70,14 @@ namespace FrostMaze
                 Triangle(tail,head+side*.035f,head-side*.035f);Triangle(tail,head-side*.035f,head+side*.035f);
                 Triangle(tail,head+up*.035f,head-up*.035f);Triangle(tail,head-up*.035f,head+up*.035f);
             }
-            if(Style.Shape==ProjectileShape.Seed||Style.Shape==ProjectileShape.ThornPod||Style.Shape==ProjectileShape.Wingseed||Style.Shape==ProjectileShape.Sprout){
+            if(Style.Shape==ProjectileShape.ThornCluster){
+                ThornDart(head,size,.25f);
+                ThornDart(head+side*size*.75f+up*size*.28f-direction*size*.5f,size*.82f,.4f);
+                ThornDart(head-side*size*.60f-up*size*.30f-direction*size*.35f,size*.90f,-.35f);
+            }else if(Style.Shape==ProjectileShape.Seed||Style.Shape==ProjectileShape.Wingseed||Style.Shape==ProjectileShape.Sprout){
                 Body(head,size*.58f,size*.86f,8);
                 if(Style.Shape==ProjectileShape.Seed){
                     Body(head-direction*size*.55f,size*.70f,size*.22f,8);
-                }else if(Style.Shape==ProjectileShape.ThornPod){
-                    for(int i=0;i<7;i++){float a=i*Mathf.PI*2/7;var outwards=side*Mathf.Cos(a)+up*Mathf.Sin(a);
-                        Body(head+outwards*size*.70f,size*.18f,size*.40f,4);
-                    }
                 }else{
                     int leaves=Style.Shape==ProjectileShape.Wingseed?2:4;
                     Body(head-direction*size,size*.10f,size*1.2f,5);
@@ -84,7 +102,7 @@ namespace FrostMaze
             }
             if(impact>0)for(int i=0;i<5;i++) {
                 float a=i*Mathf.PI*2/5+Design;var dir=side*Mathf.Cos(a)+up*Mathf.Sin(a);
-                Body(To+dir*impact*Style.Size*3.3f,size*.19f,size*.38f,4);
+                Body(To+dir*impact*Style.Size*3.3f,size*.19f,size*(Style.Shape==ProjectileShape.ThornCluster?.85f:.38f),4);
             }
             for(int i=0;i<vertices.Count;i++)vertices[i]=transform.InverseTransformPoint(vertices[i]);
             mesh.Clear();mesh.SetVertices(vertices);mesh.SetTriangles(triangles,0);mesh.RecalculateNormals();mesh.RecalculateBounds();

@@ -22,7 +22,7 @@ Landmarks belong to these places: a forge needs a chimney, fuel and worn stone; 
 | Order | World identity | Readable motif |
 |---|---|---|
 | Rime Covenant | Keepers of frozen wardbells | Split ice crown, pale cyan, dark slate |
-| Rootbound (formerly Stonebound) | Keepers who call the ancient trees to protect the refuge | Hazel, oak, chestnut, pine and willow; bark faces, living crowns and seed volleys |
+| Rootbound (formerly Stonebound) | Keepers who call the ancient trees to protect the refuge | Hazel, oak, hawthorn, pine and willow; bark faces, living crowns and seed volleys |
 | Ember Assembly | Hearth-tenders turned defenders | Furnace mouths, copper and amber |
 | Volt Vanguard | Couriers who harness mountain storms | Forked lightning, bright blue, brass conductors |
 | Pulse Foundry | Ironfold's workshop keepers turning hearth instruments into defenses | Cast copper, slate beds, verdigris glass, presses and wardbells; small cyan cores |
