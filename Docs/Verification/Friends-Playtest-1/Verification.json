@@ -2,8 +2,8 @@
   "date": "2026-10-10",
   "release": "v0.1.0-playtest.1",
   "gameSourceCommit": "5d342839eff4875bb9a6a299d0350e95bb4aee3a",
-  "state": "archives verified; GitHub publication awaiting authenticated session",
-  "published": false,
+  "state": "published GitHub prerelease; all four anonymous public downloads verified",
+  "published": true,
   "archiveMemberHashes": "all verified after writing and again after extraction",
   "LinuxExecutablePermission": "preserved; bundled launcher used for menu check",
   "excluded": "Unity DoNotShip directories, PDB/MDB/dSYM debug symbols and local logs",
@@ -19,5 +19,8 @@
   ],
   "platformLimits": "Windows cross-build only; actual Windows, separate-network/four-player/full-match live play and hardware GPU performance remain unverified",
   "allOwnedProcessesClosed": true,
-  "newAutomation": false
+  "newAutomation": false,
+  "publishedUrl": "https://github.com/AdamGardelov/howl-for-maul/releases/tag/v0.1.0-playtest.1",
+  "publishedAt": "2026-10-10T08:52:47Z",
+  "publicDownloadVerification": "Publication.json"
 }

@@ -1,0 +1,41 @@
+{
+  "releaseId": 408819645,
+  "url": "https://github.com/AdamGardelov/howl-for-maul/releases/tag/v0.1.0-playtest.1",
+  "tag": "v0.1.0-playtest.1",
+  "publishedAt": "2026-10-10T08:52:47Z",
+  "verifiedAt": "2026-10-10T08:54:48.078883+00:00",
+  "draft": false,
+  "prerelease": true,
+  "releaseNotesMatchIgnoringLineEndings": true,
+  "authenticatedDownloads": false,
+  "assets": [
+    {
+      "name": "Howl-for-Maul-v0.1.0-playtest.1-Linux-x64.tar.gz",
+      "url": "https://github.com/AdamGardelov/howl-for-maul/releases/download/v0.1.0-playtest.1/Howl-for-Maul-v0.1.0-playtest.1-Linux-x64.tar.gz",
+      "bytes": 69809228,
+      "sha256": "d6a94b06c1e67038d8845bd9a174e0c14e0da7a482f8daeedba0ce75ba6405d0",
+      "anonymousDownloadVerified": true
+    },
+    {
+      "name": "Howl-for-Maul-v0.1.0-playtest.1-Windows-x64.zip",
+      "url": "https://github.com/AdamGardelov/howl-for-maul/releases/download/v0.1.0-playtest.1/Howl-for-Maul-v0.1.0-playtest.1-Windows-x64.zip",
+      "bytes": 72611417,
+      "sha256": "8605bcdd7c56df683c5c500315934040a483d116b3d9c39210b2037f672c2b5c",
+      "anonymousDownloadVerified": true
+    },
+    {
+      "name": "RELEASE-MANIFEST.json",
+      "url": "https://github.com/AdamGardelov/howl-for-maul/releases/download/v0.1.0-playtest.1/RELEASE-MANIFEST.json",
+      "bytes": 859,
+      "sha256": "6e68eb9c3669af3b53d58d8efc91479ed4232c9111b537d19214dcac36026185",
+      "anonymousDownloadVerified": true
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "url": "https://github.com/AdamGardelov/howl-for-maul/releases/download/v0.1.0-playtest.1/SHA256SUMS.txt",
+      "bytes": 317,
+      "sha256": "707f13b6035f1bd3bab6040fa176a8bacd20abffc4f503a92c3421248b53f4c9",
+      "anonymousDownloadVerified": true
+    }
+  ]
+}

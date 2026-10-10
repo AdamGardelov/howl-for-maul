@@ -1,3 +1,9 @@
+## 2026-10-10 — Friends Playtest 1 published
+
+[Windows/Linux downloads](https://github.com/AdamGardelov/howl-for-maul/releases/tag/v0.1.0-playtest.1) are live as a free prerelease. Tag `v0.1.0-playtest.1` stays at verified game source `5d34283`. All four public assets (two archives, checksums, manifest) were downloaded without credentials and matched the original sizes/SHA-256; release notes and prerelease state verified. [Packaging and publication evidence](Verification/Friends-Playtest-1/README.md), [repeatable release workflow](GITHUB-RELEASES.md). Scott Buckley attribution and full font notices are bundled. No new game build, service settings, paid release or automation change.
+
+The packaged Linux launcher/menu, both-map smoke and two-process live Relay checks passed during packaging. Native Windows, separate-network/four-player/full-match live sessions and hardware GPU performance remain unverified. The next useful friend check is matching downloads on Linux/Windows across separate networks, followed by a full online match. The world priorities below remain; publishing the playtest is not a claim of final commercial polish.
+
 ## 2026-10-10 — rounded stone and snow walls
 
 The user identified the repeated square walls as a major source of the stiff visual feel. [Implementation](ROUNDED-WALLS.md), [verification and actual renders](Verification/Rounded-Walls/README.md). Both maps now use inward-rounded shelf edges, joined upper diagonal contours and smooth shared shading. Ironfold blends moss/earth into slate; Rimewatch blends snow into cooler stone. The separate square crown trim is removed. Every original edge retains a 0.035-unit sealing foot, now using shelf pigment rather than a dark masonry outline. Gate posts extend to that foot. All surface triangles stay on original blocked cells; no masks, placement, routes, lane/economy/ownership, Relay/LAN/chat or audio rules changed.

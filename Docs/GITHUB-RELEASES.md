@@ -2,6 +2,8 @@
 
 The owner requested GitHub downloads on 2026-10-10. Use free, clearly labeled prereleases while Windows, separate-network/full-match multiplayer and hardware performance are still being tested. GitHub source pushes do not publish playable downloads. Release assets are complete desktop archives, not standalone executables or Unity project source archives.
 
+**Published:** [Friends Playtest 1 / v0.1.0-playtest.1](https://github.com/AdamGardelov/howl-for-maul/releases/tag/v0.1.0-playtest.1), 2026-10-10 08:52:47 UTC. Windows/Linux archives, manifest and checksums are publicly downloadable; all four anonymous downloads match the originals byte-for-byte by size and SHA-256. [Publication evidence](Verification/Friends-Playtest-1/Publication.json). The annotated tag remains at game source `5d34283`; later documentation commits do not change these packages.
+
 ## Package a verified checkpoint
 
 The current game source is `5d342839eff4875bb9a6a299d0350e95bb4aee3a`; its local players and checks are recorded in `Docs/Verification/Rounded-Walls/Verification.json`. The first release is `v0.1.0-playtest.1`.
