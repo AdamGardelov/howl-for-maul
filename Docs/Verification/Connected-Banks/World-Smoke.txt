@@ -1,0 +1,5 @@
+HOWL_MAP_READY Ironfold ms=956.9 baked=True
+HOWL_WORLD_CHECK_PASS Ironfold refugeVertices=18870 paidTowers=8 spent=80 maskUnchanged=true mirrored=true
+HOWL_MAP_READY Rimewatch ms=638.4 baked=True
+HOWL_WORLD_CHECK_PASS Rimewatch refugeVertices=11022 paidTowers=8 spent=80 maskUnchanged=true mirrored=true
+HOWL_WORLD_CHECK_COMPLETE

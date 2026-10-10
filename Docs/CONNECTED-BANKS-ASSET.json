@@ -1,0 +1,16 @@
+{
+  "createdUtc": "2026-10-10",
+  "tool": "built-in image_gen",
+  "asset": "Assets/Game/Presentation/Resources/World/HearthBedrock.png",
+  "source": "/home/adam/.codex/generated_images/01a1130f-0c5f-76e0-8a3b-7be6fde33420/exec-bb8a38b5-f7c5-4e24-b433-003ec7ba398a.png",
+  "prompt": "Use case: stylized-concept. Asset type: square seamless tiling albedo texture for original 3D game natural slate cliffs, 1024x1024. Primary request: hand-painted weathered slate bedrock for Howl for Maul, a cozy earthy fantasy refuge and reclaimed foundry forest. Entire square is one continuous stone surface seen straight on orthographic, no scene, no objects, no border. Broad uneven horizontal strata and long diagonal fissures, chunky softened fractured planes, restrained fine brush texture. Mostly cool desaturated grey-green slate with subtle warm taupe mineral streaks and very sparse dark moss in cracks. Medium value range, gentle locally painted form, evenly lit, no baked strong directional shadows, no white highlights or black crevices. Natural interlocking rock, not manufactured bricks, paving tiles or regular polygons. Rich readable painted game art at RTS camera scale, believable stylization not photoreal noise. Seamless edge matching on both axes, no large distinctive repeating motifs. No text, lettering, logos, watermarks, buildings, leaves, individual boulders, perspective, sky, floor, or background.",
+  "copiedUnmodified": true,
+  "import": "1024 maximum; trilinear mipmaps; repeat; CPU readability disabled",
+  "review": "Original stratified slate albedo; inspected full image. Seamless tiling requested, not a pixel-perfect edge equality claim.",
+  "sha256": "7061b1e605fd17bb10e1cd853ffd0c98528fbbd439d7afa3ba4d0254767dfb57",
+  "sourcePixels": [
+    1254,
+    1254
+  ],
+  "sourceMode": "RGB"
+}

@@ -30,6 +30,8 @@ namespace FrostMaze.Tests
                         Debug.Log("HOWL_ROCK_BANKS groups="+world.RockBanks+" shoreGroups="+world.ShoreSites.Count);
                         var banks=world.transform.Find("Ironfold rock banks").GetComponent<MeshFilter>().sharedMesh;
                         Assert.That(banks.vertexCount,Is.LessThan(30000),"Keep rock-bank rendering bounded");
+                        Assert.That(world.RidgeQuads,Is.InRange(100,8000),"Connected landscape stays bounded");
+                        Debug.Log("HOWL_CONNECTED_RIDGES quads="+world.RidgeQuads);
                     }
                     foreach(var site in world.Sites)if(!world.Exterior)Assert.That(LivingWorld.FitsMap(config,site.x,site.z,site.w-LivingWorld.WindEnvelope),Is.True);
                     foreach(var filter in world.GetComponentsInChildren<MeshFilter>()){

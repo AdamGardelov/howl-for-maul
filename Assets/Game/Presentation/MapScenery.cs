@@ -7,6 +7,7 @@ namespace FrostMaze
     {
         readonly List<Mesh> meshes=new List<Mesh>();
         Texture2D groundTexture,capTexture,wallTexture,waterTexture;
+        public Texture2D ShelfPaint=>capTexture;
         sealed class Batch {
             public readonly List<Vector3> V=new List<Vector3>();public readonly List<int> T=new List<int>();
             public void Quad(Vector3 a,Vector3 b,Vector3 c,Vector3 d){int n=V.Count;V.AddRange(new[]{a,b,c,d});T.AddRange(new[]{n,n+1,n+2,n,n+2,n+3});}

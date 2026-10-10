@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-10",
+  "baseCommit": "0872b91",
+  "unity": "6000.3.25f1",
+  "renderer": "Linux OpenGL llvmpipe / private Xvfb :98",
+  "focusedTests": {
+    "passed": 3,
+    "failed": 0,
+    "endUtc": "2026-10-10 05:49:13Z",
+    "fullSuite": false,
+    "cases": [
+      "GardensKeepBuildCellsAirRoutesAndHouseRoofsClear",
+      "ExteriorRespectsEveryBuildingAndBakedMapsRemainValid",
+      "LandmarksAmbientVoicesAndConstructionStayCosmetic"
+    ]
+  },
+  "ridgeQuadsBeforeReflection": 1770,
+  "ridgeVerticesAfterReflection": 14160,
+  "additionalStaticTerrainBatches": 1,
+  "sourceMasksByteIdentical": true,
+  "bakedPngsByteIdentical": true,
+  "linuxBuild": "passed",
+  "windowsBuild": "cross-build passed; native execution untested",
+  "packagedWorld": "both maps passed: 8 paid towers / 80 gold each; synthetic ground/flying targets; unchanged masks",
+  "packagedMenu": "title/settings/credits/map-change/solo/resize passed; small title and HUD inspected",
+  "humanInput": "not rerun this pass",
+  "fullCampaignBalance": "not rerun",
+  "hardwarePerformance": "not measured; software rendering only",
+  "separateNetworkMatch": "not rerun; networking unchanged",
+  "newPublicRelease": false,
+  "isolatedTarget": "restored to Linux",
+  "sources": {
+    "Assets/Game/Presentation/LivingWorld.Ridges.cs": "3f65918cd4bd1ff21d055216f2bbd8ca053515cb3fdc401b5edd10ad574cfaaf",
+    "Assets/Game/Presentation/LivingWorld.Ridges.cs.meta": "7ece7cb6d0304ab9d6da00bb9bcce967c6a66a80ce7a31a75717730f9ff82ee7",
+    "Assets/Game/Presentation/LivingWorld.cs": "01a1634a71cdf469a6f9445859e6a8dcb2fc42ab1f46aee798ff7e5a4145a3cc",
+    "Assets/Game/Presentation/MapScenery.cs": "4dce61f916b938e556fd885f28c059f8ee19540a0f6373ad664adcde9b2878ee",
+    "Assets/Game/Presentation/Resources/World/HearthBedrock.png": "7061b1e605fd17bb10e1cd853ffd0c98528fbbd439d7afa3ba4d0254767dfb57",
+    "Assets/Game/Presentation/Resources/World/HearthBedrock.png.meta": "0ab93fbdb7bee84d8f028bcf83901072d030739e5c09033a9d736e19d0dd726f",
+    "Assets/Game/Presentation/Resources/World/HearthRidge.shader": "b0237737b48dac767b55b3ca56ff401bc15927e39eb8a24790a6567e8cdc40d0",
+    "Assets/Game/Presentation/Resources/World/HearthRidge.shader.meta": "0f6326cb9bd97c5720358ca2a7eb3d83dc6268720f75ab59775a4580a6a35555",
+    "Assets/Tests/LivingWorldTests.cs": "83635aa17b5972a25bc4d7d0213302786610938311da32767656266734640243"
+  },
+  "packages": {
+    "Linux": {
+      "previous": "Builds/Linux-World-0872b91",
+      "fileCount": 193,
+      "treeSha256": "3b250d239a294104213db8ac586ad64b3173e6a95bac0b500e824763e72f22e5",
+      "ScottBuckleyNotices": "96c119336e46c5d4a9b12047041012e47bad686c7e7028e2865db8edf4d800b8",
+      "musicSources": "bb1435367b1c2971efe67b2b0d90415981595fd87561c29e4efa6fba061ac36a"
+    },
+    "Windows": {
+      "previous": "Builds/Windows-World-0872b91",
+      "fileCount": 195,
+      "treeSha256": "ef3819492538920036c64256948d2967e3826b022a5024be39456a590e609a40",
+      "ScottBuckleyNotices": "96c119336e46c5d4a9b12047041012e47bad686c7e7028e2865db8edf4d800b8",
+      "musicSources": "bb1435367b1c2971efe67b2b0d90415981595fd87561c29e4efa6fba061ac36a"
+    }
+  },
+  "bakedFingerprints": "revalidated; unchanged",
+  "ownedProcessesClosed": true
+}

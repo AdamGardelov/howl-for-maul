@@ -89,7 +89,7 @@ namespace FrostMaze
                 if(!ice)RockBank(new Vector3(p.x,y,p.z),p.w,Mathf.RoundToInt(p.x*13+p.z*7));
                 Tree(new Vector3(p.x,y,p.z),p.w,p.y,Mathf.RoundToInt(p.x*13+p.z*7),false);Site(p.x,y,p.z,p.w);
             }
-            if(!ice){BuildIronfoldBanks(scenery,y);BuildShoreBanks(-.03f);BuildRockShelves(scenery,y);}
+            if(!ice){BuildConnectedRidges(scenery);BuildIronfoldBanks(scenery,y);BuildShoreBanks(-.03f);BuildRockShelves(scenery,y);}
             // Broad, separated beds: a rock shoulder anchors each pocket of understory.
             // The complete group is reserved before generating leaves, including their wind envelope.
             for(float z=1.5f;z<config.Height-1;z+=2.2f)for(float x=1.5f;x<width*.5f-1;x+=2.2f){
@@ -265,8 +265,9 @@ namespace FrostMaze
             Save("Meadow undergrowth",grass,Texture2D.whiteTexture,true);
             Save("Living branches",bark,Texture2D.whiteTexture,false);
             Save("Weathered shoulders",rocks,Texture2D.whiteTexture,false);
-            Save("Ironfold rock banks",rockbanks,Resources.Load<Texture2D>("World/HearthSlate"),false);
+            Save("Ironfold rock banks",rockbanks,Resources.Load<Texture2D>("World/HearthBedrock"),false);
             Save("Rock bank moss",bankMoss,Resources.Load<Texture2D>("World/HearthMeadow"),false);
+            Save("Connected meadow ridges",ridgeMeadow,ridgePaint,false);
             Save("Sanctuary stone",stone,Resources.Load<Texture2D>("World/HearthMasonry"),false);
             Save("Sanctuary bronze",brass,Texture2D.whiteTexture,false);
         }
@@ -275,7 +276,8 @@ namespace FrostMaze
             if(b.V.Count==0)return;b.Mirror(width);
             var mesh=new Mesh{name=name,indexFormat=IndexFormat.UInt32};mesh.SetVertices(b.V);mesh.SetNormals(b.N);mesh.SetUVs(0,b.UV);mesh.SetColors(b.C);mesh.SetTriangles(b.T,0);mesh.RecalculateBounds();
             var bounds=mesh.bounds;bounds.Expand(WindEnvelope*2);mesh.bounds=bounds;ownedMeshes.Add(mesh);
-            var material=new Material(Resources.Load<Shader>("World/HearthFoliage")){name=name};material.SetTexture("_BaseMap",texture);
+            var material=new Material(Resources.Load<Shader>(b==ridgeMeadow?"World/HearthRidge":"World/HearthFoliage")){name=name};material.SetTexture("_BaseMap",texture);
+            if(b==ridgeMeadow){material.SetTexture("_RockMap",Resources.Load<Texture2D>("World/HearthBedrock"));material.SetFloat("_MapHeight",config.Height);}
             material.SetFloat("_Wind",windy?.045f:0);material.SetFloat("_MapWidth",width);material.SetFloat("_Desaturate",desaturate?1:0);ownedMaterials.Add(material);
             var go=new GameObject(name);go.layer=gameObject.layer;go.transform.SetParent(transform,false);go.AddComponent<MeshFilter>().sharedMesh=mesh;
             var renderer=go.AddComponent<MeshRenderer>();renderer.sharedMaterial=material;renderer.shadowCastingMode=ShadowCastingMode.TwoSided;
