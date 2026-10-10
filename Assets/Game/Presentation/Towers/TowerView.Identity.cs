@@ -14,7 +14,7 @@ namespace FrostMaze
                 filter.sharedMesh.GetVertices(vertices);
                 foreach(var vertex in vertices){var p=matrix.MultiplyPoint3x4(vertex);radius=Mathf.Max(radius,new Vector2(p.x,p.z).magnitude);}
             }
-            float scale=.47f/radius;
+            float scale=(livingCrown!=null?.43f:.47f)/radius;
             foreach(Transform child in transform){var p=child.localPosition;p.x*=scale;p.z*=scale;child.localPosition=p;
                 var s=child.localScale;s.x*=scale;s.z*=scale;child.localScale=s;}
             weaponWidth=scale;
@@ -151,17 +151,7 @@ namespace FrostMaze
                     for(int side=-1;side<=1;side+=2){var rib=Crystal("Swept frost petal",new Vector3(side*.31f,.62f,-.12f),new Vector3(.18f,.89f,.32f),trim);rib.transform.localRotation=Quaternion.Euler(-18,0,-side*19);}
                 }
             }else if(faction==1){
-                if(Role=="Wall")return;
-                LowerWeapon(.88f,.02f);
-                for(int side=-1;side<=1;side+=2){
-                    Part("Waking mountain foot",PrimitiveType.Sphere,new Vector3(side*.25f,.15f,.14f),new Vector3(.37f,.27f,.52f),shell);
-                    Part("Moss guardian fist",PrimitiveType.Sphere,new Vector3(side*.31f,.66f,.05f),new Vector3(.33f,.44f,.38f),shell,weapon);
-                    Crystal("Moss shoulder",new Vector3(side*.29f,.84f,-.04f),new Vector3(.33f,.27f,.32f),accent,weapon);
-                }
-                if(Role=="Control")for(int side=-1;side<=1;side+=2){
-                    Strut("Worldroot bough",new Vector3(0,.98f,0),new Vector3(side*.35f,1.34f,-.11f),.08f,dark,weapon);
-                    Strut("Worldroot antler",new Vector3(side*.25f,1.24f,-.08f),new Vector3(side*.22f,1.57f,-.09f),.06f,trim,weapon);
-                }
+                return; // Living trees author their own roots, limbs and crowns.
             }else if(faction==2){
                 if(Role=="Wall")return;
                 Part("Brick forge hearth",PrimitiveType.Cube,new Vector3(0,.21f,0),new Vector3(.74f,.25f,.70f),shell);

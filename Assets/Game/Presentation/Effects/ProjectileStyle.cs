@@ -2,7 +2,7 @@ using UnityEngine;
 using FrostMaze.Simulation;
 namespace FrostMaze
 {
-    public enum ProjectileShape { Shard, Orb, Shell, Spear, Ember, Ring, Star, Bolt }
+    public enum ProjectileShape { Shard, Orb, Shell, Spear, Ember, Ring, Star, Bolt, Seed, ThornPod, Wingseed, Sprout }
     // Cosmetic signatures only. Colors vary by weapon while retaining the faction's hue family.
     public readonly struct ProjectileStyle
     {
@@ -12,10 +12,17 @@ namespace FrostMaze
         public ProjectileStyle(ProjectileShape shape,Color color,float size,float duration,float arc)
         {Shape=shape;Color=color;Size=size;Duration=duration;Arc=arc;}
         static readonly ProjectileShape[] WinterShapes={ProjectileShape.Shard,ProjectileShape.Shard,ProjectileShape.Ring,ProjectileShape.Shell,ProjectileShape.Spear,
-                    ProjectileShape.Orb,ProjectileShape.Orb,ProjectileShape.Shell,ProjectileShape.Spear,ProjectileShape.Star,
+                    ProjectileShape.Seed,ProjectileShape.Seed,ProjectileShape.ThornPod,ProjectileShape.Wingseed,ProjectileShape.Sprout,
                     ProjectileShape.Ember,ProjectileShape.Ember,ProjectileShape.Shell,ProjectileShape.Spear,ProjectileShape.Star,
                     ProjectileShape.Bolt,ProjectileShape.Bolt,ProjectileShape.Star,ProjectileShape.Spear,ProjectileShape.Orb};
         static readonly ProjectileShape[] IronShapes={ProjectileShape.Bolt,ProjectileShape.Orb,ProjectileShape.Shell,ProjectileShape.Shard,ProjectileShape.Spear,ProjectileShape.Ring,ProjectileShape.Star};
+        public static float LaunchHeight(Scenario config,int design)
+        {
+            if(config.Theme!="iron"&&design>=5&&design<=9){
+                switch(design){case 5:return .98f;case 7:return 1.20f;case 8:return 1.42f;case 9:return 1.15f;}
+            }
+            return 1.3f;
+        }
         public static ProjectileStyle For(Scenario config,int design)
         {
             int faction=0,slot=0;
@@ -30,6 +37,10 @@ namespace FrostMaze
             Color.RGBToHSV(OrderColors.Glow(iron,faction),out float hue,out float saturation,out _);
             hue=Mathf.Repeat(hue+(slot-(iron?3:2))*(iron?.01f:.015f),1);
             Color color=Color.HSVToRGB(hue,Mathf.Clamp(saturation+.12f-(slot%3)*.06f,.25f,.85f),1);
+            if(!iron&&faction==1){
+                // Physical seeds keep earthy surfaces rather than a bright energy-bolt palette.
+                switch(slot){case 0:color=new Color(.64f,.42f,.18f);break;case 2:color=new Color(.48f,.58f,.19f);break;case 3:color=new Color(.73f,.64f,.36f);break;case 4:color=new Color(.36f,.66f,.23f);break;}
+            }
             float size=slot==(iron?6:4)?.24f:.15f+(slot%3)*.025f;
             return new ProjectileStyle(shape,color,size,spec.SplashRadius>0?.24f:.18f,spec.SplashRadius>0?.55f:0);
         }

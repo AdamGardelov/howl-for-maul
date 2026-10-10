@@ -48,42 +48,6 @@ namespace FrostMaze
                 Crystal("Watchtower sigil",new Vector3(0,.64f,.3f),new Vector3(.12f,.26f,.06f),light,weapon);
             }
         }
-        void StoneTower(Material trim,Material dark,bool pebble)
-        {
-            if(Role=="Wall") {
-                for(int i=-1;i<=1;i++) {
-                    Part("Basalt slab",PrimitiveType.Cylinder,new Vector3(i*.25f,.49f,0),new Vector3(.36f,i==0?.34f:.26f,.7f),shell);
-                    Part("Basalt seal",PrimitiveType.Cube,new Vector3(i*.25f,.56f,.33f),new Vector3(.09f,.2f,.035f),accent);
-                }
-                return;
-            }
-            var pivot=new GameObject(Role+" weapon");pivot.transform.SetParent(transform,false);weapon=pivot.transform;
-            if(Role=="Control") {
-                Part("Worldroot trunk",PrimitiveType.Cylinder,new Vector3(0,.76f,0),new Vector3(.43f,.45f,.43f),dark,weapon);
-                for(int i=0;i<4;i++) {
-                    float a=i*Mathf.PI/2;
-                    var root=Part("Stone root",PrimitiveType.Cylinder,new Vector3(Mathf.Sin(a)*.22f,.46f,Mathf.Cos(a)*.22f),new Vector3(.18f,.28f,.18f),shell,weapon);
-                    root.transform.localRotation=Quaternion.Euler(Mathf.Cos(a)*35,0,-Mathf.Sin(a)*35);
-                }
-                Part("Root crown",PrimitiveType.Sphere,new Vector3(0,1.21f,0),new Vector3(.72f,.49f,.64f),accent,weapon);
-                Crystal("Root heart",new Vector3(0,.85f,.23f),new Vector3(.17f,.36f,.1f),light,weapon);
-            } else if(Role=="Interceptor") {
-                for(int side=-1;side<=1;side+=2)Part("Crag support",PrimitiveType.Cylinder,new Vector3(side*.25f,.77f,0),new Vector3(.2f,.46f,.3f),shell,weapon);
-                var cradle=Part("Sky cradle",PrimitiveType.Cube,new Vector3(0,1.12f,.03f),new Vector3(.7f,.15f,.43f),trim,weapon);cradle.transform.localRotation=Quaternion.Euler(25,0,0);
-                Part("Sky boulder",PrimitiveType.Sphere,new Vector3(0,1.4f,.06f),new Vector3(.4f,.43f,.4f),accent,weapon);
-            } else if(pebble) {
-                Part("Warden body",PrimitiveType.Sphere,new Vector3(0,.59f,0),new Vector3(.71f,.63f,.64f),shell,weapon);
-                Part("Pebble hopper",PrimitiveType.Cylinder,new Vector3(0,.96f,-.05f),new Vector3(.56f,.12f,.48f),trim,weapon);
-                Part("Loaded pebble",PrimitiveType.Sphere,new Vector3(0,1.12f,-.05f),Vector3.one*.28f,accent,weapon);
-                Part("Warden aperture",PrimitiveType.Cube,new Vector3(0,.68f,.3f),new Vector3(.28f,.15f,.09f),dark,weapon);
-                Part("Warden eye",PrimitiveType.Cube,new Vector3(0,.84f,.28f),new Vector3(.25f,.06f,.05f),light,weapon);
-            } else {
-                Part("Quake monolith",PrimitiveType.Cube,new Vector3(0,.82f,0),new Vector3(.56f,1.05f,.48f),shell,weapon);
-                Part("Idol brow",PrimitiveType.Cube,new Vector3(0,1.21f,.06f),new Vector3(.75f,.18f,.56f),trim,weapon);
-                for(int side=-1;side<=1;side+=2)Part("Idol eye",PrimitiveType.Cube,new Vector3(side*.13f,1.05f,.25f),new Vector3(.12f,.07f,.035f),light,weapon);
-                Part("Quake seal",PrimitiveType.Cylinder,new Vector3(0,.45f,.29f),new Vector3(.4f,.12f,.25f),accent,weapon);
-            }
-        }
         void EmberTower(Material trim,Material dark,bool meteor)
         {
             if(Role=="Wall") {
@@ -192,7 +156,7 @@ namespace FrostMaze
             else if(robot&&faction==6)OverdriveTower(palette[3],palette[4],tower.Design-42);
             else if(robot&&faction==7)TidalTower(palette[3],palette[4],tower.Design-49);
             else if(!robot&&faction==0)RimeTower(palette[3],palette[4]);
-            else if(!robot&&faction==1)StoneTower(palette[3],palette[4],spec.TargetsAir);
+            else if(!robot&&faction==1)RootboundTower(palette[3],palette[4],tower.Design-5);
             else if(!robot&&faction==2)EmberTower(palette[3],palette[4],design!=null&&design.Name=="Meteor Crucible");
             else if(!robot&&faction==3)VoltTower(palette[3],palette[4],design!=null&&design.Name=="Nova Marshal");
             else {
@@ -232,6 +196,8 @@ namespace FrostMaze
             CombineRigidParts(transform,modelKey+"/base");
             if(weapon!=null)CombineRigidParts(weapon,modelKey+"/weapon");
             if(kinetic!=null)CombineRigidParts(kinetic,modelKey+"/kinetic");
+            if(livingCrown!=null)CombineRigidParts(livingCrown,modelKey+"/crown");
+            if(livingArm!=null)CombineRigidParts(livingArm,modelKey+"/arm");
             for(int i=0;i<2;i++)tiers[i]=Part("Upgrade tier "+(i+2),PrimitiveType.Cube,new Vector3((i==0?-1:1)*.23f,.20f,-.30f),new Vector3(.10f,.13f,.09f),light);
             if(presentationOnly)Pose(tower,false);else Sync(tower,false);
         }
@@ -259,7 +225,8 @@ namespace FrostMaze
                 if(shots.Count>0)observedShot=shots[shots.Count-1].Serial;
                 // Simulation ticks freeze in pause/setup and naturally follow the speed controls.
                 float recoil=Mathf.Clamp01(1-(game.World.Tick-shotTick)/6f)*(Role=="Artillery"?.14f:.09f);
-                weapon.localPosition=-(weapon.localRotation*Vector3.forward)*recoil;
+                weapon.localPosition=livingCrown!=null?Vector3.zero:-(weapon.localRotation*Vector3.forward)*recoil;
+                AnimateRootbound();
             }
             if(kinetic!=null){
                 float phase=game.World.Tick*World.FixedDelta*kineticSpeed;

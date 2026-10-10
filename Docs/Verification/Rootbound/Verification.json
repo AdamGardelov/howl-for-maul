@@ -1,0 +1,91 @@
+{
+  "date": "2026-10-10",
+  "baseCommit": "eead5069f029f69a41c5c391e79369dbacbb35c7",
+  "unity": "6000.3.25f1",
+  "renderer": "Linux OpenGL llvmpipe / private Xvfb :98",
+  "tests": {
+    "Unity-Initial.xml": {
+      "total": "7",
+      "passed": "6",
+      "failed": "1",
+      "end-time": "2026-10-10 10:00:57Z"
+    },
+    "Unity-Presentation.xml": {
+      "total": "7",
+      "passed": "7",
+      "failed": "0",
+      "end-time": "2026-10-10 10:04:20Z"
+    },
+    "Unity-Final-Projectiles-And-Grove.xml": {
+      "total": "2",
+      "passed": "2",
+      "failed": "0",
+      "end-time": "2026-10-10 10:07:22Z"
+    }
+  },
+  "sources": {
+    "Assets/Game/Presentation/Towers/TowerView.Rootbound.cs": "11e83b528465b733216b905413b27aaa1b8c6955b4f1e46afb61161809a7c1fb",
+    "Assets/Game/Presentation/Towers/TowerView.Rootbound.cs.meta": "1152669f6b966b0346aa10b683c26232c9e5755b39e3712ea898ea5d80868dfe",
+    "Assets/Tests/RootboundPresentationTests.cs": "debb5c299a295224a970302250fa357713d658d7727483d0681cb62e877e894a",
+    "Assets/Tests/RootboundPresentationTests.cs.meta": "e61ad2a2a47fbe8fab481658780c3e85c4cbe099e793354b626e1f8528fd521e",
+    "Assets/Game/Maps/Resources/Rimewatch.asset": "a0cc67d176a7994461e24de786785b89d12309fe88126950fa33bda12b7335d8",
+    "Assets/Game/Presentation/Effects/CombatFeedback.cs": "3368f79630e8a5a0eb86ff94dd80d6e2a8a63ff3578d9cde8240b9bcdb99afb5",
+    "Assets/Game/Presentation/Effects/ProjectileCue.cs": "2eec828026de2148eafabb6db3458584320e6d9e92e4b6d58319552406809073",
+    "Assets/Game/Presentation/Effects/ProjectileStyle.cs": "1acbb5a972a9f2c14812ec9f251963ce27e0427afd0f2120b005579b56e76693",
+    "Assets/Game/Presentation/ModelMeshes.cs": "5d89f534f42290307303cbb8abe38bccb1ed8f126b11a34728e3aaca07c12f0f",
+    "Assets/Game/Presentation/Prototype.ActorMaterials.cs": "6cd5feb7872572007017af94c38015836195823f99cf5ad535bf09798a395bce",
+    "Assets/Game/Presentation/StandaloneWorldSmoke.cs": "7d9468aed000599b30f02866a12a6c389ccd6b5a3e597df5921e6b407805d70a",
+    "Assets/Game/Presentation/Towers/TowerView.Identity.cs": "a7abcbb2386adec686565f57fee9f6e81c7b0e4584b1c6d44b710145c0bd652e",
+    "Assets/Game/Presentation/Towers/TowerView.cs": "4de6b7192626ceb013733899358dbfe1aaa10866829ae70f0d94112c51745f4b",
+    "Assets/Game/Simulation/Waves/Factions.cs": "d17ab7b26cb2fdcef96a5bf96d0072e73ee8677ec819dd3ed80c9c26c7aa206f",
+    "Assets/Tests/PlayModeIntegration.cs": "813b7c237bddd88a84730ea1a2e622b242cff5deb2f46303f27c69b3cbf945b2"
+  },
+  "packages": {
+    "Linux": {
+      "path": "Builds/Linux-World",
+      "previous": "Builds/Linux-World-eead506",
+      "previousTreeSha256": "fb3ecf05fc392c6917e8fef131b35fa2c86a1822ca3ac8aaf92fcea59f83a3b0",
+      "fileCount": 193,
+      "treeSha256": "dfded3154c1d79194f14a0c93ad3568058dd6a46df30ea1a1ccc8bf69bcf0568",
+      "ScottBuckleyNotices": "96c119336e46c5d4a9b12047041012e47bad686c7e7028e2865db8edf4d800b8",
+      "musicSources": "bb1435367b1c2971efe67b2b0d90415981595fd87561c29e4efa6fba061ac36a"
+    },
+    "Windows": {
+      "path": "Builds/Windows-World",
+      "previous": "Builds/Windows-World-eead506",
+      "previousTreeSha256": "98f4b836ee09a572f35ef7ee62fef3f94c0ee85ba9123d8f464cf6710dd6f83c",
+      "fileCount": 195,
+      "treeSha256": "a985a1de313d15cebc3733be4f6e564f187b8b3baf46cda0ba4e8ef3ce4b6f0b",
+      "ScottBuckleyNotices": "96c119336e46c5d4a9b12047041012e47bad686c7e7028e2865db8edf4d800b8",
+      "musicSources": "bb1435367b1c2971efe67b2b0d90415981595fd87561c29e4efa6fba061ac36a"
+    }
+  },
+  "gameDataChange": "Faction/design labels and one faction description only; reversing those reproduces both original data files exactly.",
+  "mapMasksAndTenBakedPngsUnchanged": true,
+  "initialFailure": "New grove fixture exhausted real opening gold while attempting all level-three upgrades. Normal 228-gold construction passed. Added explicit later-game upgrade gold fixture; no gameplay cost or economy changes.",
+  "testScope": "Final tree geometry: 7/7 presentation cases. Final earthy projectile colors and attack-pose clearance: 2/2 relevant cases repeated. No full Unity suite claim.",
+  "simulation": "73/73 passed",
+  "localNetwork": "two-process direct sessions on both maps; chat, ownership, votes, pacing and paid wallets pass",
+  "linuxBuild": "passed; both-map world and menu smoke passed",
+  "windowsBuild": "cross-build passed; native execution untested",
+  "packagedWorld": {
+    "Ironfold": {
+      "paidTowers": 8,
+      "spent": 80
+    },
+    "Rimewatch": {
+      "paidTowers": 6,
+      "spent": 240,
+      "fiveDesignRosterSpent": 228
+    }
+  },
+  "paidGroveUpgradeFixture": "1000 gold added after verified normal 228-gold opening construction, solely for all level-three geometry checks",
+  "newFullCampaign": "not run",
+  "humanInput": "not rerun this pass",
+  "hardwarePerformance": "not measured; software rendering only",
+  "separateNetworkOrLiveRelay": "not rerun; local probes only",
+  "publicRelease": "v0.1.0-playtest.1 remains unchanged",
+  "artScope": "Rootbound replaces former Stonebound models/names; directions for remaining factions are documented targets, not implemented claims",
+  "audio": "Existing material weapon sounds and soundtrack unchanged",
+  "isolatedTarget": "restored to Linux"
+}

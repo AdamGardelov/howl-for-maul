@@ -732,7 +732,7 @@ namespace FrostMaze.Tests
             game.View.GetComponent<RtsCamera>().Overview();
             Assert.That(game.View.orthographicSize,Is.GreaterThan(11));
             game.SetupOptions.Factions[0]=1;game.StartMatch();game.Paused=true;game.World.Players[0].Gold=1200; /* Explicit later-game model fixture. */
-            string[] stoneSignatures={"Artillery weapon/Pebble hopper","Basalt slab","Artillery weapon/Quake monolith","Interceptor weapon/Sky cradle","Control weapon/Worldroot trunk"};
+            string[] stoneSignatures={"Artillery weapon/Sapling trunk","Wall weapon/Old oak trunk","Artillery weapon/Chestnut elder","Interceptor weapon/Sky pine trunk","Control weapon/Willow heartwood"};
             for(int i=0;i<5;i++) {
                 game.World.SelectedDesign=5+i;
                 Assert.That(game.World.OrderBuild(16+i,14,out _),Is.True);
@@ -742,10 +742,10 @@ namespace FrostMaze.Tests
             for(int i=0;i<5;i++) {
                 var tower=game.World.Grid.At(16+i,14);Assert.That(tower,Is.Not.Null);
                 var view=GameObject.Find("Tower "+tower.Id).GetComponent<TowerView>();
-                Assert.That(view.transform.Find(stoneSignatures[i]),Is.Not.Null,"Missing Stonebound silhouette");
+                Assert.That(view.transform.Find(stoneSignatures[i]),Is.Not.Null,"Missing Rootbound silhouette");
                 Assert.That(view.GetComponentsInChildren<Collider>().Length,Is.Zero,"Scenery must not add physical blockers");
             }
-            Assert.That(game.World.Gold,Is.EqualTo(972),"Models must retain actual paid Stonebound costs");
+            Assert.That(game.World.Gold,Is.EqualTo(972),"Models must retain actual paid Rootbound costs");
             game.SetupOptions.Factions[0]=2;game.StartMatch();game.Paused=true;game.World.Players[0].Gold=1200; /* Explicit later-game model fixture. */game.ShowNavigation=false;
             string[] emberSignatures={"Sentry weapon/Cinder drum","Coal bunker","Artillery weapon/Furnace chimney","Interceptor weapon/Flare spear","Artillery weapon/Crucible bowl"};
             for(int i=0;i<5;i++) {

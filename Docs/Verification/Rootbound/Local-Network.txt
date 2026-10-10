@@ -1,0 +1,14 @@
+PASS team chat: authenticated sender, echo, literal text, Unicode length, flood limit, mute, bounded/late-join history and paused match delivery without state mutation
+PASS Rimewatch shared automatic waves: first manual, all four speeds, frozen pause, synchronized deadlines, early send and victory
+PASS Ironfold shared automatic waves: first manual, all four speeds, frozen pause, synchronized deadlines, early send and victory
+PASS all twelve solo factions: no lane step, Last Stand, full wallet, all lanes; one-person hosts too
+PASS synchronized wood reward, locked faction refusal, authenticated ownership and free roster switching
+PASS all four solo speeds: pacing, invalid requests, pause and identical paid combat at tick 300
+PASS wrong password and mismatched game data refused
+PASS unique lane reservation, tied difficulty, 80-gold wallets, majority and expiring pause votes
+PASS capacity four, late join rejection, 60-gold wallets, malformed coordinates and three-of-four vote
+PASS Rimewatch two-process session, all 3 lanes, paid wallets, authority and disconnect recovery
+PASS remote paid build, owner isolation, shared 3x/0.5x, pause/resume and 620 ordered ticks; HxIqbViWFICZvT+b3uYeviVCKzb5GBNkOzwZYmJNgfA=
+
+PASS Ironfold two-process session, all 4 lanes, paid wallets, authority and disconnect recovery
+PASS remote paid build, owner isolation, shared 3x/0.5x, pause/resume and 620 ordered ticks; fjVOOP8je7YEI3jd3p3WZMHVh4TysVm4yvSpXrta63k=

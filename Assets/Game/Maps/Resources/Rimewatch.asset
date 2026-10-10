@@ -18,9 +18,9 @@ MonoBehaviour:
       Description: Ice sentinels. Slow the front line and shatter clustered ground
         enemies.
       Designs: 0000000001000000020000000300000004000000
-    - Name: Stonebound
-      Description: Earth guardians. Durable maze pieces and heavy ground splash;
-        dedicate towers to air.
+    - Name: Rootbound
+      Description: Ancient tree guardians. Seed volleys, durable oaks and binding roots;
+        Skybough guards the air.
       Designs: 0500000006000000070000000800000009000000
     - Name: Ember Assembly
       Description: Fire constructs. Rapid attacks and expensive bombardment reward
@@ -1059,7 +1059,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 0
         TargetsAir: 1
-    - Name: Pebble Warden
+    - Name: Seedling Warden
       Description: "Ground + air \xB7 small impact splash"
       Cost: 12
       Refund: 9
@@ -1080,7 +1080,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 1
-    - Name: Basalt Ward
+    - Name: Oldbark
       Description: "Durable maze piece \xB7 no weapon"
       Cost: 6
       Refund: 4
@@ -1101,7 +1101,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 0
         TargetsAir: 0
-    - Name: Quake Idol
+    - Name: Burr Elder
       Description: "Ground splash \xB7 slow, powerful strikes"
       Cost: 65
       Refund: 48
@@ -1122,7 +1122,7 @@ MonoBehaviour:
         ChainTargets: 0
         TargetsGround: 1
         TargetsAir: 0
-    - Name: Crag Hurler
+    - Name: Skybough
       Description: "Air only \xB7 heavy sky projectiles"
       Cost: 55
       Refund: 41

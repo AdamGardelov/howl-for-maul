@@ -22,7 +22,8 @@ namespace FrostMaze
                 if(kind=="Stone") {
                     float seam=Mathf.Abs(Mathf.Sin((v*3+Mathf.Sin(u*6)*.04f)*Mathf.PI));
                     shade*=Mathf.Lerp(.79f,1,Mathf.SmoothStep(0,1,Mathf.Clamp01(seam/.12f)));
-                } else if(kind=="Cloth")shade*=.96f+(((x+y)&1)==0?.035f:0);
+                } else if(kind=="Leaves")shade*=.72f+.28f*Mathf.PerlinNoise(u*9+Mathf.Sin(v*13),v*11);
+                else if(kind=="Cloth")shade*=.96f+(((x+y)&1)==0?.035f:0);
                 else if(kind=="Wood")shade*=.77f+.24f*Mathf.PerlinNoise(u*32+Mathf.Sin(v*8),v*2+12);
                 else {
                     shade*=.96f+.035f*Mathf.PerlinNoise(u*2+3,v*75+41);
@@ -46,7 +47,16 @@ namespace FrostMaze
             palette[2].color=OrderColors.Glow(metal,faction);
             // Material families separate the factions even before their colored weapons are visible.
             Color[] winterShell={new Color(.46f,.53f,.54f),new Color(.43f,.43f,.32f),new Color(.40f,.30f,.24f),new Color(.37f,.39f,.49f)};
-            if(!metal){palette[0].color=winterShell[faction%4];palette[3].color=faction==2?new Color(.72f,.52f,.28f):new Color(.66f,.67f,.56f);}
+            if(!metal){
+                palette[0].color=winterShell[faction%4];palette[3].color=faction==2?new Color(.72f,.52f,.28f):new Color(.66f,.67f,.56f);
+                if(faction==1){
+                    palette[0].mainTexture=ActorTexture("Wood");palette[0].color=new Color(.43f,.29f,.16f);
+                    palette[1].color=new Color(.29f,.47f,.15f);palette[1].mainTexture=ActorTexture("Leaves");
+                    palette[3].color=new Color(.56f,.62f,.28f);palette[3].mainTexture=ActorTexture("Leaves");
+                    palette[3].SetFloat("_Metallic",0);palette[3].SetFloat("_Smoothness",.12f);
+                    palette[4].color=new Color(.20f,.16f,.09f);palette[4].mainTexture=ActorTexture("Wood");
+                }
+            }
             else {
                 // Body materials carry the order's identity, not just a thin colored band.
                 Color[] bodies={new Color(.20f,.43f,.47f),new Color(.46f,.28f,.16f),new Color(.71f,.69f,.57f),new Color(.37f,.26f,.15f),new Color(.25f,.25f,.38f),new Color(.46f,.27f,.18f),new Color(.39f,.14f,.095f),new Color(.20f,.43f,.38f)};

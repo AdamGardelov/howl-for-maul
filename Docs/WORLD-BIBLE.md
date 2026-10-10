@@ -4,7 +4,7 @@
 
 At the edge of a long winter, small settlements survive around hearth-forges and wardbells. The Howl wakes what sleeps beneath snow, stone and slag. Rival orders bring their strange machines and old magic to the same road: the road home.
 
-You are a wardwright. Your towers are the work of a living order, assembled into a defense with friends. Last Stand is the threshold of a refuge, not an abstract finish line. Keep the hearth lit.
+You are a wardwright. Living guardians, village watchkeepers and crafted instruments join your order's defense. Some defenders take root, some shelter in stone, and others carry the tools of their home. Last Stand is the threshold of a refuge, not an abstract finish line. Keep the hearth lit.
 
 This is new Howl for Maul fiction. It does not claim to be lore from Warcraft, Mega Man, League or Dota. The maul inheritance is cooperative freeform mazing, simultaneous lanes, escalating waves and expressive faction rosters.
 
@@ -22,7 +22,7 @@ Landmarks belong to these places: a forge needs a chimney, fuel and worn stone; 
 | Order | World identity | Readable motif |
 |---|---|---|
 | Rime Covenant | Keepers of frozen wardbells | Split ice crown, pale cyan, dark slate |
-| Stonebound | Masons who wake the mountain | Heavy stepped shoulders, earth green, carved bronze |
+| Rootbound (formerly Stonebound) | Keepers who call the ancient trees to protect the refuge | Hazel, oak, chestnut, pine and willow; bark faces, living crowns and seed volleys |
 | Ember Assembly | Hearth-tenders turned defenders | Furnace mouths, copper and amber |
 | Volt Vanguard | Couriers who harness mountain storms | Forked lightning, bright blue, brass conductors |
 | Pulse Foundry | Ironfold's workshop keepers turning hearth instruments into defenses | Cast copper, slate beds, verdigris glass, presses and wardbells; small cyan cores |
@@ -35,6 +35,8 @@ Landmarks belong to these places: a forge needs a chimney, fuel and worn stone; 
 | Tidal Array | Engineers of the old cooling channels | Flowing fins, blue-green coils, pale shells |
 
 These identities explain the existing rosters, costs and abilities; this pass does not silently rebalance them. Tower upgrades must grow the weapon's silhouette and power core, not only recolor it. Player ownership rings stay distinct from faction weapon colors.
+
+The [faction identity charter](FACTION-IDENTITY-CHARTER.md) expands the target toward distinctive creature, spirit, watchkeeper and workshop families. Rootbound is the first implemented tree family; the charter explicitly distinguishes remaining plans from current models. A defender need not look like a building.
 
 ## The Howl
 

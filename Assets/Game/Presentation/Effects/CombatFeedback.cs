@@ -180,7 +180,7 @@ namespace FrostMaze
             foreach(var shot in observed.Shots)if(shot.Serial>serial) {
                 serial=shot.Serial;
                 if(!frustumReady){GeometryUtility.CalculateFrustumPlanes(game.View,shotFrustum);frustumReady=true;}
-                var from=new Vector3(shot.From.X,shot.Chained?(shot.FromFlying?1.7f:.3f):1.3f,shot.From.Y);
+                var from=new Vector3(shot.From.X,shot.Chained?(shot.FromFlying?1.7f:.3f):ProjectileStyle.LaunchHeight(game.World.Config,shot.Design),shot.From.Y);
                 var to=new Vector3(shot.To.X,shot.Flying?1.7f:.3f,shot.To.Y);
                 // Consume unseen events without spending the shared visible-effect budget.
                 if(flashes.Count<64&&ShotInView(shot,from,to)) {

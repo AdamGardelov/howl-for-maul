@@ -52,7 +52,26 @@ namespace FrostMaze
                 Triangle(tail,head+side*.035f,head-side*.035f);Triangle(tail,head-side*.035f,head+side*.035f);
                 Triangle(tail,head+up*.035f,head-up*.035f);Triangle(tail,head-up*.035f,head+up*.035f);
             }
-            if(Style.Shape==ProjectileShape.Ring) {
+            if(Style.Shape==ProjectileShape.Seed||Style.Shape==ProjectileShape.ThornPod||Style.Shape==ProjectileShape.Wingseed||Style.Shape==ProjectileShape.Sprout){
+                Body(head,size*.58f,size*.86f,8);
+                if(Style.Shape==ProjectileShape.Seed){
+                    Body(head-direction*size*.55f,size*.70f,size*.22f,8);
+                }else if(Style.Shape==ProjectileShape.ThornPod){
+                    for(int i=0;i<7;i++){float a=i*Mathf.PI*2/7;var outwards=side*Mathf.Cos(a)+up*Mathf.Sin(a);
+                        Body(head+outwards*size*.70f,size*.18f,size*.40f,4);
+                    }
+                }else{
+                    int leaves=Style.Shape==ProjectileShape.Wingseed?2:4;
+                    Body(head-direction*size,size*.10f,size*1.2f,5);
+                    for(int i=0;i<leaves;i++){
+                        float sign=i%2==0?-1:1;var root=head-direction*size*(i/2)*.9f;
+                        var tip=root+side*sign*size*(leaves==2?1.75f:1.2f)-direction*size*.5f;
+                        var belly=(root+tip)*.5f+up*size*.22f;
+                        Triangle(root,tip,belly+direction*size*.4f);Triangle(root,belly+direction*size*.4f,tip);
+                        Triangle(root,belly-direction*size*.4f,tip);Triangle(root,tip,belly-direction*size*.4f);
+                    }
+                }
+            } else if(Style.Shape==ProjectileShape.Ring) {
                 for(int i=0;i<12;i++) {
                     float a=i*Mathf.PI/6,b=(i+1)*Mathf.PI/6;var u=side*Mathf.Cos(a)+up*Mathf.Sin(a);var v=side*Mathf.Cos(b)+up*Mathf.Sin(b);
                     Vector3 outerA=head+u*size,outerB=head+v*size,innerA=head+u*size*.6f,innerB=head+v*size*.6f;

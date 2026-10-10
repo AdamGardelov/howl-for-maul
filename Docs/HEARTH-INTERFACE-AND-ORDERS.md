@@ -29,7 +29,7 @@ The old common pedestal, rear buttresses, skirt and magazines were making unrela
 | Overdrive Order | Iron drakes with folded furnace wings, haunches, claws and dorsal spines |
 | Tidal Array | Patinated shell cradles, pearl-colored petals and working tidewheels |
 | Rime Covenant | Snowbound ritual stone, swept ice petals and a suspended hail-bell frame |
-| Stonebound | Mossy mountain guardians with heavy feet, fists and branching worldroots |
+| Rootbound (formerly Stonebound) | Superseded by the [living tree family](FACTION-IDENTITY-CHARTER.md): hazel, oak, chestnut, pine and willow guardians |
 | Ember Assembly | Brick hearths, boilers, wrought handles and copper forge rings |
 | Volt Vanguard | Conductors with earthing feet, copper cables, rails and induction hoops |
 

@@ -10,6 +10,7 @@ namespace FrostMaze
         public Mesh Crystal => Profile("Cut ice",5,new[]{-.5f,-.3f,.22f,.5f},new[]{0f,.42f,.31f,0f});
         public Mesh Shell => Profile("Carved shell",16,new[]{-.5f,-.27f,.14f,.36f,.5f},new[]{0f,.4f,.5f,.33f,0f},true);
         public Mesh Armor => Profile("Beveled armor",12,new[]{-.5f,-.3f,.32f,.5f},new[]{.38f,.5f,.5f,.38f});
+        public Mesh Heartwood => Profile("Gnarled heartwood",14,new[]{-.5f,-.35f,-.08f,.16f,.37f,.5f},new[]{.49f,.42f,.38f,.48f,.39f,.32f},true);
         public Mesh Robe => Profile("Warden mantle",12,new[]{-.5f,-.38f,.32f,.5f},new[]{.36f,.5f,.24f,.2f},true);
         public Mesh Bell => Profile("Ward bell",16,new[]{-.48f,-.44f,-.12f,.35f,.48f},new[]{.49f,.5f,.31f,.20f,.08f},true);
         public Mesh Halo {
@@ -56,6 +57,18 @@ namespace FrostMaze
                     v.Add(new Vector3(Mathf.Cos(a)*.44f,0,Mathf.Sin(a)*.44f));v.Add(new Vector3(Mathf.Cos(a)*.49f,0,Mathf.Sin(a)*.49f));
                     v.Add(new Vector3(Mathf.Cos(b)*.49f,0,Mathf.Sin(b)*.49f));v.Add(new Vector3(Mathf.Cos(b)*.44f,0,Mathf.Sin(b)*.44f));t.AddRange(new[]{n,n+2,n+1,n,n+3,n+2});}
                 return Save(name,v,t);
+            }
+        }
+        public Mesh Leaf {
+            get {
+                const string key="Living leaf";if(meshes.TryGetValue(key,out var cached))return cached;
+                var outline=new[]{new Vector3(0,-.5f,0),new Vector3(-.26f,-.18f,0),new Vector3(-.34f,.16f,0),new Vector3(0,.5f,.04f),new Vector3(.34f,.16f,0),new Vector3(.26f,-.18f,0)};
+                var vertices=new List<Vector3>();var indices=new List<int>();
+                for(int face=0;face<2;face++)for(int i=0;i<outline.Length;i++){
+                    int n=vertices.Count;vertices.Add(new Vector3(0,0,.12f));vertices.Add(outline[i]);vertices.Add(outline[(i+1)%outline.Length]);
+                    indices.AddRange(face==0?new[]{n,n+1,n+2}:new[]{n,n+2,n+1});
+                }
+                return Save(key,vertices,indices);
             }
         }
         public Mesh CurvedPipe(string key,Vector3[] points,float width)
