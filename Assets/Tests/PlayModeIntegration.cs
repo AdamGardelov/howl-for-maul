@@ -384,12 +384,12 @@ namespace FrostMaze.Tests
             if(game.Map.name!="Rimewatch"){game.ChooseMap(Resources.Load<MapDefinition>("Rimewatch"));yield return null;yield return null;game=Object.FindFirstObjectByType<Prototype>();}
             game.SetupOptions=new FrostMaze.Simulation.MatchOptions();game.StartMatch();game.Paused=true;game.SoundEnabled=false;
             var w=game.World;w.SelectedDesign=1;
-            for(int x=28;x<=33;x++) {
+            for(int x=28;x<=35;x++) {
                 Assert.That(w.OrderBuild(x,11,out var reason),Is.True,reason);
                 for(int i=0;i<180&&w.Grid.At(x,11)==null;i++)w.Step();
                 Assert.That(w.Grid.At(x,11),Is.Not.Null);
             }
-            Assert.That(w.Gold,Is.EqualTo(w.Config.StartingGold-30),"The seal must be paid for");
+            Assert.That(w.Gold,Is.EqualTo(w.Config.StartingGold-40),"The seal must be paid for");
             var enemy=w.Spawn(new FrostMaze.Simulation.WaveSpec{Health=1000,Speed=1.55f,Damage=60,AttackInterval=.6f},new FrostMaze.Simulation.V2(31.5f,12.4f));
             Assert.That(enemy,Is.Not.Null);enemy.Checkpoint=w.LaneRoute(0,false).Length-1;
             yield return null;yield return null;
@@ -399,7 +399,7 @@ namespace FrostMaze.Tests
             Assert.That(attacked,Is.Not.Null);Assert.That(attacked.Health,Is.LessThan(attacked.Spec.Health));
             yield return null;yield return null;
             var cue=GameObject.Find("Tower struck");Assert.That(cue,Is.Not.Null);
-            var body=GameObject.Find("Enemy "+enemy.Id).transform.Find("Armored crawler");var pose=body.localRotation;
+            var body=GameObject.Find("Enemy "+enemy.Id).GetComponent<EnemyView>().Body;var pose=body.localRotation;
             Assert.That(Quaternion.Angle(pose,Quaternion.identity),Is.GreaterThan(5));
             Assert.That(cue.GetComponentsInChildren<Collider>().Length,Is.Zero);
             yield return new WaitForSecondsRealtime(.1f);Assert.That(body.localRotation,Is.EqualTo(pose));
@@ -414,7 +414,7 @@ namespace FrostMaze.Tests
             Assert.That(w.Grid.Clear(enemy.Position,enemy.Position,enemy.Spec.Radius),Is.True,"Enemy penetrated a remaining wall");
             Assert.That(Quaternion.Angle(body.localRotation,Quaternion.identity),Is.LessThan(.01f));
             int destroyed=0;foreach(var t in game.GetComponent<CombatFeedback>().transform.Find("Combat cues").GetComponentsInChildren<Transform>())if(t.name=="Tower destroyed")destroyed++;
-            var sold=w.Grid.At(28,11)??w.Grid.At(33,11);Assert.That(sold,Is.Not.Null);Assert.That(w.Sell(sold.CellX,sold.CellY),Is.True);
+            var sold=w.Grid.At(28,11)??w.Grid.At(35,11);Assert.That(sold,Is.Not.Null);Assert.That(w.Sell(sold.CellX,sold.CellY),Is.True);
             yield return null;yield return null;
             int afterSale=0;foreach(var t in game.GetComponent<CombatFeedback>().transform.Find("Combat cues").GetComponentsInChildren<Transform>())if(t.name=="Tower destroyed")afterSale++;
             Assert.That(afterSale,Is.EqualTo(destroyed),"Selling a healthy tower must not show a destruction cue");
@@ -431,13 +431,15 @@ namespace FrostMaze.Tests
         {
             EditorSceneManager.OpenScene("Assets/Game/Maps/MazeLab.unity");
             yield return new EnterPlayMode();yield return null;
-            var game=Object.FindFirstObjectByType<Prototype>();game.StartMatch();game.Paused=true;game.SoundEnabled=false;
-            var w=game.World;Assert.That(w.OrderBuild(16,14,out _),Is.True);
+            var game=Object.FindFirstObjectByType<Prototype>();
+            game.ChooseMap(Resources.Load<MapDefinition>("Rimewatch"));yield return null;yield return null;
+            game=Object.FindFirstObjectByType<Prototype>();game.StartMatch();game.Paused=true;game.SoundEnabled=false;
+            var w=game.World;Assert.That(w.OrderBuild(31,15,out _),Is.True);
             for(int tick=0;tick<150;tick++)w.Step();
-            var tower=w.Grid.At(16,14);Assert.That(tower,Is.Not.Null);
+            var tower=w.Grid.At(31,15);Assert.That(tower,Is.Not.Null);
             var enemy=w.Spawn(new FrostMaze.Simulation.WaveSpec{Health=20,Speed=.05f},tower.Center+new FrostMaze.Simulation.V2(1.8f,0));
             Assert.That(enemy,Is.Not.Null);yield return null;yield return null;
-            var crest=GameObject.Find("Enemy "+enemy.Id).transform.Find("Armored crawler/Signal crest").GetComponent<Renderer>();
+            var crest=GameObject.Find("Enemy "+enemy.Id).GetComponent<EnemyView>().Signal;
             var normal=crest.sharedMaterial;w.Step();yield return null;
             Assert.That(enemy.Health,Is.LessThan(20));Assert.That(enemy.Health,Is.GreaterThan(0));
             var hit=crest.sharedMaterial;Assert.That(hit,Is.Not.SameAs(normal),"Actual damage needs visible feedback");
@@ -1027,16 +1029,16 @@ namespace FrostMaze.Tests
             yield return null; yield return null;
             var groundView = GameObject.Find("Enemy " + ground.Id);
             var airView = GameObject.Find("Enemy " + air.Id);
-            Assert.That(GameObject.Find("Enemy "+heavy.Id).transform.Find("Armored crawler/Siege shield"),Is.Not.Null);
-            Assert.That(GameObject.Find("Enemy "+runner.Id).transform.Find("Armored crawler/Runner fin"),Is.Not.Null);
-            Assert.That(groundView.transform.Find("Armored crawler"), Is.Not.Null);
+            Assert.That(GameObject.Find("Enemy "+heavy.Id).GetComponent<EnemyView>().Form,Is.EqualTo(HowlForm.Cairnback));
+            Assert.That(GameObject.Find("Enemy "+runner.Id).GetComponent<EnemyView>().Form,Is.EqualTo(HowlForm.Thornrunner));
+            Assert.That(groundView.GetComponent<EnemyView>().Form, Is.EqualTo(HowlForm.Hearthgnawer));
             foreach(var id in new[]{ground.Id,air.Id,heavy.Id,runner.Id}) {
                 var actor=GameObject.Find("Enemy "+id);int batches=0,enabled=0;
-                foreach(var renderer in actor.GetComponentsInChildren<MeshRenderer>()){if(renderer.name.StartsWith("Slagbound hide batch"))batches++;if(renderer.enabled)enabled++;}
-                Assert.That(batches,Is.EqualTo(3),"Rigid hide should batch by its three materials");
+                foreach(var renderer in actor.GetComponentsInChildren<MeshRenderer>()){if(renderer.name.StartsWith("Howl batch "))batches++;if(renderer.enabled)enabled++;}
+                Assert.That(batches,Is.InRange(5,8),"Howl bodies must batch by material and motion joint");
                 Assert.That(enabled,Is.LessThanOrEqualTo(9),"Added face detail must not add a renderer per plate");
             }
-            var wings = airView.transform.Find("Winged drifter/Left wing");
+            var wings = airView.GetComponent<EnemyView>().LeftMotion;
             Assert.That(wings, Is.Not.Null);
             Assert.That(groundView.transform.forward.x, Is.EqualTo(1).Within(.001f));
             Assert.That(groundView.transform.Find("Frost status").gameObject.activeSelf, Is.True);
@@ -1044,8 +1046,8 @@ namespace FrostMaze.Tests
             Assert.That(airView.GetComponentsInChildren<Collider>().Length, Is.Zero);
             Assert.That(GameObject.Find("Enemy "+heavy.Id).GetComponentsInChildren<Collider>().Length,Is.Zero);
             Assert.That(GameObject.Find("Enemy "+runner.Id).GetComponentsInChildren<Collider>().Length,Is.Zero);
-            Assert.That(wings.Find("Wing vane").GetComponent<MeshFilter>().sharedMesh,Is.SameAs(game.Models.Wing(-1)));
-            var foot=groundView.transform.Find("Armored crawler/Crawler foot");var pausedFoot=foot.localRotation;
+            Assert.That(wings.GetComponentInChildren<MeshFilter>().sharedMesh,Is.Not.Null);
+            var foot=groundView.GetComponent<EnemyView>().LeftMotion;var pausedFoot=foot.localRotation;
             var pausedWing = wings.localRotation;
             var pausedBody = wings.parent.localPosition;
             yield return null; yield return null;

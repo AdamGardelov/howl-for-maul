@@ -1,0 +1,5 @@
+HOWL_MAP_READY Ironfold ms=1171.8 baked=True
+HOWL_ENEMY_CHECK_PASS Ironfold forms=8 paidTowers=4 spent=40 killed=0 remaining=9 nativeWindows=false
+HOWL_MAP_READY Rimewatch ms=951.3 baked=True
+HOWL_ENEMY_CHECK_PASS Rimewatch forms=8 paidTowers=4 spent=40 killed=0 remaining=8 nativeWindows=false
+HOWL_ENEMY_CHECK_COMPLETE

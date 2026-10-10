@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="81" result="Passed" total="81" passed="81" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-10 15:14:33Z" end-time="2026-10-10 15:14:50Z" duration="17.4503411">
+  <test-suite type="TestSuite" id="1000" name="Howl for Maul" fullname="Howl for Maul" runstate="Runnable" testcasecount="128" result="Passed" start-time="2026-10-10 15:14:33Z" end-time="2026-10-10 15:14:50Z" duration="17.450341" total="81" passed="81" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1147" name="FrostMaze.Tests.dll" fullname="/home/adam/Documents/Codex/2026-10-06/cre/work/howl-logo-build/Library/ScriptAssemblies/FrostMaze.Tests.dll" runstate="Runnable" testcasecount="128" result="Passed" start-time="2026-10-10 15:14:33Z" end-time="2026-10-10 15:14:50Z" duration="17.367162" total="81" passed="81" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="365899" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1148" name="FrostMaze" fullname="FrostMaze" runstate="Runnable" testcasecount="128" result="Passed" start-time="2026-10-10 15:14:33Z" end-time="2026-10-10 15:14:50Z" duration="17.360636" total="81" passed="81" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1149" name="Tests" fullname="FrostMaze.Tests" runstate="Runnable" testcasecount="128" result="Passed" start-time="2026-10-10 15:14:33Z" end-time="2026-10-10 15:14:50Z" duration="17.354173" total="81" passed="81" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1004" name="ConstructionHitchTests" fullname="FrostMaze.Tests.ConstructionHitchTests" classname="FrostMaze.Tests.ConstructionHitchTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-10 15:12:48Z" end-time="2026-10-10 15:12:50Z" duration="2.477628" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1005" name="PaidConstructionDuringLiveWavesKeepsRoutesAndViewsWorking" fullname="FrostMaze.Tests.ConstructionHitchTests.PaidConstructionDuringLiveWavesKeepsRoutesAndViewsWorking" methodname="PaidConstructionDuringLiveWavesKeepsRoutesAndViewsWorking" classname="FrostMaze.Tests.ConstructionHitchTests" runstate="Runnable" seed="976511041" result="Passed" start-time="2026-10-10 15:12:42Z" end-time="2026-10-10 15:12:50Z" duration="8.050490" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="ConstructionHitch" />
+                <property name="Timeout" value="300000" />
+              </properties>
+              <output><![CDATA[HOWL_MAP_READY Rimewatch ms=614.6 baked=True
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1011" name="HowlEnemyTests" fullname="FrostMaze.Tests.HowlEnemyTests" classname="FrostMaze.Tests.HowlEnemyTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-10 15:12:55Z" end-time="2026-10-10 15:13:09Z" duration="14.476478" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1012" name="RosterFitsCollisionDiscsSharesAssetsAndFreezesOnPause" fullname="FrostMaze.Tests.HowlEnemyTests.RosterFitsCollisionDiscsSharesAssetsAndFreezesOnPause" methodname="RosterFitsCollisionDiscsSharesAssetsAndFreezesOnPause" classname="FrostMaze.Tests.HowlEnemyTests" runstate="Runnable" seed="482081818" result="Passed" start-time="2026-10-10 15:12:50Z" end-time="2026-10-10 15:13:09Z" duration="19.336035" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="HowlEnemies" />
+                <property name="Timeout" value="300000" />
+              </properties>
+              <output><![CDATA[HOWL_MAP_READY Rimewatch ms=814.5 baked=True
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1013" name="LargePaidSceneTests" fullname="FrostMaze.Tests.LargePaidSceneTests" classname="FrostMaze.Tests.LargePaidSceneTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-10 15:13:14Z" end-time="2026-10-10 15:14:15Z" duration="60.649649" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1014" name="PaidCampaignsRenderLateDefensesAndReleaseViews" fullname="FrostMaze.Tests.LargePaidSceneTests.PaidCampaignsRenderLateDefensesAndReleaseViews" methodname="PaidCampaignsRenderLateDefensesAndReleaseViews" classname="FrostMaze.Tests.LargePaidSceneTests" runstate="Runnable" seed="1016647666" result="Passed" start-time="2026-10-10 15:13:09Z" end-time="2026-10-10 15:14:15Z" duration="65.512362" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="LargePaidScene" />
+                <property name="Category" value="WorldCohesionFinal" />
+                <property name="Timeout" value="600000" />
+              </properties>
+              <output><![CDATA[HOWL_MAP_READY Rimewatch ms=611.8 baked=True
+HOWL_MAP_READY Ironfold ms=841.6 baked=True
+HOWL_MAP_READY Rimewatch ms=854.7 baked=True
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1017" name="PlayModeIntegration" fullname="FrostMaze.Tests.PlayModeIntegration" classname="FrostMaze.Tests.PlayModeIntegration" runstate="Runnable" testcasecount="26" result="Passed" start-time="2026-10-10 15:14:33Z" end-time="2026-10-10 15:14:35Z" duration="2.584210" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1037" name="EnemyPresentationTracksSimulationAndResets" fullname="FrostMaze.Tests.PlayModeIntegration.EnemyPresentationTracksSimulationAndResets" methodname="EnemyPresentationTracksSimulationAndResets" classname="FrostMaze.Tests.PlayModeIntegration" runstate="Runnable" seed="1604719710" result="Passed" start-time="2026-10-10 15:14:15Z" end-time="2026-10-10 15:14:20Z" duration="5.449187" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+            </test-case>
+            <test-case id="1029" name="HitDefeatAndLeakCuesRespectPauseResetAndBudget" fullname="FrostMaze.Tests.PlayModeIntegration.HitDefeatAndLeakCuesRespectPauseResetAndBudget" methodname="HitDefeatAndLeakCuesRespectPauseResetAndBudget" classname="FrostMaze.Tests.PlayModeIntegration" runstate="Runnable" seed="1667081739" result="Passed" start-time="2026-10-10 15:14:20Z" end-time="2026-10-10 15:14:28Z" duration="7.349770" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="CrowdedPresentation" />
+              </properties>
+              <output><![CDATA[HOWL_MAP_READY Rimewatch ms=614.0 baked=True
+]]></output>
+            </test-case>
+            <test-case id="1028" name="PaidWallSiegeShowsStrikesDestructionAndRouteOpening" fullname="FrostMaze.Tests.PlayModeIntegration.PaidWallSiegeShowsStrikesDestructionAndRouteOpening" methodname="PaidWallSiegeShowsStrikesDestructionAndRouteOpening" classname="FrostMaze.Tests.PlayModeIntegration" runstate="Runnable" seed="1419100279" result="Passed" start-time="2026-10-10 15:14:28Z" end-time="2026-10-10 15:14:35Z" duration="7.485473" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="CrowdedPresentation" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[HOWL_MAP_READY Rimewatch ms=615.2 baked=True
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1059" name="UnityTests" fullname="FrostMaze.Tests.UnityTests" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" testcasecount="79" result="Passed" start-time="2026-10-10 15:14:35Z" end-time="2026-10-10 15:14:50Z" duration="14.746698" total="75" passed="75" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1139" name="Simulation" fullname="FrostMaze.Tests.UnityTests.Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" testcasecount="75" result="Passed" start-time="2026-10-10 15:14:35Z" end-time="2026-10-10 15:14:50Z" duration="14.743975" total="75" passed="75" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1064" name="Incremental flow fields exactly match full-scan navigation after edits" fullname="FrostMaze.Tests.UnityTests.Incremental flow fields exactly match full-scan navigation after edits" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="549410471" result="Passed" start-time="2026-10-10 15:14:35Z" end-time="2026-10-10 15:14:36Z" duration="0.849179" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1065" name="Local edits share geometry and warm route queries allocate nothing" fullname="FrostMaze.Tests.UnityTests.Local edits share geometry and warm route queries allocate nothing" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="467226398" result="Passed" start-time="2026-10-10 15:14:36Z" end-time="2026-10-10 15:14:36Z" duration="0.050522" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1066" name="Automatic waves wait for first launch and exact intermissions" fullname="FrostMaze.Tests.UnityTests.Automatic waves wait for first launch and exact intermissions" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="1758751775" result="Passed" start-time="2026-10-10 15:14:36Z" end-time="2026-10-10 15:14:36Z" duration="0.006570" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1067" name="Maul gold and wood milestones preserve four-slot budgets" fullname="FrostMaze.Tests.UnityTests.Maul gold and wood milestones preserve four-slot budgets" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="727811288" result="Passed" start-time="2026-10-10 15:14:36Z" end-time="2026-10-10 15:14:36Z" duration="0.028326" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1068" name="Wood purchases, queued orders, faction switching and restart" fullname="FrostMaze.Tests.UnityTests.Wood purchases, queued orders, faction switching and restart" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="834613382" result="Passed" start-time="2026-10-10 15:14:36Z" end-time="2026-10-10 15:14:36Z" duration="0.010303" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1069" name="Tower spatial queries match full scans through removal and rebuild" fullname="FrostMaze.Tests.UnityTests.Tower spatial queries match full scans through removal and rebuild" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="82265984" result="Passed" start-time="2026-10-10 15:14:36Z" end-time="2026-10-10 15:14:37Z" duration="0.720092" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1070" name="Reference wall seams accept flush towers and exclude enemies" fullname="FrostMaze.Tests.UnityTests.Reference wall seams accept flush towers and exclude enemies" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="691154473" result="Passed" start-time="2026-10-10 15:14:37Z" end-time="2026-10-10 15:14:37Z" duration="0.308588" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1071" name="Paid intermediate-checkpoint towers preserve every lane and reopen after sale" fullname="FrostMaze.Tests.UnityTests.Paid intermediate-checkpoint towers preserve every lane and reopen after sale" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="2140429942" result="Passed" start-time="2026-10-10 15:14:37Z" end-time="2026-10-10 15:14:38Z" duration="0.942539" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1072" name="Fully sealed checkpoint region still triggers siege and clears" fullname="FrostMaze.Tests.UnityTests.Fully sealed checkpoint region still triggers siege and clears" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="1094274003" result="Passed" start-time="2026-10-10 15:14:38Z" end-time="2026-10-10 15:14:38Z" duration="0.006956" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1073" name="Half-cell paid queues preserve position ownership and selection" fullname="FrostMaze.Tests.UnityTests.Half-cell paid queues preserve position ownership and selection" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="1166164634" result="Passed" start-time="2026-10-10 15:14:38Z" end-time="2026-10-10 15:14:38Z" duration="0.005203" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1074" name="Half-cell wall seal triggers siege and reopens after sale" fullname="FrostMaze.Tests.UnityTests.Half-cell wall seal triggers siege and reopens after sale" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="481463173" result="Passed" start-time="2026-10-10 15:14:38Z" end-time="2026-10-10 15:14:38Z" duration="0.005295" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1075" name="Paid reference mazes detour ground, preserve flight and reopen" fullname="FrostMaze.Tests.UnityTests.Paid reference mazes detour ground, preserve flight and reopen" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="1622283330" result="Passed" start-time="2026-10-10 15:14:38Z" end-time="2026-10-10 15:14:39Z" duration="0.910528" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1076" name="Paid shared exit maze delays every ground lane and reopens by owner" fullname="FrostMaze.Tests.UnityTests.Paid shared exit maze delays every ground lane and reopens by owner" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="34179982" result="Passed" start-time="2026-10-10 15:14:39Z" end-time="2026-10-10 15:14:40Z" duration="0.444534" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1077" name="Mixed-flight chain feedback preserves source and target" fullname="FrostMaze.Tests.UnityTests.Mixed-flight chain feedback preserves source and target" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="370833254" result="Passed" start-time="2026-10-10 15:14:40Z" end-time="2026-10-10 15:14:40Z" duration="0.002757" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1078" name="Every armed roster design has valid targeting and air splash" fullname="FrostMaze.Tests.UnityTests.Every armed roster design has valid targeting and air splash" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="596240117" result="Passed" start-time="2026-10-10 15:14:40Z" end-time="2026-10-10 15:14:40Z" duration="0.024332" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1079" name="Chain volleys retain bounded ordered shot history" fullname="FrostMaze.Tests.UnityTests.Chain volleys retain bounded ordered shot history" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="510332223" result="Passed" start-time="2026-10-10 15:14:40Z" end-time="2026-10-10 15:14:40Z" duration="0.006873" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1080" name="Wave previews match spawns and show owned prerequisites" fullname="FrostMaze.Tests.UnityTests.Wave previews match spawns and show owned prerequisites" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="508105108" result="Passed" start-time="2026-10-10 15:14:40Z" end-time="2026-10-10 15:14:40Z" duration="0.065857" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1081" name="Robot champion progression and ownership" fullname="FrostMaze.Tests.UnityTests.Robot champion progression and ownership" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="690688854" result="Passed" start-time="2026-10-10 15:14:40Z" end-time="2026-10-10 15:14:40Z" duration="0.000970" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1082" name="Paid champion queues recover from sold or destroyed prerequisites" fullname="FrostMaze.Tests.UnityTests.Paid champion queues recover from sold or destroyed prerequisites" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="1773372544" result="Passed" start-time="2026-10-10 15:14:40Z" end-time="2026-10-10 15:14:40Z" duration="0.038388" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1083" name="Wave planning respects targeting, factions and team ownership" fullname="FrostMaze.Tests.UnityTests.Wave planning respects targeting, factions and team ownership" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="995787586" result="Passed" start-time="2026-10-10 15:14:40Z" end-time="2026-10-10 15:14:40Z" duration="0.007584" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1084" name="Final-air advice respects future waves, paid refunds and ownership" fullname="FrostMaze.Tests.UnityTests.Final-air advice respects future waves, paid refunds and ownership" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="314425172" result="Passed" start-time="2026-10-10 15:14:40Z" end-time="2026-10-10 15:14:40Z" duration="0.004549" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1085" name="Reference map masks and spatial index" fullname="FrostMaze.Tests.UnityTests.Reference map masks and spatial index" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="87879805" result="Passed" start-time="2026-10-10 15:14:40Z" end-time="2026-10-10 15:14:40Z" duration="0.030365" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1086" name="Reference map lane traversal" fullname="FrostMaze.Tests.UnityTests.Reference map lane traversal" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="603388667" result="Passed" start-time="2026-10-10 15:14:40Z" end-time="2026-10-10 15:14:40Z" duration="0.357929" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1087" name="Faction selection enforces rosters" fullname="FrostMaze.Tests.UnityTests.Faction selection enforces rosters" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="1854494345" result="Passed" start-time="2026-10-10 15:14:40Z" end-time="2026-10-10 15:14:40Z" duration="0.001834" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1088" name="Slow expiry and chain target limits" fullname="FrostMaze.Tests.UnityTests.Slow expiry and chain target limits" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="1247906346" result="Passed" start-time="2026-10-10 15:14:40Z" end-time="2026-10-10 15:14:40Z" duration="0.027003" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1089" name="Straight path" fullname="FrostMaze.Tests.UnityTests.Straight path" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="1400485382" result="Passed" start-time="2026-10-10 15:14:40Z" end-time="2026-10-10 15:14:40Z" duration="0.000893" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1090" name="Horizontal wall detour" fullname="FrostMaze.Tests.UnityTests.Horizontal wall detour" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="1559764142" result="Passed" start-time="2026-10-10 15:14:40Z" end-time="2026-10-10 15:14:40Z" duration="0.001348" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1091" name="Vertical wall detour" fullname="FrostMaze.Tests.UnityTests.Vertical wall detour" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="1404731745" result="Passed" start-time="2026-10-10 15:14:40Z" end-time="2026-10-10 15:14:40Z" duration="0.001408" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1092" name="Valid diagonal clearance" fullname="FrostMaze.Tests.UnityTests.Valid diagonal clearance" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="664295805" result="Passed" start-time="2026-10-10 15:14:40Z" end-time="2026-10-10 15:14:40Z" duration="0.000180" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1093" name="Invalid diagonal clearance" fullname="FrostMaze.Tests.UnityTests.Invalid diagonal clearance" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="1185417664" result="Passed" start-time="2026-10-10 15:14:40Z" end-time="2026-10-10 15:14:40Z" duration="0.000167" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1094" name="Diagonal aperture changes global connectivity" fullname="FrostMaze.Tests.UnityTests.Diagonal aperture changes global connectivity" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="785143371" result="Passed" start-time="2026-10-10 15:14:40Z" end-time="2026-10-10 15:14:40Z" duration="0.001962" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1095" name="Tower combat counts negative health as a kill" fullname="FrostMaze.Tests.UnityTests.Tower combat counts negative health as a kill" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="1497749392" result="Passed" start-time="2026-10-10 15:14:40Z" end-time="2026-10-10 15:14:40Z" duration="0.000213" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1096" name="Long zig-zag maze" fullname="FrostMaze.Tests.UnityTests.Long zig-zag maze" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="1667968790" result="Passed" start-time="2026-10-10 15:14:40Z" end-time="2026-10-10 15:14:40Z" duration="0.004879" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1097" name="Complete blockage" fullname="FrostMaze.Tests.UnityTests.Complete blockage" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="829570102" result="Passed" start-time="2026-10-10 15:14:40Z" end-time="2026-10-10 15:14:40Z" duration="0.001465" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1098" name="Reopen after selling, invalidate cached field" fullname="FrostMaze.Tests.UnityTests.Reopen after selling, invalidate cached field" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="1009577381" result="Passed" start-time="2026-10-10 15:14:40Z" end-time="2026-10-10 15:14:40Z" duration="0.002069" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1099" name="Reopen after destruction" fullname="FrostMaze.Tests.UnityTests.Reopen after destruction" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="984811396" result="Passed" start-time="2026-10-10 15:14:40Z" end-time="2026-10-10 15:14:40Z" duration="0.001529" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1100" name="Enemy breaches and resumes" fullname="FrostMaze.Tests.UnityTests.Enemy breaches and resumes" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="2120153606" result="Passed" start-time="2026-10-10 15:14:40Z" end-time="2026-10-10 15:14:40Z" duration="0.007777" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1101" name="Congestion never triggers siege" fullname="FrostMaze.Tests.UnityTests.Congestion never triggers siege" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="986442670" result="Passed" start-time="2026-10-10 15:14:40Z" end-time="2026-10-10 15:14:40Z" duration="0.024069" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1102" name="Flight follows checkpoints over wall" fullname="FrostMaze.Tests.UnityTests.Flight follows checkpoints over wall" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="1929543174" result="Passed" start-time="2026-10-10 15:14:40Z" end-time="2026-10-10 15:14:40Z" duration="0.000711" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1103" name="Placement footprint and occupancy" fullname="FrostMaze.Tests.UnityTests.Placement footprint and occupancy" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="786422762" result="Passed" start-time="2026-10-10 15:14:40Z" end-time="2026-10-10 15:14:40Z" duration="0.000251" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1104" name="Reproducible fixed-step simulation" fullname="FrostMaze.Tests.UnityTests.Reproducible fixed-step simulation" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="1028828662" result="Passed" start-time="2026-10-10 15:14:40Z" end-time="2026-10-10 15:14:40Z" duration="0.020170" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1105" name="Shared fields reused" fullname="FrostMaze.Tests.UnityTests.Shared fields reused" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="805225142" result="Passed" start-time="2026-10-10 15:14:40Z" end-time="2026-10-10 15:14:40Z" duration="0.000861" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1106" name="Enemies traverse zig-zag without collision" fullname="FrostMaze.Tests.UnityTests.Enemies traverse zig-zag without collision" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="1047699752" result="Passed" start-time="2026-10-10 15:14:40Z" end-time="2026-10-10 15:14:40Z" duration="0.076967" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1107" name="Dynamic blockage and sale during wave" fullname="FrostMaze.Tests.UnityTests.Dynamic blockage and sale during wave" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="1107190407" result="Passed" start-time="2026-10-10 15:14:40Z" end-time="2026-10-10 15:14:40Z" duration="0.004918" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1108" name="Ground checkpoints retain downstream routing" fullname="FrostMaze.Tests.UnityTests.Ground checkpoints retain downstream routing" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="1272621" result="Passed" start-time="2026-10-10 15:14:40Z" end-time="2026-10-10 15:14:40Z" duration="0.002251" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1109" name="Two hundred enemies complete a shared route" fullname="FrostMaze.Tests.UnityTests.Two hundred enemies complete a shared route" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="659821250" result="Passed" start-time="2026-10-10 15:14:40Z" end-time="2026-10-10 15:14:44Z" duration="3.826863" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1110" name="No tunnelling at high speed" fullname="FrostMaze.Tests.UnityTests.No tunnelling at high speed" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="56211961" result="Passed" start-time="2026-10-10 15:14:44Z" end-time="2026-10-10 15:14:44Z" duration="0.003685" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1111" name="Economy transactions reject invalid purchases and refunds" fullname="FrostMaze.Tests.UnityTests.Economy transactions reject invalid purchases and refunds" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="1419729410" result="Passed" start-time="2026-10-10 15:14:44Z" end-time="2026-10-10 15:14:44Z" duration="0.000673" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1112" name="Builder travel cancellation and order replacement" fullname="FrostMaze.Tests.UnityTests.Builder travel cancellation and order replacement" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="650541371" result="Passed" start-time="2026-10-10 15:14:44Z" end-time="2026-10-10 15:14:44Z" duration="0.000912" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1113" name="Construction revalidates on arrival" fullname="FrostMaze.Tests.UnityTests.Construction revalidates on arrival" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="1536058109" result="Passed" start-time="2026-10-10 15:14:44Z" end-time="2026-10-10 15:14:44Z" duration="0.000341" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1114" name="Kill and wave rewards paid once with victory" fullname="FrostMaze.Tests.UnityTests.Kill and wave rewards paid once with victory" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="1475048584" result="Passed" start-time="2026-10-10 15:14:44Z" end-time="2026-10-10 15:14:44Z" duration="0.000243" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1115" name="Defeat freezes match and prevents new actions" fullname="FrostMaze.Tests.UnityTests.Defeat freezes match and prevents new actions" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="345237749" result="Passed" start-time="2026-10-10 15:14:44Z" end-time="2026-10-10 15:14:44Z" duration="0.001897" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1116" name="Victory and defeat clear every paid builder queue and freeze transactions" fullname="FrostMaze.Tests.UnityTests.Victory and defeat clear every paid builder queue and freeze transactions" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="1533079389" result="Passed" start-time="2026-10-10 15:14:44Z" end-time="2026-10-10 15:14:44Z" duration="0.023919" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1117" name="Shared map traverses all defense areas" fullname="FrostMaze.Tests.UnityTests.Shared map traverses all defense areas" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="808565857" result="Passed" start-time="2026-10-10 15:14:44Z" end-time="2026-10-10 15:14:44Z" duration="0.024919" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1118" name="Complete ten-wave match using paid builder construction" fullname="FrostMaze.Tests.UnityTests.Complete ten-wave match using paid builder construction" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="834085404" result="Passed" start-time="2026-10-10 15:14:44Z" end-time="2026-10-10 15:14:48Z" duration="3.711881" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1119" name="All four lanes active for every player count" fullname="FrostMaze.Tests.UnityTests.All four lanes active for every player count" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="461530666" result="Passed" start-time="2026-10-10 15:14:48Z" end-time="2026-10-10 15:14:48Z" duration="0.067195" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1120" name="Independent lane spawn queues" fullname="FrostMaze.Tests.UnityTests.Independent lane spawn queues" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="2011321378" result="Passed" start-time="2026-10-10 15:14:48Z" end-time="2026-10-10 15:14:48Z" duration="0.017718" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1121" name="Permanent terrain blocks construction and siege navigation" fullname="FrostMaze.Tests.UnityTests.Permanent terrain blocks construction and siege navigation" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="2051741077" result="Passed" start-time="2026-10-10 15:14:48Z" end-time="2026-10-10 15:14:48Z" duration="0.001073" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1122" name="All upper lanes reach shared bottom exit" fullname="FrostMaze.Tests.UnityTests.All upper lanes reach shared bottom exit" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="1627388589" result="Passed" start-time="2026-10-10 15:14:48Z" end-time="2026-10-10 15:14:48Z" duration="0.049291" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1123" name="Fixed team economy and selected starting positions" fullname="FrostMaze.Tests.UnityTests.Fixed team economy and selected starting positions" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="1581611647" result="Passed" start-time="2026-10-10 15:14:48Z" end-time="2026-10-10 15:14:48Z" duration="0.000860" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1124" name="Independent builders and owned sale refunds" fullname="FrostMaze.Tests.UnityTests.Independent builders and owned sale refunds" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="669985489" result="Passed" start-time="2026-10-10 15:14:48Z" end-time="2026-10-10 15:14:48Z" duration="0.000423" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1125" name="Four builder queues skip contested and enemy-blocked cells independently" fullname="FrostMaze.Tests.UnityTests.Four builder queues skip contested and enemy-blocked cells independently" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="1433906375" result="Passed" start-time="2026-10-10 15:14:48Z" end-time="2026-10-10 15:14:48Z" duration="0.039268" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1126" name="Difficulty scales enemies without disabling lanes" fullname="FrostMaze.Tests.UnityTests.Difficulty scales enemies without disabling lanes" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="1476134137" result="Passed" start-time="2026-10-10 15:14:48Z" end-time="2026-10-10 15:14:48Z" duration="0.050532" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1127" name="Build orders retain their tower design" fullname="FrostMaze.Tests.UnityTests.Build orders retain their tower design" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="2056339986" result="Passed" start-time="2026-10-10 15:14:48Z" end-time="2026-10-10 15:14:48Z" duration="0.000457" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1128" name="Tower upgrades preserve blueprints and refund investments" fullname="FrostMaze.Tests.UnityTests.Tower upgrades preserve blueprints and refund investments" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="381021263" result="Passed" start-time="2026-10-10 15:14:48Z" end-time="2026-10-10 15:14:48Z" duration="0.000456" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1129" name="Cannon splash damages ground crowds but not air" fullname="FrostMaze.Tests.UnityTests.Cannon splash damages ground crowds but not air" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="1131197428" result="Passed" start-time="2026-10-10 15:14:48Z" end-time="2026-10-10 15:14:48Z" duration="0.012884" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1130" name="Barricades have no weapon" fullname="FrostMaze.Tests.UnityTests.Barricades have no weapon" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="2101798187" result="Passed" start-time="2026-10-10 15:14:48Z" end-time="2026-10-10 15:14:48Z" duration="0.012345" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1131" name="Queued construction retains designs and cancels cleanly" fullname="FrostMaze.Tests.UnityTests.Queued construction retains designs and cancels cleanly" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="1352093527" result="Passed" start-time="2026-10-10 15:14:48Z" end-time="2026-10-10 15:14:48Z" duration="0.000676" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1132" name="Blocked queued construction skips in click order without charging" fullname="FrostMaze.Tests.UnityTests.Blocked queued construction skips in click order without charging" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="1508739520" result="Passed" start-time="2026-10-10 15:14:48Z" end-time="2026-10-10 15:14:48Z" duration="0.016619" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1133" name="Twenty-wave escalation preserves opening and forecasts" fullname="FrostMaze.Tests.UnityTests.Twenty-wave escalation preserves opening and forecasts" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="1758912368" result="Passed" start-time="2026-10-10 15:14:48Z" end-time="2026-10-10 15:14:48Z" duration="0.011366" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1134" name="Robot faction strengths and paid reclamation" fullname="FrostMaze.Tests.UnityTests.Robot faction strengths and paid reclamation" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="537662264" result="Passed" start-time="2026-10-10 15:14:48Z" end-time="2026-10-10 15:14:48Z" duration="0.003115" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1135" name="Wave income excludes spending and preserves independent snapshots" fullname="FrostMaze.Tests.UnityTests.Wave income excludes spending and preserves independent snapshots" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="1669146085" result="Passed" start-time="2026-10-10 15:14:48Z" end-time="2026-10-10 15:14:48Z" duration="0.004226" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1136" name="Wave results distinguish survived leaks from defeat" fullname="FrostMaze.Tests.UnityTests.Wave results distinguish survived leaks from defeat" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="908629327" result="Passed" start-time="2026-10-10 15:14:48Z" end-time="2026-10-10 15:14:48Z" duration="0.012767" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1137" name="Free-build wave results do not invent income" fullname="FrostMaze.Tests.UnityTests.Free-build wave results do not invent income" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="986949782" result="Passed" start-time="2026-10-10 15:14:48Z" end-time="2026-10-10 15:14:48Z" duration="0.000445" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1138" name="Captured dense Ironfold corner crowd clears without siege" fullname="FrostMaze.Tests.UnityTests.Captured dense Ironfold corner crowd clears without siege" methodname="Simulation" classname="FrostMaze.Tests.UnityTests" runstate="Runnable" seed="2114442571" result="Passed" start-time="2026-10-10 15:14:48Z" end-time="2026-10-10 15:14:50Z" duration="1.821908" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: /home/adam/.config/unity3d/Howl for Maul/Howl for Maul/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

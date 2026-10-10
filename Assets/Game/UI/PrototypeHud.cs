@@ -144,7 +144,7 @@ namespace FrostMaze
             if(!game.NetworkMatch&&w.Players.Length>1){GUILayout.Label("LOCAL PLAYER",section);GUILayout.BeginHorizontal();for(int i=0;i<w.Players.Length;i++)if(HudButton($"{(i==w.ActivePlayer?"• ":"")}P{i+1}  {w.Players[i].Gold}g",button))w.SelectPlayer(i);GUILayout.EndHorizontal();}
             if(!w.Finished) {
                 int index=Mathf.Clamp(w.WaveIndex+(w.WaveActive?0:1),0,w.Config.Waves.Length-1);var preview=w.PreviewWave(index);
-                GUILayout.Label((w.WaveActive?"CURRENT: ":"NEXT: ")+preview.Name,section);
+                GUILayout.Label((w.WaveActive?"CURRENT: ":"NEXT: ")+preview.Name+" · "+EnemyIdentity.Name(EnemyIdentity.For(preview)),section);
                 GUILayout.Label($"{(preview.Flying?"AIR · ignores mazes":"GROUND")}  /  {preview.Count*w.LaneCount} enemies  /  {preview.Health:0.#} HP",label);
                 for(int i=index;i<w.Config.Waves.Length;i++)if(w.Config.Waves[i].Flying){GUILayout.Label(i==index?"Prepare towers that can hit air.":$"Next flying attack: wave {i+1}",small);break;}
                 if(HudButton(showForecast?"Hide wave details":"Wave details",button))showForecast=!showForecast;
@@ -210,7 +210,7 @@ namespace FrostMaze
                 if(!w.Config.Economy)w.TowersFire=GUILayout.Toggle(w.TowersFire,"Tower weapons enabled",button);
                 if(game.HasHover&&game.ShowValues){var f=w.Navigation.Get(w.Config.GroundRoute[0],w.Config.Waves[0].Radius);GUILayout.Label($"Cell {game.Hover.X:0.#}, {game.Hover.Y:0.#} · distance {f.Distance[f.Index(game.Hover+new V2(.5f,.5f))]:0.00}",small);}
                 var e=w.Enemies.Find(enemy=>enemy.Id==game.SelectedId);
-                GUILayout.Label(e==null?"Ctrl + click an enemy to inspect it.":$"Enemy #{e.Id} · {(e.Spec.Flying?"AIR":"GROUND")} · HP {e.Health:0}\n{(e.Blocked?"SIEGE":"ROUTE OPEN")} · speed {e.Velocity.Length:0.00}",small);
+                GUILayout.Label(e==null?"Ctrl + click an enemy to inspect it.":$"{EnemyIdentity.Name(EnemyIdentity.For(e.Spec))} #{e.Id} · {(e.Spec.Flying?"AIR":"GROUND")} · HP {e.Health:0}\n{(e.Blocked?"SIEGE":"ROUTE OPEN")} · speed {e.Velocity.Length:0.00}",small);
                 GUILayout.Label($"Tick {w.Tick} · fields {w.Navigation.Rebuilds} · 30 Hz simulation",small);
                 if(!w.Config.Economy&&HudButton("Load zig-zag maze",button))game.DemoMaze();
                 if(!game.NetworkMatch&&HudButton("Reset map + waves",button))game.ResetSimulation();

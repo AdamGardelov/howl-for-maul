@@ -164,6 +164,20 @@ namespace FrostMaze
             }
             return Save(name,v,t);
         }
+        // Cambered organic wing membranes, with rounded moth lobes or a feathered trailing edge.
+        public Mesh HowlWing(int side,bool moth)
+        {
+            string key="Howl wing "+side+" "+moth;if(meshes.TryGetValue(key,out var cached))return cached;
+            var edge=moth?new[]{new Vector2(0,.25f),new Vector2(.25f,.54f),new Vector2(.67f,.66f),new Vector2(1.03f,.61f),new Vector2(1.23f,.43f),new Vector2(1.25f,.18f),new Vector2(1.13f,-.06f),new Vector2(.85f,-.28f),new Vector2(.96f,-.53f),new Vector2(.83f,-.77f),new Vector2(.57f,-.86f),new Vector2(.30f,-.73f),new Vector2(.08f,-.39f)}
+                :new[]{new Vector2(0,.24f),new Vector2(.40f,.38f),new Vector2(.83f,.35f),new Vector2(1.22f,.16f),new Vector2(1.48f,-.13f),new Vector2(1.53f,-.39f),new Vector2(1.30f,-.28f),new Vector2(1.37f,-.60f),new Vector2(1.10f,-.42f),new Vector2(1.15f,-.78f),new Vector2(.90f,-.55f),new Vector2(.90f,-.86f),new Vector2(.67f,-.63f),new Vector2(.60f,-.91f),new Vector2(.34f,-.62f),new Vector2(0,-.32f)};
+            var v=new List<Vector3>();var t=new List<int>();
+            for(int face=0;face<2;face++) {
+                int n=v.Count;v.Add(new Vector3(side*.51f,face==0?.15f:-.035f,-.10f));
+                foreach(var p in edge)v.Add(new Vector3(side*p.x,face==0?.025f:-.015f,p.y));
+                for(int i=0;i<edge.Length;i++){int a=n+1+i,b=n+1+(i+1)%edge.Length;t.AddRange((side==1)==(face==0)?new[]{n,a,b}:new[]{n,b,a});}
+            }
+            return Save(key,v,t);
+        }
         public Mesh DefeatBurst {
             get {
                 const string key="Enemy defeat shards";

@@ -151,7 +151,7 @@ namespace FrostMaze
         }
         Material barricadeMaterial,cannonMaterial;
         Material[] factionMaterials;
-        Material towerMaterial, enemyMaterial, airMaterial, blockedMaterial, ghostMaterial, enemyShellMaterial, slowMaterial, hitMaterial;
+        Material towerMaterial, blockedMaterial, ghostMaterial, slowMaterial, hitMaterial;
         CombatFeedback feedback;
         GameObject ghost, worldRoot, builder, orderMarker;
         float accumulator;
@@ -195,11 +195,9 @@ namespace FrostMaze
             towerMaterial = MakeMaterial(new Color(0.10f, 0.32f, 0.40f));
             barricadeMaterial=MakeMaterial(new Color(.3f,.39f,.43f));
             cannonMaterial=MakeMaterial(new Color(.75f,.28f,.10f));
-            enemyMaterial = MakeMaterial(new Color(1f, 0.48f, 0.23f));
-            airMaterial = MakeMaterial(new Color(0.67f, 0.38f, 0.96f));
+            PrepareHowl();
             blockedMaterial = MakeMaterial(new Color(1f, 0.17f, 0.24f));
             hitMaterial = MakeMaterial(new Color(1f,.92f,.65f),true);
-            enemyShellMaterial = MakeMaterial(new Color(.12f, .18f, .25f));
             slowMaterial = MakeMaterial(new Color(.25f, .94f, 1f), true);
             ghostMaterial = MakeMaterial(new Color(0.24f, 0.9f, 0.74f));
             var floor = Primitive("Snowfield", PrimitiveType.Cube, new Vector3(World.Config.Width / 2f, -0.15f, World.Config.Height / 2f), new Vector3(World.Config.Width, 0.25f, World.Config.Height), MakeMaterial(World.Config.Theme=="iron"?new Color(.22f,.25f,.28f):new Color(.52f,.72f,.8f)));
@@ -547,7 +545,7 @@ namespace FrostMaze
                     var root = new GameObject("Enemy " + e.Id);
                     root.transform.SetParent(worldRoot.transform, false);
                     obj = root.AddComponent<EnemyView>();
-                    obj.Initialize(e, e.Spec.Flying ? airMaterial : enemyMaterial, blockedMaterial, enemyShellMaterial, slowMaterial,hitMaterial,Models);
+                    obj.Initialize(e,HowlModels,HowlPalette,slowMaterial,hitMaterial,blockedMaterial,Models);
                     enemies.Add(e.Id, obj);
                 }
                 obj.Sync(e, World.Tick);

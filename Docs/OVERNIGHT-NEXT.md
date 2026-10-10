@@ -1,3 +1,13 @@
+## 2026-10-10 — Eight Howl creatures, tested local builds
+
+The user asked to start the enemy redesign after the defender/faction overhaul. [The Howl host](HOWL-HOST.md) now has eight original creature forms: Hearthgnawer, Thornrunner, Ashling swarm, Cairnback, Hollow Warden, Gloamwing, Gatebreaker and Storm Herald. Both maps have regional materials, with frost details on Rimewatch. Details/inspection show their names. Wave 20 remains thirty flyers; no new boss mechanics or balance edits.
+
+[Evidence](Verification/Howl-Host/Verification.json): 81/81 targeted Unity cases and 75/75 headless cases; both complete paid Hard ledgers and live-wave building pass. Zero paused/moving enemy pose allocations, zero stable crowded view-sync allocation. Animated ground bodies fit their existing collision discs, with no cosmetic blockers. Linux package data/menu/mixed-host combat and both-map two-process loopback checks pass. Windows cross-build passes; native execution, hardware GPU performance and separate-network multiplayer are unverified.
+
+Local `Builds/Linux-World` and `Builds/Windows-World` contain the enemy pass. Prior Playtest 3 payloads are retained as `*-World-61996b0`. Public Playtest 3 remains unchanged. Unity editor builds work with the normal user licensing environment; private XDG config is used only for standalone QA. The isolated build project is `work/howl-logo-build` under the Codex task; editor target restored to Linux. Do not start a second editor on the user's project.
+
+Next useful bounded work: inspect the eight forms in normal player use, improve species-specific creature vocals/death motion, and consider clearer pre-wave creature portraits. The current pass still uses shared procedural anatomy and simple joint animation; don't describe it as final sculpted production art. Preserve current simulation/network source, map masks and radii, fixed team economy, all lanes and Scott Buckley attribution. Only publish these updated binaries when asked.
+
 ## 2026-10-10 — Friends Playtest 3 published
 
 The user requested push and a new release. [Friends Playtest 3: Smoother Construction](https://github.com/AdamGardelov/howl-for-maul/releases/tag/v0.1.0-playtest.3) is public at 2026-10-10T14:28:42Z. Annotated tag `v0.1.0-playtest.3` points to exact game source `61996b0`, including the construction-time routing fix and all Playtest 2 art. No game or service settings changed in this release turn. Earlier release assets remain immutable.

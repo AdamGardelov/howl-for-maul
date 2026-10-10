@@ -1,0 +1,73 @@
+{
+  "date": "2026-10-10T15:29:10.204423+00:00",
+  "baseCommit": "d4466f17076f756cae78b977fee4d427232dd68a",
+  "unity": "6000.3.25f1",
+  "renderer": "Linux OpenGL llvmpipe / private Xvfb :98",
+  "tests": {
+    "total": "81",
+    "passed": "81",
+    "failed": "0",
+    "end-time": "2026-10-10 15:14:50Z",
+    "duration": "17.4503411"
+  },
+  "simulation": "75/75 passed",
+  "sources": {
+    "Assets/Game/Presentation/EnemyIdentity.cs": "172efc2f19493aaccfebf488f4ec4edfd403572d7b2f4f304937b7dc093afc21",
+    "Assets/Game/Presentation/EnemyIdentity.cs.meta": "d7c48cedb46d4e293492c7f568af141d2f09f0031a856037ab1a1aa6a0e62e29",
+    "Assets/Game/Presentation/HowlModels.cs": "07cedb285fdb3f9027285e9d05cde9a2ae06b2c78b1f8c6582b3c32801eb2691",
+    "Assets/Game/Presentation/HowlModels.cs.meta": "64246acc0d0d9e0f86a88245e2d3c0083e91a6c2ce5d69746d74e102a92d287c",
+    "Assets/Game/Presentation/Prototype.Howl.cs": "db587a84c20d941d0a79a159934aa3e631654c354863f5c82e3d867fbac07d3a",
+    "Assets/Game/Presentation/Prototype.Howl.cs.meta": "d22dbbc073ec332d2f0a5a3f6a8f6d140a06d10e33e05c2a96a11e68db32a96f",
+    "Assets/Game/Presentation/StandaloneEnemySmoke.cs": "3c1b724a4f0757917000083bb9dc1c767cfc45951ecf36251e569f0ff22871c0",
+    "Assets/Game/Presentation/StandaloneEnemySmoke.cs.meta": "340d075f71f8f8129d25121bfd22159db577b5aa274dde2faac19b4399f28b4b",
+    "Assets/Game/Presentation/StandaloneSmokeExit.cs": "8fb0f595b5873a38f1efb2c33c12895b7544d90eaace1f271f75e6dfb6be24c8",
+    "Assets/Game/Presentation/StandaloneSmokeExit.cs.meta": "8e785d738ed6d992ca83ca0a43cd4687cab2432b0a299f955ab3b6dbb27b0c22",
+    "Assets/Tests/HowlEnemyTests.cs": "bf9e14d3ba6278bb2449ef9b771960276fdf92bb324edd9ffbe95f47773cdf63",
+    "Assets/Tests/HowlEnemyTests.cs.meta": "86d96453c6c381d0ca6d9c582f8f6f6f89bb773693cc6b1b10bfd36a43c2975c",
+    "Assets/Game/Presentation/EnemyView.cs": "cd1a53023b723ea32d08a410ded6ed94885afbdb56b556bc633beee0c50937eb",
+    "Assets/Game/Presentation/ModelMeshes.cs": "308d1c49fe9b7ac1dd61622e97ea56d493d6857e40895cd838ad78dd83b3f99e",
+    "Assets/Game/Presentation/Prototype.cs": "5a5f72c4d1e7906b0c817f44c701c2660814090b76e4e9409e8133877add4633",
+    "Assets/Game/Presentation/StandaloneSmoke.cs": "a3ef265128a012746009196c7a917f776ebcbb0d52e15ac6506031af2c509ce9",
+    "Assets/Game/UI/PrototypeHud.cs": "d225048569603fda316cae76bad7fc4dcac4e5f2b3e096786e3d00235d1f891f",
+    "Assets/Tests/PlayModeIntegration.cs": "fb130e37faef8e670540f2b77c5ed5dbad205c44f42f3a8d07022fd62415725b",
+    "Assets/Game/Maps/Resources/Ironfold.asset": "a9aff9122f41adc9635f079bcb6b682e658d7bfceaa57dd0605bf51670d1f0a1",
+    "Assets/Game/Maps/Resources/Rimewatch.asset": "daace7b41bef384d13659e253d3e581f07e31c391eb292b301d31d5269ecb24d",
+    "THIRD-PARTY-NOTICES.md": "96c119336e46c5d4a9b12047041012e47bad686c7e7028e2865db8edf4d800b8",
+    "Docs/MUSIC-SOURCES.json": "bb1435367b1c2971efe67b2b0d90415981595fd87561c29e4efa6fba061ac36a"
+  },
+  "packages": {
+    "Linux": {
+      "path": "Builds/Linux-World",
+      "previous": "Builds/Linux-World-61996b0",
+      "previousTreeSha256": "53f38a7b40d47be2b7c142da195b0f3fe0e9915876c187061c0cbbbd9afd41c7",
+      "fileCount": 193,
+      "treeSha256": "ae73185c06d6eff3de3c345006b3d0b953438b5ef78e6f2470a7ce08aea9a24a",
+      "ScottBuckleyNotices": "96c119336e46c5d4a9b12047041012e47bad686c7e7028e2865db8edf4d800b8",
+      "musicSources": "bb1435367b1c2971efe67b2b0d90415981595fd87561c29e4efa6fba061ac36a"
+    },
+    "Windows": {
+      "path": "Builds/Windows-World",
+      "previous": "Builds/Windows-World-61996b0",
+      "previousTreeSha256": "5e169b0ecf36785d68c347a4f2bec23fdea7b121913fa12e71d7aa87e735822d",
+      "fileCount": 195,
+      "treeSha256": "f0057e36e60c3ed7cab07aa100be12760c8c01de527d6454c525d4f869c6138f",
+      "ScottBuckleyNotices": "96c119336e46c5d4a9b12047041012e47bad686c7e7028e2865db8edf4d800b8",
+      "musicSources": "bb1435367b1c2971efe67b2b0d90415981595fd87561c29e4efa6fba061ac36a"
+    }
+  },
+  "unchangedGameplay": "Simulation and networking sources, exact map assets/masks, routes, all costs/rewards/counts/stats/collision radii, ownership and Scott Buckley attribution unchanged from base.",
+  "scope": "Eight shared creature forms with map-specific materials and frost accents. Original programmatically authored meshes, no downloaded models. First enemy identity pass, not final sculpted/rigged production art.",
+  "iterations": "First focused run 2/4: two legacy combat fixtures assumed a six-cell exit before the map became eight cells wide and a spawn location now blocked on Ironfold. Corrected to the current eight-cell Rimewatch seal and explicit Rimewatch hit-cue fixture; refined focused run 4/4. Final combined run 81/81. No gameplay rules weakened.",
+  "paidCampaigns": "Two complete historical Hard two-player paid campaign ledgers replayed with exact wallets, builder travel, tower IDs/upgrades, kills/leaks and win results. Stable SyncViews allocation remains zero.",
+  "packagedWorld": "Controlled mixed-host fixture with sixteen actual campaign enemies, four paid defenses, ninety real combat ticks, both maps, close/normal/960x600 screenshots. This is a diagnostic composition, not a naturally mixed wave.",
+  "enemyMotion": "Walking/wing motion, damage recoil and melee twist use simulation ticks; paused frames freeze. Ground vertices remain inside the existing collision discs during gait/attack/recoil. No cosmetic colliders.",
+  "enemyAllocation": "All meshes warmed per map, shared by instances. At most nine enabled body renderers, plus an optional slow-status ring. Zero allocations across 120 paused and 120 moving Sync iterations over all eight forms on both maps.",
+  "diagnosticShutdown": "One data-only smoke launch completed all checks then crashed in native audio teardown (exit 133) while quitting inside the startup callback. An unchanged retry and normal gameplay/menu sessions exited cleanly. The diagnostic now schedules quit after two player frames; three fresh final smoke runs exit 0. Failure log retained. This does not establish a fix for every possible Unity native shutdown fault.",
+  "audio": "No new creature vocalizations in this pass; existing attacks, impact/death/leak cues and soundtrack retained.",
+  "linuxBuild": "Full build and packaged data/menu/enemy combat checks pass. Local install byte-verified with previous packages preserved.",
+  "windowsBuild": "Cross-build succeeded; native Windows execution not tested.",
+  "network": "Two-process loopback checks on both maps pass; Relay and separate-network friend match not rerun for presentation-only changes.",
+  "hardwarePerformance": "Not measured on a hardware GPU; llvmpipe captures and CPU diagnostics only.",
+  "publicRelease": "Playtest 3 remains unchanged; these are updated local builds and source.",
+  "isolatedTarget": "Linux"
+}

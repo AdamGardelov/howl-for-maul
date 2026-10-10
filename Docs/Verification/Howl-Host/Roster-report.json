@@ -1,0 +1,19 @@
+{
+    "Scope": "Eight Howl forms, both maps, animated geometry envelopes, shared assets, paused and moving Sync; gallery is staged, not a combat screenshot",
+    "Samples": [
+        {
+            "Map": "Ironfold",
+            "Forms": 8,
+            "MaxRenderers": 9,
+            "StableSyncBytes": 0,
+            "MovingSyncBytes": 0
+        },
+        {
+            "Map": "Rimewatch",
+            "Forms": 8,
+            "MaxRenderers": 9,
+            "StableSyncBytes": 0,
+            "MovingSyncBytes": 0
+        }
+    ]
+}

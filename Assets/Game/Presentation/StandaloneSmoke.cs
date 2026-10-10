@@ -35,8 +35,13 @@ namespace FrostMaze
                     if(world.Leaked!=world.LaneCount*2)throw new Exception("Packaged map route stalled: "+name);
                     Debug.Log("HOWL_SMOKE_PASS "+name+" lanes="+world.LaneCount+" factions="+world.Config.Factions.Length+" towers="+world.Config.Catalog.Length+" waves="+world.Config.Waves.Length+" startingGold="+world.Config.StartingGold+" woodAfterWave="+(iron?14:9));
                 }
-                Debug.Log("HOWL_SMOKE_COMPLETE");Application.Quit(0);
-            }catch(Exception e){Debug.LogException(e);Application.Quit(1);}
+                Debug.Log("HOWL_SMOKE_COMPLETE");ExitAfterStartup(0);
+            }catch(Exception e){Debug.LogException(e);ExitAfterStartup(1);}
+        }
+        static void ExitAfterStartup(int result)
+        {
+            // Let native engine initialization finish before shutting down this data-only process.
+            new GameObject("Data smoke exit").AddComponent<StandaloneSmokeExit>().Result=result;
         }
     }
 }

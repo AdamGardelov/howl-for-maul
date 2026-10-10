@@ -40,7 +40,7 @@ The [faction identity charter](FACTION-IDENTITY-CHARTER.md) expands the target t
 
 ## The Howl
 
-Ground attackers are slagbound creatures: armored bodies around a dangerous inner glow. Runners have a narrow, swept silhouette; breakers have broad frontal plates; flying drifters have unmistakable wings and a suspended body. Eyes, breathing and footfall give them intention. Threat readability takes priority over decorative detail.
+The Howl wakes scavengers, hunting beasts, bramble mites, stone-backed boars, masked wardens and winged creatures. Warm eyes and pale masks connect the host; anatomy and movement separate its roles. Ironfold creatures wear soot, bark and weathered bone. Rimewatch creatures carry frost, pale stone and blue-grey hides. See [the implemented eight-form host](HOWL-HOST.md), including the ram-headed Gatebreaker and final-wave Storm Herald. Threat readability takes priority over decorative detail.
 
 ## Visual grammar
 
