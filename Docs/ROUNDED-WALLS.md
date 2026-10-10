@@ -1,0 +1,11 @@
+# Rounded wall banks
+
+2026-10-10. The user identified the repeated square walls as a major reason the world felt stiff. This pass replaces the cell-by-cell masonry crowns and straight-sided ledges with a continuous, rounded upper surface on both maps. Ironfold uses its existing moss/earth paint over exposed slate; Rimewatch uses snow over cool stone. Diagonal runs cut back their upper corners into connected slopes, instead of putting a separate raised square on every navigation cell.
+
+The visual surface stays wholly inside the original blocked mask. Its upper silhouette retreats inward; a 0.035-unit foot reaches every original boundary. Towers still seal against the same cells, and enemies use exactly the same routes and clearance rules. The underlying masks, ownership, economy, lane count and placement rules are unchanged. No scenery colliders are added. The foot uses the shelf pigment and upward shading: the first close render revealed that the old dark masonry texture made even this tiny edge look like a stair-step outline.
+
+A shared height field supplies the normals, so neighboring quads light continuously. Sloping faces blend into original bedrock using the existing terrain shader and URP lighting. Only edge cells subdivide; interior cells remain single quads before the existing mirror pass. The cap and foot replace their existing batches, and the old crown-trim batch is removed. Geometry is static after map creation. Small gate posts extend down to the new foot so they do not float where the shoulder slopes away. Existing peak shading on Rimewatch is retained.
+
+The low footprint remains visible when viewed closely, because it marks the actual build boundary. That is intentional; making the collision edge disappear or covering buildable ground would undermine advanced mazing. The broader upper forms now do more of the visual work. Some diagonal slopes still show regular spacing at close zoom, and woodland, smaller buildings and cliff composition need further work to reach the selected concept's quality. This change does not claim to finish that wider art direction.
+
+[Verification, counts and actual packaged screenshots](Verification/Rounded-Walls/README.md). This is a continuation requested directly by the user after the overnight cutoff; no automation was created, extended or reactivated.

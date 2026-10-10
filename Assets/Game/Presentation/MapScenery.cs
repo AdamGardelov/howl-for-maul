@@ -21,6 +21,7 @@ namespace FrostMaze
         }
         public void Build(Prototype game) {
             var c=game.World.Config;bool ice=c.Theme!="iron";var batches=new Batch[SceneryBatchCount];for(int i=0;i<batches.Length;i++)batches[i]=new Batch();
+            PrepareShelfEdges(c,ice);
             // Draw the source cells as one continuous surface: only exposed edges receive bevels.
             bool Solid(int row,int col) {
                 if(row<0||row>=c.LayoutRows.Length||col<0||col>=c.LayoutRows[row].Length)return false;
@@ -38,13 +39,11 @@ namespace FrostMaze
                 float h=ice?.72f:.6f,bevel=cell*.18f;
                 float l=Solid(row,col-1)?0:bevel,rr=Solid(row,col+1)?0:bevel;
                 float down=Solid(row+1,col)?0:bevel,up=Solid(row-1,col)?0:bevel;
-                var a0=new Vector3(x+l,h,z+down);var b0=new Vector3(x+l,h,z+cell-up);
-                var c0=new Vector3(x+cell-rr,h,z+cell-up);var d0=new Vector3(x+cell-rr,h,z+down);
-                batches[1].Quad(a0,b0,c0,d0);
-                if(l>0){Cliff(batches[0],new Vector3(x,0,z),new Vector3(x,0,z+cell),b0,a0);batches[19].Box(x+l+.025f,z+down+.025f,.045f,cell-down-up-.05f,h,h+.022f);}
-                if(rr>0){Cliff(batches[0],new Vector3(x+cell,0,z+cell),new Vector3(x+cell,0,z),d0,c0);batches[19].Box(x+cell-rr-.07f,z+down+.025f,.045f,cell-down-up-.05f,h,h+.022f);}
-                if(down>0){Cliff(batches[0],new Vector3(x+cell,0,z),new Vector3(x,0,z),a0,d0);batches[19].Box(x+l+.025f,z+down+.025f,cell-l-rr-.05f,.045f,h,h+.022f);}
-                if(up>0){Cliff(batches[0],new Vector3(x,0,z+cell),new Vector3(x+cell,0,z+cell),c0,b0);batches[19].Box(x+l+.025f,z+cell-up-.07f,cell-l-rr-.05f,.045f,h,h+.022f);}
+                RoundedShelf(batches[1],col,c.LayoutRows.Length-row-1);
+                if(l>0)ShelfFoot(batches[0],new Vector3(x,0,z),new Vector3(x,0,z+cell));
+                if(rr>0)ShelfFoot(batches[0],new Vector3(x+cell,0,z+cell),new Vector3(x+cell,0,z));
+                if(down>0)ShelfFoot(batches[0],new Vector3(x+cell,0,z),new Vector3(x,0,z));
+                if(up>0)ShelfFoot(batches[0],new Vector3(x,0,z+cell),new Vector3(x+cell,0,z+cell));
                 // Modest faceted rocks stay within blocked cells, away from buildable ground.
                 if(ice&&k=='#'&&col%5==0&&row%5==0&&l+rr+down+up==0) {
                     batches[11].Peak(x+cell*.5f,z+cell*.5f,cell*.4f,h,.5f);
@@ -58,11 +57,11 @@ namespace FrostMaze
                 if(!TryLandmarkAnchor(c,origin,side,out var anchor))return;
                 float x=anchor.X,z=anchor.Y,h=ice?.72f:.6f;
                 if(exit) {
-                    batches[12].Box(x-.22f,z-.22f,.44f,.44f,h,h+1.9f);
+                    batches[12].Box(x-.22f,z-.22f,.44f,.44f,RimFoot,h+1.9f);
                     batches[13].Box(x-.12f,z-.23f,.24f,.46f,h+.5f,h+1.6f);
                     batches[13].Peak(x,z,.23f,h+1.9f,.35f);
                 } else {
-                    batches[12].Box(x-.15f,z-.15f,.3f,.3f,h,h+1.2f);
+                    batches[12].Box(x-.15f,z-.15f,.3f,.3f,RimFoot,h+1.2f);
                     batches[13].Peak(x,z,.23f,h+1.2f,.4f);
                 }
             }
@@ -103,16 +102,20 @@ namespace FrostMaze
             for(int i=0;i<batches.Length;i++) {
                 var b=batches[i];if(b.V.Count==0)continue;var mesh=new Mesh{name="Original terrain batch "+i,indexFormat=UnityEngine.Rendering.IndexFormat.UInt32};mesh.SetVertices(b.V);mesh.SetTriangles(b.T,0);mesh.RecalculateNormals();mesh.RecalculateBounds();meshes.Add(mesh);
                 if(i>=24)CompositionUV(mesh,c.Width,i,ice);
-                if(i==0){var uv=new List<Vector2>();foreach(var vertex in b.V)uv.Add(new Vector2((Mathf.Min(vertex.x,c.Width-vertex.x)+vertex.z)/4,vertex.y/(ice?.72f:.6f)));mesh.SetUVs(0,uv);}
-                if(i==6||i==1||i==2){var uv=new List<Vector2>();foreach(var vertex in b.V)uv.Add(new Vector2(Mathf.Min(vertex.x,c.Width-vertex.x)/c.Width,vertex.z/c.Height));mesh.SetUVs(0,uv);}
+                if(i==0||i==6||i==1||i==2){var uv=new List<Vector2>();foreach(var vertex in b.V)uv.Add(new Vector2(Mathf.Min(vertex.x,c.Width-vertex.x)/c.Width,vertex.z/c.Height));mesh.SetUVs(0,uv);}
                 var obj=new GameObject("Scenery "+i);obj.layer=30;obj.transform.SetParent(transform,false);obj.AddComponent<MeshFilter>().sharedMesh=mesh;var renderer=obj.AddComponent<MeshRenderer>();renderer.sharedMaterial=game.MakeMaterial(i==0||i==1||i==6?Color.white:palette[i],i==13||i==17||i==18);
                 LandmarkMaterial(renderer.sharedMaterial,i,ice);
                 if(i==17||i==18)RememberFlame(mesh);
                 if(i==27)RememberCanopy(mesh);
                 if(i==17||i==18)renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;
                 if(i==2){renderer.sharedMaterial.shader=Resources.Load<Shader>("World/HearthWater");renderer.sharedMaterial.mainTexture=waterTexture;renderer.sharedMaterial.SetFloat("_MapWidth",c.Width);renderer.sharedMaterial.SetFloat("_Ice",ice?1:0);renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;}
-                if(i==0)renderer.sharedMaterial.mainTexture=wallTexture;
-                if(i==1)renderer.sharedMaterial.mainTexture=capTexture;
+                if(i==0){
+                    // This tiny sealing skirt continues the shelf pigment down to the exact mask.
+                    // Upward normals avoid a black masonry outline advertising every grid step.
+                    var normals=new Vector3[mesh.vertexCount];for(int n=0;n<normals.Length;n++)normals[n]=Vector3.up;mesh.normals=normals;
+                    renderer.sharedMaterial.mainTexture=capTexture;renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;
+                }
+                if(i==1)ShadeShelf(mesh,renderer.sharedMaterial,c,ice);
                 if(i==6){renderer.sharedMaterial.mainTexture=groundTexture;renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;}
             }
             LivingWorld.Create(game,transform,false);

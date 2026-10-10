@@ -1,0 +1,75 @@
+{
+  "date": "2026-10-10",
+  "baseCommit": "afa8ff7",
+  "unity": "6000.3.25f1",
+  "renderer": "Linux OpenGL llvmpipe / private Xvfb :98",
+  "focusedTests": {
+    "passed": 4,
+    "failed": 0,
+    "endUtc": "2026-10-10 06:16:01Z",
+    "fullSuite": false,
+    "cases": [
+      "GardensKeepBuildCellsAirRoutesAndHouseRoofsClear",
+      "ExteriorRespectsEveryBuildingAndBakedMapsRemainValid",
+      "RoundedEdgesPreserveEveryBlockedCellAndSealingFoot",
+      "LandmarksAmbientVoicesAndConstructionStayCosmetic"
+    ]
+  },
+  "simulationTests": {
+    "passed": 73,
+    "failed": 0
+  },
+  "roundedWalls": {
+    "Ironfold": {
+      "vertices": 261864,
+      "rimQuadsBeforeReflection": 40832,
+      "originalSealingEdgesChecked": 2562
+    },
+    "Rimewatch": {
+      "vertices": 83808,
+      "rimQuadsBeforeReflection": 12640,
+      "originalSealingEdgesChecked": 836
+    },
+    "rimQuadCountNote": "Generated across the full source map before existing left-half clipping/reflection; this is not a source-half count.",
+    "exactSealingFootHeight": 0.035,
+    "newTerrainBatches": 0,
+    "removedBatch": "Scenery 19 (square crown trim)"
+  },
+  "sourceMasksByteIdentical": true,
+  "bakedPngsByteIdentical": true,
+  "bakedFingerprintsRevalidated": true,
+  "linuxBuild": "passed",
+  "windowsBuild": "cross-build passed; native execution untested",
+  "packagedWorld": "both maps passed: 8 paid towers / 80 gold each; synthetic ground/flying targets; unchanged masks",
+  "packagedMenu": "title/settings/credits/map-change/solo/resize passed; small title and HUD inspected",
+  "humanInput": "not rerun this pass",
+  "fullCampaignBalance": "not rerun",
+  "hardwarePerformance": "not measured; software rendering only",
+  "separateNetworkMatch": "not rerun; networking unchanged",
+  "newPublicRelease": false,
+  "isolatedTarget": "restored to Linux",
+  "sources": {
+    "Assets/Game/Presentation/MapScenery.Rims.cs": "95064a52c9565139ec2f1159a8b85e1b9e205a94f7290a1ef73f3670cfd6991c",
+    "Assets/Game/Presentation/MapScenery.Rims.cs.meta": "80c6b69fee53dcd8409cda86bfb4722d9d9da1c8255aa607b87a10f87afdadf0",
+    "Assets/Game/Presentation/MapScenery.cs": "72d6ee444e444b8a64cab7bf688f9276b9e8336a28beb7fa1b1025698626dd50",
+    "Assets/Game/Presentation/Resources/World/HearthRidge.shader": "28f85337c35a456561325357a466ead061ade403cf5f8dd7c2debf441a2282f7",
+    "Assets/Tests/WallRimTests.cs": "3208f11f4bc4bbbe0927143099bc24816e577ecd36ffe469892639d48938aba0",
+    "Assets/Tests/WallRimTests.cs.meta": "d5a6c96a026419bc7f9b744b09de2b1721137ead4ed5d04fce49cd0cca03631b"
+  },
+  "packages": {
+    "Linux": {
+      "previous": "Builds/Linux-World-afa8ff7",
+      "fileCount": 193,
+      "treeSha256": "28891c3dce4728cd8be61d9081c26a07e372ada7867d063a2e664480ffd32939",
+      "ScottBuckleyNotices": "96c119336e46c5d4a9b12047041012e47bad686c7e7028e2865db8edf4d800b8",
+      "musicSources": "bb1435367b1c2971efe67b2b0d90415981595fd87561c29e4efa6fba061ac36a"
+    },
+    "Windows": {
+      "previous": "Builds/Windows-World-afa8ff7",
+      "fileCount": 195,
+      "treeSha256": "c0dcd692902beb0b95c9377eb417b4f07ee29774bc389fd3ae435362f450a2dc",
+      "ScottBuckleyNotices": "96c119336e46c5d4a9b12047041012e47bad686c7e7028e2865db8edf4d800b8",
+      "musicSources": "bb1435367b1c2971efe67b2b0d90415981595fd87561c29e4efa6fba061ac36a"
+    }
+  }
+}

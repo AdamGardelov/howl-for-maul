@@ -4,6 +4,7 @@ Shader "Howl/Painted ridge"
     {
         [MainTexture] _BaseMap("Existing shelf paint",2D)="white"{}
         _RockMap("Exposed stone",2D)="white"{}
+        _RockTint("Stone pigment",Color)=(.77,.85,.82,1)
         _MapHeight("Map height",Float)=64
         _Cutoff("Surface cutoff",Range(0,1))=.38
         _Wind("Static surface",Float)=0
@@ -22,6 +23,7 @@ Shader "Howl/Painted ridge"
         TEXTURE2D(_RockMap); SAMPLER(sampler_RockMap);
         CBUFFER_START(UnityPerMaterial)
         float4 _BaseMap_ST;
+        float4 _RockTint;
         float _Cutoff, _Wind, _MapWidth, _Desaturate, _MapHeight;
         CBUFFER_END
         struct Attributes { float4 positionOS:POSITION; float3 normalOS:NORMAL; float2 uv:TEXCOORD0; half4 color:COLOR; };
@@ -52,7 +54,7 @@ Shader "Howl/Painted ridge"
                 half3 rock=SAMPLE_TEXTURE2D(_RockMap,sampler_RockMap,float2(i.positionWS.z,i.positionWS.y)/3).rgb*weights.x
                     +SAMPLE_TEXTURE2D(_RockMap,sampler_RockMap,float2(mx,i.positionWS.z)/3).rgb*weights.y
                     +SAMPLE_TEXTURE2D(_RockMap,sampler_RockMap,float2(mx,i.positionWS.y)/3).rgb*weights.z;
-                rock=lerp(rock,dot(rock,half3(.25,.6,.15)).xxx,.3)*half3(.77,.85,.82);
+                rock=lerp(rock,dot(rock,half3(.25,.6,.15)).xxx,.3)*_RockTint.rgb;
                 paint.rgb=lerp(paint.rgb,rock,saturate(i.color.a));
                 clip(paint.a-_Cutoff);
                 half3 n=normalize(i.normalWS);
