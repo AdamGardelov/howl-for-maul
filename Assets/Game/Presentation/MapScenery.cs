@@ -12,14 +12,14 @@ namespace FrostMaze
             public void Quad(Vector3 a,Vector3 b,Vector3 c,Vector3 d){int n=V.Count;V.AddRange(new[]{a,b,c,d});T.AddRange(new[]{n,n+1,n+2,n,n+2,n+3});}
             public void Box(float x,float z,float w,float d,float bottom,float top){
                 var a=new Vector3(x,bottom,z);var b=new Vector3(x+w,bottom,z);var c=new Vector3(x+w,bottom,z+d);var e=new Vector3(x,bottom,z+d);var u=Vector3.up*(top-bottom);
-                Quad(a+u,e+u,c+u,b+u);Quad(a,b,b+u,a+u);Quad(b,c,c+u,b+u);Quad(c,e,e+u,c+u);Quad(e,a,a+u,e+u);
+                Quad(a+u,e+u,c+u,b+u);Quad(a,a+u,b+u,b);Quad(b,b+u,c+u,c);Quad(c,c+u,e+u,e);Quad(e,e+u,a+u,a);
             }
             public void Peak(float x,float z,float radius,float bottom,float height) {
                 for(int i=0;i<6;i++){float a=i*Mathf.PI/3,b=(i+1)*Mathf.PI/3;int n=V.Count;V.Add(new Vector3(x,bottom+height,z));V.Add(new Vector3(x+Mathf.Cos(b)*radius,bottom,z+Mathf.Sin(b)*radius));V.Add(new Vector3(x+Mathf.Cos(a)*radius,bottom,z+Mathf.Sin(a)*radius));T.AddRange(new[]{n,n+1,n+2});}
             }
         }
         public void Build(Prototype game) {
-            var c=game.World.Config;bool ice=c.Theme!="iron";var batches=new Batch[30];for(int i=0;i<batches.Length;i++)batches[i]=new Batch();
+            var c=game.World.Config;bool ice=c.Theme!="iron";var batches=new Batch[SceneryBatchCount];for(int i=0;i<batches.Length;i++)batches[i]=new Batch();
             // Draw the source cells as one continuous surface: only exposed edges receive bevels.
             bool Solid(int row,int col) {
                 if(row<0||row>=c.LayoutRows.Length||col<0||col>=c.LayoutRows[row].Length)return false;
@@ -91,15 +91,21 @@ namespace FrostMaze
             palette.Add(ice?new Color(.12f,.25f,.23f):new Color(.17f,.29f,.18f)); // canopy
             palette.Add(ice?new Color(.60f,.68f,.67f):new Color(.34f,.42f,.27f)); // crowns
             palette.Add(ice?new Color(.34f,.59f,.64f):new Color(.85f,.34f,.06f)); // landmark heart
+            palette.Add(ice?new Color(.76f,.88f,.94f):new Color(.85f,.81f,.69f)); // landmark masonry
+            palette.Add(new Color(.72f,.65f,.44f)); // painted copper
+            palette.Add(ice?new Color(.30f,.24f,.18f):new Color(.32f,.23f,.13f)); // structural timber
+            palette.Add(new Color(.10f,.14f,.14f)); // dark iron / openings
+            palette.Add(new Color(.72f,.82f,.82f)); // snow ledges
             foreach(var batch in batches)MirroredGeometry.Apply(batch.V,batch.T,c.Width);
             MirroredGeometry.Points(fireAnchors,c.Width);MirroredGeometry.Points(landmarks,c.Width);Braziers=fireAnchors.Count;
             PaintTerrain(c,ice);
             for(int i=0;i<batches.Length;i++) {
                 var b=batches[i];if(b.V.Count==0)continue;var mesh=new Mesh{name="Original terrain batch "+i,indexFormat=UnityEngine.Rendering.IndexFormat.UInt32};mesh.SetVertices(b.V);mesh.SetTriangles(b.T,0);mesh.RecalculateNormals();mesh.RecalculateBounds();meshes.Add(mesh);
-                if(i>=24&&i<=28){var uv=new List<Vector2>();foreach(var vertex in b.V)uv.Add(new Vector2((Mathf.Min(vertex.x,c.Width-vertex.x)+vertex.z)/4,vertex.y/3));mesh.SetUVs(0,uv);}
+                if(i>=24)CompositionUV(mesh,c.Width,i,ice);
                 if(i==0){var uv=new List<Vector2>();foreach(var vertex in b.V)uv.Add(new Vector2((Mathf.Min(vertex.x,c.Width-vertex.x)+vertex.z)/4,vertex.y/(ice?.72f:.6f)));mesh.SetUVs(0,uv);}
                 if(i==6||i==1||i==2){var uv=new List<Vector2>();foreach(var vertex in b.V)uv.Add(new Vector2(Mathf.Min(vertex.x,c.Width-vertex.x)/c.Width,vertex.z/c.Height));mesh.SetUVs(0,uv);}
                 var obj=new GameObject("Scenery "+i);obj.layer=30;obj.transform.SetParent(transform,false);obj.AddComponent<MeshFilter>().sharedMesh=mesh;var renderer=obj.AddComponent<MeshRenderer>();renderer.sharedMaterial=game.MakeMaterial(i==0||i==1||i==6?Color.white:palette[i],i==13||i==17||i==18);
+                LandmarkMaterial(renderer.sharedMaterial,i,ice);
                 if(i==17||i==18)RememberFlame(mesh);
                 if(i==27)RememberCanopy(mesh);
                 if(i==17||i==18)renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;
@@ -124,6 +130,6 @@ namespace FrostMaze
             }
             return found;
         }
-        void OnDestroy(){if(fireTexture!=null)Destroy(fireTexture);foreach(var mesh in meshes)Destroy(mesh);if(!usesBakedSurfaces){if(groundTexture!=null)Destroy(groundTexture);if(capTexture!=null)Destroy(capTexture);if(wallTexture!=null)Destroy(wallTexture);if(waterTexture!=null)Destroy(waterTexture);}}
+        void OnDestroy(){if(landmarkEmbers!=null)Destroy(landmarkEmbers);if(landmarkWear!=null)Destroy(landmarkWear);if(fireTexture!=null)Destroy(fireTexture);foreach(var mesh in meshes)Destroy(mesh);if(!usesBakedSurfaces){if(groundTexture!=null)Destroy(groundTexture);if(capTexture!=null)Destroy(capTexture);if(wallTexture!=null)Destroy(wallTexture);if(waterTexture!=null)Destroy(waterTexture);}}
     }
 }

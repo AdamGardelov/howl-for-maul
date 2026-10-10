@@ -67,46 +67,8 @@ namespace FrostMaze
                 var starts=Starts();
                 float x0=best.x,z0=best.z;
                 Mound(b[24],x0,z0,y+.015f,2.12f,.16f,landmarks.Count);
-                b[25].Box(x0-1.15f,z0-.9f,2.3f,1.8f,y+.13f,y+.38f);
-                if(ice) {
-                    // A roofed wayshrine: stone uprights, bowed timber lintel and frosted gables.
-                    for(int side=-1;side<=1;side+=2) {
-                        b[25].Box(x0+side*.85f-.18f,z0-.28f,.36f,.56f,y+.38f,y+2.8f);
-                        b[26].Box(x0+side*.85f-.25f,z0-.37f,.5f,.74f,y+2.5f,y+2.69f);
-                    }
-                    Beam(b[26],new Vector3(x0-1.25f,y+2.9f,z0),new Vector3(x0,y+3.55f,z0),.17f);
-                    Beam(b[26],new Vector3(x0,y+3.55f,z0),new Vector3(x0+1.25f,y+2.9f,z0),.17f);
-                    for(int side=-1;side<=1;side+=2) {
-                        b[28].Quad(new Vector3(x0+side*1.5f,y+2.92f,z0-.65f),new Vector3(x0+side*1.5f,y+2.92f,z0+.65f),new Vector3(x0,y+3.7f,z0+.65f),new Vector3(x0,y+3.7f,z0-.65f));
-                        b[28].Quad(new Vector3(x0,y+3.7f,z0-.65f),new Vector3(x0,y+3.7f,z0+.65f),new Vector3(x0+side*1.5f,y+2.92f,z0+.65f),new Vector3(x0+side*1.5f,y+2.92f,z0-.65f));
-                    }
-                    if(landmarks.Count==2) {
-                        Beam(b[26],new Vector3(x0,y+2.95f,z0),new Vector3(x0,y+2.45f,z0),.035f);
-                        Ring(b[26],x0,z0,y+1.92f,.53f,.35f,.14f);b[26].Peak(x0,z0,.14f,y+2.44f,.13f);
-                    } else {
-                        b[25].Box(x0-.32f,z0-.25f,.64f,.5f,y+.38f,y+1.0f);
-                        b[29].Peak(x0,z0,.27f,y+1,landmarks.Count==1?1.1f:1.6f);
-                        if(landmarks.Count==3)for(int side=-1;side<=1;side+=2)b[29].Peak(x0+side*.38f,z0+.12f,.16f,y+.85f,.8f);
-                    }
-                    for(int i=0;i<3;i++)b[26].Box(x0-.9f+i*.85f,z0-.7f,.22f,.22f,y+.4f,y+.58f);
-                } else {
-                    // A banked furnace, broken workbench and riveted flue among reclaimed stone.
-                    b[25].Box(x0-.8f,z0-.5f,1.6f,1.0f,y+.38f,y+2.15f);
-                    b[26].Box(x0-.98f,z0-.64f,1.96f,1.28f,y+2.15f,y+2.35f);
-                    Ring(b[26],x0+.60f,z0,y+2.3f,1.75f,.30f,.20f);
-                    Ring(b[25],x0+.60f,z0,y+4.05f,.20f,.34f,.29f);
-                    b[29].Box(x0-.51f,z0-.52f,1.02f,.035f,y+.55f,y+1.24f);
-                    for(int arch=0;arch<9;arch++) {
-                        float a=arch*Mathf.PI/9,n=(arch+1)*Mathf.PI/9;
-                        Vector3 P(float t,float r)=>new Vector3(x0+Mathf.Cos(t)*r,y+1.23f+Mathf.Sin(t)*r,z0-.55f);
-                        b[25].Quad(P(a,.51f),P(a,.68f),P(n,.68f),P(n,.51f));
-                        b[29].Quad(new Vector3(x0,y+1.23f,z0-.54f),P(a,.50f),P(n,.50f),new Vector3(x0,y+1.23f,z0-.54f));
-                    }
-                    for(int i=0;i<5;i++)b[26].Box(x0-.43f+i*.215f,z0-.59f,.045f,.07f,y+.55f,y+1.38f+(2-Mathf.Abs(i-2))*.16f);
-                    b[26].Box(x0-1.65f,z0-.3f,.48f,1.1f,y+.9f,y+1.08f);
-                    for(int i=0;i<2;i++)b[25].Box(x0-1.6f,z0-.25f+i*.75f,.2f,.18f,y+.15f,y+.9f);
-                    for(int i=0;i<3;i++)Mound(b[25],x0+1.2f,z0-.4f+i*.5f,y,.28f,.18f+i*.09f,i);
-                }
+                if(ice)WayshrineLandmark(b,x0,z0,y,landmarks.Count);
+                else ForgeLandmark(b,x0,z0,y,landmarks.Count);
                 // One warm hearth per landmark becomes a spatial sound/light anchor too.
                 float hx=x0+1.55f,hz=z0+1.25f;
                 Ring(b[16],hx,hz,y,.45f,.24f,.32f);b[17].Peak(hx,hz,.20f,y+.45f,.65f);b[18].Peak(hx,hz,.10f,y+.46f,.4f);

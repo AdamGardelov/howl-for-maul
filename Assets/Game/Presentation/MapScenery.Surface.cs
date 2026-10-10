@@ -108,7 +108,7 @@ namespace FrostMaze
         public bool UsesBakedSurfaces=>usesBakedSurfaces;
         public Texture2D[] PaintForBake(Scenario c) {
             paintingForBake=true;
-            var batches=new Batch[30];for(int i=0;i<batches.Length;i++)batches[i]=new Batch();
+            var batches=new Batch[SceneryBatchCount];for(int i=0;i<batches.Length;i++)batches[i]=new Batch();
             BuildComposition(batches,c,c.Theme!="iron");MirroredGeometry.Points(landmarks,c.Width);
             PaintTerrain(c,c.Theme!="iron");
             var result=new[]{groundTexture,capTexture,wallTexture,waterTexture};

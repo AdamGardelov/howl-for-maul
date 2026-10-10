@@ -114,7 +114,7 @@ namespace FrostMaze
                 transform.GetChild(transform.childCount-1).GetComponent<MeshRenderer>().shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.On;
             }
         }
-        static Texture2D HearthEmbers() {
+        internal static Texture2D HearthEmbers() {
             const int width=128,height=128;var pixels=new Color[width*height];
             for(int y=0;y<height;y++)for(int x=0;x<width;x++) {
                 float u=x/(width-1f),v=y/(height-1f),rim=Mathf.Sin(u*Mathf.PI);
@@ -127,7 +127,7 @@ namespace FrostMaze
             }
             var texture=new Texture2D(width,height,TextureFormat.RGB24,true){name="Original banked hearth embers",wrapMode=TextureWrapMode.Clamp,filterMode=FilterMode.Trilinear};texture.SetPixels(pixels);texture.Apply(true,true);return texture;
         }
-        static Texture2D RefugePatina() {
+        internal static Texture2D RefugePatina() {
             const int size=256;var pixels=new Color[size*size];
             for(int y=0;y<size;y++)for(int x=0;x<size;x++) {
                 float u=x/(float)size,v=y/(float)size;

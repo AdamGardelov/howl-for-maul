@@ -50,10 +50,14 @@ namespace FrostMaze
                     spent+=cost;built++;
                 }
                 if(built<3||mask!=string.Join("\n",world.Config.LayoutRows)){Fail("Paid defense / mask invariant failed");yield break;}
-                yield return null;
+                game.MoveMode=true;yield return null;
                 camera.FocusPoint(new V2(32,map=="Ironfold"?6:11));camera.SetZoom(12,true);yield return Capture(map+"-Last-Stand");
                 camera.FocusPoint(new V2(32,0));camera.SetZoom(17,true);yield return Capture(map+"-Settlement");
                 camera.FocusPoint(new V2(20,-3));camera.SetZoom(9,true);yield return Capture(map+"-Refuge-Detail");
+                var landmarks=game.GetComponentInChildren<MapScenery>().LandmarkPositions;
+                if(landmarks.Count>0){
+                    var anchor=landmarks[0];camera.FocusPoint(new V2(anchor.x,anchor.z+1));camera.SetZoom(6,true);yield return Capture(map+"-Landmark-Detail");
+                }
                 camera.FocusPoint(start);camera.SetZoom(7,true);
                 var tower=world.Grid.Towers[0];
                 world.Spawn(new WaveSpec{Health=5000,Speed=1.5f},tower.Center+new V2(1.5f,1.5f));

@@ -1,0 +1,82 @@
+{
+  "date": "2026-10-10",
+  "baseCommit": "9ff05e2",
+  "unity": "6000.3.25f1",
+  "renderer": "Linux x64 / OpenGL llvmpipe / private Xvfb",
+  "finalUnityTests": {
+    "passed": 3,
+    "failed": 0,
+    "scope": "WorldCohesionTests; LivingWorldTests; ShelteredWorldTests.ExteriorRespectsEveryBuildingAndBakedMapsRemainValid"
+  },
+  "initialUnityTests": {
+    "passed": 2,
+    "failed": 1,
+    "reason": "New reflected-vertex assertion exposed legacy inner canopy wind mismatch. Corrected phase and horizontal sway; safety thresholds unchanged."
+  },
+  "linuxBuild": "passed",
+  "windowsBuild": "passed (cross-build only)",
+  "packagedWorld": {
+    "Ironfold": {
+      "paidTowers": 8,
+      "spentGold": 80,
+      "maskUnchanged": true,
+      "mirrored": true
+    },
+    "Rimewatch": {
+      "paidTowers": 8,
+      "spentGold": 80,
+      "maskUnchanged": true,
+      "mirrored": true
+    },
+    "combat": "Three synthetic ground/flying targets per map; short live presentation check, not campaign balance or real-input playtest"
+  },
+  "packagedMenu": "passed: title/settings/credits/960x600 and 1440x900 resize/map-change/solo-entry; small title and HUD inspected",
+  "nativeWindows": "not run",
+  "hardwarePerformance": "not measured",
+  "fullCampaignBalance": "not rerun; simulation unchanged",
+  "separateNetworkMatch": "not rerun; network code unchanged",
+  "newPublicRelease": false,
+  "isolatedEditorTarget": "restored to Linux",
+  "ownedProcessesClosed": true,
+  "previousPackages": [
+    "Builds/Linux-World-9ff05e2",
+    "Builds/Windows-World-9ff05e2"
+  ],
+  "sources": {
+    "Assets/Game/Presentation/MapScenery.Composition.cs": "d33ef2017e222bd003023271075e1796e783a28d7e92883e6c11f1f818703cdd",
+    "Assets/Game/Presentation/MapScenery.Fire.cs": "32449631bab20a432147f26669258e36bf6336dc139e5fd7e1a306df61ed8853",
+    "Assets/Game/Presentation/MapScenery.Surface.cs": "002f04d78927f8cd3a575e9a96895deb59b90ad19130df79d14ad08e2eaf8955",
+    "Assets/Game/Presentation/MapScenery.cs": "58dbc598262a192e3fa0df0bfdfc92457ab49b5ab6f9e0693d891a25767cedf8",
+    "Assets/Game/Presentation/Resources/World/Baked/Ironfold.asset": "a61413993e460fbabd9a15aa6d343dc792293af27c6a0f635e49a8e42746c4e3",
+    "Assets/Game/Presentation/Resources/World/Baked/Rimewatch.asset": "9ea12ca94c8b2161ea028f817151378cf9f49b992a39273dec23d0bb574b6d47",
+    "Assets/Game/Presentation/StandaloneWorldSmoke.cs": "3d5cd47a8772e855a4ba3297740fd28ce0f4dee1ff70a446c2c4a0add16e6f7d",
+    "Assets/Game/Presentation/WorldBackdrop.Refuge.cs": "e75d076ef9892e5f10002283b88a0cb73e95df81f91a948d494aa0fd110229df",
+    "Assets/Tests/WorldCohesionTests.cs": "afcb806edcb7c3e76651bd89626e9cedc702454e6add0c0735954375a899ff47",
+    "Assets/Game/Presentation/MapScenery.Landmarks.cs": "9abe0fe7b4487f8ac22c3492bfe3e230b79012d84f499cd7fb047ae8e247b588",
+    "Assets/Game/Presentation/MapScenery.Landmarks.cs.meta": "746bded9d2615b529bf8ec4d9a35bfd1c84de32293568326d05babec7d253813"
+  },
+  "installedPackageSha256": {
+    "Linux": {
+      "HowlForMaul": "8027f7d1f9ae7dacfc826fb218adcc1ae7464af098a8a59397e7531c0f7ec0bc",
+      "HowlForMaul_Data/Managed/FrostMaze.Runtime.dll": "e589ceabab1e0e5ca42348d91687833a4ec82198c589e5203f63f35efcbe6496",
+      "THIRD-PARTY-NOTICES.md": "96c119336e46c5d4a9b12047041012e47bad686c7e7028e2865db8edf4d800b8",
+      "MUSIC-SOURCES.json": "bb1435367b1c2971efe67b2b0d90415981595fd87561c29e4efa6fba061ac36a"
+    },
+    "Windows": {
+      "HowlForMaul.exe": "3070e580e019576b9afcdeb4fec18d03cebc119f6ae84d597412905c749ad653",
+      "HowlForMaul_Data/Managed/FrostMaze.Runtime.dll": "a0f71b7e493a0c73d116e138ffa20d83c1a1beb2b08bc533b650b207ee920a90",
+      "THIRD-PARTY-NOTICES.md": "96c119336e46c5d4a9b12047041012e47bad686c7e7028e2865db8edf4d800b8",
+      "MUSIC-SOURCES.json": "bb1435367b1c2971efe67b2b0d90415981595fd87561c29e4efa6fba061ac36a"
+    }
+  },
+  "logs": [
+    "work/landmark-bake.log",
+    "work/landmark-tests-initial.log",
+    "work/landmark-tests.log",
+    "work/landmark-linux-build.log",
+    "work/landmark-world.log",
+    "work/landmark-menu.log",
+    "work/landmark-windows-build.log",
+    "work/landmark-restore-linux.log"
+  ]
+}

@@ -85,7 +85,8 @@ namespace FrostMaze
             if(canopy!=null) {
                 for(int i=0;i<canopyRest.Length;i++) {
                     var p=canopyRest[i];float flex=Mathf.Clamp01((p.y-1.4f)/2.3f);
-                    p.x+=flex*.025f*Mathf.Sin(fireTime*1.25f+p.x*.45f+p.z*.31f);
+                    float width=sceneryGame.World.Config.Width,mx=Mathf.Min(p.x,width-p.x);
+                    p.x+=flex*.025f*Mathf.Sin(fireTime*1.25f+mx*.45f+p.z*.31f)*(p.x>width*.5f?-1:1);
                     p.z+=flex*.018f*Mathf.Sin(fireTime*.9f+p.z*.5f);canopyMoved[i]=p;
                 }
                 canopy.vertices=canopyMoved;canopy.RecalculateBounds();

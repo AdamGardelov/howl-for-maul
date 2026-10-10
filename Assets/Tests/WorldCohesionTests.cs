@@ -24,6 +24,8 @@ namespace FrostMaze.Tests
                 Assert.That(ambience.VoiceCount,Is.EqualTo(4));Assert.That(ambience.GetComponents<AudioSource>().Length,Is.EqualTo(1),"Only existing combat source belongs directly to prototype");
                 CollectionAssert.AreEqual(game.Map.Settings.LayoutRows,w.Config.LayoutRows,"Art must not change the supplied mask");
                 ValidateComposition(scenery,w.Config);
+                var landmarkTextures=new System.Collections.Generic.List<Texture>();
+                foreach(int batch in w.Config.Theme=="iron"?new[]{29,32}:new[]{32})landmarkTextures.Add(scenery.transform.Find("Scenery "+batch).GetComponent<Renderer>().sharedMaterial.mainTexture);
                 var refuge=game.GetComponentInChildren<WorldBackdrop>();Assert.That(refuge,Is.Not.Null);
                 Assert.That(refuge.RefugeVertices,Is.InRange(1000,20000));
                 Assert.That(refuge.RefugeHearths.Count,Is.EqualTo(2));
@@ -83,6 +85,7 @@ namespace FrostMaze.Tests
                 rts.FocusPoint(new V2(31,4));rts.SetZoom(17,true);yield return null;Capture(game.View,"/tmp/Howl-"+map+"-Cohesion-Exterior.png");
                 game.ChooseMap(Resources.Load<MapDefinition>(map=="Rimewatch"?"Ironfold":"Rimewatch"));yield return null;yield return null;
                 foreach(var clip in owned)Assert.That(clip==null,Is.True,"Changing maps leaked ambient audio");
+                foreach(var texture in landmarkTextures)Assert.That(texture==null,Is.True,"Changing maps leaked generated landmark paint");
             }
             yield return new ExitPlayMode();
         }
@@ -97,9 +100,21 @@ namespace FrostMaze.Tests
             return true;
         }
         static void ValidateComposition(MapScenery scenery,Scenario config) {
-            for(int batch=24;batch<=29;batch++) {
-                var prop=scenery.transform.Find("Scenery "+batch);if(prop==null)continue;
+            foreach(var filter in scenery.GetComponentsInChildren<MeshFilter>()) {
+                if(!filter.name.StartsWith("Scenery ")||!int.TryParse(filter.name.Substring(8),out int batch)||batch<24)continue;
+                var prop=filter.transform;
                 var mesh=prop.GetComponent<MeshFilter>().sharedMesh;var vertices=mesh.vertices;var triangles=mesh.triangles;
+                Assert.That(prop.GetComponent<Collider>(),Is.Null);
+                var reflected=new System.Collections.Generic.HashSet<Vector3Int>();
+                foreach(var v in vertices)reflected.Add(new Vector3Int(Mathf.RoundToInt(v.x*1000),Mathf.RoundToInt(v.y*1000),Mathf.RoundToInt(v.z*1000)));
+                foreach(var v in vertices){
+                    var q=new Vector3Int(Mathf.RoundToInt((config.Width-v.x)*1000),Mathf.RoundToInt(v.y*1000),Mathf.RoundToInt(v.z*1000));
+                    Assert.That(reflected.Contains(q)||reflected.Contains(q+Vector3Int.right)||reflected.Contains(q-Vector3Int.right),Is.True,"Unpaired composition vertex: "+filter.name+" "+v);
+                }
+                if(batch>=30&&batch<=32){
+                    Assert.That(prop.GetComponent<Renderer>().sharedMaterial.mainTexture,Is.Not.Null);
+                    Assert.That(mesh.uv.Length,Is.EqualTo(vertices.Length));
+                }
                 for(int i=0;i<triangles.Length;i+=3) {
                     var a=vertices[triangles[i]];var b=vertices[triangles[i+1]];var c=vertices[triangles[i+2]];
                     var min=new Vector2(Mathf.Min(a.x,b.x,c.x),Mathf.Min(a.z,b.z,c.z));var max=new Vector2(Mathf.Max(a.x,b.x,c.x),Mathf.Max(a.z,b.z,c.z));
