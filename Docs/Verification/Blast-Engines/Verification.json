@@ -1,0 +1,82 @@
+{
+  "date": "2026-10-10",
+  "baseCommit": "c771e38",
+  "unity": "6000.3.25f1",
+  "renderer": "Linux x64 / OpenGL llvmpipe / private Xvfb :98",
+  "tests": {
+    "rosterPortraitPreviewPassed": 5,
+    "combatProgressionPassed": 2,
+    "failed": 0,
+    "testSourceChanged": false
+  },
+  "linuxBuild": "passed",
+  "windowsBuild": "passed (cross-build only)",
+  "packagedInput": {
+    "map": "Ironfold",
+    "faction": "Blast Circuit",
+    "difficulty": "Normal",
+    "paidRegularTowers": 6,
+    "spentGold": 435,
+    "startingGold": 2200,
+    "postBuildGold": 1765,
+    "queuedOrders": 0,
+    "speed": "3x",
+    "firstWave": {
+      "lives": 22,
+      "gold": 1845,
+      "leaks": 8
+    },
+    "liveSecondWaveCapture": {
+      "gold": 1851,
+      "shotsVisible": true
+    },
+    "secondWaveEnd": {
+      "lives": 11,
+      "gold": 1938,
+      "totalLeaks": 19
+    },
+    "paused": true,
+    "normalPlayerExit": 0,
+    "scope": "Short actual mouse/key presentation check; six nearby towers are not a balanced maze or full campaign",
+    "helperInterruption": "One speed/start/pointer helper ended with signal 143 after the two clicks. Player/display remained alive; following movement/capture helper and normal close passed."
+  },
+  "packagedMenu": "passed: title/settings/credits/map-change/solo-entry/960x600 and 1440x900; small title and HUD inspected",
+  "nativeWindows": "not run",
+  "hardwarePerformance": "not measured",
+  "fullCampaignBalance": "not rerun; simulation unchanged",
+  "separateNetworkMatch": "not rerun; networking unchanged",
+  "newPublicRelease": false,
+  "isolatedEditorTarget": "restored to Linux",
+  "ownedProcessesClosed": true,
+  "previousPackages": [
+    "Builds/Linux-World-c771e38",
+    "Builds/Windows-World-c771e38"
+  ],
+  "sources": {
+    "Assets/Game/Presentation/Towers/TowerView.Blast.cs": "3a634290625b407248c00cc642fd041ae4b25d9a9c2ada4999b08ebaf160c5f8",
+    "Assets/Game/Presentation/Towers/TowerView.Identity.cs": "b1932f88ef4ff7382e54bd424804a9c0f20934ac78e6c28e3b6ac8cb414cd175"
+  },
+  "installedPackageSha256": {
+    "Linux": {
+      "HowlForMaul": "8027f7d1f9ae7dacfc826fb218adcc1ae7464af098a8a59397e7531c0f7ec0bc",
+      "HowlForMaul_Data/Managed/FrostMaze.Runtime.dll": "039c7dd7d712b5b500393141edc19c7e19de77c25f46d6c2cc48395b1ddf9dbc",
+      "THIRD-PARTY-NOTICES.md": "96c119336e46c5d4a9b12047041012e47bad686c7e7028e2865db8edf4d800b8",
+      "MUSIC-SOURCES.json": "bb1435367b1c2971efe67b2b0d90415981595fd87561c29e4efa6fba061ac36a"
+    },
+    "Windows": {
+      "HowlForMaul.exe": "3070e580e019576b9afcdeb4fec18d03cebc119f6ae84d597412905c749ad653",
+      "HowlForMaul_Data/Managed/FrostMaze.Runtime.dll": "4c193dbc723b251084ecfacd4dd68d440fa4bb04bf3a0d539e50d004a0801707",
+      "THIRD-PARTY-NOTICES.md": "96c119336e46c5d4a9b12047041012e47bad686c7e7028e2865db8edf4d800b8",
+      "MUSIC-SOURCES.json": "bb1435367b1c2971efe67b2b0d90415981595fd87561c29e4efa6fba061ac36a"
+    }
+  },
+  "logs": [
+    "work/blast-tests.log",
+    "work/blast-paid-tests.log",
+    "work/blast-linux-build.log",
+    "work/blast-input-flow.log",
+    "work/blast-menu.log",
+    "work/blast-windows-build.log",
+    "work/blast-restore-linux.log"
+  ]
+}

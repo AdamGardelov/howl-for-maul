@@ -63,14 +63,14 @@ namespace FrostMaze
                 }
                 Part("Foundry breastplate",PrimitiveType.Sphere,new Vector3(0,.5f,.17f),new Vector3(.35f,.37f,.15f),trim,weapon);
             }else if(faction==1){ // Blast: low six-legged siege beetles, not upright soldiers.
-                LowerWeapon(.70f,.02f);
                 for(int side=-1;side<=1;side+=2)for(int leg=-1;leg<=1;leg++){
                     var knee=new Vector3(side*.34f,.29f,leg*.22f);
                     Strut("Beetle thigh",new Vector3(side*.17f,.48f,leg*.17f),knee,.17f,trim);
                     Strut("Beetle claw",knee,new Vector3(side*.41f,.065f,leg*.25f),.12f,dark);
                     Part("Siege talon",PrimitiveType.Cube,new Vector3(side*.40f,.08f,leg*.25f+.035f),new Vector3(.16f,.12f,.19f),shell);
                 }
-                Part("Copper carapace",PrimitiveType.Sphere,new Vector3(0,.45f,-.08f),new Vector3(.72f,.4f,.57f),shell,weapon);
+                Part("Siege undercarriage",PrimitiveType.Sphere,new Vector3(0,.36f,-.04f),new Vector3(.56f,.21f,.48f),dark);
+                Part("Copper turntable",PrimitiveType.Cylinder,new Vector3(0,.46f,0),new Vector3(.42f,.055f,.42f),trim);
             }else if(faction==2){ // Prism: suspended glass with a broken ivory shrine around it.
                 Shape("Prism waist",game.Models.Crystal,new Vector3(.16f,.32f,.16f));
                 Shape("Prism cuirass",game.Models.Crystal,new Vector3(.33f,.54f,.30f));
